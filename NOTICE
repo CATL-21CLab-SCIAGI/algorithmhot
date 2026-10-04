@@ -1,0 +1,22 @@
+AIHOT
+Copyright (c) 2026 数字生命卡兹克. The code is licensed under the MIT License (LICENSE).
+
+The name "AIHOT" and the AIHOT logo are not licensed under the MIT License. Please use your own name
+and logo for your site.
+
+This repository also contains third-party material under its own terms:
+
+- assets/og-fonts/: Noto Sans SC, SIL Open Font License 1.1 (assets/og-fonts/LICENSE).
+- assets/model-providers/: model and provider marks, mostly from Lobe Icons (MIT). The marks remain
+  trademarks of their respective owners and are used only to identify them (assets/model-providers/NOTICE.md).
+- assets/leaderboard-sources/: the published marks of each evaluation operator, used only to identify
+  them (assets/leaderboard-sources/NOTICE.md).
+- apps/web/public/paper-figures/dmad-v1-figure3.png: Figure 3 from Zhengming Yu et al.,
+  DMAD, arXiv:2610.02188v1, https://arxiv.org/pdf/2610.02188v1#page=5.
+  Licensed under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/.
+  Extracted from PDF page 5 to PNG; the complete figure is retained without redrawing.
+  Other research figure URLs and attribution are recorded in industry/paper-figures.ts;
+  those remote images retain their own publishers' or authors' rights and licenses.
+
+The demo sources in industry/sources.json are public feeds of their publishers. Their content belongs
+to them; by default the site shows only a summary and a link to the original.

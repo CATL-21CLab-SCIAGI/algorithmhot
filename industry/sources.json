@@ -1,0 +1,149 @@
+{
+  "$comment": "AlgorithmHot 首版六条研究来源。全部默认禁用，由本地运行命令按需启用；模型准入和原始资料采集分别计数。",
+  "sources": [
+    {
+      "tier": "T1_5",
+      "first_party": false,
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 360,
+      "tags": [
+        "研究"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "enabled": false,
+      "id": "research-arxiv-ml-ai",
+      "name": "arXiv · AI 与机器学习",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://rss.arxiv.org/rss/cs.LG+cs.AI",
+        "summaryIsBody": true,
+        "fetchPublicContent": false,
+        "fixedInterval": true,
+        "researchSourceKind": "arxiv"
+      }
+    },
+    {
+      "tier": "T1_5",
+      "first_party": false,
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 360,
+      "tags": [
+        "研究"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "enabled": false,
+      "id": "research-arxiv-physical-science",
+      "name": "arXiv · 计算物理与材料",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://rss.arxiv.org/rss/physics.comp-ph+cond-mat.mtrl-sci",
+        "summaryIsBody": true,
+        "fetchPublicContent": false,
+        "fixedInterval": true,
+        "researchSourceKind": "arxiv"
+      }
+    },
+    {
+      "tier": "T1_5",
+      "first_party": false,
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 360,
+      "tags": [
+        "研究"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "enabled": false,
+      "id": "research-arxiv-molecular",
+      "name": "arXiv · 分子与定量生物学",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://rss.arxiv.org/rss/q-bio.BM+q-bio.QM",
+        "summaryIsBody": true,
+        "fetchPublicContent": false,
+        "fixedInterval": true,
+        "researchSourceKind": "arxiv"
+      }
+    },
+    {
+      "tier": "T1_5",
+      "first_party": false,
+      "owner_entity_id": null,
+      "participation_mode": "hot_signal",
+      "interval_minutes": 360,
+      "tags": [
+        "研究"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "enabled": false,
+      "id": "research-hf-daily-papers",
+      "name": "Hugging Face Daily Papers · 社区信号",
+      "kind": "json_list",
+      "config": {
+        "url": "https://huggingface.co/api/daily_papers",
+        "mode": "json_api",
+        "titlePaths": [
+          "paper.title"
+        ],
+        "summaryPaths": [
+          "paper.summary"
+        ],
+        "summaryIsBody": true,
+        "fetchPublicContent": false,
+        "urlTemplate": "https://huggingface.co/papers/{paper.id}",
+        "publishedAtPath": "paper.submittedOnDailyAt",
+        "externalIdPath": "paper.id",
+        "fixedInterval": true,
+        "researchSourceKind": "huggingface"
+      }
+    },
+    {
+      "tier": "T1",
+      "first_party": true,
+      "owner_entity_id": "google",
+      "participation_mode": "editorial",
+      "interval_minutes": 360,
+      "tags": [
+        "研究"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "enabled": false,
+      "id": "rss-google-deepmind",
+      "name": "Google DeepMind",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://deepmind.google/blog/rss.xml",
+        "fixedInterval": true,
+        "researchSourceKind": "institution"
+      }
+    },
+    {
+      "tier": "T1",
+      "first_party": true,
+      "owner_entity_id": "bair",
+      "participation_mode": "editorial",
+      "interval_minutes": 360,
+      "tags": [
+        "研究"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "enabled": false,
+      "id": "rss-bair",
+      "name": "Berkeley BAIR",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://bair.berkeley.edu/blog/feed.xml",
+        "fixedInterval": true,
+        "researchSourceKind": "institution"
+      }
+    }
+  ]
+}

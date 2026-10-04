@@ -1,0 +1,17 @@
+{
+  "extends": "../tsconfig.base.json",
+  "include": [
+    "local.ts",
+    "check.ts",
+    "acceptance.ts",
+    "research-run.ts",
+    "research-scheduler.ts",
+    "scheduler-clock.ts",
+    "daily-delivery.ts",
+    "daily-delivery/**/*.ts",
+    "static-site.ts",
+    "static-site/**/*.ts",
+    "publish-pages.ts",
+    "pages-publisher.ts"
+  ]
+}
