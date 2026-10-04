@@ -1,0 +1,2727 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-04T04:31:26.486Z",
+  "publicBaseUrl": "https://pkucy2016.github.io/algorithmhot/",
+  "mode": "static-snapshot",
+  "scope": "当前公开精选、全部主题关联资料与现存试刊/日报归档（每类索引小于 400 期）",
+  "items": [
+    {
+      "id": "zskryg7ozbapap42lno4niu0r",
+      "title": "GALA 提出高斯混合形状蒸馏方法，加速实时虚拟化身动画",
+      "originalTitle": "One Basis to Animate Them All: Gaussian Blendshape Distillation for Real-Time Avatars",
+      "summary": "GALA 研究提出以浅层系数预测器和线性混合替代逐帧重型神经解码，作者报告可显著降低高斯虚拟化身的动画计算成本。根据当前材料，该方法在渲染感知度量与内存预算约束下，通过分块局部 PCA 构建不依赖身份的混合形状基，无需重新训练原始模型。",
+      "reason": "将逐帧神经解码替换为共享线性基与浅层预测器，为理解虚拟化身在移动端运行时的计算成本与画质取舍提供了具体方法。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02207v1",
+      "publishedAt": "2026-10-01T17:59:58.000Z",
+      "timelineAt": "2026-10-01T17:59:58.000Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "推理优化",
+        "端侧"
+      ],
+      "research": {
+        "arxivId": "2610.02207",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T17:59:58.000Z",
+        "revisedAt": "2026-10-01T17:59:58.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02207v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02207v1"
+          },
+          {
+            "kind": "project",
+            "url": "https://ramazan793.github.io/gala/",
+            "sourceUrl": "https://arxiv.org/abs/2610.02207v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 GALA（Gaussian Animation via Linear Approximation）蒸馏方法，针对 3D Gaussian 化身虽可快速渲染、但逐帧神经网络推理成本阻碍实时动画的问题。作者报告，预训练化身模型的动画可由身份无关的混合形状（blendshapes）线性组合近似，因此用浅层 MLP 预测混合形状系数，再进行线性混合，替代逐帧繁重的神经解码。为提高保真度并降低内存需求，作者在渲染感知度量和内存预算约束下采用分块局部 PCA 构建基底。该方法适配多种动画架构，无需重新训练原始模型。",
+        "applicableTasks": "摘要支持的任务为预训练 3D Gaussian 化身模型的动画推理加速，涵盖面部表情动画，以及带服装动态的全身动画。作者在 3 个不同的化身模型上验证方法，并报告蒸馏结果可泛化至留出的身份。摘要还报告移动设备上的动画运行结果；具体设备、适配架构名称及更广泛适用范围未知。",
+        "comparisonConditions": "作者报告通过蒸馏加速 3 个不同化身模型的推理，比较语境为原始模型的繁重神经解码与 GALA 的浅层系数预测及线性混合；模型名称、版本及其他比较方法未知。验证涵盖面部表情和带服装动态的全身动画，但具体任务实例数、数据集、身份数量、样本量及划分比例未提供。作者报告，在这些模型上，CPU 动画计算成本最多降低 3 个数量级，同时保留大部分渲染质量；这属于最高降幅口径，不能理解为每个模型或平均均达到该降幅。原始及加速后的绝对成本、成本的具体计量方式与单位、逐模型结果均未知。作者另报告移动设备上的帧率最高达到 60 fps（帧/秒）；该最高帧率对应的模型、任务、设备与测量范围未提供，不能与 CPU 成本降幅视为同一测试条件。CPU 型号、移动设备型号、渲染分辨率、并行与批量设置、内存预算数值、训练或蒸馏计算配置、渲染质量指标及数值均未知。",
+        "limitations": "当前证据仅为摘要，未核对全文，也无独立复现证据。加速、质量保留、留出身份泛化及最高移动端帧率均为作者报告。摘要使用‘近似’与‘保留大部分渲染质量’的表述，不支持无损或完全等价的结论；具体质量损失、失败情形和误差分布未知。作者将结果解释为支持所学化身表示具有共享线性结构，但当前资料未提供可独立核验这一解释的详细实验。摘要未明确列出其他限制，也未提供统计不确定性、消融实验、内存节省幅度或更广泛模型与设备验证的信息，不能据此断言这些研究或验证不存在。资料给出了项目页面链接，但不足以确认代码、模型或数据已开放，也不构成独立复现。",
+        "evidenceBasis": "abstract"
+      },
+      "researchRoadmap": null
+    },
+    {
+      "id": "i1kt74wkfu1sylbqhmi2t7dnv",
+      "title": "KaliBench 研究提出面向 Kali Linux 安全工具调用的细粒度基准与免运行可验证奖励",
+      "originalTitle": "KaliBench: A Fine-Grained Benchmark for Cybersecurity Tool Use on Kali Linux with Runtime-Free Verifiable Rewards",
+      "summary": "KaliBench 研究提出面向 Kali Linux 的自然语言到命令行翻译基准，用于评估 LLM 的工具选择与参数构造能力。根据当前材料，数据集包含 8,504 个查询—命令对，覆盖 1,642 个工具、23 个能力维度和 5 个安全阶段，采用确定性规范化与别名感知评估，并结合 LLM 验证、沙箱终端执行和人工参与改进进行多阶段验证。",
+      "reason": "通过区分工具选择与参数构造，并报告无工具提示条件下的命令准确率，材料为理解安全工具调用的具体难点提供了比较依据。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02206v1",
+      "publishedAt": "2026-10-01T17:59:55.000Z",
+      "timelineAt": "2026-10-01T17:59:55.000Z",
+      "category": "ai4ai",
+      "tags": [
+        "论文/研究",
+        "AI4AI",
+        "训练方法",
+        "评测/基准"
+      ],
+      "research": {
+        "arxivId": "2610.02206",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T00:00:00.000Z",
+        "revisedAt": "2026-10-01T17:59:55.000Z",
+        "communitySelectedAt": "2026-10-02T00:00:00.000Z",
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02206v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02206v1"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02206",
+            "sourceUrl": "https://huggingface.co/papers/2610.02206"
+          },
+          {
+            "kind": "code",
+            "url": "https://github.com/RISys-Lab/KaliBench",
+            "sourceUrl": "https://huggingface.co/papers/2610.02206"
+          },
+          {
+            "kind": "project",
+            "url": "https://risys-lab.github.io/KaliBench/",
+            "sourceUrl": "https://huggingface.co/papers/2610.02206"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 KaliBench：面向 Kali Linux 的自然语言到命令行接口（CLI）翻译的细粒度基准与数据集，针对现有知识型评测或端到端智能体任务不能直接衡量模型为真实网络安全工具生成可执行命令的能力这一缺口。具体关注工具选择与参数构造，以及微小语法错误、标志与值绑定错误、参数顺序错误导致命令无法执行的问题。作者采用以文稿为依据的构建流程、确定性规范化和别名感知评测，并结合 LLM 验证、沙箱终端执行及人工参与修订开展多阶段验证，以支持语义正确性与实际可执行性检查。作者进一步利用细粒度、确定性的评测信号，为训练提供无需运行时执行的可验证奖励。",
+        "applicableTasks": "资料支持的任务是将分析人员的自然语言意图转化为 Kali Linux 网络安全工具命令，评估工具选择和参数构造能力，并支持监督微调及使用可验证奖励的强化学习。数据集包含 8,504 个查询—命令对，覆盖 1,642 个工具、23 个能力维度和 5 个安全阶段。作者评测了通用及安全领域的开放权重模型。具体工具清单、能力维度和安全阶段名称，以及对其他操作系统或完整网络安全工作流的适用性，当前资料未提供。",
+        "comparisonConditions": "作者报告在 3 种评测模式下评测了通用及安全领域开放权重模型的 24 种配置；24 指配置数量，不能据此确定独立模型数量。数据集总规模为 8,504 个查询—命令对，覆盖 1,642 个工具、23 个能力维度和 5 个安全阶段，但评测样本量、训练与测试划分及各模式的样本分母未知。在不受限制、没有显式工具提示的设置下，作者报告所评测的开放权重模型均未超过 42% 的精确命令准确率；这一结论不能外推至其他模式或所有模型。作者还报告，通过监督微调及基于 KaliBench 可验证奖励的强化学习，一个 8B 模型得到显著改善，并达到与一个 685B MoE 模型相当的表现；8B 和 685B 分别为约 80 亿和 6,850 亿参数的规模表述，摘要未说明 MoE 的总参数与激活参数口径。具体模型名称、另外两种评测模式的定义、训练前后分数、提升幅度、相当表现对应的指标与条件、统计显著性检验、硬件、计算预算及训练超参数均未知：当前资料未提供。",
+        "limitations": "当前证据仅为摘要，未核对全文。上述数据规模、验证流程、准确率上限及训练改善均为作者报告，当前资料不包含独立复现证据。摘要指出，在无显式工具提示时准确使用网络安全 CLI 仍然困难；42% 的结果仅适用于作者所报告的不受限制设置及所评测开放权重模型。摘要未提供各工具、能力维度或安全阶段的分项结果，也未提供语义正确性、沙箱可执行性及人工修订的具体覆盖率、通过率或一致性信息。作者将评测描述为精确且可复现，但当前资料未提供可核查的完整实验设置、代码或数据获取信息，不能据此确认开放实现或独立可复现性。训练后与 685B MoE 模型表现相当的结论缺少具体分数与比较细节，不能推断全面能力相当或计算成本优势。",
+        "evidenceBasis": "abstract"
+      },
+      "researchRoadmap": null
+    },
+    {
+      "id": "cgogkeh2te0qeshodfgr85gix",
+      "title": "RPG 研究提出通过仿真练习自主改进机器人执行系统的方法",
+      "originalTitle": "Reconstruct, Practice, Go Real: Guided Self-Improvement for Embodied Agents",
+      "summary": "RPG 研究提出无需更新模型权重的机器人执行系统自主改进框架，通过仿真练习修订可复用符号技能与系统提示词。根据当前材料，该框架从离线数据集识别操作能力并构建练习任务，结合执行反馈、仿真器特权状态及可用数据集视频诊断失败，经跨任务评估后保留候选修改及合并版本，测试时由多模态 LLM 协调感知与机器人控制。",
+      "reason": "研究展示了利用仿真反馈迭代符号技能与系统提示词的流程，为不更新模型权重的机器人执行系统提供可迁移的改进思路。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02204v1",
+      "publishedAt": "2026-10-01T17:59:50.000Z",
+      "timelineAt": "2026-10-01T17:59:50.000Z",
+      "category": "ai4ai",
+      "tags": [
+        "论文/研究",
+        "AI4AI",
+        "具身智能",
+        "Agent",
+        "多模态"
+      ],
+      "research": {
+        "arxivId": "2610.02204",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T17:59:50.000Z",
+        "revisedAt": "2026-10-01T17:59:50.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02204v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02204v1"
+          },
+          {
+            "kind": "project",
+            "url": "https://rpg-robot.github.io/",
+            "sourceUrl": "https://arxiv.org/abs/2610.02204v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 Reconstruct, Practice, Go Real（RPG）框架，旨在减少跨多种任务构建可靠机器人能力时，对人工开发与维护技能、设计奖励以及整合感知与控制的依赖。该框架不更新模型权重，而是从离线数据集中识别操纵能力，并在仿真中构建相关练习任务。练习期间，RPG 利用执行反馈、仿真器特权状态和可用的数据集视频诊断失败，据此开发新的可复用符号技能、改进已有技能并修订系统提示词。候选单项改动和合并后的修订均经过跨任务评估，再决定是否保留供后续复用。测试时，多模态大语言模型利用所得系统提示词和技能库协调感知与机器人控制。",
+        "applicableTasks": "资料支持的应用对象为机器人操纵任务的执行系统，涉及从离线数据构建仿真练习任务，以及将练习所得提示词与技能库用于测试和实体机器人执行。作者报告在 22 个操纵任务的留出初始条件上评估，并在 3 个任务上进行实体试验。任务具体名称、操作对象、机器人类型，以及对其他任务类别、全新任务或其他硬件的适用范围未知：当前资料未提供。留出初始条件的评估不能据此表述为在未见过的任务上验证。",
+        "comparisonConditions": "作者报告，在 22 个操纵任务的留出初始条件上，RPG 的任务成功率从第 1 轮练习后的 28.6% 提升到 15 轮后的 95.0%，并优于所有已评估基线；摘要列出的基线包括 ASPIRE（75.5%）和由 GPT-6 Astra Pro 驱动的 CaP-Agent0（60.0%）。这些结果的指标为任务成功率，单位为百分比；22 是任务数量，各任务试验次数、总试验分母和跨任务汇总方式未知。基线总数、RPG 与 ASPIRE 使用的具体模型、离线数据集名称与规模、仿真平台、算力硬件、计算预算及各方法预算是否一致，当前资料未提供。作者另报告，在共同的校准与硬件适配流程之后，冻结的系统在全部 30 次实体试验中成功，即 3 个任务各进行 10 次试验，合计 30/30。实体结果应保留该前置校准与适配条件，不能视为未经适配的直接部署结果。校准与适配的具体步骤、实体硬件配置以及基线的实体试验结果未知：当前资料未提供。",
+        "limitations": "证据仅为用户提供的摘要，未核对全文；上述方法与结果均为作者报告，不是独立复现结论。摘要的量化证据覆盖 22 个操纵任务的留出初始条件评估，以及经过共同校准与硬件适配后、3 个任务各 10 次的实体试验，不能由此推断其他任务、对象或硬件上的成功率。摘要未明确陈述作者认定的局限，也未提供误差范围、置信区间、随机种子、重复实验设置、消融结果、失败类型分析或长期运行验证信息；这些信息在当前资料中未知，不能断言研究本身未开展相应验证。资料列出项目网站链接，但未提供代码、数据或复现材料的可用性证据，不能据此认定实现已开放或结果已获独立复现。",
+        "evidenceBasis": "abstract"
+      },
+      "researchRoadmap": {
+        "title": "RPG：从离线操控数据构建仿真练习，迭代符号技能与系统提示词并用于真实机器人",
+        "nodes": [
+          {
+            "stage": "input",
+            "label": "从离线数据识别操控能力并构建仿真练习",
+            "detail": "以离线数据集为起点，识别其中的操控能力，并在仿真中构造相关练习任务。",
+            "evidenceSnippet": "RPG identifies manipulation capabilities in an offline dataset and constructs related practice tasks in simulation."
+          },
+          {
+            "stage": "method",
+            "label": "结合执行反馈、仿真器状态与视频诊断失败",
+            "detail": "练习期间，利用执行反馈、特权仿真器状态和数据集中可用的视频诊断失败。",
+            "evidenceSnippet": "During practice, RPG uses execution feedback, privileged simulator state, and available dataset videos to diagnose failures."
+          },
+          {
+            "stage": "method",
+            "label": "依据诊断迭代可复用符号技能与系统提示词",
+            "detail": "开发新的可复用符号技能，改进已有技能，并修订系统提示词。",
+            "evidenceSnippet": "It develops new reusable symbolic skills, refines existing skills, and revises the system prompt based on these diagnoses."
+          },
+          {
+            "stage": "output",
+            "label": "多模态 LLM 使用所得提示词和技能库执行任务",
+            "detail": "测试时，多模态 LLM 使用迭代所得的系统提示词与技能库，协调感知和机器人控制。",
+            "evidenceSnippet": "At test time, a multimodal LLM uses the resulting system prompt and skill library to coordinate perception and robot control."
+          },
+          {
+            "stage": "validation",
+            "label": "以跨任务评估筛选单项改动与合并修订",
+            "detail": "作者在保留改动供复用之前，对单个候选改动及合并后的修订进行跨任务评估；摘要未给出具体保留阈值。",
+            "evidenceSnippet": "Cross-task evaluation tests individual candidate changes and merged revisions before they are retained for reuse."
+          },
+          {
+            "stage": "validation",
+            "label": "作者报告冻结系统完成全部 30 次实机试验",
+            "detail": "经过统一的校准和硬件适配程序后，冻结系统在三个任务上各进行十次实机试验；作者报告全部成功。该结果的范围限于所述任务与试验。",
+            "evidenceSnippet": "After a common calibration and hardware-adaptation procedure, the frozen system succeeds in all 30 physical trials, with ten trials on each of three tasks."
+          }
+        ],
+        "limitations": "基于摘要，未核验全文。摘要将 RPG 定义为不更新模型权重的自主改进框架，但未给出离线数据集规模与组成、仿真任务构造细节、失败诊断实现、符号技能表示、提示词修订规则及跨任务评估的保留标准。实机任务内容、硬件配置、校准与适配步骤也未说明，无法据此判断迁移所需工作量或复现实验。研究结果属于作者报告，独立复现未核验。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1,
+        "sourceUrl": "https://arxiv.org/abs/2610.02204v1",
+        "generatedAt": "2026-10-04T04:14:38.259Z"
+      }
+    },
+    {
+      "id": "zoxlt1tdtedxjnuf0u3qrfrv0",
+      "title": "NEPA-DiT 研究探索以嵌入预测改善图像生成",
+      "originalTitle": "Embedding Prediction Helps Image Generation",
+      "summary": "NEPA-DiT 研究提出用预测的图像嵌入作为 DiT 生成条件，并在每个去噪步骤重新计算，使条件信号适应当前噪声状态。根据当前材料，NEPA 通过 Multi-Embedding Prediction 一次预测干净图像的多个嵌入，生成时每个采样步骤都需增加第二个网络的计算。",
+      "reason": "逐步重算预测嵌入的条件设计，为理解图像生成中的动态条件提供具体案例，同时呈现每个采样步骤增加第二个网络的代价。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02203v1",
+      "publishedAt": "2026-10-01T17:59:49.000Z",
+      "timelineAt": "2026-10-01T17:59:49.000Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "训练方法",
+        "图像生成"
+      ],
+      "research": {
+        "arxivId": "2610.02203",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T17:59:49.000Z",
+        "revisedAt": "2026-10-01T17:59:49.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02203v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02203v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 Next-Embedding Predictive Autoregression（NEPA）：训练 Transformer 预测序列中的下一个连续嵌入，以研究预测嵌入能否替代扩散 Transformer 中仅嵌入一次、在所有去噪步骤重复使用的类别标签或文本提示条件。在生成序列中，干净图像位于噪声图像之后，其嵌入是条件与噪声图像之后的下一组嵌入；作者通过 Multi-Embedding Prediction 一次性预测这些嵌入，再以 Embedding Conditioned Generation 将预测结果作为 DiT 生成器的条件。预测在每个去噪步骤重新计算，使条件信号适应当前噪声状态，针对的是固定条件不能随去噪状态更新的问题。",
+        "applicableTasks": "摘要直接支持的实验范围是 ImageNet 256×256 类别条件图像生成，研究内容包括生成器的条件、Multi-Embedding Prediction 的设计，以及 NEPA 与生成器两个模型的规模扩展。摘要在方法动机中提到类别标签和文本提示，但未提供文本条件生成或其他数据集、分辨率及任务的实验结果。",
+        "comparisonConditions": "作者报告，最终模型 NEPA-DiT-XL 在引入 NEPA 并结合 REPA 的条件下，达到 FID 1.32，所用训练计算量约为 REPA 的三分之一；该计算量比较以 REPA 为参照，不能据此推断采样速度或全部配置的收益。实验数据与任务为 ImageNet 256×256 类别条件图像生成，摘要仅列出这一数据集、分辨率与任务设置，未给出样本数量。作者研究了生成器条件、Multi-Embedding Prediction 设计及两个模型的规模扩展，但完整比较模型清单、配置数量和各项结果未知。FID 的评估样本数、计算协议、重复运行次数及不确定性未知；摘要未标注 FID 单位。硬件、训练步数、批量大小、训练计算量的绝对数值与计量单位、比较双方具体计算配置及采样设置均未知。",
+        "limitations": "当前证据仅为摘要，未核对全文，结果均为作者报告，未提供独立复现证据。作者明确指出，NEPA 会在每个采样步骤增加第二个网络；摘要未量化由此产生的采样时间、计算量或显存开销。最终结果来自 NEPA 与 REPA 的组合，摘要未给出可用于单独量化 NEPA 贡献的消融数值，也未报告 REPA 的对照 FID。约三分之一训练计算量的结论限定于摘要所述最终模型与 REPA 的比较，不能外推为普遍效率收益。文本条件生成、其他数据集与分辨率的验证、实现开放情况及复现细节未知：当前资料未提供。",
+        "evidenceBasis": "abstract"
+      },
+      "researchRoadmap": null
+    },
+    {
+      "id": "snmbmzrubqis2mvxth8qidlnb",
+      "title": "ScholarCatalyst 提出检索研究启发文献的基准",
+      "originalTitle": "ScholarCatalyst: A Benchmark for Retrieving Papers That Inspire New Research",
+      "summary": "ScholarCatalyst 研究提出检索能启发新研究的文献的基准，作者报告智能体搜索未优于嵌入检索。根据当前材料，研究通过自动化流程支持作者标注，由 207 篇近期计算机科学论文的 184 位主要作者判断候选文献是否曾经或可能推进其项目，并提供详细理由。",
+      "reason": "研究以项目作者判断和启动时可用文献限定检索任务，为比较智能体搜索与嵌入检索能否找到启发研究的文献提供参照。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02202v1",
+      "publishedAt": "2026-10-01T17:59:47.000Z",
+      "timelineAt": "2026-10-01T17:59:47.000Z",
+      "category": "ai4ai",
+      "tags": [
+        "论文/研究",
+        "AI4AI",
+        "自动研究",
+        "搜索",
+        "Agent"
+      ],
+      "research": {
+        "arxivId": "2610.02202",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T00:00:00.000Z",
+        "revisedAt": "2026-10-01T17:59:47.000Z",
+        "communitySelectedAt": "2026-10-02T00:00:00.000Z",
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02202v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02202v1"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02202",
+            "sourceUrl": "https://huggingface.co/papers/2610.02202"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 ScholarCatalyst，以研究者对自身已完成项目的第一手认识构建检索评测：利用使作者标注可规模化的自动化流程，让论文主要作者标注候选文献是否曾经或可能推动其项目，并逐项提供详细理由，以论文作为其中研究思想的指针。作者引入带有作者判断的检索任务：给定项目最初的研究问题，仅从项目启动时已经存在的文献中检索这些论文。该方法旨在研究 AI 能否从不断增长的文献库中识别新问题所需的既有思想。",
+        "applicableTasks": "资料支持的任务是科研前期的相关先行研究检索，输入为初始研究问题，检索对象为项目开始时可获得的文献，相关性依据为作者对文献能否推进项目的判断。当前数据涉及近期计算机科学论文。作者将其定位为帮助科学智能体从尚未成形的想法找到所需先行研究的一步；跨学科适用性及真实未完成项目中的效果未知。",
+        "comparisonConditions": "作者报告，184 位主要作者为 207 篇近期计算机科学论文标注候选文献，并提供详细理由。比较包括智能体式搜索与嵌入检索；智能体式搜索虽将同一个检索器用作工具，Recall@20 仍为 0.42，嵌入检索为 0.48，作者据此称前者未优于后者。基于 Claude Fable 5.1 的智能体达到 0.51 R@20；作者同时指出，该模型可能在训练中见过已完成的论文。R@20 与 Recall@20 表示前 20 个检索结果的召回率，数值为无量纲比例。检索范围限定为各项目启动时已有的文献。摘要未说明召回率相关文献分母的具体构成、结果聚合方式、完整模型与配置数量、候选文献及语料库规模、评测划分、硬件、计算预算、检索调用次数、耗时或成本；这些设置均未知。",
+        "limitations": "证据仅为所提供摘要，未核对全文；所有结果均为作者报告，当前资料未提供独立复现证据。作者认为结果表明需要新的训练方案，以赋予模型在大规模语料中检索时所需的专家直觉，但摘要未验证此类训练方案的效果。作者明确提示 Claude Fable 5.1 可能在训练中见过已完成论文，实际接触情况及其影响未知。当前证据来自近期计算机科学已完成项目及作者回顾性判断，不能据此确认跨学科、真实前瞻性科研或科学发现质量的提升。摘要未提供标注一致性、统计不确定性、显著性检验、完整实验细节或实现开放情况，亦未提供这些比较之外的验证信息。",
+        "evidenceBasis": "abstract"
+      },
+      "researchRoadmap": null
+    },
+    {
+      "id": "pgau2nc5iai5889xcnwfot4w6",
+      "title": "SILSA 提出滑动窗口切片潜变量，用于保持拓扑的高分辨率三维生成",
+      "originalTitle": "SILSA: Sliding-Window Slice Latents for Topology-Preserving High-Resolution 3D Generation",
+      "summary": "SILSA 研究提出以滑动窗口切片潜变量进行高分辨率三维生成，作者报告该方法改善结构保真度并降低生成成本。根据当前材料，该方法沿三个标准坐标轴使用固定数量的重叠切片，结合 Slice VAE、共享三维空间中的 Volumetric Anchor Lattice，以及匹配持久性图和对齐相邻切片 Betti 变化的拓扑监督，支持单阶段 rectified-flow 生成。",
+      "reason": "将三维形状压缩为重叠切片并加入拓扑监督，为兼顾生成成本与结构连续性提供了方法参考，但当前材料未列出基线名称与数据设置。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02201v1",
+      "publishedAt": "2026-10-01T17:59:46.000Z",
+      "timelineAt": "2026-10-01T17:59:46.000Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "训练方法",
+        "推理优化"
+      ],
+      "research": {
+        "arxivId": "2610.02201",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T00:00:00.000Z",
+        "revisedAt": "2026-10-01T17:59:46.000Z",
+        "communitySelectedAt": "2026-10-02T00:00:00.000Z",
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02201v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02201v1"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02201",
+            "sourceUrl": "https://huggingface.co/papers/2610.02201"
+          },
+          {
+            "kind": "project",
+            "url": "https://plan-lab.github.io/projects/silsa",
+            "sourceUrl": "https://huggingface.co/papers/2610.02201"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出拓扑感知的 3D 生成框架 SILSA，针对体素潜变量及先预测活跃结构、再合成局部几何的多阶段流程将连续表面分割为大量局部 token、增加生成成本，以及薄结构或高连通形状拓扑一致性减弱的问题。SILSA 使用沿三个标准坐标轴设置的固定数量重叠切片，以紧凑的滑动窗口切片潜变量替代昂贵的体素 token；每个 token 汇总局部深度窗口，以保留截面连续性并支持单阶段 rectified-flow 生成。Slice VAE 将带方向的表面采样编码为多轴切片潜变量，并通过稀疏体积解码器重建；Volumetric Anchor Lattice 通过共享 3D 工作空间协调不同方向的切片流。作者还引入切片级拓扑监督，通过匹配持久性图并对齐相邻切片间的 Betti 变化来保持结构正确性。",
+        "applicableTasks": "资料支持的任务为高分辨率 3D 形状生成及框架内的形状编码与重建。作者重点讨论薄结构、高连通形状的结构保持，并报告定性结果显示对薄结构、重复部件和长程连通性的保留有所改善。具体应用领域、形状类别、数据集范围、分辨率及是否支持条件生成，当前资料未提供。",
+        "comparisonConditions": "作者在摘要中报告：相较最强基线，SILSA 的 PSNR 提高 8.7%，coverage 提高 5.96 个绝对点，Betti error 改善 9.2%；摘要未进一步明确 Betti error 的变化方向及计算定义。相较 token 数量紧凑程度仅次于 SILSA 的基线，token 数减少 70.0%；相较稀疏或层次化 tokenizer，token 数减少超过 98%。作者同时报告训练内存减少 40.4%、推理时间减少 58.5%，但未明确这两项降幅各自对应的比较对象与设置。上述百分比均为作者报告的相对变化，coverage 为绝对点数变化；各指标原始数值、token 绝对数量、内存容量与时间单位未提供。最强基线及其他比较对象的名称、是否为同一基线、数据集与样本数量、模型与任务数量、硬件、训练与推理计算设置、指标计算方式、结果为平均值还是最佳值、各项比较是否使用相同条件，均未知：当前资料未提供。",
+        "limitations": "当前证据仅为摘要，未核对全文；所有性能与定性改善均为作者报告，不构成独立复现。摘要未明确陈述 SILSA 自身的限制或失败案例，对既有体素与多阶段流程问题的描述不能视作 SILSA 的已验证适用边界。当前资料未提供完整实验协议、统计不确定性、消融实验、跨数据集泛化验证或独立复现信息，也未提供代码、模型与数据的开放可用性证据。无法据此确认各组件的独立贡献、各类形状上的一致增益，或在其他硬件与计算条件下是否保持所报成本降幅；这些信息缺失不等于研究本身未开展相应验证。",
+        "evidenceBasis": "abstract"
+      },
+      "researchRoadmap": null
+    },
+    {
+      "id": "k92n912um78c2hvdqmmadyq15",
+      "title": "VISTA 研究提出支持多模态模型在交互环境中推理的视觉框架",
+      "originalTitle": "VISTA: A Visual Harness for Reasoning in an Interactive World",
+      "summary": "VISTA 研究提出保留原始视觉观察并支持主动检索的框架，作者报告其提升了多模态模型在交互式游戏与谜题中的表现。根据当前材料，VISTA 维护无损视觉记忆，让模型在推理时检索历史观察并重组视觉输入。",
+      "reason": "同一底层模型在不同视觉支撑框架下的表现比较，为评估观察记忆与主动检索对交互任务求解的作用提供了具体参照。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02200v1",
+      "publishedAt": "2026-10-01T17:59:45.000Z",
+      "timelineAt": "2026-10-01T17:59:45.000Z",
+      "category": "ai4ai",
+      "tags": [
+        "论文/研究",
+        "AI4AI",
+        "Agent",
+        "多模态",
+        "推理",
+        "Anthropic"
+      ],
+      "research": {
+        "arxivId": "2610.02200",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T17:59:45.000Z",
+        "revisedAt": "2026-10-01T17:59:45.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02200v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02200v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出视觉框架 VISTA，为通用多模态模型提供长时程视觉能力：模型通过视觉观察直接感知环境，框架以原始形式保存过去观察，形成无损视觉记忆；模型可在推理过程中主动检索这些观察，并重新组织视觉输入。该方法旨在支持模型利用历史视觉信息，完成多种交互环境中的任务。作者报告其设计简单，可通过少量适配扩展到不同视觉环境。",
+        "applicableTasks": "资料支持的范围为多模态模型在视觉交互环境中的任务，包括 ARC-AGI-3 的 25 个公开游戏，以及另外三个涵盖多种视觉游戏与谜题的基准。摘要明确点名的模型为 Claude Opus 5.0；其他模型、额外三个基准的名称及具体任务构成未知。通用视觉框架是作者提出的潜力与定位，当前资料不足以确认其对所有视觉环境或多模态模型均有效。",
+        "comparisonConditions": "作者报告，在 ARC-AGI-3 上，VISTA 将 Claude Opus 5.0 的 Relative Human Action Efficiency（相对人类动作效率）得分从 40.68 提升至作者称为满分的 100.00；模型完成全部 25 个公开游戏，所用动作数比首次参与的人类参与者少 57.4%。该百分比以首次参与人类的动作数为比较基准，摘要未说明跨游戏的汇总或加权方式，也未提供绝对动作数、人类参与者数量或动作预算。40.68 对应配置的具体细节未知，不能将其自动等同于其他基准中的最简框架配置。另外，作者报告在三个额外的视觉游戏与谜题基准上，VISTA 显著优于使用同一底层模型、搭配最简框架的基线，但未给出这些基准的指标、单位、具体分数或增益。资料共涉及四个基准，仅明确点名一个模型；额外三个基准是否均使用 Claude Opus 5.0、整体模型总数、任务总数及基线数量未知。硬件、计算资源、运行时长、推理设置、重复试验次数和统计检验设置均未知。",
+        "limitations": "证据仅为用户提供的摘要，未核对全文。以上方法描述与实验结果均为作者报告，当前资料未提供独立复现证据。摘要没有明确陈述方法局限；这不表示研究本身不存在局限。当前资料未提供消融实验、失败案例、记忆与检索开销、跨模型泛化验证或额外三个基准的定量结果，也未提供代码、实现可用性和复现条件。不能据此判断各组件的独立贡献、性能稳定性、计算成本，或将 ARC-AGI-3 上的结果推广到未报告的任务与环境。",
+        "evidenceBasis": "abstract"
+      },
+      "researchRoadmap": null
+    },
+    {
+      "id": "xukjz8mfnifv1c57mwybn5o11",
+      "title": "TACO 研究提出用于 LLM 微调的三值绝对最大列级单稀疏优化器",
+      "originalTitle": "TACO: Ternary Absolute-max Column-wise One-sparse Optimizer for LLM Fine-Tuning",
+      "summary": "根据当前材料，TACO 研究提出低显存优化器，作者报告其在 LLM 全参数微调中显著减少优化器状态，同时保持相近的准确率和运行时间。该方法在二维权重矩阵的每列选择绝对值最大元素的符号，计算维度归一化的 1→1 算子范数下的精确最速下降方向，实际实现每列仅维护少量低精度梯度分量。",
+      "reason": "研究给出了优化器持久状态与训练峰值显存的分别比较，可用于评估全参数微调中优化器状态压缩对硬件需求的影响。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02199v1",
+      "publishedAt": "2026-10-01T17:59:42.000Z",
+      "timelineAt": "2026-10-01T17:59:42.000Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "训练方法"
+      ],
+      "research": {
+        "arxivId": "2610.02199",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T17:59:42.000Z",
+        "revisedAt": "2026-10-01T17:59:42.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02199v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02199v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 Ternary Absolute-max Column-wise One-sparse（TACO）优化器，针对大语言模型全参数微调中优化器状态占用大量显存、限制可训练模型规模的问题。摘要指出，既有方案会压缩优化器状态、放弃一阶梯度，或改变更新几何但仍保留稠密状态；Muon 通过矩阵值更新降低优化器内存，但其几何与 AdamW 不同，微调经 AdamW 预训练的模型时可能导致性能下降。TACO 延续 Muon 的算子范数最速下降视角，通过选取二维权重矩阵每列绝对值最大元素的符号，计算维度归一化的 1→1 算子范数下的精确最速下降方向。其实际实现每列仅维护少量低精度梯度分量，保留一阶梯度并大幅减少持久优化器状态，目标是在降低内存需求的同时维持准确率和计算效率。",
+        "applicableTasks": "资料支持的应用是大语言模型全参数微调，所述更新规则针对二维权重矩阵。作者报告了 OPT-13B 的内存比较，并报告 TACO 可在单张 80 GB H100 GPU 上完成 300亿—320亿参数模型的全参数微调，覆盖多个模型家族和任务。具体模型家族、任务名称、数据集及各自数量未知：当前摘要未提供。",
+        "comparisonConditions": "作者在 OPT-13B 上报告：相对 AdamW8bit，TACO 的持久优化器状态占用由 27.7 GB 降至 0.16 GB，按作者口径减少 174 倍；峰值训练内存由 80.6 GB 降至 27.5 GB，按作者口径减少 2.9 倍，同时准确率和运行时间相当。上述倍数属于该 OPT-13B 比较条件，摘要未将其标为跨模型平均值或最高值，不能扩展为所有模型和任务的普遍收益。准确率的具体指标与数值、运行时间数值与单位，以及该 OPT-13B 比较所用硬件、GPU 数量、批大小、序列长度、训练步数、精度配置和其他计算设置均未知。另一个明确报告的条件是单张 80 GB H100 GPU，可支持 300亿—320亿参数模型的全参数微调，涉及多个模型家族和任务；其具体模型数、任务数、数据集数及逐项结果未知。Muon 在摘要中作为方法背景讨论，未给出 TACO 与 Muon 的定量对比结果。",
+        "limitations": "当前证据仅为摘要，未核对全文。全部效果与可行性结论均为作者报告，当前资料不构成独立复现。作者明确指出 Muon 与 AdamW 的更新几何不同，可能使 AdamW 预训练模型的微调性能下降；这是方法背景中的限制，不能据此断言 TACO 在所有条件下均已消除该问题。摘要未明确陈述 TACO 自身的失败条件或适用边界。除 OPT-13B 的内存数字及单张 80 GB H100 上微调 300亿—320亿参数模型的报告外，当前资料未提供完整实验配置、具体任务与数据集、准确率与耗时明细、重复实验、误差或统计检验、消融结果，也未说明非二维参数的处理方式、每列保留分量的具体数量及低精度格式。代码开放情况、实现可获取性和独立复现情况未知；这些信息缺失仅表示当前资料未提供，不能断言研究本身没有相关验证。",
+        "evidenceBasis": "abstract"
+      },
+      "researchRoadmap": null
+    },
+    {
+      "id": "w6vii04cvdz8mdf915ur5pnud",
+      "title": "FERPO 提出无需对评论家求动作梯度的前向熵正则化策略优化方法",
+      "originalTitle": "FERPO: Forward Entropy-Regularized Policy Optimization",
+      "summary": "FERPO 研究提出一种同策略最大熵强化学习算法，利用评论家的价值预测改进策略，无需对评论家关于动作求导。根据当前材料，该方法通过熵与 KL 散度正则化推导目标动作分布，再用 rollout 策略采样的动作和自归一化重要性采样（SNIS）估计前向 KL 目标以拟合 actor，旨在覆盖多个高价值模态并促进探索。",
+      "reason": "研究将策略更新对价值预测的依赖与对动作梯度的依赖区分开，为比较连续控制中策略改进目标的选择提供了具体视角。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02198v1",
+      "publishedAt": "2026-10-01T17:59:41.000Z",
+      "timelineAt": "2026-10-01T17:59:41.000Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "训练方法"
+      ],
+      "research": {
+        "arxivId": "2610.02198",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T17:59:41.000Z",
+        "revisedAt": "2026-10-01T17:59:41.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02198v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02198v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 Forward Entropy-Regularized Policy Optimization（FERPO），一种同策略最大熵强化学习算法。其针对的问题是：评论家通常以预测回报为训练目标，价值预测准确并不保证对动作的导数准确，依赖这些动作梯度可能导致不可靠的策略更新。FERPO 仅利用评论家价值进行策略改进，不对评论家关于动作求导；通过熵与 Kullback-Leibler（KL）散度正则化的策略改进目标推导最优目标动作分布，再最小化前向 KL 目标以拟合行动者。该目标使用从 rollout 策略采样的动作，通过自归一化重要性采样（SNIS）估计。作者称，KL 正则化限制目标分布偏离 rollout 策略，有助于保持重要性权重稳定；相较于可能偏向目标分布部分模态的反向 KL，前向 KL 鼓励覆盖多个高价值模态，从而促进探索。",
+        "applicableTasks": "资料支持的范围为连续控制中的在线强化学习，具体方法属于同策略最大熵强化学习。作者报告在 MuJoCo Playground 和 ManiSkill 上进行了实验与消融。具体任务名称、控制对象、任务难度与范围，以及向其他任务或领域推广的验证，未知：当前资料未提供。",
+        "comparisonConditions": "作者报告，MuJoCo Playground 和 ManiSkill 上的实验与消融显示 FERPO 具有竞争性表现，并有样本效率增益；摘要未列出这些实验的具体比较算法。计算基准明确以 Relative Entropy Pathwise Policy Optimization（REPPO）为比较对象，作者报告 FERPO 的行动者更新更快。摘要还从方法机制上比较前向 KL 与反向 KL 的模态覆盖倾向，但未提供该比较的量化结果。资料明确提及两个实验平台，未给出数据集、模型、任务、随机种子或重复运行的数量。硬件、计算资源、训练预算、采样规模、超参数、计时条件、具体评价指标及单位、基线数值、增益数值、统计不确定性，以及平均或最高结果的汇总口径，均未知：当前资料未提供。",
+        "limitations": "证据仅为所提供摘要，未核对全文。性能、样本效率与行动者更新速度均是作者报告，不构成独立复现结论；摘要中的竞争性表现也不足以确定相对排名或全面优势。作者指出的一般性问题是评论家的价值预测准确性不保证动作导数准确性，但摘要未明确陈述 FERPO 自身的局限或失败条件。具体实验与消融设计、统计显著性、重要性权重稳定性和多模态探索的直接验证、其他任务上的适用边界，以及代码、数据和独立复现信息，未知：当前资料未提供；不能据此认定研究本身不存在这些信息或验证。",
+        "evidenceBasis": "abstract"
+      },
+      "researchRoadmap": null
+    },
+    {
+      "id": "rmujtpniv4b0wgn8q2tustjac",
+      "title": "图上成本增强薛定谔桥可精确求解：研究以 Feynman-Kac 倾斜替代学习式控制",
+      "originalTitle": "Cost-augmented Schrödinger bridges on graphs are exactly solvable: a Feynman-Kac tilt replaces learned control",
+      "summary": "该研究提出用 Feynman-Kac 倾斜将状态成本纳入参考过程，把图上成本增强薛定谔桥转化为普通桥问题，免去学习控制率和额外惩罚项。根据当前材料，作者通过交替进行两端重缩放求解，每步应用一次稀疏矩阵指数，无需时间离散化或学习，收敛速率仅由端点耦合决定。",
+      "reason": "研究将状态成本吸收到参考过程中，为图上分布迁移提供无需学习控制率的求解思路，可用于比较学习式控制的必要性。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02195v1",
+      "publishedAt": "2026-10-01T17:59:39.000Z",
+      "timelineAt": "2026-10-01T17:59:39.000Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "AI4S"
+      ],
+      "research": {
+        "arxivId": "2610.02195",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T17:59:39.000Z",
+        "revisedAt": "2026-10-01T17:59:39.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02195v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02195v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者将图上的广义 Schrödinger 桥中的状态成本作为 Feynman–Kac 倾斜并入参考过程，使带成本的桥转化为相对于倾斜参考过程的普通桥，从而无需此前学习受控连续时间马尔可夫链速率时用于恢复成本的时序差分惩罚。作者提出交替进行两个端点重缩放来精确计算桥，每次重缩放仅需一次稀疏矩阵指数作用，不进行时间离散化或学习；作者称交替迭代的收敛速率仅由端点耦合决定。对于时间平均占用率上的二次拥堵成本，作者将围绕精确桥的阻尼最佳响应表述为强凸函数上的梯度下降，并称其残差可用于界定误差。",
+        "applicableTasks": "资料支持的任务是：在图上将质量从一个分布输送到另一个分布，同时计入沿途访问状态的成本；以及处理时间平均占用率上的二次拥堵成本。摘要报告的应用对象包括蛋白质折叠模型中的路径自由能成本、此前学习方法使用的道路网络，以及具有数百万个交叉口的网络。其他成本形式、模型或应用领域的适用性未知：当前资料未提供。",
+        "comparisonConditions": "比较背景为通过学习受控连续时间马尔可夫链速率并使用时序差分惩罚的既有方法；作者在该学习方法使用的道路网络上报告精确桥的轨迹模拟结果，但摘要未提供两种方法的定量对照。计算设置为交替执行两个端点重缩放，每次需一次稀疏矩阵指数作用，不进行时间离散化或学习；硬件、运行时间、迭代次数、数值容差及软件设置未知。作者报告：在一个蛋白质折叠模型上，自由能成本降低了折叠路径的期望能垒，但降低幅度、能垒单位及具体对照条件未知；在上述道路网络上，精确桥的轨迹模拟在采样误差范围内匹配目标分布，但误差指标、采样数量及误差数值未知；在具有数百万个交叉口的网络上，内存随网络规模线性增长，但确切网络数量、各网络规模、内存数值和单位未知。摘要未列出完整的数据、模型和任务数量，也未报告最高或平均性能增益。",
+        "limitations": "证据仅为当前提供的摘要，未核对全文。精确计算、收敛速率、强凸性、残差误差界及应用结果均为作者报告，当前资料未提供证明细节或独立复现证据。拥堵成本相关结论明确针对时间平均占用率上的二次成本；蛋白质结果来自摘要所述的一个模型，道路网络的目标匹配限定在采样误差范围内，线性内存增长结论针对摘要所述数百万交叉口规模的网络。作者是否明确讨论其他限制未知：当前资料未提供。当前资料也未提供实验重复次数、统计检验、详细基线配置、运行速度、代码或数据可用性信息，不能据此确认开放实现或推断其他条件下的效果。",
+        "evidenceBasis": "abstract"
+      },
+      "researchRoadmap": null
+    },
+    {
+      "id": "tvhnp70ajv592y2ulmk84chi4",
+      "title": "HC-DLM 提出分层连续扩散语言模型，耦合 token 生成与潜变量更新",
+      "originalTitle": "Hierarchical Continuous Diffusion Language Models",
+      "summary": "HC-DLM 研究提出分层连续扩散语言模型，将离散 token 生成与连续潜变量轨迹耦合在同一去噪过程中。根据当前材料，连续潜变量是唯一持久的生成状态，每一步从中读出 token 并反馈以辅助下一次潜变量更新，训练目标由 token 似然的变分界推导。",
+      "reason": "该研究将离散 token 的反馈融入连续潜变量更新，为理解并行生成中的依赖建模提供了与两类扩散基线比较的视角。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02193v1",
+      "publishedAt": "2026-10-01T17:59:39.000Z",
+      "timelineAt": "2026-10-01T17:59:39.000Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "训练方法",
+        "推理"
+      ],
+      "research": {
+        "arxivId": "2610.02193",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T00:00:00.000Z",
+        "revisedAt": "2026-10-01T17:59:39.000Z",
+        "communitySelectedAt": "2026-10-02T00:00:00.000Z",
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02193v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02193v1"
+          },
+          {
+            "kind": "project",
+            "url": "https://hc-dlm.github.io/",
+            "sourceUrl": "https://arxiv.org/abs/2610.02193v1"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02193",
+            "sourceUrl": "https://huggingface.co/papers/2610.02193"
+          },
+          {
+            "kind": "code",
+            "url": "https://github.com/rhfeiyang/HC-DLM",
+            "sourceUrl": "https://huggingface.co/papers/2610.02193"
+          },
+          {
+            "kind": "project",
+            "url": "https://hc-dlm.github.io/",
+            "sourceUrl": "https://huggingface.co/papers/2610.02193"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出分层连续扩散语言模型（Hierarchical Continuous Diffusion Language Models，HC-DLM），在同一去噪过程中耦合离散词元生成与连续潜变量轨迹，训练目标由词元似然的变分界推导。其针对两类问题：离散扩散语言模型并行解码时，各词元从各自边缘分布独立采样，切断同时解码词元间的统计依赖；连续扩散语言模型虽通过共享连续状态去噪，但去噪器仅观察该状态，直到最终解码才与有效词元配置建立联系。不同于在独立运行的离散链上附加连续上下文的方法，HC-DLM将潜变量作为唯一持续保留的生成状态，每一步从中读出词元，再将词元反馈为下一次潜变量更新的支架。",
+        "applicableTasks": "摘要支持的评估范围包括3类任务及对应对象：结构化推理（Sudoku，数独）、数学规划（Countdown）和语言建模（LM1B）。作者将离散扩散语言模型描述为适合需要双向推理与全局约束满足的任务的候选方案，但当前资料仅报告HC-DLM在上述3个对象上的评估，其他任务与对象上的适用效果未知。",
+        "comparisonConditions": "作者报告，在模型规模匹配的条件下，HC-DLM优于离散扩散和连续扩散基线：Sudoku与Countdown上的谜题准确率提高，LM1B上的生成困惑度改善。摘要列出3个评估对象，未给出各对象的样本数、划分、难度或预处理设置。具体基线名称、基线模型数量、模型参数量、训练与推理计算预算、硬件、解码步数和采样设置均未知。指标为谜题准确率与生成困惑度；数值、报告单位、提升幅度、统计汇总口径、准确率分母及不确定性均未知。摘要未提供可量化的最高或平均增益。",
+        "limitations": "证据仅限用户提供的摘要，未核对全文。上述方法与效果均为作者报告，不构成独立复现。作者明确讨论了现有离散与连续扩散方法的结构性问题，但摘要未明确陈述HC-DLM自身的限制。当前资料未提供详细实验表、消融实验、重复试验、统计显著性、效率或资源开销结果，无法据此判断改进幅度、稳定性及更广泛的泛化能力；这些属于资料缺失，不能据此断言研究本身没有相关验证。摘要提供项目页链接，但不能由链接推断代码、权重或复现材料可用，开放实现与独立复现情况未知。",
+        "evidenceBasis": "abstract"
+      },
+      "researchRoadmap": null
+    },
+    {
+      "id": "xygvbk1w7935rns002vpsn5bo",
+      "title": "信任方向，搜索步长：用于 LLM 微调的零阶与一阶联合优化方法 ZFO",
+      "originalTitle": "Trust the Direction, Search the Step: Zero-and-First-Order Methods for LLM Fine-Tuning",
+      "summary": "ZFO 研究提出将优化方向与步长选择解耦的方法，作者报告其在所评估的语言模型和数据集上经常优于固定步长一阶基线。该方法沿一阶优化器给出的方向，利用当前梯度信息和两次额外目标函数评估构建局部模型，在有界搜索区间内选择考虑曲率的步长。",
+      "reason": "将方向选择与步长搜索分开，为调整微调优化器提供了可迁移思路，但收益幅度与局部模型选择仍取决于具体目标函数。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02190v1",
+      "publishedAt": "2026-10-01T17:59:28.000Z",
+      "timelineAt": "2026-10-01T17:59:28.000Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "训练方法"
+      ],
+      "research": {
+        "arxivId": "2610.02190",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T17:59:28.000Z",
+        "revisedAt": "2026-10-01T17:59:28.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02190v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02190v1"
+          },
+          {
+            "kind": "code",
+            "url": "https://github.com/nizswan/Zeroth-First-Order-Framework",
+            "sourceUrl": "https://arxiv.org/abs/2610.02190v1"
+          }
+        ]
+      },
+      "researchBrief": null,
+      "researchRoadmap": null
+    },
+    {
+      "id": "s8moemck93yrl4cn1on69rv4s",
+      "title": "DMAD 提出以对抗蒸馏实现分布匹配，加速视觉生成",
+      "originalTitle": "DMAD: Distribution Matching as Adversarial Distillation for Fast Visual Generation",
+      "summary": "DMAD 研究提出用分类直接学习对数密度比，以训练少步生成模型，省去 DMD 中辅助扩散模型的分数拟合。",
+      "reason": "将分布匹配转为判别器分类，为减少少步生成蒸馏中的辅助模型拟合开销提供了可迁移思路，并明确了梯度等价所需的最优判别器条件。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02188v1",
+      "publishedAt": "2026-10-01T17:59:01.000Z",
+      "timelineAt": "2026-10-01T17:59:01.000Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "训练方法",
+        "多模态",
+        "视频",
+        "图像生成"
+      ],
+      "research": {
+        "arxivId": "2610.02188",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T17:59:01.000Z",
+        "revisedAt": "2026-10-01T17:59:01.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02188v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02188v1"
+          },
+          {
+            "kind": "code",
+            "url": "https://yzmblog.github.io/projects/DMAD",
+            "sourceUrl": "https://arxiv.org/abs/2610.02188v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 DMAD（Distribution Matching as Adversarial Distillation），将分布匹配改写为分类问题，直接学习所需的对数密度比。其针对的问题是：DMD 通过分别估计目标分布与学生分布的分数之差训练少步学生，需要持续拟合一个辅助扩散模型来跟踪变化中的学生分布，增加内存与计算成本。DMAD 在共享骨干上设置两个判别器头，分别区分真实数据与学生样本、教师样本与学生样本，通过判别器 logits 上的线性损失训练学生，无需辅助分数拟合。作者报告，在判别器达到最优的条件下，利用判别器 logits 与对数密度比之间的经典恒等式，可证明这些损失恢复 DMD 所依据的分布匹配梯度。此外，作者提出基于间隙的重加权，依据真实数据判别头在真实样本与教师样本之间的经验 logit 间隙，调整不同噪声水平下的教师监督。",
+        "applicableTasks": "摘要支持的范围是扩散生成模型的少步蒸馏，涉及图像生成、文本到视频生成与联合音视频生成。具体评估对象包括 ImageNet-64x64 上的单步生成、SDXL 在 COCO-10K 上的四步生成、Wan2.1-T2V-14B 的四步生成，以及 MiniMax-H3-33B 的四步联合音视频生成。资料未提供这些评估对象之外的适用性验证。",
+        "comparisonConditions": "作者报告了四组具名评估设置，但完整比较方法、模型与任务总数未知：① ImageNet-64x64 单步生成，Fréchet Inception Distance（FID）为 1.04；② SDXL 在 COCO-10K 上四步生成，FID 为 14.47；③ Wan2.1-T2V-14B 四步生成，VBench 总分为 85.15。作者称上述三项结果是在所比较的少步方法和多步教师中取得的最佳值；摘要未列出这些比较对象的完整名称及各自分数，也未报告相对增益。④ 在 MiniMax-H3-33B 的联合音视频生成中，作者报告其四步学生相对 DMD2 的总体人类偏好率为 79.1%，相对 rCM 为 84.6%；两项比例均排除平局，分母为各自比较中非平局的评价，评价总数未知。这两项是不同对手条件下的偏好率，不能解释为性能提升百分比。FID 与 VBench 均以分数数值报告，摘要未另给单位或量表范围；人类偏好率以百分比报告。硬件、训练时长、批量大小、训练及采样计算设置、内存占用、速度、教师生成步数、DMD2 与 rCM 的生成步数、具体样本量及评价协议均未知：当前资料未提供。COCO-10K 是摘要提供的评估集名称，具体使用样本数未另行说明。",
+        "limitations": "当前证据仅为摘要，未核对全文；方法、理论证明与实验结果均为作者报告，不是独立复现结论。梯度等价性的作者陈述明确以判别器达到最优为条件，摘要未提供证明细节，也未说明实际训练中满足该条件的程度。作者所称最佳值仅限于其所比较的方法与教师，不能据此推断所有模型、任务或生成质量维度上的普遍优势。摘要未提供硬件与计算成本的定量对照、消融结果、重复实验、误差范围、统计显著性、人类评价人数及协议，也未明确陈述其他局限或失败情形；这些信息缺失不等于研究本身不存在相应验证。作者声明代码、模型与演示位于 https://yzmblog.github.io/projects/DMAD，但当前资料不足以核验链接内容、实现可用性或独立复现情况。",
+        "evidenceBasis": "abstract"
+      },
+      "researchRoadmap": {
+        "title": "DMAD：以双判别头和间隙重加权实现分布匹配蒸馏",
+        "nodes": [
+          {
+            "stage": "input",
+            "label": "输入真实数据、教师样本与学生样本",
+            "detail": "以真实数据和教师生成样本作为两类参照，分别与学生生成样本进行区分。",
+            "evidenceSnippet": "distinguish real data and teacher samples from the student's"
+          },
+          {
+            "stage": "method",
+            "label": "共享骨干双判别头，以 logit 线性损失训练学生",
+            "detail": "将分布匹配改写为分类，直接学习所需的对数密度比。共享骨干上的两个判别头分别承担区分任务，以判别头 logit 的线性损失训练学生，无需拟合辅助评分模型。",
+            "evidenceSnippet": "Two discriminator heads on a shared backbone distinguish real data and teacher samples from the student's, and linear losses on their logits train the student without auxiliary score fitting."
+          },
+          {
+            "stage": "method",
+            "label": "用真实数据头的经验 logit 间隙调整教师监督",
+            "detail": "计算真实数据头对真实样本与教师样本的经验 logit 间隙，据此进行间隙重加权，调整不同噪声水平下的教师监督。",
+            "evidenceSnippet": "gap-based reweighting, which adapts teacher supervision across noise levels from the real-data head's empirical logit gap between real and teacher samples"
+          },
+          {
+            "stage": "output",
+            "label": "生成少步学生模型并报告图像生成指标",
+            "detail": "作者报告：ImageNet-64x64 上一步生成的 FID 为 1.04；COCO-10K 上四步 SDXL 的 FID 为 14.47。",
+            "evidenceSnippet": "DMAD reaches a Fréchet Inception Distance (FID) of 1.04 with one-step generation on ImageNet-64x64, 14.47 with four-step SDXL on COCO-10K"
+          },
+          {
+            "stage": "validation",
+            "label": "在判别器最优条件下恢复 DMD 分布匹配梯度",
+            "detail": "作者报告理论证明：判别器达到最优时，上述损失恢复 DMD 所依据的分布匹配梯度；证明借助判别器 logit 与对数密度比之间的经典恒等关系。此结论具有判别器最优这一条件。",
+            "evidenceSnippet": "at the discriminator optimum these losses recover the distribution-matching gradient underlying DMD, through the classical identity linking discriminator logits to log-density ratios"
+          }
+        ],
+        "limitations": "基于摘要；材料未给出网络具体配置、训练超参数、间隙重加权公式、完整证明及评测细节，无法据此还原完整实现；指标和理论结论均为作者报告，摘要未说明实际训练中判别器达到最优的程度；独立复现未核验。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1,
+        "sourceUrl": "https://arxiv.org/abs/2610.02188v1",
+        "generatedAt": "2026-10-04T04:23:00.934Z"
+      }
+    },
+    {
+      "id": "ikrv23aya4o9io6bh7il8k4dt",
+      "title": "HGR 研究提出面向化学生成模型与基础模型的高阶分子语法",
+      "originalTitle": "Higher-Order Molecular Grammars for Generative and Foundation Models in Chemistry",
+      "summary": "HGR 研究提出将分子高阶拓扑编码为语法规则序列，用于分子生成与可迁移表征学习。根据当前材料，该方法将分子提升为组合复形，再通过上下文无关高阶语法解析为紧凑规则序列，以兼容标准序列模型；研究还构建了包含 1.18 million 个分子的富环基准 RingDiv 及经整理的 RingDiv300k 子集，并提出环多样性指数 RDI 衡量环系覆盖。",
+      "reason": "将环系等高阶拓扑转为序列模型可用的语法规则，为分子生成与表征学习提供了兼顾结构表达和计算开销的方法参考。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02186v1",
+      "publishedAt": "2026-10-01T17:58:45.000Z",
+      "timelineAt": "2026-10-01T17:58:45.000Z",
+      "category": "ai4s",
+      "tags": [
+        "论文/研究",
+        "AI4S",
+        "算法",
+        "分子建模"
+      ],
+      "research": {
+        "arxivId": "2610.02186",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T17:58:45.000Z",
+        "revisedAt": "2026-10-01T17:58:45.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02186v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02186v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出高阶语法表示（Higher-order Grammar Representation，HGR），针对标准序列和图表示难以显式编码环系统、重复基序等高阶拓扑，以及现有高阶表示计算开销较大、难以解码为有效分子的问题。HGR将分子提升为组合复形，再通过上下文无关的高阶语法，将每个复形解析为紧凑的产生式规则序列。作者称，该序列化方式使高阶拓扑可直接用于标准序列模型，在保留拓扑表达能力的同时避免显式高阶编码的计算开销。为减轻基准偏向简单环系统的偏差，作者还构建了富含环结构的RingDiv基准，并提出环多样性指数（RDI）衡量环系统覆盖情况。",
+        "applicableTasks": "资料支持的任务为分子生成和可迁移的分子表示学习，关注的结构包括环系统与重复基序。生成评估涉及五个基准；表示学习评估涉及七个MoleculeNet基准，迁移协议包括探测（probing）和全量微调（full fine-tuning）。RingDiv用于丰富基准中的环结构，RDI用于量化环系统覆盖情况。具体基准名称、分子类别、性质预测端点，以及对其他任务和对象的适用性未知：当前资料未提供。",
+        "comparisonConditions": "作者构建的RingDiv包含118万（1.18 million）个分子，并包括经整理的RingDiv300k子集；摘要仅给出该子集名称，未单独说明其精确样本数。分子生成方面，作者报告HGR模型通过构造保证100%有效性，并在全部五个生成基准上均取得FCD排名第一；摘要未给出有效性统计的生成样本数、FCD具体数值、各基准名称、比较模型名称或数量。表示学习方面，作者报告HGR-FM在七个MoleculeNet基准上的平均AUC，在两种迁移协议下均为最高；相较各协议下的最强基线，探测协议提高8.3个AUC点，全量微调协议提高3.3个AUC点。这是两种协议各自的平均AUC增益，不能解释为每个基准均有相同提升；摘要未给出绝对AUC、各基准结果或最强基线身份。RDI的公式、单位及实测结果未知；硬件、计算资源、模型规模、训练配置、数据划分、重复运行次数和计算效率的量化结果均未知：当前资料未提供。",
+        "limitations": "当前证据仅为摘要，未核对全文；所有性能与效率结论均为作者报告，不是独立复现结果。摘要明确指出标准序列和图表示难以显式编码高阶拓扑、现有高阶表示往往计算开销较大且难以解码为有效分子，以及基准可能偏向简单环系统，但未明确陈述HGR自身的失败情形或适用边界。摘要未提供分子有效性的具体判定标准、语法覆盖范围、消融实验、统计不确定性、显著性检验或效率对照数据，因而不能仅凭摘要量化其计算优势，或把FCD排名与平均AUC优势外推为所有任务和条件下的普遍优势。代码与数据的可获取性、开放实现及独立复现情况未知：当前资料未提供；这不代表研究本身不存在相关材料或验证。",
+        "evidenceBasis": "abstract"
+      },
+      "researchRoadmap": null
+    },
+    {
+      "id": "n7gty26hkso9o0egz436qszwh",
+      "title": "LoopCD 研究提出以循环中间状态改善 Looped Transformers 解码",
+      "originalTitle": "Decoding Looped Transformers Better for (Almost) Free",
+      "summary": "LoopCD 研究提出无需训练的对比解码框架，通过对比最后一次与较早循环的预测，引导 Looped Transformers 的 token 选择。根据当前材料，LoopCD-Logits 在 logit 空间操作，增加一次输出计算；LoopCD-Hidden 在隐藏状态空间操作，无额外输出计算开销。",
+      "reason": "循环中间状态被用作对比解码信号，为共享模块的循环模型提供了无需训练的优化思路，并给出减少循环次数后的质量与计算量比较。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02185v1",
+      "publishedAt": "2026-10-01T17:58:38.000Z",
+      "timelineAt": "2026-10-01T17:58:38.000Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "推理优化",
+        "推理"
+      ],
+      "research": {
+        "arxivId": "2610.02185",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T00:00:00.000Z",
+        "revisedAt": "2026-10-01T17:58:38.000Z",
+        "communitySelectedAt": "2026-10-02T00:00:00.000Z",
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02185v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02185v1"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02185",
+            "sourceUrl": "https://huggingface.co/papers/2610.02185"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出无需训练的对比解码框架 LoopCD，针对循环 Transformer 标准解码丢弃较早循环状态的问题：共享模块在多次循环中生成可用于预测同一下一个 token 的中间表示，较早循环计算量较少，可与最终循环自然构成对齐的弱、强预测对。LoopCD 通过对比最终预测与较早循环的预测来引导 token 选择，无需辅助模型或外部训练。LoopCD-Logits 在 logit 空间操作，需额外一次输出计算；LoopCD-Hidden 在隐藏状态空间操作，作者称其输出计算开销为零，该表述不等于全部推理开销为零。",
+        "applicableTasks": "资料支持的对象为通过反复执行共享模块进行计算的循环 Transformer，应用环节为下一个 token 的解码选择。作者报告评估覆盖四个循环 Transformer 家族，摘要明确举出的任务为 Ouro-2.6B-Thinking 上的 AIME 2024 数学解题和 Huginn 上的 HumanEval 代码生成。所述应用条件包括完整循环深度，以及将循环次数减半以降低推理计算量。四个家族的完整名单、模型总数、任务总数以及其他模型架构上的适用性未知：当前资料未提供。",
+        "comparisonConditions": "作者报告，LoopCD 在四个循环 Transformer 家族的完整循环深度下带来显著且一致的提升，但摘要未给出全部逐项结果。明确数值为：LoopCD-Logits 将 Ouro-2.6B-Thinking 在 AIME 2024 上的 pass@1 从 61.88% 提升至 73.33%；LoopCD-Hidden 将 Huginn 在 HumanEval 上的 pass@1 从 22.56% 提升至 31.71%。作者另报告，将循环次数减半后，性能仍能达到或超过完整深度、未加引导的基线，前向计算 FLOPs 减少 22.5% 至 48.2%；该范围不是所有条件均减少 48.2%，摘要未列出范围端点对应的模型、任务或方法变体。两项 pass@1 示例的具体基线解码配置、评测样本量与统计分母、采样设置、原始与减半后的绝对循环次数、硬件、运行时间、绝对 FLOPs 及 FLOPs 统计细节未知：当前资料未提供。计算设置中仅明确 LoopCD-Logits 需额外一次输出计算，LoopCD-Hidden 的输出计算开销为零。",
+        "limitations": "当前证据仅为摘要，未核对全文；方法效果、四个模型家族上提升的一致性及减少计算量的结论均为作者报告，不是独立复现结果。摘要未明确陈述方法自身的限制或失败案例。完整实验表、各条件的结果分布、误差或置信区间、显著性检验、较早循环的选择方式、具体对比公式与超参数，以及独立复现信息均未知：当前资料未提供。作者报告的前向 FLOPs 降幅不能直接视为实测延迟、吞吐或能耗的改善幅度；这些指标未提供。代码或开放实现的可用性也未提供，不能据此断言其存在或不存在。",
+        "evidenceBasis": "abstract"
+      },
+      "researchRoadmap": null
+    },
+    {
+      "id": "hzb4nouwnroix96ff64svk73j",
+      "title": "SoftServe 研究提出面向深度学习的可扩展拟牛顿方法",
+      "originalTitle": "SoftServe: A Scalable Quasi-Newton Method for Deep Learning",
+      "summary": "根据当前材料，研究作者提出 SoftServe 拟牛顿方法族，面向深度学习中的非凸性与庞大参数规模，无需线搜索或临时性曲率修正。该方法从 Berglund 等人的变分目标推导正定曲率估计，在存在负曲率时仍适用，并构建保持正定性的对角与 Kronecker 分解变体，通过稳定的耦合 Newton-Schulz 迭代以适合 GPU 的矩阵乘法替代昂贵的矩阵分解。",
+      "reason": "通过正定曲率估计与矩阵乘法实现拟牛顿更新，为理解二阶优化如何适配大规模非凸神经网络训练提供了具体方法参考。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02182v1",
+      "publishedAt": "2026-10-01T17:58:24.000Z",
+      "timelineAt": "2026-10-01T17:58:24.000Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "训练方法",
+        "推理优化",
+        "AI4S"
+      ],
+      "research": {
+        "arxivId": "2610.02182",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T17:58:24.000Z",
+        "revisedAt": "2026-10-01T17:58:24.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02182v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02182v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 SoftServe，一族面向深度学习的拟牛顿（QN）方法，旨在解决非凸性和巨大参数规模限制传统 QN 方法应用的问题。该方法无需线搜索或临时性的曲率修正，而是从 Berglund 等（2025）的变分目标中推导正定曲率估计，即使存在负曲率也可使用。作者构建了按构造保证正定性的对角和 Kronecker 分解变体，以适应大规模神经网络；所需矩阵运算采用稳定的耦合 Newton–Schulz 迭代，用适合 GPU 的矩阵乘法替代代价高昂的矩阵分解。",
+        "applicableTasks": "摘要支持的应用范围是深度学习优化，尤其是严重病态的优化问题。作者列举的任务或对象包括循环神经网络、深度自编码器、物理信息神经网络，以及一个含 136M（1.36 亿）参数的物理信息扩散模型。摘要未提供这些任务的具体数据集、网络结构细节或更广泛适用性的验证。",
+        "comparisonConditions": "作者报告 SoftServe 在严重病态问题上表现突出，且经常取得低于 Adam、Muon 和 SOAP 等既有基线的损失；‘经常’不代表所有任务或设置均优于基线。摘要列举四类任务或对象，其中物理信息扩散模型的参数量为 136M（1.36 亿），但未说明实验任务、模型及数据集的确切总数，也未列出各基线对应的实验条件。比较指标为损失，具体损失定义、单位、数值、改进幅度及最高或平均增益均未知。硬件型号、GPU 数量、精度、训练预算、批量大小、超参数、运行次数、耗时及内存占用未知；摘要仅说明以适合 GPU 的矩阵乘法替代矩阵分解，未报告实测计算加速。",
+        "limitations": "当前证据仅为摘要，未核对全文。正定性、规模扩展能力以及相对基线的损失表现均为作者报告，不构成独立复现结论。摘要将突出表现限定于严重病态问题，并以‘经常’描述较低损失，不能据此推断普遍优势。作者未在该摘要中明确陈述其他局限；具体实验协议、公平比较设置、统计不确定性、消融验证、完整理论条件、代码可用性与独立复现信息均未知。上述缺失仅指当前资料未提供，不能据此认定研究本身没有相关内容。",
+        "evidenceBasis": "abstract"
+      },
+      "researchRoadmap": null
+    },
+    {
+      "id": "ykks5xp6pl4htn6cbs14neyq3",
+      "title": "从梯度到能力：理解多教师同策略知识蒸馏",
+      "originalTitle": "From Gradients to Capabilities: Understanding Multi-Teacher On-Policy Distillation",
+      "summary": "该研究报告，多教师同策略知识蒸馏（MOPD）中的教师信号受到损失平均规则、Adam 一阶矩与 BF16 舍入的共同影响。根据当前材料，作者研究 Qwen3-1.7B 及四个与学生从相同初始化出发、经 RL 训练的领域教师，比较梯度、优化器更新和任务学习曲线，并补充 SmolLM3-3B 诊断。",
+      "reason": "研究将教师梯度、优化器更新与任务表现联系起来，为比较多教师蒸馏方案提供了同时检查损失平均规则与数值精度的分析方法。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02179v1",
+      "publishedAt": "2026-10-01T17:57:44.000Z",
+      "timelineAt": "2026-10-01T17:57:44.000Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "训练方法"
+      ],
+      "research": {
+        "arxivId": "2610.02179",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T17:57:44.000Z",
+        "revisedAt": "2026-10-01T17:57:44.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02179v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02179v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者研究多教师 on-policy 蒸馏（MOPD）中，教师信号如何转化为学生模型的参数变化，目标是理解将多个经强化学习训练的教师优势合并到单一学生时，损失平均规则、优化器与数值精度的影响。作者比较梯度、优化器更新和任务学习曲线，并考察 top-64 交集 KL 梯度与全词表梯度的接近程度，以及相对于采样 token 策略梯度（PG）的任务表现。作者报告：token 平均会隐式偏向较长回答，即使均衡各领域贡献，领域内部仍保留这种权重偏向；Adam 的一阶矩会减小教师或平均规则之间的参数更新差异；BF16 舍入会掩盖小幅参数变化。摘要呈现的是机制分析与方法比较，未明确提出一套统一的新蒸馏算法。",
+        "applicableTasks": "资料支持的研究范围是：使用多个经强化学习训练的领域教师，对单一学生进行 on-policy 蒸馏，并诊断教师信号、损失平均规则、优化器更新和权重精度之间的关系。主要研究对象为 Qwen3-1.7B，配有 4 个与学生从相同初始化出发、经强化学习训练的领域教师；另有 SmolLM3-3B 的补充诊断。摘要明确给出数学任务的准确率比较，其他领域名称、具体任务及数据集未知。当前资料不支持将结论直接推广至任意模型、教师来源或任务。",
+        "comparisonConditions": "作者报告的主要实验对象是 Qwen3-1.7B 与 4 个领域教师，教师与学生具有相同初始化；另对 SmolLM3-3B 进行补充诊断，但其教师配置及完整实验范围未知。比较内容包括不同教师、不同损失平均规则下的原始梯度、优化器更新与任务学习曲线，以及 FP32 主权重和 BF16 权重相对于初始化的变化。作者报告，Adam 一阶矩作用下，教师之间参数更新的余弦相似度为 0.83，不同平均规则之间为 0.96，尽管原始梯度存在差异；余弦相似度无量纲，摘要未给出这两个数值的具体聚合口径。相对于初始化，约 97% 的 FP32 主权重发生变化，而 BF16 权重仅有 7–11% 发生变化；两者分别以相应精度的权重为比例分母，区间对应的具体条件未知。作者还报告，top-64 交集 KL 梯度与 Qwen 的全词表梯度高度接近，但未提供接近程度的数值指标。相对于采样 token 策略梯度（PG），采用回答平均时，top-64 交集 KL 的数学准确率高 2.6 个百分点；采用全局 token 平均时，则低 2.1 个百分点，不能视为普遍提升。数据集名称与规模、确切任务数量、准确率绝对值及评测样本分母、硬件、训练步数、批大小、学习率、计算预算和其他计算设置，当前摘要均未提供。",
+        "limitations": "证据仅来自所提供的摘要，未核对全文，全部结果均为作者报告，当前资料未提供独立复现证据。作者明确指出或报告的局限性包括：教师信号对参数变化的影响仍缺乏充分研究；均衡领域贡献不能消除领域内部由 token 平均带来的长回答偏向；优化器与 BF16 舍入会影响对参数变化的观察；top-64 交集 KL 梯度接近全词表梯度，并不意味着任务表现一定改善，其相对于 PG 的数学准确率变化随平均规则而反向。摘要未提供重复实验次数、随机种子、误差区间、统计显著性、完整任务结果、SmolLM3-3B 诊断的具体结果或跨更多模型与教师配置的验证信息。代码、数据及实现是否开放未知；缺少这些信息不等于研究本身未开展相关验证或不存在相关资源。",
+        "evidenceBasis": "abstract"
+      },
+      "researchRoadmap": null
+    },
+    {
+      "id": "j86msvf1gyqy2u1a6u770wddd",
+      "title": "每次消融都是一剂干预：语言模型中的制衡作用与自我修复表象",
+      "originalTitle": "Every Ablation Is a Dose: Counterweights and the Semblance of Self-Repair",
+      "summary": "Areeb Ahmad 的研究提出，语言模型的自我修复表象可能来自消融前已存在的固定增益。根据当前材料，作者将干预表示为反事实对比的有符号强度 λ，并提出细粒度单元的因果修复响应遵循仿射规律 E_r(λ)=own_r+γ_rλ，其中固定系数 γ_r 的符号决定单元抵消还是强化被移除的信号。",
+      "reason": "将消融视为连续干预强度上的取点，为比较不同消融方式下的补偿响应提供了统一视角，也提示需区分既有作用与修复表象。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02173v1",
+      "publishedAt": "2026-10-01T17:57:04.000Z",
+      "timelineAt": "2026-10-01T17:57:04.000Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法"
+      ],
+      "research": {
+        "arxivId": "2610.02173",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T17:57:04.000Z",
+        "revisedAt": "2026-10-01T17:57:04.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02173v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02173v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出用消融前已存在的增益解释语言模型中的自修复现象：将对因果重要组件的干预表示为坐标轴 λ 上的点，λ 是反事实对比的带符号强度，传统消融则是该轴上未经校准的点。作者报告，细粒度单元 r 的因果修复响应遵循仿射规律 E_r(λ)=own_r+γ_rλ，其中斜率 γ_r 是无论是否消融都会持续影响模型的固定系数，其符号决定该单元抵消还是强化被移除的信号。作者还报告可从固定权重预判 γ_r 的大小。该解释旨在回答自修复机制不清楚的问题，将看似干预后产生的补偿解释为既有抵消作用在对比信号出现时的正常运作。",
+        "applicableTasks": "摘要支持的研究范围是语言模型内部组件干预与自修复机制分析。作者在事实判定任务上研究来自 Gemma、Qwen、LLaMA、Mistral 四个不同家族的四个模型，涉及 MLP 神经元、OV 神经元和奇异方向；另在 GPT-2 Small 的 IOI 回路上研究干预可触及的注意力头。其他任务、模型或组件上的适用性未知：当前资料未提供。",
+        "comparisonConditions": "作者将其解释与既往研究的结论相对照：摘要称此前最系统的研究认为自修复噪声较大，且不太可能有单一解释；该研究的名称、实验设置及定量对照结果未知。作者将传统消融视为 λ 轴上未经校准的干预点，但未提供不同消融方法的直接性能比较。摘要描述两类任务场景：事实判定任务涵盖来自 Gemma、Qwen、LLaMA、Mistral 四个不同家族的四个模型，作者报告合计 81 个下游方向中有 68 个遵循仿射规律，未给出各模型或各组件类型的分项数量；GPT-2 Small 的 IOI 回路中，干预可触及的 10 个注意力头有 7 个遵循该规律，且这 7 个全部发挥抵消作用。作者还报告能从固定权重预判 γ_r 的大小，但未给出预测误差或准确度。当前资料的定量结果为方向和注意力头的计数，不是性能增益。数据集名称、样本量、四个家族模型的具体版本与规模、硬件、计算设置、λ 的取值范围、γ_r 的数值与单位、仿射规律的拟合指标及判定阈值均未知：当前资料未提供。",
+        "limitations": "证据仅来自所提供摘要，未核对全文。上述规律、计数及从权重预判 γ_r 的能力均为作者报告，当前资料未提供独立复现证据。摘要中的规律并未覆盖全部受检对象：事实判定任务为 68/81 个下游方向，IOI 回路为干预可触及的 7/10 个注意力头；其余对象的偏离原因、偏离程度以及更广泛范围内的适用性未知。摘要未明确陈述专门的限制条目，也未提供完整干预流程、拟合与统计不确定性分析、权重预测的验证细节、代码或数据可用性信息；这些信息缺失不能据此认定研究本身没有相应分析或实现。",
+        "evidenceBasis": "abstract"
+      },
+      "researchRoadmap": null
+    },
+    {
+      "id": "u7o4abot2xp4y6yki22ezuqnl",
+      "title": "内在奖励何时能促进探索？研究提出基于反事实信息的判据",
+      "originalTitle": "When Do Intrinsic Rewards Lead to Exploration?",
+      "summary": "根据当前材料，Scott W. Viteri 的研究提出基于反事实信息的探索判据，比较不同策略的历史经验能在多大程度上替代其他策略下的经验。作者在一个简单环境中构造反例，报告指定的基于计数、预测误差、赋能和信息增益的目标均存在最大化策略，其反事实信息获取表现为帕累托次优。研究还给出现有内在奖励促进最优探索的条件，并构造一个在该判据下探索严格改善时赋予更高价值的目标；当前材料未列出具体条件。",
+      "reason": "研究用反事实信息检验内在奖励能否引导探索，为区分奖励最大化与信息获取提供比较视角，并讨论其成立条件。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02159v1",
+      "publishedAt": "2026-10-01T17:52:41.000Z",
+      "timelineAt": "2026-10-01T17:52:41.000Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "训练方法"
+      ],
+      "research": {
+        "arxivId": "2610.02159",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T17:52:41.000Z",
+        "revisedAt": "2026-10-01T17:52:41.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02159v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02159v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出以策略获取的反事实信息作为探索的形式化评价准则：比较各策略产生的历史在多大程度上能够替代其他策略下的经验。该方法针对最大化内在奖励未必能获得最有信息量经验的问题。作者还构造了一个目标，使探索在该准则下严格改善时，目标值随之提高，并给出已有内在奖励能够促进最优探索的条件；具体条件未知：当前摘要未提供。",
+        "applicableTasks": "资料支持的范围是强化学习中的探索评价及内在奖励目标分析，评价对象是策略及其产生的经验历史。作者分析了指定的基于计数、预测误差、赋能（empowerment）和信息增益目标。具体应用领域、真实世界任务及跨环境适用范围未知：当前资料未提供。",
+        "comparisonConditions": "作者报告在单一、简单的构造环境（1个环境）中，指定的基于计数、预测误差、赋能和信息增益这4类目标均存在最大化其目标但在获取反事实信息方面为帕累托次优的策略。比较依据是策略历史替代其他策略经验的能力，而非摘要中给出的数值性能指标。作者另报告，新构造的目标会在探索按其准则严格改善时赋予更高值。数据集数量、模型数量、策略数量、具体任务数量、环境细节、硬件、计算设置、指标公式、单位及数值结果未知：当前资料未提供。",
+        "limitations": "证据仅来自摘要，未核对全文。上述反例、新目标性质及已有奖励成功的条件均为作者报告，当前资料不构成独立复现。反例涉及单一构造环境中的指定目标，不能据此认定所有此类内在奖励在所有环境中均失效。摘要未提供形式化定义、证明细节、成功条件的具体内容、实验协议或跨环境验证信息，亦未提供实现可用性及独立复现信息。作者是否明确陈述其他限制未知：当前资料未提供。",
+        "evidenceBasis": "abstract"
+      },
+      "researchRoadmap": null
+    },
+    {
+      "id": "iqoqm9ozj8ccym2r15iaof8f5",
+      "title": "Muon 遇上 Tamed Langevin：面向非凸且梯度非全局 Lipschitz 势能的动量预条件方法",
+      "originalTitle": "Muon meets Tamed Langevin: Momentum Preconditioning beyond Convex and gradient-Lipschitz Potentials",
+      "summary": "该研究提出带动量预条件的欠阻尼 Langevin 系统，用于从势能非凸且梯度不满足全局 Lipschitz 条件的矩阵空间 Gibbs 分布中采样。根据当前材料，该方法引入一族非二次动能，使动能梯度对动量实施平滑的谱驯化。",
+      "reason": "通过非二次动能平滑抑制动量谱而保留势能梯度，研究为非凸且梯度不满足全局 Lipschitz 条件的采样问题提供了方法思路。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02158v1",
+      "publishedAt": "2026-10-01T17:52:36.000Z",
+      "timelineAt": "2026-10-01T17:52:36.000Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法"
+      ],
+      "research": {
+        "arxivId": "2610.02158",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T17:52:36.000Z",
+        "revisedAt": "2026-10-01T17:52:36.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02158v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02158v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者针对矩阵空间上的 Gibbs 分布采样，研究势能既非凸、其梯度也不满足全局 Lipschitz 条件的情形。作者引入一族非二次动能，构造带动量预条件的新欠阻尼 Langevin 系统，其中动能梯度对动量起平滑的谱驯化作用。作者报告，在这些放宽的势能假设下，所得动力学保持目标 Gibbs 测度不变，并在加权全变差距离下指数收敛至平衡；相应 Euler–Maruyama 离散化无需修改势能梯度，即可获得时间一致的矩界，作者据此说明采样算法的稳定性。",
+        "applicableTasks": "资料支持的任务是从矩阵空间上的 Gibbs 分布进行采样，所考虑的势能非凸且梯度不满足全局 Lipschitz 条件。分析对象包括连续时间的带动量预条件欠阻尼 Langevin 动力学及其 Euler–Maruyama 离散化。具体矩阵维度、应用领域、实例及完整适用假设未知：当前资料未提供。",
+        "comparisonConditions": "摘要未报告比较算法或基线，也未给出数据集、模型或任务数量、硬件、计算预算、步长及其他数值实验设置。作者报告的理论结果包括：目标 Gibbs 测度不变性、以加权全变差距离衡量的指数趋近平衡，以及 Euler–Maruyama 离散化的时间一致矩界；离散化结果明确以无需修改势能梯度为特点。指数收敛率的具体常数、矩的阶数与界值、指标单位、数值结果及性能增益未知：当前资料未提供。",
+        "limitations": "当前证据仅为摘要，未核对全文、证明或实验。上述不变性、连续动力学的指数收敛及离散化矩界均为作者报告，并非独立复现结论。摘要未列出完整假设、定理细节、离散化步长条件，也未提供离散采样误差、计算效率或实际应用的验证信息；不能仅凭时间一致矩界认定离散算法精确采样目标分布。作者明确陈述的其他限制未知：当前资料未提供。代码可用性与独立复现情况亦未知。",
+        "evidenceBasis": "abstract"
+      },
+      "researchRoadmap": null
+    },
+    {
+      "id": "mv9x419gecxc33463mbm3c73x",
+      "title": "SourceLearn 提出来源学习方法，让智能体持续积累特定来源的理解能力",
+      "originalTitle": "From Knowledge Access to Source Learning: Developing Source-Specific Competence",
+      "summary": "SourceLearn 研究提出通过持久化来源模型，让 LLM 智能体在重复使用权威来源时持续积累可复用的理解能力。根据当前材料，该方法结合自主识别理解缺口并重访来源的学习机制，以及利用下游任务经验发现局部表征缺口与反复出现的知识组织需求的学习机制，两者的持久化更新均依据权威来源重新构建。",
+      "reason": "将反复检索同一来源转化为持续修订来源模型，为需要长期使用权威资料的智能体提供了可迁移的知识组织思路。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02150v1",
+      "publishedAt": "2026-10-01T17:50:16.000Z",
+      "timelineAt": "2026-10-01T17:50:16.000Z",
+      "category": "ai4ai",
+      "tags": [
+        "论文/研究",
+        "Agent",
+        "RAG",
+        "AI4AI"
+      ],
+      "research": {
+        "arxivId": "2610.02150",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T17:50:16.000Z",
+        "revisedAt": "2026-10-01T17:50:16.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02150v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02150v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 source learning（来源学习）：针对持续使用同一权威来源时，现有方法主要将其视为重复访问、未充分利用重复使用来逐步加深理解的问题，以持久化的来源模型积累可复用、针对特定来源的能力，涵盖对来源知识的结构、解释与应用的理解。作者提出的 SourceLearn 结合两种机制：Self-Directed Source Learning 识别尚未充分理解的内容并自适应重访来源；Task-Guided Source Learning 利用下游任务经验发现局部表示缺口，以及知识组织中的反复需求。两种机制均由学习信号决定需要重新考察的内容，而持久化更新依据权威来源重新构建。",
+        "applicableTasks": "资料支持的研究范围是：LLM 智能体依赖持久存在的外部权威来源，连续解决知识密集型任务，并在重复使用同一来源的过程中积累可复用理解。作者报告在五个基准、三个 LLM 后端上评估；具体任务类型、基准名称、来源领域与格式、LLM 名称及规模未知：当前资料未提供。",
+        "comparisonConditions": "作者报告，在五个基准与三个 LLM 后端构成的 15 种设置中，SourceLearn 在其中 13 种设置取得最佳表现；相对 Hybrid RAG 的增益最高达 22.6 点，该数字是最高增益，不能视为所有设置的普遍或平均增益。摘要未说明这些点对应的具体指标、量表或是否为百分比点。作者还报告，相对静态来源表示及基于经验的记忆基线，总体上有显著改善，但未提供对应数值，也未提供统计显著性检验信息。除 Hybrid RAG 外的具体基线名称、比较系统总数、数据集与样本数量、各设置的单独结果、平均增益、硬件、计算预算、训练与推理配置及其他计算设置均未知：当前资料未提供。",
+        "limitations": "证据仅限所提供的摘要，未核对全文；上述性能结果均为作者报告，当前资料不包含独立复现证据。13/15 的最佳表现与最高 22.6 点增益仅能按作者报告的评估范围理解，不能据此推断所有任务、来源或模型上的效果，也不能仅凭最佳表现声称推断研究质量。摘要未明确陈述方法限制；具体评估协议、指标定义、数据划分、重复运行与误差范围、消融实验、学习及存储成本、长期使用效果、失败情形和范围外泛化验证均未知：当前资料未提供。代码、数据及可运行实现的开放情况亦未知，不能据此断言研究本身没有这些材料或验证。",
+        "evidenceBasis": "abstract"
+      },
+      "researchRoadmap": null
+    },
+    {
+      "id": "u5ccy5p5ju4sze2uyc1dmgigh",
+      "title": "Faynt 研究探索竞技 Melee 策略的规模扩展与优化",
+      "originalTitle": "Faynt: Scaling and Optimizing Policies for Competitive Melee",
+      "summary": "Faynt 研究提出用于 Super Smash Bros. Melee 的 10M 和 75M 参数 Transformer 策略，每个模型均以单个检查点控制全部 26 个角色。",
+      "reason": "材料明确披露对手与自身的动作延迟差异及其尚未隔离的影响，为判断游戏策略胜率比较是否公平提供了具体依据。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02144v1",
+      "publishedAt": "2026-10-01T17:48:38.000Z",
+      "timelineAt": "2026-10-01T17:48:38.000Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "训练方法",
+        "推理优化",
+        "Agent"
+      ],
+      "research": {
+        "arxivId": "2610.02144",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T17:48:38.000Z",
+        "revisedAt": "2026-10-01T17:48:38.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02144v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02144v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 Faynt：用于《Super Smash Bros. Melee》的 Transformer 策略模型家族，包含 10M 和 75M 参数两种规模，每个模型均以单一 checkpoint 控制全部 26 个角色。作者研究架构、优化、规模扩展和超参数迁移，以指导约 840,000 场人类对局回放上的预训练；后训练结合基于排名和对局结果的课程、75M 向 10M 的蒸馏，以及仅限 Fox 同角色对局的强化学习（RL）。这些设计面向多角色统一控制及对局表现提升。摘要还比较预测损失与胜率的关系，并报告优化推理的延迟；各设计的独立贡献及完整实现细节未知。",
+        "applicableTasks": "资料支持的任务是《Super Smash Bros. Melee》中的游戏策略控制、人类回放预训练、监督后训练、策略蒸馏、强化学习及自动化模型对战评测。两种规模的策略均支持全部 26 个角色，但 RL 训练仅限 Fox 同角色对局。主要对手评测是在各对手所支持角色范围内进行的同角色对局；另有针对私下提供的零延迟 Slippi-AI 模型的独立评测。摘要未提供其他游戏、真实世界控制任务或跨游戏迁移的验证信息。",
+        "comparisonConditions": "作者报告：① RL 后的 10M 模型在 244 场同角色对局中赢得 240 场，胜率 98.4%；比较对象为 14 个专精角色及多角色策略发布版本，对局覆盖这些对手各自支持的角色阵容，并且对每个发布版本均取得胜多负少的战绩。对手保留 21 或 24 帧的动作延迟，Faynt 不增加延迟；作者未隔离该差异的影响。② 在另一项针对私下提供的零延迟 Slippi-AI 模型的评测中，10M 在两种 conditioning 设置下合计 68 场全部获胜；两种设置的具体内容及各自场数未知。③ 初始 152 场对局基准中，监督后训练的 10M 胜率为 69.7%，预训练的 75M 为 45.4%，尽管前者整体留出集控制器预测损失更高。用于监督 checkpoint 选择的加权验证损失，其排序与全部四个预训练及监督策略的胜率排序一致；各策略的完整数值未知。④ 监督后训练后，两种模型每分钟受到的伤害更少、早期领先更大，并在先失去第一条命后更常获胜；摘要未给出这些指标的具体数值。⑤ 在 NVIDIA T4 上，对记录的游戏状态进行优化推理时，10M 平均每次决策耗时 5.2 ms，75M 为 8.7 ms；不含模拟器执行和通信耗时。预训练数据约为 840,000 场人类回放。训练硬件、训练计算量、推理批大小、数值精度、对局执行硬件、重复实验设置及统计不确定性未知。",
+        "limitations": "当前证据仅为摘要，未核对全文，全部研究结果均为作者报告，未提供独立复现证据。作者明确指出，主要对比中对手具有 21 或 24 帧动作延迟而 Faynt 无新增延迟，且尚未隔离这一差异的影响，因此该胜率差异不能直接归因于策略方法本身。针对零延迟 Slippi-AI 的结果来自另一次评测，对手为私下提供的单个模型，不能据此消除主要对比的延迟混杂。RL 仅限 Fox 同角色对局；统一支持 26 个角色不等于摘要已提供所有角色、所有对阵组合的逐项验证。报告的推理耗时来自记录状态，且排除了模拟器与通信，不能视为端到端对局延迟。摘要未提供完整消融、数据划分与潜在重叠检查、各对手逐项结果、误差范围或显著性检验等信息，不能据此断言研究本身没有这些验证。作者声称开源权重、两套基准及自动化模型锦标赛平台；当前资料未提供可核验的实现内容，其可获取性、完整性及可复现性均未独立验证。",
+        "evidenceBasis": "abstract"
+      },
+      "researchRoadmap": null
+    },
+    {
+      "id": "wxw0bszppi6uq0njkt976pjzl",
+      "title": "GEODE 研究提出保持晶体对称性的笛卡尔空间扩散生成方法",
+      "originalTitle": "GEODE: Symmetry-Preserving Cartesian Diffusion for Crystal Generation",
+      "summary": "GEODE 研究提出在笛卡尔空间联合扩散晶格与原子坐标的方法，作者报告其无条件晶体生成的 mSUN 率为 11.9%。根据当前材料，该方法先采样对称性模板，再通过 Wyckoff 约束损失，在保持指定对称性的同时联合生成晶格、原子坐标和原子类型。",
+      "reason": "研究将晶体对称性约束与笛卡尔空间扩散结合，为比较保留对称性的生成方法在结构稳定性与新颖性上的表现提供了具体参照。",
+      "sourceName": "arXiv · 计算物理与材料",
+      "sourceUrl": "https://arxiv.org/abs/2610.01898v1",
+      "publishedAt": "2026-10-01T15:46:50.000Z",
+      "timelineAt": "2026-10-01T15:46:50.000Z",
+      "category": "ai4s",
+      "tags": [
+        "论文/研究",
+        "AI4S",
+        "材料",
+        "算法"
+      ],
+      "research": {
+        "arxivId": "2610.01898",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T15:46:50.000Z",
+        "revisedAt": "2026-10-01T15:46:50.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:15:23.158Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.01898v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.01898v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 Generative Equivariant Orbit Diffusion Engine（GEODE），旨在解决无机晶体生成模型难以重现对称原子排列，以及既有显式对称性约束方法生成的稳定且新颖结构少于无约束生成方法的问题。作者称，据其所知，GEODE 是首个在笛卡尔空间中结合坐标扩散与晶格扩散的模型。模型先采样对称性模板，再通过新的 Wyckoff 约束损失，在保持指定对称性的同时联合生成晶格、原子坐标和原子类型。作者报告，笛卡尔扩散使坐标噪声具有一致的物理尺度，并通过实验观察到性能改善。此外，作者提出采样时模板过滤，无需重新训练即可提高生成指标；模板选择还支持对称性与性质的联合引导。",
+        "applicableTasks": "资料支持的对象为无机晶体结构，任务包括保持指定对称性的晶格、原子坐标和原子类型联合生成、无条件晶体生成，以及对称性与性质的联合引导。作者以介电率的无分类器引导展示性质引导能力。适用的具体材料体系、元素范围、晶体规模及对称性类别范围未知：当前资料未提供。",
+        "comparisonConditions": "作者报告，在无条件生成任务中，GEODE 的亚稳、唯一且新颖（metastable, unique and novel，mSUN）比例为 11.9%，次优的对称性感知模型为 7.7%。该比较模型的名称及比较模型总数未给出。作者还报告，采样时模板过滤无需重新训练，可使 mSUN 提高约 6%；摘要未明确该数值是相对提升还是增加约 6 个百分点，也未给出过滤后的明确比例及对应基线条件，因此不能据此计算最终比例。作者称，过滤后的 GEODE 可与领先的不感知对称性的模型竞争，但未提供这些模型的名称或具体指标。作者报告了笛卡尔坐标噪声物理尺度一致所带来的性能改善，但未给出该项实验的量化结果。数据集、数据量、生成样本数与 mSUN 统计分母、任务总数、硬件、训练与采样计算设置、稳定性判据、唯一性及新颖性判定规则、误差或多次运行统计均未知：当前资料未提供。",
+        "limitations": "当前证据仅为摘要，未核对全文；上述方法与结果均为作者报告，当前资料不构成独立复现。作者指出了既有方法的对称性重现问题及显式对称性约束下的生成表现不足，但摘要未明确陈述 GEODE 自身的具体限制。mSUN 衡量的是亚稳、唯一且新颖结构的比例，不能据此断言所有生成结构均稳定或具有可合成性。摘要仅以介电率展示性质引导，其他性质及更广泛材料范围的验证信息未提供。模板过滤约 6% 增益的口径不明确，不能当作普遍增益；与领先模型竞争的表述也不足以证明全面优于它们。代码、开放实现、数据可访问性、独立复现及实验合成验证信息未知：当前资料未提供。",
+        "evidenceBasis": "abstract"
+      },
+      "researchRoadmap": null
+    },
+    {
+      "id": "laxi0tw3qvkt5aixacj0k0bge",
+      "title": "RipplePLM 提出结构与属性解耦框架，用于生成蛋白质突变效应描述",
+      "originalTitle": "RipplePLM: Structural and Property Decoupling for Protein Mutation Effect Generation",
+      "summary": "RipplePLM 研究提出结构与生化属性解耦框架，作者报告其在 MutaDescribe 上生成蛋白质点突变功能后果描述的表现优于突变专用基线。",
+      "reason": "同骨干模型的结构划分比较为评估结构与生化属性分解的作用提供了参照，但当前材料未给出专家评价的样本量与具体比例。",
+      "sourceName": "arXiv · 分子与定量生物学",
+      "sourceUrl": "https://arxiv.org/abs/2610.01891v1",
+      "publishedAt": "2026-10-01T15:41:24.000Z",
+      "timelineAt": "2026-10-01T15:41:24.000Z",
+      "category": "ai4s",
+      "tags": [
+        "论文/研究",
+        "AI4S",
+        "算法",
+        "分子建模"
+      ],
+      "research": {
+        "arxivId": "2610.01891",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T15:41:24.000Z",
+        "revisedAt": "2026-10-01T15:41:24.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:15:20.499Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.01891v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.01891v1"
+          },
+          {
+            "kind": "code",
+            "url": "https://github.com/Lyu6PosHao/RipplePLM",
+            "sourceUrl": "https://arxiv.org/abs/2610.01891v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出用于蛋白质点突变效应自然语言生成的 RipplePLM，旨在解决现有蛋白质到文本系统将突变信息编码为未区分的表示、忽略突变证据在结构与生化因素间组织方式的问题。框架以 Direct-Distal Cross-Attention（DDCA）为核心：利用预训练蛋白质语言模型构建残基级 Mutation Perturbation Field，并借助预测接触图，将突变表示组织为突变位点的直接接触邻域与多跳远端上下文两条路径。此外，Property Latent Chain（PLChain）通过潜在属性 token，将专家指导的生化属性变化监督（例如热稳定性和最适 pH）注入大语言模型隐藏状态路径，以补充结构分解。",
+        "applicableTasks": "资料支持的主要任务是用自然语言描述蛋白质点突变的功能后果；作者在 MutaDescribe 上报告了时间划分与结构划分下的评估。作者还报告了低样本量（low-N）适应度回归实验，用于支持所学突变感知表示的有效性。涉及的属性监督示例包括热稳定性和最适 pH，但摘要未提供这些属性的单独预测或生成结果。具体蛋白质类别、物种、样本范围以及低样本量的具体 N 值未知。",
+        "comparisonConditions": "作者报告在 MutaDescribe 上，相对于突变专用基线，RipplePLM 在时间划分和结构划分下均有提升。在骨干模型匹配的比较条件下，结构划分的平均 ROUGE-L 从 22.23 提高至 35.65；该结果为特定条件下的平均值，摘要未说明平均所覆盖的子集、运行次数或分母，也未说明分数尺度及单位。专家评估中，作者报告生物学准确或相关描述的比例高于突变专用基线，但未给出具体比例、样本分母、专家人数或评分流程。摘要仅明确命名 1 个数据集 MutaDescribe，涉及突变效应描述生成及低样本量适应度回归两类任务，并提及消融实验和表示诊断；基线名称及数量、骨干模型名称及数量、数据规模、各任务或实验的具体数量未知。时间划分的具体结果、消融和回归的指标及数值、统计不确定性均未提供；硬件、训练与推理计算设置、计算成本也未知。",
+        "limitations": "当前证据仅为摘要，未核对全文。性能提升、专家评价及辅助实验的有效性结论均归属于作者报告，当前资料不构成独立复现。作者在该摘要中未明确陈述研究限制；这不能据此推断研究不存在限制。摘要未提供完整实验设计、划分细节、数据规模、统计显著性或置信区间，也未提供专家评价及低样本量回归的详细验证信息，因此无法据此判断提升的稳定性、跨蛋白质或跨数据集泛化能力。资料列出代码链接 https://github.com/Lyu6PosHao/RipplePLM，但未访问或验证，不能据此确认代码可用、实现完整或结果可复现。",
+        "evidenceBasis": "abstract"
+      },
+      "researchRoadmap": null
+    },
+    {
+      "id": "xvclwylq6gpg9y8bnxzvxcdtm",
+      "title": "PepTIDE 提出用于肽轨迹生成的多尺度时间流框架",
+      "originalTitle": "Multi-Scale Temporal Flows for Peptide Trajectory Generation",
+      "summary": "PepTIDE 研究提出多尺度时间流框架，用于生成线性肽和环肽轨迹，作者报告其能更忠实地再现稀疏状态跃迁帧与状态间通量。根据当前材料，该方法从连续范围采样训练窗口步长，以自适应物理时间嵌入编码窗口相对时间间隔和各帧绝对时间，并通过随机插值流联合生成所有帧。",
+      "reason": "通过联合改变训练窗口的时间间隔与时间编码，这项研究为肽轨迹中稀疏状态跃迁的学习提供了可迁移的方法思路。",
+      "sourceName": "arXiv · 分子与定量生物学",
+      "sourceUrl": "https://arxiv.org/abs/2610.01086v1",
+      "publishedAt": "2026-10-01T05:29:38.000Z",
+      "timelineAt": "2026-10-01T05:29:38.000Z",
+      "category": "ai4s",
+      "tags": [
+        "论文/研究",
+        "AI4S",
+        "分子建模",
+        "算法"
+      ],
+      "research": {
+        "arxivId": "2610.01086",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T05:29:38.000Z",
+        "revisedAt": "2026-10-01T05:29:38.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:15:20.499Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.01086v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.01086v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出用于肽轨迹生成的多尺度时间框架 PepTIDE，针对既有深度生成模型按固定间隔切分训练窗口、只观察固定时间分辨率且不将该间隔作为输入的问题，使模型显式表示窗口对应的物理时间，以改善对肽在亚稳态之间转换时稀疏帧的学习。具体做法是从连续范围抽取各训练窗口的采样步长，让同一模型观察多种时间分辨率；使用自适应物理时间嵌入，同时编码窗口的相对时间间隔与每帧的绝对时间，使共享速度场感知间隔；通过随机插值流联合生成所有帧，并用成对感知的不变点注意力捕捉线性肽和环肽的几何与拓扑。",
+        "applicableTasks": "资料支持的任务是肽分子动力学轨迹生成，涉及构象分布与结构有效性评估，以及按时间顺序考察亚稳态转换的稀疏帧和状态间通量。方法面向线性肽与环肽；摘要指出短肽缺乏稳定折叠核心、构象系综广泛，环化还引入闭环约束、非局部残基耦合与立体化学多样性。作者报告的评估范围为 PepMD 和一个包含 50 个体系的环肽基准。具体肽长度、序列组成及向其他分子对象推广的证据未知：当前资料未提供。",
+        "comparisonConditions": "作者将既有深度生成模型概括为使用固定间隔的训练窗口且不以该间隔为输入，但摘要未列出实际比较模型的名称或数量。作者报告在 PepMD 和一个包含 50 个体系的环肽基准上，PepTIDE 的分布一致性和结构有效性达到其所称的最先进水平；按时间顺序读取生成轨迹时，可恢复稀疏转换帧，并更忠实地再现状态间通量。摘要未给出这些结果的数值、单位、增益幅度、最高或平均口径，也未明确通量比较的具体对象。PepMD 的体系数量、训练与测试划分、模型规模、任务数量、硬件、计算预算、训练时长、推理成本、采样步长的连续范围及具体时间单位均未知：当前资料未提供。",
+        "limitations": "证据仅来自所提供的摘要，未核对全文。上述性能、稀疏转换帧恢复及通量再现均为作者报告，不能视为独立复现；作者将结果解释为多时间尺度建模使这些稀有事件能够被捕捉，但摘要未提供消融实验细节或定量证据，无法据此独立核验该归因。作者所称的最先进水平缺少摘要内的具体比较条件与数值，不能据此推断普遍质量优势。摘要未明确陈述 PepTIDE 自身的限制，也未提供统计不确定性、重复实验、失败案例、长时间轨迹稳定性、基准外泛化或开放实现信息；这些信息缺失不代表研究本身未开展相关工作。",
+        "evidenceBasis": "abstract"
+      },
+      "researchRoadmap": null
+    },
+    {
+      "id": "bjqsv9rkif46dwqc477albvuw",
+      "title": "Google DeepMind 宣布 Gemini 4 Argon，先向受信任网络防御人员开放",
+      "originalTitle": "Gemini 4 Argon: our next era of frontier intelligence",
+      "summary": "Google DeepMind 宣布新模型 Gemini 4 Argon，面向复杂长流程任务，正通过 Fairwind Program 向一批受信任的网络防御人员开放。",
+      "reason": "材料将输出长度扩展与内部工程案例放在一起，并交代受限开放条件，可帮助判断长流程能力展示与实际可用范围的差别。",
+      "sourceName": "Google DeepMind",
+      "sourceUrl": "https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence/",
+      "publishedAt": "2026-09-30T20:01:45.000Z",
+      "timelineAt": "2026-09-30T20:01:45.000Z",
+      "category": "algorithm",
+      "tags": [
+        "模型发布",
+        "算法",
+        "Agent",
+        "编码",
+        "Google",
+        "DeepMind"
+      ],
+      "research": {
+        "arxivId": null,
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": null,
+        "originalPublishedAt": "2026-09-30T20:01:45.000Z",
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:22:46.724Z",
+        "evidenceBasis": "fulltext",
+        "links": [
+          {
+            "kind": "project",
+            "url": "https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence/",
+            "sourceUrl": "https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence/"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者在标注为2026年9月30日的产品发布文章中提出Gemini 4 Argon，面向复杂、长时程、多步骤工作流持续进行深度推理，并将输出token上限由此前的64K提高到1M，以支持单条轨迹生成数十万token、一次处理更复杂的问题。作者称对模型进行了网络安全防御能力训练，使其能够自主发现、验证和修补软件漏洞；内部应用包括多智能体分析性能遥测、实施内存优化，以及通过多轮性能剖析指导的实验和编译器输出分析，将手写SIMD代码替换为可由编译器自动向量化的安全Rust。安全措施包括自动红队测试与对抗训练、内部激活监测、思维链和行动监测及必要时终止执行，以及高风险训练或评估前隔离和封闭沙箱。资料未给出模型架构、训练配方或上述机制的完整技术实现。",
+        "applicableTasks": "作者报告的适用范围包括：真实软件工程中的调试、算法设计、大规模代码迁移和优化；量子算法子程序的时空资源优化；数据中心内存优化；金融多步骤研究、法律研究与起草、税务及核心业务流程自动执行；专业图表分析、长视频理解和基于一系列文档采取行动；网络安全防御中的漏洞发现、验证、修补和无源代码的在线Web系统黑盒渗透测试。内部代码案例涉及re2、libgav1和Fuchsia Zircon内核的C/C++至Rust迁移。作者还将深入研究、写作质量和创意写作列为用途，但未提供对应定量验证。发布范围为分阶段开放：当前向Fairwind Program中的部分可信网络防御者推出，内部团队已使用；作者称将向可信防御者及内部团队提供不带网络安全护栏的版本，广泛开放前继续收集反馈、完善防护，后续从付费API客户和Google AI Ultra订阅者开始扩展。不能据此认定已面向所有用户开放。",
+        "comparisonConditions": "以下均为作者报告。内部案例：①量子算法优化以已发表基线为比较对象，指标为子程序的时空资源（量子比特数×门数）；一个例子在数分钟内较基线改善40%，并非跨任务平均结果，具体算法、绝对资源量及硬件未知。②内存优化由一组Argon智能体分析全体机群性能遥测，部署后已释放超过300 TiB内存，预计总节省500 TiB至1 PiB；实测释放量与预计总量须区分，未给出总内存分母或对照系统。③C/C++至Rust迁移规模从核心库数万行到Fuchsia Zircon内核800K+行；libgav1案例基于已有Rust移植版本，替换32K行SIMD代码，多轮实验后作者称速度达到该Rust版本的2.7倍、视频输出相同，并更接近优化后的C++；未给出相对C++的具体比值、输入视频集或运行硬件。④输出token上限由64K增至1M，是容量设置而非通用性能增益。评测：DeepSWE v1.1得分77.9%，作者称达到新的最先进水平；Vals Index按各行业对美国GDP的贡献加权，涉及金融、编程、法律、税务4个领域，作者称领先，但未给总分、分项值或模型名单；Vals Finance Agent v2和Harvey’s Legal Agent Benchmark也仅报告领先。Zapier AutomationBench得分51.3%、排名第1；长视频理解LVBench得分91.7%，作者称最先进。漏洞修复CWE-bench v1最高得分68%、并列第1；文中另提3.8 Flash Cyber在CWE-bench v0的表现，未提供其分数，不能把不同版本直接量化比较。漏洞发现方面，以3.8 Flash Cyber为明确比较对象：Google内部综合漏洞基准覆盖20种编程语言，作者报告Argon发现了复杂代码库中的多类暴露问题，但未给发现数量或差值；Wiz内部黑盒渗透测试基准针对无源代码的在线Web系统，作者称Argon在攻击面发现、漏洞识别和验证用概念验证证据生成方面更优，未给分数。Wiz的一个早期医疗软件案例中，Argon发现了暴露敏感个人信息的严重漏洞，作者称此前前沿模型曾遗漏，但未列模型名称、测试次数或影响规模。Gray Swan间接提示注入IPI基准仅称鲁棒性领先，未给数值。上述基准的样本量、任务数、参评模型总数、完整比较名单、硬件、推理预算、采样与重复次数、工具配置、耗时和统计不确定性均未知；百分比指标的具体计算分母也未提供。另有商业设置：介绍期价格为每百万输入token 2美元、每百万输出token 10美元，缓存输入token较输入单价优惠95%；这不是各项评测的实际计算成本。",
+        "limitations": "依据已保存的 Google 机构发布页可读正文；未核对完整技术报告、评测附件或原始数据。所有能力、排名、收益及安全性描述均属于作者报告，未提供独立复现证据，也不能仅由最先进或领先的声明推断普遍质量。单个量子优化例子的40%、单个libgav1案例相对特定Rust版本的2.7倍，以及单个医疗漏洞案例，均不能外推为所有任务的收益；内存预计总节省不等于已经实现。作者明确表示，关键系统的大规模重写在生产部署前仍需严格的自动与人工审计、仿真测试及评审；间接提示注入是需要持续警惕和多层防御的复杂攻击；广泛开放前仍在强化4方面防护，即防滥用、防提示注入、失配监测和系统加固，并依赖早期测试者反馈迭代。作者称防护经过内部及外部红队的手动、自动攻击测试，但未给攻击数量、成功率或失败案例；也未给取消网络安全护栏版本与常规版本的统一比较条件。公开基准、内部基准、内部部署案例和未来上线计划的证据层级不同。训练数据、模型参数规模、基准污染控制、详细评分规程、消融实验、统计显著性、完整失败分布、跨场景泛化和安全残余风险量化均未提供。资料未证明代码、权重或复现实验配置已开放；提及项目或基准名称不等于实现可用。上述缺失仅指当前资料未提供，不能断言研究本身没有这些验证。",
+        "evidenceBasis": "fulltext"
+      },
+      "researchRoadmap": null
+    },
+    {
+      "id": "ywwig016167ebi1oemd78uwwz",
+      "title": "CPathOGen 提出空间与形态可控的 H&E 反事实生成框架，用于探查病理模型",
+      "originalTitle": "CPathOGen: Spatially and Morphologically Controlled H&E Counterfactuals for Probing Pathology Models",
+      "summary": "CPathOGen 研究提出条件潜在扩散框架，通过控制细胞空间组织、细胞核形态与染色外观生成配对 H&E 反事实图像，以探查病理模型的敏感性。",
+      "reason": "通过分别控制细胞组织、核形态与染色外观，该方法为区分病理模型对生物学因素和染色干扰的敏感性提供了评估思路。",
+      "sourceName": "arXiv · 分子与定量生物学",
+      "sourceUrl": "https://arxiv.org/abs/2610.00602v1",
+      "publishedAt": "2026-09-30T19:07:30.000Z",
+      "timelineAt": "2026-09-30T19:07:30.000Z",
+      "category": "ai4s",
+      "tags": [
+        "论文/研究",
+        "AI4S",
+        "算法",
+        "图像生成"
+      ],
+      "research": {
+        "arxivId": "2610.00602",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-09-30T19:07:30.000Z",
+        "revisedAt": "2026-09-30T19:07:30.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:15:20.499Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.00602v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.00602v1"
+          },
+          {
+            "kind": "code",
+            "url": "https://github.com/a12dongithub/PathOGen",
+            "sourceUrl": "https://arxiv.org/abs/2610.00602v1"
+          },
+          {
+            "kind": "project",
+            "url": "https://huggingface.co/a12donhf/CPathOGen",
+            "sourceUrl": "https://arxiv.org/abs/2610.00602v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 CPathOGen：一种条件潜在扩散框架，用于生成成对的 H&E（苏木精-伊红染色）反事实图像，显式控制细胞空间组织、细胞核形态和染色外观。细胞图通过空间编码器约束空间结构，形态/外观向量通过逐块特征线性调制（FiLM）调节去噪过程。该方法针对常见像素空间与特征空间扰动可能产生不合理组织、使模型响应难以解释的问题。作者还提出 Biology-Nuisance Sensitivity Ratio（生物学因素与干扰因素敏感性比率），用于对比模型对具有生物学动机的形态及空间因素的敏感性，与对非生物学染色干扰变化的敏感性。",
+        "applicableTasks": "摘要支持的对象为 H&E 组织学图像块及计算病理模型。作者报告在留出的 H&E 图像块上评估生成组织，并使用经其验证的可控干预，探测配有终点预测头的病理编码器、任务专用分类器及生存模型，以评估鲁棒性和受控特征敏感性。具体疾病、组织类型、临床终点和数据来源未知：当前资料未提供。",
+        "comparisonConditions": "作者报告，在留出的 H&E 图像块上，CPathOGen 可生成视觉上合理的组织；经过空间引导筛选后，分布一致性改善，表现为更低的 Fréchet Inception Distance（FID）和 Kernel Inception Distance（KID）。摘要未明确上述降低所对应的比较基线，也未给出具体数值、增益幅度或平均/最高等统计口径。作者还报告，生成细胞的数量与位置跟随指定控制，测得的形态与颜色随相应控制单调变化，未提供定量误差或变化幅度。对下游模型响应，作者采用总变差距离和预测翻转率进行量化，并提出 Biology-Nuisance Sensitivity Ratio 对比生物学因素与染色干扰因素的敏感性；摘要未给出这些指标的数值结果、比率具体公式、预测翻转率分母或汇总方式。常见像素与特征空间扰动仅作为问题背景提及，摘要未提供与其直接比较的实验结果。数据集、图像块、模型及任务数量，硬件、训练与推理计算设置，指标单位和不确定性估计均未知：当前资料未提供。",
+        "limitations": "当前证据仅为摘要，未核对全文。组织视觉合理性、分布一致性改善、控制响应及模型探测用途均为作者报告，当前资料没有独立复现证据。摘要未明确陈述方法限制，也未提供详细实验协议、空间引导筛选规则、具体比较方法、消融实验、统计检验或跨数据集泛化验证信息，因此无法仅凭当前资料判断效果大小、稳定性和适用边界；这些信息缺失不代表研究本身未开展相关验证。资料包含 GitHub 与 Hugging Face 链接，但未核验链接内容，不能据此认定代码或模型可用，也不能视为已独立复现。",
+        "evidenceBasis": "abstract"
+      },
+      "researchRoadmap": null
+    },
+    {
+      "id": "dpg8u2s8yta9nmfjmnc77dr98",
+      "title": "Google DeepMind 介绍 SynthID Bio，报告保留蛋白质功能的生物水印概念验证",
+      "originalTitle": "Introducing SynthID Bio",
+      "summary": "Google DeepMind 介绍 SynthID Bio，作者报告该方法可为 AI 生成的蛋白质序列和预测结构嵌入可检测水印，并在实验室测试中保留蛋白质功能。",
+      "reason": "研究将序列水印的湿实验验证与结构水印的数字检测分开呈现，为评估生物设计来源追踪的适用范围与验证条件提供参照。",
+      "sourceName": "Google DeepMind",
+      "sourceUrl": "https://deepmind.google/blog/introducing-synthid-bio/",
+      "publishedAt": "2026-09-30T15:03:07.000Z",
+      "timelineAt": "2026-09-30T15:03:07.000Z",
+      "category": "ai4s",
+      "tags": [
+        "论文/研究",
+        "AI4S",
+        "分子建模",
+        "DeepMind",
+        "Google"
+      ],
+      "research": {
+        "arxivId": null,
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": null,
+        "originalPublishedAt": "2026-09-30T15:03:07.000Z",
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:22:46.724Z",
+        "evidenceBasis": "fulltext",
+        "links": [
+          {
+            "kind": "project",
+            "url": "https://deepmind.google/blog/introducing-synthid-bio/",
+            "sourceUrl": "https://deepmind.google/blog/introducing-synthid-bio/"
+          },
+          {
+            "kind": "paper",
+            "url": "http://www.nature.com/articles/s41586-026-10965-y",
+            "sourceUrl": "https://deepmind.google/blog/introducing-synthid-bio/"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 SynthID Bio，一组面向合成生物学的水印方法：对蛋白质序列，通过细微引导氨基酸选择嵌入签名；对预测三维结构，通过调整原子坐标嵌入签名。其中，结构水印通过微调 AlphaFold 3 扩散网络的一小部分写入模型权重，使模型生成的坐标自带可检测信号。作者报告，序列水印既可在数字设计中验证，也可在合成后的实体蛋白质中验证，且在所述实验中保留生物学功能。该方法旨在为 AI 生成的生物设计提供来源识别信号，辅助应对新颖设计给传统 DNA 合成筛查带来的困难，以及合成结构误标对公共数据库和后续研究的影响。",
+        "applicableTasks": "资料支持的实验对象包括蛋白质结合分子的序列设计与水印检测，以及 AlphaFold 3 预测蛋白质三维结构的水印嵌入与检测。结合分子湿实验覆盖三个靶标：VEGF-A、SARS-CoV-2 刺突蛋白受体结合域（RBD）和 PD-L1。作者还报告正在与斯坦福大学 Hie 实验室及 Arc Institute 合作，将水印集成到基因组模型 Evo 2，为其设计的噬菌体基因组加水印；细菌培养中的早期实验显示这些噬菌体具有功能。DNA 合成订单来源核验，以及 Protein Data Bank、UniProt、GenBank 等数据库中合成条目的标记或复核，是作者提出的潜在应用，当前资料未提供这些业务场景中的实际部署验证。",
+        "comparisonConditions": "蛋白质结合分子实验采用 AlphaProteo 结合分子设计方法及启用 SynthID Bio 的 ProteinMPNN，与未加水印版本比较；湿实验涉及三个靶标（VEGF-A、SARS-CoV-2 刺突蛋白 RBD、PD-L1）。作者报告，加水印设计的命中率、结合亲和力和天然序列多样性与未加水印版本相当。亲和力以 KD 衡量，数值越低表示结合越强；当前资料未给出 KD 数值或单位，也未给出命中率分母、设计总数、各靶标样本量、多样性指标定义、重复次数、误差或统计检验。结构任务使用 AlphaFold 3，作者报告保留预测准确性、达到接近完美的水印可检测性、维持关键结构特征分布，并能耐受数字噪声或轻微坐标变化；这些结论没有具体指标数值、检测阈值、误报率或噪声强度。资料展示了 7PPA 的 AlphaFold 3 预测结构、真实结构和加水印结构，但未提供结构评测数据集规模或任务总数。Evo 2 噬菌体工作仅报告早期功能性结果，未给出样本数、对照条件或定量结果。上述实验的硬件、训练与推理计算设置、计算成本及耗时均未知：当前资料未提供。",
+        "limitations": "依据已保存的 Google DeepMind 机构发布页可读正文；未读取方法论文全文、原始数据或补充材料；所有实验结论均为作者报告，不构成独立复现。作者将工作定位为概念验证，并明确指出单一生物安全干预并非万能方案，增强水印对蓄意篡改的鲁棒性仍是关键挑战，实现完整生物安全效益还需要社区协作与进一步研究。对数字噪声或轻微坐标变化的耐受不能据此扩展为对蓄意攻击的全面防护；所述蛋白质功能保持结果也不能推广至所有蛋白质或更复杂生物对象。来源信号对降低实际生物安全风险、减少人工筛查负担或防止数据库污染的效果，当前资料未提供量化验证。噬菌体工作仍处于早期，作者表示将另行公布技术稿件细节。作者声明正在发表方法论文、开源代码和体外实验数据，并向研究社区发布权重；来源明确给出方法论文链接，但本次未读取论文全文；正文未给出代码、体外数据或权重的具体下载入口，也未核验许可证、完整性与可运行性，因此不能确认这些资源已可用或已被独立复现。",
+        "evidenceBasis": "fulltext"
+      },
+      "researchRoadmap": {
+        "title": "SynthID Bio：蛋白质序列与三维结构的水印嵌入及验证路线",
+        "nodes": [
+          {
+            "stage": "input",
+            "label": "两类处理对象：蛋白质序列与预测三维结构",
+            "detail": "路线分为序列与结构两支：前者通过引导氨基酸选择嵌入信号，后者通过调整预测结构的原子坐标嵌入信号。",
+            "evidenceSnippet": "subtly guiding the choice of amino acids for sequences and adjusting atomic coordinates for predicted 3D structures"
+          },
+          {
+            "stage": "method",
+            "label": "结合 AlphaProteo 与水印版 ProteinMPNN 设计结合蛋白",
+            "detail": "作者使用 AlphaProteo 结合蛋白设计方法，并配合启用 SynthID Bio 的 ProteinMPNN 序列生成方法，开展结合蛋白水印实验。材料未给出具体序列采样或水印编码参数。",
+            "evidenceSnippet": "by using our binder design method AlphaProteo alongside a SynthID Bio-enabled version of ProteinMPNN"
+          },
+          {
+            "stage": "method",
+            "label": "微调 AlphaFold 3 的部分扩散网络",
+            "detail": "结构分支微调 AlphaFold 3 扩散网络的一小部分，将水印生成能力嵌入模型权重。两分支是针对不同数据类型的方法，并非必须串行执行。",
+            "evidenceSnippet": "For protein folding, SynthID Bio fine-tunes a small part of AlphaFold 3’s diffusion network, building the ability to watermark directly into the model’s weights."
+          },
+          {
+            "stage": "output",
+            "label": "生成携带可检测签名的预测三维坐标",
+            "detail": "结构分支的输出为内含水印签名的预测三维坐标；作者称该特性不依赖于由谁运行模型。",
+            "evidenceSnippet": "This ensures that the predicted 3D coordinates inherently carry a detectable signature regardless of who runs the model."
+          },
+          {
+            "stage": "validation",
+            "label": "湿实验比较水印与无水印结合蛋白",
+            "detail": "作者报告，水印设计与无水印版本的命中率、结合亲和力和天然序列多样性相当。此处为作者报告的比较结果，材料未提供数值、样本量或统计判定标准。",
+            "evidenceSnippet": "our watermarked designs matched the hit rate, binding affinity, and natural sequence diversity of unwatermarked versions"
+          },
+          {
+            "stage": "validation",
+            "label": "结构分支检查预测精度、检出性与扰动耐受性",
+            "detail": "作者报告保留 AlphaFold 3 预测精度及关键结构特征分布，水印接近完全可检出，并能耐受数字噪声或轻微坐标变化；材料未给出检出阈值与扰动幅度。",
+            "evidenceSnippet": "SynthID Bio preserves AlphaFold 3 prediction accuracy while offering near-perfect detectability, maintaining key structural feature distributions, and holding up against digital noise or minor coordinate changes."
+          }
+        ],
+        "limitations": "基于所提供的 SynthID Bio 博客全文，未核阅其所述方法论文、代码、权重或体外实验数据。材料未提供水印编码与检测算法细节、训练配置、样本量、定量性能及统计检验，无法据此完整复现实验；针对蓄意篡改的鲁棒性仍被列为后续挑战。功能保持与检测表现均属作者报告，不能据此认定水印能证明生物设计本身安全。噬菌体基因组水印仅作为另行开展的早期工作提及，未纳入本路线；独立复现未核验。",
+        "evidenceBasis": "fulltext",
+        "sourceRevision": 2,
+        "sourceUrl": "https://deepmind.google/blog/introducing-synthid-bio/",
+        "generatedAt": "2026-10-04T04:20:41.815Z"
+      }
+    },
+    {
+      "id": "sdd6ddfp2z5n31gs6qxa3h3pf",
+      "title": "OFoldNA 利用二级结构信息提高核酸结构预测准确性",
+      "originalTitle": "Leveraging secondary-structure information for accurate nucleic acid structure prediction with OFoldNA",
+      "summary": "OFoldNA 研究提出将二级结构信息融入全原子扩散模型，用于核酸折叠及蛋白质—核酸共折叠。根据当前材料，作者报告其在无外部二级结构信息时，在 FoldBench 的这两类任务上取得领先表现，尤其擅长 DNA 单体及涉及较长核酸链的蛋白质—DNA 界面预测。",
+      "reason": "研究比较了无外部、准确及部分二级结构信息下的预测表现，为评估辅助结构信息对核酸三维建模的作用提供参考。",
+      "sourceName": "arXiv · 分子与定量生物学",
+      "sourceUrl": "https://arxiv.org/abs/2609.37414v1",
+      "publishedAt": "2026-09-29T12:45:24.000Z",
+      "timelineAt": "2026-09-29T12:45:24.000Z",
+      "category": "ai4s",
+      "tags": [
+        "论文/研究",
+        "AI4S",
+        "分子建模",
+        "算法"
+      ],
+      "research": {
+        "arxivId": "2609.37414",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-09-29T12:45:24.000Z",
+        "revisedAt": "2026-09-29T12:45:24.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:15:20.499Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2609.37414v1",
+            "sourceUrl": "https://arxiv.org/abs/2609.37414v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 OFoldNA，一种将二级结构（SS）信息融入核酸折叠及蛋白质–核酸共折叠的全原子扩散模型，针对核酸构象灵活、高质量三维结构数据有限所带来的预测困难。SS 提供相对更易获得的碱基配对关系和折叠拓扑信息。作者报告，提供准确碱基配对信息时，OFoldNA-SS2TS 可进一步提高折叠与共折叠准确性；部分 SS 信息也带来一致提升。同一辅助分支还可作为 OFoldNA-SS 用于 RNA 二级结构预测。",
+        "applicableTasks": "摘要支持的任务包括核酸单体全原子三维结构预测、蛋白质–核酸共折叠，以及 RNA 二级结构预测。作者特别报告了 DNA 单体，以及涉及较长核酸链的蛋白质–DNA 界面上的较强表现，但未给出链长阈值或具体范围。三维预测涵盖不提供外部 SS、提供准确碱基配对信息和提供部分 SS 信息的条件。作者将融合互补结构模态用于分子结构预测与设计作为研究方向；摘要未提供具体分子设计任务的验证结果。",
+        "comparisonConditions": "作者报告：在不提供外部 SS 信息的条件下，OFoldNA 在 FoldBench 的核酸单体折叠和蛋白质–核酸共折叠两类任务上取得领先表现，尤其在 DNA 单体及涉及较长核酸链的蛋白质–DNA 界面上表现较强。提供准确碱基配对信息后，OFoldNA-SS2TS 的折叠与共折叠准确性进一步提高；提供部分 SS 信息也获得一致增益。用于 RNA 二级结构预测的 OFoldNA-SS 在 CHANRG 上取得作者所称的最佳分布外表现。摘要涉及 FoldBench 和 CHANRG 两个命名基准，但未列出具体对比方法或基线模型、对比模型数量、样本数量、数据划分、硬件、训练与推理计算设置。准确碱基配对信息的来源、部分 SS 的覆盖比例、具体指标名称、单位、数值、增益幅度、平均或最高等汇总口径及分母均未知：当前资料未提供。",
+        "limitations": "当前证据仅为摘要，未核对全文；上述领先表现、最佳分布外表现及准确性增益均为作者报告，不代表独立复现，也不能据此推断所有对象和条件下的质量。摘要明确将构象灵活和高质量三维结构数据有限列为核酸结构预测的挑战，但未明确陈述 OFoldNA 自身的失败案例或方法限制。提供准确或部分 SS 的增益结论有相应输入条件限制；对错误或含噪 SS 的稳健性、部分 SS 的选择方式、统计不确定性、显著性及更广泛泛化验证均未知。当前资料未提供开放代码、模型权重、数据可用性或独立复现信息，不能据此断言这些资源或验证不存在。",
+        "evidenceBasis": "abstract"
+      },
+      "researchRoadmap": null
+    }
+  ],
+  "topics": [
+    {
+      "slug": "algorithm",
+      "name": "算法",
+      "group": "field",
+      "definition": "AI/机器学习的训练、推理、优化、模型方法与理论进展。",
+      "total": 23,
+      "recent": 23,
+      "latestAt": "2026-10-01T17:59:58.000Z",
+      "itemIds": [
+        "zskryg7ozbapap42lno4niu0r",
+        "zoxlt1tdtedxjnuf0u3qrfrv0",
+        "pgau2nc5iai5889xcnwfot4w6",
+        "xukjz8mfnifv1c57mwybn5o11",
+        "w6vii04cvdz8mdf915ur5pnud",
+        "tvhnp70ajv592y2ulmk84chi4",
+        "rmujtpniv4b0wgn8q2tustjac",
+        "xygvbk1w7935rns002vpsn5bo",
+        "s8moemck93yrl4cn1on69rv4s",
+        "ikrv23aya4o9io6bh7il8k4dt",
+        "n7gty26hkso9o0egz436qszwh",
+        "hzb4nouwnroix96ff64svk73j",
+        "ykks5xp6pl4htn6cbs14neyq3",
+        "j86msvf1gyqy2u1a6u770wddd",
+        "u7o4abot2xp4y6yki22ezuqnl",
+        "iqoqm9ozj8ccym2r15iaof8f5",
+        "u5ccy5p5ju4sze2uyc1dmgigh",
+        "wxw0bszppi6uq0njkt976pjzl",
+        "laxi0tw3qvkt5aixacj0k0bge",
+        "xvclwylq6gpg9y8bnxzvxcdtm",
+        "bjqsv9rkif46dwqc477albvuw",
+        "ywwig016167ebi1oemd78uwwz",
+        "sdd6ddfp2z5n31gs6qxa3h3pf"
+      ]
+    },
+    {
+      "slug": "ai4ai",
+      "name": "AI4AI",
+      "group": "field",
+      "definition": "自动研究、数据生成、评测与 Agent 优化等 AI 研发方法。",
+      "total": 5,
+      "recent": 5,
+      "latestAt": "2026-10-01T17:59:55.000Z",
+      "itemIds": [
+        "i1kt74wkfu1sylbqhmi2t7dnv",
+        "cgogkeh2te0qeshodfgr85gix",
+        "snmbmzrubqis2mvxth8qidlnb",
+        "k92n912um78c2hvdqmmadyq15",
+        "mv9x419gecxc33463mbm3c73x"
+      ]
+    },
+    {
+      "slug": "ai4s",
+      "name": "AI4S",
+      "group": "field",
+      "definition": "用 AI 解决材料、计算物理、分子建模等科学问题，关注数据条件与科学证据。",
+      "total": 9,
+      "recent": 9,
+      "latestAt": "2026-10-01T17:59:39.000Z",
+      "itemIds": [
+        "rmujtpniv4b0wgn8q2tustjac",
+        "ikrv23aya4o9io6bh7il8k4dt",
+        "hzb4nouwnroix96ff64svk73j",
+        "wxw0bszppi6uq0njkt976pjzl",
+        "laxi0tw3qvkt5aixacj0k0bge",
+        "xvclwylq6gpg9y8bnxzvxcdtm",
+        "ywwig016167ebi1oemd78uwwz",
+        "dpg8u2s8yta9nmfjmnc77dr98",
+        "sdd6ddfp2z5n31gs6qxa3h3pf"
+      ]
+    },
+    {
+      "slug": "data-training",
+      "name": "训练方法",
+      "group": "field",
+      "definition": "训练数据、优化与学习方法的增量及比较条件。",
+      "total": 12,
+      "recent": 12,
+      "latestAt": "2026-10-01T17:59:55.000Z",
+      "itemIds": [
+        "i1kt74wkfu1sylbqhmi2t7dnv",
+        "zoxlt1tdtedxjnuf0u3qrfrv0",
+        "pgau2nc5iai5889xcnwfot4w6",
+        "xukjz8mfnifv1c57mwybn5o11",
+        "w6vii04cvdz8mdf915ur5pnud",
+        "tvhnp70ajv592y2ulmk84chi4",
+        "xygvbk1w7935rns002vpsn5bo",
+        "s8moemck93yrl4cn1on69rv4s",
+        "hzb4nouwnroix96ff64svk73j",
+        "ykks5xp6pl4htn6cbs14neyq3",
+        "u7o4abot2xp4y6yki22ezuqnl",
+        "u5ccy5p5ju4sze2uyc1dmgigh"
+      ]
+    },
+    {
+      "slug": "reasoning",
+      "name": "推理与优化",
+      "group": "field",
+      "definition": "模型推理、计算效率与适用边界。",
+      "total": 7,
+      "recent": 7,
+      "latestAt": "2026-10-01T17:59:58.000Z",
+      "itemIds": [
+        "zskryg7ozbapap42lno4niu0r",
+        "pgau2nc5iai5889xcnwfot4w6",
+        "k92n912um78c2hvdqmmadyq15",
+        "tvhnp70ajv592y2ulmk84chi4",
+        "n7gty26hkso9o0egz436qszwh",
+        "hzb4nouwnroix96ff64svk73j",
+        "u5ccy5p5ju4sze2uyc1dmgigh"
+      ]
+    },
+    {
+      "slug": "agent",
+      "name": "自动研究与 Agent",
+      "group": "field",
+      "definition": "研究规划、实验执行、评测及 AI 研发流程自动化。",
+      "total": 6,
+      "recent": 6,
+      "latestAt": "2026-10-01T17:59:50.000Z",
+      "itemIds": [
+        "cgogkeh2te0qeshodfgr85gix",
+        "snmbmzrubqis2mvxth8qidlnb",
+        "k92n912um78c2hvdqmmadyq15",
+        "mv9x419gecxc33463mbm3c73x",
+        "u5ccy5p5ju4sze2uyc1dmgigh",
+        "bjqsv9rkif46dwqc477albvuw"
+      ]
+    },
+    {
+      "slug": "synthetic-data",
+      "name": "合成数据",
+      "group": "field",
+      "definition": "数据生成、筛选和数据质量评测方法。",
+      "total": 0,
+      "recent": 0,
+      "latestAt": null,
+      "itemIds": []
+    },
+    {
+      "slug": "materials",
+      "name": "材料",
+      "group": "field",
+      "definition": "材料性质预测、设计与发现方法，保留数据和验证条件。",
+      "total": 1,
+      "recent": 1,
+      "latestAt": "2026-10-01T15:46:50.000Z",
+      "itemIds": [
+        "wxw0bszppi6uq0njkt976pjzl"
+      ]
+    },
+    {
+      "slug": "computational-physics",
+      "name": "计算物理",
+      "group": "field",
+      "definition": "物理建模、数值求解、代理模型与科学机器学习。",
+      "total": 0,
+      "recent": 0,
+      "latestAt": null,
+      "itemIds": []
+    },
+    {
+      "slug": "molecular-modeling",
+      "name": "分子建模",
+      "group": "field",
+      "definition": "分子、蛋白与定量生物学中的 AI 方法及任务边界。",
+      "total": 5,
+      "recent": 5,
+      "latestAt": "2026-10-01T17:58:45.000Z",
+      "itemIds": [
+        "ikrv23aya4o9io6bh7il8k4dt",
+        "laxi0tw3qvkt5aixacj0k0bge",
+        "xvclwylq6gpg9y8bnxzvxcdtm",
+        "dpg8u2s8yta9nmfjmnc77dr98",
+        "sdd6ddfp2z5n31gs6qxa3h3pf"
+      ]
+    },
+    {
+      "slug": "reproducibility",
+      "name": "可复现性",
+      "group": "field",
+      "definition": "公开数据、代码、权重与独立复现分别记录；公开入口不等于复现成功。",
+      "total": 0,
+      "recent": 0,
+      "latestAt": null,
+      "itemIds": []
+    },
+    {
+      "slug": "papers",
+      "name": "论文研究",
+      "group": "genre",
+      "definition": "论文与技术报告，明确摘要依据、作者主张和证据限制。",
+      "total": 28,
+      "recent": 28,
+      "latestAt": "2026-10-01T17:59:58.000Z",
+      "itemIds": [
+        "zskryg7ozbapap42lno4niu0r",
+        "i1kt74wkfu1sylbqhmi2t7dnv",
+        "cgogkeh2te0qeshodfgr85gix",
+        "zoxlt1tdtedxjnuf0u3qrfrv0",
+        "snmbmzrubqis2mvxth8qidlnb",
+        "pgau2nc5iai5889xcnwfot4w6",
+        "k92n912um78c2hvdqmmadyq15",
+        "xukjz8mfnifv1c57mwybn5o11",
+        "w6vii04cvdz8mdf915ur5pnud",
+        "tvhnp70ajv592y2ulmk84chi4",
+        "rmujtpniv4b0wgn8q2tustjac",
+        "xygvbk1w7935rns002vpsn5bo",
+        "s8moemck93yrl4cn1on69rv4s",
+        "ikrv23aya4o9io6bh7il8k4dt",
+        "n7gty26hkso9o0egz436qszwh",
+        "hzb4nouwnroix96ff64svk73j",
+        "ykks5xp6pl4htn6cbs14neyq3",
+        "j86msvf1gyqy2u1a6u770wddd",
+        "u7o4abot2xp4y6yki22ezuqnl",
+        "iqoqm9ozj8ccym2r15iaof8f5",
+        "mv9x419gecxc33463mbm3c73x",
+        "u5ccy5p5ju4sze2uyc1dmgigh",
+        "wxw0bszppi6uq0njkt976pjzl",
+        "laxi0tw3qvkt5aixacj0k0bge",
+        "xvclwylq6gpg9y8bnxzvxcdtm",
+        "ywwig016167ebi1oemd78uwwz",
+        "dpg8u2s8yta9nmfjmnc77dr98",
+        "sdd6ddfp2z5n31gs6qxa3h3pf"
+      ]
+    },
+    {
+      "slug": "benchmarks",
+      "name": "评测与基准",
+      "group": "genre",
+      "definition": "评测任务、数据划分、比较设置和基准限制。",
+      "total": 1,
+      "recent": 1,
+      "latestAt": "2026-10-01T17:59:55.000Z",
+      "itemIds": [
+        "i1kt74wkfu1sylbqhmi2t7dnv"
+      ]
+    },
+    {
+      "slug": "open-source",
+      "name": "代码与开放资料",
+      "group": "genre",
+      "definition": "代码、权重和数据入口；各自的可用性与许可分别判断。",
+      "total": 0,
+      "recent": 0,
+      "latestAt": null,
+      "itemIds": []
+    },
+    {
+      "slug": "tutorials",
+      "name": "教程与实践",
+      "group": "genre",
+      "definition": "可迁移的方法解释和实践，保留前提条件。",
+      "total": 0,
+      "recent": 0,
+      "latestAt": null,
+      "itemIds": []
+    },
+    {
+      "slug": "google",
+      "name": "Google DeepMind",
+      "group": "company",
+      "definition": "机构发布的研究资料与论文解释，核心主张回到原始材料。",
+      "total": 2,
+      "recent": 2,
+      "latestAt": "2026-09-30T20:01:45.000Z",
+      "itemIds": [
+        "bjqsv9rkif46dwqc477albvuw",
+        "dpg8u2s8yta9nmfjmnc77dr98"
+      ]
+    },
+    {
+      "slug": "bair",
+      "name": "Berkeley BAIR",
+      "group": "company",
+      "definition": "Berkeley BAIR 的研究解释与论文资料。",
+      "total": 0,
+      "recent": 0,
+      "latestAt": null,
+      "itemIds": []
+    },
+    {
+      "slug": "hugging-face",
+      "name": "Hugging Face",
+      "group": "company",
+      "definition": "社区论文精选与开放资料信号；热度不作为科学有效性的证明。",
+      "total": 0,
+      "recent": 0,
+      "latestAt": null,
+      "itemIds": []
+    }
+  ],
+  "reports": [
+    {
+      "kind": "daily",
+      "key": "2026-10-04",
+      "issueNumber": 1,
+      "title": "AlgorithmHot · 科研热点 · 日报",
+      "windowStart": "2026-10-03T00:00:00.000Z",
+      "windowEnd": "2026-10-04T00:00:00.000Z",
+      "generatedAt": "2026-10-04T04:26:09.495Z",
+      "revision": 2,
+      "lead": {
+        "title": "本期暂无刊载研究",
+        "leadParagraph": "已完成本期可用候选的处理，未产生精选。这不代表相关领域没有新研究。"
+      },
+      "overview": null,
+      "sections": [],
+      "metrics": {
+        "failed": 0,
+        "parsed": 110,
+        "passed": 0,
+        "stored": 110,
+        "blocked": 0,
+        "pending": 0,
+        "signals": 0,
+        "admitted": 0,
+        "inWindow": 0,
+        "returned": 110,
+        "selected": 0,
+        "processed": 0,
+        "published": 0,
+        "briefReady": 0,
+        "notAdmitted": 0,
+        "totalEvents": 0,
+        "briefPending": 0,
+        "sourcesCount": 0,
+        "outsideWindow": 110,
+        "parseRejected": 0,
+        "sourcesFailed": 0,
+        "displayOmitted": 0,
+        "failedRequests": 0,
+        "sourcesPlanned": 6,
+        "unknownOutcome": 0,
+        "decisionUnknown": 0,
+        "sourcesObserved": 6,
+        "unlinkedSignals": 0,
+        "duplicateRecords": 0,
+        "sourcesSucceeded": 6,
+        "roadmapsPublished": 0,
+        "truncatedRequests": 0,
+        "healthyEmptySources": 6,
+        "selectedWithoutBrief": 0,
+        "duplicateRecordsExact": 1,
+        "excludedByDisplayLimit": 0,
+        "persistenceUnreconciled": 0,
+        "duplicateRecordsLowerBound": 0
+      },
+      "status": "complete",
+      "gaps": []
+    },
+    {
+      "kind": "pilot",
+      "key": "2026-10-03",
+      "issueNumber": 1,
+      "title": "AlgorithmHot · 科研热点 · 最近七天试刊",
+      "windowStart": "2026-09-26T06:14:20.296Z",
+      "windowEnd": "2026-10-03T06:14:20.296Z",
+      "generatedAt": "2026-10-04T04:25:44.107Z",
+      "revision": 2,
+      "lead": {
+        "title": "SynthID Bio报告蛋白质水印概念验证",
+        "leadParagraph": "根据当前材料，SynthID Bio作者报告为AI生成的蛋白质嵌入水印，并在实验室测试中保留功能。DMAD以分类学习对数密度比训练少步视觉生成模型，RPG通过仿真修订技能与提示词而不更新权重。本期材料未提供完整比较设置或独立复现信息。"
+      },
+      "overview": null,
+      "sections": [
+        {
+          "label": "算法",
+          "summary": null,
+          "items": [
+            {
+              "itemId": "s8moemck93yrl4cn1on69rv4s",
+              "title": "DMAD 提出以对抗蒸馏实现分布匹配，加速视觉生成",
+              "summary": "DMAD 研究提出用分类直接学习对数密度比，以训练少步生成模型，省去 DMD 中辅助扩散模型的分数拟合。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.02188v1",
+              "publishedAt": "2026-10-01T17:59:01.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.02188",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-01T17:59:01.000Z",
+                "revisedAt": "2026-10-01T17:59:01.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-03T06:14:20.311Z",
+                "evidenceBasis": "abstract",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.02188v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.02188v1"
+                  },
+                  {
+                    "kind": "code",
+                    "url": "https://yzmblog.github.io/projects/DMAD",
+                    "sourceUrl": "https://arxiv.org/abs/2610.02188v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出 DMAD（Distribution Matching as Adversarial Distillation），将分布匹配改写为分类问题，直接学习所需的对数密度比。其针对的问题是：DMD 通过分别估计目标分布与学生分布的分数之差训练少步学生，需要持续拟合一个辅助扩散模型来跟踪变化中的学生分布，增加内存与计算成本。DMAD 在共享骨干上设置两个判别器头，分别区分真实数据与学生样本、教师样本与学生样本，通过判别器 logits 上的线性损失训练学生，无需辅助分数拟合。作者报告，在判别器达到最优的条件下，利用判别器 logits 与对数密度比之间的经典恒等式，可证明这些损失恢复 DMD 所依据的分布匹配梯度。此外，作者提出基于间隙的重加权，依据真实数据判别头在真实样本与教师样本之间的经验 logit 间隙，调整不同噪声水平下的教师监督。",
+                "applicableTasks": "摘要支持的范围是扩散生成模型的少步蒸馏，涉及图像生成、文本到视频生成与联合音视频生成。具体评估对象包括 ImageNet-64x64 上的单步生成、SDXL 在 COCO-10K 上的四步生成、Wan2.1-T2V-14B 的四步生成，以及 MiniMax-H3-33B 的四步联合音视频生成。资料未提供这些评估对象之外的适用性验证。",
+                "comparisonConditions": "作者报告了四组具名评估设置，但完整比较方法、模型与任务总数未知：① ImageNet-64x64 单步生成，Fréchet Inception Distance（FID）为 1.04；② SDXL 在 COCO-10K 上四步生成，FID 为 14.47；③ Wan2.1-T2V-14B 四步生成，VBench 总分为 85.15。作者称上述三项结果是在所比较的少步方法和多步教师中取得的最佳值；摘要未列出这些比较对象的完整名称及各自分数，也未报告相对增益。④ 在 MiniMax-H3-33B 的联合音视频生成中，作者报告其四步学生相对 DMD2 的总体人类偏好率为 79.1%，相对 rCM 为 84.6%；两项比例均排除平局，分母为各自比较中非平局的评价，评价总数未知。这两项是不同对手条件下的偏好率，不能解释为性能提升百分比。FID 与 VBench 均以分数数值报告，摘要未另给单位或量表范围；人类偏好率以百分比报告。硬件、训练时长、批量大小、训练及采样计算设置、内存占用、速度、教师生成步数、DMD2 与 rCM 的生成步数、具体样本量及评价协议均未知：当前资料未提供。COCO-10K 是摘要提供的评估集名称，具体使用样本数未另行说明。",
+                "limitations": "当前证据仅为摘要，未核对全文；方法、理论证明与实验结果均为作者报告，不是独立复现结论。梯度等价性的作者陈述明确以判别器达到最优为条件，摘要未提供证明细节，也未说明实际训练中满足该条件的程度。作者所称最佳值仅限于其所比较的方法与教师，不能据此推断所有模型、任务或生成质量维度上的普遍优势。摘要未提供硬件与计算成本的定量对照、消融结果、重复实验、误差范围、统计显著性、人类评价人数及协议，也未明确陈述其他局限或失败情形；这些信息缺失不等于研究本身不存在相应验证。作者声明代码、模型与演示位于 https://yzmblog.github.io/projects/DMAD，但当前资料不足以核验链接内容、实现可用性或独立复现情况。",
+                "evidenceBasis": "abstract"
+              },
+              "researchRoadmap": {
+                "title": "DMAD：以双判别头和间隙重加权实现分布匹配蒸馏",
+                "nodes": [
+                  {
+                    "stage": "input",
+                    "label": "输入真实数据、教师样本与学生样本",
+                    "detail": "以真实数据和教师生成样本作为两类参照，分别与学生生成样本进行区分。",
+                    "evidenceSnippet": "distinguish real data and teacher samples from the student's"
+                  },
+                  {
+                    "stage": "method",
+                    "label": "共享骨干双判别头，以 logit 线性损失训练学生",
+                    "detail": "将分布匹配改写为分类，直接学习所需的对数密度比。共享骨干上的两个判别头分别承担区分任务，以判别头 logit 的线性损失训练学生，无需拟合辅助评分模型。",
+                    "evidenceSnippet": "Two discriminator heads on a shared backbone distinguish real data and teacher samples from the student's, and linear losses on their logits train the student without auxiliary score fitting."
+                  },
+                  {
+                    "stage": "method",
+                    "label": "用真实数据头的经验 logit 间隙调整教师监督",
+                    "detail": "计算真实数据头对真实样本与教师样本的经验 logit 间隙，据此进行间隙重加权，调整不同噪声水平下的教师监督。",
+                    "evidenceSnippet": "gap-based reweighting, which adapts teacher supervision across noise levels from the real-data head's empirical logit gap between real and teacher samples"
+                  },
+                  {
+                    "stage": "output",
+                    "label": "生成少步学生模型并报告图像生成指标",
+                    "detail": "作者报告：ImageNet-64x64 上一步生成的 FID 为 1.04；COCO-10K 上四步 SDXL 的 FID 为 14.47。",
+                    "evidenceSnippet": "DMAD reaches a Fréchet Inception Distance (FID) of 1.04 with one-step generation on ImageNet-64x64, 14.47 with four-step SDXL on COCO-10K"
+                  },
+                  {
+                    "stage": "validation",
+                    "label": "在判别器最优条件下恢复 DMD 分布匹配梯度",
+                    "detail": "作者报告理论证明：判别器达到最优时，上述损失恢复 DMD 所依据的分布匹配梯度；证明借助判别器 logit 与对数密度比之间的经典恒等关系。此结论具有判别器最优这一条件。",
+                    "evidenceSnippet": "at the discriminator optimum these losses recover the distribution-matching gradient underlying DMD, through the classical identity linking discriminator logits to log-density ratios"
+                  }
+                ],
+                "limitations": "基于摘要；材料未给出网络具体配置、训练超参数、间隙重加权公式、完整证明及评测细节，无法据此还原完整实现；指标和理论结论均为作者报告，摘要未说明实际训练中判别器达到最优的程度；独立复现未核验。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1,
+                "sourceUrl": "https://arxiv.org/abs/2610.02188v1",
+                "generatedAt": "2026-10-04T04:23:00.934Z"
+              }
+            },
+            {
+              "itemId": "xukjz8mfnifv1c57mwybn5o11",
+              "title": "TACO 研究提出用于 LLM 微调的三值绝对最大列级单稀疏优化器",
+              "summary": "根据当前材料，TACO 研究提出低显存优化器，作者报告其在 LLM 全参数微调中显著减少优化器状态，同时保持相近的准确率和运行时间。该方法在二维权重矩阵的每列选择绝对值最大元素的符号，计算维度归一化的 1→1 算子范数下的精确最速下降方向，实际实现每列仅维护少量低精度梯度分量。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.02199v1",
+              "publishedAt": "2026-10-01T17:59:42.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.02199",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-01T17:59:42.000Z",
+                "revisedAt": "2026-10-01T17:59:42.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-03T06:14:20.311Z",
+                "evidenceBasis": "abstract",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.02199v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.02199v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出 Ternary Absolute-max Column-wise One-sparse（TACO）优化器，针对大语言模型全参数微调中优化器状态占用大量显存、限制可训练模型规模的问题。摘要指出，既有方案会压缩优化器状态、放弃一阶梯度，或改变更新几何但仍保留稠密状态；Muon 通过矩阵值更新降低优化器内存，但其几何与 AdamW 不同，微调经 AdamW 预训练的模型时可能导致性能下降。TACO 延续 Muon 的算子范数最速下降视角，通过选取二维权重矩阵每列绝对值最大元素的符号，计算维度归一化的 1→1 算子范数下的精确最速下降方向。其实际实现每列仅维护少量低精度梯度分量，保留一阶梯度并大幅减少持久优化器状态，目标是在降低内存需求的同时维持准确率和计算效率。",
+                "applicableTasks": "资料支持的应用是大语言模型全参数微调，所述更新规则针对二维权重矩阵。作者报告了 OPT-13B 的内存比较，并报告 TACO 可在单张 80 GB H100 GPU 上完成 300亿—320亿参数模型的全参数微调，覆盖多个模型家族和任务。具体模型家族、任务名称、数据集及各自数量未知：当前摘要未提供。",
+                "comparisonConditions": "作者在 OPT-13B 上报告：相对 AdamW8bit，TACO 的持久优化器状态占用由 27.7 GB 降至 0.16 GB，按作者口径减少 174 倍；峰值训练内存由 80.6 GB 降至 27.5 GB，按作者口径减少 2.9 倍，同时准确率和运行时间相当。上述倍数属于该 OPT-13B 比较条件，摘要未将其标为跨模型平均值或最高值，不能扩展为所有模型和任务的普遍收益。准确率的具体指标与数值、运行时间数值与单位，以及该 OPT-13B 比较所用硬件、GPU 数量、批大小、序列长度、训练步数、精度配置和其他计算设置均未知。另一个明确报告的条件是单张 80 GB H100 GPU，可支持 300亿—320亿参数模型的全参数微调，涉及多个模型家族和任务；其具体模型数、任务数、数据集数及逐项结果未知。Muon 在摘要中作为方法背景讨论，未给出 TACO 与 Muon 的定量对比结果。",
+                "limitations": "当前证据仅为摘要，未核对全文。全部效果与可行性结论均为作者报告，当前资料不构成独立复现。作者明确指出 Muon 与 AdamW 的更新几何不同，可能使 AdamW 预训练模型的微调性能下降；这是方法背景中的限制，不能据此断言 TACO 在所有条件下均已消除该问题。摘要未明确陈述 TACO 自身的失败条件或适用边界。除 OPT-13B 的内存数字及单张 80 GB H100 上微调 300亿—320亿参数模型的报告外，当前资料未提供完整实验配置、具体任务与数据集、准确率与耗时明细、重复实验、误差或统计检验、消融结果，也未说明非二维参数的处理方式、每列保留分量的具体数量及低精度格式。代码开放情况、实现可获取性和独立复现情况未知；这些信息缺失仅表示当前资料未提供，不能断言研究本身没有相关验证。",
+                "evidenceBasis": "abstract"
+              },
+              "researchRoadmap": null
+            },
+            {
+              "itemId": "rmujtpniv4b0wgn8q2tustjac",
+              "title": "图上成本增强薛定谔桥可精确求解：研究以 Feynman-Kac 倾斜替代学习式控制",
+              "summary": "该研究提出用 Feynman-Kac 倾斜将状态成本纳入参考过程，把图上成本增强薛定谔桥转化为普通桥问题，免去学习控制率和额外惩罚项。根据当前材料，作者通过交替进行两端重缩放求解，每步应用一次稀疏矩阵指数，无需时间离散化或学习，收敛速率仅由端点耦合决定。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.02195v1",
+              "publishedAt": "2026-10-01T17:59:39.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.02195",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-01T17:59:39.000Z",
+                "revisedAt": "2026-10-01T17:59:39.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-03T06:14:20.311Z",
+                "evidenceBasis": "abstract",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.02195v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.02195v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者将图上的广义 Schrödinger 桥中的状态成本作为 Feynman–Kac 倾斜并入参考过程，使带成本的桥转化为相对于倾斜参考过程的普通桥，从而无需此前学习受控连续时间马尔可夫链速率时用于恢复成本的时序差分惩罚。作者提出交替进行两个端点重缩放来精确计算桥，每次重缩放仅需一次稀疏矩阵指数作用，不进行时间离散化或学习；作者称交替迭代的收敛速率仅由端点耦合决定。对于时间平均占用率上的二次拥堵成本，作者将围绕精确桥的阻尼最佳响应表述为强凸函数上的梯度下降，并称其残差可用于界定误差。",
+                "applicableTasks": "资料支持的任务是：在图上将质量从一个分布输送到另一个分布，同时计入沿途访问状态的成本；以及处理时间平均占用率上的二次拥堵成本。摘要报告的应用对象包括蛋白质折叠模型中的路径自由能成本、此前学习方法使用的道路网络，以及具有数百万个交叉口的网络。其他成本形式、模型或应用领域的适用性未知：当前资料未提供。",
+                "comparisonConditions": "比较背景为通过学习受控连续时间马尔可夫链速率并使用时序差分惩罚的既有方法；作者在该学习方法使用的道路网络上报告精确桥的轨迹模拟结果，但摘要未提供两种方法的定量对照。计算设置为交替执行两个端点重缩放，每次需一次稀疏矩阵指数作用，不进行时间离散化或学习；硬件、运行时间、迭代次数、数值容差及软件设置未知。作者报告：在一个蛋白质折叠模型上，自由能成本降低了折叠路径的期望能垒，但降低幅度、能垒单位及具体对照条件未知；在上述道路网络上，精确桥的轨迹模拟在采样误差范围内匹配目标分布，但误差指标、采样数量及误差数值未知；在具有数百万个交叉口的网络上，内存随网络规模线性增长，但确切网络数量、各网络规模、内存数值和单位未知。摘要未列出完整的数据、模型和任务数量，也未报告最高或平均性能增益。",
+                "limitations": "证据仅为当前提供的摘要，未核对全文。精确计算、收敛速率、强凸性、残差误差界及应用结果均为作者报告，当前资料未提供证明细节或独立复现证据。拥堵成本相关结论明确针对时间平均占用率上的二次成本；蛋白质结果来自摘要所述的一个模型，道路网络的目标匹配限定在采样误差范围内，线性内存增长结论针对摘要所述数百万交叉口规模的网络。作者是否明确讨论其他限制未知：当前资料未提供。当前资料也未提供实验重复次数、统计检验、详细基线配置、运行速度、代码或数据可用性信息，不能据此确认开放实现或推断其他条件下的效果。",
+                "evidenceBasis": "abstract"
+              },
+              "researchRoadmap": null
+            },
+            {
+              "itemId": "n7gty26hkso9o0egz436qszwh",
+              "title": "LoopCD 研究提出以循环中间状态改善 Looped Transformers 解码",
+              "summary": "LoopCD 研究提出无需训练的对比解码框架，通过对比最后一次与较早循环的预测，引导 Looped Transformers 的 token 选择。根据当前材料，LoopCD-Logits 在 logit 空间操作，增加一次输出计算；LoopCD-Hidden 在隐藏状态空间操作，无额外输出计算开销。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.02185v1",
+              "publishedAt": "2026-10-01T17:58:38.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.02185",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-01T00:00:00.000Z",
+                "revisedAt": "2026-10-01T17:58:38.000Z",
+                "communitySelectedAt": "2026-10-02T00:00:00.000Z",
+                "observedAt": "2026-10-03T06:14:20.311Z",
+                "evidenceBasis": "abstract",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.02185v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.02185v1"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.02185",
+                    "sourceUrl": "https://huggingface.co/papers/2610.02185"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出无需训练的对比解码框架 LoopCD，针对循环 Transformer 标准解码丢弃较早循环状态的问题：共享模块在多次循环中生成可用于预测同一下一个 token 的中间表示，较早循环计算量较少，可与最终循环自然构成对齐的弱、强预测对。LoopCD 通过对比最终预测与较早循环的预测来引导 token 选择，无需辅助模型或外部训练。LoopCD-Logits 在 logit 空间操作，需额外一次输出计算；LoopCD-Hidden 在隐藏状态空间操作，作者称其输出计算开销为零，该表述不等于全部推理开销为零。",
+                "applicableTasks": "资料支持的对象为通过反复执行共享模块进行计算的循环 Transformer，应用环节为下一个 token 的解码选择。作者报告评估覆盖四个循环 Transformer 家族，摘要明确举出的任务为 Ouro-2.6B-Thinking 上的 AIME 2024 数学解题和 Huginn 上的 HumanEval 代码生成。所述应用条件包括完整循环深度，以及将循环次数减半以降低推理计算量。四个家族的完整名单、模型总数、任务总数以及其他模型架构上的适用性未知：当前资料未提供。",
+                "comparisonConditions": "作者报告，LoopCD 在四个循环 Transformer 家族的完整循环深度下带来显著且一致的提升，但摘要未给出全部逐项结果。明确数值为：LoopCD-Logits 将 Ouro-2.6B-Thinking 在 AIME 2024 上的 pass@1 从 61.88% 提升至 73.33%；LoopCD-Hidden 将 Huginn 在 HumanEval 上的 pass@1 从 22.56% 提升至 31.71%。作者另报告，将循环次数减半后，性能仍能达到或超过完整深度、未加引导的基线，前向计算 FLOPs 减少 22.5% 至 48.2%；该范围不是所有条件均减少 48.2%，摘要未列出范围端点对应的模型、任务或方法变体。两项 pass@1 示例的具体基线解码配置、评测样本量与统计分母、采样设置、原始与减半后的绝对循环次数、硬件、运行时间、绝对 FLOPs 及 FLOPs 统计细节未知：当前资料未提供。计算设置中仅明确 LoopCD-Logits 需额外一次输出计算，LoopCD-Hidden 的输出计算开销为零。",
+                "limitations": "当前证据仅为摘要，未核对全文；方法效果、四个模型家族上提升的一致性及减少计算量的结论均为作者报告，不是独立复现结果。摘要未明确陈述方法自身的限制或失败案例。完整实验表、各条件的结果分布、误差或置信区间、显著性检验、较早循环的选择方式、具体对比公式与超参数，以及独立复现信息均未知：当前资料未提供。作者报告的前向 FLOPs 降幅不能直接视为实测延迟、吞吐或能耗的改善幅度；这些指标未提供。代码或开放实现的可用性也未提供，不能据此断言其存在或不存在。",
+                "evidenceBasis": "abstract"
+              },
+              "researchRoadmap": null
+            },
+            {
+              "itemId": "iqoqm9ozj8ccym2r15iaof8f5",
+              "title": "Muon 遇上 Tamed Langevin：面向非凸且梯度非全局 Lipschitz 势能的动量预条件方法",
+              "summary": "该研究提出带动量预条件的欠阻尼 Langevin 系统，用于从势能非凸且梯度不满足全局 Lipschitz 条件的矩阵空间 Gibbs 分布中采样。根据当前材料，该方法引入一族非二次动能，使动能梯度对动量实施平滑的谱驯化。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.02158v1",
+              "publishedAt": "2026-10-01T17:52:36.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.02158",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-01T17:52:36.000Z",
+                "revisedAt": "2026-10-01T17:52:36.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-03T06:14:20.311Z",
+                "evidenceBasis": "abstract",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.02158v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.02158v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者针对矩阵空间上的 Gibbs 分布采样，研究势能既非凸、其梯度也不满足全局 Lipschitz 条件的情形。作者引入一族非二次动能，构造带动量预条件的新欠阻尼 Langevin 系统，其中动能梯度对动量起平滑的谱驯化作用。作者报告，在这些放宽的势能假设下，所得动力学保持目标 Gibbs 测度不变，并在加权全变差距离下指数收敛至平衡；相应 Euler–Maruyama 离散化无需修改势能梯度，即可获得时间一致的矩界，作者据此说明采样算法的稳定性。",
+                "applicableTasks": "资料支持的任务是从矩阵空间上的 Gibbs 分布进行采样，所考虑的势能非凸且梯度不满足全局 Lipschitz 条件。分析对象包括连续时间的带动量预条件欠阻尼 Langevin 动力学及其 Euler–Maruyama 离散化。具体矩阵维度、应用领域、实例及完整适用假设未知：当前资料未提供。",
+                "comparisonConditions": "摘要未报告比较算法或基线，也未给出数据集、模型或任务数量、硬件、计算预算、步长及其他数值实验设置。作者报告的理论结果包括：目标 Gibbs 测度不变性、以加权全变差距离衡量的指数趋近平衡，以及 Euler–Maruyama 离散化的时间一致矩界；离散化结果明确以无需修改势能梯度为特点。指数收敛率的具体常数、矩的阶数与界值、指标单位、数值结果及性能增益未知：当前资料未提供。",
+                "limitations": "当前证据仅为摘要，未核对全文、证明或实验。上述不变性、连续动力学的指数收敛及离散化矩界均为作者报告，并非独立复现结论。摘要未列出完整假设、定理细节、离散化步长条件，也未提供离散采样误差、计算效率或实际应用的验证信息；不能仅凭时间一致矩界认定离散算法精确采样目标分布。作者明确陈述的其他限制未知：当前资料未提供。代码可用性与独立复现情况亦未知。",
+                "evidenceBasis": "abstract"
+              },
+              "researchRoadmap": null
+            }
+          ]
+        },
+        {
+          "label": "AI4AI",
+          "summary": null,
+          "items": [
+            {
+              "itemId": "cgogkeh2te0qeshodfgr85gix",
+              "title": "RPG 研究提出通过仿真练习自主改进机器人执行系统的方法",
+              "summary": "RPG 研究提出无需更新模型权重的机器人执行系统自主改进框架，通过仿真练习修订可复用符号技能与系统提示词。根据当前材料，该框架从离线数据集识别操作能力并构建练习任务，结合执行反馈、仿真器特权状态及可用数据集视频诊断失败，经跨任务评估后保留候选修改及合并版本，测试时由多模态 LLM 协调感知与机器人控制。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.02204v1",
+              "publishedAt": "2026-10-01T17:59:50.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.02204",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-01T17:59:50.000Z",
+                "revisedAt": "2026-10-01T17:59:50.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-03T06:14:20.311Z",
+                "evidenceBasis": "abstract",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.02204v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.02204v1"
+                  },
+                  {
+                    "kind": "project",
+                    "url": "https://rpg-robot.github.io/",
+                    "sourceUrl": "https://arxiv.org/abs/2610.02204v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出 Reconstruct, Practice, Go Real（RPG）框架，旨在减少跨多种任务构建可靠机器人能力时，对人工开发与维护技能、设计奖励以及整合感知与控制的依赖。该框架不更新模型权重，而是从离线数据集中识别操纵能力，并在仿真中构建相关练习任务。练习期间，RPG 利用执行反馈、仿真器特权状态和可用的数据集视频诊断失败，据此开发新的可复用符号技能、改进已有技能并修订系统提示词。候选单项改动和合并后的修订均经过跨任务评估，再决定是否保留供后续复用。测试时，多模态大语言模型利用所得系统提示词和技能库协调感知与机器人控制。",
+                "applicableTasks": "资料支持的应用对象为机器人操纵任务的执行系统，涉及从离线数据构建仿真练习任务，以及将练习所得提示词与技能库用于测试和实体机器人执行。作者报告在 22 个操纵任务的留出初始条件上评估，并在 3 个任务上进行实体试验。任务具体名称、操作对象、机器人类型，以及对其他任务类别、全新任务或其他硬件的适用范围未知：当前资料未提供。留出初始条件的评估不能据此表述为在未见过的任务上验证。",
+                "comparisonConditions": "作者报告，在 22 个操纵任务的留出初始条件上，RPG 的任务成功率从第 1 轮练习后的 28.6% 提升到 15 轮后的 95.0%，并优于所有已评估基线；摘要列出的基线包括 ASPIRE（75.5%）和由 GPT-6 Astra Pro 驱动的 CaP-Agent0（60.0%）。这些结果的指标为任务成功率，单位为百分比；22 是任务数量，各任务试验次数、总试验分母和跨任务汇总方式未知。基线总数、RPG 与 ASPIRE 使用的具体模型、离线数据集名称与规模、仿真平台、算力硬件、计算预算及各方法预算是否一致，当前资料未提供。作者另报告，在共同的校准与硬件适配流程之后，冻结的系统在全部 30 次实体试验中成功，即 3 个任务各进行 10 次试验，合计 30/30。实体结果应保留该前置校准与适配条件，不能视为未经适配的直接部署结果。校准与适配的具体步骤、实体硬件配置以及基线的实体试验结果未知：当前资料未提供。",
+                "limitations": "证据仅为用户提供的摘要，未核对全文；上述方法与结果均为作者报告，不是独立复现结论。摘要的量化证据覆盖 22 个操纵任务的留出初始条件评估，以及经过共同校准与硬件适配后、3 个任务各 10 次的实体试验，不能由此推断其他任务、对象或硬件上的成功率。摘要未明确陈述作者认定的局限，也未提供误差范围、置信区间、随机种子、重复实验设置、消融结果、失败类型分析或长期运行验证信息；这些信息在当前资料中未知，不能断言研究本身未开展相应验证。资料列出项目网站链接，但未提供代码、数据或复现材料的可用性证据，不能据此认定实现已开放或结果已获独立复现。",
+                "evidenceBasis": "abstract"
+              },
+              "researchRoadmap": {
+                "title": "RPG：从离线操控数据构建仿真练习，迭代符号技能与系统提示词并用于真实机器人",
+                "nodes": [
+                  {
+                    "stage": "input",
+                    "label": "从离线数据识别操控能力并构建仿真练习",
+                    "detail": "以离线数据集为起点，识别其中的操控能力，并在仿真中构造相关练习任务。",
+                    "evidenceSnippet": "RPG identifies manipulation capabilities in an offline dataset and constructs related practice tasks in simulation."
+                  },
+                  {
+                    "stage": "method",
+                    "label": "结合执行反馈、仿真器状态与视频诊断失败",
+                    "detail": "练习期间，利用执行反馈、特权仿真器状态和数据集中可用的视频诊断失败。",
+                    "evidenceSnippet": "During practice, RPG uses execution feedback, privileged simulator state, and available dataset videos to diagnose failures."
+                  },
+                  {
+                    "stage": "method",
+                    "label": "依据诊断迭代可复用符号技能与系统提示词",
+                    "detail": "开发新的可复用符号技能，改进已有技能，并修订系统提示词。",
+                    "evidenceSnippet": "It develops new reusable symbolic skills, refines existing skills, and revises the system prompt based on these diagnoses."
+                  },
+                  {
+                    "stage": "output",
+                    "label": "多模态 LLM 使用所得提示词和技能库执行任务",
+                    "detail": "测试时，多模态 LLM 使用迭代所得的系统提示词与技能库，协调感知和机器人控制。",
+                    "evidenceSnippet": "At test time, a multimodal LLM uses the resulting system prompt and skill library to coordinate perception and robot control."
+                  },
+                  {
+                    "stage": "validation",
+                    "label": "以跨任务评估筛选单项改动与合并修订",
+                    "detail": "作者在保留改动供复用之前，对单个候选改动及合并后的修订进行跨任务评估；摘要未给出具体保留阈值。",
+                    "evidenceSnippet": "Cross-task evaluation tests individual candidate changes and merged revisions before they are retained for reuse."
+                  },
+                  {
+                    "stage": "validation",
+                    "label": "作者报告冻结系统完成全部 30 次实机试验",
+                    "detail": "经过统一的校准和硬件适配程序后，冻结系统在三个任务上各进行十次实机试验；作者报告全部成功。该结果的范围限于所述任务与试验。",
+                    "evidenceSnippet": "After a common calibration and hardware-adaptation procedure, the frozen system succeeds in all 30 physical trials, with ten trials on each of three tasks."
+                  }
+                ],
+                "limitations": "基于摘要，未核验全文。摘要将 RPG 定义为不更新模型权重的自主改进框架，但未给出离线数据集规模与组成、仿真任务构造细节、失败诊断实现、符号技能表示、提示词修订规则及跨任务评估的保留标准。实机任务内容、硬件配置、校准与适配步骤也未说明，无法据此判断迁移所需工作量或复现实验。研究结果属于作者报告，独立复现未核验。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1,
+                "sourceUrl": "https://arxiv.org/abs/2610.02204v1",
+                "generatedAt": "2026-10-04T04:14:38.259Z"
+              }
+            },
+            {
+              "itemId": "i1kt74wkfu1sylbqhmi2t7dnv",
+              "title": "KaliBench 研究提出面向 Kali Linux 安全工具调用的细粒度基准与免运行可验证奖励",
+              "summary": "KaliBench 研究提出面向 Kali Linux 的自然语言到命令行翻译基准，用于评估 LLM 的工具选择与参数构造能力。根据当前材料，数据集包含 8,504 个查询—命令对，覆盖 1,642 个工具、23 个能力维度和 5 个安全阶段，采用确定性规范化与别名感知评估，并结合 LLM 验证、沙箱终端执行和人工参与改进进行多阶段验证。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.02206v1",
+              "publishedAt": "2026-10-01T17:59:55.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.02206",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-01T00:00:00.000Z",
+                "revisedAt": "2026-10-01T17:59:55.000Z",
+                "communitySelectedAt": "2026-10-02T00:00:00.000Z",
+                "observedAt": "2026-10-03T06:14:20.311Z",
+                "evidenceBasis": "abstract",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.02206v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.02206v1"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.02206",
+                    "sourceUrl": "https://huggingface.co/papers/2610.02206"
+                  },
+                  {
+                    "kind": "code",
+                    "url": "https://github.com/RISys-Lab/KaliBench",
+                    "sourceUrl": "https://huggingface.co/papers/2610.02206"
+                  },
+                  {
+                    "kind": "project",
+                    "url": "https://risys-lab.github.io/KaliBench/",
+                    "sourceUrl": "https://huggingface.co/papers/2610.02206"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出 KaliBench：面向 Kali Linux 的自然语言到命令行接口（CLI）翻译的细粒度基准与数据集，针对现有知识型评测或端到端智能体任务不能直接衡量模型为真实网络安全工具生成可执行命令的能力这一缺口。具体关注工具选择与参数构造，以及微小语法错误、标志与值绑定错误、参数顺序错误导致命令无法执行的问题。作者采用以文稿为依据的构建流程、确定性规范化和别名感知评测，并结合 LLM 验证、沙箱终端执行及人工参与修订开展多阶段验证，以支持语义正确性与实际可执行性检查。作者进一步利用细粒度、确定性的评测信号，为训练提供无需运行时执行的可验证奖励。",
+                "applicableTasks": "资料支持的任务是将分析人员的自然语言意图转化为 Kali Linux 网络安全工具命令，评估工具选择和参数构造能力，并支持监督微调及使用可验证奖励的强化学习。数据集包含 8,504 个查询—命令对，覆盖 1,642 个工具、23 个能力维度和 5 个安全阶段。作者评测了通用及安全领域的开放权重模型。具体工具清单、能力维度和安全阶段名称，以及对其他操作系统或完整网络安全工作流的适用性，当前资料未提供。",
+                "comparisonConditions": "作者报告在 3 种评测模式下评测了通用及安全领域开放权重模型的 24 种配置；24 指配置数量，不能据此确定独立模型数量。数据集总规模为 8,504 个查询—命令对，覆盖 1,642 个工具、23 个能力维度和 5 个安全阶段，但评测样本量、训练与测试划分及各模式的样本分母未知。在不受限制、没有显式工具提示的设置下，作者报告所评测的开放权重模型均未超过 42% 的精确命令准确率；这一结论不能外推至其他模式或所有模型。作者还报告，通过监督微调及基于 KaliBench 可验证奖励的强化学习，一个 8B 模型得到显著改善，并达到与一个 685B MoE 模型相当的表现；8B 和 685B 分别为约 80 亿和 6,850 亿参数的规模表述，摘要未说明 MoE 的总参数与激活参数口径。具体模型名称、另外两种评测模式的定义、训练前后分数、提升幅度、相当表现对应的指标与条件、统计显著性检验、硬件、计算预算及训练超参数均未知：当前资料未提供。",
+                "limitations": "当前证据仅为摘要，未核对全文。上述数据规模、验证流程、准确率上限及训练改善均为作者报告，当前资料不包含独立复现证据。摘要指出，在无显式工具提示时准确使用网络安全 CLI 仍然困难；42% 的结果仅适用于作者所报告的不受限制设置及所评测开放权重模型。摘要未提供各工具、能力维度或安全阶段的分项结果，也未提供语义正确性、沙箱可执行性及人工修订的具体覆盖率、通过率或一致性信息。作者将评测描述为精确且可复现，但当前资料未提供可核查的完整实验设置、代码或数据获取信息，不能据此确认开放实现或独立可复现性。训练后与 685B MoE 模型表现相当的结论缺少具体分数与比较细节，不能推断全面能力相当或计算成本优势。",
+                "evidenceBasis": "abstract"
+              },
+              "researchRoadmap": null
+            },
+            {
+              "itemId": "snmbmzrubqis2mvxth8qidlnb",
+              "title": "ScholarCatalyst 提出检索研究启发文献的基准",
+              "summary": "ScholarCatalyst 研究提出检索能启发新研究的文献的基准，作者报告智能体搜索未优于嵌入检索。根据当前材料，研究通过自动化流程支持作者标注，由 207 篇近期计算机科学论文的 184 位主要作者判断候选文献是否曾经或可能推进其项目，并提供详细理由。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.02202v1",
+              "publishedAt": "2026-10-01T17:59:47.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.02202",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-01T00:00:00.000Z",
+                "revisedAt": "2026-10-01T17:59:47.000Z",
+                "communitySelectedAt": "2026-10-02T00:00:00.000Z",
+                "observedAt": "2026-10-03T06:14:20.311Z",
+                "evidenceBasis": "abstract",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.02202v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.02202v1"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.02202",
+                    "sourceUrl": "https://huggingface.co/papers/2610.02202"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出 ScholarCatalyst，以研究者对自身已完成项目的第一手认识构建检索评测：利用使作者标注可规模化的自动化流程，让论文主要作者标注候选文献是否曾经或可能推动其项目，并逐项提供详细理由，以论文作为其中研究思想的指针。作者引入带有作者判断的检索任务：给定项目最初的研究问题，仅从项目启动时已经存在的文献中检索这些论文。该方法旨在研究 AI 能否从不断增长的文献库中识别新问题所需的既有思想。",
+                "applicableTasks": "资料支持的任务是科研前期的相关先行研究检索，输入为初始研究问题，检索对象为项目开始时可获得的文献，相关性依据为作者对文献能否推进项目的判断。当前数据涉及近期计算机科学论文。作者将其定位为帮助科学智能体从尚未成形的想法找到所需先行研究的一步；跨学科适用性及真实未完成项目中的效果未知。",
+                "comparisonConditions": "作者报告，184 位主要作者为 207 篇近期计算机科学论文标注候选文献，并提供详细理由。比较包括智能体式搜索与嵌入检索；智能体式搜索虽将同一个检索器用作工具，Recall@20 仍为 0.42，嵌入检索为 0.48，作者据此称前者未优于后者。基于 Claude Fable 5.1 的智能体达到 0.51 R@20；作者同时指出，该模型可能在训练中见过已完成的论文。R@20 与 Recall@20 表示前 20 个检索结果的召回率，数值为无量纲比例。检索范围限定为各项目启动时已有的文献。摘要未说明召回率相关文献分母的具体构成、结果聚合方式、完整模型与配置数量、候选文献及语料库规模、评测划分、硬件、计算预算、检索调用次数、耗时或成本；这些设置均未知。",
+                "limitations": "证据仅为所提供摘要，未核对全文；所有结果均为作者报告，当前资料未提供独立复现证据。作者认为结果表明需要新的训练方案，以赋予模型在大规模语料中检索时所需的专家直觉，但摘要未验证此类训练方案的效果。作者明确提示 Claude Fable 5.1 可能在训练中见过已完成论文，实际接触情况及其影响未知。当前证据来自近期计算机科学已完成项目及作者回顾性判断，不能据此确认跨学科、真实前瞻性科研或科学发现质量的提升。摘要未提供标注一致性、统计不确定性、显著性检验、完整实验细节或实现开放情况，亦未提供这些比较之外的验证信息。",
+                "evidenceBasis": "abstract"
+              },
+              "researchRoadmap": null
+            },
+            {
+              "itemId": "k92n912um78c2hvdqmmadyq15",
+              "title": "VISTA 研究提出支持多模态模型在交互环境中推理的视觉框架",
+              "summary": "VISTA 研究提出保留原始视觉观察并支持主动检索的框架，作者报告其提升了多模态模型在交互式游戏与谜题中的表现。根据当前材料，VISTA 维护无损视觉记忆，让模型在推理时检索历史观察并重组视觉输入。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.02200v1",
+              "publishedAt": "2026-10-01T17:59:45.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.02200",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-01T17:59:45.000Z",
+                "revisedAt": "2026-10-01T17:59:45.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-03T06:14:20.311Z",
+                "evidenceBasis": "abstract",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.02200v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.02200v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出视觉框架 VISTA，为通用多模态模型提供长时程视觉能力：模型通过视觉观察直接感知环境，框架以原始形式保存过去观察，形成无损视觉记忆；模型可在推理过程中主动检索这些观察，并重新组织视觉输入。该方法旨在支持模型利用历史视觉信息，完成多种交互环境中的任务。作者报告其设计简单，可通过少量适配扩展到不同视觉环境。",
+                "applicableTasks": "资料支持的范围为多模态模型在视觉交互环境中的任务，包括 ARC-AGI-3 的 25 个公开游戏，以及另外三个涵盖多种视觉游戏与谜题的基准。摘要明确点名的模型为 Claude Opus 5.0；其他模型、额外三个基准的名称及具体任务构成未知。通用视觉框架是作者提出的潜力与定位，当前资料不足以确认其对所有视觉环境或多模态模型均有效。",
+                "comparisonConditions": "作者报告，在 ARC-AGI-3 上，VISTA 将 Claude Opus 5.0 的 Relative Human Action Efficiency（相对人类动作效率）得分从 40.68 提升至作者称为满分的 100.00；模型完成全部 25 个公开游戏，所用动作数比首次参与的人类参与者少 57.4%。该百分比以首次参与人类的动作数为比较基准，摘要未说明跨游戏的汇总或加权方式，也未提供绝对动作数、人类参与者数量或动作预算。40.68 对应配置的具体细节未知，不能将其自动等同于其他基准中的最简框架配置。另外，作者报告在三个额外的视觉游戏与谜题基准上，VISTA 显著优于使用同一底层模型、搭配最简框架的基线，但未给出这些基准的指标、单位、具体分数或增益。资料共涉及四个基准，仅明确点名一个模型；额外三个基准是否均使用 Claude Opus 5.0、整体模型总数、任务总数及基线数量未知。硬件、计算资源、运行时长、推理设置、重复试验次数和统计检验设置均未知。",
+                "limitations": "证据仅为用户提供的摘要，未核对全文。以上方法描述与实验结果均为作者报告，当前资料未提供独立复现证据。摘要没有明确陈述方法局限；这不表示研究本身不存在局限。当前资料未提供消融实验、失败案例、记忆与检索开销、跨模型泛化验证或额外三个基准的定量结果，也未提供代码、实现可用性和复现条件。不能据此判断各组件的独立贡献、性能稳定性、计算成本，或将 ARC-AGI-3 上的结果推广到未报告的任务与环境。",
+                "evidenceBasis": "abstract"
+              },
+              "researchRoadmap": null
+            },
+            {
+              "itemId": "mv9x419gecxc33463mbm3c73x",
+              "title": "SourceLearn 提出来源学习方法，让智能体持续积累特定来源的理解能力",
+              "summary": "SourceLearn 研究提出通过持久化来源模型，让 LLM 智能体在重复使用权威来源时持续积累可复用的理解能力。根据当前材料，该方法结合自主识别理解缺口并重访来源的学习机制，以及利用下游任务经验发现局部表征缺口与反复出现的知识组织需求的学习机制，两者的持久化更新均依据权威来源重新构建。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.02150v1",
+              "publishedAt": "2026-10-01T17:50:16.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.02150",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-01T17:50:16.000Z",
+                "revisedAt": "2026-10-01T17:50:16.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-03T06:14:20.311Z",
+                "evidenceBasis": "abstract",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.02150v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.02150v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出 source learning（来源学习）：针对持续使用同一权威来源时，现有方法主要将其视为重复访问、未充分利用重复使用来逐步加深理解的问题，以持久化的来源模型积累可复用、针对特定来源的能力，涵盖对来源知识的结构、解释与应用的理解。作者提出的 SourceLearn 结合两种机制：Self-Directed Source Learning 识别尚未充分理解的内容并自适应重访来源；Task-Guided Source Learning 利用下游任务经验发现局部表示缺口，以及知识组织中的反复需求。两种机制均由学习信号决定需要重新考察的内容，而持久化更新依据权威来源重新构建。",
+                "applicableTasks": "资料支持的研究范围是：LLM 智能体依赖持久存在的外部权威来源，连续解决知识密集型任务，并在重复使用同一来源的过程中积累可复用理解。作者报告在五个基准、三个 LLM 后端上评估；具体任务类型、基准名称、来源领域与格式、LLM 名称及规模未知：当前资料未提供。",
+                "comparisonConditions": "作者报告，在五个基准与三个 LLM 后端构成的 15 种设置中，SourceLearn 在其中 13 种设置取得最佳表现；相对 Hybrid RAG 的增益最高达 22.6 点，该数字是最高增益，不能视为所有设置的普遍或平均增益。摘要未说明这些点对应的具体指标、量表或是否为百分比点。作者还报告，相对静态来源表示及基于经验的记忆基线，总体上有显著改善，但未提供对应数值，也未提供统计显著性检验信息。除 Hybrid RAG 外的具体基线名称、比较系统总数、数据集与样本数量、各设置的单独结果、平均增益、硬件、计算预算、训练与推理配置及其他计算设置均未知：当前资料未提供。",
+                "limitations": "证据仅限所提供的摘要，未核对全文；上述性能结果均为作者报告，当前资料不包含独立复现证据。13/15 的最佳表现与最高 22.6 点增益仅能按作者报告的评估范围理解，不能据此推断所有任务、来源或模型上的效果，也不能仅凭最佳表现声称推断研究质量。摘要未明确陈述方法限制；具体评估协议、指标定义、数据划分、重复运行与误差范围、消融实验、学习及存储成本、长期使用效果、失败情形和范围外泛化验证均未知：当前资料未提供。代码、数据及可运行实现的开放情况亦未知，不能据此断言研究本身没有这些材料或验证。",
+                "evidenceBasis": "abstract"
+              },
+              "researchRoadmap": null
+            }
+          ]
+        },
+        {
+          "label": "AI4S",
+          "summary": null,
+          "items": [
+            {
+              "itemId": "dpg8u2s8yta9nmfjmnc77dr98",
+              "title": "Google DeepMind 介绍 SynthID Bio，报告保留蛋白质功能的生物水印概念验证",
+              "summary": "Google DeepMind 介绍 SynthID Bio，作者报告该方法可为 AI 生成的蛋白质序列和预测结构嵌入可检测水印，并在实验室测试中保留蛋白质功能。",
+              "sourceName": "Google DeepMind",
+              "sourceUrl": "https://deepmind.google/blog/introducing-synthid-bio/",
+              "publishedAt": "2026-09-30T15:03:07.000Z",
+              "available": true,
+              "research": {
+                "arxivId": null,
+                "arxivVersion": null,
+                "arxivVersions": [],
+                "doi": null,
+                "originalPublishedAt": "2026-09-30T15:03:07.000Z",
+                "revisedAt": null,
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-03T06:22:46.724Z",
+                "evidenceBasis": "fulltext",
+                "links": [
+                  {
+                    "kind": "project",
+                    "url": "https://deepmind.google/blog/introducing-synthid-bio/",
+                    "sourceUrl": "https://deepmind.google/blog/introducing-synthid-bio/"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "http://www.nature.com/articles/s41586-026-10965-y",
+                    "sourceUrl": "https://deepmind.google/blog/introducing-synthid-bio/"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出 SynthID Bio，一组面向合成生物学的水印方法：对蛋白质序列，通过细微引导氨基酸选择嵌入签名；对预测三维结构，通过调整原子坐标嵌入签名。其中，结构水印通过微调 AlphaFold 3 扩散网络的一小部分写入模型权重，使模型生成的坐标自带可检测信号。作者报告，序列水印既可在数字设计中验证，也可在合成后的实体蛋白质中验证，且在所述实验中保留生物学功能。该方法旨在为 AI 生成的生物设计提供来源识别信号，辅助应对新颖设计给传统 DNA 合成筛查带来的困难，以及合成结构误标对公共数据库和后续研究的影响。",
+                "applicableTasks": "资料支持的实验对象包括蛋白质结合分子的序列设计与水印检测，以及 AlphaFold 3 预测蛋白质三维结构的水印嵌入与检测。结合分子湿实验覆盖三个靶标：VEGF-A、SARS-CoV-2 刺突蛋白受体结合域（RBD）和 PD-L1。作者还报告正在与斯坦福大学 Hie 实验室及 Arc Institute 合作，将水印集成到基因组模型 Evo 2，为其设计的噬菌体基因组加水印；细菌培养中的早期实验显示这些噬菌体具有功能。DNA 合成订单来源核验，以及 Protein Data Bank、UniProt、GenBank 等数据库中合成条目的标记或复核，是作者提出的潜在应用，当前资料未提供这些业务场景中的实际部署验证。",
+                "comparisonConditions": "蛋白质结合分子实验采用 AlphaProteo 结合分子设计方法及启用 SynthID Bio 的 ProteinMPNN，与未加水印版本比较；湿实验涉及三个靶标（VEGF-A、SARS-CoV-2 刺突蛋白 RBD、PD-L1）。作者报告，加水印设计的命中率、结合亲和力和天然序列多样性与未加水印版本相当。亲和力以 KD 衡量，数值越低表示结合越强；当前资料未给出 KD 数值或单位，也未给出命中率分母、设计总数、各靶标样本量、多样性指标定义、重复次数、误差或统计检验。结构任务使用 AlphaFold 3，作者报告保留预测准确性、达到接近完美的水印可检测性、维持关键结构特征分布，并能耐受数字噪声或轻微坐标变化；这些结论没有具体指标数值、检测阈值、误报率或噪声强度。资料展示了 7PPA 的 AlphaFold 3 预测结构、真实结构和加水印结构，但未提供结构评测数据集规模或任务总数。Evo 2 噬菌体工作仅报告早期功能性结果，未给出样本数、对照条件或定量结果。上述实验的硬件、训练与推理计算设置、计算成本及耗时均未知：当前资料未提供。",
+                "limitations": "依据已保存的 Google DeepMind 机构发布页可读正文；未读取方法论文全文、原始数据或补充材料；所有实验结论均为作者报告，不构成独立复现。作者将工作定位为概念验证，并明确指出单一生物安全干预并非万能方案，增强水印对蓄意篡改的鲁棒性仍是关键挑战，实现完整生物安全效益还需要社区协作与进一步研究。对数字噪声或轻微坐标变化的耐受不能据此扩展为对蓄意攻击的全面防护；所述蛋白质功能保持结果也不能推广至所有蛋白质或更复杂生物对象。来源信号对降低实际生物安全风险、减少人工筛查负担或防止数据库污染的效果，当前资料未提供量化验证。噬菌体工作仍处于早期，作者表示将另行公布技术稿件细节。作者声明正在发表方法论文、开源代码和体外实验数据，并向研究社区发布权重；来源明确给出方法论文链接，但本次未读取论文全文；正文未给出代码、体外数据或权重的具体下载入口，也未核验许可证、完整性与可运行性，因此不能确认这些资源已可用或已被独立复现。",
+                "evidenceBasis": "fulltext"
+              },
+              "researchRoadmap": {
+                "title": "SynthID Bio：蛋白质序列与三维结构的水印嵌入及验证路线",
+                "nodes": [
+                  {
+                    "stage": "input",
+                    "label": "两类处理对象：蛋白质序列与预测三维结构",
+                    "detail": "路线分为序列与结构两支：前者通过引导氨基酸选择嵌入信号，后者通过调整预测结构的原子坐标嵌入信号。",
+                    "evidenceSnippet": "subtly guiding the choice of amino acids for sequences and adjusting atomic coordinates for predicted 3D structures"
+                  },
+                  {
+                    "stage": "method",
+                    "label": "结合 AlphaProteo 与水印版 ProteinMPNN 设计结合蛋白",
+                    "detail": "作者使用 AlphaProteo 结合蛋白设计方法，并配合启用 SynthID Bio 的 ProteinMPNN 序列生成方法，开展结合蛋白水印实验。材料未给出具体序列采样或水印编码参数。",
+                    "evidenceSnippet": "by using our binder design method AlphaProteo alongside a SynthID Bio-enabled version of ProteinMPNN"
+                  },
+                  {
+                    "stage": "method",
+                    "label": "微调 AlphaFold 3 的部分扩散网络",
+                    "detail": "结构分支微调 AlphaFold 3 扩散网络的一小部分，将水印生成能力嵌入模型权重。两分支是针对不同数据类型的方法，并非必须串行执行。",
+                    "evidenceSnippet": "For protein folding, SynthID Bio fine-tunes a small part of AlphaFold 3’s diffusion network, building the ability to watermark directly into the model’s weights."
+                  },
+                  {
+                    "stage": "output",
+                    "label": "生成携带可检测签名的预测三维坐标",
+                    "detail": "结构分支的输出为内含水印签名的预测三维坐标；作者称该特性不依赖于由谁运行模型。",
+                    "evidenceSnippet": "This ensures that the predicted 3D coordinates inherently carry a detectable signature regardless of who runs the model."
+                  },
+                  {
+                    "stage": "validation",
+                    "label": "湿实验比较水印与无水印结合蛋白",
+                    "detail": "作者报告，水印设计与无水印版本的命中率、结合亲和力和天然序列多样性相当。此处为作者报告的比较结果，材料未提供数值、样本量或统计判定标准。",
+                    "evidenceSnippet": "our watermarked designs matched the hit rate, binding affinity, and natural sequence diversity of unwatermarked versions"
+                  },
+                  {
+                    "stage": "validation",
+                    "label": "结构分支检查预测精度、检出性与扰动耐受性",
+                    "detail": "作者报告保留 AlphaFold 3 预测精度及关键结构特征分布，水印接近完全可检出，并能耐受数字噪声或轻微坐标变化；材料未给出检出阈值与扰动幅度。",
+                    "evidenceSnippet": "SynthID Bio preserves AlphaFold 3 prediction accuracy while offering near-perfect detectability, maintaining key structural feature distributions, and holding up against digital noise or minor coordinate changes."
+                  }
+                ],
+                "limitations": "基于所提供的 SynthID Bio 博客全文，未核阅其所述方法论文、代码、权重或体外实验数据。材料未提供水印编码与检测算法细节、训练配置、样本量、定量性能及统计检验，无法据此完整复现实验；针对蓄意篡改的鲁棒性仍被列为后续挑战。功能保持与检测表现均属作者报告，不能据此认定水印能证明生物设计本身安全。噬菌体基因组水印仅作为另行开展的早期工作提及，未纳入本路线；独立复现未核验。",
+                "evidenceBasis": "fulltext",
+                "sourceRevision": 2,
+                "sourceUrl": "https://deepmind.google/blog/introducing-synthid-bio/",
+                "generatedAt": "2026-10-04T04:20:41.815Z"
+              }
+            },
+            {
+              "itemId": "ikrv23aya4o9io6bh7il8k4dt",
+              "title": "HGR 研究提出面向化学生成模型与基础模型的高阶分子语法",
+              "summary": "HGR 研究提出将分子高阶拓扑编码为语法规则序列，用于分子生成与可迁移表征学习。根据当前材料，该方法将分子提升为组合复形，再通过上下文无关高阶语法解析为紧凑规则序列，以兼容标准序列模型；研究还构建了包含 1.18 million 个分子的富环基准 RingDiv 及经整理的 RingDiv300k 子集，并提出环多样性指数 RDI 衡量环系覆盖。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.02186v1",
+              "publishedAt": "2026-10-01T17:58:45.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.02186",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-01T17:58:45.000Z",
+                "revisedAt": "2026-10-01T17:58:45.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-03T06:14:20.311Z",
+                "evidenceBasis": "abstract",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.02186v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.02186v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出高阶语法表示（Higher-order Grammar Representation，HGR），针对标准序列和图表示难以显式编码环系统、重复基序等高阶拓扑，以及现有高阶表示计算开销较大、难以解码为有效分子的问题。HGR将分子提升为组合复形，再通过上下文无关的高阶语法，将每个复形解析为紧凑的产生式规则序列。作者称，该序列化方式使高阶拓扑可直接用于标准序列模型，在保留拓扑表达能力的同时避免显式高阶编码的计算开销。为减轻基准偏向简单环系统的偏差，作者还构建了富含环结构的RingDiv基准，并提出环多样性指数（RDI）衡量环系统覆盖情况。",
+                "applicableTasks": "资料支持的任务为分子生成和可迁移的分子表示学习，关注的结构包括环系统与重复基序。生成评估涉及五个基准；表示学习评估涉及七个MoleculeNet基准，迁移协议包括探测（probing）和全量微调（full fine-tuning）。RingDiv用于丰富基准中的环结构，RDI用于量化环系统覆盖情况。具体基准名称、分子类别、性质预测端点，以及对其他任务和对象的适用性未知：当前资料未提供。",
+                "comparisonConditions": "作者构建的RingDiv包含118万（1.18 million）个分子，并包括经整理的RingDiv300k子集；摘要仅给出该子集名称，未单独说明其精确样本数。分子生成方面，作者报告HGR模型通过构造保证100%有效性，并在全部五个生成基准上均取得FCD排名第一；摘要未给出有效性统计的生成样本数、FCD具体数值、各基准名称、比较模型名称或数量。表示学习方面，作者报告HGR-FM在七个MoleculeNet基准上的平均AUC，在两种迁移协议下均为最高；相较各协议下的最强基线，探测协议提高8.3个AUC点，全量微调协议提高3.3个AUC点。这是两种协议各自的平均AUC增益，不能解释为每个基准均有相同提升；摘要未给出绝对AUC、各基准结果或最强基线身份。RDI的公式、单位及实测结果未知；硬件、计算资源、模型规模、训练配置、数据划分、重复运行次数和计算效率的量化结果均未知：当前资料未提供。",
+                "limitations": "当前证据仅为摘要，未核对全文；所有性能与效率结论均为作者报告，不是独立复现结果。摘要明确指出标准序列和图表示难以显式编码高阶拓扑、现有高阶表示往往计算开销较大且难以解码为有效分子，以及基准可能偏向简单环系统，但未明确陈述HGR自身的失败情形或适用边界。摘要未提供分子有效性的具体判定标准、语法覆盖范围、消融实验、统计不确定性、显著性检验或效率对照数据，因而不能仅凭摘要量化其计算优势，或把FCD排名与平均AUC优势外推为所有任务和条件下的普遍优势。代码与数据的可获取性、开放实现及独立复现情况未知：当前资料未提供；这不代表研究本身不存在相关材料或验证。",
+                "evidenceBasis": "abstract"
+              },
+              "researchRoadmap": null
+            },
+            {
+              "itemId": "wxw0bszppi6uq0njkt976pjzl",
+              "title": "GEODE 研究提出保持晶体对称性的笛卡尔空间扩散生成方法",
+              "summary": "GEODE 研究提出在笛卡尔空间联合扩散晶格与原子坐标的方法，作者报告其无条件晶体生成的 mSUN 率为 11.9%。根据当前材料，该方法先采样对称性模板，再通过 Wyckoff 约束损失，在保持指定对称性的同时联合生成晶格、原子坐标和原子类型。",
+              "sourceName": "arXiv · 计算物理与材料",
+              "sourceUrl": "https://arxiv.org/abs/2610.01898v1",
+              "publishedAt": "2026-10-01T15:46:50.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.01898",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-01T15:46:50.000Z",
+                "revisedAt": "2026-10-01T15:46:50.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-03T06:15:23.158Z",
+                "evidenceBasis": "abstract",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.01898v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.01898v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出 Generative Equivariant Orbit Diffusion Engine（GEODE），旨在解决无机晶体生成模型难以重现对称原子排列，以及既有显式对称性约束方法生成的稳定且新颖结构少于无约束生成方法的问题。作者称，据其所知，GEODE 是首个在笛卡尔空间中结合坐标扩散与晶格扩散的模型。模型先采样对称性模板，再通过新的 Wyckoff 约束损失，在保持指定对称性的同时联合生成晶格、原子坐标和原子类型。作者报告，笛卡尔扩散使坐标噪声具有一致的物理尺度，并通过实验观察到性能改善。此外，作者提出采样时模板过滤，无需重新训练即可提高生成指标；模板选择还支持对称性与性质的联合引导。",
+                "applicableTasks": "资料支持的对象为无机晶体结构，任务包括保持指定对称性的晶格、原子坐标和原子类型联合生成、无条件晶体生成，以及对称性与性质的联合引导。作者以介电率的无分类器引导展示性质引导能力。适用的具体材料体系、元素范围、晶体规模及对称性类别范围未知：当前资料未提供。",
+                "comparisonConditions": "作者报告，在无条件生成任务中，GEODE 的亚稳、唯一且新颖（metastable, unique and novel，mSUN）比例为 11.9%，次优的对称性感知模型为 7.7%。该比较模型的名称及比较模型总数未给出。作者还报告，采样时模板过滤无需重新训练，可使 mSUN 提高约 6%；摘要未明确该数值是相对提升还是增加约 6 个百分点，也未给出过滤后的明确比例及对应基线条件，因此不能据此计算最终比例。作者称，过滤后的 GEODE 可与领先的不感知对称性的模型竞争，但未提供这些模型的名称或具体指标。作者报告了笛卡尔坐标噪声物理尺度一致所带来的性能改善，但未给出该项实验的量化结果。数据集、数据量、生成样本数与 mSUN 统计分母、任务总数、硬件、训练与采样计算设置、稳定性判据、唯一性及新颖性判定规则、误差或多次运行统计均未知：当前资料未提供。",
+                "limitations": "当前证据仅为摘要，未核对全文；上述方法与结果均为作者报告，当前资料不构成独立复现。作者指出了既有方法的对称性重现问题及显式对称性约束下的生成表现不足，但摘要未明确陈述 GEODE 自身的具体限制。mSUN 衡量的是亚稳、唯一且新颖结构的比例，不能据此断言所有生成结构均稳定或具有可合成性。摘要仅以介电率展示性质引导，其他性质及更广泛材料范围的验证信息未提供。模板过滤约 6% 增益的口径不明确，不能当作普遍增益；与领先模型竞争的表述也不足以证明全面优于它们。代码、开放实现、数据可访问性、独立复现及实验合成验证信息未知：当前资料未提供。",
+                "evidenceBasis": "abstract"
+              },
+              "researchRoadmap": null
+            },
+            {
+              "itemId": "ywwig016167ebi1oemd78uwwz",
+              "title": "CPathOGen 提出空间与形态可控的 H&E 反事实生成框架，用于探查病理模型",
+              "summary": "CPathOGen 研究提出条件潜在扩散框架，通过控制细胞空间组织、细胞核形态与染色外观生成配对 H&E 反事实图像，以探查病理模型的敏感性。",
+              "sourceName": "arXiv · 分子与定量生物学",
+              "sourceUrl": "https://arxiv.org/abs/2610.00602v1",
+              "publishedAt": "2026-09-30T19:07:30.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.00602",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-09-30T19:07:30.000Z",
+                "revisedAt": "2026-09-30T19:07:30.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-03T06:15:20.499Z",
+                "evidenceBasis": "abstract",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.00602v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.00602v1"
+                  },
+                  {
+                    "kind": "code",
+                    "url": "https://github.com/a12dongithub/PathOGen",
+                    "sourceUrl": "https://arxiv.org/abs/2610.00602v1"
+                  },
+                  {
+                    "kind": "project",
+                    "url": "https://huggingface.co/a12donhf/CPathOGen",
+                    "sourceUrl": "https://arxiv.org/abs/2610.00602v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出 CPathOGen：一种条件潜在扩散框架，用于生成成对的 H&E（苏木精-伊红染色）反事实图像，显式控制细胞空间组织、细胞核形态和染色外观。细胞图通过空间编码器约束空间结构，形态/外观向量通过逐块特征线性调制（FiLM）调节去噪过程。该方法针对常见像素空间与特征空间扰动可能产生不合理组织、使模型响应难以解释的问题。作者还提出 Biology-Nuisance Sensitivity Ratio（生物学因素与干扰因素敏感性比率），用于对比模型对具有生物学动机的形态及空间因素的敏感性，与对非生物学染色干扰变化的敏感性。",
+                "applicableTasks": "摘要支持的对象为 H&E 组织学图像块及计算病理模型。作者报告在留出的 H&E 图像块上评估生成组织，并使用经其验证的可控干预，探测配有终点预测头的病理编码器、任务专用分类器及生存模型，以评估鲁棒性和受控特征敏感性。具体疾病、组织类型、临床终点和数据来源未知：当前资料未提供。",
+                "comparisonConditions": "作者报告，在留出的 H&E 图像块上，CPathOGen 可生成视觉上合理的组织；经过空间引导筛选后，分布一致性改善，表现为更低的 Fréchet Inception Distance（FID）和 Kernel Inception Distance（KID）。摘要未明确上述降低所对应的比较基线，也未给出具体数值、增益幅度或平均/最高等统计口径。作者还报告，生成细胞的数量与位置跟随指定控制，测得的形态与颜色随相应控制单调变化，未提供定量误差或变化幅度。对下游模型响应，作者采用总变差距离和预测翻转率进行量化，并提出 Biology-Nuisance Sensitivity Ratio 对比生物学因素与染色干扰因素的敏感性；摘要未给出这些指标的数值结果、比率具体公式、预测翻转率分母或汇总方式。常见像素与特征空间扰动仅作为问题背景提及，摘要未提供与其直接比较的实验结果。数据集、图像块、模型及任务数量，硬件、训练与推理计算设置，指标单位和不确定性估计均未知：当前资料未提供。",
+                "limitations": "当前证据仅为摘要，未核对全文。组织视觉合理性、分布一致性改善、控制响应及模型探测用途均为作者报告，当前资料没有独立复现证据。摘要未明确陈述方法限制，也未提供详细实验协议、空间引导筛选规则、具体比较方法、消融实验、统计检验或跨数据集泛化验证信息，因此无法仅凭当前资料判断效果大小、稳定性和适用边界；这些信息缺失不代表研究本身未开展相关验证。资料包含 GitHub 与 Hugging Face 链接，但未核验链接内容，不能据此认定代码或模型可用，也不能视为已独立复现。",
+                "evidenceBasis": "abstract"
+              },
+              "researchRoadmap": null
+            },
+            {
+              "itemId": "laxi0tw3qvkt5aixacj0k0bge",
+              "title": "RipplePLM 提出结构与属性解耦框架，用于生成蛋白质突变效应描述",
+              "summary": "RipplePLM 研究提出结构与生化属性解耦框架，作者报告其在 MutaDescribe 上生成蛋白质点突变功能后果描述的表现优于突变专用基线。",
+              "sourceName": "arXiv · 分子与定量生物学",
+              "sourceUrl": "https://arxiv.org/abs/2610.01891v1",
+              "publishedAt": "2026-10-01T15:41:24.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.01891",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-01T15:41:24.000Z",
+                "revisedAt": "2026-10-01T15:41:24.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-03T06:15:20.499Z",
+                "evidenceBasis": "abstract",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.01891v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.01891v1"
+                  },
+                  {
+                    "kind": "code",
+                    "url": "https://github.com/Lyu6PosHao/RipplePLM",
+                    "sourceUrl": "https://arxiv.org/abs/2610.01891v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出用于蛋白质点突变效应自然语言生成的 RipplePLM，旨在解决现有蛋白质到文本系统将突变信息编码为未区分的表示、忽略突变证据在结构与生化因素间组织方式的问题。框架以 Direct-Distal Cross-Attention（DDCA）为核心：利用预训练蛋白质语言模型构建残基级 Mutation Perturbation Field，并借助预测接触图，将突变表示组织为突变位点的直接接触邻域与多跳远端上下文两条路径。此外，Property Latent Chain（PLChain）通过潜在属性 token，将专家指导的生化属性变化监督（例如热稳定性和最适 pH）注入大语言模型隐藏状态路径，以补充结构分解。",
+                "applicableTasks": "资料支持的主要任务是用自然语言描述蛋白质点突变的功能后果；作者在 MutaDescribe 上报告了时间划分与结构划分下的评估。作者还报告了低样本量（low-N）适应度回归实验，用于支持所学突变感知表示的有效性。涉及的属性监督示例包括热稳定性和最适 pH，但摘要未提供这些属性的单独预测或生成结果。具体蛋白质类别、物种、样本范围以及低样本量的具体 N 值未知。",
+                "comparisonConditions": "作者报告在 MutaDescribe 上，相对于突变专用基线，RipplePLM 在时间划分和结构划分下均有提升。在骨干模型匹配的比较条件下，结构划分的平均 ROUGE-L 从 22.23 提高至 35.65；该结果为特定条件下的平均值，摘要未说明平均所覆盖的子集、运行次数或分母，也未说明分数尺度及单位。专家评估中，作者报告生物学准确或相关描述的比例高于突变专用基线，但未给出具体比例、样本分母、专家人数或评分流程。摘要仅明确命名 1 个数据集 MutaDescribe，涉及突变效应描述生成及低样本量适应度回归两类任务，并提及消融实验和表示诊断；基线名称及数量、骨干模型名称及数量、数据规模、各任务或实验的具体数量未知。时间划分的具体结果、消融和回归的指标及数值、统计不确定性均未提供；硬件、训练与推理计算设置、计算成本也未知。",
+                "limitations": "当前证据仅为摘要，未核对全文。性能提升、专家评价及辅助实验的有效性结论均归属于作者报告，当前资料不构成独立复现。作者在该摘要中未明确陈述研究限制；这不能据此推断研究不存在限制。摘要未提供完整实验设计、划分细节、数据规模、统计显著性或置信区间，也未提供专家评价及低样本量回归的详细验证信息，因此无法据此判断提升的稳定性、跨蛋白质或跨数据集泛化能力。资料列出代码链接 https://github.com/Lyu6PosHao/RipplePLM，但未访问或验证，不能据此确认代码可用、实现完整或结果可复现。",
+                "evidenceBasis": "abstract"
+              },
+              "researchRoadmap": null
+            }
+          ]
+        }
+      ],
+      "metrics": {
+        "failed": 0,
+        "parsed": 4737,
+        "passed": 38,
+        "stored": 4288,
+        "blocked": 21,
+        "pending": 0,
+        "signals": 500,
+        "admitted": 60,
+        "inWindow": 4084,
+        "returned": 4737,
+        "selected": 29,
+        "processed": 59,
+        "published": 15,
+        "briefReady": 37,
+        "notAdmitted": 3620,
+        "totalEvents": 15,
+        "briefPending": 1,
+        "sourcesCount": 4,
+        "outsideWindow": 204,
+        "parseRejected": 0,
+        "sourcesFailed": 0,
+        "displayOmitted": 13,
+        "failedRequests": 2,
+        "sourcesPlanned": 6,
+        "unknownOutcome": 1,
+        "decisionUnknown": 0,
+        "sourcesObserved": 6,
+        "unlinkedSignals": 282,
+        "duplicateRecords": 449,
+        "sourcesSucceeded": 6,
+        "roadmapsPublished": 3,
+        "truncatedRequests": 0,
+        "healthyEmptySources": 1,
+        "selectedWithoutBrief": 1,
+        "duplicateRecordsExact": 1,
+        "excludedByDisplayLimit": 13,
+        "persistenceUnreconciled": 0,
+        "duplicateRecordsLowerBound": 449
+      },
+      "status": "partial",
+      "gaps": [
+        "1 条模型请求结果未知",
+        "1 条公开资料的研究解读尚未完成"
+      ]
+    }
+  ]
+}
