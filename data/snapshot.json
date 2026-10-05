@@ -1,10 +1,103 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-05T02:36:13.628Z",
+  "generatedAt": "2026-10-05T03:28:10.657Z",
   "publicBaseUrl": "https://pkucy2016.github.io/algorithmhot/",
   "mode": "static-snapshot",
-  "scope": "当前公开精选、全部主题关联资料与现存试刊/日报归档（每类索引小于 400 期）",
+  "scope": "当前全部公开动态（已通过相关性筛选并具有摘要，少于 2,000 条）、公开精选、主题及现存试刊/日报归档（每类少于 400 期）；不含待审候选",
   "items": [
+    {
+      "id": "pa04crwru2eys3qwyf8ycsjnv",
+      "title": "IntentCoding 提出放大用户意图的代码生成解码策略",
+      "originalTitle": "IntentCoding: Amplifying User Intent in Code Generation",
+      "summary": "IntentCoding 研究提出无需额外训练的解码策略，作者报告该策略可改善多约束代码生成的约束满足与功能正确性。该方法通过屏蔽用户意图捕捉其影响，再以多强度集成机制放大意图对生成的作用，并构建 CodeConstraints 基准以评估不同约束数量下的意图遵循情况。",
+      "reason": null,
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2602.00066",
+      "publishedAt": null,
+      "timelineAt": "2026-10-05T03:23:54.559Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "编码",
+        "推理优化"
+      ],
+      "research": {
+        "arxivId": "2602.00066",
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": null,
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-05T03:23:54.559Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-05",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2602.00066",
+            "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 Intent-Amplified Code Generation（IntentCoding），用于改善大语言模型在代码生成中对包含多个约束的细粒度用户意图的遵循。作者的实证分析报告：约束数量增加时，模型表现迅速下降；用户意图虽会影响模型 logits，但其影响可能不足以有效引导解码。该方法通过屏蔽用户意图来捕捉意图的影响，再用多强度集成机制在生成过程中放大这一影响。作者称该策略不依赖特定模型、无需额外训练，并可融入现有解码流程。作者还构建了 CodeConstraints 基准，用于系统评估不同约束数量下的用户意图遵循能力。",
+        "applicableTasks": "资料支持的任务是大语言模型代码生成，重点是多约束用户意图下的约束满足与功能正确性。作者在自建 CodeConstraints，以及 IFEvalCode、HumanEval、LiveCodeBench 共四个基准上报告实验；摘要实验描述处将自建基准写作 Constraints。作者称方法不依赖特定模型，但实际测试的模型名称、规模与数量，以及编程语言、约束类别、各基准任务数和样本数均未知：当前资料未提供。",
+        "comparisonConditions": "作者报告，相比标准解码方法，IntentCoding 在所列基准上显著改善约束满足与功能正确性；摘要明确给出数值的比较对象为贪心解码（greedy decoding）。相对贪心解码，作者报告在 CodeConstraints 上最高相对提升 71.0%，在 IFEvalCode 上最高相对提升 67.3%；这两个数值对应的具体指标名称未提供。在 HumanEval 和 LiveCodeBench 上，作者报告 pass@1 最高相对提升 29.3%，未分别列出两个基准的增益，也未说明该最高值对应哪个基准或模型。上述数值单位均为百分比，口径为最高相对提升，并非平均提升、百分点增量或所有条件下的普遍提升；比较基准为贪心解码，但作为分母的具体基线分数未知。基准共四个；测试模型数量、各基准数据量与任务数量、绝对指标值、分模型与分约束数量结果均未知。硬件、计算资源与耗时、采样和解码参数、多强度集成的具体设置，以及统计显著性检验信息均未知：当前资料未提供。",
+        "limitations": "当前证据仅为摘要，未核对全文；方法属性、实证观察与提升数值均为作者报告，当前资料未提供独立复现证据。摘要指出既有模型在约束增多时表现下降、意图对 logits 的影响可能不足以引导解码，但未明确陈述 IntentCoding 自身的局限或失败条件。最高相对增益不能用于推断平均收益或所有模型、任务和约束条件下均有效；作者所称模型无关性也不能替代跨模型覆盖的具体证据。当前资料未提供完整实验配置、基线绝对值、重复实验与不确定性、计算开销、消融实验或实现可用性信息；这些属于资料缺失，不能据此断言研究本身未进行相关验证或没有实现。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": false
+    },
+    {
+      "id": "t8atnht4y37r9tizhpq01hffh",
+      "title": "面向大规模 MIMO 的多模态环境感知波束管理：几何驱动的虚拟基站框架",
+      "originalTitle": "Multi-Modal Environment-Aware Beam Management for Massive MIMO: A Geometry-Driven Virtual Base Station Framework",
+      "summary": "该研究提出面向大规模 MIMO 的几何驱动虚拟基站框架，作者报告其在仿真中改善了波束训练效率与波束选择性能。根据当前材料，该框架利用区域 3D LiDAR 点云和位置信息重建建筑立面，通过镜面对称建模主要反射路径，构建离线虚拟基站（VBS）数据库并估计粗信道参数。",
+      "reason": null,
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2606.26567",
+      "publishedAt": null,
+      "timelineAt": "2026-10-05T03:23:54.559Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "多模态"
+      ],
+      "research": {
+        "arxivId": "2606.26567",
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": null,
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-05T03:23:54.559Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-05",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2606.26567",
+            "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出一种可解释、由几何关系驱动的环境感知通信框架，针对高频大规模多输入多输出（MIMO）系统中波束训练开销过高，以及多用户MIMO（MU-MIMO）协调复杂的问题。框架利用区域三维激光雷达（LiDAR）点云与位置信息，重建建筑立面，通过关于立面的镜像对称关系建模主要反射路径，构建离线虚拟基站（VBS）数据库，以紧凑、稀疏的形式描述无线传播环境。为衔接几何信息与无线信道，作者设计粗信道重建机制，直接根据VBS几何关系估计信道参数；随后基于粗波束空间表示，采用VBS辅助的正交导频（VOP）部分波束训练细化估计，目标是减少在线训练开销。针对组合式波束选择与用户间干扰，作者进一步提出分层深度强化学习框架，即双智能体决斗双重深度Q网络协调波束选择方法（DD3QN-CBS）。",
+        "applicableTasks": "资料支持的对象为高频大规模MIMO系统，尤其是MU-MIMO场景；涉及利用环境几何信息进行粗信道重建、部分波束训练以及多用户协调波束选择和干扰管理。框架使用区域三维LiDAR点云与位置信息，借助点云重建的建筑立面建模主要反射路径。具体频段、场地类型、用户规模及对其他环境或传播机制的适用范围未知：当前资料未提供。",
+        "comparisonConditions": "作者报告，仿真结果显示，该框架相较启发式基线和基于学习的基线，在波束训练效率与波束选择性能两方面均取得一致增益。摘要未列出基线名称、基线数量、数据集及其规模、模型或任务的评测数量、用户数、天线数、频率、带宽、信道设置、硬件与计算配置，也未给出具体指标定义、单位、结果数值、增益幅度、平均或最高增益口径及统计分母。方法结构明确为双智能体，但这不代表比较了两个模型。各比较条件下的定量结果未知：当前资料未提供。",
+        "limitations": "当前证据仅为摘要，未核对全文。性能结论属于作者报告的仿真结果，当前资料未提供独立复现证据，也未提供实测或部署验证信息；不能据此断言研究本身没有这些验证。作者明确指出的背景难点包括波束训练开销、多用户协调、几何信息与无线信道间的语义差距，以及组合式波束选择与用户间干扰。对所提方法自身的明确局限，当前资料未提供。摘要说明方法建模主要反射路径并进行粗信道重建，但未交代这类近似的误差、适用边界或失效条件。消融实验、统计不确定性、跨场景泛化、对点云与位置误差的敏感性、离线建库和在线推理成本，以及代码与数据可用性均未知：当前资料未提供。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": false
+    },
     {
       "id": "zskryg7ozbapap42lno4niu0r",
       "title": "GALA 提出高斯混合形状蒸馏方法，加速实时虚拟化身动画",
@@ -55,7 +148,8 @@
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
-      "researchRoadmap": null
+      "researchRoadmap": null,
+      "selected": true
     },
     {
       "id": "i1kt74wkfu1sylbqhmi2t7dnv",
@@ -117,7 +211,8 @@
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
-      "researchRoadmap": null
+      "researchRoadmap": null,
+      "selected": true
     },
     {
       "id": "cgogkeh2te0qeshodfgr85gix",
@@ -215,7 +310,8 @@
         "sourceRevision": 1,
         "sourceUrl": "https://arxiv.org/abs/2610.02204v1",
         "generatedAt": "2026-10-04T04:14:38.259Z"
-      }
+      },
+      "selected": true
     },
     {
       "id": "zoxlt1tdtedxjnuf0u3qrfrv0",
@@ -262,7 +358,8 @@
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
-      "researchRoadmap": null
+      "researchRoadmap": null,
+      "selected": true
     },
     {
       "id": "snmbmzrubqis2mvxth8qidlnb",
@@ -315,7 +412,8 @@
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
-      "researchRoadmap": null
+      "researchRoadmap": null,
+      "selected": true
     },
     {
       "id": "pgau2nc5iai5889xcnwfot4w6",
@@ -372,7 +470,8 @@
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
-      "researchRoadmap": null
+      "researchRoadmap": null,
+      "selected": true
     },
     {
       "id": "k92n912um78c2hvdqmmadyq15",
@@ -421,7 +520,8 @@
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
-      "researchRoadmap": null
+      "researchRoadmap": null,
+      "selected": true
     },
     {
       "id": "xukjz8mfnifv1c57mwybn5o11",
@@ -467,7 +567,8 @@
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
-      "researchRoadmap": null
+      "researchRoadmap": null,
+      "selected": true
     },
     {
       "id": "w6vii04cvdz8mdf915ur5pnud",
@@ -513,7 +614,8 @@
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
-      "researchRoadmap": null
+      "researchRoadmap": null,
+      "selected": true
     },
     {
       "id": "rmujtpniv4b0wgn8q2tustjac",
@@ -559,7 +661,8 @@
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
-      "researchRoadmap": null
+      "researchRoadmap": null,
+      "selected": true
     },
     {
       "id": "tvhnp70ajv592y2ulmk84chi4",
@@ -626,7 +729,56 @@
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
-      "researchRoadmap": null
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "id": "cynkcg1dyd609ugzsm2xsi4ow",
+      "title": "The Missing Primitive 研究提出大语言模型数学推理的诊断与修复框架",
+      "originalTitle": "The Missing Primitive: Diagnosing and Repairing Mathematical Reasoning in Large Language Models",
+      "summary": "根据当前摘要，The Missing Primitive 研究提出用数学原语诊断大语言模型的数学理解，并通过自蒸馏改善数学推理。作者提出一项新基准，从发现、生成、消化理解和执行四个维度评估推理，报告答案正确率会掩盖能力差异，原语可释放潜在执行能力，而发现能力是主要瓶颈。摘要中的基准与自蒸馏框架名称宏未展开，正式名称未知。",
+      "reason": null,
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02191v1",
+      "publishedAt": "2026-10-01T17:59:32.000Z",
+      "timelineAt": "2026-10-01T17:59:32.000Z",
+      "category": "ai4ai",
+      "tags": [
+        "论文/研究",
+        "AI4AI",
+        "训练方法",
+        "推理"
+      ],
+      "research": {
+        "arxivId": "2610.02191",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T17:59:32.000Z",
+        "revisedAt": "2026-10-01T17:59:32.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02191v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02191v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出以 Mathematical Primitive（数学原语）探测大语言模型的结构性数学理解，并引入一项新基准，从 Discovery（发现）、Generation（生成）、Digestion（消化）和 Execution（执行）四个维度诊断数学推理能力，旨在揭示仅看解题准确率时被掩盖的能力差异。作者报告，原语能够释放显著的潜在执行能力，发现能力是数学推理的主要瓶颈，且受发现能力限制的失败尤其易于通过后训练修复。基于这些诊断，作者提出一种利用原语特权信息的自蒸馏框架，将原语引导的推理选择性地迁移到学生模型，以改善数学推理。当前摘要中的基准和自蒸馏框架名称宏未展开，正式名称未知；原语的具体定义、选择性迁移规则及训练流程也未提供。",
+        "applicableTasks": "资料支持的对象为大语言模型，任务为数学推理中的结构性理解诊断及后训练改进；诊断范围包括发现、生成、消化和执行四个维度。作者报告在不同模型规模和具有挑战性的基准上开展实验，但具体模型、规模、数学题目类型、基准名称及覆盖范围未知。摘要开头提到前沿数学问题，但未明确说明实验是否直接覆盖这些问题。",
+        "comparisonConditions": "作者报告，该自蒸馏框架在不同模型规模和具有挑战性的基准上，相较基线持续改善数学推理表现。比较对象仅被称为基线，其名称与配置未知；数据集、模型、任务及基准数量未知，模型参数规模、数据量与划分、硬件、计算预算、训练及推理设置均未知。摘要明确给出的诊断维度数量为四个：Discovery、Generation、Digestion 和 Execution。作者讨论了解题准确率会掩盖不同能力特征，并定性报告原语释放潜在执行能力、发现能力构成主要瓶颈，以及受发现能力限制的失败尤其易于修复；具体指标定义、数值、单位、评估分母、提升幅度、最高或平均增益口径及统计不确定性均未提供。不能将跨规模与基准的一致改善表述为已知幅度的普遍增益。",
+        "limitations": "证据仅为用户提供的摘要，未核对全文。上述诊断结论及性能改善均为作者报告，当前资料不构成独立复现。作者将该研究定位为系统研究大语言模型数学理解的第一步，并指出发现能力是主要瓶颈；摘要未进一步明确陈述方法本身的限制。数学原语与四个能力维度的操作性定义、基准构建和评分方式、具体实验结果、消融实验、稳健性及泛化验证、实现与数据开放情况、独立复现信息均未知。缺少这些信息仅表示当前资料未提供，不能据此断言研究本身没有相关验证或实现。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": false
     },
     {
       "id": "xygvbk1w7935rns002vpsn5bo",
@@ -670,7 +822,8 @@
         ]
       },
       "researchBrief": null,
-      "researchRoadmap": null
+      "researchRoadmap": null,
+      "selected": true
     },
     {
       "id": "s8moemck93yrl4cn1on69rv4s",
@@ -763,7 +916,8 @@
         "sourceRevision": 1,
         "sourceUrl": "https://arxiv.org/abs/2610.02188v1",
         "generatedAt": "2026-10-04T04:23:00.934Z"
-      }
+      },
+      "selected": true
     },
     {
       "id": "ikrv23aya4o9io6bh7il8k4dt",
@@ -810,7 +964,8 @@
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
-      "researchRoadmap": null
+      "researchRoadmap": null,
+      "selected": true
     },
     {
       "id": "n7gty26hkso9o0egz436qszwh",
@@ -862,7 +1017,8 @@
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
-      "researchRoadmap": null
+      "researchRoadmap": null,
+      "selected": true
     },
     {
       "id": "hzb4nouwnroix96ff64svk73j",
@@ -910,7 +1066,56 @@
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
-      "researchRoadmap": null
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "id": "bcki5bdx77ohkfv1qcxdxnif4",
+      "title": "Generative Cinematographer 提出在三维场景中联合编排相机与物体运动的方法",
+      "originalTitle": "Generative Cinematographer: Composing Camera and Object Motion in 3D",
+      "summary": "Generative Cinematographer（GenCine）研究提出将单张图像转为可编辑的三维场景框架，联合控制视频中的相机与前景运动。根据当前材料，用户可指定相机路径，并通过局部三维运动控制柄分别移动主体的不同部分，以分段刚性近似非刚性运动，无需物理模拟器或类别专用先验。",
+      "reason": null,
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02180v1",
+      "publishedAt": "2026-10-01T17:58:09.000Z",
+      "timelineAt": "2026-10-01T17:58:09.000Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "视频",
+        "数据/训练"
+      ],
+      "research": {
+        "arxivId": "2610.02180",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T17:58:09.000Z",
+        "revisedAt": "2026-10-01T17:58:09.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02180v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02180v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 Generative Cinematographer（GenCine），针对二维运动轨迹或稀疏拖拽信号存在的三维运动歧义：同一二维轨迹可能对应不同三维运动，尤其在相机与物体同时移动时。该系统将单张图像提升为可编辑的三维场景支架，让使用者联合指定相机路径与前景运动，并通过局部三维运动控制柄移动选定前景区域。多个控制柄可独立移动主体的不同部分，以分段刚性方式近似非刚性运动，无需物理模拟器或类别特定先验。系统将控制投影为引导图，记录受控区域在各帧中的位置，为各控制柄赋予跨帧固定颜色，并在与背景相同的世界坐标系中编码受控点的当前三维位置，从而在相机移动时仍能表达物体相对于场景的运动。训练时，作者从真实视频观测到的运动中恢复控制，并使用合成视频的真值几何与轨迹；在预训练 Wan 模型上训练轻量级引导分支与 LoRA 适配器，使模型遵循这些控制。",
+        "applicableTasks": "资料支持的任务是从单张图像出发、联合控制相机与前景运动的视频生成。控制对象包括选定前景区域及同一主体的不同部分，支持相机路径编辑、局部三维运动编辑，以及通过多个控制柄对非刚性运动进行分段刚性近似。作者报告实验覆盖多样的真实世界场景，并关注相机运动时的相对运动一致性和视角变化下的几何一致性；具体场景类别、对象类别、视频长度、分辨率及适用边界未知，当前资料未提供。",
+        "comparisonConditions": "摘要将依赖二维运动轨迹或稀疏拖拽信号的现有可控视频生成系统作为问题背景，但未明确列出实验比较基线。作者报告实验表现为相机相对运动一致、视角变化下几何一致性改善，以及在多样真实世界场景中具有较强可控性；这些均为定性陈述，摘要未提供量化结果、增益、最高或平均口径、分母、指标定义或单位。已知输入为单张图像，训练使用真实视频恢复的控制及合成视频的真值几何与轨迹，基础模型为预训练 Wan，训练组件为轻量级引导分支和 LoRA 适配器。数据集名称、样本数量、模型具体版本与规模、参与比较的模型数量、任务数量、硬件、计算预算、训练与推理耗时及其余训练和评测设置均未知，当前资料未提供。",
+        "limitations": "当前证据仅为摘要，未核对全文；上述方法与实验结论均为作者报告，当前资料未提供独立复现证据。方法描述明确将非刚性运动表示为分段刚性近似，不能据此认定能够精确模拟一般非刚性形变或物理过程。除这一表述外，摘要未明确陈述失败案例或其他限制。当前资料未提供量化比较、消融实验、统计不确定性、评测协议、泛化边界，以及三维场景支架或几何估计误差对结果的影响，因此无法据此判断改善幅度与稳定性。代码、模型权重、数据开放情况及可复现性验证信息未知；资料缺失不代表研究本身不存在这些信息。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": false
     },
     {
       "id": "ykks5xp6pl4htn6cbs14neyq3",
@@ -956,7 +1161,55 @@
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
-      "researchRoadmap": null
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "id": "xo12qtsx5uxravbfya9byv8o9",
+      "title": "研究分析组织特异性互作网络中有效电阻与图神经网络可靠性的关系",
+      "originalTitle": "Effective Resistance and Graph Neural Network Reliability in Tissue-Specific Interactomes",
+      "summary": "该研究报告，组织特异性蛋白质互作网络中的有效电阻残差信号可补充解释图神经网络预测损失，但选择性预测改善微乎其微。根据当前材料，在24个组织特异性互作网络中，有效电阻主要受节点度的倒数支配，且这种退化随共表达过滤后的网络增大而加深，报告的Spearman相关系数为-0.955；所有24个网络偏离该极限的残差均超过保持节点度的零模型图。",
+      "reason": null,
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02175v1",
+      "publishedAt": "2026-10-01T17:57:10.000Z",
+      "timelineAt": "2026-10-01T17:57:10.000Z",
+      "category": "ai4s",
+      "tags": [
+        "论文/研究",
+        "AI4S",
+        "算法"
+      ],
+      "research": {
+        "arxivId": "2610.02175",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T17:57:10.000Z",
+        "revisedAt": "2026-10-01T17:57:10.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02175v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02175v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者将此前用于通过重连缓解过度挤压（over-squashing）的有效电阻，作为判断蛋白质功能预测何时不可信的候选信号，考察组织特异性相互作用结构能否提供预测可靠性信息。作者报告，有效电阻主要受逆度支配，因此进一步分析其偏离该极限的残差，并在控制预测熵、度、注释基数、局部结构及仅使用特征时的预测难度后，检验残差对逐节点损失的额外解释力。",
+        "applicableTasks": "资料支持的研究任务是组织特异性相互作用网络中的蛋白质功能注释、逐节点预测损失解释及选择性预测；研究对象为24个组织特异性相互作用网络，并涉及共表达过滤网络、不同模型深度及保持度的零模型图。具体组织、物种、功能标签体系、数据来源和其他任务上的适用性未知：当前资料未提供。",
+        "comparisonConditions": "作者报告：在24个组织特异性相互作用网络中，有效电阻主要受逆度支配，且随着共表达过滤网络增大，这种退化加深，Spearman相关系数为-0.955；摘要未明确该相关系数两端变量的具体定义。偏离逆度极限的残差在全部24个网络中均超过保持度的零模型图。控制预测熵、度、注释基数、局部结构和仅使用特征时的预测难度，并扣除置换基线后，残差在24个留出网络中的19个网络上、在每个所考察深度均能额外解释逐节点损失，且该效应随深度单调增强。解释力增量最高达到控制变量未能解释的方差的0.37%，为置换基线的5.6倍；相比之下，在保持度的零模型环境中重新训练模型时为置换基线的1.5倍。0.37%的分母是控制变量剩余未解释方差，不是总方差，且它是最高增量，不能表述为平均或普遍效果。作者报告选择性预测的改善微乎其微，未给出具体数值。模型架构与数量、深度取值与数量、具体任务数量、节点及边数量、损失定义、选择性预测指标、零模型及置换次数、硬件、计算预算、训练设置和不确定性区间未知：当前资料未提供。",
+        "limitations": "当前证据仅为摘要，未核对全文。作者认为该信号可重复，但受到向度信息退化的限制；即使残差存在额外解释力，其最高增量也仅为控制变量剩余未解释方差的0.37%，且选择性预测改善微乎其微。额外损失解释力的报告范围是24个留出网络中的19个，不能推广为全部网络均有效。摘要未提供可重复性的具体验证方案、独立复现证据、统计显著性细节、代码或数据可用性信息，也未提供更广泛组织、物种、模型与任务上的验证信息；这些缺失不代表研究本身不存在相应内容。上述结果均为作者报告，不能视为已独立复现或据此推断整体预测质量提升。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": false
     },
     {
       "id": "j86msvf1gyqy2u1a6u770wddd",
@@ -1001,7 +1254,105 @@
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
-      "researchRoadmap": null
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "id": "ts6fww0dfeokrioiga58nogpz",
+      "title": "Watch, Infer, Coordinate 研究通过推断机器人伙伴的物理约束实现零样本协作",
+      "originalTitle": "Watch, Infer, Coordinate: Inferring Robot Partner Constraints for Zero-Shot Coordination",
+      "summary": "Watch, Infer, Coordinate 研究提出涵盖三种物理耦合操作场景的基准，并通过观察机器人团队的联合行为推断伙伴的物理约束。根据当前材料，该方法利用观察到的联合行为为候选约束评分，再将推断结果用于与同一伙伴开展新任务的零样本协作，以应对伙伴补偿行为可能掩盖受限机器人能力边界的问题。",
+      "reason": null,
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02170v1",
+      "publishedAt": "2026-10-01T17:56:04.000Z",
+      "timelineAt": "2026-10-01T17:56:04.000Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "具身智能",
+        "推理"
+      ],
+      "research": {
+        "arxivId": "2610.02170",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T17:56:04.000Z",
+        "revisedAt": "2026-10-01T17:56:04.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02170v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02170v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 Watch, Infer, Coordinate 基准及一种根据观测到的双机器人联合行为，对候选物理约束评分的推断方法。目标是让辅助机器人通过观察目标伙伴与另一机器人的协作，推断该伙伴的物理能力限制，再利用推断结果与同一伙伴完成新任务。该方法针对两项识别困难：演示只显示受限机器人实际做了什么，不能直接揭示它还能做什么；在物理耦合任务中，另一机器人可能补偿其能力限制，导致仅观察受限机器人的行为难以识别约束。作者的核心依据是，约束会影响整个团队的联合行为，因此双方动作都能提供能力信息。",
+        "applicableTasks": "资料支持的范围是双机器人参与的物理耦合操作任务，基准覆盖三种此类操作情境，具体情境名称未知。任务包括从协作演示中推断伙伴的物理约束，以及利用推断结果与同一伙伴进行新任务上的零样本协作。摘要以单个机器人难以独自搬运过大或过重物体为应用背景，并以硬件退化或执行器故障说明物理限制的可能来源；这些背景描述不能据此视为已逐项完成的实验验证。",
+        "comparisonConditions": "作者报告：在全部三种物理耦合操作情境中，所提方法均显著改善约束推断与零样本协作，表现接近能够访问真实约束的 oracle。摘要未提供显著性的统计检验信息，也未给出改善幅度或与 oracle 的具体差距。明确提及的比较参照是具有真实约束信息的 oracle；其他比较方法、基线名称及配置未知。三种情境之外的数据集、样本、模型和具体任务数量未知。评估涉及约束推断和零样本协作，但具体指标定义、单位、数值、最高或平均等汇总口径及其分母均未知。机器人硬件、是否采用实机或仿真、计算硬件、训练与推断预算及其他计算设置，当前资料均未提供。",
+        "limitations": "证据仅来自用户提供的摘要，未核对全文。改善约束推断、零样本协作并接近 oracle 均为作者报告，当前资料不提供独立复现证据。作者明确指出的识别困难包括演示不能直接显示未执行动作的可行性，以及搭档补偿会掩盖目标机器人的限制；摘要未说明所提方法仍在哪些条件下失效。三种情境的具体构成、实验协议、统计不确定性、消融实验、泛化边界以及代码和数据可用性均未知。当前摘要不足以确认该方法在所报告三种情境之外的效果，也不能据缺失信息断言原研究未开展相关验证。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": false
+    },
+    {
+      "id": "o9au7pxaud0idoghr1htlmldb",
+      "title": "DuoMind 提出通过语义通信实现分布式多机器人协调的框架",
+      "originalTitle": "DuoMind: Enabling Distributed Multi-Robot Coordination with Semantic Communication",
+      "summary": "DuoMind 研究提出分布式分层多机器人协调框架，作者报告其在 RoboPoly 和 RoboTwin 上改善了多机器人任务表现。根据当前材料，每台机器人以 VLM 编排器结合任务指令、局部观测与其他机器人的消息进行高层推理，向 VLA 动作模型下达底层指令，并向同伴发送语义消息。",
+      "reason": null,
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02161v1",
+      "publishedAt": "2026-10-01T17:53:09.000Z",
+      "timelineAt": "2026-10-01T17:53:09.000Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "具身智能",
+        "多模态",
+        "Agent"
+      ],
+      "research": {
+        "arxivId": "2610.02161",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T17:53:09.000Z",
+        "revisedAt": "2026-10-01T17:53:09.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02161v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02161v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 DuoMind，一种通过语义通信实现多机器人协调的分布式分层框架，旨在解决从单机器人扩展到多机器人时，长时程行为协调与可靠、精细执行难以兼顾的问题。每个机器人使用基于 VLA 的动作模型执行底层动作，并使用基于 VLM 的编排器进行高层推理和机器人间协调。每个规划步骤中，编排器根据任务指令、局部观测和其他机器人发来的消息，生成供动作模型执行的底层指令及发送给其他机器人的语义消息，以结合预训练 VLM 的语义推理能力与 VLA 的精确动作生成能力。为应对多机器人协调基准稀缺的问题，作者还构建了 RoboPoly 基准。",
+        "applicableTasks": "资料支持的任务范围为多机器人协调，具体包括分布式控制下需要协调、闭环执行的长时程操作任务。作者在 RoboPoly 和 RoboTwin 上开展实验。具体操作对象、机器人类型与数量、任务种类与数量，以及仿真或真实机器人环境均未知：当前资料未提供。不能据此推断对其他机器人平台或任务的适用性。",
+        "comparisonConditions": "作者报告在 RoboPoly 和 RoboTwin 两个基准上的实验表明，DuoMind 改善了多机器人任务表现；消融研究支持分层编排和语义通信的贡献。摘要未提供比较方法或基线名称、具体消融配置、数据规模、所用 VLM/VLA 的名称与数量、任务数量、机器人数量、硬件、训练与推理计算设置、评价指标及单位、数值结果、增益幅度、统计口径或不确定性信息，以上均未知。当前资料仅支持作者报告的定性改善，不能量化增益或认定其在所有任务上均有改善。",
+        "limitations": "证据仅来自用户提供的摘要，未核对全文。作者明确指出的研究背景挑战是多机器人系统需要兼顾长时程协调与可靠的精细执行，以及多机器人协调基准稀缺；摘要未明确陈述 DuoMind 自身的失败模式或适用限制。性能改善与消融结论均为作者报告，不是独立复现结果。摘要未提供足以核查效果大小、比较公平性、结果稳定性、通信开销、规模扩展性或跨平台泛化的验证信息；这些信息缺失不等于研究本身没有相关验证。资料仅提及项目页面有更多细节，未提供页面内容，不能据此认定代码、模型、数据或可复现实验配置已开放。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": false
     },
     {
       "id": "u7o4abot2xp4y6yki22ezuqnl",
@@ -1047,7 +1398,8 @@
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
-      "researchRoadmap": null
+      "researchRoadmap": null,
+      "selected": true
     },
     {
       "id": "iqoqm9ozj8ccym2r15iaof8f5",
@@ -1092,7 +1444,8 @@
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
-      "researchRoadmap": null
+      "researchRoadmap": null,
+      "selected": true
     },
     {
       "id": "mv9x419gecxc33463mbm3c73x",
@@ -1139,7 +1492,8 @@
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
-      "researchRoadmap": null
+      "researchRoadmap": null,
+      "selected": true
     },
     {
       "id": "u5ccy5p5ju4sze2uyc1dmgigh",
@@ -1187,7 +1541,8 @@
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
-      "researchRoadmap": null
+      "researchRoadmap": null,
+      "selected": true
     },
     {
       "id": "wxw0bszppi6uq0njkt976pjzl",
@@ -1234,7 +1589,8 @@
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
-      "researchRoadmap": null
+      "researchRoadmap": null,
+      "selected": true
     },
     {
       "id": "laxi0tw3qvkt5aixacj0k0bge",
@@ -1286,7 +1642,8 @@
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
-      "researchRoadmap": null
+      "researchRoadmap": null,
+      "selected": true
     },
     {
       "id": "xvclwylq6gpg9y8bnxzvxcdtm",
@@ -1333,7 +1690,102 @@
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
-      "researchRoadmap": null
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "id": "npn5vthpadant6v7pinyh43y8",
+      "title": "心搏动力学研究提出结合 Gamma 广义线性模型的状态空间凸优化方法",
+      "originalTitle": "Efficient Convex Optimization Methods for State-Space Heartbeat Dynamics Models with Gamma Generalized Linear Models",
+      "summary": "该研究提出心搏动力学状态空间统计模型，通过凸优化高效求解最优状态估计，用于评估自主神经与心血管健康。根据当前材料，模型结合 Gauss-Markov 过程先验与采用 log-link 函数的 Gamma 观测分布，以静态模型估计参数，并用交替方向乘子法求解潜在状态的最大后验估计。",
+      "reason": null,
+      "sourceName": "arXiv · 分子与定量生物学",
+      "sourceUrl": "https://arxiv.org/abs/2610.00884v1",
+      "publishedAt": "2026-10-01T00:58:05.000Z",
+      "timelineAt": "2026-10-01T00:58:05.000Z",
+      "category": "ai4s",
+      "tags": [
+        "论文/研究",
+        "算法"
+      ],
+      "research": {
+        "arxivId": "2610.00884",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T00:58:05.000Z",
+        "revisedAt": "2026-10-01T00:58:05.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:15:20.499Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.00884v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.00884v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出用于心搏动力学的动态状态空间统计模型，将 Gauss–Markov 过程先验与采用对数链接函数的 Gamma 发射分布结合。模型参数通过静态版本估计，再用交替方向乘子法（ADMM）高效求解最优最大后验（MAP）潜在状态估计；作者称该状态估计可通过凸优化求解。模型选择利用偏自相关函数，在模型规模与拟合程度之间权衡。该方法旨在估计心搏动力学的潜在状态，改善传统局部平均方法对心率模式中急剧瞬态变化的刻画，并结合其他器官信息提取器官间耦合度量，为自主神经及心血管健康评估提供工具。",
+        "applicableTasks": "摘要支持的展示任务包括：在合成心搏数据中恢复潜在权重；在倾斜台数据集中刻画心率模式的急剧瞬态变化；将心搏时序与其他器官信息（示例为呼吸相位）结合，提取信息论度量以量化器官间耦合，例如呼吸性窦性心律不齐。作者提出其可用于自主神经及心血管健康评估，但摘要未提供具体临床诊断任务、受试者群体、疾病范围或临床效能验证。",
+        "comparisonConditions": "作者报告，在合成心搏数据上，该模型能够较好地恢复底层潜在权重；在倾斜台数据集上，相较传统局部平均方法，该模型能更好地捕捉心率模式中的急剧瞬态变化。摘要还报告，结合心搏时序与呼吸相位等信息可提取量化器官间耦合的信息论度量。明确出现两类数据情境：合成心搏数据和倾斜台数据集；各自的数据量、受试者数、样本数、数据集总数以及对照方法的具体名称与数量均未知。模型总数、实验任务总数、训练与测试划分、硬件、软件及具体计算配置未知。已给出的计算方法为静态模型参数估计和 ADMM 求解 MAP 潜在状态；迭代次数、运行时间、内存用量及效率增益未知。恢复精度、瞬态捕捉性能和耦合度量的具体指标名称、单位、数值、统计不确定性以及最高或平均增益均未知：当前资料未提供。",
+        "limitations": "证据仅来自所提供的摘要，未核对全文。上述恢复潜在权重、改善瞬态刻画及提取器官间耦合度量的结果均为作者报告，当前资料不构成独立复现。摘要未明确陈述方法限制；其展示范围为合成心搏、倾斜台数据及结合呼吸相位等器官信息的分析，不能据此确认跨人群、跨疾病或跨设备的泛化能力，也不能确认临床诊断效能。具体实验设计、定量结果、统计检验、参数敏感性、稳健性验证及独立外部验证信息未知。代码、数据开放情况与复现条件未知：当前资料未提供；这些信息缺失不意味着研究本身未开展相关工作。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": false
+    },
+    {
+      "id": "r3ok6zz215wvlcinsxuais1xx",
+      "title": "MorphoBranch：保留精细结构的分支细胞形态计量分析工作台",
+      "originalTitle": "MorphoBranch: A Fine-Structure-Preserving Workbench for Morphometric Analysis of Branched Cellular Structures",
+      "summary": "MorphoBranch 研究提出结合确定性形态计量与 LLM 辅助调整的工作台，用于神经元轴突和小胶质细胞荧光图像分析。基于摘要，其图像到图结构流程整合多尺度结构证据、滞后分割、受证据约束的骨架细化及图形态计量，自然语言请求映射为参数调整、预览执行和指标报告等已注册操作，图像处理与定量计算保持确定性且可审查。",
+      "reason": null,
+      "sourceName": "arXiv · 分子与定量生物学",
+      "sourceUrl": "https://arxiv.org/abs/2610.00860v1",
+      "publishedAt": "2026-10-01T00:23:17.000Z",
+      "timelineAt": "2026-10-01T00:23:17.000Z",
+      "category": "ai4s",
+      "tags": [
+        "论文/研究",
+        "AI4S",
+        "算法",
+        "可复现性"
+      ],
+      "research": {
+        "arxivId": "2610.00860",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T00:23:17.000Z",
+        "revisedAt": "2026-10-01T00:23:17.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:15:20.499Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.00860v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.00860v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 MorphoBranch，用于分支状细胞结构形态计量，针对荧光标记的神经元和小胶质细胞中细小、弱标记突起容易断裂或产生错误连接、进而使基于骨架的测量出现偏差的问题。该工作台将确定性的 Morphometry Engine 与 LLM 辅助的 Refinement Engine 结合：前者采用图像到图的流程，整合多尺度结构证据提取、滞后阈值分割、受证据约束的骨架细化及基于图的形态计量；后者把自然语言请求映射到已注册动作，用于参数调整、预览执行、指标报告和不支持请求的处理。图像处理与定量计算仍保持确定性，并可供人工审查。",
+        "applicableTasks": "资料支持的任务是荧光图像中分支状细胞结构的形态计量，包括细微结构保留、骨架与连接结构分析、长度估计，以及通过自然语言辅助调整和检查分析流程。作者实际评估的对象与范围为两个公共神经元轴突数据集 AxonMIP、AxonStack，以及内部小胶质细胞荧光图像数据集 Cell-Morph；另评估了 Refinement Engine 的自然语言任务执行。其他细胞类型、成像方式及更广泛应用范围的验证情况未知。",
+        "comparisonConditions": "作者报告在共 3 个数据集上进行评估：2 个公共神经元轴突数据集 AxonMIP、AxonStack，以及 1 个内部小胶质细胞荧光图像数据集 Cell-Morph。在全部 3 个数据集上，MorphoBranch 在所评估方法中取得最高 Skeleton F1、最高 clDice 和最低长度估计误差；在 AxonMIP 与 AxonStack 这 2 个数据集上，还取得最高 Dice 和 IoU。摘要未给出 Cell-Morph 上 Dice 和 IoU 的排名，不能将后两项最优结果扩展到全部数据集。上述图像分析指标的具体数值、增益幅度、汇总口径、长度误差定义和单位均未知。作者另报告：在 150 项自然语言任务中，Refinement Engine 的端到端成功率为 94.0%；摘要未给出成功判定标准或任务类别分布。比较方法的名称与数量、各数据集图像或样本数量、数据划分、LLM 名称与模型数量、硬件及计算设置、运行时间和计算成本均未知：当前资料未提供。",
+        "limitations": "当前证据仅为摘要，未核对全文；所有性能排名及自然语言任务成功率均为作者报告，当前资料不构成独立复现。摘要的实证范围限于上述 3 个数据集和 150 项自然语言任务，不能据此推断其他对象或条件下的效果。作者将该流程描述为可复现、可供人工审查，但当前资料未提供代码或模型开放情况、详细复现步骤、独立验证、统计不确定性、显著性检验、消融实验或失败案例，因此无法据此独立核验性能与可复现性。摘要未明确陈述方法自身的限制；缺少这些信息不等于研究本身没有进行相应验证。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": false
     },
     {
       "id": "bjqsv9rkif46dwqc477albvuw",
@@ -1380,7 +1832,8 @@
         "evidenceBasis": "fulltext",
         "sourceRevision": 2
       },
-      "researchRoadmap": null
+      "researchRoadmap": null,
+      "selected": true
     },
     {
       "id": "ywwig016167ebi1oemd78uwwz",
@@ -1437,7 +1890,55 @@
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
-      "researchRoadmap": null
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "id": "hh1ql4wlk6dh07ek97nm62xjp",
+      "title": "脑龄差研究报告协方差特征空间可揭示纵向效应的潜在归因",
+      "originalTitle": "Covariance Eigenspace Provides Latent Attribution of Longitudinal Effects in Brain Age Gap",
+      "summary": "根据当前材料，Jason Scheffel 的研究报告，协方差特征空间比单个脑区更突出地解释了轻度认知障碍（MCI）队列中脑龄差的纵向效应。研究采用协方差神经网络（VNN）预测脑龄差，并以 Integrated Gradients（IG）进行归因，比较淀粉样蛋白阳性与阴性亚队列的纵向效应差异。",
+      "reason": null,
+      "sourceName": "arXiv · 分子与定量生物学",
+      "sourceUrl": "https://arxiv.org/abs/2609.40202v1",
+      "publishedAt": "2026-09-30T17:17:13.000Z",
+      "timelineAt": "2026-09-30T17:17:13.000Z",
+      "category": "ai4s",
+      "tags": [
+        "论文/研究",
+        "AI4S",
+        "算法"
+      ],
+      "research": {
+        "arxivId": "2609.40202",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-09-30T17:17:13.000Z",
+        "revisedAt": "2026-09-30T17:17:13.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:15:20.499Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2609.40202v1",
+            "sourceUrl": "https://arxiv.org/abs/2609.40202v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者在基于协方差神经网络（VNN）的脑龄差预测框架中，使用积分梯度（Integrated Gradients，IG）进行归因，研究轻度认知障碍（MCI）队列的纵向脑龄差效应。VNN 沿协方差特征向量过滤输入，可用潜在正交向量解释模型决策。作者将解释重点放在解剖学协方差矩阵的特征谱及其协调输入模式上，以解释淀粉样蛋白阳性与阴性亚队列纵向脑龄差效应的差异，并与单个脑区的解释进行比较。",
+        "applicableTasks": "资料支持的任务是基于神经影像数据、使用 VNN 预测脑龄差，并对 MCI 队列中淀粉样蛋白阳性与阴性亚队列的纵向脑龄差效应进行归因解释。解释对象包括解剖学协方差矩阵的潜在特征向量及单个脑区。摘要将脑龄差称为加速生物衰老的一种有前景的机器学习驱动生物标志物；其他人群、疾病或临床用途的适用性未知：当前资料未提供。",
+        "comparisonConditions": "作者报告的比较是：在 MCI 队列的 VNN 脑龄差预测框架中，以 IG 为归因机制，对比协方差特征谱与单个脑区对淀粉样蛋白阳性、阴性两个亚队列之间不同纵向脑龄差效应的解释。摘要报告，首要特征向量对应 83.2%，而任一脑区对应的最大值为 7.7%；后者是单脑区中的最大值，并非平均值，前者也不是普遍预测性能增益。百分比的确切指标定义、计算公式和分母未知：当前资料未提供。资料涉及一个 MCI 队列及其两个亚队列，但样本量、数据集名称与数量、模型数量、独立任务数量、脑区数量、随访次数与时长、神经影像模态、硬件、训练与计算设置、统计不确定性以及预测误差指标均未知：当前资料未提供。",
+        "limitations": "证据仅来自所提供的摘要，未核对全文。作者报告协方差潜在解释识别出一个承载大部分所观察纵向脑龄差效应的关键协调输入模式；这一结论限于摘要描述的研究对象与分析，不能据此推断因果关系、临床诊断能力或其他人群中的泛化表现。作者明确陈述的研究限制未知：当前资料未提供。数据划分、外部验证、统计显著性、置信区间、稳健性分析、代码及数据可用性、独立复现信息均未知：当前资料未提供；这些缺失不等于研究本身没有相关分析或资源。所列结果均为作者报告，不能视为已获独立复现。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": false
     },
     {
       "id": "dpg8u2s8yta9nmfjmnc77dr98",
@@ -1533,7 +2034,56 @@
         "sourceRevision": 2,
         "sourceUrl": "https://deepmind.google/blog/introducing-synthid-bio/",
         "generatedAt": "2026-10-04T04:20:41.815Z"
-      }
+      },
+      "selected": true
+    },
+    {
+      "id": "q60ni863o9lp81sopgsb5k934",
+      "title": "当前分子基础模型究竟有多大程度具备基础性？",
+      "originalTitle": "How 'Foundational' Are Current Molecular Foundation Models?",
+      "summary": "Francesca Grisoni 的研究提出分子基础模型的三项可检验标准，并报告所考察的方法均未完全满足全部标准。根据当前材料，这些标准包括跨分子实体、性质和任务的通用性，无需或仅需少量任务特定再训练的可迁移性，以及训练分布之外的泛化能力。",
+      "reason": null,
+      "sourceName": "arXiv · 分子与定量生物学",
+      "sourceUrl": "https://arxiv.org/abs/2609.37550v1",
+      "publishedAt": "2026-09-29T13:28:06.000Z",
+      "timelineAt": "2026-09-29T13:28:06.000Z",
+      "category": "ai4s",
+      "tags": [
+        "论文/研究",
+        "AI4S",
+        "分子建模",
+        "数据/训练"
+      ],
+      "research": {
+        "arxivId": "2609.37550",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-09-29T13:28:06.000Z",
+        "revisedAt": "2026-09-29T13:28:06.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-03T06:15:20.499Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2609.37550v1",
+            "sourceUrl": "https://arxiv.org/abs/2609.37550v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出用三个可检验标准评估分子模型的基础性，将‘分子基础模型’从描述性标签转为可检验假设，以解决该领域何种模型可称为‘基础模型’尚缺乏清晰定义的问题。三个标准为：跨分子实体、性质和任务的通用性；无需或仅需极少任务特定再训练即可迁移到新应用的可迁移性；超出训练分布的泛化能力。该工作提供的是模型评估与未来发展框架，摘要未描述新的模型架构或训练算法。",
+        "applicableTasks": "资料支持将该框架用于评估分子科学中现有模型的基础性，并指导后续模型发展；评估范围涵盖不同分子实体、性质、任务、新应用迁移及训练分布之外的泛化。作者特别指出，生物分子结构预测和机器学习原子间势领域呈现出有前景的进展。具体分子类别、性质清单、任务清单及其覆盖范围未知：当前资料未提供。",
+        "comparisonConditions": "作者报告将三个标准应用于其考察的当前先进方法，但未列出具体比较方法或模型名称，也未给出数据集、模型及任务数量。定性结果为：所考察的方法没有一种完全满足全部三个标准；进展尤其体现在生物分子结构预测与机器学习原子间势领域；成功集中于目标性质定义一致、训练数据丰富，且标签噪声相对于具有物理意义的变化较低的领域。作者进一步判断，分子科学的进展似乎较少取决于模型规模本身，而更取决于可用数据的质量与结构，以及在模型、预测任务或下游应用中纳入先验知识。具体硬件、计算设置、训练与测试划分、定量指标、单位、数值结果及统计口径未知：当前资料未提供。",
+        "limitations": "证据仅为所提供的摘要，未核对全文；以上结论均为作者报告，当前资料不包含独立复现证据。作者明确指出，其考察的方法均未完全满足三个标准，且成功集中在性质定义一致、数据丰富、相对标签噪声较低的领域；该判断的范围限于所考察的方法，不能扩展为对所有分子模型的穷尽性结论。摘要未提供标准的具体操作化方式、逐模型评估结果、样本规模、定量阈值、实验与统计细节，也未提供代码或数据可用性及独立验证信息，因此无法据此核验评估的覆盖度、结论稳健性或复现性。关于数据、先验知识与模型规模作用的判断带有‘似乎’这一限定，不能视为已完成因果验证。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": false
     },
     {
       "id": "sdd6ddfp2z5n31gs6qxa3h3pf",
@@ -1580,7 +2130,8 @@
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
-      "researchRoadmap": null
+      "researchRoadmap": null,
+      "selected": true
     }
   ],
   "topics": [
@@ -2826,5 +3377,47 @@
         "1 条公开资料的研究解读尚未完成"
       ]
     }
+  ],
+  "poolItemIds": [
+    "t8atnht4y37r9tizhpq01hffh",
+    "pa04crwru2eys3qwyf8ycsjnv",
+    "zskryg7ozbapap42lno4niu0r",
+    "i1kt74wkfu1sylbqhmi2t7dnv",
+    "cgogkeh2te0qeshodfgr85gix",
+    "zoxlt1tdtedxjnuf0u3qrfrv0",
+    "snmbmzrubqis2mvxth8qidlnb",
+    "pgau2nc5iai5889xcnwfot4w6",
+    "k92n912um78c2hvdqmmadyq15",
+    "xukjz8mfnifv1c57mwybn5o11",
+    "w6vii04cvdz8mdf915ur5pnud",
+    "tvhnp70ajv592y2ulmk84chi4",
+    "rmujtpniv4b0wgn8q2tustjac",
+    "cynkcg1dyd609ugzsm2xsi4ow",
+    "xygvbk1w7935rns002vpsn5bo",
+    "s8moemck93yrl4cn1on69rv4s",
+    "ikrv23aya4o9io6bh7il8k4dt",
+    "n7gty26hkso9o0egz436qszwh",
+    "hzb4nouwnroix96ff64svk73j",
+    "bcki5bdx77ohkfv1qcxdxnif4",
+    "ykks5xp6pl4htn6cbs14neyq3",
+    "xo12qtsx5uxravbfya9byv8o9",
+    "j86msvf1gyqy2u1a6u770wddd",
+    "ts6fww0dfeokrioiga58nogpz",
+    "o9au7pxaud0idoghr1htlmldb",
+    "u7o4abot2xp4y6yki22ezuqnl",
+    "iqoqm9ozj8ccym2r15iaof8f5",
+    "mv9x419gecxc33463mbm3c73x",
+    "u5ccy5p5ju4sze2uyc1dmgigh",
+    "wxw0bszppi6uq0njkt976pjzl",
+    "laxi0tw3qvkt5aixacj0k0bge",
+    "xvclwylq6gpg9y8bnxzvxcdtm",
+    "npn5vthpadant6v7pinyh43y8",
+    "r3ok6zz215wvlcinsxuais1xx",
+    "bjqsv9rkif46dwqc477albvuw",
+    "ywwig016167ebi1oemd78uwwz",
+    "hh1ql4wlk6dh07ek97nm62xjp",
+    "dpg8u2s8yta9nmfjmnc77dr98",
+    "q60ni863o9lp81sopgsb5k934",
+    "sdd6ddfp2z5n31gs6qxa3h3pf"
   ]
 }
