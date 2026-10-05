@@ -1,10 +1,150 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-05T03:43:05.273Z",
+  "generatedAt": "2026-10-05T04:02:42.338Z",
   "publicBaseUrl": "https://pkucy2016.github.io/algorithmhot/",
   "mode": "static-snapshot",
   "scope": "当前全部公开动态（已通过相关性筛选并具有摘要，少于 2,000 条）、公开精选、主题及现存试刊/日报归档（每类少于 400 期）；不含待审候选",
   "items": [
+    {
+      "id": "yzt4tue4ouwkj56q30gzanedh",
+      "title": "FT-PINN 研究提出通过联合优化非线性形变流形追踪激波",
+      "originalTitle": "Feature tracking in physics-informed neural networks via joint optimization of nonlinear deformation manifolds: application to shocks",
+      "summary": "FT-PINN 研究提出联合优化形变映射与解网络，作者报告该方法在四个测试问题中以有限配点预算解析出位置正确的激波。根据当前材料，解网络定义在固定参考域上，通过最小化拉回参考域的守恒律残差，使配点无需预知激波位置即可向弯曲、斜向及合并激波集中。",
+      "reason": "同架构、配点预算与训练条件下的对照，有助于判断联合优化形变与解网络对激波定位的作用及其适用范围。",
+      "sourceName": "arXiv · 计算物理与材料",
+      "sourceUrl": "https://arxiv.org/abs/2610.02230",
+      "publishedAt": null,
+      "timelineAt": "2026-10-05T03:24:14.418Z",
+      "category": "ai4s",
+      "tags": [
+        "论文/研究",
+        "AI4S",
+        "计算物理",
+        "算法",
+        "训练方法"
+      ],
+      "research": {
+        "arxivId": "2610.02230",
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": null,
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-05T03:24:14.418Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-05",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02230",
+            "sourceUrl": "https://arxiv.org/list/physics.comp-ph/new?skip=0&show=500"
+          }
+        ]
+      },
+      "researchBrief": null,
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "id": "bgnj8xnvtsg1wz1orf0mtnr8c",
+      "title": "迈向用语言控制生物系统：离线学习面向细胞、类器官与生物机器人的指令条件干预",
+      "originalTitle": "Toward Controlling Biology with Language:Offline Learning of Prompt-Conditioned Interventions for Cells, Organoids, and Biobots",
+      "summary": "研究作者报告，利用视觉语言模型的判断作为唯一训练奖励，可完全离线学习从自然语言指令到 xenobot 生物干预的映射。根据当前材料，该方法使用既有干预及其已观测结果的档案，将指令映射到档案中产生相应行为的干预，学习过程无需新实验或人工验证。",
+      "reason": null,
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02247",
+      "publishedAt": null,
+      "timelineAt": "2026-10-05T03:23:54.559Z",
+      "category": "ai4s",
+      "tags": [
+        "论文/研究",
+        "AI4S",
+        "算法",
+        "多模态",
+        "训练方法"
+      ],
+      "research": {
+        "arxivId": "2610.02247",
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": null,
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-05T03:23:54.559Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-05",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02247",
+            "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02247",
+            "sourceUrl": "https://arxiv.org/list/q-bio.QM/new?skip=0&show=500"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出完全离线学习自然语言到生物干预的映射：将已有干预及其已观察到的结果组成固定档案数据集，由视觉语言模型判断档案中的结果是否符合自然语言描述，并将该模型自身的判断作为唯一训练奖励，把指令映射到档案中已记录能产生相应行为的干预。该方法旨在应对生物干预缺乏封闭形式的语言含义、语言—干预—结果配对数据因每个样本都需要湿实验而采集昂贵的问题，并探索在不新增实验、不进行人工验证的条件下，这类判断能否支持映射学习。",
+        "applicableTasks": "当前摘要支持的对象是 xenobot，即一种没有神经系统的合成多细胞构造。任务是根据自然语言描述，从已有档案中匹配产生所述行为的干预。作者报告该映射可泛化到全新的指令，并使用训练时留出的档案数据进行评估。证据范围限于该对象、档案中的干预与已观察结果，以及摘要所述的指令泛化任务。",
+        "comparisonConditions": "作者报告，在训练时留出的档案数据上，对全新指令的评估准确率为 80.0%，机会基线为 66.7%；作者称该结果与直接使用真实标签训练的网络相当。指标为留出集准确率，单位为百分比；摘要未单独列出真实标签网络的具体数值。训练条件为固定离线档案、视觉语言模型判断作为唯一训练奖励，不新增实验且不进行人工验证。样本总数、准确率分母、训练与留出数据数量及划分比例、指令和干预数量、模型名称与规模、模型及任务总数、硬件、计算预算、训练超参数、重复次数和机会基线的计算方式均未知：当前资料未提供。",
+        "limitations": "证据仅来自摘要，未核对全文。80.0% 的留出准确率、相对 66.7% 机会基线的表现及与真实标签网络相当，均为作者报告，当前资料未提供独立复现证据。作者指出配对数据采集需要逐例湿实验，成本高；摘要没有明确陈述其他方法局限。所述评估使用既有档案中的留出数据，未提供新增湿实验、前瞻性实际干预、档案外干预、其他生物对象或更广泛行为任务的验证信息。统计不确定性、显著性、失败案例、视觉语言模型判断与人工评价的一致性，以及代码和数据的开放情况均未知；这些信息缺失不等于研究本身不存在相关验证或实现。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": false
+    },
+    {
+      "id": "bo5qoaxo0n8lqz4nhq8cy1mp0",
+      "title": "CORE 提出用于 KV 缓存压缩的覆盖校准与被逐出注意力质量再分配方法",
+      "originalTitle": "CORE: COverage CAlibration and Evicted-Mass REdistribution for KV Cache",
+      "summary": "CORE 研究提出统一 KV 状态保留与误差补偿的方法，作者报告其在高压缩率下改善长上下文解码表现。根据当前材料，该方法将结合查询效用与对数行列式覆盖度的离线分配蒸馏为轻量缓存感知索引器，推理时由同一校准分布决定 Top-$B$ 状态保留及潜在记忆写入，无需单独的写入权重预测器或在线对数行列式计算。",
+      "reason": "将保留状态与误差补偿统一到同一校准分布，为理解固定预算 KV 缓存压缩中覆盖性与注意力质量分配的关系提供方法参考。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02235",
+      "publishedAt": null,
+      "timelineAt": "2026-10-05T03:23:54.559Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "推理优化"
+      ],
+      "research": {
+        "arxivId": "2610.02235",
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": null,
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-05T03:23:54.559Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-05",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02235",
+            "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 CORE（COverage Calibration and Evicted-Mass REdistribution for KV Cache），针对长上下文解码受到 KV 缓存内存与带宽约束，以及现有固定预算压缩方法通常将保留与补偿分开、保留排序无法说明被丢弃的注意力质量及其引发的输出误差方向的问题。作者从精确分解出发：逐出误差等于被逐出的注意力质量乘以被逐出状态的质心与保留部分输出之间的方向差，强调保留集合的覆盖性与保持注意力质量的记忆写入。CORE 将结合查询效用和对数行列式覆盖度的离线分配蒸馏到轻量、感知缓存的索引器中。推理时，同一校准分布同时驱动两个通道：以 Top-B 排序保留互补的 KV 状态，并用未保留部分的分配质量及条件权重参数化潜在记忆写入，无需单独的写入权重预测器或在线计算对数行列式。作者还报告了补偿前误差的四项证书、非加性覆盖交互分析，以及通过递归与查询自适应归一化得到的、带有层级界的质量无关写入稳定性结论。",
+        "applicableTasks": "资料支持的范围为长上下文解码中的固定预算 KV 缓存压缩，涉及 KV 状态保留、逐出后的误差补偿与潜在记忆写入。作者报告在三个骨干模型上评估，并提及 RULER、LongBench 和反复逐出评估。具体骨干模型名称、各基准覆盖的子任务、应用领域、输入长度及向其他模型或场景推广的范围，未知：当前资料未提供。",
+        "comparisonConditions": "作者报告：在三个骨干模型上，CORE 在 90% 压缩条件下，相较最强的 RULER 基线最高提高 3.78 个分数点；这是最高增益，不能解释为平均增益、所有模型均有相同增益或相对百分比提升。最强基线的名称与选择口径、RULER 具体指标名称及量表、绝对得分、各模型结果、平均增益，以及 90% 压缩率的具体定义与分母，未知：当前资料未提供。作者还称 LongBench 和反复逐出评估进一步显示了较强有效性与解码效率，但未提供这两类评估的量化结果。数据集样本数量、子任务数量、比较方法数量、模型规模、缓存预算 B 的具体值、上下文与生成长度、硬件、数值精度、批大小、离线分配与蒸馏的计算设置及成本、推理耗时、吞吐量、内存或带宽数值与单位，未知：当前资料未提供。摘要明确的计算条件仅包括使用轻量缓存感知索引器，且推理无需单独的写入权重预测器或在线对数行列式计算。",
+        "limitations": "当前证据仅为所提供摘要，未核对全文。方法、理论分析及实验效果均为作者报告，不构成独立复现。摘要未明确陈述方法自身的适用限制或失败情形；这部分未知，不能据此断言研究没有限制。四项误差证书的具体表达、证明与成立假设、层级稳定性界的细节、消融结果、实验重复次数、统计不确定性、逐模型与逐任务表现，以及解码效率的量化验证，当前资料未提供。最高 3.78 个分数点的改善仅能按摘要所述的 RULER 与 90% 压缩条件理解，不能推广为其他压缩率、模型或任务上的普遍增益。实现、代码可用性、完整复现配置及独立复现证据，未知：当前资料未提供。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
     {
       "id": "dp34pggn6dui8gqsb7679wnxy",
       "title": "因果发现识别 UK Biobank 中身体活动与痴呆风险之间的关联路径",
@@ -151,6 +291,52 @@
       "selected": false
     },
     {
+      "id": "qyt9daxnok7atfzs2ym06625n",
+      "title": "RxnOptBench：评测大语言模型在有机方法学研究中的反应条件优化能力",
+      "originalTitle": "RxnOptBench: Benchmarking LLMs for Reaction-Condition Optimization in Organic Methodology",
+      "summary": "RxnOptBench 研究提出反应条件优化基准，评测大语言模型读取真实条件筛选表并选择最佳条件组合的能力。根据当前材料，选项与先例均来自 2025 年发表的有机方法学论文中的真实湿实验记录，评分以结合报告产率、对映体过量（ee）、非对映异构体比例（dr）和区域异构体比例（rr）的明确效用指标为基础，并配对设置有先例与无先例条件，以区分上下文文献证据利用与参数记忆。",
+      "reason": "配对设置区分了模型利用文献先例与参数记忆的表现，为判断化学条件优化能力是否来自当前提供的实验依据提供比较框架。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02242",
+      "publishedAt": null,
+      "timelineAt": "2026-10-05T03:23:54.559Z",
+      "category": "ai4s",
+      "tags": [
+        "论文/研究",
+        "AI4S",
+        "实验设计"
+      ],
+      "research": {
+        "arxivId": "2610.02242",
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": null,
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-05T03:23:54.559Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-05",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02242",
+            "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出化学反应条件优化基准 RxnOptBench，将评测重点从反应类别标注、逆合成或 SMILES 操作，转向读取真实条件筛选表并选择最佳条件组合，以评估模型对有机方法学研究中条件优化决策的支持能力。基准的每个候选选项和先例均来自 2025 年发表的有机方法学论文优化表中的真实湿实验记录。作者采用由预先声明的主要效用函数导出的连续相对分数；该效用综合报告的产率、对映体过量（ee）、非对映异构体比例（dr）和区域异构体比例（rr）。基准还设置有先例与无先例的配对设计，旨在区分模型在上下文中利用文献证据的能力与参数记忆。",
+        "applicableTasks": "资料支持用于评估大语言模型的化学反应条件选择能力：读取有机方法学论文中的真实条件筛选表，从候选组合中选择能够共同优化产率与立体选择性的条件。摘要列出的条件因素包括催化剂、配体、溶剂、试剂、温度、时间和气氛；评分还涉及区域异构体比例。配对任务用于比较提供与不提供文献先例时的表现。当前证据范围为从 2025 年发表的有机方法学论文中构建的基准；具体反应类别、底物覆盖范围及对其他年份或实际实验优化流程的适用性未知。",
+        "comparisonConditions": "作者报告评估了九个前沿大语言模型和三个化学大语言模型，并采用有文献先例与无文献先例的配对条件。摘要涉及随机基线、化学专用模型、开放权重模型与专有前沿模型之间的比较。数据来源为 2025 年发表的有机方法学论文优化表，候选项和先例均为真实湿实验记录；论文数量、筛选表数量、测试样本数、任务数量及每题选项数未知。指标为基于综合产率、ee、dr 和 rr 的主要效用函数计算的连续相对分数；具体公式、权重、归一化方式、分值范围、单位及各量的编码方式未知。作者报告，即使表现最好的模型仍有显著提升空间；化学专用模型在多轴选择任务上降至随机基线水平；开放权重模型已缩小与专有前沿模型之间的大部分差距。摘要未提供具体模型名称、数值分数、差距大小、统计不确定性或配对条件下的具体结果。硬件、推理与计算设置、采样参数、重复次数及计算成本均未知。",
+        "limitations": "当前资料仅为摘要，未核对全文；上述方法与结果均为作者报告，不构成独立复现。作者明确指出，最佳模型仍有显著提升空间，化学专用模型在多轴选择上的表现可降至随机基线水平。摘要没有提供数据构建与人工审核细节、效用函数的具体定义、模型级结果、统计检验、数据污染或记忆排查细节，也未提供模型所选条件的新增湿实验验证信息。配对设计区分文献证据利用与参数记忆是作者提出的设计目的，摘要不足以独立确认其隔离效果。作者称发布了最终经人工审核的基准测试集和评估代码，但当前资料未提供访问地址、许可或运行信息，因此其可访问性、可运行性及独立复现情况未知；这些信息缺失不代表研究本身未开展相应工作。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
       "id": "rwhaeiknhh2455mazau4ec1hm",
       "title": "CONTRA 提出通过程序行为差异筛选 LLM 代码生成中的澄清问题",
       "originalTitle": "CONTRA: Discovering and Qualifying Behavior-Changing Questions for Selective Clarification in LLM Code Generation",
@@ -291,6 +477,146 @@
       "selected": false
     },
     {
+      "id": "apzihgk59r6lt1lf7uihbt8ps",
+      "title": "scEGFlow 提出能量引导流匹配方法，用于可泛化的单细胞扰动响应预测",
+      "originalTitle": "Generalizable single-cell perturbation response prediction using energy-guided flow matching",
+      "summary": "scEGFlow 研究提出能量引导的流匹配框架，用于预测单细胞扰动响应，并报告其在已见和未见扰动条件下的响应分布重建优于现有方法。根据当前材料，该框架用条件流匹配建模对照细胞群体向扰动状态的连续转变，再通过条件特异性的能量梯度校正预测，无需重新训练流模型。",
+      "reason": "通过在推理阶段用条件特异性能量梯度校正预测，该方法为不重新训练流模型、利用少量实测细胞适配新扰动提供了可迁移思路。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02232",
+      "publishedAt": null,
+      "timelineAt": "2026-10-05T03:23:49.923Z",
+      "category": "ai4s",
+      "tags": [
+        "论文/研究",
+        "AI4S",
+        "算法"
+      ],
+      "research": {
+        "arxivId": "2610.02232",
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": null,
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-05T03:23:49.923Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-05",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02232",
+            "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 scEGFlow，一种能量引导的流匹配框架，用于缓解现有方法依赖训练时学得的固定映射、难以在推理时校准分布偏移或适应新扰动条件的问题。该框架先用条件流匹配建模对照细胞群体向扰动状态的连续转变，再通过条件特异的能量梯度校正和引导预测，使调整无需重新训练流模型。",
+        "applicableTasks": "摘要支持的范围是单细胞分辨率的扰动响应预测，包括成像表型和转录组谱的响应分布重建，涉及已见与未见扰动条件，以及仅有少量实测细胞的新条件适应。作者还报告了对共识基因表达签名中扰动诱导的上调、下调模式及调控方向的预测。具体细胞类型、物种、扰动类型和应用边界未知：当前资料未提供。",
+        "comparisonConditions": "作者报告在覆盖成像表型和转录组谱的基准上进行评估，比较对象仅称为现有方法，未列出方法名称。作者称，scEGFlow 在已见和未见扰动条件下的响应分布重建优于这些方法，并能忠实保留细胞流形几何与群体异质性；在仅有少量实测细胞的新条件适应中，该优势明显，预测准确性持续改善。作者还报告，能量引导提高了预测与观测调控方向的一致性，并能准确重现共识基因表达签名中的上调与下调模式。以上均为摘要中的定性结果。数据集、比较模型和任务的确切数量、少量细胞的具体数量、硬件与计算设置、指标定义、单位、数值结果、增益幅度、统计不确定性及平均或最高等汇总口径未知：当前资料未提供。",
+        "limitations": "证据仅来自所提供的摘要，未核对全文。摘要明确指出既有方法依赖固定映射所带来的推理适应困难，但未明确陈述 scEGFlow 自身的限制。摘要未提供数据划分、已见与未见条件的具体定义、能量函数学习与条件校准的细节、完整比较设置、定量消融或统计验证信息；无需重训流模型不等于无需额外测量、能量模型训练或计算。作者对模块化、泛化能力和可引导性的总结属于作者报告，其可推广边界无法由当前材料确定。代码可用性及独立复现情况未知：当前资料未提供，不能据此断言相关实现或验证不存在。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "id": "dx28sfllm4b8ffobz15tw9zbw",
+      "title": "研究比较不同假设下从 MS/MS 谱图预测分子指纹的最近邻基线",
+      "originalTitle": "Nearest-neighbour baselines for fingerprint prediction from MS/MS spectra under different assumptions",
+      "summary": "该研究报告系统比较了从 MS/MS 谱图预测分子指纹的多种最近邻方法，分析推理时可用信息的不同假设如何影响性能。根据当前材料，研究旨在建立更严格的基线，使该领域的基准评测与进展衡量更严谨。材料未提供具体方法变体、数据集或定量比较结果。原文链接为 https://arxiv.org/abs/2610.02249。",
+      "reason": null,
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02249",
+      "publishedAt": null,
+      "timelineAt": "2026-10-05T03:23:49.923Z",
+      "category": "ai4s",
+      "tags": [
+        "论文/研究",
+        "AI4S",
+        "算法",
+        "分子建模"
+      ],
+      "research": {
+        "arxivId": "2610.02249",
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": null,
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-05T03:23:49.923Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-05",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02249",
+            "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者报告对多种最近邻检索变体进行系统比较，重点考察各变体在推理时假定可获得的信息有何不同，以及这些假设如何影响性能。该工作的目标是建立更严格的基线，使分子指纹预测的基准评测更严谨，并更准确地衡量进展。摘要未给出具体变体名称、算法改动或统一比较的实施细节。",
+        "applicableTasks": "资料支持的任务是从串联质谱（MS/MS）谱图预测分子指纹，以及针对该任务比较最近邻检索方法、建立评测基线。具体分子类别、谱图来源、指纹类型及适用数据范围未知：当前资料未提供。",
+        "comparisonConditions": "作者报告系统比较了若干最近邻变体，比较重点是推理阶段可用信息的不同假设及其对性能的影响，但未列出各项假设。摘要作为背景引用 Khoo and Barzilay（2026）、Liu 等（2026）和 Gupta 等（2026），称已有若干最近邻变体达到或超过当前深度学习模型的表现；这一表述未附具体比较结果，不能据此认定本报告的全部变体均有优势。比较变体的名称和数量、深度学习模型的名称和数量、数据集及样本数量、评测任务数量、硬件与计算设置、指标与单位、数值结果及最高或平均等统计口径均未知：当前资料未提供。",
+        "limitations": "当前证据仅为摘要，未核对全文。摘要说明了作者的比较目标与关注因素，但没有提供足以核验性能结论的具体实验设置、数值结果或统计不确定性。推理时可用信息不同是作者明确强调的比较条件，不能将不同条件下的表现视为可直接互换的结果。作者是否明确陈述其他研究限制，以及是否提供代码、数据划分、泄漏控制、外部验证或独立复现信息，均未知：当前资料未提供。所述表现属于摘要转述的既有研究报告，系统比较属于本报告作者的陈述，均不构成当前资料中的独立复现证据。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": false
+    },
+    {
+      "id": "e8d0u7zawltgcjmb162ocdxqb",
+      "title": "RASS 提出面向扩散草稿树的排序感知推测采样方法",
+      "originalTitle": "Rank-Aware Speculative Sampling for Diffusion Draft Trees",
+      "summary": "RASS 研究提出排序感知的草稿树验证规则，作者报告其在所评估的扩散生成设置中均优于 D-GRS。根据当前材料，该方法沿提议分布与目标分布的均值位移方向排列候选，优化排序位置的抽样权重以减小所选提议分布与目标分布的总变差，再通过最大耦合与残差校正确保任意排序权重下的精确采样，排序无需额外目标模型评估。",
+      "reason": "候选排序利用已有信息改进草稿树验证，在相同计算预算下与 D-GRS 的比较为评估扩散采样效率提供了具体参照。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02251",
+      "publishedAt": null,
+      "timelineAt": "2026-10-05T03:23:49.923Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "推理优化",
+        "图像生成"
+      ],
+      "research": {
+        "arxivId": "2610.02251",
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": null,
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-05T03:23:49.923Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-05",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02251",
+            "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出排序感知推测采样（Rank-Aware Speculative Sampling，RASS），用于推测草稿树的验证。其针对的问题是：Diffusion Greedy Rejection Sampling（D-GRS）在每个节点生成 K 个条件独立候选，并按生成顺序依次检验，未利用无需额外目标模型评估即可获得的候选排序信息。RASS 基于排序感知列表耦合，沿提议分布与目标分布的均值位移方向排列候选，并使用经优化的权重抽取排名，以最小化所选提议分布与目标分布之间的总变差距离；随后将所选候选与目标分布进行最大耦合。作者称，残差校正确保任意排名权重下均可精确采样，从而在保持目标分布的前提下提高验证效率。",
+        "applicableTasks": "摘要支持的评估范围包括四类设置：高斯混合目标分布采样、FFHQ 上的无条件像素空间生成、CIFAR-10 上的条件生成，以及使用 COCO2014 提示词的 Stable Diffusion 3.5 潜在扩散生成。方法面向扩散生成中的推测草稿树验证；其他任务、数据或模型上的适用效果未知。",
+        "comparisonConditions": "作者以 D-GRS 为主要比较对象；D-GRS 每个节点生成 K 个条件独立候选，K 的具体数值未知。摘要另提到树方法相较单链草稿能更有效分配并行计算预算，但未给出该比较的量化结果。RASS 的评估覆盖四类设置：一个高斯混合目标设置，以及涉及 FFHQ、CIFAR-10、COCO2014 提示词的三个生成设置；明确命名的模型为 Stable Diffusion 3.5，模型总数、各设置样本或提示词数量未知。效率指标为标准采样的目标模型评估次数除以推测采样的目标模型评估次数，是无量纲比值。作者报告 RASS 在所评估设置中均优于 D-GRS；在计算预算匹配的 CIFAR-10 设置下，该指标相对 D-GRS 的增益最高达到约 20%，不能视为所有设置的统一增益或平均增益。各方法的绝对评估次数、指标绝对值、其他设置的具体增益均未知。硬件、并行度、具体计算预算、采样步数、草稿模型、树结构及其他运行设置未知；摘要未报告墙钟时间或生成质量指标。",
+        "limitations": "当前证据仅为摘要，未核对全文。方法的精确采样性质和效率提升均为作者报告，当前资料未提供证明细节、独立复现或外部验证。摘要明确将约 20% 的增益限定于计算预算匹配的 CIFAR-10 设置，并以目标模型评估次数比值衡量效率，不能据此推断实际耗时同幅下降、生成质量提高或未评估场景的收益。摘要未明确陈述方法自身的其他限制；统计不确定性、重复运行、质量验证、实现可用性及复现所需完整配置未知，不能据此断言研究本身未进行相关工作。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
       "id": "enwzn5t0ab4s9x3cl78c6vf1x",
       "title": "RINS 研究提出用于大型稀疏线性系统的残差像神经子空间求解器",
       "originalTitle": "RINS: Residual-Image Neural Subspace Solvers for Large Sparse Linear Systems",
@@ -331,6 +657,52 @@
         "applicableTasks": "资料支持的任务是求解 PDE 离散化得到的大型稀疏线性系统；作者在六个 PDE 衍生基准任务、两个规模上进行了评估。具体 PDE 类型、任务名称、规模数值及其他问题类别上的适用性未知：当前资料未提供。",
         "comparisonConditions": "作者报告，在六个 PDE 衍生基准任务、两个规模的评估中，Gate-RINS 在多数设置下达到固定相对残差阈值所需的同步墙钟时间短于 GMRES 和一个近期的纯图神经基线；混合调度进一步改善了残差轨迹。这里的结论限于‘多数设置’，摘要未给出获益设置的数量或比例。比较涉及同步墙钟时间、固定相对残差阈值及残差轨迹，但具体阈值、时间单位、绝对耗时、加速倍数、平均或最高增益均未知。纯图神经基线的名称、数据数量、模型配置与数量、两个规模的具体大小、硬件、精度、同步方式、计算预算及重复运行设置未知：当前资料未提供。",
         "limitations": "证据仅为用户提供的摘要，未核对全文，也没有独立复现证据。作者报告的困难模式诊断与轨迹可视化支持一种解释：性能增益与算子像子空间更有效地对齐当前残差有关；摘要未提供诊断细节或足以独立核验该解释的数据。作者报告的速度优势限于所测六个任务、两个规模中的多数设置，不能推断为所有条件下均有提升。摘要未明确陈述其他方法限制，也未提供逐任务结果、统计不确定性、消融结果、训练成本、泛化验证或代码与数据可用性信息；这些缺失不能据此断言为研究本身没有相应内容。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "id": "jvqlrtgegkb8xu5ulrh9ir6kd",
+      "title": "Budgeted Cache Repair 提出跨上下文 KV 缓存复用的预算内修复方法",
+      "originalTitle": "Budgeted Cache Repair for Cross-Context KV-Cache Reuse",
+      "summary": "Budgeted Cache Repair（BCR）研究提出按固定预算重算缓存行，作者报告其将 GSM8K 准确率恢复至完整预填充水平，同时仍让多数调用使用缓存。",
+      "reason": "研究将缓存复用的决策细化到行级重算，并加入同预算随机选择对照，为比较缓存修复策略提供了更具体的实验参照。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02233",
+      "publishedAt": null,
+      "timelineAt": "2026-10-05T03:23:49.923Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "推理优化"
+      ],
+      "research": {
+        "arxivId": "2610.02233",
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": null,
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-05T03:23:49.923Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-05",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02233",
+            "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 Budgeted Cache Repair（BCR，预算约束的缓存修复），针对跨上下文 KV-cache 复用在新前缀下预测共享片段的键和值、而不重新计算时产生的准确率损失。作者报告，仅决定是否复用整个缓存不能消除这一代价，有效做法是选择缓存中哪些部分需要重算，且选择粒度越大，精细选择的收益越低。BCR 从组装后的缓存草拟两个 token，按这两个 token 对缓存各行的注意力给行排序，再以三种布局之一精确重算固定预算内的行；一行对应一个 token 的键和值。其变化是将草拟结果用于选择修复对象，而非用作是否复用缓存的门控，并实际支付部分重算成本。",
+        "applicableTasks": "当前摘要支持的研究范围是新前缀下共享片段的跨上下文 KV-cache 复用与局部修复。作者在 MMLU 和 GSM8K 两项基准上报告复用导致明显准确率损失，并在 GSM8K 上报告 BCR 的准确率恢复结果。具体模型、输入长度、前缀与共享片段构造、样本规模，以及其他任务或部署场景的适用性未知：当前资料未提供。",
+        "comparisonConditions": "作者比较了是否复用缓存的决策与选择缓存部分进行重算，并报告知情选择相对随机选择额外消除缓存误差的比例：单行粒度为 49.5%，64-token 块粒度为 10.6%，整次调用粒度无收益。这些比例描述缓存误差消除收益，不是任务准确率提升；缓存误差的具体定义、百分比计算分母和计算公式未知。BCR 草拟两个 token，使用固定行数预算精确重算，并有三种布局；预算数值和布局细节未知。作者报告，BCR 在 GSM8K 上恢复至 dense-prefill（稠密预填充）的准确率，同时多数调用仍由缓存服务，但未提供准确率数值或缓存服务调用的确切占比。作者还报告，其最佳布局在参考网格中优于每个复用基线的均值；这一表述限定于最佳布局与基线均值，摘要未说明对应指标、差值、网格构成或基线名称与数量。相同预算下，草拟 token 驱动的选择器优于抛硬币式随机选择器，具体差值未知。摘要明确点名两项基准 MMLU 和 GSM8K，但模型数量、数据集样本量、硬件、计算精度、运行次数、时间或吞吐单位、实际计算开销及统计不确定性均未知：当前资料未提供。",
+        "limitations": "证据仅来自所提供摘要，未核对全文，也没有独立复现证据；所有结果均为作者报告。作者指出，跨上下文缓存复用此前被报告为不损失质量，但其在 MMLU 和 GSM8K 上观察到明显准确率损失；作者还报告，是否复用的决策规则不能消除该代价，选择重算部分的收益会随粒度增大而下降，整次调用粒度没有收益。BCR 需要实际承担部分重算成本，摘要未量化这项成本。恢复至稠密预填充准确率的明确陈述限于 GSM8K，不能推及 MMLU、其他任务或所有模型；最佳布局优于参考网格中各复用基线均值，也不能推及所有布局或全部运行条件。作者称既往评估缺少同预算随机选择对照，但摘要未提供这些评估的具体范围。模型与数据细节、绝对结果、误差条或显著性检验、完整比较设置、代码可用性及外部验证信息未知：当前资料未提供，不能据此断言研究本身不存在这些信息。",
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
@@ -480,6 +852,156 @@
       },
       "researchRoadmap": null,
       "selected": false
+    },
+    {
+      "id": "v24qz1z1g4tl0ofszskkej3yi",
+      "title": "SSU-LSF 提出状态空间遗忘方法，处理地表预测中的非平稳偏差",
+      "originalTitle": "State-Space Unlearning for Non-Stationary Bias in Land Surface Forecasting",
+      "summary": "SSU-LSF 研究提出面向地球科学 Mamba 类状态空间模型的机器遗忘方法，以削减非平稳混杂事件在地表预测中留下的持续偏差。根据当前材料，该方法利用针对状态矩阵的 EKFac 影响函数和谱半径加权阈值定位混杂时间范围，再在 KL 散度信赖域内执行无 Hessian 投影梯度上升，并加入空间总变差正则化。",
+      "reason": "研究将混杂削减与干净域预测误差、遗忘计算成本并列报告，为评估地表预测中定向遗忘的收益与代价提供比较依据。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02248",
+      "publishedAt": null,
+      "timelineAt": "2026-10-05T03:23:49.923Z",
+      "category": "ai4s",
+      "tags": [
+        "论文/研究",
+        "AI4S",
+        "算法",
+        "训练方法"
+      ],
+      "research": {
+        "arxivId": "2610.02248",
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": null,
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-05T03:23:49.923Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-05",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02248",
+            "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+          },
+          {
+            "kind": "code",
+            "url": "https://github.com/Anidipta/SSU-LSF",
+            "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 SSU-LSF（State-Space Unlearning for Land Surface Forecasting），并将其称为首个专为地球科学 Mamba 类结构化状态空间模型（SSM）设计的机器遗忘框架。该方法针对未记录的灌溉激增、水坝运行变化、传感器重新校准等非平稳混杂事件被模型吸收到状态转移矩阵中，导致物理原因结束后 NDVI、LST 和作物物候预测仍持续偏移的问题。作者利用闭式矩阵指数梯度，为 Mamba 状态矩阵构建专门的 EKFac 影响函数；通过谱半径加权的肘部阈值法定位时间混杂足迹 Φ；在 KL 散度信赖域内执行无 Hessian 的投影梯度上升，并加入空间总变差（TV）正则化。",
+        "applicableTasks": "资料支持的目标任务为基于 Mamba 类 SSM 的陆表预测中的混杂影响遗忘，涉及 NDVI、LST 和作物物候预测。摘要报告在 CropHarvest、NDVI-LST 和 ERA5 三个异质基准上的评估。具体数据地域、时间跨度、空间分辨率、样本规模、预测时距，以及对其他模型架构或其他混杂类型的适用范围，未知：当前资料未提供。",
+        "comparisonConditions": "作者报告在三个异质基准上与十一种基线比较；十一种基线的完整名称、模型数量及各基准的任务数量未知。作者报告混杂削减率分别为 CropHarvest 0.773、NDVI-LST 0.821、ERA5 0.859；摘要未给出该指标的计算公式、分母或聚合方式，也未标注单位。作者报告干净域 RMSE 的最坏情况退化为 4.2%，发生在 ERA5；该数值是最坏情况口径，不能视为所有基准或平均退化，且摘要未提供原始 RMSE、物理单位及退化百分比的参照值。作者报告在 3–5 个 epoch 内收敛，每次遗忘请求的 GPU 成本相较完整重训练低 8.4 倍；该倍数以完整重训练为比较对象、以单次遗忘请求为口径，但 GPU 成本的定义和单位、绝对成本、跨基准汇总方式均未知。GPU 型号与数量、其他硬件配置、模型规模、训练与遗忘超参数、收敛判据，以及完整重训练的具体设置，未知：当前资料未提供。",
+        "limitations": "证据仅来自所提供的摘要，未核对全文，所有方法与实验结果均为作者报告，当前资料不构成独立复现。作者报告命题 1 给出的残余混杂上界为 O((1−ρ(Ā)^{T_c})/((1−ρ(Ā))μ))，并明确指出该上界随窗口长度 T_c 增大；摘要未提供命题的完整假设、μ 的定义或证明细节。作者报告的 ERA5 干净域 RMSE 最坏退化 4.2% 表明其报告结果包含干净域性能损失，不能解读为无损遗忘。当前资料未提供数据划分、混杂事件构造与标注方式、逐基线结果、消融实验、重复次数、误差条、统计显著性或实际业务部署验证，无法据此判断这些验证在研究全文中是否存在。摘要末尾仅有“Code: this https URL”字样，未给出可核验的具体代码地址，不能据此认定实现已开放、可运行或已被独立复现；“首个”的定位也仅为作者主张。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "id": "ve6hfwu4k3n93hln34b55vv8l",
+      "title": "面向万亿参数 MoE 的硬件原生联合稀疏量化研究",
+      "originalTitle": "Hardware-Native Joint Sparse-Quantization for Trillion-Scale Mixture-of-Experts",
+      "summary": "Lee 等作者提出面向万亿参数 MoE 的软硬件协同设计框架，将专家权重压缩为硬件原生低精度稀疏表示，并在 Sparse Tensor Cores（SpTCs）上加速执行。",
+      "reason": "该研究将联合稀疏量化与硬件执行内核配套设计，为理解大规模 MoE 压缩精度与实际部署效率之间的关系提供了具体案例。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02241",
+      "publishedAt": null,
+      "timelineAt": "2026-10-05T03:23:49.923Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "推理优化",
+        "部署/工程"
+      ],
+      "research": {
+        "arxivId": "2610.02241",
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": null,
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-05T03:23:49.923Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-05",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02241",
+            "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02241",
+            "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出端到端硬件—软件协同设计框架，将混合专家（MoE）模型的专家权重压缩为硬件原生的低精度稀疏表示，并利用稀疏张量核心（SpTCs）加速执行，针对大内存占用、内存带宽限制，以及低精度半结构化稀疏应用于 MoE 时的模型质量下降和缺少分组稀疏 GEMM 原语等问题。算法上，通过连续重参数化放松离散半结构化稀疏支持集的选择，在路由器加权重构目标下，与量化权重进行可微联合优化，并支持可扩展的专家并行压缩；系统上，开发面向 SpTCs 上低精度稀疏 MoE 推理的定制分组稀疏 GEMM 内核。",
+        "applicableTasks": "资料支持的范围为 MoE 语言模型的专家权重压缩、低精度稀疏推理及部署服务加速。作者报告评估的模型规模从 300 亿到 1 万亿参数；内核与服务性能结果在 NVIDIA B200 GPU 上报告。具体模型名称、评测任务、数据集，以及其他硬件或模型架构上的适用性未知：当前资料未提供。",
+        "comparisonConditions": "作者报告：在规模为 300 亿至 1 万亿参数的 MoE 模型上，相比摘要所称的当前最先进联合稀疏—量化方法，准确率最高提高 4.35 个百分点，同时保留原始模型性能的 96.09%；该保留比例以原始模型性能为参照，但具体性能指标、聚合方式及其与最高准确率增益是否对应同一模型或配置未知。在 NVIDIA B200 GPU 上，定制内核相对厂商基线的性能最高达到 1.65 倍；作者另报告服务吞吐量达到 1.18 倍、端到端延迟最高降低 4.03 倍，但摘要未明确这两项服务指标的比较基线。1.65 倍与 4.03 倍均为最高值，1.18 倍未标为最高或平均值。具体比较方法及厂商基线名称、模型数量、数据集与任务数量、GPU 数量、量化位宽、稀疏模式、批大小、输入输出长度、软件配置、计算预算、绝对准确率、吞吐量及延迟数值和单位未知：当前资料未提供。",
+        "limitations": "当前证据仅为摘要，未核对全文；上述方法与结果均为作者报告，不构成独立复现。摘要明确指出 MoE 部署的内存与带宽瓶颈，以及利用 SpTCs 时的质量下降和分组稀疏 GEMM 原语缺失，但未明确陈述所提方法自身的限制。各项最高增益的适用配置及结果分布、各模型和任务的质量变化、统计不确定性、消融实验、压缩成本、其他硬件上的验证，以及代码与复现材料是否可用，当前资料均未提供，不能据此断言研究本身未开展这些验证。摘要中的最先进方法比较称谓不能单独证明普遍质量优势，最高增益也不能推广至所有模型或运行条件。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "id": "xlf1sa5j60xtrk8fglu65u6fd",
+      "title": "MIRAGE 研究报告：纳入行星半径潜变量改善真实 JWST 光谱的大气反演",
+      "originalTitle": "A Missing Latent, Not a Missing Simulator: Radius-Augmented Inference for Real JWST Retrieval",
+      "summary": "作者报告，MIRAGE 将行星半径纳入流匹配后验，使真实 WASP-39b 光谱反演的 χ²/N 从 301 降至 0.06。根据当前材料，原流后验的重要性采样有效样本量 ESS = 1，而嵌套采样中检查温度梯度、SO2 不透明度及高保真不透明度集合未改变拟合，作者据此将失败归因于推断遗漏行星半径潜变量。",
+      "reason": "研究通过嵌套采样排查前向模型因素，提供了区分模拟器设定问题与推断遗漏潜变量的诊断思路，可供其他模拟推断任务参考。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02245",
+      "publishedAt": null,
+      "timelineAt": "2026-10-05T03:23:49.923Z",
+      "category": "ai4s",
+      "tags": [
+        "论文/研究",
+        "AI4S",
+        "算法"
+      ],
+      "research": {
+        "arxivId": "2610.02245",
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": null,
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-05T03:23:49.923Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-05",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02245",
+            "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 MIRAGE：在流匹配后验中加入行星半径这一潜变量，并利用重要性采样和最优传输映射，对照独立的嵌套采样参考进行校准。该方法针对在辐射传输模拟器上训练的摊销式基于模拟的推断（SBI）能够准确恢复合成 JWST 光谱中的系外行星大气、却在真实约化光谱上发生后验崩溃的问题。作者报告，先用嵌套采样检查温度梯度、SO2 不透明度和高保真不透明度集后，拟合没有变化；作者据此将该案例的崩溃归因于推断遗漏了模拟器已编码的行星半径潜变量，而非模拟器设定错误。",
+        "applicableTasks": "资料支持的任务是从真实 James Webb Space Telescope（JWST）光谱反演系外行星大气。作者报告 MIRAGE 获得了真实 WASP-39b 的物理上合理且与文献一致的反演结果，并在两个仪器、三个真实 JWST 目标之间不作修改地迁移使用，其中一条光谱由作者从 Mikulski Archive for Space Telescopes（MAST）原始数据开始完成端到端自行约化。仪器名称、其余目标名称、总光谱数量及目标参数范围未知。作者提出遗漏潜变量可能伪装成模型设定错误的跨领域启示，但摘要未提供其他领域的实验验证。",
+        "comparisonConditions": "作者报告的初始流后验在真实 WASP-39b 上崩溃：重要性采样有效样本量 ESS = 1，最佳拟合 χ²/N = 301。使用嵌套采样检查温度梯度、SO2 不透明度和高保真不透明度集后，作者称拟合保持不变，但未给出各项检查的独立数值或组合设置。MIRAGE 以独立的嵌套采样结果为校准参考；作者报告真实 WASP-39b 的 χ²/N 从 301 降至 0.06。摘要未定义分母 N，也未明确该指标的单位，不能据此将其另行解释为约化卡方。迁移范围为两个仪器、三个真实 JWST 目标，其中一条光谱从 MAST 原始数据端到端自行约化；未报告全部目标逐项或平均的拟合指标，因此上述数值变化仅能归于 WASP-39b 案例。合成光谱上的准确性仅有定性描述。完整比较模型数量、训练及测试样本量、任务总数、硬件、计算预算、训练时长、采样设置及 MIRAGE 校准后的 ESS 均未知：当前资料未提供。",
+        "limitations": "当前证据仅为摘要，未核对全文。拟合改善、跨仪器和跨目标迁移，以及崩溃原因的判断均为作者报告，并非独立复现结论；文中的独立嵌套采样参考也不等于第三方独立复现。摘要所列三类前向模型检查支持作者对该案例的解释，但未提供足以核查其诊断过程的完整模型、数据、数值结果或统计不确定性，不能扩展为排除了所有可能的模拟器设定错误。作者称结果物理上合理且与文献一致，但未给出大气参数、可信区间或文献比较细节。摘要未明确陈述 MIRAGE 本身的方法限制，也未提供完整验证方案、误差校准结果、代码与数据开放情况或独立复现信息；这些信息缺失不代表研究本身不存在相应内容。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
     },
     {
       "id": "zskryg7ozbapap42lno4niu0r",
@@ -2523,13 +3045,21 @@
       "name": "算法",
       "group": "field",
       "definition": "AI/机器学习的训练、推理、优化、模型方法与理论进展。",
-      "total": 26,
-      "recent": 26,
-      "latestAt": "2026-10-05T03:23:54.559Z",
+      "total": 34,
+      "recent": 34,
+      "latestAt": "2026-10-05T03:24:14.418Z",
       "itemIds": [
+        "yzt4tue4ouwkj56q30gzanedh",
         "rwhaeiknhh2455mazau4ec1hm",
         "m2fg2zmdeud0ssgmz7pi7479z",
+        "bo5qoaxo0n8lqz4nhq8cy1mp0",
+        "xlf1sa5j60xtrk8fglu65u6fd",
+        "ve6hfwu4k3n93hln34b55vv8l",
+        "v24qz1z1g4tl0ofszskkej3yi",
+        "jvqlrtgegkb8xu5ulrh9ir6kd",
         "enwzn5t0ab4s9x3cl78c6vf1x",
+        "e8d0u7zawltgcjmb162ocdxqb",
+        "apzihgk59r6lt1lf7uihbt8ps",
         "zskryg7ozbapap42lno4niu0r",
         "zoxlt1tdtedxjnuf0u3qrfrv0",
         "pgau2nc5iai5889xcnwfot4w6",
@@ -2576,11 +3106,16 @@
       "name": "AI4S",
       "group": "field",
       "definition": "用 AI 解决材料、计算物理、分子建模等科学问题，关注数据条件与科学证据。",
-      "total": 10,
-      "recent": 10,
-      "latestAt": "2026-10-05T03:23:49.923Z",
+      "total": 15,
+      "recent": 15,
+      "latestAt": "2026-10-05T03:24:14.418Z",
       "itemIds": [
+        "yzt4tue4ouwkj56q30gzanedh",
+        "qyt9daxnok7atfzs2ym06625n",
+        "xlf1sa5j60xtrk8fglu65u6fd",
+        "v24qz1z1g4tl0ofszskkej3yi",
         "enwzn5t0ab4s9x3cl78c6vf1x",
+        "apzihgk59r6lt1lf7uihbt8ps",
         "rmujtpniv4b0wgn8q2tustjac",
         "ikrv23aya4o9io6bh7il8k4dt",
         "hzb4nouwnroix96ff64svk73j",
@@ -2597,11 +3132,13 @@
       "name": "训练方法",
       "group": "field",
       "definition": "训练数据、优化与学习方法的增量及比较条件。",
-      "total": 13,
-      "recent": 13,
-      "latestAt": "2026-10-05T03:23:54.559Z",
+      "total": 15,
+      "recent": 15,
+      "latestAt": "2026-10-05T03:24:14.418Z",
       "itemIds": [
+        "yzt4tue4ouwkj56q30gzanedh",
         "m2fg2zmdeud0ssgmz7pi7479z",
+        "v24qz1z1g4tl0ofszskkej3yi",
         "i1kt74wkfu1sylbqhmi2t7dnv",
         "zoxlt1tdtedxjnuf0u3qrfrv0",
         "pgau2nc5iai5889xcnwfot4w6",
@@ -2621,11 +3158,15 @@
       "name": "推理与优化",
       "group": "field",
       "definition": "模型推理、计算效率与适用边界。",
-      "total": 8,
-      "recent": 8,
+      "total": 12,
+      "recent": 12,
       "latestAt": "2026-10-05T03:23:54.559Z",
       "itemIds": [
         "m2fg2zmdeud0ssgmz7pi7479z",
+        "bo5qoaxo0n8lqz4nhq8cy1mp0",
+        "ve6hfwu4k3n93hln34b55vv8l",
+        "jvqlrtgegkb8xu5ulrh9ir6kd",
+        "e8d0u7zawltgcjmb162ocdxqb",
         "zskryg7ozbapap42lno4niu0r",
         "pgau2nc5iai5889xcnwfot4w6",
         "k92n912um78c2hvdqmmadyq15",
@@ -2640,11 +3181,12 @@
       "name": "自动研究与 Agent",
       "group": "field",
       "definition": "研究规划、实验执行、评测及 AI 研发流程自动化。",
-      "total": 7,
-      "recent": 7,
+      "total": 8,
+      "recent": 8,
       "latestAt": "2026-10-05T03:23:54.559Z",
       "itemIds": [
         "rwhaeiknhh2455mazau4ec1hm",
+        "qyt9daxnok7atfzs2ym06625n",
         "cgogkeh2te0qeshodfgr85gix",
         "snmbmzrubqis2mvxth8qidlnb",
         "k92n912um78c2hvdqmmadyq15",
@@ -2680,10 +3222,11 @@
       "name": "计算物理",
       "group": "field",
       "definition": "物理建模、数值求解、代理模型与科学机器学习。",
-      "total": 1,
-      "recent": 1,
-      "latestAt": "2026-10-05T03:23:49.923Z",
+      "total": 2,
+      "recent": 2,
+      "latestAt": "2026-10-05T03:24:14.418Z",
       "itemIds": [
+        "yzt4tue4ouwkj56q30gzanedh",
         "enwzn5t0ab4s9x3cl78c6vf1x"
       ]
     },
@@ -2718,13 +3261,22 @@
       "name": "论文研究",
       "group": "genre",
       "definition": "论文与技术报告，明确摘要依据、作者主张和证据限制。",
-      "total": 31,
-      "recent": 31,
-      "latestAt": "2026-10-05T03:23:54.559Z",
+      "total": 40,
+      "recent": 40,
+      "latestAt": "2026-10-05T03:24:14.418Z",
       "itemIds": [
+        "yzt4tue4ouwkj56q30gzanedh",
         "rwhaeiknhh2455mazau4ec1hm",
+        "qyt9daxnok7atfzs2ym06625n",
         "m2fg2zmdeud0ssgmz7pi7479z",
+        "bo5qoaxo0n8lqz4nhq8cy1mp0",
+        "xlf1sa5j60xtrk8fglu65u6fd",
+        "ve6hfwu4k3n93hln34b55vv8l",
+        "v24qz1z1g4tl0ofszskkej3yi",
+        "jvqlrtgegkb8xu5ulrh9ir6kd",
         "enwzn5t0ab4s9x3cl78c6vf1x",
+        "e8d0u7zawltgcjmb162ocdxqb",
+        "apzihgk59r6lt1lf7uihbt8ps",
         "zskryg7ozbapap42lno4niu0r",
         "i1kt74wkfu1sylbqhmi2t7dnv",
         "cgogkeh2te0qeshodfgr85gix",
@@ -3774,16 +4326,27 @@
     }
   ],
   "poolItemIds": [
+    "yzt4tue4ouwkj56q30gzanedh",
     "x380vgp2t68ula2v0pcmils6u",
     "t8atnht4y37r9tizhpq01hffh",
     "rwhaeiknhh2455mazau4ec1hm",
+    "qyt9daxnok7atfzs2ym06625n",
     "pa04crwru2eys3qwyf8ycsjnv",
     "m2fg2zmdeud0ssgmz7pi7479z",
     "dp34pggn6dui8gqsb7679wnxy",
+    "bo5qoaxo0n8lqz4nhq8cy1mp0",
+    "bgnj8xnvtsg1wz1orf0mtnr8c",
+    "xlf1sa5j60xtrk8fglu65u6fd",
+    "ve6hfwu4k3n93hln34b55vv8l",
+    "v24qz1z1g4tl0ofszskkej3yi",
     "u11e08xrvtjim5odxd1kd907s",
     "spl5qxy5ftpnvdolkhxyj6v3z",
     "o9odcdawnrqw1vvpjrwnl1eq0",
+    "jvqlrtgegkb8xu5ulrh9ir6kd",
     "enwzn5t0ab4s9x3cl78c6vf1x",
+    "e8d0u7zawltgcjmb162ocdxqb",
+    "dx28sfllm4b8ffobz15tw9zbw",
+    "apzihgk59r6lt1lf7uihbt8ps",
     "zskryg7ozbapap42lno4niu0r",
     "i1kt74wkfu1sylbqhmi2t7dnv",
     "cgogkeh2te0qeshodfgr85gix",
