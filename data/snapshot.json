@@ -1,10 +1,108 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-05T03:28:10.657Z",
+  "generatedAt": "2026-10-05T03:43:05.273Z",
   "publicBaseUrl": "https://pkucy2016.github.io/algorithmhot/",
   "mode": "static-snapshot",
   "scope": "当前全部公开动态（已通过相关性筛选并具有摘要，少于 2,000 条）、公开精选、主题及现存试刊/日报归档（每类少于 400 期）；不含待审候选",
   "items": [
+    {
+      "id": "dp34pggn6dui8gqsb7679wnxy",
+      "title": "因果发现识别 UK Biobank 中身体活动与痴呆风险之间的关联路径",
+      "originalTitle": "Causal discovery identifies pathways linking physical activity to dementia risk in the UK BioBank",
+      "summary": "基于摘要，研究作者报告，LLM 引导的因果发现结合中介分析，识别出中高强度身体活动与痴呆风险降低之间的多条关联路径。研究纳入 UK Biobank 中42,293名60岁及以上成年人，采用客观测量的活动数据。链式中介分析显示，抑郁路径解释总体关联的15.1%，性别分层分析提示路径存在差异。",
+      "reason": null,
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02221",
+      "publishedAt": null,
+      "timelineAt": "2026-10-05T03:23:54.559Z",
+      "category": "ai4s",
+      "tags": [
+        "论文/研究",
+        "AI4S"
+      ],
+      "research": {
+        "arxivId": "2610.02221",
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": null,
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-05T03:23:54.559Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-05",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02221",
+            "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者将大语言模型（LLM）引导的因果发现与中介分析相结合，系统识别客观测量的中高强度身体活动（MVPA）与痴呆风险之间的关联路径，以研究身体活动与较低痴呆风险之间尚未充分理解的机制。作者进一步使用链式中介分析及按性别分层的分析，考察相互连接的中介路径及性别差异。相较既有方法的具体技术改动未知：当前摘要未提供。",
+        "applicableTasks": "资料支持的研究任务为：识别MVPA与痴呆风险之间跨行为、心理、功能和临床领域的潜在中介路径，并分析不同性别的路径模式。研究对象为UK Biobank中42,293名年龄≥60岁的老年人，身体活动采用客观测量。对其他年龄、人群、数据集或疾病的适用性未知：当前资料未提供。",
+        "comparisonConditions": "作者报告基于UK Biobank的42,293名年龄≥60岁的参与者开展分析，并进行了性别分层比较；女性主要呈现代谢及功能路径，男性呈现涉及吸烟和心血管疾病的行为及心血管代谢级联路径。作者报告，因果发现识别出较高MVPA通过抑郁、功能能力、吸烟行为、高血压、心血管疾病、慢性肾病及脑损伤与较低痴呆风险相连接的路径。链式中介分析中，抑郁路径占MVPA与痴呆风险总体关联的15.1%；该数值为总体关联的中介占比，不是痴呆风险降低幅度或算法性能增益。摘要涉及1个具名数据来源UK Biobank，未给出算法基线或其他方法的性能比较。LLM名称与数量、任务总数、男女各组人数、硬件与计算设置、MVPA测量设备及计量单位、随访时长、风险效应量、置信区间、显著性指标及模型性能指标均未知：当前资料未提供。",
+        "limitations": "当前证据仅为摘要，未核对全文，也没有独立复现证据。作者明确指出，身体活动与痴呆预防之间的机制尚未充分理解；摘要未明确列出本研究的局限。上述路径、15.1%的中介占比及性别差异均为作者报告，不能仅凭因果发现或中介分析的名称认定已验证因果机制。作者将抑郁描述为突出且可能可干预的路径，并提出结合身体活动促进、心理健康和心血管风险管理的预防方向；当前摘要未提供此类联合干预的效果验证。LLM如何引导发现、因果识别假设、混杂控制、缺失数据处理、敏感性分析、外部验证、代码与数据可获取性均未知：当前资料未提供，不能据此断言研究本身未开展相关工作。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": false
+    },
+    {
+      "id": "m2fg2zmdeud0ssgmz7pi7479z",
+      "title": "GlanceWAM 提出面向世界动作模型的稀疏测试时想象方法",
+      "originalTitle": "GlanceWAM: Sparse Test-Time Imagination for World-Action Models",
+      "summary": "GlanceWAM 研究提出将视觉想象与动作控制异步解耦，作者报告该方法可兼顾机器人任务成功率与实时推理。根据当前材料，该方法共享单个视频 DiT 主干，在后台生成数秒后的单帧前瞻画面，动作头直接在潜在空间解码动作块，并通过隔离视频表征的注意力掩码及适应前瞻信息陈旧的训练支持异步运行。",
+      "reason": "将未来画面生成移出控制关键路径，为机器人利用视频模型先验提供了可迁移的设计思路，并给出成功率与延迟的比较。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2608.23927",
+      "publishedAt": null,
+      "timelineAt": "2026-10-05T03:23:54.559Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "具身智能",
+        "推理优化",
+        "训练方法"
+      ],
+      "research": {
+        "arxivId": "2608.23927",
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": null,
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-05T03:23:54.559Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-05",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2608.23927",
+            "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+          },
+          {
+            "kind": "code",
+            "url": "https://github.com/linhanwang/GlanceWAM",
+            "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 GlanceWAM，针对现有世界—动作模型（WAM）的速度与成功率权衡：按控制频率同步生成视频会带来过高延迟，而放弃测试时视觉想象又会损失任务成功率。该方法在单个共享的视频 DiT 骨干上解耦想象与控制：异步提议器在后台以较慢节奏生成一个展望未来数秒的前瞻帧；动作头直接在潜空间中解码动作块，无需等待视频生成，作者报告每块控制延迟为 48 ms。方法使用隔离视频表征的非干扰注意力掩码，以及适应异步前瞻信息随时间陈旧的鲁棒时域训练。",
+        "applicableTasks": "资料支持的范围为利用视频生成模型物理先验进行机器人学习与操控，包括 RoboCasa 的 24 项厨房任务、LIBERO 基准，以及真实机器人的单臂和双臂操控。作者报告模型仅以示范数据训练，真实机器人实验未使用机器人数据预训练。具体任务清单、机器人型号、操作对象、环境分布及其他任务上的适用性未知：当前资料未提供。",
+        "comparisonConditions": "作者报告：在包含 24 项任务的 RoboCasa 厨房基准上，GlanceWAM 成功率为 72.2%，同步 Cosmos Policy 为 67.1%；在 LIBERO 上，GlanceWAM 成功率为 99.0%，摘要未给出对应基线成功率或具体套件、任务数量。相对于同步世界—动作模型，作者报告每个动作块的控制延迟降低 24 倍，GlanceWAM 在一张 A100 上为 48 ms；该延迟比较涉及的具体基线模型清单、数量及其硬件配置未给出，不能默认与 RoboCasa 的 Cosmos Policy 成功率比较使用完全相同的设置。真实机器人单臂和双臂操控实验中，作者报告 GlanceWAM 的平均成功率高于 π₀.₅，且未进行机器人数据预训练；具体成功率、任务数量、试验次数和平均方式未给出。训练数据规模与构成、训练硬件及计算预算、动作块长度、异步视频生成耗时与频率、评估次数和成功率分母均未知：当前资料未提供。",
+        "limitations": "证据仅为所提供的摘要，未核对全文。所有性能与延迟结果均为作者报告，当前资料未提供独立复现证据。摘要明确指出现有 WAM 的同步视频生成延迟与放弃测试时视觉想象所导致的成功率损失，并说明方法通过训练适应异步前瞻信息陈旧；但未明确陈述 GlanceWAM 自身的失败条件、陈旧程度容忍上限或其他局限。当前资料未提供成功判定细则、统计不确定性、重复实验、消融实验或比较条件公平性的详细验证信息，因此不能据此推断跨任务、跨硬件或其他场景均有相同收益。摘要声称代码可用，但仅出现‘this https URL’字样，未提供可核验的具体链接；代码可访问性、实现完整性和可复现性均未知。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
     {
       "id": "pa04crwru2eys3qwyf8ycsjnv",
       "title": "IntentCoding 提出放大用户意图的代码生成解码策略",
@@ -53,6 +151,53 @@
       "selected": false
     },
     {
+      "id": "rwhaeiknhh2455mazau4ec1hm",
+      "title": "CONTRA 提出通过程序行为差异筛选 LLM 代码生成中的澄清问题",
+      "originalTitle": "CONTRA: Discovering and Qualifying Behavior-Changing Questions for Selective Clarification in LLM Code Generation",
+      "summary": "CONTRA 研究提出一种无需训练的选择性澄清方法，通过语义筛选与执行检查识别会改变生成代码行为的问题。根据当前材料，该方法先排除与所需行为无关或需求已解答的问题，再针对两种合理回答生成程序，在共享输入上检查稳定的行为差异，并依据交互历史选择提问或停止。",
+      "reason": "通过比较两种合理回答所生成程序的行为差异，研究提供了筛选澄清问题的可迁移思路，用于权衡需求确认与开发打断。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.01769",
+      "publishedAt": null,
+      "timelineAt": "2026-10-05T03:23:54.559Z",
+      "category": "ai4ai",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "Agent",
+        "编码"
+      ],
+      "research": {
+        "arxivId": "2610.01769",
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": null,
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-05T03:23:54.559Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-05",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.01769",
+            "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 CONTRA，一种无需训练的方法，用于在代码需求描述不充分时识别关键澄清问题，同时减少不必要的提问。其目标是降低编码代理自行假设用户意图所造成的行为偏差，以及后续开发依赖这些假设后增加的纠正成本。CONTRA 将广泛的问题发现与语义及执行层面的筛选结合：先生成候选问题，剔除与所需行为无关或已被需求说明解决的问题；针对每个剩余问题，分别依据两个合理答案生成程序，在共享输入上检查是否存在稳定的行为差异；最后利用交互历史选择已通过筛选的问题，或停止提问。",
+        "applicableTasks": "资料支持的应用场景是编码代理在需求不充分时进行选择性澄清，以确认用户期望的程序行为。作者在 ClarifyCodeBench 上使用四个编码代理开展实验，并报告将 CONTRA 实现为 Claude Code 插件，以便在日常开发中集成选择性澄清。具体编程语言、代码库类型、需求规模及其他领域的适用范围未知：当前资料未提供。",
+        "comparisonConditions": "作者报告，在 ClarifyCodeBench 上，CONTRA 在全部四个编码代理中均取得最高 F1，其宏平均 F1 比最佳基线高 13.88 个百分点；该数字是宏平均 F1 的绝对百分点差，不能解释为每个代理均提升 13.88 个百分点。摘要未给出四个代理的名称、最佳基线身份、基线总数、各方法的 F1 绝对值或宏平均的具体分组口径。另在使用相同 LLM 和评估协议的条件下，作者报告 CONTRA 的澄清召回率和 F1 均高于 Claude Code 与 OpenHands 这两个编码执行框架，但未给出差值或绝对值。数据集为 ClarifyCodeBench；样本量、任务数量、LLM 名称与规模、硬件、计算预算、推理参数、运行次数、耗时和成本均未知：当前资料未提供。方法被作者描述为无需训练。",
+        "limitations": "当前证据仅为摘要，未核对全文；方法流程、比较结果及 Claude Code 插件实现均为作者报告，当前资料没有提供独立复现证据。摘要所报告的实验范围为 ClarifyCodeBench、四个编码代理，以及相同 LLM 和评估协议下与 Claude Code、OpenHands 的比较，不能据此确认其他数据集、模型或实际开发环境中的效果。摘要未明确陈述方法自身的限制，也未提供统计显著性、误差或置信区间、消融实验、稳定行为差异的具体判定标准，以及对最终代码行为符合用户意图程度、开发中断或纠正成本的直接量化验证信息。作者称已实现插件，但其公开可获取性、代码开放情况和复现条件未知；这些信息缺失不代表研究本身未开展相关验证。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
       "id": "t8atnht4y37r9tizhpq01hffh",
       "title": "面向大规模 MIMO 的多模态环境感知波束管理：几何驱动的虚拟基站框架",
       "originalTitle": "Multi-Modal Environment-Aware Beam Management for Massive MIMO: A Geometry-Driven Virtual Base Station Framework",
@@ -92,6 +237,244 @@
         "applicableTasks": "资料支持的对象为高频大规模MIMO系统，尤其是MU-MIMO场景；涉及利用环境几何信息进行粗信道重建、部分波束训练以及多用户协调波束选择和干扰管理。框架使用区域三维LiDAR点云与位置信息，借助点云重建的建筑立面建模主要反射路径。具体频段、场地类型、用户规模及对其他环境或传播机制的适用范围未知：当前资料未提供。",
         "comparisonConditions": "作者报告，仿真结果显示，该框架相较启发式基线和基于学习的基线，在波束训练效率与波束选择性能两方面均取得一致增益。摘要未列出基线名称、基线数量、数据集及其规模、模型或任务的评测数量、用户数、天线数、频率、带宽、信道设置、硬件与计算配置，也未给出具体指标定义、单位、结果数值、增益幅度、平均或最高增益口径及统计分母。方法结构明确为双智能体，但这不代表比较了两个模型。各比较条件下的定量结果未知：当前资料未提供。",
         "limitations": "当前证据仅为摘要，未核对全文。性能结论属于作者报告的仿真结果，当前资料未提供独立复现证据，也未提供实测或部署验证信息；不能据此断言研究本身没有这些验证。作者明确指出的背景难点包括波束训练开销、多用户协调、几何信息与无线信道间的语义差距，以及组合式波束选择与用户间干扰。对所提方法自身的明确局限，当前资料未提供。摘要说明方法建模主要反射路径并进行粗信道重建，但未交代这类近似的误差、适用边界或失效条件。消融实验、统计不确定性、跨场景泛化、对点云与位置误差的敏感性、离线建库和在线推理成本，以及代码与数据可用性均未知：当前资料未提供。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": false
+    },
+    {
+      "id": "x380vgp2t68ula2v0pcmils6u",
+      "title": "ClarifyCodeBench：评估 LLM 澄清代码生成模糊需求的能力",
+      "originalTitle": "ClarifyCodeBench: Evaluating LLMs on Clarifying Ambiguous Requirements for Code Generation",
+      "summary": "ClarifyCodeBench 研究提出交互式基准，作者报告对六个 LLM 的评估显示，代码生成表现强并不必然代表需求澄清有效。基准基于真实编程任务构建，人工标注歧义类型、澄清问题及标准答案，并使用 Turn-discounted Key Question Rate 惩罚低效提问、Optimal Round Adherence 衡量需求获取过程的精确性。",
+      "reason": null,
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2607.00711",
+      "publishedAt": null,
+      "timelineAt": "2026-10-05T03:23:54.559Z",
+      "category": "ai4ai",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "编码",
+        "评测/基准"
+      ],
+      "research": {
+        "arxivId": "2607.00711",
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": null,
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-05T03:23:54.559Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-05",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2607.00711",
+            "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出交互式基准 ClarifyCodeBench，将评估重点从默认需求已完整明确的单次代码生成，扩展到模型主动提问、澄清需求歧义的能力，以覆盖现有基准较少考察的需求获取过程。作者称该基准基于真实世界编程任务构建，包含人工标注的歧义类型、相关澄清问题及对应标准答案，并提出两个交互质量指标：Turn-discounted Key Question Rate（轮次折扣关键问题率），用于惩罚低效提问；Optimal Round Adherence（最优轮次遵循度），用于衡量需求获取过程的精确性。",
+        "applicableTasks": "资料支持将该基准用于评估大语言模型在编程任务中识别并通过交互消解需求歧义的能力，关注含糊、不完整或描述不足的输入需求，以及多种歧义并存时的澄清表现。作者使用该基准评估了六个大语言模型，并讨论澄清能力与代码生成表现、增加计算性思考之间的关系。具体编程语言、应用领域、任务规模及对其他场景的适用性未知：当前资料未提供。",
+        "comparisonConditions": "作者报告对六个其称为先进水平的大语言模型开展系统评估，但未提供模型名称、版本或逐模型结果。基准来源为真实世界编程任务，包含人工标注；摘要将独特歧义类型数量写为“N”，未给出具体数值，任务数、样本数和数据划分亦未知。明确提出的交互指标为 Turn-discounted Key Question Rate 和 Optimal Round Adherence，但公式、单位、分母、具体分值和汇总口径均未提供。作者还讨论代码正确性，未说明对应指标定义或数值。作者报告三项定性结果：较强代码生成表现并不必然对应有效的需求澄清能力；增加计算性思考可提升代码正确性，但识别歧义的收益有限；随着歧义密度增加，模型澄清表现显著下降。摘要未给出这些比较的具体条件、增益幅度、最高或平均结果、歧义密度分组及统计不确定性。硬件、计算预算、推理与采样设置、交互轮数、用户回答的提供方式和额外比较基线未知：当前资料未提供。",
+        "limitations": "当前证据仅为用户提供的摘要，未核对全文；所有实验结论均为作者报告，不构成独立复现或对模型质量的独立认定。作者指出的能力限制包括代码生成能力与澄清能力脱节、增加计算性思考对歧义识别帮助有限，以及高歧义密度下澄清性能明显下降。摘要未量化这些限制，也未提供足以判断其普遍性或统计可靠性的结果。人工标注被作者描述为高质量，但标注流程、标注者数量、一致性检验及质量控制信息未知。数据与代码是否公开、独立复现情况、真实用户交互验证和更广泛任务上的泛化验证未知：当前资料未提供；不能据此断言这些验证或实现不存在。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": false
+    },
+    {
+      "id": "enwzn5t0ab4s9x3cl78c6vf1x",
+      "title": "RINS 研究提出用于大型稀疏线性系统的残差像神经子空间求解器",
+      "originalTitle": "RINS: Residual-Image Neural Subspace Solvers for Large Sparse Linear Systems",
+      "summary": "RINS 研究提出 Gate-RINS，作者报告其在多数测试设置下达到固定相对残差阈值的耗时低于 GMRES 和近期的纯图神经基线。根据当前材料，该方法从缓存的残差探针生成多项式修正基，并通过依赖残差与坐标的轻量逐点门控调节方向，保持投影最小二乘更新不变。",
+      "reason": "研究将神经网络选择修正方向与投影最小二乘更新分开，为向数值求解器引入学习组件提供了可迁移的设计思路。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02217",
+      "publishedAt": null,
+      "timelineAt": "2026-10-05T03:23:49.923Z",
+      "category": "ai4s",
+      "tags": [
+        "论文/研究",
+        "AI4S",
+        "算法",
+        "计算物理"
+      ],
+      "research": {
+        "arxivId": "2610.02217",
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": null,
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-05T03:23:49.923Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-05",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02217",
+            "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 Gate-RINS 神经子空间求解器，针对 PDE 离散化产生的大型稀疏线性系统中，校正子空间的算子像需要有效解释当前残差的问题。该方法从缓存的残差探针生成多项式校正基，并用依赖残差与坐标的轻量逐点门控进行调制。投影最小二乘更新保持不变：神经组件仅选择扩展方向，数值闭合步骤通过算子像空间 range(AQ_t) 检验这些方向。作者还提出混合控制器调度，在同一投影求解器下组合 GRANS 风格图控制器与 Gate-RINS。",
+        "applicableTasks": "资料支持的任务是求解 PDE 离散化得到的大型稀疏线性系统；作者在六个 PDE 衍生基准任务、两个规模上进行了评估。具体 PDE 类型、任务名称、规模数值及其他问题类别上的适用性未知：当前资料未提供。",
+        "comparisonConditions": "作者报告，在六个 PDE 衍生基准任务、两个规模的评估中，Gate-RINS 在多数设置下达到固定相对残差阈值所需的同步墙钟时间短于 GMRES 和一个近期的纯图神经基线；混合调度进一步改善了残差轨迹。这里的结论限于‘多数设置’，摘要未给出获益设置的数量或比例。比较涉及同步墙钟时间、固定相对残差阈值及残差轨迹，但具体阈值、时间单位、绝对耗时、加速倍数、平均或最高增益均未知。纯图神经基线的名称、数据数量、模型配置与数量、两个规模的具体大小、硬件、精度、同步方式、计算预算及重复运行设置未知：当前资料未提供。",
+        "limitations": "证据仅为用户提供的摘要，未核对全文，也没有独立复现证据。作者报告的困难模式诊断与轨迹可视化支持一种解释：性能增益与算子像子空间更有效地对齐当前残差有关；摘要未提供诊断细节或足以独立核验该解释的数据。作者报告的速度优势限于所测六个任务、两个规模中的多数设置，不能推断为所有条件下均有提升。摘要未明确陈述其他方法限制，也未提供逐任务结果、统计不确定性、消融结果、训练成本、泛化验证或代码与数据可用性信息；这些缺失不能据此断言为研究本身没有相应内容。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "id": "o9odcdawnrqw1vvpjrwnl1eq0",
+      "title": "HyMLRaman：结合生成式特征增强的混合机器学习辅助拉曼光谱药物识别框架",
+      "originalTitle": "Hybrid Machine Learning-Assisted Raman Spectroscopy with Generative Feature Augmentation for Pharmaceutical Identification",
+      "summary": "基于摘要，作者提出HyMLRaman，将深度光谱特征提取、生成模型与传统分类器结合，用于六种药物的拉曼光谱识别。分层10折交叉验证中，EfficientNet-B3与SVM组合准确率为96.31%，优于独立CNN基线。DDPM特征增强在低数据条件下对KNN尤有帮助，但效果依赖分类器。",
+      "reason": null,
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02224",
+      "publishedAt": null,
+      "timelineAt": "2026-10-05T03:23:49.923Z",
+      "category": "ai4s",
+      "tags": [
+        "论文/研究",
+        "AI4S",
+        "合成数据"
+      ],
+      "research": {
+        "arxivId": "2610.02224",
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": null,
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-05T03:23:49.923Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-05",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02224",
+            "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02224",
+            "sourceUrl": "https://arxiv.org/list/cond-mat.mtrl-sci/new?skip=0&show=500"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 HyMLRaman 混合拉曼光谱框架，用于快速、可靠地识别药物化合物，服务于药物残留筛查。方法将拉曼光谱转换为光谱图像，经多个深度神经网络骨干提取特征，再使用下游分类器完成识别；作者报告 EfficientNet-B3 的表示最有效，其输出为 1536 维嵌入。针对数据有限的条件，作者在经 PCA 降维的 EfficientNet-B3 潜在空间中引入基于去噪扩散概率模型（DDPM）的特征增强，并通过低数据量消融分析其作用。作者还展示了 Raman Pharmaceutical Analyzer 应用，将训练后的模型嵌入交互式拉曼分析流程。",
+        "applicableTasks": "摘要支持的任务是基于拉曼光谱识别六种药物化合物：阿莫西林、氯霉素、环丙沙星、四环素、布洛芬和对乙酰氨基酚，以及在减少训练数据比例时评估特征增强对分类的影响。作者以公共健康、食品安全和实用拉曼筛查为应用背景，并报告了交互式分析应用的可行性展示。真实食品或环境样品中的残留检测、混合物识别、浓度定量、检出限及六种药物以外的适用范围，当前资料未提供验证信息。",
+        "comparisonConditions": "作者使用多个深度神经网络骨干编码光谱图像，报告 EfficientNet-B3 表示最有效；骨干总数及其余骨干名称未知。下游分类器共六类：SVM、KNN、逻辑回归、随机森林、XGBoost 和 ANN，采用分层 10 折交叉验证。识别对象为六种药物，数据集数量、总光谱数、各类样本数及数据来源未知。作者报告 EfficientNet-B3–SVM 混合配置取得最强基线表现，准确率为 96.31%，宏平均 F1 为 96.36%，优于独立 CNN 基线；CNN 的具体结构、对应分数及提升幅度未知，摘要也未说明上述分数的跨折汇总方式或不确定性。在低数据量消融中，DDPM 在 PCA 降维后的 EfficientNet-B3 潜在空间进行特征增强，作者报告其收益具有选择性，尤其体现在训练比例降低时的 KNN，且效果依赖分类器；不能据此认为所有分类器或数据比例均获益。训练比例、PCA 保留维数、生成特征数量、各条件的指标及增益数值未知。硬件、运行时间、计算资源、训练超参数和独立测试设置，当前资料未提供。",
+        "limitations": "证据仅来自所提供摘要，未核对全文；所有性能与应用可行性均为作者报告，当前资料未提供独立复现证据。摘要明确指出 DDPM 增强仅有选择性收益，效果依赖分类器，不能推广为普遍提升。当前资料未提供样本采集条件、仪器设置、预处理细节、交叉验证中 PCA 与生成模型的拟合及数据隔离方式、误差或统计显著性、外部数据验证、跨仪器或跨场景泛化验证。作者将该框架描述为实用、可解释且适合快速筛查，但摘要未提供解释性评估、推理速度或实际部署效果的量化证据。Raman Pharmaceutical Analyzer 的展示支持作者所述集成交互流程的可行性，不足以确认真实场景筛查性能。代码、数据、模型权重及应用的开放可用性未知；上述信息缺失不等于研究本身未开展相关工作。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": false
+    },
+    {
+      "id": "spl5qxy5ftpnvdolkhxyj6v3z",
+      "title": "MiDShip 研究提出含 12,753 个合成货舱结构设计的多模态工程数据集",
+      "originalTitle": "MiDShip: Multimodal Dataset of Ship Cargo Hold Structures for Engineering Design",
+      "summary": "MiDShip 研究提出面向船舶结构工程设计的多模态数据集，包含 12,753 个合成货舱结构设计及配套生成与评估基础设施。根据当前材料，数据包含 6,020 个随机设计、496 个由 SGLD 启发式程序生成的设计和 6,237 个由方程指导修复程序生成的设计，每个设计均配有参数、完整及网格就绪的 3D 几何、工程图与标注、材料清单和初步结构评估。",
+      "reason": null,
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02214",
+      "publishedAt": null,
+      "timelineAt": "2026-10-05T03:23:49.923Z",
+      "category": "ai4s",
+      "tags": [
+        "论文/研究",
+        "AI4S",
+        "多模态",
+        "合成数据"
+      ],
+      "research": {
+        "arxivId": "2610.02214",
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": null,
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-05T03:23:49.923Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-05",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02214",
+            "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 MiDShip 多模态合成船舶货舱结构设计数据集及其生成、评估基础设施，针对船舶结构设计需满足数百项船级社要求、设计过程复杂且反复，以及缺少关联设计几何、结构性能和规则约束的结构化数据这一问题。每个设计同步提供参数数据、完整及可网格化的三维几何、工程图与标注、材料清单和初步结构评估，并评估从 ABS MVR 部分规则中提取的 25 项约束。数据通过随机生成、受 SGLD 启发的生成流程和方程引导的修复流程构建；修复流程通过 LLM 辅助代码分析开发。作者明确指出，主要贡献是同步数据集及其生成和评估基础设施，生成研究用于展示其用途，并非提出新的优化算法。",
+        "applicableTasks": "作者报告 MiDShip 支持船舶结构领域的机器学习、生成式设计和自动化规则评估。当前资料直接覆盖的对象为合成货舱结构设计，包含参数、三维几何、工程图、材料清单与初步结构评估等模态；规则评估范围为 ABS MVR 部分规则所对应的 25 项约束。对其他船舶结构、真实工程设计及完整船级社规则的适用性验证未知：当前资料未提供。",
+        "comparisonConditions": "作者报告数据集共含 12,753 个合成货舱结构设计，其中随机设计 6,020 个、受 SGLD 启发的流程生成 496 个、方程引导的修复流程生成 6,237 个。按所评估的 25 项约束，随机设计中没有任何设计全部满足约束；SGLD 启发式设计中 322/496 个（64.9%）全部满足约束，平均违反约束数为 0.409 项，较种子设计均值低 82.7%，较随机设计均值低 96.9%；修复设计中 4,952/6,237 个（79.4%）全部满足约束，平均违反约束数为 0.296 项，较配对来源设计均值低 97.1%。这些降幅对应不同参照条件，不能合并为统一增益。在等样本量比较中，经缩放的 120 参数空间内平均最近邻距离分别为：修复设计 3.495、SGLD 批次 1.144、随机设计 3.729；具体等样本量、缩放方式、距离度量及单位未知。硬件、计算预算、运行时间、生成超参数、种子与配对来源设计的具体配置，以及所用 LLM 的名称和数量均未知：当前资料未提供。摘要未给出机器学习下游模型或任务的评测数量和性能结果。",
+        "limitations": "证据仅为用户提供的摘要，未核对全文；上述结果均为作者报告，当前资料不包含独立复现证据。作者明确将贡献定位为数据集及基础设施，生成研究仅展示其用途。所谓全部满足约束，仅指所评估的 25 项约束，不能据此认定满足完整 ABS MVR 或全部船级社要求。结构评估为初步评估，设计为合成数据；当前资料未提供实船验证、制造验证、全面强度与安全性验证或下游机器学习及生成式设计效果验证信息。最近邻距离结果限定于经缩放的 120 参数空间和等样本量比较，不能直接推断工程质量。统计不确定性、重复试验、数据划分、数据或代码的获取方式与可用性未知：当前资料未提供；这不等于研究本身不存在这些信息或验证。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": false
+    },
+    {
+      "id": "u11e08xrvtjim5odxd1kd907s",
+      "title": "漂绿的代价：利用共形机器学习进行算法核验与市场约束",
+      "originalTitle": "The Price of Greenwashing: Algorithmic Verification and Market Discipline using Conformal Machine Learning",
+      "summary": "基于摘要，该研究报告算法排放基线与企业自报数据的偏离，与后续市场估值及经营盈利能力显著负相关。作者融合 U.S. SEC 财务数据和设施级 EPA 温室气体登记数据，结合梯度提升与 Mondrian Conformal Prediction 构建 CWCD 指标。研究采用横截面领先—滞后计量设计，摘要未提供效应量或独立复现信息。",
+      "reason": null,
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02225",
+      "publishedAt": null,
+      "timelineAt": "2026-10-05T03:23:49.923Z",
+      "category": "ai4s",
+      "tags": [
+        "论文/研究",
+        "AI4S",
+        "算法"
+      ],
+      "research": {
+        "arxivId": "2610.02225",
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": null,
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-05T03:23:49.923Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-05",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02225",
+            "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者针对企业自报排放数据可能造成的信息不对称与漂绿问题，提出将美国 SEC 财务基本面数据与设施层面的 EPA 温室气体登记数据融合，建立作者称为具有数学保证的企业物理排放基线。相较于摘要所述主要依赖主观 ESG 评级或文本情感分析的文献路径，该方法结合梯度提升架构与 Mondrian Conformal Prediction，将自报排放相对于算法基线的不足量化为新的 Conformal-Weighted Continuous Divergence（CWCD）指标，并以横截面领先—滞后计量设计考察该偏离与后续企业表现的关系。",
+        "applicableTasks": "资料支持的研究任务包括：构建企业排放算法基线、量化自报排放与基线的偏离，以及分析该偏离与后续市场估值和经营盈利能力的关联。研究数据范围涉及美国 SEC 财务基本面与设施层面的 EPA 温室气体登记数据；具体企业、行业、地区覆盖、样本时期及筛选条件未知。作者提出资产管理机构与监管者可据此部署规模化算法审计基础设施，但摘要未提供规模化部署验证。",
+        "comparisonConditions": "摘要将主观 ESG 评级和文本情感分析描述为现有文献的主要路径，未报告与这些方法的直接对照实验。具体量化对象为企业自报排放与算法排放基线之间的不足或偏离。数据来源为美国 SEC 财务基本面数据及设施层面的 EPA 温室气体登记数据；企业数、设施数、观测数、时间范围、数据集数量及匹配方式未知。方法涉及梯度提升架构、Mondrian Conformal Prediction 与 CWCD 指标；模型数量、任务数量、训练与测试划分、校准设置、超参数、硬件和计算成本均未知。计量分析采用横截面领先—滞后设计，结果指标为后续市场估值 Tobin's Q 与经营盈利能力 ROA。作者报告算法排放偏离与二者存在强烈且统计显著的负向关系，并将其解释为市场纪律机制；摘要未给出效应量、系数、显著性阈值、p 值、置信区间、滞后长度或稳健性检验细节。排放及 CWCD 的计算公式、单位与尺度，以及 ROA 的呈现单位均未知；未报告具体数值结果或性能增益。",
+        "limitations": "当前证据仅为摘要，未核对全文，也未进行独立复现。作者将结果表述为反对市场盲视假说的决定性证据，并认为机构资本将环境欺瞒定价为企业管理失当的领先信号；这些属于作者的报告与解释。摘要提供的是偏离与后续估值、盈利能力的统计关系，未提供足以独立评估因果识别、机构资本行为机制或将排放偏离认定为蓄意欺瞒的验证信息。作者未在摘要中明确陈述研究限制。所谓数学保证的假设与证明、排放基线准确性、数据匹配质量、缺失数据处理、混杂因素控制、样本外验证、跨行业或跨地区泛化及规模化审计效果均未提供，不能据此认定研究本身没有相关分析。当前资料也未提供代码、数据开放情况或独立复现证据。",
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
@@ -2140,10 +2523,13 @@
       "name": "算法",
       "group": "field",
       "definition": "AI/机器学习的训练、推理、优化、模型方法与理论进展。",
-      "total": 23,
-      "recent": 23,
-      "latestAt": "2026-10-01T17:59:58.000Z",
+      "total": 26,
+      "recent": 26,
+      "latestAt": "2026-10-05T03:23:54.559Z",
       "itemIds": [
+        "rwhaeiknhh2455mazau4ec1hm",
+        "m2fg2zmdeud0ssgmz7pi7479z",
+        "enwzn5t0ab4s9x3cl78c6vf1x",
         "zskryg7ozbapap42lno4niu0r",
         "zoxlt1tdtedxjnuf0u3qrfrv0",
         "pgau2nc5iai5889xcnwfot4w6",
@@ -2190,10 +2576,11 @@
       "name": "AI4S",
       "group": "field",
       "definition": "用 AI 解决材料、计算物理、分子建模等科学问题，关注数据条件与科学证据。",
-      "total": 9,
-      "recent": 9,
-      "latestAt": "2026-10-01T17:59:39.000Z",
+      "total": 10,
+      "recent": 10,
+      "latestAt": "2026-10-05T03:23:49.923Z",
       "itemIds": [
+        "enwzn5t0ab4s9x3cl78c6vf1x",
         "rmujtpniv4b0wgn8q2tustjac",
         "ikrv23aya4o9io6bh7il8k4dt",
         "hzb4nouwnroix96ff64svk73j",
@@ -2210,10 +2597,11 @@
       "name": "训练方法",
       "group": "field",
       "definition": "训练数据、优化与学习方法的增量及比较条件。",
-      "total": 12,
-      "recent": 12,
-      "latestAt": "2026-10-01T17:59:55.000Z",
+      "total": 13,
+      "recent": 13,
+      "latestAt": "2026-10-05T03:23:54.559Z",
       "itemIds": [
+        "m2fg2zmdeud0ssgmz7pi7479z",
         "i1kt74wkfu1sylbqhmi2t7dnv",
         "zoxlt1tdtedxjnuf0u3qrfrv0",
         "pgau2nc5iai5889xcnwfot4w6",
@@ -2233,10 +2621,11 @@
       "name": "推理与优化",
       "group": "field",
       "definition": "模型推理、计算效率与适用边界。",
-      "total": 7,
-      "recent": 7,
-      "latestAt": "2026-10-01T17:59:58.000Z",
+      "total": 8,
+      "recent": 8,
+      "latestAt": "2026-10-05T03:23:54.559Z",
       "itemIds": [
+        "m2fg2zmdeud0ssgmz7pi7479z",
         "zskryg7ozbapap42lno4niu0r",
         "pgau2nc5iai5889xcnwfot4w6",
         "k92n912um78c2hvdqmmadyq15",
@@ -2251,10 +2640,11 @@
       "name": "自动研究与 Agent",
       "group": "field",
       "definition": "研究规划、实验执行、评测及 AI 研发流程自动化。",
-      "total": 6,
-      "recent": 6,
-      "latestAt": "2026-10-01T17:59:50.000Z",
+      "total": 7,
+      "recent": 7,
+      "latestAt": "2026-10-05T03:23:54.559Z",
       "itemIds": [
+        "rwhaeiknhh2455mazau4ec1hm",
         "cgogkeh2te0qeshodfgr85gix",
         "snmbmzrubqis2mvxth8qidlnb",
         "k92n912um78c2hvdqmmadyq15",
@@ -2290,10 +2680,12 @@
       "name": "计算物理",
       "group": "field",
       "definition": "物理建模、数值求解、代理模型与科学机器学习。",
-      "total": 0,
-      "recent": 0,
-      "latestAt": null,
-      "itemIds": []
+      "total": 1,
+      "recent": 1,
+      "latestAt": "2026-10-05T03:23:49.923Z",
+      "itemIds": [
+        "enwzn5t0ab4s9x3cl78c6vf1x"
+      ]
     },
     {
       "slug": "molecular-modeling",
@@ -2326,10 +2718,13 @@
       "name": "论文研究",
       "group": "genre",
       "definition": "论文与技术报告，明确摘要依据、作者主张和证据限制。",
-      "total": 28,
-      "recent": 28,
-      "latestAt": "2026-10-01T17:59:58.000Z",
+      "total": 31,
+      "recent": 31,
+      "latestAt": "2026-10-05T03:23:54.559Z",
       "itemIds": [
+        "rwhaeiknhh2455mazau4ec1hm",
+        "m2fg2zmdeud0ssgmz7pi7479z",
+        "enwzn5t0ab4s9x3cl78c6vf1x",
         "zskryg7ozbapap42lno4niu0r",
         "i1kt74wkfu1sylbqhmi2t7dnv",
         "cgogkeh2te0qeshodfgr85gix",
@@ -3379,8 +3774,16 @@
     }
   ],
   "poolItemIds": [
+    "x380vgp2t68ula2v0pcmils6u",
     "t8atnht4y37r9tizhpq01hffh",
+    "rwhaeiknhh2455mazau4ec1hm",
     "pa04crwru2eys3qwyf8ycsjnv",
+    "m2fg2zmdeud0ssgmz7pi7479z",
+    "dp34pggn6dui8gqsb7679wnxy",
+    "u11e08xrvtjim5odxd1kd907s",
+    "spl5qxy5ftpnvdolkhxyj6v3z",
+    "o9odcdawnrqw1vvpjrwnl1eq0",
+    "enwzn5t0ab4s9x3cl78c6vf1x",
     "zskryg7ozbapap42lno4niu0r",
     "i1kt74wkfu1sylbqhmi2t7dnv",
     "cgogkeh2te0qeshodfgr85gix",
