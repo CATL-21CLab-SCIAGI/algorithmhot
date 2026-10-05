@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-05T10:59:47.878Z",
+  "generatedAt": "2026-10-05T11:04:47.284Z",
   "publicBaseUrl": "https://pkucy2016.github.io/algorithmhot/",
   "mode": "static-snapshot",
   "scope": "当前全部公开动态（已通过相关性筛选并具有摘要，少于 2,000 条）、公开精选、主题及现存试刊/日报归档（每类少于 400 期）；不含待审候选",
@@ -1874,6 +1874,58 @@
       },
       "researchRoadmap": null,
       "selected": false
+    },
+    {
+      "id": "h8uop4vzqp73o7egeox5mfgfc",
+      "title": "重尾噪声下的无参数区间动态遗憾保证",
+      "originalTitle": "Parameter-Free Interval-Dynamic Regret under Heavy-Tailed Noise",
+      "summary": "Vaneet Aggarwal 的研究提出重尾噪声下的在线凸优化学习器，无需预知梯度界、噪声尺度及矩阶、比较区间或路径变化量即可获得区间动态遗憾保证。根据当前材料，该方法每轮使用一个无偏随机次梯度，假设噪声具有未知的有限条件 p 阶矩，1<p≤2；区间适应代价被并入比较路径复杂度，同时保留均值梯度项与噪声项各自的指数。",
+      "reason": "该研究将区间适应的代价并入比较路径复杂度，为分析重尾噪声下均值梯度与噪声如何分别影响遗憾界提供了理论参照。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02258",
+      "publishedAt": null,
+      "timelineAt": "2026-10-05T03:23:49.923Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法"
+      ],
+      "research": {
+        "arxivId": "2610.02258",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-09-30T21:03:03.000Z",
+        "revisedAt": "2026-09-30T21:03:03.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-05T03:23:49.923Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-05",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02258",
+            "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02258v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02258v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者研究每轮仅获得一个无偏随机次梯度的在线凸优化，噪声具有未知且有限的条件 p 阶矩，其中 1<p≤2。作者提出一个无需使用 G、σ、p、区间 I 或 P_I 的学习器，对固定区间和比较器路径给出期望遗憾保证，以处理未知噪声矩条件下的区间与比较器路径自适应问题。作者报告，区间自适应的代价以加法形式进入比较器复杂度，保留均值梯度项与噪声项各自不同的指数。分析在期望意义下控制校准，并限制观测尺度变化的代价。一般定理允许与可预测可用的专家上的分布比较，其复杂度通过相对于非均匀先验的相对熵体现；共同先验偏向较长窗口和较长重启长度。",
+        "applicableTasks": "资料支持的范围是在线凸优化：每轮一个无偏随机次梯度，噪声满足有限条件 p 阶矩且 1<p≤2。保证针对每个固定区间 I（长度 n）及比较器路径，路径复杂度写为 Λ_I=1+P_I/D。一般定理涉及与可预测可用专家上的分布比较；作者还报告，同一决策序列可导出静态比较和确定性分区结果。在提供相应统计量的条件下，结果包含作者所称的最优全时域静态速率。具体应用领域、数据类型及实证任务未知：当前资料未提供。",
+        "comparisonConditions": "作者报告的是理论遗憾上界与下界，摘要未列出具名基线算法或实证性能比较。对于每个长度为 n 的固定区间 I，以及满足 Λ_I=1+P_I/D 的比较器路径，作者给出 E[Regret_I(u)]≤min{GDn, C[GD√(n(Λ_I+log²(2T)))+σD n^(1/p)(Λ_I+log²(2T))^((p−1)/p)]}，其中 C 为通用常数。指标是期望区间遗憾，界取线性项 GDn 与后一个表达式的较小值；均值梯度项与噪声项分别保留平方根指数及 n^(1/p)、复杂度的 (p−1)/p 指数。学习器不使用 G、σ、p、I、P_I，每轮使用一个无偏随机次梯度。在提供相应统计量的条件下，作者报告区间代价变为 1+log(T/n)，并包含最优全时域静态速率；摘要未说明所需统计量及该条件下完整界的形式。作者还报告，一个换测度下界在明确条件下刻画了该对数因子的噪声幂次，适用于保留全时域最优保证的学习器，但摘要未列出这些条件或下界公式。数据集、模型及实证任务数量、硬件、运行时间、其他计算设置和指标单位未知：当前资料未提供。G、σ、D、P_I、T 的正式定义亦未在当前摘要中给出。",
+        "limitations": "证据仅为用户提供的摘要，未核对全文、证明或补充材料。上述上界、下界与最优性均为作者报告，不是独立复现结论。结论受每轮一个无偏随机次梯度、有限条件 p 阶噪声矩且 1<p≤2 等假设限定；摘要给出的是期望保证，未提供高概率保证。区间结论表述为针对每个固定区间，不能据此宣称对事后选择的所有区间具有同时成立的保证。改进后的区间代价依赖提供相应统计量，下界依赖明确条件，但具体统计量与条件在摘要中未知。摘要未提供实证数据、基线实验、代码或实现可用性、独立复现、完整假设、常数数值及具体计算复杂度；这些属于当前资料的证据缺口，不能据此断言研究本身不存在相关内容。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 3
+      },
+      "researchRoadmap": null,
+      "selected": true
     },
     {
       "id": "hnlnb4wr938892uiw899d5p23",
@@ -4994,8 +5046,8 @@
       "name": "算法",
       "group": "field",
       "definition": "AI/机器学习的训练、推理、优化、模型方法与理论进展。",
-      "total": 46,
-      "recent": 46,
+      "total": 47,
+      "recent": 47,
       "latestAt": "2026-10-05T03:24:16.903Z",
       "itemIds": [
         "iq3jq9gwfymvo6ttqwey9y652",
@@ -5015,6 +5067,7 @@
         "kl6hlup9fq14ktj9n36bkcbzr",
         "k2sij2pi8vkcxhidxw8m1uxmy",
         "jvqlrtgegkb8xu5ulrh9ir6kd",
+        "h8uop4vzqp73o7egeox5mfgfc",
         "fbyrfwbvrjyw7gow6plrdjgnf",
         "etwg494uw7bhy1o4fhb7s7qga",
         "enwzn5t0ab4s9x3cl78c6vf1x",
@@ -5246,8 +5299,8 @@
       "name": "论文研究",
       "group": "genre",
       "definition": "论文与技术报告，明确摘要依据、作者主张和证据限制。",
-      "total": 54,
-      "recent": 54,
+      "total": 55,
+      "recent": 55,
       "latestAt": "2026-10-05T03:24:16.903Z",
       "itemIds": [
         "jowiuumhfic42ozfpw3x1cjdw",
@@ -5270,6 +5323,7 @@
         "kl6hlup9fq14ktj9n36bkcbzr",
         "k2sij2pi8vkcxhidxw8m1uxmy",
         "jvqlrtgegkb8xu5ulrh9ir6kd",
+        "h8uop4vzqp73o7egeox5mfgfc",
         "fbyrfwbvrjyw7gow6plrdjgnf",
         "etwg494uw7bhy1o4fhb7s7qga",
         "enwzn5t0ab4s9x3cl78c6vf1x",
@@ -5380,11 +5434,11 @@
       "title": "AlgorithmHot · 科研热点 · 日内更新 · 部分结果",
       "windowStart": "2026-10-04T00:00:00.000Z",
       "windowEnd": "2026-10-05T10:23:25.600Z",
-      "generatedAt": "2026-10-05T10:59:47.585Z",
-      "revision": 4,
+      "generatedAt": "2026-10-05T11:03:13.510Z",
+      "revision": 5,
       "lead": {
         "title": "本期部分结果：已整理 15 项研究",
-        "leadParagraph": "本期刊载 15 条已完成筛选与研究解读的公开资料。尚存缺口：1 条资料处理失败；1 次共享模型预算的请求结果未知，未自动重发；1 条资料因历史未知请求已隔离，未重发；其他未提交资料独立处理；1 条公开资料的研究解读尚未完成。本刊依据已保存的研究解读整理，作者报告的实验尚未独立复现。"
+        "leadParagraph": "本期刊载 15 条已完成筛选与研究解读的公开资料。尚存缺口：1 次共享模型预算的请求结果未知，未自动重发；1 条资料因历史未知请求已隔离，未重发；其他未提交资料独立处理；1 条公开资料的研究解读尚未完成。本刊依据已保存的研究解读整理，作者报告的实验尚未独立复现。"
       },
       "overview": null,
       "sections": [
@@ -5541,6 +5595,50 @@
               "researchRoadmap": null
             },
             {
+              "itemId": "h8uop4vzqp73o7egeox5mfgfc",
+              "title": "重尾噪声下的无参数区间动态遗憾保证",
+              "summary": "Vaneet Aggarwal 的研究提出重尾噪声下的在线凸优化学习器，无需预知梯度界、噪声尺度及矩阶、比较区间或路径变化量即可获得区间动态遗憾保证。根据当前材料，该方法每轮使用一个无偏随机次梯度，假设噪声具有未知的有限条件 p 阶矩，1<p≤2；区间适应代价被并入比较路径复杂度，同时保留均值梯度项与噪声项各自的指数。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.02258",
+              "publishedAt": null,
+              "available": true,
+              "research": {
+                "arxivId": "2610.02258",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-09-30T21:03:03.000Z",
+                "revisedAt": "2026-09-30T21:03:03.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-05T03:23:49.923Z",
+                "evidenceBasis": "abstract",
+                "announcedOn": "2026-10-05",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.02258",
+                    "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.02258v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.02258v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者研究每轮仅获得一个无偏随机次梯度的在线凸优化，噪声具有未知且有限的条件 p 阶矩，其中 1<p≤2。作者提出一个无需使用 G、σ、p、区间 I 或 P_I 的学习器，对固定区间和比较器路径给出期望遗憾保证，以处理未知噪声矩条件下的区间与比较器路径自适应问题。作者报告，区间自适应的代价以加法形式进入比较器复杂度，保留均值梯度项与噪声项各自不同的指数。分析在期望意义下控制校准，并限制观测尺度变化的代价。一般定理允许与可预测可用的专家上的分布比较，其复杂度通过相对于非均匀先验的相对熵体现；共同先验偏向较长窗口和较长重启长度。",
+                "applicableTasks": "资料支持的范围是在线凸优化：每轮一个无偏随机次梯度，噪声满足有限条件 p 阶矩且 1<p≤2。保证针对每个固定区间 I（长度 n）及比较器路径，路径复杂度写为 Λ_I=1+P_I/D。一般定理涉及与可预测可用专家上的分布比较；作者还报告，同一决策序列可导出静态比较和确定性分区结果。在提供相应统计量的条件下，结果包含作者所称的最优全时域静态速率。具体应用领域、数据类型及实证任务未知：当前资料未提供。",
+                "comparisonConditions": "作者报告的是理论遗憾上界与下界，摘要未列出具名基线算法或实证性能比较。对于每个长度为 n 的固定区间 I，以及满足 Λ_I=1+P_I/D 的比较器路径，作者给出 E[Regret_I(u)]≤min{GDn, C[GD√(n(Λ_I+log²(2T)))+σD n^(1/p)(Λ_I+log²(2T))^((p−1)/p)]}，其中 C 为通用常数。指标是期望区间遗憾，界取线性项 GDn 与后一个表达式的较小值；均值梯度项与噪声项分别保留平方根指数及 n^(1/p)、复杂度的 (p−1)/p 指数。学习器不使用 G、σ、p、I、P_I，每轮使用一个无偏随机次梯度。在提供相应统计量的条件下，作者报告区间代价变为 1+log(T/n)，并包含最优全时域静态速率；摘要未说明所需统计量及该条件下完整界的形式。作者还报告，一个换测度下界在明确条件下刻画了该对数因子的噪声幂次，适用于保留全时域最优保证的学习器，但摘要未列出这些条件或下界公式。数据集、模型及实证任务数量、硬件、运行时间、其他计算设置和指标单位未知：当前资料未提供。G、σ、D、P_I、T 的正式定义亦未在当前摘要中给出。",
+                "limitations": "证据仅为用户提供的摘要，未核对全文、证明或补充材料。上述上界、下界与最优性均为作者报告，不是独立复现结论。结论受每轮一个无偏随机次梯度、有限条件 p 阶噪声矩且 1<p≤2 等假设限定；摘要给出的是期望保证，未提供高概率保证。区间结论表述为针对每个固定区间，不能据此宣称对事后选择的所有区间具有同时成立的保证。改进后的区间代价依赖提供相应统计量，下界依赖明确条件，但具体统计量与条件在摘要中未知。摘要未提供实证数据、基线实验、代码或实现可用性、独立复现、完整假设、常数数值及具体计算复杂度；这些属于当前资料的证据缺口，不能据此断言研究本身不存在相关内容。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 3
+              },
+              "researchRoadmap": null
+            },
+            {
               "itemId": "jvqlrtgegkb8xu5ulrh9ir6kd",
               "title": "Budgeted Cache Repair 提出跨上下文 KV 缓存复用的预算内修复方法",
               "summary": "Budgeted Cache Repair（BCR）研究提出按固定预算重算缓存行，作者报告其将 GSM8K 准确率恢复至完整预填充水平，同时仍让多数调用使用缓存。",
@@ -5625,50 +5723,6 @@
                 "limitations": "当前证据仅为摘要，以上结论均归属于作者报告，未核对全文，也没有独立复现证据。作者明确指出，最优的保留概率依赖以及对数因子仍是开放问题，因此精度指数的匹配不能解释为所有参数依赖完全最优。置信度依赖的匹配限于 d≤2n，并允许相差精度的对数因子；精度指数匹配须保留固定 p、δ 的约束及深度预算条件。W^{n,r}、L^s 情形仅报告下界推广，不能套用 W^{n,∞} 的上界。完整证明、各界的常数与适用阈值、r 和 s 的具体范围、经验验证及开放实现情况未知：当前资料未提供；这些信息缺失不表示研究本身没有相应内容。",
                 "evidenceBasis": "abstract",
                 "sourceRevision": 2
-              },
-              "researchRoadmap": null
-            },
-            {
-              "itemId": "e8d0u7zawltgcjmb162ocdxqb",
-              "title": "RASS 提出面向扩散草稿树的排序感知推测采样方法",
-              "summary": "RASS 研究提出排序感知的草稿树验证规则，作者报告其在所评估的扩散生成设置中均优于 D-GRS。根据当前材料，该方法沿提议分布与目标分布的均值位移方向排列候选，优化排序位置的抽样权重以减小所选提议分布与目标分布的总变差，再通过最大耦合与残差校正确保任意排序权重下的精确采样，排序无需额外目标模型评估。",
-              "sourceName": "arXiv · AI 与机器学习",
-              "sourceUrl": "https://arxiv.org/abs/2610.02251",
-              "publishedAt": null,
-              "available": true,
-              "research": {
-                "arxivId": "2610.02251",
-                "arxivVersion": "v1",
-                "arxivVersions": [
-                  "v1"
-                ],
-                "doi": null,
-                "originalPublishedAt": "2026-09-30T18:59:32.000Z",
-                "revisedAt": "2026-09-30T18:59:32.000Z",
-                "communitySelectedAt": null,
-                "observedAt": "2026-10-05T03:23:49.923Z",
-                "evidenceBasis": "abstract",
-                "announcedOn": "2026-10-05",
-                "links": [
-                  {
-                    "kind": "paper",
-                    "url": "https://arxiv.org/abs/2610.02251",
-                    "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
-                  },
-                  {
-                    "kind": "paper",
-                    "url": "https://arxiv.org/abs/2610.02251v1",
-                    "sourceUrl": "https://arxiv.org/abs/2610.02251v1"
-                  }
-                ]
-              },
-              "researchBrief": {
-                "methodChange": "作者提出排序感知推测采样（Rank-Aware Speculative Sampling，RASS），用于推测草稿树的验证。其针对的问题是：Diffusion Greedy Rejection Sampling（D-GRS）在每个节点生成 K 个条件独立候选，并按生成顺序依次检验，未利用无需额外目标模型评估即可获得的候选排序信息。RASS 基于排序感知列表耦合，沿提议分布与目标分布的均值位移方向排列候选，并使用经优化的权重抽取排名，以最小化所选提议分布与目标分布之间的总变差距离；随后将所选候选与目标分布进行最大耦合。作者称，残差校正确保任意排名权重下均可精确采样，从而在保持目标分布的前提下提高验证效率。",
-                "applicableTasks": "摘要支持的评估范围包括四类设置：高斯混合目标分布采样、FFHQ 上的无条件像素空间生成、CIFAR-10 上的条件生成，以及使用 COCO2014 提示词的 Stable Diffusion 3.5 潜在扩散生成。方法面向扩散生成中的推测草稿树验证；其他任务、数据或模型上的适用效果未知。",
-                "comparisonConditions": "作者以 D-GRS 为主要比较对象；D-GRS 每个节点生成 K 个条件独立候选，K 的具体数值未知。摘要另提到树方法相较单链草稿能更有效分配并行计算预算，但未给出该比较的量化结果。RASS 的评估覆盖四类设置：一个高斯混合目标设置，以及涉及 FFHQ、CIFAR-10、COCO2014 提示词的三个生成设置；明确命名的模型为 Stable Diffusion 3.5，模型总数、各设置样本或提示词数量未知。效率指标为标准采样的目标模型评估次数除以推测采样的目标模型评估次数，是无量纲比值。作者报告 RASS 在所评估设置中均优于 D-GRS；在计算预算匹配的 CIFAR-10 设置下，该指标相对 D-GRS 的增益最高达到约 20%，不能视为所有设置的统一增益或平均增益。各方法的绝对评估次数、指标绝对值、其他设置的具体增益均未知。硬件、并行度、具体计算预算、采样步数、草稿模型、树结构及其他运行设置未知；摘要未报告墙钟时间或生成质量指标。",
-                "limitations": "当前证据仅为摘要，未核对全文。方法的精确采样性质和效率提升均为作者报告，当前资料未提供证明细节、独立复现或外部验证。摘要明确将约 20% 的增益限定于计算预算匹配的 CIFAR-10 设置，并以目标模型评估次数比值衡量效率，不能据此推断实际耗时同幅下降、生成质量提高或未评估场景的收益。摘要未明确陈述方法自身的其他限制；统计不确定性、重复运行、质量验证、实现可用性及复现所需完整配置未知，不能据此断言研究本身未进行相关工作。",
-                "evidenceBasis": "abstract",
-                "sourceRevision": 1
               },
               "researchRoadmap": null
             }
@@ -6283,9 +6337,9 @@
         }
       ],
       "metrics": {
-        "failed": 1,
+        "failed": 0,
         "parsed": 664,
-        "passed": 50,
+        "passed": 51,
         "stored": 656,
         "blocked": 9,
         "pending": 0,
@@ -6293,10 +6347,10 @@
         "admitted": 60,
         "inWindow": 546,
         "returned": 664,
-        "selected": 26,
-        "processed": 59,
+        "selected": 27,
+        "processed": 60,
         "published": 15,
-        "briefReady": 49,
+        "briefReady": 50,
         "notAdmitted": 451,
         "totalEvents": 15,
         "briefPending": 1,
@@ -6305,7 +6359,7 @@
         "outsideWindow": 110,
         "parseRejected": 0,
         "sourcesFailed": 0,
-        "displayOmitted": 11,
+        "displayOmitted": 12,
         "failedRequests": 0,
         "sourcesPlanned": 6,
         "unknownOutcome": 0,
@@ -6324,13 +6378,12 @@
         "selectedWithoutBrief": 0,
         "duplicateRecordsExact": 0,
         "excludedSourceRecords": 0,
-        "excludedByDisplayLimit": 11,
+        "excludedByDisplayLimit": 12,
         "persistenceUnreconciled": 0,
         "duplicateRecordsLowerBound": 8
       },
       "status": "partial",
       "gaps": [
-        "1 条资料处理失败",
         "1 次共享模型预算的请求结果未知，未自动重发",
         "1 条资料因历史未知请求已隔离，未重发；其他未提交资料独立处理",
         "1 条公开资料的研究解读尚未完成"
@@ -7266,6 +7319,7 @@
     "jvqlrtgegkb8xu5ulrh9ir6kd",
     "imelek26q6223urk1a96mkpr1",
     "hnlnb4wr938892uiw899d5p23",
+    "h8uop4vzqp73o7egeox5mfgfc",
     "fsygdw4119zus6u475zmdmpqp",
     "fbyrfwbvrjyw7gow6plrdjgnf",
     "etwg494uw7bhy1o4fhb7s7qga",
@@ -7319,11 +7373,11 @@
   ],
   "researchAttention": {
     "ruleVersion": "research-source-heat-v1-168h-halflife24h",
-    "computedAt": "2026-10-05T10:59:47.878Z",
+    "computedAt": "2026-10-05T11:04:47.284Z",
     "windowHours": 168,
     "halfLifeHours": 24,
     "minSources": 2,
-    "publicItems": 88,
+    "publicItems": 89,
     "qualifyingResearch": 7,
     "recent48hResearch": 2,
     "entries": [
@@ -7331,7 +7385,7 @@
         "rank": 1,
         "itemId": "k2sij2pi8vkcxhidxw8m1uxmy",
         "title": "SimuVerity 研究提出面向工程级 Simulink 模型生成的智能体评测基准",
-        "heat": 14.6,
+        "heat": 14.5,
         "sourceCount": 2,
         "signals": [
           {
@@ -7354,7 +7408,7 @@
         "rank": 2,
         "itemId": "q08o0zdlmlmjm8z82k9ln4qzt",
         "title": "EditHero：面向长序列部件级 3D 编辑与 Vibe Modeling 的基准",
-        "heat": 14.6,
+        "heat": 14.5,
         "sourceCount": 2,
         "signals": [
           {
