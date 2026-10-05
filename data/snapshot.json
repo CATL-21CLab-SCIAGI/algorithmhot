@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-05T05:59:31.159Z",
+  "generatedAt": "2026-10-05T09:25:01.759Z",
   "publicBaseUrl": "https://pkucy2016.github.io/algorithmhot/",
   "mode": "static-snapshot",
   "scope": "当前全部公开动态（已通过相关性筛选并具有摘要，少于 2,000 条）、公开精选、主题及现存试刊/日报归档（每类少于 400 期）；不含待审候选",
@@ -5709,5 +5709,306 @@
     "dpg8u2s8yta9nmfjmnc77dr98",
     "q60ni863o9lp81sopgsb5k934",
     "sdd6ddfp2z5n31gs6qxa3h3pf"
+  ],
+  "researchAttention": {
+    "ruleVersion": "research-source-heat-v1-168h-halflife24h",
+    "computedAt": "2026-10-05T09:25:01.759Z",
+    "windowHours": 168,
+    "halfLifeHours": 24,
+    "minSources": 2,
+    "publicItems": 74,
+    "qualifyingResearch": 5,
+    "recent48hResearch": 0,
+    "entries": [
+      {
+        "rank": 1,
+        "itemId": "i1kt74wkfu1sylbqhmi2t7dnv",
+        "title": "KaliBench 研究提出面向 Kali Linux 安全工具调用的细粒度基准与免运行可验证奖励",
+        "heat": 1.4,
+        "sourceCount": 2,
+        "signals": [
+          {
+            "source": "arXiv",
+            "url": "https://arxiv.org/abs/2610.02206v1",
+            "at": "2026-10-01T00:00:00.000Z",
+            "kind": "publication",
+            "precision": "timestamp"
+          },
+          {
+            "source": "Hugging Face Daily Papers",
+            "url": "https://huggingface.co/papers/2610.02206",
+            "at": "2026-10-02T00:00:00.000Z",
+            "kind": "community",
+            "precision": "timestamp"
+          }
+        ]
+      },
+      {
+        "rank": 2,
+        "itemId": "n7gty26hkso9o0egz436qszwh",
+        "title": "LoopCD 研究提出以循环中间状态改善 Looped Transformers 解码",
+        "heat": 1.4,
+        "sourceCount": 2,
+        "signals": [
+          {
+            "source": "arXiv",
+            "url": "https://arxiv.org/abs/2610.02185v1",
+            "at": "2026-10-01T00:00:00.000Z",
+            "kind": "publication",
+            "precision": "timestamp"
+          },
+          {
+            "source": "Hugging Face Daily Papers",
+            "url": "https://huggingface.co/papers/2610.02185",
+            "at": "2026-10-02T00:00:00.000Z",
+            "kind": "community",
+            "precision": "timestamp"
+          }
+        ]
+      },
+      {
+        "rank": 3,
+        "itemId": "pgau2nc5iai5889xcnwfot4w6",
+        "title": "SILSA 提出滑动窗口切片潜变量，用于保持拓扑的高分辨率三维生成",
+        "heat": 1.4,
+        "sourceCount": 2,
+        "signals": [
+          {
+            "source": "arXiv",
+            "url": "https://arxiv.org/abs/2610.02201v1",
+            "at": "2026-10-01T00:00:00.000Z",
+            "kind": "publication",
+            "precision": "timestamp"
+          },
+          {
+            "source": "Hugging Face Daily Papers",
+            "url": "https://huggingface.co/papers/2610.02201",
+            "at": "2026-10-02T00:00:00.000Z",
+            "kind": "community",
+            "precision": "timestamp"
+          }
+        ]
+      },
+      {
+        "rank": 4,
+        "itemId": "snmbmzrubqis2mvxth8qidlnb",
+        "title": "ScholarCatalyst 提出检索研究启发文献的基准",
+        "heat": 1.4,
+        "sourceCount": 2,
+        "signals": [
+          {
+            "source": "arXiv",
+            "url": "https://arxiv.org/abs/2610.02202v1",
+            "at": "2026-10-01T00:00:00.000Z",
+            "kind": "publication",
+            "precision": "timestamp"
+          },
+          {
+            "source": "Hugging Face Daily Papers",
+            "url": "https://huggingface.co/papers/2610.02202",
+            "at": "2026-10-02T00:00:00.000Z",
+            "kind": "community",
+            "precision": "timestamp"
+          }
+        ]
+      },
+      {
+        "rank": 5,
+        "itemId": "tvhnp70ajv592y2ulmk84chi4",
+        "title": "HC-DLM 提出分层连续扩散语言模型，耦合 token 生成与潜变量更新",
+        "heat": 1.4,
+        "sourceCount": 2,
+        "signals": [
+          {
+            "source": "arXiv",
+            "url": "https://arxiv.org/abs/2610.02193v1",
+            "at": "2026-10-01T00:00:00.000Z",
+            "kind": "publication",
+            "precision": "timestamp"
+          },
+          {
+            "source": "Hugging Face Daily Papers",
+            "url": "https://huggingface.co/papers/2610.02193",
+            "at": "2026-10-02T00:00:00.000Z",
+            "kind": "community",
+            "precision": "timestamp"
+          }
+        ]
+      }
+    ]
+  },
+  "researchCoverage": [
+    {
+      "date": "2026-10-04",
+      "timezone": "Asia/Shanghai",
+      "checkedAt": "2026-10-05T09:14:44.251Z",
+      "status": "checked-empty",
+      "articleCount": 0,
+      "signalCount": 0,
+      "note": "已补查六个固定来源，未发现当日新正文或社区入选。arXiv 按官方公告日、HF 按官方日期标签、机构博客按北京时间核对；部分证据复用当天早先的来源响应，RSS 不是永久完整档案。此前采集失败回执保持原样。",
+      "sources": [
+        {
+          "id": "research-arxiv-ml-ai",
+          "name": "arXiv · AI 与机器学习",
+          "observedAt": "2026-10-05T03:07:14.863Z",
+          "status": "checked-empty",
+          "articleCount": 0,
+          "signalCount": 0,
+          "urls": [
+            "https://arxiv.org/list/cs.AI/recent?skip=0&show=500",
+            "https://arxiv.org/list/cs.LG/recent?skip=0&show=500"
+          ],
+          "note": "官方目录从 10 月 5 日直接接到 10 月 2 日，两个分类均无该日公告。"
+        },
+        {
+          "id": "research-arxiv-physical-science",
+          "name": "arXiv · 计算物理与材料",
+          "observedAt": "2026-10-05T03:24:10.782Z",
+          "status": "checked-empty",
+          "articleCount": 0,
+          "signalCount": 0,
+          "urls": [
+            "https://arxiv.org/list/cond-mat.mtrl-sci/recent?skip=0&show=500",
+            "https://arxiv.org/list/physics.comp-ph/recent?skip=0&show=500"
+          ],
+          "note": "官方目录从 10 月 5 日直接接到 10 月 2 日，两个分类均无该日公告。"
+        },
+        {
+          "id": "research-arxiv-molecular",
+          "name": "arXiv · 分子与定量生物学",
+          "observedAt": "2026-10-05T03:23:58.287Z",
+          "status": "checked-empty",
+          "articleCount": 0,
+          "signalCount": 0,
+          "urls": [
+            "https://arxiv.org/list/q-bio.BM/recent?skip=0&show=500",
+            "https://arxiv.org/list/q-bio.QM/recent?skip=0&show=500"
+          ],
+          "note": "官方目录从 10 月 5 日直接接到 10 月 2 日，两个分类均无该日公告。"
+        },
+        {
+          "id": "research-hf-daily-papers",
+          "name": "Hugging Face Daily Papers · 社区信号",
+          "observedAt": "2026-10-05T09:13:03.532Z",
+          "status": "checked-empty",
+          "articleCount": 0,
+          "signalCount": 0,
+          "urls": [
+            "https://huggingface.co/api/daily_papers?date=2026-10-04&limit=100&p=0"
+          ],
+          "note": "官方按日接口返回空数组，无后续分页。"
+        },
+        {
+          "id": "rss-google-deepmind",
+          "name": "Google DeepMind",
+          "observedAt": "2026-10-05T03:24:22.710Z",
+          "status": "checked-empty",
+          "articleCount": 0,
+          "signalCount": 0,
+          "urls": [
+            "https://deepmind.google/blog/rss.xml"
+          ],
+          "note": "当前官方 RSS 100 条记录中没有该日文章。"
+        },
+        {
+          "id": "rss-bair",
+          "name": "Berkeley BAIR",
+          "observedAt": "2026-10-05T03:24:21.669Z",
+          "status": "checked-empty",
+          "articleCount": 0,
+          "signalCount": 0,
+          "urls": [
+            "https://bair.berkeley.edu/blog/feed.xml"
+          ],
+          "note": "当前官方 RSS 10 条记录中没有该日文章。"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-03",
+      "timezone": "Asia/Shanghai",
+      "checkedAt": "2026-10-05T09:14:44.251Z",
+      "status": "checked-empty",
+      "articleCount": 0,
+      "signalCount": 0,
+      "note": "已补查六个固定来源，未发现当日新正文或社区入选。arXiv 按官方公告日、HF 按官方日期标签、机构博客按北京时间核对；部分证据复用当天早先的来源响应，RSS 不是永久完整档案。此前采集失败回执保持原样。",
+      "sources": [
+        {
+          "id": "research-arxiv-ml-ai",
+          "name": "arXiv · AI 与机器学习",
+          "observedAt": "2026-10-05T03:07:14.863Z",
+          "status": "checked-empty",
+          "articleCount": 0,
+          "signalCount": 0,
+          "urls": [
+            "https://arxiv.org/list/cs.AI/recent?skip=0&show=500",
+            "https://arxiv.org/list/cs.LG/recent?skip=0&show=500"
+          ],
+          "note": "官方目录从 10 月 5 日直接接到 10 月 2 日，两个分类均无该日公告。"
+        },
+        {
+          "id": "research-arxiv-physical-science",
+          "name": "arXiv · 计算物理与材料",
+          "observedAt": "2026-10-05T03:24:10.782Z",
+          "status": "checked-empty",
+          "articleCount": 0,
+          "signalCount": 0,
+          "urls": [
+            "https://arxiv.org/list/cond-mat.mtrl-sci/recent?skip=0&show=500",
+            "https://arxiv.org/list/physics.comp-ph/recent?skip=0&show=500"
+          ],
+          "note": "官方目录从 10 月 5 日直接接到 10 月 2 日，两个分类均无该日公告。"
+        },
+        {
+          "id": "research-arxiv-molecular",
+          "name": "arXiv · 分子与定量生物学",
+          "observedAt": "2026-10-05T03:23:58.287Z",
+          "status": "checked-empty",
+          "articleCount": 0,
+          "signalCount": 0,
+          "urls": [
+            "https://arxiv.org/list/q-bio.BM/recent?skip=0&show=500",
+            "https://arxiv.org/list/q-bio.QM/recent?skip=0&show=500"
+          ],
+          "note": "官方目录从 10 月 5 日直接接到 10 月 2 日，两个分类均无该日公告。"
+        },
+        {
+          "id": "research-hf-daily-papers",
+          "name": "Hugging Face Daily Papers · 社区信号",
+          "observedAt": "2026-10-05T09:13:02.960Z",
+          "status": "checked-empty",
+          "articleCount": 0,
+          "signalCount": 0,
+          "urls": [
+            "https://huggingface.co/api/daily_papers?date=2026-10-03&limit=100&p=0"
+          ],
+          "note": "官方按日接口返回空数组，无后续分页。"
+        },
+        {
+          "id": "rss-google-deepmind",
+          "name": "Google DeepMind",
+          "observedAt": "2026-10-05T03:24:22.710Z",
+          "status": "checked-empty",
+          "articleCount": 0,
+          "signalCount": 0,
+          "urls": [
+            "https://deepmind.google/blog/rss.xml"
+          ],
+          "note": "当前官方 RSS 100 条记录中没有该日文章。"
+        },
+        {
+          "id": "rss-bair",
+          "name": "Berkeley BAIR",
+          "observedAt": "2026-10-05T03:24:21.669Z",
+          "status": "checked-empty",
+          "articleCount": 0,
+          "signalCount": 0,
+          "urls": [
+            "https://bair.berkeley.edu/blog/feed.xml"
+          ],
+          "note": "当前官方 RSS 10 条记录中没有该日文章。"
+        }
+      ]
+    }
   ]
 }
