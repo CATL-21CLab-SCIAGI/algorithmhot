@@ -3,7 +3,7 @@ import { XMLParser } from "fast-xml-parser";
 import { guardedFetch } from "../lib/http-fetch.ts";
 import { withArxivRateLimit } from "../lib/arxiv-rate-limit.ts";
 import { collapseWhitespace, stripTags } from "../lib/text.ts";
-import { sanitizeBody } from "../content/sanitize.ts";
+import { sanitizeBody, textToHtml } from "../content/sanitize.ts";
 import { identityKeyForUrl } from "../lib/url.ts";
 import { sha256, stableJson } from "../lib/ids.ts";
 import { FetchError, type Candidate, type SourceRow } from "./types.ts";
@@ -32,6 +32,12 @@ function text(v: unknown): string {
     if ("#text" in o) return text(o["#text"]);
   }
   return "";
+}
+
+function atomText(v: unknown): { value: string; html: boolean } {
+  const type = v && typeof v === "object" ? (v as Record<string, unknown>)["@type"] : undefined;
+  // Atom text constructs default to plain text. Literal LaTeX '<' must never enter an HTML parser.
+  return { value: text(v), html: type === "html" || type === "xhtml" };
 }
 
 function arr<T>(v: T | T[] | undefined | null): T[] {
@@ -96,10 +102,10 @@ export function isTeaser(text: string): boolean {
  * The body and excerpt of a feed entry: its text when it is the article, else no body (a summary, or
  * a teaser that stands in as the excerpt when the entry has none).
  */
-function feedText(bodyHtml: string | null, summaryHtml: string, source: SourceRow): Pick<Candidate, "excerpt" | "bodyHtml" | "bodyText" | "bodyStatus"> {
-  const bodyText = bodyHtml ? stripTags(bodyHtml) : null;
+function feedText(bodyHtml: string | null, summaryHtml: string, source: SourceRow, plain: { body?: string; summary?: string } = {}): Pick<Candidate, "excerpt" | "bodyHtml" | "bodyText" | "bodyStatus"> {
+  const bodyText = bodyHtml ? plain.body ?? stripTags(bodyHtml) : null;
   const teaser = !!bodyText && source.participation_mode === "editorial" && isTeaser(bodyText);
-  const excerpt = summaryHtml ? collapseWhitespace(stripTags(summaryHtml)).slice(0, 2000) : teaser ? collapseWhitespace(bodyText!) : null;
+  const excerpt = summaryHtml ? collapseWhitespace(plain.summary ?? stripTags(summaryHtml)).slice(0, 2000) : teaser ? collapseWhitespace(bodyText!) : null;
   return bodyText && ((source.config.summaryIsBody === true) || (bodyText.length > 280 && !teaser))
     ? { excerpt, bodyHtml, bodyText, bodyStatus: "ok" }
     : { excerpt, bodyHtml: null, bodyText: null, bodyStatus: "pending" };
@@ -207,13 +213,17 @@ export function parseRss(xml: string, source: SourceRow, responseUrl = String(so
     for (const e of arr(feed.entry)) {
       const entryBase = new URL(e["@xml:base"] ?? "", feedBase).toString();
       const entryUrl = atomLink(e.link, entryBase);
-      const title = collapseWhitespace(stripTags(text(e.title)));
+      const titleText = atomText(e.title);
+      const title = collapseWhitespace(titleText.html ? stripTags(titleText.value) : titleText.value);
       if (!entryUrl || !title) continue;
-      const content = text(e.content);
-      const summary = text(e.summary);
-      const bodyHtmlRaw = content || (summaryIsBody ? summary : "");
-      const bodyHtml = bodyHtmlRaw ? sanitizeBody(bodyHtmlRaw, entryUrl) : null;
-      const articleText = feedText(bodyHtml, summary, source);
+      const contentText = atomText(e.content), summaryText = atomText(e.summary);
+      const content = contentText.value, summary = summaryText.value;
+      const body = content ? contentText : summaryIsBody ? summaryText : null;
+      const bodyHtml = body?.value ? body.html ? sanitizeBody(body.value, entryUrl) : textToHtml(body.value) : null;
+      const articleText = feedText(bodyHtml, summary, source, {
+        body: body && !body.html ? collapseWhitespace(body.value) : undefined,
+        summary: !summaryText.html ? summary : undefined,
+      });
       const arxiv = parseArxivIdentity(entryUrl) ?? parseArxivIdentity(text(e.id));
       const research = arxiv || source.config.researchSourceKind ? makeResearchMetadata({
         identity: arxiv, observedAt, doi: text(e["arxiv:doi"]),
@@ -229,7 +239,7 @@ export function parseRss(xml: string, source: SourceRow, responseUrl = String(so
         publishedAt: parseDate(text(e.published) || text(e.updated)),
         sourceUpdatedAt: parseDate(text(e.updated)),
         ...articleText,
-        media: content ? imagesFrom(content, entryUrl) : [],
+        media: contentText.html && content ? imagesFrom(content, entryUrl) : [],
         categories: arr(e.category).map((c: any) => c?.["@term"] ?? text(c)).filter(Boolean),
         research,
         raw: { ...e, id: text(e.id) || null },

@@ -135,12 +135,13 @@ async function savedReport(kind: ReportKind, key: string) {
   return row;
 }
 
-async function saveReport(kind: ReportKind, key: string, start: Date, end: Date, content: Record<string, unknown>, reason: string, model: string, receiptId: number | null, expectedRevision: number) {
+async function saveReport(kind: ReportKind, key: string, start: Date, end: Date, content: Record<string, unknown>, reason: string, model: string, receiptId: number | null, expectedRevision: number, monotonicWindow = false) {
   await sql.begin(async (tx) => {
     // The row may not exist yet. Serialize only the commit; model calls hold no transaction open.
     await tx`SELECT pg_advisory_xact_lock(hashtext(${`report:${kind}:${key}`}))`;
-    const [existing] = await tx<{ id: number; revision: number; content: unknown; generated_at: Date }[]>`
-      SELECT id, revision, content, generated_at FROM reports WHERE kind = ${kind} AND key = ${key} FOR UPDATE`;
+    const [existing] = await tx<{ id: number; revision: number; content: unknown; generated_at: Date; window_end: Date }[]>`
+      SELECT id, revision, content, generated_at, window_end FROM reports WHERE kind = ${kind} AND key = ${key} FOR UPDATE`;
+    if (monotonicWindow && existing && existing.window_end > end) throw new Conflict("已有截止时间更新的日报，旧时段不能覆盖");
     if (existing && automatic(reason)) {
       if (receiptId !== null) await completeReceipt(tx, receiptId);
       return;
@@ -225,13 +226,32 @@ export async function researchDailyHealth(start: Date, end: Date): Promise<{ met
   return { metrics, gaps };
 }
 
-/** A pilot has its own kind and explicit seven-day window; it never occupies a daily issue key. */
-export async function composePilot(runId: string, revise = false): Promise<{ key: string; entries: number }> {
+export const RESEARCH_RULE_LEAD_VERSION = "research-rule-lead-v1";
+
+function ruleResearchLead(entries: ReportEntry[], gaps: string[]) {
+  return {
+    lead: {
+      title: `${gaps.length ? "本期部分结果" : "本期研究"}：已整理 ${entries.length} 项研究`,
+      leadParagraph: `本期刊载 ${entries.length} 条已完成筛选与研究解读的公开资料。${gaps.length ? `尚存缺口：${gaps.join("；")}。` : ""}本刊依据已保存的研究解读整理，作者报告的实验尚未独立复现。`,
+    },
+    highlights: entries.slice(0, 3).map(entry => entry.itemId),
+    receiptId: null,
+  };
+}
+
+/** A pilot has its own kind and explicit seven-day window; it never occupies a daily issue key.
+ * ruleOnly is an explicit recovery mode: it never resolves or calls a model, including nonempty issues.
+ */
+export async function composePilot(runId: string, revise = false, options: { ruleOnly?: boolean } = {}): Promise<{ key: string; entries: number }> {
   const [run] = await sql<{ kind: "pilot" | "daily"; window_start: Date; window_end: Date; admission_frozen: boolean }[]>`SELECT * FROM research_runs WHERE id = ${runId}`;
   if (!run?.admission_frozen) throw new Error("research admission is not frozen");
   const kind = run.kind;
   const key = beijingDate(run.window_end);
   const previous = await savedReport(kind, key);
+  if (runId.startsWith("refresh-")) {
+    const [current] = await sql<{ window_end: Date }[]>`SELECT window_end FROM reports WHERE kind=${kind} AND key=${key}`;
+    if (current && current.window_end > run.window_end) throw new Conflict("已有截止时间更新的日报，旧时段不能覆盖");
+  }
   if (previous && !revise) {
     const [saved] = await sql<{ id: string }[]>`SELECT content->'run'->>'id' AS id FROM reports WHERE kind = ${kind} AND key = ${key}`;
     if (saved?.id !== runId) throw new Conflict("已有另一批次试刊，请显式生成修订");
@@ -242,6 +262,7 @@ export async function composePilot(runId: string, revise = false): Promise<{ key
     FROM publications p JOIN research_members m ON m.article_id = p.article_id JOIN sources s ON s.id = p.source_id
     WHERE m.run_id = ${runId} AND m.admitted AND p.selected AND p.visibility = 'public' AND p.visible_after <= now()
       AND p.research_brief IS NOT NULL
+      AND (${!options.ruleOnly} OR (m.state='pass' AND p.eligible))
       AND (${kind}='pilot' OR NOT p.backfill)
     ORDER BY p.score DESC,p.published_at DESC,p.article_id`;
   const sections = CATEGORIES.map((category) => ({ label: category.section, items: rows.filter((r) => r.category === category.key).slice(0, 5).map((r): ReportEntry => ({
@@ -251,18 +272,19 @@ export async function composePilot(runId: string, revise = false): Promise<{ key
   })) })).filter((s) => s.items.length);
   const ordered = sections.flatMap((s) => s.items);
   const health = await researchRunMetrics(runId);
-  const model = ordered.length ? await modelFor("report") : "rule";
-  const lead = ordered.length ? await writeLead(kind, key, ordered, model) : emptyLead(health.gaps);
+  const model = ordered.length && !options.ruleOnly ? await modelFor("report") : "rule";
+  const lead = ordered.length ? options.ruleOnly ? ruleResearchLead(ordered, health.gaps) : await writeLead(kind, key, ordered, model) : emptyLead(health.gaps);
   health.metrics.published = ordered.length;
   health.metrics.roadmapsPublished = ordered.filter(e => e.researchRoadmap).length;
   health.metrics.excludedByDisplayLimit = rows.length - ordered.length;
   const status = health.gaps.length ? "partial" : "complete";
-  const content = { date: key, title: kind === "pilot" ? `${SITE.name} · 最近七天试刊` : `${SITE.name} · 日报`, lead: lead.lead, highlights: lead.highlights, sections, flashes: [],
+  const title = kind === "pilot" ? `${SITE.name} · 最近七天试刊` : `${SITE.name} · ${runId.startsWith("refresh-") ? "日内更新" : "日报"}`;
+  const content = { date: key, title: `${title}${options.ruleOnly && status === "partial" ? " · 部分结果" : ""}`, lead: lead.lead, highlights: lead.highlights, sections, flashes: [],
     windowStart: run.window_start.toISOString(), windowEnd: run.window_end.toISOString(),
     run: { id: runId, kind, status, ...health },
     metrics: { ...health.metrics, totalEvents: ordered.length, sourcesCount: new Set(ordered.map((e) => e.sourceId)).size, displayOmitted: rows.length - ordered.length },
-    generator: { version: REPORT_VERSION, model, calibration: "NOT_EVALUATED" } };
-  await saveReport(kind, key, run.window_start, run.window_end, content, revise ? "research-revision" : "scheduled", model, lead.receiptId, previous?.revision ?? 0);
+    generator: { version: options.ruleOnly ? RESEARCH_RULE_LEAD_VERSION : REPORT_VERSION, model, calibration: "NOT_EVALUATED" } };
+  await saveReport(kind, key, run.window_start, run.window_end, content, revise ? "research-revision" : "scheduled", model, lead.receiptId, previous?.revision ?? 0, runId.startsWith("refresh-"));
   await sql`UPDATE research_runs SET report_key = ${key}, status = ${status}, updated_at = now() WHERE id = ${runId}`;
   return { key, entries: ordered.length };
 }

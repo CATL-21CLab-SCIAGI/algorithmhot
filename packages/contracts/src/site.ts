@@ -127,6 +127,7 @@ export interface TimelineResponse {
 }
 
 export interface PoolResponse {
+  researchCoverage?: import("./research-coverage.ts").ResearchDayCoverage[];
   filters: TimelineFilters & { q: string | null; tab: "time" | "relevance" };
   items: FeedItemSummary[];
   page: number;
@@ -238,6 +239,7 @@ export interface HotEntryView {
 }
 
 export interface HotResponse {
+  researchAttention?: import("./research-heat.ts").ResearchHeatRanking;
   computedAt: string | null;
   ruleVersion: string | null;
   windowHours: number;

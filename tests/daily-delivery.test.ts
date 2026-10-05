@@ -3,7 +3,7 @@ import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
-import { deliverDaily, deliveryDate, dueDaily, readReceipt, recoverDeliveryLock, withDeliveryLock, type DailyInspection, type Stage } from "../scripts/daily-delivery/core.ts";
+import { deliverDaily, deliveryDate, dueDaily, currentRefreshSlot, validateRefreshSlot, readReceipt, recoverDeliveryLock, withDeliveryLock, type DailyInspection, type Stage } from "../scripts/daily-delivery/core.ts";
 import { publicDestination, safeSiteOrigin } from "../scripts/daily-delivery.ts";
 
 const now = new Date("2026-10-04T00:00:00Z");
@@ -152,4 +152,61 @@ test("destination is frozen per daily receipt", async () => harness(async dir =>
   const { deps } = dependencies(dir);
   await deliverDaily(options, deps);
   await assert.rejects(deliverDaily({ ...options, repo: "other/algorithmhot" }, deps), /destination differs/);
+}));
+
+
+test("intraday slots freeze cutoff and reuse the same slot, while later slots ingest again", async () => harness(async dir => {
+  const clock = new Date("2026-10-05T02:30:00Z");
+  assert.equal(currentRefreshSlot(clock), "2026-10-05-09");
+  assert.equal(currentRefreshSlot(new Date("2026-10-04T16:01:00Z")), "2026-10-05-00");
+  assert.throws(() => validateRefreshSlot("2026-10-05-12", clock), /future/);
+  const { deps, executed } = dependencies(dir);
+  // Inspect each snapshot independently, just as the DB report identity does.
+  const completed = new Set<string>();
+  deps.inspect = async () => ({ ...complete, report: null });
+  let active = "";
+  const richer = { ...deps, now: () => clock,
+    inspect: async (id: string) => { active = id; return { ...complete, report: completed.has(id) ? complete.report : null }; },
+    execute: async (stage: Stage) => { executed.push(stage); if (stage === "generate") completed.add(active); },
+  };
+  const first = await deliverDaily({ ...options, now: clock, refreshSlot: currentRefreshSlot(clock) }, richer);
+  assert.equal(first.runId, "refresh-2026-10-05-09");
+  assert.equal(first.windowEnd, clock.toISOString());
+  await deliverDaily({ ...options, now: new Date("2026-10-05T03:59:00Z"), refreshSlot: "2026-10-05-09" }, richer);
+  assert.equal(executed.filter(s => s === "generate").length, 1);
+  await deliverDaily({ ...options, now: new Date("2026-10-05T04:01:00Z"), refreshSlot: "2026-10-05-12" }, richer);
+  assert.equal(executed.filter(s => s === "generate").length, 2);
+}));
+
+test("new snapshot isolates shared daily UNKNOWN and publishes confirmed partial results", async () => harness(async dir => {
+  const { deps, executed } = dependencies(dir);
+  deps.inspect = async () => ({ ...complete, unknownRequests: 1, callsUsed: executed.includes("generate") ? 25 : 20,
+    report: executed.includes("generate") ? { status: "partial", published: 4, gaps: 1, revision: 1 } : null });
+  const result = await deliverDaily({ ...options, refreshSlot: "2026-10-04-06" }, deps);
+  assert.equal(executed.filter(stage => stage === "generate").length, 1);
+  assert.equal(executed.includes("publish"), true);
+  assert.equal(result.inspection?.unknownRequests, 1);
+  assert.equal(result.inspection?.report?.status, "partial");
+  assert.equal(result.inspection?.callsUsed, 25);
+}));
+
+test("UNKNOWN isolation never permits a simultaneous pending request", async () => harness(async dir => {
+  const { deps, executed } = dependencies(dir);
+  deps.inspect = async () => ({ ...complete, unknownRequests: 1, pendingRequests: 1, report: null });
+  await assert.rejects(deliverDaily(options, deps), /unresolved pending/);
+  assert.equal(executed.includes("generate"), false);
+}));
+
+
+test("explicit reconciliation has one stable receipt and never changes the shared date", async () => harness(async dir => {
+  const clock = new Date("2026-10-05T03:00:00Z");
+  assert.equal(validateRefreshSlot("2026-10-05-09-r1", clock), "2026-10-05-09-r1");
+  assert.throws(() => validateRefreshSlot("2026-10-05-09-r2", clock), /Invalid/);
+  const { deps, executed } = dependencies(dir);
+  const optionsForSlot = { ...options, now: clock, refreshSlot: "2026-10-05-09-r1" };
+  const receipt = await deliverDaily(optionsForSlot, deps);
+  assert.equal(receipt.runId, "refresh-2026-10-05-09-r1");
+  assert.equal((await readReceipt(dir, "2026-10-05-09-r1"))?.windowEnd, clock.toISOString());
+  await deliverDaily(optionsForSlot, deps);
+  assert.equal(executed.filter(stage => stage === "generate").length, 1);
 }));

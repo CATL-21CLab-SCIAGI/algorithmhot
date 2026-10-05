@@ -79,7 +79,7 @@ async function material(runId: string, label: string, category: string, selected
   return articleId;
 }
 
-const report = async (kind: string, key: string) => (await sql<{ id: number; revision: number; content: Record<string, any>; window_start: Date; window_end: Date }[]>`SELECT * FROM reports WHERE kind=${kind} AND key=${key}`)[0]!;
+const report = async (kind: string, key: string) => (await sql<{ id: number; revision: number; content: Record<string, any>; window_start: Date; window_end: Date; model: string; origin: string }[]>`SELECT * FROM reports WHERE kind=${kind} AND key=${key}`)[0]!;
 
 test("pilot is capped at five per section, keeps its exact window, is idempotent and versions explicit revisions", async () => {
   const id = await run("populated", "2013-07-10");
@@ -245,4 +245,79 @@ test("a frozen daily keeps the previous 08:00-to-08:00 window and is independent
   } finally {
     if (oldDate === undefined) delete process.env.RESEARCH_RUN_DATE; else process.env.RESEARCH_RUN_DATE = oldDate;
   }
+});
+
+test("explicit rule-only recovery publishes completed nonempty results and actual gaps with zero model requests", async () => {
+  const id = await run("rule-only", "2013-07-14", true);
+  const ready = await material(id, "rule-ready", "algorithm");
+  const noBrief = await material(id, "rule-no-brief", "ai4ai");
+  const pending = await material(id, "rule-pending", "ai4s");
+  const held = await material(id, "rule-held", "algorithm");
+  await sql`UPDATE publications SET research_brief=NULL WHERE article_id=${noBrief}`;
+  await freezeAdmissions(id);
+  await sql`UPDATE research_members SET state='pass' WHERE run_id=${id} AND article_id=ANY(${[ready, noBrief]})`;
+  await sql`UPDATE research_members SET state='unknown-receipt' WHERE run_id=${id} AND article_id=${held}`;
+  const hits = provider.hits();
+  const [before] = await sql`SELECT (SELECT count(*) FROM receipts)::int AS receipts,(SELECT count(*) FROM receipt_attempts)::int AS attempts`;
+  const previousEnabled = config.modelCallsEnabled;
+  const previousEnv = { enabled: process.env.MODEL_CALLS_ENABLED, key: process.env.LLM_API_KEY, url: process.env.LLM_BASE_URL };
+  config.modelCallsEnabled = false; process.env.MODEL_CALLS_ENABLED = "false";
+  delete process.env.LLM_API_KEY; process.env.LLM_BASE_URL = "http://127.0.0.1:1";
+  try {
+    const result = await composePilot(id, false, { ruleOnly: true });
+    assert.equal(result.entries, 1);
+    const saved = await report("pilot", result.key);
+    assert.equal(saved.model, "rule"); assert.equal(saved.origin, "manual");
+    assert.equal(saved.content.generator.model, "rule");
+    assert.equal(saved.content.generator.version, "research-rule-lead-v1");
+    assert.equal(saved.content.run.status, "partial");
+    assert.match(saved.content.title, /部分结果/);
+    assert.match(saved.content.lead.title, /部分结果.*1 项研究/);
+    assert.equal(saved.content.sections[0].items[0].itemId, ready);
+    assert.ok(saved.content.run.gaps.length > 0);
+    for (const gap of saved.content.run.gaps) assert.ok(saved.content.lead.leadParagraph.includes(gap));
+    assert.equal(saved.content.run.metrics.pending, 1);
+    assert.equal(saved.content.run.metrics.unknownOutcome, 1);
+    assert.equal(saved.content.run.metrics.selectedWithoutBrief, 1);
+    assert.equal((await sql`SELECT state FROM research_members WHERE run_id=${id} AND article_id=${pending}`)[0].state, "pending");
+    assert.deepEqual(await composePilot(id, false, { ruleOnly: true }), result);
+    assert.equal((await report("pilot", result.key)).revision, 1);
+    await composePilot(id, true, { ruleOnly: true });
+    const revised = await report("pilot", result.key);
+    assert.equal(revised.revision, 2);
+    assert.deepEqual(revised.content.lead, saved.content.lead, "the same retained results produce the same rule lead");
+    assert.equal((await sql`SELECT count(*)::int AS n FROM report_revisions WHERE report_id=${saved.id}`)[0].n, 1);
+    assert.deepEqual((await sql`SELECT (SELECT count(*) FROM receipts)::int AS receipts,(SELECT count(*) FROM receipt_attempts)::int AS attempts`)[0], before);
+    assert.equal(provider.hits(), hits);
+    assert.equal(await getModelRun(id), null, "rule-only composition does not create a model budget or request");
+  } finally {
+    config.modelCallsEnabled = previousEnabled;
+    for (const [name, value] of [["MODEL_CALLS_ENABLED", previousEnv.enabled], ["LLM_API_KEY", previousEnv.key], ["LLM_BASE_URL", previousEnv.url]]) {
+      if (value === undefined) delete process.env[name!]; else process.env[name!] = value;
+    }
+  }
+});
+
+test("rule-only intraday revisions retain the monotonic cutoff guard without model requests", async () => {
+  await sources();
+  const key = "2013-07-15"; dailyKeys.push(key);
+  const previousEnabled = config.modelCallsEnabled; config.modelCallsEnabled = false;
+  const hits = provider.hits();
+  try {
+    const firstId = `refresh-${key}-09`, nextId = `refresh-${key}-12`;
+    for (const [id, end] of [[firstId, "2013-07-15T01:30:00Z"], [nextId, "2013-07-15T04:30:00Z"]]) {
+      runIds.push(id);
+      await createResearchRun(id, "daily", new Date(end), { start: new Date("2013-07-14T00:00:00Z"), end: new Date(end) });
+      await material(id, id, "algorithm", true, "pass", false);
+      await freezeAdmissions(id);
+      await sql`UPDATE research_members SET state='pass' WHERE run_id=${id} AND admitted`;
+      await composePilot(id, true, { ruleOnly: true });
+    }
+    const before = await report("daily", key);
+    assert.match(before.content.title, /日内更新.*部分结果/);
+    assert.equal(before.window_end.toISOString(), "2013-07-15T04:30:00.000Z");
+    await assert.rejects(composePilot(firstId, true, { ruleOnly: true }), /旧时段不能覆盖/);
+    assert.deepEqual(await report("daily", key), before);
+    assert.equal(provider.hits(), hits);
+  } finally { config.modelCallsEnabled = previousEnabled; }
 });

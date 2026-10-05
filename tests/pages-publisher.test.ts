@@ -1,13 +1,14 @@
 import { spawnSync } from "node:child_process";
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, readFile, writeFile, rm, mkdir, symlink, copyFile, realpath } from 'node:fs/promises';
+import { mkdtemp, readFile, writeFile, rm, mkdir, symlink, copyFile, realpath, chmod } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
-import { auditBundle, destination, verifyPushUrls, safeGitEnvironment, validateApprovedHeads, verifyApprovedHistory, auditStageFiles, validatePaperFigures, assertPaperFigurePng } from '../scripts/pages-publisher.ts';
+import { auditBundle, destination, verifyPushUrls, safeGitEnvironment, validateApprovedHeads, verifyApprovedHistory, auditStageFiles, validatePaperFigures, assertPaperFigurePng, assertPagesBranch, PAGES_BRANCH } from '../scripts/pages-publisher.ts';
 import type { PublicPaperFigure } from '../scripts/pages-publisher.ts';
 const repo='PKUCY2016/algorithmhot';
+const branch=PAGES_BRANCH;
 async function fixture(extra: Record<string,string | Uint8Array>={}) {
  const dir=await mkdtemp(path.join(tmpdir(),'algorithmhot-public-'));
  const files={ 'index.html':'<!doctype html><h1>科研热点</h1>', '.nojekyll':'', ...extra };
@@ -59,10 +60,18 @@ test('Git subprocesses cannot inherit alternate checkout/index/config or tracing
  assert.equal(env.GIT_CONFIG_NOSYSTEM,undefined,'installed keychain credential helpers remain available');
 });
 test('every unpublished ancestor must have a registered approved commit receipt',()=>{
- const record=validateApprovedHeads({version:1,repo,heads:[{sha:'a'.repeat(40),manifestSha256:'b'.repeat(64),createdAt:new Date().toISOString()}]},repo);
+ const record=validateApprovedHeads({version:1,repo,branch,heads:[{sha:'a'.repeat(40),manifestSha256:'b'.repeat(64),createdAt:new Date().toISOString()}]},repo);
  verifyApprovedHistory(['a'.repeat(40)],record);
  assert.throws(()=>verifyApprovedHistory(['a'.repeat(40),'c'.repeat(40)],record),/Unregistered unpublished/);
  assert.throws(()=>validateApprovedHeads(record,'other/repo'),/Invalid approved/);
+ assert.throws(()=>validateApprovedHeads({...record,branch:'main'},repo),/controlled migration/);
+ const {branch:_,...legacy}=record;
+ assert.throws(()=>validateApprovedHeads(legacy,repo),/controlled migration/);
+});
+test('publisher branch is fixed and does not accept legacy, detached or arbitrary branches',()=>{
+ assert.equal(PAGES_BRANCH,'gh-pages');
+ assert.doesNotThrow(()=>assertPagesBranch('gh-pages','Test checkout'));
+ for(const branch of [undefined,null,'','main','source','refs/heads/gh-pages']) assert.throws(()=>assertPagesBranch(branch,'Test checkout'),/controlled migration/);
 });
 test('staging recovery accepts mixed verified old/new bytes and rejects user changes or symlinks',async()=>{
  const dir=await fixture();
@@ -72,8 +81,11 @@ test('staging recovery accepts mixed verified old/new bytes and rejects user cha
   const updated='<h1>next public issue</h1>';
   const next=oldFiles.map(file=>file.path==='index.html'?{path:file.path,bytes:Buffer.byteLength(updated),sha256:createHash('sha256').update(updated).digest('hex')}:file);
   const hash=oldFiles.find(f=>f.path==='export-manifest.json')!.sha256;
-  const journal={version:1 as const,repo,oldHead:'a'.repeat(40),phase:'copying' as const,oldManifestSha256:hash,newManifestSha256:hash,oldFiles,newFiles:next};
+  const journal={version:1 as const,repo,branch,oldHead:'a'.repeat(40),phase:'copying' as const,oldManifestSha256:hash,newManifestSha256:hash,oldFiles,newFiles:next};
   await writeFile(path.join(dir,'index.html'),updated);await auditStageFiles(dir,journal,repo);
+  await assert.rejects(auditStageFiles(dir,{...journal,branch:'main'} as unknown as typeof journal,repo),/controlled migration/);
+  const {branch:_,...legacy}=journal;
+  await assert.rejects(auditStageFiles(dir,legacy as unknown as typeof journal,repo),/controlled migration/);
   await writeFile(path.join(dir,'index.html'),'a user edit');await assert.rejects(auditStageFiles(dir,journal,repo),/user modification/);
   await writeFile(path.join(dir,'index.html'),updated);await writeFile(path.join(dir,'personal.txt'),'personal');await assert.rejects(auditStageFiles(dir,journal,repo),/Unrecognized/);
   await rm(path.join(dir,'personal.txt'));await symlink(path.join(dir,'index.html'),path.join(dir,'linked.html'));await assert.rejects(auditStageFiles(dir,journal,repo),/symbolic/);
@@ -94,7 +106,7 @@ test('publisher CLI restores only its journaled generated checkout without netwo
    const result=spawnSync('git',['-c','core.hooksPath=/dev/null',...args],{cwd:checkout,encoding:'utf8',env:{...safeGitEnvironment(),GIT_CONFIG_GLOBAL:'/dev/null'}});
    assert.equal(result.status,0,result.stderr);return result.stdout.trim();
   };
-  runGit(['init','-b','main']);runGit(['remote','add','origin',destination(repo).remote]);runGit(['config','user.name','Test']);runGit(['config','user.email','test@example.invalid']);
+  runGit(['init','-b',branch]);runGit(['remote','add','origin',destination(repo).remote]);runGit(['config','user.name','Test']);runGit(['config','user.email','test@example.invalid']);
   const source=await fixture();
   let oldFiles;
   try {
@@ -105,12 +117,30 @@ test('publisher CLI restores only its journaled generated checkout without netwo
   runGit(['add','--all']);runGit(['commit','-m','Known public baseline']);const oldHead=runGit(['rev-parse','HEAD']);
   const next='<h1>Generated next issue</h1>',nextFile={path:'next.html',bytes:Buffer.byteLength(next),sha256:createHash('sha256').update(next).digest('hex')};
   const manifestHash=oldFiles.find(file=>file.path==='export-manifest.json')!.sha256;
-  const journal={version:1,repo,oldHead,phase:'copying',oldManifestSha256:manifestHash,newManifestSha256:manifestHash,oldFiles,newFiles:[...oldFiles,nextFile]};
-  await writeFile(path.join(state,'checkout.json'),JSON.stringify({path:checkout,repo}));
+  const journal={version:1,repo,branch,oldHead,phase:'copying',oldManifestSha256:manifestHash,newManifestSha256:manifestHash,oldFiles,newFiles:[...oldFiles,nextFile]};
+  await writeFile(path.join(state,'checkout.json'),JSON.stringify({path:checkout,repo,branch}));
   await writeFile(path.join(state,'staging.json'),JSON.stringify(journal));
   await rm(path.join(checkout,'index.html'));await writeFile(path.join(checkout,'next.html'),next);runGit(['add','--all']);
   const recover=()=>spawnSync(process.execPath,[path.join(app,'scripts/publish-pages.ts'),'--recover-stage'],{cwd:app,encoding:'utf8'});
-  const result=recover();assert.equal(result.status,0,result.stderr);assert.match(result.stdout,/"networkRequests":0/);
+  // Fail before recovery writes on old markers, mismatched current branches or old approval state.
+  for(const marker of [{path:checkout,repo},{path:checkout,repo,branch:'main'}]){
+   await writeFile(path.join(state,'checkout.json'),JSON.stringify(marker));
+   const rejected=recover();assert.equal(rejected.status,1);assert.match(rejected.stderr,/controlled migration/);
+   assert.equal(await readFile(path.join(checkout,'next.html'),'utf8'),next);
+   assert.equal(runGit(['branch','--show-current']),branch);
+  }
+  await writeFile(path.join(state,'checkout.json'),JSON.stringify({path:checkout,repo,branch}));
+  runGit(['branch','-m','main']);
+  const wrongBranch=recover();assert.equal(wrongBranch.status,1);assert.match(wrongBranch.stderr,/Public checkout branch.*controlled migration/);
+  assert.equal(await readFile(path.join(checkout,'next.html'),'utf8'),next);
+  runGit(['branch','-m',branch]);
+  await writeFile(path.join(state,'approved-heads.json'),JSON.stringify({version:1,repo,heads:[]}));
+  const wrongHistory=recover();assert.equal(wrongHistory.status,1);assert.match(wrongHistory.stderr,/Approved publisher history.*controlled migration/);
+  await writeFile(path.join(state,'approved-heads.json'),JSON.stringify({version:1,repo,branch,heads:[]}));
+  await writeFile(path.join(state,'staging.json'),JSON.stringify({...journal,branch:'main'}));
+  const wrongJournal=recover();assert.equal(wrongJournal.status,1);assert.match(wrongJournal.stderr,/recovery journal.*controlled migration/);
+  await writeFile(path.join(state,'staging.json'),JSON.stringify(journal));
+  const result=recover();assert.equal(result.status,0,result.stderr);assert.match(result.stdout,/"networkRequests":0/);assert.match(result.stdout,/"branch":"gh-pages"/);
   assert.equal(runGit(['status','--porcelain']),'');assert.equal(runGit(['rev-parse','HEAD']),oldHead);
   await writeFile(path.join(state,'staging.json'),JSON.stringify(journal));await writeFile(path.join(checkout,'index.html'),'user changes');
   const rejected=recover();assert.equal(rejected.status,1);assert.match(rejected.stderr,/user modification/);
@@ -161,4 +191,53 @@ test('PDF-extracted PNG files require approved path, exact bytes, MIME and dimen
  for(const files of invalidFiles){
   const bad=await fixture(files);try{await assert.rejects(auditBundle(bad,repo));}finally{await rm(bad,{recursive:true});}
  }
+});
+
+test('publisher uses only gh-pages refs while a local mock remote main source branch stays unchanged',async()=>{
+ const app=await realpath(await mkdtemp(path.join(tmpdir(),'algorithmhot-branch-publish-')));
+ const source=await fixture();
+ const realGit=spawnSync('/bin/sh',['-c','command -v git'],{encoding:'utf8'}).stdout.trim();
+ try{
+  const projectRoot=path.resolve(import.meta.dirname,'..'),remote=path.join(app,'remote.git'),seed=path.join(app,'source-seed'),bin=path.join(app,'bin'),log=path.join(app,'git-network.jsonl');
+  await mkdir(path.join(app,'scripts/daily-delivery'),{recursive:true});await mkdir(bin);await mkdir(seed);
+  for(const file of ['pages-publisher.ts','publish-pages.ts','daily-delivery/core.ts']) await copyFile(path.join(projectRoot,'scripts',file),path.join(app,'scripts',file));
+  await writeFile(path.join(app,'package.json'),'{"type":"module"}');await symlink(path.join(projectRoot,'node_modules'),path.join(app,'node_modules'),'dir');
+  const runGit=(args:string[],cwd=seed)=>{const r=spawnSync(realGit,['-c','core.hooksPath=/dev/null','-c','commit.gpgsign=false',...args],{cwd,encoding:'utf8',env:{...safeGitEnvironment(),GIT_CONFIG_GLOBAL:'/dev/null'}});assert.equal(r.status,0,r.stderr);return r.stdout.trim();};
+  runGit(['init','--bare',remote],app);runGit(['init','-b','main']);runGit(['config','user.name','Test']);runGit(['config','user.email','test@example.invalid']);
+  await writeFile(path.join(seed,'source.ts'),'export const sourceOnly = true;\n');runGit(['add','source.ts']);runGit(['commit','-m','Source remains on main']);runGit(['push',remote,'main']);
+  const mainBefore=runGit(['rev-parse','refs/heads/main'],remote);
+  // Network verbs are redirected to an isolated on-disk bare Git repository. No network is used.
+  const wrapper=`#!/usr/bin/env node
+import { spawnSync } from 'node:child_process';
+import { appendFileSync } from 'node:fs';
+const args=process.argv.slice(2);let command=0;while(args[command]==='-c')command+=2;
+if(['fetch','push','ls-remote'].includes(args[command])){
+ appendFileSync(process.env.TEST_PAGES_GIT_LOG,JSON.stringify(args.slice(command))+'\\n');
+ const origin=args.indexOf('origin',command+1);if(origin<0)process.exit(97);
+ args[origin]=process.env.TEST_PAGES_REMOTE;
+}
+const result=spawnSync(process.env.TEST_PAGES_REAL_GIT,['-c','commit.gpgsign=false',...args],{stdio:'inherit',env:{...process.env,GIT_CONFIG_GLOBAL:'/dev/null'}});process.exit(result.status??98);
+`;
+  await writeFile(path.join(bin,'git'),wrapper);await chmod(path.join(bin,'git'),0o755);
+  const publish=()=>spawnSync(process.execPath,[path.join(app,'scripts/publish-pages.ts'),'--source',source],{cwd:app,encoding:'utf8',env:{...process.env,PATH:`${bin}:${process.env.PATH}`,TEST_PAGES_REAL_GIT:realGit,TEST_PAGES_REMOTE:remote,TEST_PAGES_GIT_LOG:log}});
+  const first=publish();assert.equal(first.status,0,first.stderr);assert.match(first.stdout,/"branch":"gh-pages"/);
+  const state=path.join(app,'.data/pages-publisher'),checkout=path.join(app,'.data/pages-repo');
+  for(const file of ['checkout.json','approved-heads.json','receipt.json'])assert.equal(JSON.parse(await readFile(path.join(state,file),'utf8')).branch,'gh-pages');
+  assert.equal(runGit(['branch','--show-current'],checkout),'gh-pages');
+  const second=publish();assert.equal(second.status,0,second.stderr);
+  // A new independent checkout may fast-forward its unborn gh-pages branch from the existing ref.
+  await rm(checkout,{recursive:true});await rm(state,{recursive:true});
+  const fresh=publish();assert.equal(fresh.status,0,fresh.stderr);
+  assert.equal(runGit(['rev-parse','refs/heads/main'],remote),mainBefore);
+  assert.equal(runGit(['show','refs/heads/main:source.ts'],remote),'export const sourceOnly = true;');
+  assert.equal(runGit(['rev-parse','HEAD'],checkout),runGit(['rev-parse','refs/heads/gh-pages'],remote));
+  const commands=String(await readFile(log,'utf8')).trim().split('\n').map(line=>JSON.parse(line) as string[]);
+  assert.ok(commands.some(args=>args[0]==='fetch'));
+  for(const args of commands){
+   assert.equal(args.some(arg=>arg.includes('refs/heads/main')||arg.startsWith('+')||arg==='--force'||arg==='--mirror'),false);
+   if(args[0]==='fetch')assert.deepEqual(args,['fetch','--no-tags','--refmap=','origin','refs/heads/gh-pages:refs/remotes/origin/gh-pages']);
+   if(args[0]==='ls-remote')assert.deepEqual(args,['ls-remote','--heads','origin','refs/heads/gh-pages']);
+   if(args[0]==='push')assert.equal(args.at(-1),'HEAD:refs/heads/gh-pages');
+  }
+ }finally{await rm(app,{recursive:true,force:true});await rm(source,{recursive:true,force:true});}
 });

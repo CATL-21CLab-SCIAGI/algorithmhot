@@ -1,7 +1,7 @@
 // The single entrance for new material from every channel (collectors, external reports, imports).
 // It owns identity, revisions and the timeline rule, so no entrance can bypass them.
 import type { ResearchMetadata } from "@aihot/contracts/research";
-import { mergeResearchMetadata, parseArxivIdentity, researchMetadataChanged } from "../sources/research.ts";
+import { mergeResearchMetadata, parseArxivIdentity, researchAnnouncementDate, researchMetadataChanged } from "../sources/research.ts";
 import { sql, type Db } from "../db.ts";
 import { newArticleId, sha256 } from "../lib/ids.ts";
 import { identityKeyForUrl } from "../lib/url.ts";
@@ -74,13 +74,24 @@ export interface TimelineDecision {
   backfillReason: string | null;
 }
 
+/** Valid, already announced arXiv day within the same freshness allowance as other sources. */
+export function hasRecentArxivAnnouncement(research: ResearchMetadata | null | undefined, discoveredAt: Date): boolean {
+  const announcedOn = researchAnnouncementDate(research?.announcedOn);
+  if (!announcedOn || !parseArxivIdentity(research?.arxivId) || research?.signalOnly) return false;
+  const announcedAt = new Date(`${announcedOn}T00:00:00Z`);
+  return announcedAt <= discoveredAt && discoveredAt.getTime() - announcedAt.getTime() <= STALE_ON_DISCOVERY_MS;
+}
+
 /** The one timeline rule shared by every entrance. */
-export function decideTimeline(claimed: Date | null | undefined, discoveredAt: Date, explicitBackfill?: string | null): TimelineDecision {
+export function decideTimeline(claimed: Date | null | undefined, discoveredAt: Date, explicitBackfill?: string | null, research?: ResearchMetadata | null): TimelineDecision {
   let publishedAt: Date | null = claimed && Number.isFinite(claimed.getTime()) ? claimed : null;
   if (publishedAt && publishedAt.getTime() > discoveredAt.getTime() + FUTURE_TOLERANCE_MS) publishedAt = null;
+  // The source explicitly dates its public announcement. Use this only for freshness, without
+  // replacing submission time or turning a date-only heading into an exact publication timestamp.
+  const freshAnnouncement = hasRecentArxivAnnouncement(research, discoveredAt);
   let backfillReason: string | null = null;
   if (explicitBackfill) backfillReason = explicitBackfill;
-  else if (publishedAt && discoveredAt.getTime() - publishedAt.getTime() > STALE_ON_DISCOVERY_MS) backfillReason = "stale-on-discovery";
+  else if (!freshAnnouncement && publishedAt && discoveredAt.getTime() - publishedAt.getTime() > STALE_ON_DISCOVERY_MS) backfillReason = "stale-on-discovery";
   const backfill = backfillReason !== null;
   const timelineAt = backfill && publishedAt ? publishedAt : discoveredAt;
   return { publishedAt, timelineAt, backfill, backfillReason };
@@ -144,7 +155,7 @@ async function upsertIn(db: Db, m: MaterialInput): Promise<MaterialResult> {
   const discoveredAt = m.discoveredAt ?? new Date();
   const title = collapseWhitespace(m.title).slice(0, 1000) || m.url;
 
-  const t = decideTimeline(m.publishedAt, discoveredAt, m.backfill);
+  const t = decideTimeline(m.publishedAt, discoveredAt, m.backfill, m.research);
   const newId = m.id ?? newArticleId();
   const hash = contentHash({ title, bodyText: m.bodyText, excerpt: m.excerpt });
   const [inserted] = await db<{ id: string }[]>`
@@ -166,14 +177,20 @@ async function upsertIn(db: Db, m: MaterialInput): Promise<MaterialResult> {
     return { articleId: newId, created: true, revised: false, backfill: t.backfill };
   }
 
-  const [existing] = await db<{ id: string; source_id: string; revision: number; content_hash: string | null; backfill: boolean; title: string; body_text: string | null; excerpt: string | null; research: ResearchMetadata | null }[]>`
-    SELECT id, source_id, revision, content_hash, backfill, title, body_text, excerpt, research FROM articles WHERE identity_key = ${identityKey} FOR UPDATE`;
+  const [existing] = await db<{ id: string; source_id: string; revision: number; content_hash: string | null; backfill: boolean; backfill_reason: string | null; discovered_at: Date; title: string; body_text: string | null; excerpt: string | null; research: ResearchMetadata | null }[]>`
+    SELECT id, source_id, revision, content_hash, backfill, backfill_reason, discovered_at, title, body_text, excerpt, research FROM articles WHERE identity_key = ${identityKey} FOR UPDATE`;
   await db`INSERT INTO article_discoveries (article_id, source_id, via, discovered_at)
            VALUES (${existing!.id}, ${m.sourceId}, ${m.via}, ${discoveredAt}) ON CONFLICT DO NOTHING`;
   const research = m.research ? mergeResearchMetadata(existing!.research, m.research) : existing!.research;
   const metadataChanged = !!research && researchMetadataChanged(existing!.research, research);
   if (metadataChanged) {
     await db`UPDATE articles SET research = ${db.json(research as never)}, updated_at = now() WHERE id = ${existing!.id}`;
+  }
+  // A later official announcement can correct only the automatic stale classification. Explicit
+  // historical imports stay historical; neither the original submission nor first observation moves.
+  if (existing!.backfill_reason === "stale-on-discovery" && !t.backfill && hasRecentArxivAnnouncement(m.research, discoveredAt)) {
+    await db`UPDATE articles SET backfill=false,backfill_reason=NULL,timeline_at=discovered_at,updated_at=now() WHERE id=${existing!.id}`;
+    existing!.backfill = false;
   }
   if (m.raw !== undefined && existing!.source_id === m.sourceId) {
     await db`UPDATE articles SET raw = ${db.json(m.raw as never)} WHERE id = ${existing!.id} AND raw IS DISTINCT FROM ${db.json(m.raw as never)}::jsonb`;

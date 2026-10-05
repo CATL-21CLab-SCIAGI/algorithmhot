@@ -190,7 +190,7 @@ test("production SSR item keeps missing publication and revision dates distinct 
   assert.equal(response.status, 200, logs);
   const visible = (await response.text()).replace(/<script[\s\S]*?<\/script>/g, "").replace(/<[^>]+>/g, "");
   assert.match(visible, /本站发现时间/);
-  assert.match(visible, /原始发表2026-09-20 10:00/);
+  assert.match(visible, /原始提交2026-09-20 10:00/);
   assert.match(visible, /修订未知/);
   assert.match(visible, /社区入选2026-10-01 12:00/);
   assert.match(visible, /本站观测2026-10-03 13:00/);

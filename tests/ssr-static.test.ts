@@ -78,10 +78,10 @@ test("static Agent metadata agrees with its limited reading interface", () => {
   for (const selector of ['meta[name="description"]', 'meta[property="og:description"]', 'meta[name="twitter:description"]']) assert.match($(selector).attr("content")!, /不提供实时 API、MCP 或 RSS/);
 });
 
-test("SSR client rejects full candidate, original, admin and remote-origin requests before networking", async () => {
+test("SSR client rejects search, unbounded pool pages, original, admin and remote-origin requests before networking", async () => {
   assert.throws(() => ssrClient("https://example.com"), /local reader origin/);
   const get = ssrClient("http://127.0.0.1:3102");
-  for (const route of ["/all", "/all?q=private", "/admin", "/api/site/items/item1", "/items/item1/original", "/items/item1/markdown", "/assets/app.js", "//evil.example/path"]) await assert.rejects(get(route), /allowlist entry/);
+  for (const route of ["/all?page=51", "/all?q=private", "/all?category=unknown", "/admin", "/api/site/items/item1", "/items/item1/original", "/items/item1/markdown", "/assets/app.js", "//evil.example/path"]) await assert.rejects(get(route), /allowlist entry/);
 });
 
 test("all-public listing retains native shell but highlights the all destination", () => {

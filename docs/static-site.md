@@ -1,6 +1,6 @@
 # GitHub Pages 静态公开阅读版
 
-公开地址：`https://pkucy2016.github.io/algorithmhot/`。阅读仓库只保存生成的公开网页和数据，不接收应用源码、数据库、原始响应、模型登录或调用回执。发布前须确认 [公开阅读版说明](public-reading-policy.md)，静态站的“来源与隐私说明”使用同样的七项内容。
+公开地址：`https://pkucy2016.github.io/algorithmhot/`。项目统一在 `PKUCY2016/algorithmhot`：`main` 保存应用源码，`gh-pages` 只保存生成的公开网页和数据。网页发布分支不接收应用源码、数据库、原始响应、模型登录或调用回执。发布前须确认 [公开阅读版说明](public-reading-policy.md)，静态站的“来源与隐私说明”使用同样的七项内容。
 
 ## 导出
 
@@ -46,7 +46,7 @@ node scripts/static-site.ts \
 
 ## Pages 配置
 
-使用独立公开仓库 `PKUCY2016/algorithmhot` 的 `main` 分支根目录发布：`Settings → Pages → Deploy from a branch → main / (root)`。无需构建工作流；实际导出目录不包含 `.github/workflows`，避免要求额外的 workflow 权限。`.nojekyll` 保证 Pages 原样托管静态文件。
+使用同一仓库 `PKUCY2016/algorithmhot` 的 `gh-pages` 分支根目录发布：`Settings → Pages → Deploy from a branch → gh-pages / (root)`。无需构建工作流；实际导出目录不包含 `.github/workflows`，避免要求额外的 workflow 权限。`.nojekyll` 保证 Pages 原样托管静态文件。发布程序严格绑定 `gh-pages`，不能覆盖保存源码的 `main`。旧发布 checkout 的 `main` 与缺少分支信息的状态文件必须经核对后迁移，不能直接重新注册绕过检查。
 
 同事访问的是已发布快照，本机停机不会删除已有报告。生成新内容和推送更新仍依赖本机采集、模型处理和日报发布链路；静态站不提供实时 MCP 或动态搜索 API。
 

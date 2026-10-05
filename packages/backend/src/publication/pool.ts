@@ -1,4 +1,5 @@
 import { listedCondition } from "./scope.ts";
+import { loadResearchCoverage } from "./research-coverage.ts";
 // Public pool (/all) with numeric pages, and search in its two orderings.
 import type { PoolResponse, TimelineFilters } from "@aihot/contracts/site";
 import { beijingDate, beijingMidnight } from "@aihot/contracts/time";
@@ -205,5 +206,6 @@ export async function loadPool(query: PoolQuery): Promise<PoolResponse> {
     todayCount: Number(meta.today_count),
     freshness: (meta.updated_at ?? now).toISOString(),
     generatedAt: now.toISOString(),
+    researchCoverage: await loadResearchCoverage(),
   };
 }

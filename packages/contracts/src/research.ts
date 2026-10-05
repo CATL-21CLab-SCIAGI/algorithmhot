@@ -9,6 +9,8 @@ export interface ResearchMetadata {
   arxivVersions: string[];
   doi: string | null;
   originalPublishedAt: string | null;
+  /** Official arXiv announcement day (YYYY-MM-DD); distinct from the submission timestamp. */
+  announcedOn?: string | null;
   revisedAt: string | null;
   communitySelectedAt: string | null;
   observedAt: string | null;

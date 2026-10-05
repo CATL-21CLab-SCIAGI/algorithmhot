@@ -38,6 +38,7 @@ export interface DeliveryOptions {
   date?: string;
   resume?: boolean;
   refreshPublic?: boolean;
+  refreshSlot?: string;
   siteBase: string;
   repo: string;
 }
@@ -46,7 +47,7 @@ export interface DeliveryDependencies {
   now(): Date;
   assertIdle(): Promise<void>;
   inspect(runId: string): Promise<DailyInspection>;
-  execute(stage: Stage, date: string): Promise<void>;
+  execute(stage: Stage, date: string, windowEnd: string): Promise<void>;
   log(value: { date: string; stage?: Stage; status: string }): void;
 }
 
@@ -62,6 +63,17 @@ export function deliveryDate(value: string | undefined, now: Date): string {
   if (dailyWindow(date).end > now) throw new Error("The requested daily window has not closed at 08:00 Beijing");
   return date;
 }
+/** A stable three-hour observation slot; actual cutoff is frozen in its receipt. */
+export function currentRefreshSlot(now: Date = new Date()): string {
+  if (!Number.isFinite(now.getTime())) throw new Error("Invalid clock");
+  const hour = new Date(now.getTime() + 8 * 3600000).getUTCHours();
+  return `${beijingDate(now)}-${String(Math.floor(hour / 3) * 3).padStart(2, "0")}`;
+}
+export function validateRefreshSlot(slot: string, now: Date): string {
+  const match = /^(\d{4}-\d{2}-\d{2})-(00|03|06|09|12|15|18|21)(?:-r1)?$/.exec(slot);
+  if (!match || !isValidDate(match[1]!) || slot.replace(/-r1$/, "") > currentRefreshSlot(now)) throw new Error("Invalid or future refresh slot");
+  return slot;
+}
 export async function saveJson(file: string, value: unknown): Promise<void> {
   const temporary = `${file}.${randomUUID()}.tmp`;
   await writeFile(temporary, JSON.stringify(value, null, 2) + "\n", { mode: 0o600 });
@@ -70,7 +82,7 @@ export async function saveJson(file: string, value: unknown): Promise<void> {
 export async function readReceipt(stateDir: string, date: string): Promise<DeliveryReceipt | null> {
   try {
     const value = JSON.parse(await readFile(path.join(stateDir, `${date}.json`), "utf8")) as DeliveryReceipt;
-    if (value.version !== 1 || value.date !== date || value.runId !== `daily-${date}` || !value.stages) throw new Error("Invalid delivery receipt");
+    if (value.version !== 1 || value.date !== date || value.runId !== (/^\d{4}-\d{2}-\d{2}-\d{2}(?:-r1)?$/.test(date) ? `refresh-${date}` : `daily-${date}`) || !value.stages) throw new Error("Invalid delivery receipt");
     return value;
   } catch (error) { if ((error as NodeJS.ErrnoException).code === "ENOENT") return null; throw error; }
 }
@@ -116,7 +128,8 @@ export async function recoverDeliveryLock(stateDir: string, alive: (pid: number)
 }
 
 export async function deliverDaily(options: DeliveryOptions, deps: DeliveryDependencies): Promise<DeliveryReceipt> {
-  const date = deliveryDate(options.date, options.now ?? deps.now());
+  const clock = options.now ?? deps.now();
+  const date = options.refreshSlot ? validateRefreshSlot(options.refreshSlot, clock) : deliveryDate(options.date, clock);
   return withDeliveryLock(deps.stateDir, async () => {
     const previous = await readReceipt(deps.stateDir, date);
     if (previous && (previous.repo !== options.repo || previous.siteBase !== options.siteBase)) throw new Error("Frozen delivery destination differs from this request");
@@ -125,9 +138,9 @@ export async function deliverDaily(options: DeliveryOptions, deps: DeliveryDepen
     }
     if (previous && previous.status !== "complete" && !options.resume) throw new Error("An unfinished delivery exists. Inspect its receipts, then use --resume with the same date.");
     if (options.refreshPublic && previous?.stages.generate?.status !== "complete") throw new Error("--refresh-public requires an already completed generation stage");
-    const window = dailyWindow(date);
+    const window = dailyWindow(date.slice(0, 10));
     const receipt: DeliveryReceipt = previous ?? {
-      version: 1, date, runId: `daily-${date}`, windowStart: window.start.toISOString(), windowEnd: window.end.toISOString(),
+      version: 1, date, runId: options.refreshSlot ? `refresh-${date}` : `daily-${date}`, windowStart: window.start.toISOString(), windowEnd: options.refreshSlot ? clock.toISOString() : window.end.toISOString(),
       siteBase: options.siteBase, repo: options.repo, status: "running", updatedAt: deps.now().toISOString(), stages: {},
     };
     if (options.refreshPublic) { delete receipt.stages.export; delete receipt.stages.publish; }
@@ -148,13 +161,14 @@ export async function deliverDaily(options: DeliveryOptions, deps: DeliveryDepen
           if (receipt.inspection.executionBusy || receipt.inspection.pendingRequests > 0) throw new Error("Model requests are still running or unresolved pending; inspect existing receipts before recovery");
           if (receipt.inspection.report) receipt.stages.generate!.reused = true;
           else {
-            // Same run ID, same frozen admission/budget. UNKNOWN receipts remain held by the backend.
-            await deps.execute(stage, date);
+            // UNKNOWN subjects are quarantined by research-run; unrelated unsubmitted work may
+            // proceed under the same frozen admission/budget. In-flight requests still stop above.
+            await deps.execute(stage, date, receipt.windowEnd);
             receipt.inspection = await deps.inspect(receipt.runId);
           }
           if (!receipt.inspection.report) throw new Error("Generation returned without a persisted daily report");
           if (receipt.inspection.executionBusy || receipt.inspection.pendingRequests > 0) throw new Error("Generation still has a model request in flight; publication was held");
-        } else await deps.execute(stage, date);
+        } else await deps.execute(stage, date, receipt.windowEnd);
         receipt.stages[stage]!.status = "complete";
         receipt.stages[stage]!.endedAt = deps.now().toISOString();
         await persist(); deps.log({ date, stage, status: "complete" });

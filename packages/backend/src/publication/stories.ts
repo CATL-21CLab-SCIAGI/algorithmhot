@@ -8,6 +8,7 @@ import { behindSources, currentSignals, heatSeries, sourceClocks } from "../even
 import { evidenceCondition, listedCondition, storyReportCondition } from "./scope.ts";
 import { itemUrl, storyApiUrl, storyUrl } from "./links.ts";
 import { SITE } from "@aihot/industry/site";
+import { loadResearchHeat } from "./research-heat.ts";
 
 function storyStatusFor(latestAt: Date | null, now = Date.now()): "active" | "watching" | "settled" {
   if (!latestAt) return "settled";
@@ -226,8 +227,8 @@ async function queryHotCovers(entries: Array<{ storyId: number; representativeIt
 }
 
 export async function loadHot(): Promise<HotResponse> {
-  const ranking = await latestHotRanking();
-  if (!ranking) return { computedAt: null, ruleVersion: null, windowHours: 48, entries: [] };
+  const [ranking, researchAttention] = await Promise.all([latestHotRanking(), loadResearchHeat()]);
+  if (!ranking) return { computedAt: null, ruleVersion: null, windowHours: 48, entries: [], researchAttention };
   const at = new Date(ranking.computedAt);
   const [sparks, covers, extras] = await Promise.all([
     sparklines(
@@ -239,6 +240,7 @@ export async function loadHot(): Promise<HotResponse> {
   ]);
   return {
     computedAt: ranking.computedAt,
+    researchAttention,
     ruleVersion: ranking.ruleVersion,
     windowHours: 48,
     entries: ranking.entries.map((e) => {

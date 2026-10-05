@@ -10,6 +10,7 @@ import { PillTabs } from "../components/ui/Tabs";
 import { DayList, Pagination } from "../features/feed/DayList";
 import { EmptyState } from "../components/ui/Page";
 import { RingMark } from "../components/Logo";
+import { ResearchCoverage } from "../features/feed/ResearchCoverage";
 
 export async function loader({ request }: Route.LoaderArgs) {
   const url = new URL(request.url);
@@ -115,6 +116,7 @@ export default function AllPage() {
         </div>
       )}
 
+      {data.page === 1 && !f.q && !f.tag && !f.category && f.channel === "all" && <ResearchCoverage days={data.researchCoverage ?? []} />}
       <div className={`transition-opacity duration-200 ${busy ? "opacity-50" : ""}`}>
         {data.items.length === 0 ? (
           <div className="mt-2 lg:card">

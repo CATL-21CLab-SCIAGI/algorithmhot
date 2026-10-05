@@ -4,12 +4,24 @@ import { createHash } from "node:crypto";
 import { load } from "cheerio";
 import type { CheerioAPI } from "cheerio";
 import type { Snapshot, PublicItem } from "./model.ts";
-import { publicUrl, validateSnapshot } from "./model.ts";
-import { escapeHtml as e, normalizeBase, renderSite, validateStaticLinks } from "./render.ts";
+import { publicUrl, validateSnapshot, selectedItems, poolItems, sanitizeResearchCoverage } from "./model.ts";
+import { escapeHtml as e, normalizeBase, renderSite, renderResearchAttention, validateStaticLinks } from "./render.ts";
+import { computeResearchHeat } from "@aihot/contracts/research-heat";
 import { assertPaperFigureBindings, assertPaperFigureMarkup, assertPaperFigurePng, paperFigureAsset, paperFigureSrc, paperFiguresForRoute, validatePaperFigures } from "../pages-publisher.ts";
 import type { PublicPaperFigure } from "../pages-publisher.ts";
 
 export type SsrGet = (route: string) => Promise<string>;
+/** Match the complete audited payload, not only its dates, before using the reader DOM. */
+export function assertResearchCoverage($: CheerioAPI, expected: NonNullable<Snapshot["researchCoverage"]>) {
+  const section = $('section[aria-label="历史日期补查"]');
+  if (!expected.length && !section.length) return;
+  if (section.length !== 1) throw new Error("SSR research coverage differs from public snapshot");
+  let actual: unknown;
+  try { actual = JSON.parse(section.attr("data-research-coverage") ?? ""); }
+  catch { throw new Error("SSR research coverage payload missing"); }
+  if (JSON.stringify(sanitizeResearchCoverage(actual)) !== JSON.stringify(expected)) throw new Error("SSR research coverage differs from public snapshot");
+  section.removeAttr("data-research-coverage");
+}
 const tagPath = (tag: string) => `/tags/${createHash("sha256").update(tag).digest("hex").slice(0, 16)}`;
 const keyOf = (path: string) => path === "/" ? "/" : path.replace(/\/$/, "");
 const outputFile = (route: string) => route === "/" ? "index.html" : `${route.replace(/^\//, "").replace(/\/$/, "")}/index.html`;
@@ -20,8 +32,9 @@ export function ssrClient(web: string): SsrGet {
   const origin = new URL(web);
   if (!["http:", "https:"].includes(origin.protocol) || !["127.0.0.1", "localhost", "[::1]"].includes(origin.hostname) || origin.username || origin.password) throw new Error("SSR input must be a local reader origin");
   return async (route) => {
-    // Never collect all-candidate lists, search, admin, original text or API routes.
+    // /all is the reviewed public pool, not the raw candidate queue. Searches remain excluded.
     if (!/^(?:\/(?:\?(?:category=(?:algorithm|ai4ai|ai4s)|channel=firstParty))?|\/topics(?:\/[a-z0-9_-]+(?:\/page\/[1-9]\d*)?)?|\/items\/[a-zA-Z0-9_-]+|\/(?:pilot|daily)(?:\/(?:\d{4}-\d{2}-\d{2}|archive))?|\/(?:more|privacy|agent))$/.test(route)
+      && !/^\/all(?:\?(?:category=(?:algorithm|ai4ai|ai4s)(?:&page=(?:[1-9]|[1-4]\d|50))?|page=(?:[1-9]|[1-4]\d|50)))?$/.test(route)
       && !/^\/assets\/[A-Za-z0-9_.-]+\.(?:css|svg)$/.test(route)) throw new Error(`SSR route is not a reader allowlist entry: ${route}`);
     const response = await fetch(new URL(route, origin), { redirect: "error", signal: AbortSignal.timeout(30_000), headers: { Accept: route.endsWith(".css") ? "text/css" : route.endsWith(".svg") ? "image/svg+xml" : "text/html" } });
     if (!response.ok) throw new Error(`SSR reader failed (${response.status}): ${route}`);
@@ -49,6 +62,12 @@ export function sanitizeSsrPage(html: string, options: SsrSanitizeOptions): stri
   const base = normalizeBase(snapshot.publicBaseUrl), $ = load(html);
   const ids = new Set(snapshot.items.map((item) => item.id));
   if (!$("#main").length) throw new Error(`Missing SSR shell: ${route}`);
+  // A running reader may predate new metric labels; public exports still use reader-facing text.
+  const isolationLabels: Record<string, string> = { quarantinedUnknown: "因历史未知请求隔离", quarantinedFailed: "因历史失败隔离" };
+  $('section[aria-label="本期处理范围"] dt').each((_, node) => {
+    const label = isolationLabels[$(node).text().trim()];
+    if (label) $(node).text(label);
+  });
   // Hydration streams contain full loader objects, including fields not meant for the export.
   $("script,style,template,iframe,object,embed,canvas,base,foreignObject,animate,animateMotion,animateTransform,set,link[rel=modulepreload],link[rel=preload],link[rel=manifest],link[rel=alternate],meta[http-equiv=refresh],input,select,textarea").remove();
   $("[hidden]").remove();
@@ -91,7 +110,7 @@ export function sanitizeSsrPage(html: string, options: SsrSanitizeOptions): stri
   $("[data-item-id]").each((_, node) => { if (!ids.has($(node).attr("data-item-id")!)) throw new Error(`SSR item outside snapshot scope: ${route}`); });
 
   // Synthesized filtered pages use the original shell but must highlight their actual destination.
-  const active = route === "/all" ? "/all" : /^\/(?:category|tags)\//.test(route) ? "/" : route.split("/").filter(Boolean)[0] ? `/${route.split("/")[1]}` : "/";
+  const active = /^\/all(?:\/|$)/.test(route) ? "/all" : /^\/(?:category|tags)\//.test(route) ? "/" : route.split("/").filter(Boolean)[0] ? `/${route.split("/")[1]}` : "/";
   $('nav[aria-label="主导航"] a[href]').each((_, node) => {
     const link = $(node), on = keyOf(link.attr("href")!) === active;
     const common = (link.attr("class") ?? "").split(/\s+/).filter((value) => !["bg-accent/10", "font-semibold", "text-ink", "dark:bg-accent-soft", "font-medium", "text-ink-3", "hover:bg-bg-sunk", "hover:text-ink"].includes(value)).join(" ");
@@ -99,7 +118,7 @@ export function sanitizeSsrPage(html: string, options: SsrSanitizeOptions): stri
     if (on) link.attr("aria-current", "page"); else link.removeAttr("aria-current");
     if (on) link.children("span").first().addClass("text-accent"); else link.children("span").first().removeClass("text-accent");
   });
-  const phoneActive = route === "/all" ? "/all" : /^\/(?:pilot|daily|weekly|monthly|archive)(?:\/|$)/.test(route) ? "/pilot"
+  const phoneActive = /^\/all(?:\/|$)/.test(route) ? "/all" : /^\/(?:pilot|daily|weekly|monthly|archive)(?:\/|$)/.test(route) ? "/pilot"
     : /^\/(?:topics|agent|about|privacy|terms|more|hot|starred|feedback|changelog)(?:\/|$)/.test(route) ? "/more" : "/";
   $('nav[aria-label="底部导航"] a[href]').each((_, node) => {
     const link = $(node), on = keyOf(link.attr("href")!) === phoneActive;
@@ -122,9 +141,16 @@ export function sanitizeSsrPage(html: string, options: SsrSanitizeOptions): stri
     let target = original;
     if (target === "/" && url.searchParams.has("category")) target = `/category/${url.searchParams.get("category")}`;
     else if (target === "/" && url.searchParams.get("channel") === "firstParty") target = "/first-party";
-    else if (target === "/all" && url.searchParams.has("category")) target = `/category/${url.searchParams.get("category")}`;
-    else if (target === "/all" && url.searchParams.has("tag")) target = tagPath(url.searchParams.get("tag")!);
-    else if (target === "/all" && (url.searchParams.has("search") || url.searchParams.has("q"))) target = "/topics";
+    else if (target === "/all") {
+      if (url.searchParams.has("search") || url.searchParams.has("q")) target = "/topics";
+      else if (url.searchParams.has("tag")) target = tagPath(url.searchParams.get("tag")!);
+      else {
+        if (url.searchParams.has("category")) target = snapshot.poolItemIds ? `/all/category/${url.searchParams.get("category")}` : `/category/${url.searchParams.get("category")}`;
+        const page = Number(url.searchParams.get("page") ?? 1);
+        if (!Number.isInteger(page) || page < 1 || page > 50) throw new Error("Invalid SSR public pool page link");
+        if (page > 1) target += `/page/${page}`;
+      }
+    }
     else if (target.startsWith("/items/") && target.endsWith("/markdown")) target = target.slice(0, -9);
     else if (target === "/feed.xml" || target.startsWith("/api/") || target === "/llms.txt" || target === "/openapi-v1.json") target = "/agent";
     else if (target.startsWith("/story/")) target = "/hot";
@@ -165,6 +191,45 @@ function assertReaderScope($: CheerioAPI, snapshot: Snapshot, route: string) {
   $("[data-item-id]").each((_, node) => { if (!ids.has($(node).attr("data-item-id")!)) throw new Error(`SSR page exceeds public snapshot scope: ${route}`); });
 }
 
+/** Keep the native /all shell and numbered pages, checking their membership against the API snapshot. */
+export async function collectPoolSsrPages(snapshot: Snapshot, get: SsrGet): Promise<Map<string, string>> {
+  const pages = new Map<string, string>(), pool = poolItems(snapshot);
+  for (const category of [null, "algorithm", "ai4ai", "ai4s"] as const) {
+    const items = category ? pool.filter(item => item.category === category) : pool;
+    const pageCount = Math.max(1, Math.ceil(items.length / 40));
+    if (items.length >= 2000 || pageCount > 50) throw new Error("Public pool SSR exceeds its complete export limit");
+    const seen: string[] = [];
+    for (let page = 1; page <= pageCount; page++) {
+      const query = new URLSearchParams();
+      if (category) query.set("category", category);
+      if (page > 1) query.set("page", String(page));
+      const source = `/all${query.size ? `?${query}` : ""}`;
+      const route = `/all${category ? `/category/${category}` : ""}${page > 1 ? `/page/${page}` : ""}`;
+      const $ = load(await get(source));
+      assertReaderScope($, snapshot, source);
+      if (!category && page === 1 && snapshot.researchCoverage) {
+        assertResearchCoverage($, snapshot.researchCoverage);
+        const coverageDates = $('section[aria-label="历史日期补查"] time[datetime]').map((_, node) => $(node).attr("datetime")!).get();
+        if (JSON.stringify(coverageDates) !== JSON.stringify(snapshot.researchCoverage.map(day => day.date))) throw new Error("SSR research coverage differs from public snapshot");
+      }
+      const ids = $("article[data-item-id]").map((_, node) => $(node).attr("data-item-id")!).get();
+      const expected = items.slice((page - 1) * 40, page * 40).map(item => item.id);
+      if (JSON.stringify(ids) !== JSON.stringify(expected)) throw new Error(`SSR public pool membership or order changed: ${source}`);
+      seen.push(...ids);
+      const links = $('nav[aria-label="分页"] a[href]').map((_, node) => new URL($(node).attr("href")!, "http://127.0.0.1:3102")).get();
+      const last = Math.max(1, ...links.map(url => Number(url.searchParams.get("page") ?? 1)));
+      if (last !== pageCount || links.some(url => url.pathname !== "/all" || url.searchParams.get("category") !== category)) throw new Error(`SSR public pool pagination changed: ${source}`);
+      const title = category ? `${({ algorithm: "算法", ai4ai: "AI4AI", ai4s: "AI4S" })[category]} · 全部公开动态` : "全部科研动态";
+      $("#main h1").text(title);
+      $("title").text(`${title}${page > 1 ? ` · 第 ${page} 页` : ""} · AlgorithmHot 科研热点`);
+      contentRoot($).prepend(`<p data-static-freshness="true" class="mb-4 rounded-panel border border-line bg-bg-sunk/45 px-3 py-2 text-[12px] leading-relaxed text-ink-3">网页更新：${e(beijingTimestamp(snapshot.generatedAt))} · 本范围 ${items.length} 条公开动态，含精选与通过相关性筛选的其他资料。下方日期是资料时间，更新网页不改写研究日期。</p>`);
+      pages.set(route, $.html());
+    }
+    if (new Set(seen).size !== items.length) throw new Error("SSR public pool contains duplicate or missing items");
+  }
+  return pages;
+}
+
 export async function renderSsrSite(snapshot: Snapshot, get: SsrGet, registeredFigures: readonly PublicPaperFigure[] = [], getLocalFigure?: (url: string) => Promise<Uint8Array>): Promise<Map<string, string | Uint8Array>> {
   validateSnapshot(snapshot);
   const registry = validatePaperFigures({ schemaVersion: 1, figures: registeredFigures }).figures;
@@ -174,6 +239,7 @@ export async function renderSsrSite(snapshot: Snapshot, get: SsrGet, registeredF
   const pages = new Map<string, string>();
   const request = async (source: string, destination = source) => { const html = await get(source); const $ = load(html); assertReaderScope($, snapshot, source); pages.set(destination, html); return $; };
   const home = await request("/");
+  if (snapshot.poolItemIds) for (const [route, html] of await collectPoolSsrPages(snapshot, get)) pages.set(route, html);
   await request("/topics");
   for (const topic of snapshot.topics) {
     const first = await request(`/topics/${topic.slug}`);
@@ -208,7 +274,8 @@ export async function renderSsrSite(snapshot: Snapshot, get: SsrGet, registeredF
       if (/^\d{4}-\d{2}-\d{2}$/.test(day) && $(node).find("ol").length && !dayTemplates.has(day)) dayTemplates.set(day, $.html(node));
     });
   }
-  for (const item of snapshot.items) if (!cardTemplates.has(item.id)) throw new Error(`Public card missing from SSR pages: ${item.id}`);
+  const selected = selectedItems(snapshot), pool = poolItems(snapshot);
+  for (const item of [...selected, ...pool]) if (!cardTemplates.has(item.id)) throw new Error(`Public card missing from SSR pages: ${item.id}`);
   const rebuildFeed = ($: CheerioAPI, items: PublicItem[]) => {
     const feed = $("#main > div > .pb-6 > .relative").last();
     if (!feed.length) throw new Error("Original home timeline container changed");
@@ -225,7 +292,7 @@ export async function renderSsrSite(snapshot: Snapshot, get: SsrGet, registeredF
     }
     feed.html(result.join("") || '<div class="lg:card"><div class="flex flex-col items-center px-6 py-14 text-center"><div class="text-[15px] font-semibold text-ink-2">这个筛选下还没有精选内容</div></div></div>');
   };
-  rebuildFeed(home, snapshot.items);
+  rebuildFeed(home, selected);
   pages.set("/", home.html());
   const filtered = (route: string, title: string, items: PublicItem[], source = pages.get("/")!) => {
     const $ = load(source);
@@ -236,22 +303,25 @@ export async function renderSsrSite(snapshot: Snapshot, get: SsrGet, registeredF
     rebuildFeed($, items);
     pages.set(route, $.html());
   };
-  filtered("/all", "全部公开精选", snapshot.items);
+  if (!snapshot.poolItemIds) filtered("/all", "全部公开精选", pool);
   for (const category of ["algorithm", "ai4ai", "ai4s"]) {
     const html = await get(`/?category=${category}`);
-    filtered(`/category/${category}`, ({ algorithm: "算法", ai4ai: "AI4AI", ai4s: "AI4S" })[category]!, snapshot.items.filter((item) => item.category === category), html);
+    filtered(`/category/${category}`, ({ algorithm: "算法", ai4ai: "AI4AI", ai4s: "AI4S" })[category]!, selected.filter((item) => item.category === category), html);
   }
-  for (const tag of new Set(snapshot.items.flatMap((item) => item.tags))) filtered(tagPath(tag), `#${tag}`, snapshot.items.filter((item) => item.tags.includes(tag)));
+  for (const tag of new Set(snapshot.items.flatMap((item) => item.tags))) filtered(tagPath(tag), `#${tag}`, pool.filter((item) => item.tags.includes(tag)));
 
   // Keep the original legal-page shell; content is the same approved public notice.
   const policySource = load(renderSite(snapshot).get("about/index.html")!);
   const policyText = policySource("main section p").map((_, node) => policySource(node).text()).get();
   const legalShell = await get("/privacy");
+  const hotPage = load(legalShell);
+  notice(hotPage, "近7天科研关注榜", []);
+  contentRoot(hotPage).html(renderResearchAttention(snapshot.researchAttention ?? computeResearchHeat(pool, snapshot.generatedAt), route => `/${route}`));
+  pages.set("/hot", hotPage.html());
   for (const route of ["/about", "/privacy", "/terms"]) {
     const $ = load(legalShell); notice($, "公网阅读版说明", policyText, [["GitHub 隐私声明", "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"], ["提交更正", "https://github.com/PKUCY2016/algorithmhot/issues"]]); pages.set(route, $.html());
   }
   const notices: Array<[string, string, string[]]> = [
-    ["/hot", "热点榜", ["公网版目前按精选、栏目、主题和刊物浏览。这一页未发布独立热点榜，不把主题条数或精选顺序解释为热度排名。"]],
     ["/starred", "收藏", ["静态阅读版不保存个人收藏或浏览器个性化记录。可以使用浏览器书签保存某篇资料或某一期报告。"]],
     ["/feedback", "内容更正", ["可通过下方公开仓库 Issues 提交来源、摘要、图示或链接的更正建议，请勿提交密码、密钥或私人资料。"]],
     ["/changelog", "更新记录", [`本次公开快照：${beijingTimestamp(snapshot.generatedAt)}。包含 ${snapshot.items.length} 条公开资料、${snapshot.topics.length} 个主题、${snapshot.reports.length} 份报告。报告各自保留资料窗口、生成时间和修订号。`]],

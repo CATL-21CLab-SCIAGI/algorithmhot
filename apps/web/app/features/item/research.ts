@@ -8,10 +8,11 @@ export const RESEARCH_LINK_LABELS: Record<ResearchMetadata["links"][number]["kin
   paper: "论文", project: "项目", code: "代码", weights: "权重",
 };
 export function researchDates(research: ResearchMetadata) {
-  return [
-    ["原始发表", research.originalPublishedAt], ["修订", research.revisedAt],
+  const dates = [
+    [research.arxivId ? "原始提交" : "原始发表", research.originalPublishedAt], ["修订", research.revisedAt],
     ["社区入选", research.communitySelectedAt], ["本站观测", research.observedAt],
   ].map(([label, value]) => ({ label: label!, value: value && Number.isFinite(Date.parse(value)) ? fullDateTime(value) : "未知", iso: value && Number.isFinite(Date.parse(value)) ? value : null }));
+  return research.announcedOn ? [{ label: "arXiv 公告", value: research.announcedOn, iso: research.announcedOn }, ...dates] : dates;
 }
 export function publicResearchLinks(research: ResearchMetadata) {
   const seen = new Set<string>();

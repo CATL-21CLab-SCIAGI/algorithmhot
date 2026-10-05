@@ -5,10 +5,11 @@ import { readFileSync } from "node:fs";
 import { lstat, mkdir, readFile, readdir, rename, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { identifier, list, number, obj, sanitizeItem, sanitizeReport, sanitizeTopic, str, validateSnapshot } from "./static-site/model.ts";
+import { identifier, list, number, obj, sanitizeItem, sanitizeReport, sanitizeTopic, sanitizeResearchCoverage, str, validateSnapshot } from "./static-site/model.ts";
 import type { Snapshot } from "./static-site/model.ts";
 import { normalizeBase, renderSite, validateStaticLinks } from "./static-site/render.ts";
 import { renderSsrSite, ssrClient } from "./static-site/ssr.ts";
+import { computeResearchHeat } from "@aihot/contracts/research-heat";
 
 export interface ExportOptions { api: string; web: string; base: string; output: string }
 export interface ExportManifest { schemaVersion: 1; publicBaseUrl: string; generatedAt: string; files: Array<{ path: string; sha256: string; bytes: number }> }
@@ -43,6 +44,28 @@ export async function collectSnapshot(get: Get, publicBaseUrl: string, generated
     }
     if (cursors.size > 1000) throw new Error("Publication export exceeds 1,000 pages; review scope before increasing");
   } while (cursor);
+  // The public pool includes reviewed, relevant summaries that did not become selected.
+  // It is bounded by the site's 2,000-item API cap; fail rather than silently calling a cap complete.
+  const poolItemIds: string[] = [];
+  let poolPageCount = 1, poolTotal = 0;
+  let researchCoverage: Snapshot["researchCoverage"];
+  for (let page = 1; page <= poolPageCount; page++) {
+    const data = obj(await get(`/api/site/pool?page=${page}`));
+    const coverage = data.researchCoverage === undefined ? undefined : sanitizeResearchCoverage(data.researchCoverage);
+    if (page === 1) researchCoverage = coverage;
+    else if (JSON.stringify(coverage) !== JSON.stringify(researchCoverage)) throw new Error("Research coverage changed during export");
+    const total = data.total, count = data.pageCount;
+    if (!Number.isSafeInteger(total) || Number(total) < 0 || !Number.isSafeInteger(count) || Number(count) < 1 || Number(count) > 50) throw new Error("Invalid public pool pagination");
+    if (Number(total) >= 2000) throw new Error("Public pool reached its 2,000-item limit; add uncapped pagination before publishing");
+    if (Number(count) !== Math.max(1, Math.ceil(Number(total) / 40)) || data.page !== page) throw new Error("Invalid public pool pagination");
+    if (page > 1 && (count !== poolPageCount || total !== poolTotal)) throw new Error("Public pool changed during export; rerun");
+    poolPageCount = Number(count); poolTotal = Number(total);
+    const pageIds = list(data.items).map(value => identifier(obj(value).id));
+    if (pageIds.length !== Math.min(40, Math.max(0, poolTotal - (page - 1) * 40))) throw new Error("Public pool page is incomplete");
+    poolItemIds.push(...pageIds);
+  }
+  if (new Set(poolItemIds).size !== poolItemIds.length || poolItemIds.length !== poolTotal) throw new Error("Public pool membership changed or repeated during export");
+  poolItemIds.forEach(id => ids.add(id));
   for (const value of list(directory.topics)) {
     const t = obj(value), slug = identifier(t.slug), topicIds: string[] = [];
     let pages = 1;
@@ -71,13 +94,17 @@ export async function collectSnapshot(get: Get, publicBaseUrl: string, generated
   }
   const items: Snapshot["items"] = [];
   for (const id of ids) {
-    const item = sanitizeItem(await get(`/api/site/items/${id}`));
+    const raw = await get(`/api/site/items/${id}`);
+    if (typeof obj(raw).selected !== "boolean") throw new Error("Public item selection state is missing");
+    const item = sanitizeItem(raw);
     if (item.id !== id) throw new Error("Public item identity mismatch");
     items.push(item);
   }
   items.sort((a, b) => (b.timelineAt ?? "").localeCompare(a.timelineAt ?? "") || a.id.localeCompare(b.id));
   reports.sort((a, b) => b.windowEnd.localeCompare(a.windowEnd) || a.kind.localeCompare(b.kind));
-  const snapshot: Snapshot = { schemaVersion: 1, generatedAt, publicBaseUrl: base, mode: "static-snapshot", scope: "当前公开精选、全部主题关联资料与现存试刊/日报归档（每类索引小于 400 期）", items, topics, reports };
+  const snapshot: Snapshot = { schemaVersion: 1, generatedAt, publicBaseUrl: base, mode: "static-snapshot", scope: "当前全部公开动态（已通过相关性筛选并具有摘要，少于 2,000 条）、公开精选、主题及现存试刊/日报归档（每类少于 400 期）；不含待审候选", items, topics, reports, poolItemIds };
+  snapshot.researchAttention = computeResearchHeat(items.filter(item => poolItemIds.includes(item.id)), generatedAt);
+  if (researchCoverage) snapshot.researchCoverage = researchCoverage;
   validateSnapshot(snapshot);
   return snapshot;
 }
@@ -100,7 +127,7 @@ export function createExport(snapshot: Snapshot, renderedFiles?: Map<string, str
   const files = renderedFiles ?? renderSite(snapshot);
   files.set(".nojekyll", "");
   files.set("LICENSE.txt", readFileSync(new URL("../LICENSE", import.meta.url), "utf8"));
-  files.set("README.md", `# AlgorithmHot · 科研热点\n\n公开静态阅读站：${snapshot.publicBaseUrl}\n\n此仓库只含公开网页与摘要数据。生成时间：${snapshot.generatedAt}。模型调用、采集、数据库和登录信息保留在本机，GitHub Pages 不运行这些任务。\n\n报告保留来源、实际窗口、研究依据与处理缺口。作者报告不等于独立复现。资料与第三方材料的权利归原作者；请参阅站点的来源与隐私说明。\n\n通过仓库 Settings → Pages，选择 Deploy from a branch，选择 main / (root) 发布。已含 .nojekyll，无需构建工作流或服务器。\n\nexport-manifest.json 记录本次发布文件的 SHA-256、字节数与公开基址。静态数据位于 data/snapshot.json。\n`);
+  files.set("README.md", `# AlgorithmHot · 科研热点\n\n公开静态阅读站：${snapshot.publicBaseUrl}\n\n此 gh-pages 分支只含公开网页与摘要数据；同一仓库的 main 分支保存应用源码。生成时间：${snapshot.generatedAt}。模型调用、采集、数据库和登录信息保留在本机，GitHub Pages 不运行这些任务。\n\n报告保留来源、实际窗口、研究依据与处理缺口。作者报告不等于独立复现。资料与第三方材料的权利归原作者；请参阅站点的来源与隐私说明。\n\n通过仓库 Settings → Pages，选择 Deploy from a branch，选择 gh-pages / (root) 发布。已含 .nojekyll，无需构建工作流或服务器。\n\nexport-manifest.json 记录本次发布文件的 SHA-256、字节数与公开基址。静态数据位于 data/snapshot.json。\n`);
   validateStaticLinks(new Map([...files].map(([file, content]) => [file, typeof content === "string" ? content : ""])), snapshot.publicBaseUrl);
   const manifest: ExportManifest = {
     schemaVersion: 1, publicBaseUrl: snapshot.publicBaseUrl, generatedAt: snapshot.generatedAt,

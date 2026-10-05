@@ -2,7 +2,7 @@
 
 公网阅读：[AlgorithmHot · 科研热点](https://pkucy2016.github.io/algorithmhot/) · [真实七天试刊](https://pkucy2016.github.io/algorithmhot/pilot/2026-10-03/) · [每日更新说明](docs/daily-delivery.md) · [公网验收](docs/public-delivery-acceptance.md)
 
-源码与迁移保存在私有仓库 `PKUCY2016/algorithmhot-source`，公开仓库 `PKUCY2016/algorithmhot` 仅提供阅读快照。新克隆不含本机数据库、账号登录、`.env` 或运行回执，初始化后从空数据库开始；现有试刊可通过上方公网链接查看。备份范围与验收见 [源码备份说明](docs/source-backup.md)。
+项目统一保存在 [PKUCY2016/algorithmhot](https://github.com/PKUCY2016/algorithmhot)：`main` 是源码与迁移，`gh-pages` 是审计后的网页与公开数据。旧 `algorithmhot-source` 停止更新。新克隆不含本机数据库、账号登录、`.env` 或运行回执，初始化后从空数据库开始；现有日报可通过上方公网链接查看。同步范围与历史保留见 [源码同步说明](docs/source-backup.md)。
 
 
 一个在本机使用的中文科研资料站，追踪**算法、AI4AI、AI4S**。优先解释方法变化、适用任务、作者报告的比较条件、公开实现与证据限制；社区热度只作为辅助信号。
@@ -69,13 +69,15 @@ npm run local -- daily 2026-10-03
 
 同一批次最多 **600 次应用模型调用**，全局并发为 1，其中预留 20 次供报告流程。探针、预筛、双评分、摘要、归组与报告均计入持久额度，重启不清零。每栏目最多刊载 5 条、全文最多 15 条，展示限制独立计数。相同窗口重跑保持幂等，`revise` 创建修订版本。
 
-来源健康、处理完成而零入选时允许生成空刊；来源失败、额度不足、待处理或结果未知必须展示缺口。中断后先查看状态和回执，再按原 ID 恢复；不要删除回执或更换 ID 绕过额度。结果未知的已提交请求不自动重发。
+来源健康、处理完成而零入选时允许生成空刊；来源失败、额度不足、待处理或结果未知必须展示缺口。中断后先查看状态和回执，再按原 ID 恢复；不要删除回执或更换 ID 绕过额度。结果未知的已提交请求按研究身份隔离，不重发；其他未提交资料继续处理，已知失败也不自动重试。隔离跨日和修订保持；pending、登录及额度问题仍停止。
 
 ## 模型路线
 
 默认使用 `LLM_TRANSPORT=codex_cli`，固定 `CODEX_BIN=/opt/homebrew/bin/codex`，初始模型为 `gpt-6-astra`、`medium`，复用该 CLI 的现有 ChatGPT 登录。每次处理使用独立上下文，保存输入哈希、提示词版本、模型、耗时、用量和结果状态，并校验结构化输出。可先自行运行 `/opt/homebrew/bin/codex login status` 核对登录；模型是否可用以实际调用回执为准。
 
 保留 `LLM_TRANSPORT=openai_compatible`，显式设置 `LLM_BASE_URL`、`LLM_API_KEY`、`LLM_MODEL` 即可切换；参考 [配置示例](.env.example)。本轮 API 兼容验证使用本地模拟服务。Codex 登录失效或额度不足时保存检查点，**不会切换账户，也不会自动切换付费 API**。
+
+当前公网自动化使用 `node scripts/daily-delivery.ts --refresh`，每3小时累计更新当天内容，共用当天60条准入/600次调用额度；固定08:00入口保留为兼容命令。详见[日内刷新说明](docs/daily-delivery.md)。
 
 ## 调度与停止
 

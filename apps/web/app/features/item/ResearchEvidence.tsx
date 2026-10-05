@@ -21,7 +21,7 @@ export function ResearchEvidence({ research, researchBrief, compact = false }: {
         <dd className="mt-0.5 text-ink-2">{date.iso ? <time dateTime={date.iso}>{date.value}</time> : date.value}</dd>
       </div>)}
     </dl>
-    <p className="mt-2 text-[11px] text-ink-4">时间以北京时间显示；四类日期分别记录。</p>
+    <p className="mt-2 text-[11px] text-ink-4">时刻以北京时间显示；公告日期沿用来源标注，各类日期分别记录。</p>
     {links.length > 0 && <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-[12.5px]">
       {links.map(link => <a key={`${link.kind}:${link.url}`} href={link.url} target="_blank" rel="noopener noreferrer" title={`资料链接来源：${link.sourceUrl}`} className="font-medium text-accent hover:underline">{RESEARCH_LINK_LABELS[link.kind]} ↗</a>)}
     </div>}

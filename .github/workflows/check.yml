@@ -4,9 +4,7 @@
 name: Check
 
 on:
-  push:
-    branches: [main]
-  pull_request:
+  # Repository consolidation keeps cloud checks manual; local acceptance uses npm run check.
   workflow_dispatch:
 
 permissions:

@@ -1,4 +1,4 @@
-import { SITE, subjectAfter, withSubject } from "@aihot/industry/site";
+import { SITE, withSubject } from "@aihot/industry/site";
 import { Link, useLoaderData } from "react-router";
 import type { HotEntryView, HotResponse } from "@aihot/contracts/site";
 import { loadOr404 } from "../lib/api.server";
@@ -10,6 +10,7 @@ import { IconChevronDown, IconInfo } from "../components/icons";
 import { Sparkline } from "../features/hot/Sparkline";
 import { Faces } from "../features/hot/Faces";
 import { Delta } from "../features/hot/Delta";
+import { ResearchAttention } from "../features/hot/ResearchAttention";
 import { OriginalSourceLink } from "../components/OriginalSourceLink";
 
 export async function loader({ request }: { request: Request }) {
@@ -19,7 +20,7 @@ export async function loader({ request }: { request: Request }) {
 export function meta() {
   return pageMeta({
     title: withSubject("热点榜"),
-    description: `${subjectAfter("过去 48 小时", "圈")}讨论最多的 10 个事件：热度指数、趋势与组成热度的公开来源。`,
+    description: "近7天科研关注榜：按可核对的来源渠道与24小时半衰期计算，保留来源日期和48小时多源覆盖，不等同学术质量评分。",
     path: "/hot",
     image: "/og/pages/hot.png",
   });
@@ -227,6 +228,7 @@ function Row({ e }: { e: HotEntryView }) {
 
 export default function HotPage() {
   const { hot } = useLoaderData<typeof loader>();
+  if (hot.researchAttention) return <ResearchAttention ranking={hot.researchAttention} />;
   const [lead, ...rest] = hot.entries;
   const runners = rest.slice(0, 2);
   const others = rest.slice(2);

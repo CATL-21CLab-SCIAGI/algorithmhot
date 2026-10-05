@@ -235,6 +235,13 @@ async function main() {
     const db = docker(["ps", "-a", "--filter", `name=^/${database}$`, "--format", "{{.Names}}: {{.Status}}"]); console.log(db.status === 0 ? db.stdout.trim() || "database: absent" : "database: Docker context unavailable");
     if (existsSync(envPath)) console.log(`Site: ${env().SITE_URL}`);
     const schedule = json(path.join(dir, "scheduler.json")); if (schedule) console.log(JSON.stringify({ schedule: schedule.clock, active: schedule.active ?? null, pending: schedule.pending?.length ?? 0 }));
+  } else if (command === "refresh") {
+    const slot = process.argv[3];
+    const end = process.argv[4];
+    if (!slot || !/^\d{4}-\d{2}-\d{2}-(00|03|06|09|12|15|18|21)(?:-r1)?$/.test(slot) || !end || !Number.isFinite(Date.parse(end))) throw new Error("Usage: local.ts refresh YYYY-MM-DD-HH frozen-cutoff-ISO");
+    const id = `refresh-${slot}`;
+    await batch(id, "scripts/research-run.ts", [id, "refresh"], { ...env(), MODEL_RUN_ID: `daily-${slot.slice(0,10)}`, RESEARCH_RUN_ID: id,
+      RESEARCH_REFRESH_END: end, MODEL_CALLS_ENABLED: "true", COLLECT_ENABLED: "true", RESEARCH_ADMISSION_ENABLED: "true" });
   } else if (command === "run" || command === "daily") {
     const date = process.argv[3];
     if (command === "daily" && (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date) || new Date(`${date}T00:00:00Z`).toISOString().slice(0, 10) !== date)) throw new Error("Usage: node scripts/local.ts daily YYYY-MM-DD");
@@ -245,6 +252,6 @@ async function main() {
   } else if (command === "check-sources") {
     const id = validId(process.argv[3] ?? `sources-${Date.now()}`);
     await batch(id, "scripts/research-scheduler.ts", ["--collect-once", id], { ...env(), MODEL_CALLS_ENABLED: "false", MODEL_RUN_ID: "", COLLECT_ENABLED: "true", RESEARCH_ADMISSION_ENABLED: "true" });
-  } else throw new Error("Commands: init, db, migrate, test-db, start, restart-reading, stop, stop-all, status, run <id> [action], daily YYYY-MM-DD, stop-batch <id>, check-sources [id], scheduler-start, scheduler-stop");
+  } else throw new Error("Commands: init, db, migrate, test-db, start, restart-reading, stop, stop-all, status, run <id> [action], daily YYYY-MM-DD, refresh YYYY-MM-DD-HH frozen-cutoff-ISO, stop-batch <id>, check-sources [id], scheduler-start, scheduler-stop");
 }
 await main().catch(error => { console.error(error instanceof Error ? error.message : String(error)); process.exitCode = Number(error?.exitCode) || 1; });

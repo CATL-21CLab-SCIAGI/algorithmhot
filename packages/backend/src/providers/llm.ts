@@ -3,11 +3,12 @@
 import type { z } from "zod";
 import { config, credential } from "../config.ts";
 import { sha256 } from "../lib/ids.ts";
-import { completeReceipt, paidRequest, ProviderRejectedError, rejectReceivedResponse } from "./receipts.ts";
+import { completeReceipt, logicalKeyFor, paidRequest, ProviderRejectedError, rejectReceivedResponse, type ReceiptRequest } from "./receipts.ts";
 import { sql } from "../db.ts";
 import { admittedForProcessing } from "../research/admission.ts";
 import { callCodex, CODEX_ADAPTER_VERSION } from "./codex.ts";
 import { modelRunFromEnv, withModelExecutionLock } from "./model-runs.ts";
+import { assertIsolatedModelRequestAllowed, assertIsolatedRequestKeyAllowed, rememberResearchAccountFailure } from "../research/request-isolation.ts";
 
 export interface ModelSpec {
   key: string;
@@ -193,8 +194,7 @@ export async function chatJson<S extends z.ZodType>(opts: ChatJsonOptions<S>): P
     ...(!isCodex ? spec.extra ?? {} : {}),
   };
 
-  const request = () => paidRequest(
-    {
+  const requestSpec: ReceiptRequest = {
       service: isCodex ? "codex_cli" : spec.service,
       model,
       purpose: opts.purpose,
@@ -203,8 +203,8 @@ export async function chatJson<S extends z.ZodType>(opts: ChatJsonOptions<S>): P
       requestSummary: { transport, modelRunId: modelRun?.id ?? null, promptVersion: opts.promptVersion, systemHash: sha256(opts.system), userHash: sha256(userText), userChars: userText.length, temperature, maxTokens, ...(isCodex ? { reasoningEffort, adapterVersion: CODEX_ADAPTER_VERSION, effectiveTemperature: null, maxTokensEnforcement: "prompt_hint" } : {}) },
       attemptTag: opts.attemptTag,
       modelRun,
-    },
-    async () => {
+    };
+  const request = () => paidRequest(requestSpec, async () => {
       if (isCodex) return callCodex({ model, reasoningEffort, system: opts.system, user: typeof opts.user === "string" ? opts.user : opts.user.map((part) => part.type === "text" ? part.text : "").join("\n"), json: opts.json !== false, maxTokens, timeoutMs: opts.timeoutMs ?? Number(process.env.CODEX_TIMEOUT_MS || 180_000) });
       const started = Date.now();
       let res: Response;
@@ -241,7 +241,15 @@ export async function chatJson<S extends z.ZodType>(opts: ChatJsonOptions<S>): P
     },
   );
   const execute = async () => {
-    const receipt = await request();
+    const isolated = process.env.RESEARCH_REQUEST_ISOLATION === "true";
+    if (isolated) {
+      await assertIsolatedModelRequestAllowed(opts.subject);
+      await assertIsolatedRequestKeyAllowed(logicalKeyFor(requestSpec));
+    }
+    const receipt = await request().catch(async (error: unknown) => {
+      if (isolated) await rememberResearchAccountFailure(process.env.RESEARCH_RUN_ID ?? "", opts.subject, error);
+      throw error;
+    });
 
     const response = receipt.response as { choices?: Array<{ message?: { content?: string }; finish_reason?: string }>; usage?: Record<string, unknown>; _invalidEnvelope?: boolean };
     const content = response.choices?.[0]?.message?.content ?? "";

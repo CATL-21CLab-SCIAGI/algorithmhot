@@ -5,7 +5,7 @@ import { mkdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { parseEnv } from "node:util";
-import { deliverDaily, deliveryDate, dueDaily, readReceipt, recoverDeliveryLock, type DailyInspection, type Stage } from "./daily-delivery/core.ts";
+import { deliverDaily, deliveryDate, dueDaily, currentRefreshSlot, validateRefreshSlot, readReceipt, recoverDeliveryLock, type DailyInspection, type Stage } from "./daily-delivery/core.ts";
 
 const root = path.resolve(import.meta.dirname, "..");
 const stateDir = path.join(root, ".data/daily-delivery");
@@ -70,17 +70,23 @@ async function inspect(runId: string): Promise<DailyInspection> {
   return JSON.parse(output) as DailyInspection;
 }
 export async function main(args = process.argv.slice(2)): Promise<void> {
-  const flags = new Set(["--date", "--resume", "--refresh-public", "--status", "--recover-lock", "--help"]);
+  const flags = new Set(["--date", "--resume", "--refresh-public", "--status", "--recover-lock", "--refresh", "--slot", "--reconcile", "--help"]);
   let date: string | undefined;
+  let slot: string | undefined;
   for (let index = 0; index < args.length; index++) {
     if (!flags.has(args[index])) throw new Error(`Unsupported argument: ${args[index]}`);
+    if (args[index] === "--slot") { slot = args[++index]; if (!slot) throw new Error("--slot requires YYYY-MM-DD-HH"); }
     if (args[index] === "--date") { date = args[++index]; if (!date) throw new Error("--date requires YYYY-MM-DD"); }
   }
   if (args.includes("--help")) {
-    console.log("node scripts/daily-delivery.ts [--date YYYY-MM-DD] [--resume] [--refresh-public] [--status] [--recover-lock]"); return;
+    console.log("node scripts/daily-delivery.ts [--refresh | --slot YYYY-MM-DD-HH[-r1] | --date YYYY-MM-DD] [--reconcile] [--resume] [--refresh-public] [--status] [--recover-lock]"); return;
   }
   const now = new Date();
-  const target = deliveryDate(date, now);
+  if (date && (slot || args.includes("--refresh"))) throw new Error("Do not combine daily date and refresh slot");
+  const chosenSlot = slot ? validateRefreshSlot(slot, now) : args.includes("--refresh") ? currentRefreshSlot(now) : undefined;
+  if (args.includes("--reconcile") && !chosenSlot) throw new Error("--reconcile requires --refresh or --slot");
+  const refreshSlot = chosenSlot && args.includes("--reconcile") && !chosenSlot.endsWith("-r1") ? `${chosenSlot}-r1` : chosenSlot;
+  const target = refreshSlot ?? deliveryDate(date, now);
   if (args.includes("--status")) {
     console.log(JSON.stringify({ dueDaily: dueDaily(now), target, receipt: await readReceipt(stateDir, target) }, null, 2)); return;
   }
@@ -92,14 +98,14 @@ export async function main(args = process.argv.slice(2)): Promise<void> {
   const repo = process.env.STATIC_SITE_REPO || "PKUCY2016/algorithmhot";
   const base = publicDestination(process.env.STATIC_SITE_BASE || "https://pkucy2016.github.io/algorithmhot/", repo);
   await mkdir(stateDir, { recursive: true, mode: 0o700 });
-  await deliverDaily({ date: target, siteBase: base, repo, resume: args.includes("--resume"), refreshPublic: args.includes("--refresh-public") }, {
+  await deliverDaily({ date: target, refreshSlot, siteBase: base, repo, resume: args.includes("--resume"), refreshPublic: args.includes("--refresh-public") }, {
     stateDir, now: () => new Date(), assertIdle, inspect,
     log: value => console.log(JSON.stringify(value)),
-    execute: async (stage: Stage, runDate: string) => {
+    execute: async (stage: Stage, runDate: string, windowEnd: string) => {
       const commands: Record<Stage, () => string[]> = {
         database: () => ["scripts/local.ts", "db"],
         readers: () => ["scripts/local.ts", "start"],
-        generate: () => ["scripts/local.ts", "daily", runDate],
+        generate: () => refreshSlot ? ["scripts/local.ts", "refresh", runDate, windowEnd] : ["scripts/local.ts", "daily", runDate],
         export: () => ["scripts/static-site.ts", "--api", safeSiteOrigin(privateConfig().SITE_URL), "--web", safeSiteOrigin(privateConfig().SITE_URL), "--base", base, "--output", ".data/public-site"],
         publish: () => ["scripts/publish-pages.ts", "--source", ".data/public-site", "--repo", repo],
       };

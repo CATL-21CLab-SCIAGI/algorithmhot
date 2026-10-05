@@ -116,15 +116,21 @@ export function safeGitEnvironment(input: NodeJS.ProcessEnv = process.env): Node
 export function verifyPushUrls(urls: string, remote: string): void {
   if (urls.split(/\r?\n/).filter(Boolean).length !== 1 || urls.trim() !== remote) throw new Error("Public Git push destination mismatch");
 }
-export interface ApprovedHeads { version: 1; repo: string; heads: Array<{ sha: string; manifestSha256: string; createdAt: string }> }
+export const PAGES_BRANCH = "gh-pages" as const;
+export function assertPagesBranch(branch: unknown, context: string): asserts branch is typeof PAGES_BRANCH {
+  if (branch !== PAGES_BRANCH) throw new Error(`${context} is not bound to gh-pages; controlled migration of the legacy main checkout and publisher records is required. No automatic branch migration or push was attempted.`);
+}
+export interface ApprovedHeads { version: 1; repo: string; branch: typeof PAGES_BRANCH; heads: Array<{ sha: string; manifestSha256: string; createdAt: string }> }
 export function validateApprovedHeads(value: unknown, repo: string): ApprovedHeads {
   const record = value as ApprovedHeads;
+  assertPagesBranch(record?.branch, "Approved publisher history");
   if (!record || record.version !== 1 || record.repo !== repo || !Array.isArray(record.heads)
     || record.heads.some(head => !/^[a-f0-9]{40}(?:[a-f0-9]{24})?$/.test(head.sha) || !/^[a-f0-9]{64}$/.test(head.manifestSha256)
       || !Number.isFinite(Date.parse(head.createdAt)))) throw new Error("Invalid approved publisher history");
   return record;
 }
 export function verifyApprovedHistory(shas: string[], registry: ApprovedHeads): void {
+  assertPagesBranch(registry.branch, "Approved publisher history");
   const approved = new Set(registry.heads.map(head => head.sha));
   if (shas.some(sha => !approved.has(sha))) throw new Error("Unregistered unpublished commit; preserve it for manual review. No push was attempted.");
 }
@@ -212,12 +218,13 @@ export async function auditBundle(source: string, repo: string, gitCheckout = fa
 }
 
 export interface StageJournal {
-  version: 1; repo: string; oldHead: string | null; phase: "copying";
+  version: 1; repo: string; branch: typeof PAGES_BRANCH; oldHead: string | null; phase: "copying";
   oldManifestSha256: string | null; newManifestSha256: string;
   oldFiles: ExportManifest["files"]; newFiles: ExportManifest["files"];
 }
 /** Recovery may touch only byte-identical old/new generated files; unknown changes are preserved. */
 export async function auditStageFiles(checkout: string, journal: StageJournal, repo: string): Promise<string[]> {
+  assertPagesBranch(journal?.branch, "Publisher recovery journal");
   if (!journal || journal.version !== 1 || journal.repo !== repo || journal.phase !== "copying"
     || (journal.oldHead !== null && !/^[a-f0-9]{40}(?:[a-f0-9]{24})?$/.test(journal.oldHead))
     || !Array.isArray(journal.oldFiles) || !Array.isArray(journal.newFiles)) throw new Error("Invalid stage recovery journal");

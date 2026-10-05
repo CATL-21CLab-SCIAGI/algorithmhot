@@ -8,7 +8,7 @@ import { publicUrl, sanitizeItem, sanitizeReport, validateSnapshot } from "../sc
 import type { Snapshot } from "../scripts/static-site/model.ts";
 import { normalizeBase, renderRoadmap, renderSite, validateStaticLinks } from "../scripts/static-site/render.ts";
 
-const raw = { id: "paper_1", title: '<script>alert("x")</script>', summary: 'summary <img src=x onerror="alert(1)">', source: { name: "arXiv", iconUrl: "http://127.0.0.1/private" }, links: { original: "https://arxiv.org/abs/1234.56789", aihot: "http://127.0.0.1:3102/items/paper_1" }, category: "algorithm", body: { original: "PRIVATE RAW FULLTEXT" }, receipt: "PRIVATE RECEIPT", apiKey: "PRIVATE KEY", tags: ["算法"], research: { evidenceBasis: "abstract", links: [{ kind: "code", url: "javascript:alert(1)", sourceUrl: "http://localhost" }, { kind: "paper", url: "https://arxiv.org/abs/1234.56789", sourceUrl: "https://arxiv.org/abs/1234.56789" }] } };
+const raw = { id: "paper_1", selected: true, title: '<script>alert("x")</script>', summary: 'summary <img src=x onerror="alert(1)">', source: { name: "arXiv", iconUrl: "http://127.0.0.1/private" }, links: { original: "https://arxiv.org/abs/1234.56789", aihot: "http://127.0.0.1:3102/items/paper_1" }, category: "algorithm", body: { original: "PRIVATE RAW FULLTEXT" }, receipt: "PRIVATE RECEIPT", apiKey: "PRIVATE KEY", tags: ["算法"], research: { evidenceBasis: "abstract", links: [{ kind: "code", url: "javascript:alert(1)", sourceUrl: "http://localhost" }, { kind: "paper", url: "https://arxiv.org/abs/1234.56789", sourceUrl: "https://arxiv.org/abs/1234.56789" }] } };
 const snap = (): Snapshot => ({ schemaVersion: 1, generatedAt: "2026-10-04T04:00:00Z", publicBaseUrl: "https://pkucy2016.github.io/algorithmhot/", mode: "static-snapshot", scope: "Public test scope", items: [sanitizeItem(raw)], topics: [{ slug: "algorithm", name: "算法", group: "field", definition: "test", total: 1, recent: 1, latestAt: null, itemIds: ["paper_1"] }], reports: [] });
 
 test("public snapshot whitelist excludes full text, receipts, local links and unknown fields", () => {
@@ -71,6 +71,7 @@ test("roadmap preserves original evidence, labels interpretation and does not re
 test("collection reads only publication HTTP routes, follows all topic pages and fails on repeated cursor", async () => {
   const calls: string[] = [];
   const responses: Record<string, unknown> = {
+    "/api/site/pool?page=1": { page: 1, total: 1, pageCount: 1, items: [raw] },
     "/api/site/topics": { topics: [{ slug: "algorithm", name: "算法", group: "field", total: 1 }] },
     "/api/site/timeline?limit=40": { cards: [{ item: { id: "paper_1" } }], nextCursor: "next" },
     "/api/site/timeline?limit=40&cursor=next": { cards: [], nextCursor: null },
@@ -86,7 +87,7 @@ test("collection reads only publication HTTP routes, follows all topic pages and
 });
 
 test("export cannot silently truncate a report archive at the API limit", async () => {
-  await assert.rejects(collectSnapshot(async (route) => route.includes("reports/") ? { items: Array(400).fill({ key: "2026-10-04" }) } : route.endsWith("topics") ? { topics: [] } : { cards: [], nextCursor: null }, snap().publicBaseUrl), /400-report limit/);
+  await assert.rejects(collectSnapshot(async (route) => route.includes("reports/") ? { items: Array(400).fill({ key: "2026-10-04" }) } : route.endsWith("topics") ? { topics: [] } : route.includes("/pool?") ? { page: 1, pageCount: 1, total: 0, items: [] } : { cards: [], nextCursor: null }, snap().publicBaseUrl), /400-report limit/);
 });
 
 test("input endpoint and public base are constrained separately", () => {

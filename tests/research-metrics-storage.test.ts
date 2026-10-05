@@ -7,15 +7,19 @@ import { publishArticle } from "@aihot/backend/publication/publish";
 import { candidates } from "@aihot/backend/reports/compose";
 import { researchRunMetrics } from "@aihot/backend/research/admission";
 import { makeResearchMetadata } from "@aihot/backend/sources/research";
+import { ensureModelRun } from "@aihot/backend/providers/model-runs";
 import type { ResearchBrief } from "@aihot/contracts/research";
 
 const T = tag();
 const sourceIds = Array.from({ length: 6 }, (_, i) => `research-metrics-${T}-${i}`);
 const runIds: string[] = [], articleIds: string[] = [];
+const modelRunIds: string[] = [], receiptIds: number[] = [];
 before(async () => {
   for (const sourceId of sourceIds) await sql`INSERT INTO sources(id,name,kind,tier) VALUES(${sourceId},'Metrics fixture','rss','T1')`;
 });
 after(async () => {
+  await sql`DELETE FROM receipts WHERE id=ANY(${receiptIds})`;
+  await sql`DELETE FROM model_runs WHERE id=ANY(${modelRunIds})`;
   await sql`DELETE FROM research_members WHERE run_id=ANY(${runIds})`;
   await sql`DELETE FROM research_fetches WHERE run_id=ANY(${runIds})`;
   await sql`DELETE FROM research_runs WHERE id=ANY(${runIds})`;
@@ -43,7 +47,28 @@ async function member(runId: string) {
   const { articleId } = await upsertMaterial({ sourceId: sourceIds[0]!, url: `https://example.org/${runId}/paper`, title: "指标测试论文", via: "import" });
   articleIds.push(articleId);
   await sql`INSERT INTO research_members(run_id,article_id,source_id,in_window) VALUES(${runId},${articleId},${sourceIds[0]!},true)`;
+  return articleId;
 }
+
+test("an unknown research-brief attempt remains visible after the main article processing passed", async () => {
+  const id = await run("unknown-brief");
+  const articleId = await member(id);
+  await sql`UPDATE research_members SET admitted=true,state='pass' WHERE run_id=${id} AND article_id=${articleId}`;
+  for (const budgetId of [id, `${id}-unrelated`]) {
+    modelRunIds.push(budgetId);
+    await ensureModelRun({ id: budgetId, maxCalls: 10, reportReserve: 1 });
+    const [receipt] = await sql<{ id: number }[]>`INSERT INTO receipts(logical_key,service,purpose,subject,status)
+      VALUES(${`${budgetId}:brief`},'fixture','research_brief',${`article:${articleId}@1`},'unknown') RETURNING id`;
+    receiptIds.push(receipt!.id);
+    await sql`INSERT INTO receipt_attempts(receipt_id,attempt,service,status,model_run_id)
+      VALUES(${receipt!.id},1,'fixture','unknown',${budgetId})`;
+  }
+  const { metrics, gaps } = await researchRunMetrics(id);
+  assert.equal(metrics.passed, 1, "a missing brief does not rewrite the successful main-flow outcome");
+  assert.equal(metrics.unknownOutcome, 0);
+  assert.equal(metrics.modelRequestsUnknown, 1, "only the current run's shared budget is counted");
+  assert.ok(gaps.some(gap => gap.includes("1 次共享模型预算的请求结果未知")));
+});
 
 test("healthy-empty and success counts require untruncated final attempts while historical failure evidence remains", async () => {
   const id = await run("truncation");
@@ -65,6 +90,23 @@ test("healthy-empty and success counts require untruncated final attempts while 
   assert.equal(result.metrics.failedRequests, 1);
   assert.deepEqual(result.gaps, []);
   assert.equal((await sql`SELECT count(*)::int AS n FROM research_fetches WHERE run_id=${id} AND truncated`)[0]!.n, 1, "resolving a gap must not erase historical attempts");
+});
+
+test("cross-period quarantine stays visible without becoming a new daily UNKNOWN attempt", async () => {
+  const id = await run("quarantined-history");
+  const articleId = await member(id);
+  await sql`UPDATE research_members SET admitted=true,state='pass',error='held-request: status=unknown; receipt=1; attempt=1; purpose=research_brief' WHERE run_id=${id} AND article_id=${articleId}`;
+  let result = await researchRunMetrics(id);
+  assert.equal(result.metrics.passed, 1);
+  assert.equal(result.metrics.quarantinedUnknown, 1);
+  assert.equal(result.metrics.modelRequestsUnknown, 0);
+  assert.equal(result.metrics.unknownOutcome, 0);
+  assert.match(result.gaps.join("；"), /历史未知请求已隔离/);
+  await sql`UPDATE research_members SET state='failed',error='held-request: status=failed; receipt=1; attempt=1; purpose=research_brief' WHERE run_id=${id} AND article_id=${articleId}`;
+  result = await researchRunMetrics(id);
+  assert.equal(result.metrics.quarantinedFailed, 1);
+  assert.equal(result.metrics.quarantinedUnknown, 0);
+  assert.match(result.gaps.join("；"), /历史失败已隔离/);
 });
 
 test("a parsed but unpersisted failed or pending page is not reported as a duplicate", async () => {

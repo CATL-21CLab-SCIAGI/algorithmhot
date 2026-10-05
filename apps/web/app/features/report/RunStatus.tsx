@@ -7,14 +7,15 @@ const STATUS: Record<string, string> = {
 };
 const METRICS: Record<string, string> = {
   sourcesPlanned: "计划来源", plannedSources: "计划来源", sourcesObserved: "已观测来源", sourcesSucceeded: "成功来源", sourcesFailed: "失败来源", healthyEmptySources: "健康空源",
-  returned: "返回记录", parsed: "解析成功", duplicateRecords: "重复记录", duplicates: "重复记录", stored: "已保存资料", inWindow: "窗口内资料", outsideWindow: "窗口外资料", signals: "社区信号",
-  admitted: "准入模型处理", notAdmitted: "未准入资料", processed: "处理结果已记录", failed: "处理失败", unknownOutcome: "请求结果未知", pending: "待处理",
+  returned: "返回记录", parsed: "解析成功", excludedSourceRecords: "公告集合外记录", duplicateRecords: "重复记录", duplicates: "重复记录", stored: "已保存资料", inWindow: "窗口内资料", outsideWindow: "窗口外资料", signals: "社区信号",
+  previouslyAdmitted: "此前已准入", newlyAdmitted: "本次新增准入", admitted: "准入模型处理", notAdmitted: "未准入资料", processed: "处理结果已记录", failed: "处理失败", unknownOutcome: "请求结果未知", pending: "待处理",
   selected: "精选", published: "本期刊载", publishedCount: "本期刊载", displayed: "本期刊载", excludedByDisplayLimit: "展示上限排除", displayExcluded: "展示上限排除",
-  failedRequests: "来源请求失败", truncatedRequests: "来源请求受截断", modelCalls: "模型调用", modelCallCount: "模型调用",
+  failedRequests: "来源请求失败", truncatedRequests: "来源请求受截断", modelCalls: "模型调用", modelCallCount: "模型调用", modelRequestsUnknown: "共享预算请求结果未知",
   prefilterUnknown: "相关性未知", prefilterBlocked: "预筛不相关", prefilterPassed: "预筛通过", calls: "模型调用",
   unlinkedSignals: "未关联正文的信号", parseRejected: "解析失败", briefReady: "研究解读已完成", briefPending: "研究解读待完成", selectedWithoutBrief: "缺解读未刊载的精选",
   passed: "相关资料处理成功", blocked: "预筛不相关", decisionUnknown: "判断依据不足",
   roadmapsPublished: "附重点方法解读的刊载研究",
+  quarantinedUnknown: "因历史未知请求隔离", quarantinedFailed: "因历史失败隔离",
   persistenceUnreconciled: "保存结果待核对", duplicateRecordsLowerBound: "确认重复下界", duplicateRecordsExact: "重复数已完全核对",
 };
 

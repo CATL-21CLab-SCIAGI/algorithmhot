@@ -141,6 +141,20 @@ test("wrong schema or unsupported source snippets fail one received call without
   }
 });
 
+test("automatic refresh holds failed roadmap output while explicit recovery remains possible", async () => {
+  const { articleId, input } = await material("held-failed");
+  controls.set(input.bodyText, { invalid: "schema" });
+  await assert.rejects(generateResearchRoadmap(articleId), /unusable output/);
+  const hits = provider.hits();
+  const held = await generateResearchRoadmap(articleId, { holdFailed: true });
+  assert.equal(held.state, "held-failed");
+  assert.equal(held.roadmap, null);
+  assert.equal(provider.hits(), hits, "a new refresh journal must not resend the known failed request");
+  controls.delete(input.bodyText);
+  assert.equal((await generateResearchRoadmap(articleId)).state, "ready");
+  assert.equal(provider.hits(), hits + 1, "the existing explicit recovery path can retry terminal failed output");
+});
+
 test("a source change during generation preserves receipt history without publishing a stale roadmap", async () => {
   const { articleId, input } = await material("stale");
   const entered = gate(), release = gate(); controls.set(input.bodyText, { entered, release });

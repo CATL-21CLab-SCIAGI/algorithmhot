@@ -1,5 +1,6 @@
 import { mkdir, readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
+import { load } from "cheerio";
 import path from "node:path";
 import { config } from "../config.ts";
 import { sql } from "../db.ts";
@@ -10,6 +11,8 @@ import { publishArticle } from "../publication/publish.ts";
 import { parseRss } from "../sources/rss.ts";
 import { parseJsonList } from "../sources/json-list.ts";
 import type { SourceRow } from "../sources/types.ts";
+import { collectArxivAnnouncements } from "./arxiv-announcements.ts";
+import { parseArxivNewPage } from "./arxiv-new.ts";
 import { dailyWindow } from "@aihot/contracts/time";
 import { researchUtcDays, hfPageDecision, responseRecordCount, researchResponsePath, saveResearchResponse } from "./collect-utils.ts";
 
@@ -20,11 +23,12 @@ const ARXIV: Record<string, string[]> = {
 };
 const stamp = (d: Date) => d.toISOString().replace(/[-:T]/g, "").slice(0, 12);
 
-export async function createResearchRun(id: string, kind: "pilot" | "daily" = "pilot", now = new Date()) {
+export async function createResearchRun(id: string, kind: "pilot" | "daily" = "pilot", now = new Date(), window?: { start: Date; end: Date }) {
   if (!/^[a-zA-Z0-9_-]{1,80}$/.test(id)) throw new Error("invalid research run id");
-  const daily = kind === "daily" ? dailyWindow(process.env.RESEARCH_RUN_DATE ?? new Date(now.getTime()+8*3600000).toISOString().slice(0,10)) : null;
-  const start = daily?.start ?? new Date(now.getTime() - 7 * 86400000);
-  const end = daily?.end ?? now;
+  const daily = !window && kind === "daily" ? dailyWindow(process.env.RESEARCH_RUN_DATE ?? new Date(now.getTime()+8*3600000).toISOString().slice(0,10)) : null;
+  const start = window?.start ?? daily?.start ?? new Date(now.getTime() - 7 * 86400000);
+  const end = window?.end ?? daily?.end ?? now;
+  if (![start, end, now].every(d => Number.isFinite(d.getTime())) || start >= end) throw new Error("Invalid research window");
   if (end > now) throw new Error("Research window has not closed yet");
   await sql`INSERT INTO research_runs(id,kind,window_start,window_end) VALUES(${id},${kind},${start},${end}) ON CONFLICT DO NOTHING`;
   return (await sql<{ id: string; kind: "pilot" | "daily"; window_start: Date; window_end: Date; admission_frozen: boolean }[]>`SELECT * FROM research_runs WHERE id = ${id}`)[0]!;
@@ -45,8 +49,15 @@ async function recoverInterruptedFetches(id: string, source: SourceRow) {
       hash = createHash('sha256').update(bytes).digest('hex');
       if (httpStatus === 200) {
         const body = bytes.toString('utf8');
-        returned = responseRecordCount(body, source.kind === "json_list" ? "json_list" : "rss");
-        parsed = (source.kind === "json_list" ? parseJsonList(body, source, f.observed_at) : parseRss(body, source, f.url, f.observed_at)).length;
+        if (/^https:\/\/arxiv\.org\/list\/[^/]+\/new\?/.test(f.url)) {
+          returned = load(body)("#dlpage dt").length;
+          parsed = parseArxivNewPage(body, f.url, source, f.observed_at).candidates.length;
+        } else if (/^https:\/\/arxiv\.org\/list\//.test(f.url)) {
+          returned = 0; parsed = 0; // Discovery identities are retained separately from metadata records.
+        } else {
+          returned = responseRecordCount(body, source.kind === "json_list" ? "json_list" : "rss");
+          parsed = (source.kind === "json_list" ? parseJsonList(body, source, f.observed_at) : parseRss(body, source, f.url, f.observed_at)).length;
+        }
       }
     } catch { /* Keep the interrupted attempt and any incomplete raw file; the next attempt is new. */ }
     await sql`UPDATE research_fetches SET status='failed',http_status=${httpStatus},response_sha256=${hash},returned_count=${returned},parsed_count=${parsed},error='Collector interrupted before committing the complete page; raw evidence retained' WHERE id=${f.id}`;
@@ -71,6 +82,11 @@ export async function collectResearchRun(id: string, options: { fetch?: typeof g
   await mkdir(folder, { recursive: true });
   for (const source of sources) {
     await recoverInterruptedFetches(id, source);
+    if (id.startsWith("refresh-") && ARXIV[source.id]) {
+      try { await collectArxivAnnouncements(id, run, source, ARXIV[source.id]!, fetchResponse); }
+      finally { await finishSourceHealth(id, source.id); }
+      continue;
+    }
     if (source.config.researchSourceKind === "huggingface") {
       try { await collectHuggingFace(id, run, source, folder, fetchResponse); }
       finally { await finishSourceHealth(id, source.id); }

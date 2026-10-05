@@ -1,4 +1,5 @@
 import type { ResearchMetadata } from "@aihot/contracts/research";
+import { isValidDate } from "@aihot/contracts/time";
 import { stableJson } from "../lib/ids.ts";
 
 export interface ArxivIdentity {
@@ -29,6 +30,11 @@ export function researchDate(value: unknown): string | null {
   if (value === null || value === undefined || value === "") return null;
   const date = value instanceof Date ? value : new Date(String(value));
   return Number.isFinite(date.getTime()) ? date.toISOString() : null;
+}
+
+/** A day heading is a calendar date, never an inferred publication timestamp. */
+export function researchAnnouncementDate(value: unknown): string | null {
+  return typeof value === "string" && isValidDate(value) ? value : null;
 }
 
 function safeUrl(value: unknown): string | null {
@@ -79,6 +85,7 @@ export function makeResearchMetadata(input: {
   identity?: ArxivIdentity | null;
   doi?: unknown;
   originalPublishedAt?: unknown;
+  announcedOn?: unknown;
   revisedAt?: unknown;
   communitySelectedAt?: unknown;
   observedAt?: unknown;
@@ -93,6 +100,7 @@ export function makeResearchMetadata(input: {
     arxivVersions: input.identity?.version ? [input.identity.version] : [],
     doi: typeof input.doi === "string" && input.doi.trim() ? input.doi.trim().replace(/^https?:\/\/(?:dx\.)?doi\.org\//i, "") : null,
     originalPublishedAt: researchDate(input.originalPublishedAt),
+    announcedOn: researchAnnouncementDate(input.announcedOn),
     revisedAt: researchDate(input.revisedAt),
     communitySelectedAt: researchDate(input.communitySelectedAt),
     observedAt: researchDate(input.observedAt),
@@ -117,6 +125,7 @@ export function mergeResearchMetadata(previous: ResearchMetadata | null, incomin
     arxivVersions: versions,
     doi: previous.doi ?? incoming.doi,
     originalPublishedAt: first(previous.originalPublishedAt, incoming.originalPublishedAt),
+    announcedOn: last(researchAnnouncementDate(previous.announcedOn), researchAnnouncementDate(incoming.announcedOn)),
     revisedAt: last(previous.revisedAt, incoming.revisedAt),
     communitySelectedAt: first(previous.communitySelectedAt, incoming.communitySelectedAt),
     observedAt: first(previous.observedAt, incoming.observedAt),
