@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-06T04:50:55.343Z",
+  "generatedAt": "2026-10-06T06:49:30.335Z",
   "publicBaseUrl": "https://pkucy2016.github.io/algorithmhot/",
   "mode": "static-snapshot",
   "scope": "当前全部公开动态（已通过相关性筛选并具有摘要，少于 2,000 条）、公开精选、主题及现存试刊/日报归档（每类少于 400 期）；不含待审候选",
@@ -8337,7 +8337,7 @@
   ],
   "researchAttention": {
     "ruleVersion": "research-source-heat-v1-168h-halflife24h",
-    "computedAt": "2026-10-06T04:50:55.343Z",
+    "computedAt": "2026-10-06T06:49:30.335Z",
     "windowHours": 168,
     "halfLifeHours": 24,
     "minSources": 2,
@@ -8349,7 +8349,7 @@
         "rank": 1,
         "itemId": "k2sij2pi8vkcxhidxw8m1uxmy",
         "title": "SimuVerity 研究提出面向工程级 Simulink 模型生成的智能体评测基准",
-        "heat": 8.7,
+        "heat": 8.2,
         "sourceCount": 2,
         "signals": [
           {
@@ -8372,7 +8372,7 @@
         "rank": 2,
         "itemId": "q08o0zdlmlmjm8z82k9ln4qzt",
         "title": "EditHero：面向长序列部件级 3D 编辑与 Vibe Modeling 的基准",
-        "heat": 8.7,
+        "heat": 8.2,
         "sourceCount": 2,
         "signals": [
           {
