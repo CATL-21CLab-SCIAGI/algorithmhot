@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-07T10:03:58.183Z",
+  "generatedAt": "2026-10-07T15:58:38.283Z",
   "publicBaseUrl": "https://pkucy2016.github.io/algorithmhot/",
   "mode": "static-snapshot",
   "scope": "当前全部公开动态（已通过相关性筛选并具有摘要，少于 2,000 条）、公开精选、主题及现存试刊/日报归档（每类少于 400 期）；不含待审候选",
@@ -7996,9 +7996,9 @@
       "issueNumber": 4,
       "title": "AlgorithmHot · 科研热点 · 日内更新 · 部分结果",
       "windowStart": "2026-10-06T00:00:00.000Z",
-      "windowEnd": "2026-10-07T10:02:29.640Z",
-      "generatedAt": "2026-10-07T10:03:57.842Z",
-      "revision": 5,
+      "windowEnd": "2026-10-07T15:57:08.458Z",
+      "generatedAt": "2026-10-07T15:58:37.984Z",
+      "revision": 6,
       "lead": {
         "title": "本期部分结果：已整理 14 项研究",
         "leadParagraph": "本期刊载 14 条已完成筛选与研究解读的公开资料。尚存缺口：1 条资料处理失败；1 条资料因历史失败已隔离，未自动重试。本刊依据已保存的研究解读整理，作者报告的实验尚未独立复现。"
@@ -8798,15 +8798,15 @@
       ],
       "metrics": {
         "failed": 1,
-        "parsed": 1956,
+        "parsed": 1972,
         "passed": 43,
-        "stored": 1931,
+        "stored": 1947,
         "blocked": 16,
         "pending": 0,
-        "signals": 126,
+        "signals": 142,
         "admitted": 60,
-        "inWindow": 1822,
-        "returned": 1956,
+        "inWindow": 1838,
+        "returned": 1972,
         "selected": 17,
         "processed": 59,
         "published": 14,
@@ -8826,7 +8826,7 @@
         "decisionUnknown": 0,
         "sourcesDeferred": 0,
         "sourcesObserved": 6,
-        "unlinkedSignals": 70,
+        "unlinkedSignals": 81,
         "deferredRequests": 0,
         "duplicateRecords": 25,
         "sourcesSucceeded": 6,
@@ -11803,7 +11803,7 @@
   ],
   "researchAttention": {
     "ruleVersion": "research-source-heat-v1-168h-halflife24h",
-    "computedAt": "2026-10-07T10:03:58.183Z",
+    "computedAt": "2026-10-07T15:58:38.283Z",
     "windowHours": 168,
     "halfLifeHours": 24,
     "minSources": 2,
@@ -11815,7 +11815,7 @@
         "rank": 1,
         "itemId": "k2sij2pi8vkcxhidxw8m1uxmy",
         "title": "SimuVerity 研究提出面向工程级 Simulink 模型生成的智能体评测基准",
-        "heat": 3.7,
+        "heat": 3.2,
         "sourceCount": 2,
         "signals": [
           {
@@ -11838,7 +11838,7 @@
         "rank": 2,
         "itemId": "q08o0zdlmlmjm8z82k9ln4qzt",
         "title": "EditHero：面向长序列部件级 3D 编辑与 Vibe Modeling 的基准",
-        "heat": 3.7,
+        "heat": 3.2,
         "sourceCount": 2,
         "signals": [
           {
@@ -11861,7 +11861,7 @@
         "rank": 3,
         "itemId": "i1kt74wkfu1sylbqhmi2t7dnv",
         "title": "KaliBench 研究提出面向 Kali Linux 安全工具调用的细粒度基准与免运行可验证奖励",
-        "heat": 0.4,
+        "heat": 0.3,
         "sourceCount": 2,
         "signals": [
           {
@@ -11884,7 +11884,7 @@
         "rank": 4,
         "itemId": "n7gty26hkso9o0egz436qszwh",
         "title": "LoopCD 研究提出以循环中间状态改善 Looped Transformers 解码",
-        "heat": 0.4,
+        "heat": 0.3,
         "sourceCount": 2,
         "signals": [
           {
@@ -11907,7 +11907,7 @@
         "rank": 5,
         "itemId": "pgau2nc5iai5889xcnwfot4w6",
         "title": "SILSA 提出滑动窗口切片潜变量，用于保持拓扑的高分辨率三维生成",
-        "heat": 0.4,
+        "heat": 0.3,
         "sourceCount": 2,
         "signals": [
           {
@@ -11930,7 +11930,7 @@
         "rank": 6,
         "itemId": "snmbmzrubqis2mvxth8qidlnb",
         "title": "ScholarCatalyst 提出检索研究启发文献的基准",
-        "heat": 0.4,
+        "heat": 0.3,
         "sourceCount": 2,
         "signals": [
           {
@@ -11953,7 +11953,7 @@
         "rank": 7,
         "itemId": "tvhnp70ajv592y2ulmk84chi4",
         "title": "HC-DLM 提出分层连续扩散语言模型，耦合 token 生成与潜变量更新",
-        "heat": 0.4,
+        "heat": 0.3,
         "sourceCount": 2,
         "signals": [
           {
