@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-07T04:34:08.868Z",
+  "generatedAt": "2026-10-07T07:09:21.810Z",
   "publicBaseUrl": "https://pkucy2016.github.io/algorithmhot/",
   "mode": "static-snapshot",
   "scope": "当前全部公开动态（已通过相关性筛选并具有摘要，少于 2,000 条）、公开精选、主题及现存试刊/日报归档（每类少于 400 期）；不含待审候选",
@@ -1563,6 +1563,11 @@
             "kind": "paper",
             "url": "https://arxiv.org/abs/2610.03829",
             "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.03829",
+            "sourceUrl": "https://arxiv.org/list/q-bio.QM/new?skip=0&show=500"
           }
         ]
       },
@@ -7991,12 +7996,12 @@
       "issueNumber": 4,
       "title": "AlgorithmHot · 科研热点 · 日内更新 · 部分结果",
       "windowStart": "2026-10-06T00:00:00.000Z",
-      "windowEnd": "2026-10-07T04:29:09.019Z",
-      "generatedAt": "2026-10-07T04:34:08.617Z",
-      "revision": 3,
+      "windowEnd": "2026-10-07T07:06:32.646Z",
+      "generatedAt": "2026-10-07T07:09:21.535Z",
+      "revision": 4,
       "lead": {
         "title": "本期部分结果：已整理 14 项研究",
-        "leadParagraph": "本期刊载 14 条已完成筛选与研究解读的公开资料。尚存缺口：3 个来源采集尚不完整（历史失败请求共 19 次）；2 个来源响应仍受截断限制；1 条资料处理失败；1 条资料因历史失败已隔离，未自动重试。本刊依据已保存的研究解读整理，作者报告的实验尚未独立复现。"
+        "leadParagraph": "本期刊载 14 条已完成筛选与研究解读的公开资料。尚存缺口：2 个来源采集尚不完整（历史失败请求共 2 次）；2 个来源响应仍受截断限制；1 条资料处理失败；1 条资料因历史失败已隔离，未自动重试。本刊依据已保存的研究解读整理，作者报告的实验尚未独立复现。"
       },
       "overview": null,
       "sections": [
@@ -8793,38 +8798,38 @@
       ],
       "metrics": {
         "failed": 1,
-        "parsed": 1356,
+        "parsed": 1881,
         "passed": 43,
-        "stored": 926,
+        "stored": 1862,
         "blocked": 16,
         "pending": 0,
-        "signals": 103,
+        "signals": 116,
         "admitted": 60,
-        "inWindow": 817,
-        "returned": 1356,
+        "inWindow": 1753,
+        "returned": 1881,
         "selected": 17,
         "processed": 59,
         "published": 14,
         "briefReady": 43,
-        "notAdmitted": 654,
+        "notAdmitted": 1577,
         "totalEvents": 14,
         "briefPending": 0,
         "sourcesCount": 3,
         "newlyAdmitted": 0,
         "outsideWindow": 109,
         "parseRejected": 0,
-        "sourcesFailed": 3,
+        "sourcesFailed": 2,
         "displayOmitted": 3,
-        "failedRequests": 19,
+        "failedRequests": 2,
         "sourcesPlanned": 6,
         "unknownOutcome": 0,
         "decisionUnknown": 0,
         "sourcesDeferred": 0,
         "sourcesObserved": 6,
-        "unlinkedSignals": 95,
+        "unlinkedSignals": 64,
         "deferredRequests": 0,
-        "duplicateRecords": 92,
-        "sourcesSucceeded": 3,
+        "duplicateRecords": 0,
+        "sourcesSucceeded": 4,
         "quarantinedFailed": 1,
         "roadmapsPublished": 3,
         "truncatedRequests": 2,
@@ -8834,14 +8839,14 @@
         "modelRequestsUnknown": 0,
         "selectedWithoutBrief": 0,
         "duplicateRecordsExact": 0,
-        "excludedSourceRecords": 338,
+        "excludedSourceRecords": 28,
         "excludedByDisplayLimit": 3,
         "persistenceUnreconciled": 0,
-        "duplicateRecordsLowerBound": 92
+        "duplicateRecordsLowerBound": 0
       },
       "status": "partial",
       "gaps": [
-        "3 个来源采集尚不完整（历史失败请求共 19 次）",
+        "2 个来源采集尚不完整（历史失败请求共 2 次）",
         "2 个来源响应仍受截断限制",
         "1 条资料处理失败",
         "1 条资料因历史失败已隔离，未自动重试"
@@ -11800,7 +11805,7 @@
   ],
   "researchAttention": {
     "ruleVersion": "research-source-heat-v1-168h-halflife24h",
-    "computedAt": "2026-10-07T04:34:08.868Z",
+    "computedAt": "2026-10-07T07:09:21.810Z",
     "windowHours": 168,
     "halfLifeHours": 24,
     "minSources": 2,
@@ -11812,7 +11817,7 @@
         "rank": 1,
         "itemId": "k2sij2pi8vkcxhidxw8m1uxmy",
         "title": "SimuVerity 研究提出面向工程级 Simulink 模型生成的智能体评测基准",
-        "heat": 4.4,
+        "heat": 4.1,
         "sourceCount": 2,
         "signals": [
           {
@@ -11835,7 +11840,7 @@
         "rank": 2,
         "itemId": "q08o0zdlmlmjm8z82k9ln4qzt",
         "title": "EditHero：面向长序列部件级 3D 编辑与 Vibe Modeling 的基准",
-        "heat": 4.4,
+        "heat": 4.1,
         "sourceCount": 2,
         "signals": [
           {
