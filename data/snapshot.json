@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-08T12:46:26.433Z",
+  "generatedAt": "2026-10-08T13:30:23.989Z",
   "publicBaseUrl": "https://pkucy2016.github.io/algorithmhot/",
   "mode": "static-snapshot",
   "scope": "公开科研动态、精选研究、研究主题，以及日报、周报和月报归档",
@@ -1351,6 +1351,64 @@
       "selected": true
     },
     {
+      "id": "i7muy0v37pqmz91o1fu6cvgvg",
+      "title": "RunningTab 通过环境侧任务记录支持直接工作区交互",
+      "originalTitle": "RunningTab: Direct Workspace Interaction with Environment-Side Tabs",
+      "summary": "RunningTab 研究提出在环境侧维护任务记录的框架，帮助 LLM 智能体在直接工作区交互中跟踪交付要求与文件证据。根据当前材料，智能体写入要求，环境记录已读文件的摘录及来源和已列出但未打开的候选文件，将匹配内容与要求关联，并在智能体尝试结束任务时提示未完成项。",
+      "reason": null,
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.10444",
+      "publishedAt": "2026-10-07T17:16:56.000Z",
+      "timelineAt": "2026-10-08T09:41:47.294Z",
+      "category": "ai4ai",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "Agent"
+      ],
+      "research": {
+        "arxivId": "2610.10444",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-07T17:16:56.000Z",
+        "revisedAt": "2026-10-07T17:16:56.000Z",
+        "communitySelectedAt": "2026-10-08T00:00:00.000Z",
+        "observedAt": "2026-10-08T09:41:47.294Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-08",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.10444",
+            "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.10444v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.10444v1"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.10444",
+            "sourceUrl": "https://huggingface.co/papers/2610.10444"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 RunningTab，为直接工作区交互（DWI）增加由环境维护的逐任务记录。DWI 指智能体通过终端直接搜索、读取工作区文件，无需索引，并利用多个文件生成交付物。作者指出，仅能访问文件不足以保证完成任务：任务要求、已读内容及已列出但未打开的文件可能随上下文窗口流失，导致已经提取的信息仍被遗漏在交付物之外。RunningTab 由智能体添加任务要求，环境把每次文件读取记录为带来源的摘录，并把已列出但未打开的文件记为候选。智能体可在每项要求旁查看最匹配的摘录和排名靠前的未打开候选，依据匹配内容解决该要求，或说明理由后将其搁置；若尝试结束时仍有未解决要求，结束检查会再次提示。",
+        "applicableTasks": "资料支持的应用范围是基于工作区已有文件生成新交付物的知识工作，尤其是需要直接搜索、读取多个文件并整合内容的 LLM 智能体任务。摘要以提取过某个数值却未将其纳入最终报告说明问题。作者在三个基准上使用三个 LLM 进行验证；具体基准名称、模型名称、文件类型、知识领域、任务规模及对其他场景的适用性未知：当前资料未提供。",
+        "comparisonConditions": "作者报告在三个基准、三个 LLM 上验证 RunningTab，比较对象为普通 DWI，以及由模型自身保存记录的基线方法。作者称 RunningTab 在这些验证中一致优于上述比较对象，并称交付物所需的取值一旦被看到，记录通常能够保留它们。摘要未给出具体性能数值、增益幅度、最高或平均增益、指标定义、单位、分母及逐基准或逐模型结果；不能据此量化改进。三个基准与三个 LLM 的具体组合方式、总任务数、样本量、重复运行次数、基线名称、硬件、计算预算、上下文长度、工具与推理设置均未知：当前资料未提供。无需索引是摘要对 DWI 交互方式的描述，不能据此推断各比较方法具有相同计算成本。",
+        "limitations": "当前证据仅为摘要，未核对全文。上述性能比较和信息保留表现均为作者报告，当前资料未提供独立复现证据。作者对记录保留所需取值的表述是‘通常’，并非保证每次保留或最终交付物必然完整。摘要未单独列出明确的适用限制或失败案例，也未提供统计显著性、不确定性、消融实验、资源开销及具体失败条件，相关情况未知。代码或开放实现是否可用、能否复现亦未知：当前资料未提供；这些信息缺失不等于研究本身没有相关验证或实现。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": false
+    },
+    {
       "id": "ni0vtaxpuhvopdv870sn38xgq",
       "title": "Seq-Flow 提出结合自滚动误差控制的高效概率预测方法",
       "originalTitle": "Seq-Flow: Efficient Probabilistic Forecasting with Self-Rollout Error Control",
@@ -1441,7 +1499,7 @@
         "doi": null,
         "originalPublishedAt": "2026-10-07T17:13:35.000Z",
         "revisedAt": "2026-10-07T17:13:35.000Z",
-        "communitySelectedAt": null,
+        "communitySelectedAt": "2026-10-08T00:00:00.000Z",
         "observedAt": "2026-10-08T09:41:41.607Z",
         "evidenceBasis": "abstract",
         "announcedOn": "2026-10-08",
@@ -1460,6 +1518,21 @@
             "kind": "paper",
             "url": "https://arxiv.org/abs/2610.10437v1",
             "sourceUrl": "https://arxiv.org/abs/2610.10437v1"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.10437",
+            "sourceUrl": "https://huggingface.co/papers/2610.10437"
+          },
+          {
+            "kind": "code",
+            "url": "https://github.com/yonghdong/sqam",
+            "sourceUrl": "https://huggingface.co/papers/2610.10437"
+          },
+          {
+            "kind": "project",
+            "url": "https://yonghdong.github.io/blog/sqam/",
+            "sourceUrl": "https://huggingface.co/papers/2610.10437"
           }
         ]
       },
@@ -2640,64 +2713,6 @@
       "researchBrief": null,
       "researchRoadmap": null,
       "selected": true
-    },
-    {
-      "id": "i7muy0v37pqmz91o1fu6cvgvg",
-      "title": "RunningTab 通过环境侧任务记录支持直接工作区交互",
-      "originalTitle": "RunningTab: Direct Workspace Interaction with Environment-Side Tabs",
-      "summary": "RunningTab 研究提出在环境侧维护任务记录的框架，帮助 LLM 智能体在直接工作区交互中跟踪交付要求与文件证据。根据当前材料，智能体写入要求，环境记录已读文件的摘录及来源和已列出但未打开的候选文件，将匹配内容与要求关联，并在智能体尝试结束任务时提示未完成项。",
-      "reason": null,
-      "sourceName": "arXiv · AI 与机器学习",
-      "sourceUrl": "https://arxiv.org/abs/2610.10444",
-      "publishedAt": "2026-10-07T17:16:56.000Z",
-      "timelineAt": "2026-10-08T09:41:47.294Z",
-      "category": "ai4ai",
-      "tags": [
-        "论文/研究",
-        "算法",
-        "Agent"
-      ],
-      "research": {
-        "arxivId": "2610.10444",
-        "arxivVersion": "v1",
-        "arxivVersions": [
-          "v1"
-        ],
-        "doi": null,
-        "originalPublishedAt": "2026-10-07T00:00:00.000Z",
-        "revisedAt": "2026-10-07T17:16:56.000Z",
-        "communitySelectedAt": "2026-10-08T00:00:00.000Z",
-        "observedAt": "2026-10-08T09:41:47.294Z",
-        "evidenceBasis": "abstract",
-        "announcedOn": "2026-10-08",
-        "links": [
-          {
-            "kind": "paper",
-            "url": "https://arxiv.org/abs/2610.10444",
-            "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
-          },
-          {
-            "kind": "paper",
-            "url": "https://arxiv.org/abs/2610.10444v1",
-            "sourceUrl": "https://arxiv.org/abs/2610.10444v1"
-          },
-          {
-            "kind": "paper",
-            "url": "https://arxiv.org/abs/2610.10444",
-            "sourceUrl": "https://huggingface.co/papers/2610.10444"
-          }
-        ]
-      },
-      "researchBrief": {
-        "methodChange": "作者提出 RunningTab，为直接工作区交互（DWI）增加由环境维护的逐任务记录。DWI 指智能体通过终端直接搜索、读取工作区文件，无需索引，并利用多个文件生成交付物。作者指出，仅能访问文件不足以保证完成任务：任务要求、已读内容及已列出但未打开的文件可能随上下文窗口流失，导致已经提取的信息仍被遗漏在交付物之外。RunningTab 由智能体添加任务要求，环境把每次文件读取记录为带来源的摘录，并把已列出但未打开的文件记为候选。智能体可在每项要求旁查看最匹配的摘录和排名靠前的未打开候选，依据匹配内容解决该要求，或说明理由后将其搁置；若尝试结束时仍有未解决要求，结束检查会再次提示。",
-        "applicableTasks": "资料支持的应用范围是基于工作区已有文件生成新交付物的知识工作，尤其是需要直接搜索、读取多个文件并整合内容的 LLM 智能体任务。摘要以提取过某个数值却未将其纳入最终报告说明问题。作者在三个基准上使用三个 LLM 进行验证；具体基准名称、模型名称、文件类型、知识领域、任务规模及对其他场景的适用性未知：当前资料未提供。",
-        "comparisonConditions": "作者报告在三个基准、三个 LLM 上验证 RunningTab，比较对象为普通 DWI，以及由模型自身保存记录的基线方法。作者称 RunningTab 在这些验证中一致优于上述比较对象，并称交付物所需的取值一旦被看到，记录通常能够保留它们。摘要未给出具体性能数值、增益幅度、最高或平均增益、指标定义、单位、分母及逐基准或逐模型结果；不能据此量化改进。三个基准与三个 LLM 的具体组合方式、总任务数、样本量、重复运行次数、基线名称、硬件、计算预算、上下文长度、工具与推理设置均未知：当前资料未提供。无需索引是摘要对 DWI 交互方式的描述，不能据此推断各比较方法具有相同计算成本。",
-        "limitations": "当前证据仅为摘要，未核对全文。上述性能比较和信息保留表现均为作者报告，当前资料未提供独立复现证据。作者对记录保留所需取值的表述是‘通常’，并非保证每次保留或最终交付物必然完整。摘要未单独列出明确的适用限制或失败案例，也未提供统计显著性、不确定性、消融实验、资源开销及具体失败条件，相关情况未知。代码或开放实现是否可用、能否复现亦未知：当前资料未提供；这些信息缺失不等于研究本身没有相关验证或实现。",
-        "evidenceBasis": "abstract",
-        "sourceRevision": 1
-      },
-      "researchRoadmap": null,
-      "selected": false
     },
     {
       "id": "pavata8f4in31dck39dpdijgd",
@@ -12131,8 +12146,8 @@
       "title": "RoboJEPA 研究报告机器人潜在世界模型的缩放规律",
       "windowStart": "2026-10-07T01:00:00.000Z",
       "windowEnd": "2026-10-08T01:00:00.000Z",
-      "generatedAt": "2026-10-08T12:43:47.499Z",
-      "revision": 5,
+      "generatedAt": "2026-10-08T13:30:23.438Z",
+      "revision": 6,
       "lead": {
         "title": "RoboJEPA 研究报告机器人潜在世界模型的缩放规律",
         "leadParagraph": "RoboJEPA 研究报告，机器人潜在世界模型的想象误差随计算量遵循二阶幂律，可用于预测超出定律拟合规模的模型质量。该模型基于 Joint Embedding Predictive Architecture（JEPA），在覆盖 12 种机器人形态的大规模数据集上训练，参数量为 8B。\n\n同时关注：为什么 forget-only 机器遗忘需要记忆训练数据；Ledger：理解第一视角视频中三维物体记忆的持久性。"
@@ -12397,15 +12412,15 @@
       ],
       "metrics": {
         "failed": 0,
-        "parsed": 2045,
+        "parsed": 1271,
         "passed": 48,
-        "stored": 1718,
+        "stored": 1722,
         "blocked": 3,
         "pending": 341,
-        "signals": 122,
+        "signals": 126,
         "admitted": 392,
-        "inWindow": 441,
-        "returned": 2045,
+        "inWindow": 445,
+        "returned": 1271,
         "selected": 35,
         "processed": 51,
         "published": 4,
@@ -12416,7 +12431,7 @@
         "figureChecks": 34,
         "sourcesCount": 1,
         "figureMissing": 13,
-        "newlyAdmitted": 392,
+        "newlyAdmitted": 0,
         "outsideWindow": 1277,
         "parseRejected": 0,
         "sourcesFailed": 0,
@@ -12427,27 +12442,27 @@
         "decisionUnknown": 0,
         "sourcesDeferred": 0,
         "sourcesObserved": 6,
-        "unlinkedSignals": 79,
+        "unlinkedSignals": 81,
         "verifiedFigures": 4,
         "deferredRequests": 0,
-        "duplicateRecords": 327,
+        "duplicateRecords": 0,
         "figureCandidates": 34,
         "sourcesSucceeded": 6,
         "figureUnavailable": 1,
         "quarantinedFailed": 0,
         "roadmapsPublished": 0,
         "truncatedRequests": 0,
-        "previouslyAdmitted": 0,
+        "previouslyAdmitted": 392,
         "quarantinedUnknown": 0,
         "healthyEmptySources": 2,
         "figureReviewRequired": 16,
         "modelRequestsUnknown": 34,
         "selectedWithoutBrief": 1,
-        "duplicateRecordsExact": 1,
+        "duplicateRecordsExact": 0,
         "excludedSourceRecords": 0,
         "excludedByDisplayLimit": 0,
         "persistenceUnreconciled": 0,
-        "duplicateRecordsLowerBound": 327,
+        "duplicateRecordsLowerBound": 0,
         "figureCandidatesUninspected": 0
       },
       "status": "partial",
@@ -14145,6 +14160,7 @@
     "nhjhel43c2zpd8m57m7ev0lla",
     "epcpponisnsuniaxjnrkph7xb",
     "m2e5lb13sdmvkxr4wkylthb5z",
+    "i7muy0v37pqmz91o1fu6cvgvg",
     "ni0vtaxpuhvopdv870sn38xgq",
     "p32idmaka1eja0j8uavcenluo",
     "r8i2kisczke0oryd9qeztsspq",
@@ -14168,7 +14184,6 @@
     "u7f47iz4xby058l1moqr46i91",
     "bqfvepe29yyabyr4f9np8qbsl",
     "zhiscshd7lkykp2cu6teyu9xz",
-    "i7muy0v37pqmz91o1fu6cvgvg",
     "pavata8f4in31dck39dpdijgd",
     "kxmhag5siqktiy53o1jrj7upv",
     "k9q5cpl4ggpgjqwllc028yjuu",
@@ -14328,19 +14343,19 @@
   ],
   "researchAttention": {
     "ruleVersion": "research-source-heat-v1-168h-halflife24h",
-    "computedAt": "2026-10-08T12:46:26.433Z",
+    "computedAt": "2026-10-08T13:30:23.989Z",
     "windowHours": 168,
     "halfLifeHours": 24,
     "minSources": 2,
     "publicItems": 204,
-    "qualifyingResearch": 11,
-    "recent48hResearch": 4,
+    "qualifyingResearch": 12,
+    "recent48hResearch": 5,
     "entries": [
       {
         "rank": 1,
         "itemId": "d4fbqcijmcfvz1y4h84gbv0bf",
         "title": "RoboQuest 评测通用具身智能体的搜索、检查与测试能力",
-        "heat": 13.8,
+        "heat": 13.5,
         "sourceCount": 2,
         "signals": [
           {
@@ -14363,7 +14378,7 @@
         "rank": 2,
         "itemId": "i7muy0v37pqmz91o1fu6cvgvg",
         "title": "RunningTab 通过环境侧任务记录支持直接工作区交互",
-        "heat": 13.8,
+        "heat": 13.5,
         "sourceCount": 2,
         "signals": [
           {
@@ -14386,7 +14401,7 @@
         "rank": 3,
         "itemId": "ktw346scru68s2ds73u0zt2ut",
         "title": "RobotWorld：评测多模态智能体在多种任务与机器人形态下的操控能力",
-        "heat": 13.8,
+        "heat": 13.5,
         "sourceCount": 2,
         "signals": [
           {
@@ -14407,9 +14422,32 @@
       },
       {
         "rank": 4,
+        "itemId": "p32idmaka1eja0j8uavcenluo",
+        "title": "SQAM 提出基于标量伴随匹配的 Q-learning 方法",
+        "heat": 13.5,
+        "sourceCount": 2,
+        "signals": [
+          {
+            "source": "arXiv",
+            "url": "https://arxiv.org/abs/2610.10437",
+            "at": "2026-10-08T00:00:00.000Z",
+            "kind": "announcement",
+            "precision": "day"
+          },
+          {
+            "source": "Hugging Face Daily Papers",
+            "url": "https://huggingface.co/papers/2610.10437",
+            "at": "2026-10-08T00:00:00.000Z",
+            "kind": "community",
+            "precision": "timestamp"
+          }
+        ]
+      },
+      {
+        "rank": 5,
         "itemId": "w69nx656ffa43fx3aj726gxjj",
         "title": "Long-WAM 提出实时控制约束下的世界动作模型上下文扩展框架",
-        "heat": 13.8,
+        "heat": 13.5,
         "sourceCount": 2,
         "signals": [
           {
@@ -14429,7 +14467,7 @@
         ]
       },
       {
-        "rank": 5,
+        "rank": 6,
         "itemId": "k2sij2pi8vkcxhidxw8m1uxmy",
         "title": "SimuVerity 研究提出面向工程级 Simulink 模型生成的智能体评测基准",
         "heat": 1.7,
@@ -14452,7 +14490,7 @@
         ]
       },
       {
-        "rank": 6,
+        "rank": 7,
         "itemId": "q08o0zdlmlmjm8z82k9ln4qzt",
         "title": "EditHero：面向长序列部件级 3D 编辑与 Vibe Modeling 的基准",
         "heat": 1.7,
@@ -14475,7 +14513,7 @@
         ]
       },
       {
-        "rank": 7,
+        "rank": 8,
         "itemId": "i1kt74wkfu1sylbqhmi2t7dnv",
         "title": "KaliBench 研究提出面向 Kali Linux 安全工具调用的细粒度基准与免运行可验证奖励",
         "heat": 0.2,
@@ -14498,7 +14536,7 @@
         ]
       },
       {
-        "rank": 8,
+        "rank": 9,
         "itemId": "snmbmzrubqis2mvxth8qidlnb",
         "title": "ScholarCatalyst 提出检索研究启发文献的基准",
         "heat": 0.2,
@@ -14521,7 +14559,7 @@
         ]
       },
       {
-        "rank": 9,
+        "rank": 10,
         "itemId": "pgau2nc5iai5889xcnwfot4w6",
         "title": "SILSA 提出滑动窗口切片潜变量，用于保持拓扑的高分辨率三维生成",
         "heat": 0.2,
@@ -14537,29 +14575,6 @@
           {
             "source": "Hugging Face Daily Papers",
             "url": "https://huggingface.co/papers/2610.02201",
-            "at": "2026-10-02T00:00:00.000Z",
-            "kind": "community",
-            "precision": "timestamp"
-          }
-        ]
-      },
-      {
-        "rank": 10,
-        "itemId": "tvhnp70ajv592y2ulmk84chi4",
-        "title": "HC-DLM 提出分层连续扩散语言模型，耦合 token 生成与潜变量更新",
-        "heat": 0.2,
-        "sourceCount": 2,
-        "signals": [
-          {
-            "source": "arXiv",
-            "url": "https://arxiv.org/abs/2610.02193v1",
-            "at": "2026-10-01T17:59:39.000Z",
-            "kind": "publication",
-            "precision": "timestamp"
-          },
-          {
-            "source": "Hugging Face Daily Papers",
-            "url": "https://huggingface.co/papers/2610.02193",
             "at": "2026-10-02T00:00:00.000Z",
             "kind": "community",
             "precision": "timestamp"
