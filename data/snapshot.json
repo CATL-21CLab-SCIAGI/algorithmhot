@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-08T07:36:55.767Z",
+  "generatedAt": "2026-10-08T08:17:20.166Z",
   "publicBaseUrl": "https://pkucy2016.github.io/algorithmhot/",
   "mode": "static-snapshot",
   "scope": "公开科研动态、精选研究、研究主题，以及日报、周报和月报归档",
@@ -9320,127 +9320,17 @@
       "kind": "daily",
       "key": "2026-10-08",
       "issueNumber": 5,
-      "title": "Google DeepMind 介绍 SynthID Bio，报告保留蛋白质功能的生物水印概念验证",
+      "title": "本期研究：原始提交窗口内暂无可刊载条目",
       "windowStart": "2026-10-07T01:00:00.000Z",
       "windowEnd": "2026-10-08T01:00:00.000Z",
-      "generatedAt": "2026-10-08T06:51:12.003Z",
-      "revision": 2,
+      "generatedAt": "2026-10-08T08:09:59.250Z",
+      "revision": 3,
       "lead": {
-        "title": "Google DeepMind 介绍 SynthID Bio，报告保留蛋白质功能的生物水印概念验证",
-        "leadParagraph": "Google DeepMind 介绍 SynthID Bio，作者报告该方法可为 AI 生成的蛋白质序列和预测结构嵌入可检测水印，并在实验室测试中保留蛋白质功能。"
+        "title": "本期暂无符合原始提交窗口的研究",
+        "leadParagraph": "本期按 2026-10-08 北京时间 09:00 日报窗口核验原始提交日期，暂无可刊载条目。"
       },
-      "overview": "Google DeepMind 介绍 SynthID Bio，作者报告该方法可为 AI 生成的蛋白质序列和预测结构嵌入可检测水印，并在实验室测试中保留蛋白质功能。",
-      "sections": [
-        {
-          "label": "AI4S",
-          "summary": null,
-          "items": [
-            {
-              "itemId": "dpg8u2s8yta9nmfjmnc77dr98",
-              "title": "Google DeepMind 介绍 SynthID Bio，报告保留蛋白质功能的生物水印概念验证",
-              "summary": "Google DeepMind 介绍 SynthID Bio，作者报告该方法可为 AI 生成的蛋白质序列和预测结构嵌入可检测水印，并在实验室测试中保留蛋白质功能。",
-              "sourceName": "Google DeepMind",
-              "sourceUrl": "https://deepmind.google/blog/introducing-synthid-bio/",
-              "publishedAt": "2026-09-30T15:03:07.000Z",
-              "available": true,
-              "research": {
-                "arxivId": null,
-                "arxivVersion": null,
-                "arxivVersions": [],
-                "doi": null,
-                "originalPublishedAt": "2026-09-30T15:03:07.000Z",
-                "revisedAt": null,
-                "communitySelectedAt": null,
-                "observedAt": "2026-10-03T06:22:46.724Z",
-                "evidenceBasis": "fulltext",
-                "links": [
-                  {
-                    "kind": "project",
-                    "url": "https://deepmind.google/blog/introducing-synthid-bio/",
-                    "sourceUrl": "https://deepmind.google/blog/introducing-synthid-bio/"
-                  },
-                  {
-                    "kind": "paper",
-                    "url": "http://www.nature.com/articles/s41586-026-10965-y",
-                    "sourceUrl": "https://deepmind.google/blog/introducing-synthid-bio/"
-                  }
-                ]
-              },
-              "researchBrief": {
-                "methodChange": "作者提出 SynthID Bio，一组面向合成生物学的水印方法：对蛋白质序列，通过细微引导氨基酸选择嵌入签名；对预测三维结构，通过调整原子坐标嵌入签名。其中，结构水印通过微调 AlphaFold 3 扩散网络的一小部分写入模型权重，使模型生成的坐标自带可检测信号。作者报告，序列水印既可在数字设计中验证，也可在合成后的实体蛋白质中验证，且在所述实验中保留生物学功能。该方法旨在为 AI 生成的生物设计提供来源识别信号，辅助应对新颖设计给传统 DNA 合成筛查带来的困难，以及合成结构误标对公共数据库和后续研究的影响。",
-                "applicableTasks": "资料支持的实验对象包括蛋白质结合分子的序列设计与水印检测，以及 AlphaFold 3 预测蛋白质三维结构的水印嵌入与检测。结合分子湿实验覆盖三个靶标：VEGF-A、SARS-CoV-2 刺突蛋白受体结合域（RBD）和 PD-L1。作者还报告正在与斯坦福大学 Hie 实验室及 Arc Institute 合作，将水印集成到基因组模型 Evo 2，为其设计的噬菌体基因组加水印；细菌培养中的早期实验显示这些噬菌体具有功能。DNA 合成订单来源核验，以及 Protein Data Bank、UniProt、GenBank 等数据库中合成条目的标记或复核，是作者提出的潜在应用，当前资料未提供这些业务场景中的实际部署验证。",
-                "comparisonConditions": "蛋白质结合分子实验采用 AlphaProteo 结合分子设计方法及启用 SynthID Bio 的 ProteinMPNN，与未加水印版本比较；湿实验涉及三个靶标（VEGF-A、SARS-CoV-2 刺突蛋白 RBD、PD-L1）。作者报告，加水印设计的命中率、结合亲和力和天然序列多样性与未加水印版本相当。亲和力以 KD 衡量，数值越低表示结合越强；当前资料未给出 KD 数值或单位，也未给出命中率分母、设计总数、各靶标样本量、多样性指标定义、重复次数、误差或统计检验。结构任务使用 AlphaFold 3，作者报告保留预测准确性、达到接近完美的水印可检测性、维持关键结构特征分布，并能耐受数字噪声或轻微坐标变化；这些结论没有具体指标数值、检测阈值、误报率或噪声强度。资料展示了 7PPA 的 AlphaFold 3 预测结构、真实结构和加水印结构，但未提供结构评测数据集规模或任务总数。Evo 2 噬菌体工作仅报告早期功能性结果，未给出样本数、对照条件或定量结果。上述实验的硬件、训练与推理计算设置、计算成本及耗时均未知：当前资料未提供。",
-                "limitations": "依据已保存的 Google DeepMind 机构发布页可读正文；未读取方法论文全文、原始数据或补充材料；所有实验结论均为作者报告，不构成独立复现。作者将工作定位为概念验证，并明确指出单一生物安全干预并非万能方案，增强水印对蓄意篡改的鲁棒性仍是关键挑战，实现完整生物安全效益还需要社区协作与进一步研究。对数字噪声或轻微坐标变化的耐受不能据此扩展为对蓄意攻击的全面防护；所述蛋白质功能保持结果也不能推广至所有蛋白质或更复杂生物对象。来源信号对降低实际生物安全风险、减少人工筛查负担或防止数据库污染的效果，当前资料未提供量化验证。噬菌体工作仍处于早期，作者表示将另行公布技术稿件细节。作者声明正在发表方法论文、开源代码和体外实验数据，并向研究社区发布权重；来源明确给出方法论文链接，但本次未读取论文全文；正文未给出代码、体外数据或权重的具体下载入口，也未核验许可证、完整性与可运行性，因此不能确认这些资源已可用或已被独立复现。",
-                "evidenceBasis": "fulltext",
-                "sourceRevision": 2
-              },
-              "researchRoadmap": {
-                "title": "SynthID Bio：蛋白质序列与三维结构的水印嵌入及验证路线",
-                "nodes": [
-                  {
-                    "stage": "input",
-                    "label": "两类处理对象：蛋白质序列与预测三维结构",
-                    "detail": "路线分为序列与结构两支：前者通过引导氨基酸选择嵌入信号，后者通过调整预测结构的原子坐标嵌入信号。",
-                    "evidenceSnippet": "subtly guiding the choice of amino acids for sequences and adjusting atomic coordinates for predicted 3D structures"
-                  },
-                  {
-                    "stage": "method",
-                    "label": "结合 AlphaProteo 与水印版 ProteinMPNN 设计结合蛋白",
-                    "detail": "作者使用 AlphaProteo 结合蛋白设计方法，并配合启用 SynthID Bio 的 ProteinMPNN 序列生成方法，开展结合蛋白水印实验。材料未给出具体序列采样或水印编码参数。",
-                    "evidenceSnippet": "by using our binder design method AlphaProteo alongside a SynthID Bio-enabled version of ProteinMPNN"
-                  },
-                  {
-                    "stage": "method",
-                    "label": "微调 AlphaFold 3 的部分扩散网络",
-                    "detail": "结构分支微调 AlphaFold 3 扩散网络的一小部分，将水印生成能力嵌入模型权重。两分支是针对不同数据类型的方法，并非必须串行执行。",
-                    "evidenceSnippet": "For protein folding, SynthID Bio fine-tunes a small part of AlphaFold 3’s diffusion network, building the ability to watermark directly into the model’s weights."
-                  },
-                  {
-                    "stage": "output",
-                    "label": "生成携带可检测签名的预测三维坐标",
-                    "detail": "结构分支的输出为内含水印签名的预测三维坐标；作者称该特性不依赖于由谁运行模型。",
-                    "evidenceSnippet": "This ensures that the predicted 3D coordinates inherently carry a detectable signature regardless of who runs the model."
-                  },
-                  {
-                    "stage": "validation",
-                    "label": "湿实验比较水印与无水印结合蛋白",
-                    "detail": "作者报告，水印设计与无水印版本的命中率、结合亲和力和天然序列多样性相当。此处为作者报告的比较结果，材料未提供数值、样本量或统计判定标准。",
-                    "evidenceSnippet": "our watermarked designs matched the hit rate, binding affinity, and natural sequence diversity of unwatermarked versions"
-                  },
-                  {
-                    "stage": "validation",
-                    "label": "结构分支检查预测精度、检出性与扰动耐受性",
-                    "detail": "作者报告保留 AlphaFold 3 预测精度及关键结构特征分布，水印接近完全可检出，并能耐受数字噪声或轻微坐标变化；材料未给出检出阈值与扰动幅度。",
-                    "evidenceSnippet": "SynthID Bio preserves AlphaFold 3 prediction accuracy while offering near-perfect detectability, maintaining key structural feature distributions, and holding up against digital noise or minor coordinate changes."
-                  }
-                ],
-                "limitations": "基于所提供的 SynthID Bio 博客全文，未核阅其所述方法论文、代码、权重或体外实验数据。材料未提供水印编码与检测算法细节、训练配置、样本量、定量性能及统计检验，无法据此完整复现实验；针对蓄意篡改的鲁棒性仍被列为后续挑战。功能保持与检测表现均属作者报告，不能据此认定水印能证明生物设计本身安全。噬菌体基因组水印仅作为另行开展的早期工作提及，未纳入本路线；独立复现未核验。",
-                "evidenceBasis": "fulltext",
-                "sourceRevision": 2,
-                "sourceUrl": "https://deepmind.google/blog/introducing-synthid-bio/",
-                "generatedAt": "2026-10-04T04:20:41.815Z"
-              },
-              "paperFigure": {
-                "itemId": "dpg8u2s8yta9nmfjmnc77dr98",
-                "sourceRevision": 2,
-                "imageOrigin": "remote",
-                "imageUrl": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41586-026-10965-y/MediaObjects/41586_2026_10965_Fig1_HTML.png",
-                "sourceUrl": "https://www.nature.com/articles/s41586-026-10965-y/figures/1",
-                "figureLabel": "原文图 1 · 方法总览",
-                "caption": "SynthIDBio 原文方法总图：序列采样水印与结构模型微调水印两条分支，以及各自的检测过程。",
-                "attribution": "David Stutz 等，Nature（2026），SynthID Bio 原始研究",
-                "licenseName": "CC BY 4.0",
-                "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
-                "verifiedAt": "2026-10-04T06:35:03.299Z",
-                "width": 1761,
-                "height": 938,
-                "contentType": "image/png",
-                "sha256": "bfb9ab1f79a0972011ccb4fe70ccbd06b8615a8166aa31f26bf9dd1e3e90b75f"
-              }
-            }
-          ]
-        }
-      ],
+      "overview": "本期按原始提交日期核验，暂无可刊载条目。",
+      "sections": [],
       "metrics": {
         "failed": 0,
         "parsed": 836,
@@ -9452,16 +9342,16 @@
         "admitted": 640,
         "inWindow": 713,
         "returned": 836,
-        "selected": 2,
+        "selected": 0,
         "processed": 28,
-        "published": 1,
+        "published": 0,
         "briefReady": 18,
         "notAdmitted": 0,
-        "totalEvents": 1,
+        "totalEvents": 0,
         "briefPending": 1,
-        "figureChecks": 2,
-        "sourcesCount": 1,
-        "figureMissing": 1,
+        "figureChecks": 0,
+        "sourcesCount": 0,
+        "figureMissing": 0,
         "newlyAdmitted": 640,
         "outsideWindow": 110,
         "parseRejected": 0,
@@ -9473,10 +9363,10 @@
         "sourcesDeferred": 1,
         "sourcesObserved": 6,
         "unlinkedSignals": 54,
-        "verifiedFigures": 1,
+        "verifiedFigures": 0,
         "deferredRequests": 1,
         "duplicateRecords": 13,
-        "figureCandidates": 2,
+        "figureCandidates": 0,
         "sourcesSucceeded": 5,
         "figureUnavailable": 0,
         "quarantinedFailed": 0,
@@ -12274,7 +12164,7 @@
   ],
   "researchAttention": {
     "ruleVersion": "research-source-heat-v1-168h-halflife24h",
-    "computedAt": "2026-10-08T07:36:55.767Z",
+    "computedAt": "2026-10-08T08:17:20.166Z",
     "windowHours": 168,
     "halfLifeHours": 24,
     "minSources": 2,
