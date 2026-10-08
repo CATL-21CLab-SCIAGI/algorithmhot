@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-08T12:37:58.567Z",
+  "generatedAt": "2026-10-08T12:46:26.433Z",
   "publicBaseUrl": "https://pkucy2016.github.io/algorithmhot/",
   "mode": "static-snapshot",
   "scope": "公开科研动态、精选研究、研究主题，以及日报、周报和月报归档",
@@ -112,6 +112,77 @@
         "applicableTasks": "当前资料支持的评估范围为数学推理，涉及七个数学推理基准和两个模型家族。方法面向已训练语言模型上的 RLVR，并依赖对探索轨迹正确性与质量的筛选。具体基准名称、模型家族名称、模型规模，以及其他任务、领域或模态中的适用效果均未知：当前资料未提供。",
         "comparisonConditions": "作者报告，在七个数学推理基准、两个模型家族上，ExpDis 在相同实际耗时预算（wall-clock budget）下优于 DAPO。作者还报告 pass@k 随 k 增加的扩展表现得到改善，并将其解释为模型能生成更多样的正确解答。摘要没有给出各基准或模型的具体结果，也未说明结论是逐项成立还是汇总口径；不能据此推断每项均有提升。具体模型总数、训练与评估数据量、探索策略确切数量、重复轮数、硬件、并行与计算配置、实际耗时预算数值及其时间单位、DAPO 的具体配置、k 的取值、得分与增益数值、平均或最高增益口径、样本分母及统计不确定性均未知：当前资料未提供。相同实际耗时预算不构成硬件或总计算量相同的证据。",
         "limitations": "证据仅为用户提供的摘要，未核对全文。性能优势、不损害学生策略以及正确解答多样性改善均属于作者报告或作者解释，当前资料不提供独立复现证据。摘要未明确陈述 ExpDis 自身的适用边界或失败情形；其关于强新颖性激励可能损害质量、且退化难以恢复的陈述，是提出方法的背景问题。轨迹正确性与质量筛选标准、新颖性奖励定义及强度、详细训练与蒸馏配置、消融实验、重复运行与显著性检验、数学推理以外的验证，以及代码或其他复现材料是否可用均未知：当前资料未提供。这些缺失不能被表述为研究本身没有相应内容，也不能据摘要推断模型已发现先前训练数据中不存在的推理策略。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "id": "w69nx656ffa43fx3aj726gxjj",
+      "title": "Long-WAM 提出实时控制约束下的世界动作模型上下文扩展框架",
+      "originalTitle": "Long-WAM: Scaling the Context of World-Action Models",
+      "summary": "Long-WAM 研究提出面向实时机器人控制的上下文扩展框架，作者报告自回归预训练能使世界动作模型更充分地利用视觉历史。根据当前材料，该方法先用无动作标签的机器人与第一视角视频学习因果预测，再在世界动作适配中保留历史到未来的结构；在 RoboCasa GR-1 上，上下文从 0.0 秒增至 19.2 秒时，成功率从 63.3% 升至 78.7%，双向预训练初始化则无净收益。",
+      "reason": "自回归与双向预训练在增加视觉历史后的收益差异，为判断机器人控制模型能否利用长上下文提供了具体比较依据。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.10528",
+      "publishedAt": "2026-10-07T17:58:04.000Z",
+      "timelineAt": "2026-10-08T09:41:47.294Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "训练方法",
+        "具身智能",
+        "推理优化",
+        "部署/工程"
+      ],
+      "research": {
+        "arxivId": "2610.10528",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-07T17:58:04.000Z",
+        "revisedAt": "2026-10-07T17:58:04.000Z",
+        "communitySelectedAt": "2026-10-08T00:00:00.000Z",
+        "observedAt": "2026-10-08T09:41:47.294Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-08",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.10528",
+            "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.10528v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.10528v1"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.10528",
+            "sourceUrl": "https://huggingface.co/papers/2610.10528"
+          },
+          {
+            "kind": "code",
+            "url": "https://github.com/NVlabs/LongLive",
+            "sourceUrl": "https://huggingface.co/papers/2610.10528"
+          },
+          {
+            "kind": "project",
+            "url": "https://nvlabs.github.io/LongLive/Long-WAM/",
+            "sourceUrl": "https://huggingface.co/papers/2610.10528"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 Long-WAM，一种在实时控制约束下扩展因果世界—动作模型上下文的模型与系统框架，解决机器人需要较长视觉历史来判断运动和任务进展、但历史处理会延迟动作的问题。作者报告，仅能访问历史不等于有效利用历史：视频基础模型采用自回归（AR）预训练时，较长历史的收益明显更大。方法先从不含动作标签的机器人视频和第一人称视频中学习因果预测，再在世界—动作适配阶段保留这种从历史到未来的预测结构。系统侧采用流式观测编码、异步执行和针对硬件的加速，在保留未来预测的同时支持实时部署。",
+        "applicableTasks": "资料支持的范围为实时机器人控制中的因果世界—动作建模、动态操作和长时程操作。作者报告的评测涉及 RoboCasa GR-1、LIBERO-Long、RoboTwin 2.0 和 DOMINO；实体部署对象包括 Unitree G1 和 YAM，任务示例包括动态杯子堆叠。作者还报告 Long-WAM 可作为利用记忆的执行器，与高层规划配合完成复合任务。机器人视频和第一人称视频用于无动作标签的预训练；摘要未提供更具体的训练数据构成、任务清单或适用边界。",
+        "comparisonConditions": "作者报告：①在 RoboCasa GR-1 上，上下文从 0.0 秒增加到 19.2 秒，成功率从 63.3% 提高到 78.7%；采用双向预训练初始化的比较条件则没有净增益，其具体成功率未给出。机器人领域的 AR 预训练进一步提高了 GR-1 和 LIBERO-Long 上的峰值成功率，但具体数值未知。②Long-WAM 在 LIBERO-Long、RoboTwin 2.0 和 DOMINO 这三个评测中取得了所比较方法中的最佳结果；摘要未给出这些比较的完整方法名单、模型总数、各基准任务数、具体指标数值或差值。③作者报告可在 RTX 5090、DGX Spark 和 Jetson AGX Thor 三种硬件上保留未来预测进行部署；其中仅明确给出 RTX 5090 的耗时：每个动作块为 107.4 毫秒，包含未来视频潜变量预测。该数值的平均值或其他统计口径、动作块长度、批大小、数值精度及另外两种硬件的时延未知。④在 Unitree G1 和 YAM 上的实时部署支持动态和长时程操作；动态杯子堆叠成功率为 95%，比较对象 Pi0.5 和 Fast-WAM 在摘要所述 20 次试验中均无成功。95% 对应的 Long-WAM 试验总数、该任务具体使用的平台，以及各方法是否采用完全相同的硬件和计算预算，摘要未明确。训练数据规模、模型参数量、训练算力与时长、其他评测的试验次数均未知：当前资料未提供。",
+        "limitations": "当前证据仅为摘要，未核对全文。上述效果、排名和部署性能均为作者报告，当前资料不包含独立复现证据。摘要未明确陈述作者认可的局限，也未提供误差范围、统计显著性、失败案例、完整消融结果、全部比较设置或泛化验证细节，因此不能据此判定结果的稳定性及更广范围的适用性。GR-1 的成功率变化仅对应所述上下文比较；机器人领域 AR 预训练的额外提升仅被描述为峰值提升；107.4 毫秒仅对应 RTX 5090 上包含未来视频潜变量预测的每动作块耗时，不能扩展为其他硬件的性能结论。复合任务与高层规划的配合未提供量化结果。代码、模型权重、数据开放情况及复现步骤未知：当前资料未提供；这些缺失不代表研究本身没有相关材料或验证。",
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
@@ -1677,6 +1748,75 @@
       "selected": true
     },
     {
+      "id": "ktw346scru68s2ds73u0zt2ut",
+      "title": "RobotWorld：评测多模态智能体在多种任务与机器人形态下的操控能力",
+      "originalTitle": "RobotWorld: Benchmarking Multimodal Agents for Robot Use Across Diverse Tasks and Embodiments",
+      "summary": "研究团队提出 RobotWorld 仿真评测环境，用 84 项任务考察多模态智能体通过机器人接口执行物理任务的能力。任务覆盖操作、移动操作、运动、驾驶和飞行控制，并设有明确的交互预算与可执行的成功判定。",
+      "reason": "任务结果与执行轨迹的对应分析，为区分智能体能构建感知控制流程与能可靠完成机器人任务提供了具体观察依据。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.10409",
+      "publishedAt": "2026-10-07T16:55:24.000Z",
+      "timelineAt": "2026-10-08T09:41:41.607Z",
+      "category": "ai4ai",
+      "tags": [
+        "论文/研究",
+        "Agent",
+        "多模态",
+        "具身智能"
+      ],
+      "research": {
+        "arxivId": "2610.10409",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-07T16:55:24.000Z",
+        "revisedAt": "2026-10-07T16:55:24.000Z",
+        "communitySelectedAt": "2026-10-08T00:00:00.000Z",
+        "observedAt": "2026-10-08T09:41:41.607Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-08",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.10409",
+            "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.10409v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.10409v1"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.10409",
+            "sourceUrl": "https://huggingface.co/papers/2610.10409"
+          },
+          {
+            "kind": "code",
+            "url": "https://github.com/robotworldai/robotworld",
+            "sourceUrl": "https://huggingface.co/papers/2610.10409"
+          },
+          {
+            "kind": "project",
+            "url": "https://robotworldai.github.io/",
+            "sourceUrl": "https://huggingface.co/papers/2610.10409"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 RobotWorld，用于评估通用智能体的代码编写、工具使用及复杂数字任务能力能在多大程度上迁移到机器人任务。其方法是建立仿真测试平台，让智能体通过机器人接口将指令与观察转化为物理任务执行，为任务设置明确的交互预算和可执行的成功检查，并结合任务结果与执行轨迹分析可迁移能力及可靠完成任务的障碍。这是评测平台与行为分析方法；摘要未报告一种已验证能提升机器人任务表现的新训练或控制算法。",
+        "applicableTasks": "资料支持的范围是仿真环境中的机器人使用评测，共 84 项任务，涵盖操作、移动操作、运动控制、驾驶和空中控制。评测对象为通用智能体，关注其通过机器人接口完成任务的能力及执行过程中的失败原因。作者报告，当前智能体能够构建包括图像分割、相机标定、空间估计和基于动力学的计算在内的复杂感知与控制工作流，但这些能力并不稳定地组合成成功行为。真实机器人或现实环境中的适用性验证未知：当前资料未提供。",
+        "comparisonConditions": "作者明确提及 Astra 与 Opus 5.5，并报告任务类型相关的表现差异：Astra 在空间目标和受约束接触目标上更常成功，Opus 5.5 在持续平衡和定时交互目标上更常成功。该结论为定性比较，摘要未给出成功次数、成功率、差值、倍数、平均或最高增益，不能据此判断总体优劣。平台包含 84 项任务、覆盖上述 5 类领域，但各类任务数量、两模型各自实际评测的任务数、重复次数及成功率分母均未知。摘要至少点名这 2 个模型，参评模型总数及 Astra 的具体版本未知。作者设置了明确的交互预算与可执行成功检查，并联合分析任务结果和执行轨迹；交互预算数值、计量单位、各任务预算是否一致、成功检查细则，以及其他量化指标和结果均未提供。数据集及其数量、仿真器与机器人配置、硬件、计算资源、运行时长、采样和推理设置未知：当前资料未提供。",
+        "limitations": "当前证据仅为摘要，未核对全文；上述发现均为作者报告，当前资料不构成独立复现证据。作者明确报告的能力缺口包括：即使到达指令要求的位姿，仍丢失任务相关物体状态；未能纠正无效动作；恢复过晚；将未完成任务误判为完成。复杂感知与控制能力无法稳定组合为成功行为，而且迁移表现因模型和任务类型而异。摘要未提供完整逐任务结果、统计不确定性或显著性分析、消融实验、真实机器人验证，以及代码、数据或可复现配置的可用性信息；这些信息在当前资料中未知，不能据此断言研究本身没有相应内容。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
       "id": "mfo3ak5almwy2shez0q1dujr5",
       "title": "Rubix 提出基于指派几何的无预设对应关系二维点集全局对齐方法",
       "originalTitle": "Rubix: Global Correspondence-Free Point Set Alignment through Assignment Geometry",
@@ -2050,6 +2190,75 @@
         "limitations": "证据仅为摘要，未核对全文。摘要中的安全性约束针对劣化更新次数的期望，并不表述为每次更新均不会退化。实验仅被概述为展示性能—风险权衡及与基线比较，未提供足以判断比较优劣、统计可靠性或适用范围的详细结果。作者明确列出的其他局限、理论假设、历史轨迹估计的准确性验证、临床实际部署验证及对其他场景的泛化验证未知：当前资料未提供。上述方法、分析与实验均为作者报告；当前资料未提供代码、数据开放情况或独立复现证据，不能据此认定这些资源或验证不存在。",
         "evidenceBasis": "abstract",
         "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "id": "d4fbqcijmcfvz1y4h84gbv0bf",
+      "title": "RoboQuest 评测通用具身智能体的搜索、检查与测试能力",
+      "originalTitle": "RoboQuest: Generalist Physical Agents that Search, Inspect and Test",
+      "summary": "RoboQuest 研究提出目标导向的具身探索基准，要求智能体通过物理交互获取任务信息、调整行动并自主决定何时尝试完成任务。根据当前材料，基准包含围绕搜索、基于操作的检查和交互式测试三类不确定性的 10 项移动操作任务，通过统一视觉运动接口评估 5 个前沿多模态智能体，以及用作者公开的完整回合示范微调的 $π_{0.5}$ 策略。",
+      "reason": "通过补足隐藏信息后的技能测试与完整任务表现对照，这项评测帮助区分动作执行能力与主动获取任务证据的探索能力。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.10388",
+      "publishedAt": "2026-10-07T16:46:45.000Z",
+      "timelineAt": "2026-10-08T09:41:47.294Z",
+      "category": "ai4ai",
+      "tags": [
+        "论文/研究",
+        "具身智能",
+        "Agent",
+        "多模态"
+      ],
+      "research": {
+        "arxivId": "2610.10388",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-07T16:46:45.000Z",
+        "revisedAt": "2026-10-07T16:46:45.000Z",
+        "communitySelectedAt": "2026-10-08T00:00:00.000Z",
+        "observedAt": "2026-10-08T09:41:47.294Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-08",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.10388",
+            "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.10388v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.10388v1"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.10388",
+            "sourceUrl": "https://huggingface.co/papers/2610.10388"
+          },
+          {
+            "kind": "code",
+            "url": "https://github.com/declare-lab/RoboQuest",
+            "sourceUrl": "https://huggingface.co/papers/2610.10388"
+          },
+          {
+            "kind": "project",
+            "url": "https://declare-lab.github.io/RoboQuest/",
+            "sourceUrl": "https://huggingface.co/papers/2610.10388"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 RoboQuest，用于评测目标导向的具身探索。它针对陌生环境中初始观测缺少任务相关信息的问题，例如不知目标物体的位置、尚未观察到物体属性，或不清楚陌生工具的作用。基准要求智能体通过物理交互主动获取信息，依据所得证据调整后续动作，并自主决定何时结束探索、着手完成任务。这里提出的变化是评测基准及其能力要求；摘要未介绍新的智能体算法。",
+        "applicableTasks": "资料支持的范围是移动操作中的目标导向具身探索，共包含10项任务，围绕3类不确定性展开：搜索、基于操作的检查、交互式测试。评测对象包括多模态智能体和经示范微调的策略，关注其获取任务相关信息、利用证据行动及判断何时完成任务的能力。具体任务清单、环境配置及对其他任务或场景的适用性未知：当前资料未提供。",
+        "comparisonConditions": "作者通过统一的视觉—运动接口评测了5个前沿多模态智能体，另外评测了一个使用作者报告已发布的完整回合示范进行微调的π_{0.5}策略。以任务回合成功率衡量，表现最好的智能体仅在23%的回合中成功；这是最佳智能体的结果，并非所有智能体的平均表现，也不是相对增益。微调策略几乎从未成功，但摘要未给出其确切成功率。作为诊断性条件，作者在提供隐藏信息的情况下，对构成任务的执行技能进行隔离测试，报告智能体能完成大多数所需动作；失败分析将仅少数失败归因于执行问题。上述“大多数”“少数”均未提供数值或分母。任务数为10，示范数量、评测总回合数、各任务或各模型回合数、数据划分、5个智能体的具体名称及版本、其他逐模型结果、硬件、训练与推理计算设置、交互预算、成功判定细则及统计不确定性均未知：当前资料未提供。",
+        "limitations": "当前证据仅为摘要，未核对全文。作者报告，智能体经常在观察到完成任务所需证据之前就作出决定，过早停止探索；它们很少预防或修复探索造成的环境扰动；对大多数模型而言，通过试错学习仍然困难。这些是作者在该基准上的发现，摘要未提供对应频率、逐任务分布或详细失败分类。提供隐藏信息后的技能测试支持作者关于许多失败不能仅归因于执行能力的分析，但不足以据此断言所有失败原因已被确定。真实机器人或仿真环境设置、重复试验与统计检验、跨环境泛化及独立复现信息未知：当前资料未提供。作者称发布了完整回合示范，但当前资料未提供可核验的获取方式；代码是否开放及实现是否可用也未知。所有性能与失败分析均属于作者报告，不能视为独立验证结果。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 2
       },
       "researchRoadmap": null,
       "selected": true
@@ -2433,75 +2642,6 @@
       "selected": true
     },
     {
-      "id": "d4fbqcijmcfvz1y4h84gbv0bf",
-      "title": "RoboQuest 评测通用具身智能体的搜索、检查与测试能力",
-      "originalTitle": "RoboQuest: Generalist Physical Agents that Search, Inspect and Test",
-      "summary": "RoboQuest 研究提出目标导向的具身探索基准，要求智能体通过物理交互获取任务信息、调整行动并自主决定何时尝试完成任务。根据当前材料，基准包含围绕搜索、基于操作的检查和交互式测试三类不确定性的 10 项移动操作任务，通过统一视觉运动接口评估 5 个前沿多模态智能体，以及用作者公开的完整回合示范微调的 $π_{0.5}$ 策略。",
-      "reason": "通过补足隐藏信息后的技能测试与完整任务表现对照，这项评测帮助区分动作执行能力与主动获取任务证据的探索能力。",
-      "sourceName": "arXiv · AI 与机器学习",
-      "sourceUrl": "https://arxiv.org/abs/2610.10388",
-      "publishedAt": "2026-10-07T16:46:45.000Z",
-      "timelineAt": "2026-10-08T09:41:47.294Z",
-      "category": "ai4ai",
-      "tags": [
-        "论文/研究",
-        "具身智能",
-        "Agent",
-        "多模态"
-      ],
-      "research": {
-        "arxivId": "2610.10388",
-        "arxivVersion": "v1",
-        "arxivVersions": [
-          "v1"
-        ],
-        "doi": null,
-        "originalPublishedAt": "2026-10-07T00:00:00.000Z",
-        "revisedAt": "2026-10-07T16:46:45.000Z",
-        "communitySelectedAt": "2026-10-08T00:00:00.000Z",
-        "observedAt": "2026-10-08T09:41:47.294Z",
-        "evidenceBasis": "abstract",
-        "announcedOn": "2026-10-08",
-        "links": [
-          {
-            "kind": "paper",
-            "url": "https://arxiv.org/abs/2610.10388",
-            "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
-          },
-          {
-            "kind": "paper",
-            "url": "https://arxiv.org/abs/2610.10388v1",
-            "sourceUrl": "https://arxiv.org/abs/2610.10388v1"
-          },
-          {
-            "kind": "paper",
-            "url": "https://arxiv.org/abs/2610.10388",
-            "sourceUrl": "https://huggingface.co/papers/2610.10388"
-          },
-          {
-            "kind": "code",
-            "url": "https://github.com/declare-lab/RoboQuest",
-            "sourceUrl": "https://huggingface.co/papers/2610.10388"
-          },
-          {
-            "kind": "project",
-            "url": "https://declare-lab.github.io/RoboQuest/",
-            "sourceUrl": "https://huggingface.co/papers/2610.10388"
-          }
-        ]
-      },
-      "researchBrief": {
-        "methodChange": "作者提出 RoboQuest，用于评测目标导向的具身探索。它针对陌生环境中初始观测缺少任务相关信息的问题，例如不知目标物体的位置、尚未观察到物体属性，或不清楚陌生工具的作用。基准要求智能体通过物理交互主动获取信息，依据所得证据调整后续动作，并自主决定何时结束探索、着手完成任务。这里提出的变化是评测基准及其能力要求；摘要未介绍新的智能体算法。",
-        "applicableTasks": "资料支持的范围是移动操作中的目标导向具身探索，共包含10项任务，围绕3类不确定性展开：搜索、基于操作的检查、交互式测试。评测对象包括多模态智能体和经示范微调的策略，关注其获取任务相关信息、利用证据行动及判断何时完成任务的能力。具体任务清单、环境配置及对其他任务或场景的适用性未知：当前资料未提供。",
-        "comparisonConditions": "作者通过统一的视觉—运动接口评测了5个前沿多模态智能体，另外评测了一个使用作者报告已发布的完整回合示范进行微调的π_{0.5}策略。以任务回合成功率衡量，表现最好的智能体仅在23%的回合中成功；这是最佳智能体的结果，并非所有智能体的平均表现，也不是相对增益。微调策略几乎从未成功，但摘要未给出其确切成功率。作为诊断性条件，作者在提供隐藏信息的情况下，对构成任务的执行技能进行隔离测试，报告智能体能完成大多数所需动作；失败分析将仅少数失败归因于执行问题。上述“大多数”“少数”均未提供数值或分母。任务数为10，示范数量、评测总回合数、各任务或各模型回合数、数据划分、5个智能体的具体名称及版本、其他逐模型结果、硬件、训练与推理计算设置、交互预算、成功判定细则及统计不确定性均未知：当前资料未提供。",
-        "limitations": "当前证据仅为摘要，未核对全文。作者报告，智能体经常在观察到完成任务所需证据之前就作出决定，过早停止探索；它们很少预防或修复探索造成的环境扰动；对大多数模型而言，通过试错学习仍然困难。这些是作者在该基准上的发现，摘要未提供对应频率、逐任务分布或详细失败分类。提供隐藏信息后的技能测试支持作者关于许多失败不能仅归因于执行能力的分析，但不足以据此断言所有失败原因已被确定。真实机器人或仿真环境设置、重复试验与统计检验、跨环境泛化及独立复现信息未知：当前资料未提供。作者称发布了完整回合示范，但当前资料未提供可核验的获取方式；代码是否开放及实现是否可用也未知。所有性能与失败分析均属于作者报告，不能视为独立验证结果。",
-        "evidenceBasis": "abstract",
-        "sourceRevision": 2
-      },
-      "researchRoadmap": null,
-      "selected": true
-    },
-    {
       "id": "i7muy0v37pqmz91o1fu6cvgvg",
       "title": "RunningTab 通过环境侧任务记录支持直接工作区交互",
       "originalTitle": "RunningTab: Direct Workspace Interaction with Environment-Side Tabs",
@@ -2558,146 +2698,6 @@
       },
       "researchRoadmap": null,
       "selected": false
-    },
-    {
-      "id": "ktw346scru68s2ds73u0zt2ut",
-      "title": "RobotWorld：评测多模态智能体在多种任务与机器人形态下的操控能力",
-      "originalTitle": "RobotWorld: Benchmarking Multimodal Agents for Robot Use Across Diverse Tasks and Embodiments",
-      "summary": "研究团队提出 RobotWorld 仿真评测环境，用 84 项任务考察多模态智能体通过机器人接口执行物理任务的能力。任务覆盖操作、移动操作、运动、驾驶和飞行控制，并设有明确的交互预算与可执行的成功判定。",
-      "reason": "任务结果与执行轨迹的对应分析，为区分智能体能构建感知控制流程与能可靠完成机器人任务提供了具体观察依据。",
-      "sourceName": "arXiv · AI 与机器学习",
-      "sourceUrl": "https://arxiv.org/abs/2610.10409",
-      "publishedAt": "2026-10-07T16:55:24.000Z",
-      "timelineAt": "2026-10-08T09:41:41.607Z",
-      "category": "ai4ai",
-      "tags": [
-        "论文/研究",
-        "Agent",
-        "多模态",
-        "具身智能"
-      ],
-      "research": {
-        "arxivId": "2610.10409",
-        "arxivVersion": "v1",
-        "arxivVersions": [
-          "v1"
-        ],
-        "doi": null,
-        "originalPublishedAt": "2026-10-07T00:00:00.000Z",
-        "revisedAt": "2026-10-07T16:55:24.000Z",
-        "communitySelectedAt": "2026-10-08T00:00:00.000Z",
-        "observedAt": "2026-10-08T09:41:41.607Z",
-        "evidenceBasis": "abstract",
-        "announcedOn": "2026-10-08",
-        "links": [
-          {
-            "kind": "paper",
-            "url": "https://arxiv.org/abs/2610.10409",
-            "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
-          },
-          {
-            "kind": "paper",
-            "url": "https://arxiv.org/abs/2610.10409v1",
-            "sourceUrl": "https://arxiv.org/abs/2610.10409v1"
-          },
-          {
-            "kind": "paper",
-            "url": "https://arxiv.org/abs/2610.10409",
-            "sourceUrl": "https://huggingface.co/papers/2610.10409"
-          },
-          {
-            "kind": "code",
-            "url": "https://github.com/robotworldai/robotworld",
-            "sourceUrl": "https://huggingface.co/papers/2610.10409"
-          },
-          {
-            "kind": "project",
-            "url": "https://robotworldai.github.io/",
-            "sourceUrl": "https://huggingface.co/papers/2610.10409"
-          }
-        ]
-      },
-      "researchBrief": {
-        "methodChange": "作者提出 RobotWorld，用于评估通用智能体的代码编写、工具使用及复杂数字任务能力能在多大程度上迁移到机器人任务。其方法是建立仿真测试平台，让智能体通过机器人接口将指令与观察转化为物理任务执行，为任务设置明确的交互预算和可执行的成功检查，并结合任务结果与执行轨迹分析可迁移能力及可靠完成任务的障碍。这是评测平台与行为分析方法；摘要未报告一种已验证能提升机器人任务表现的新训练或控制算法。",
-        "applicableTasks": "资料支持的范围是仿真环境中的机器人使用评测，共 84 项任务，涵盖操作、移动操作、运动控制、驾驶和空中控制。评测对象为通用智能体，关注其通过机器人接口完成任务的能力及执行过程中的失败原因。作者报告，当前智能体能够构建包括图像分割、相机标定、空间估计和基于动力学的计算在内的复杂感知与控制工作流，但这些能力并不稳定地组合成成功行为。真实机器人或现实环境中的适用性验证未知：当前资料未提供。",
-        "comparisonConditions": "作者明确提及 Astra 与 Opus 5.5，并报告任务类型相关的表现差异：Astra 在空间目标和受约束接触目标上更常成功，Opus 5.5 在持续平衡和定时交互目标上更常成功。该结论为定性比较，摘要未给出成功次数、成功率、差值、倍数、平均或最高增益，不能据此判断总体优劣。平台包含 84 项任务、覆盖上述 5 类领域，但各类任务数量、两模型各自实际评测的任务数、重复次数及成功率分母均未知。摘要至少点名这 2 个模型，参评模型总数及 Astra 的具体版本未知。作者设置了明确的交互预算与可执行成功检查，并联合分析任务结果和执行轨迹；交互预算数值、计量单位、各任务预算是否一致、成功检查细则，以及其他量化指标和结果均未提供。数据集及其数量、仿真器与机器人配置、硬件、计算资源、运行时长、采样和推理设置未知：当前资料未提供。",
-        "limitations": "当前证据仅为摘要，未核对全文；上述发现均为作者报告，当前资料不构成独立复现证据。作者明确报告的能力缺口包括：即使到达指令要求的位姿，仍丢失任务相关物体状态；未能纠正无效动作；恢复过晚；将未完成任务误判为完成。复杂感知与控制能力无法稳定组合为成功行为，而且迁移表现因模型和任务类型而异。摘要未提供完整逐任务结果、统计不确定性或显著性分析、消融实验、真实机器人验证，以及代码、数据或可复现配置的可用性信息；这些信息在当前资料中未知，不能据此断言研究本身没有相应内容。",
-        "evidenceBasis": "abstract",
-        "sourceRevision": 1
-      },
-      "researchRoadmap": null,
-      "selected": true
-    },
-    {
-      "id": "w69nx656ffa43fx3aj726gxjj",
-      "title": "Long-WAM 提出实时控制约束下的世界动作模型上下文扩展框架",
-      "originalTitle": "Long-WAM: Scaling the Context of World-Action Models",
-      "summary": "Long-WAM 研究提出面向实时机器人控制的上下文扩展框架，作者报告自回归预训练能使世界动作模型更充分地利用视觉历史。根据当前材料，该方法先用无动作标签的机器人与第一视角视频学习因果预测，再在世界动作适配中保留历史到未来的结构；在 RoboCasa GR-1 上，上下文从 0.0 秒增至 19.2 秒时，成功率从 63.3% 升至 78.7%，双向预训练初始化则无净收益。",
-      "reason": "自回归与双向预训练在增加视觉历史后的收益差异，为判断机器人控制模型能否利用长上下文提供了具体比较依据。",
-      "sourceName": "arXiv · AI 与机器学习",
-      "sourceUrl": "https://arxiv.org/abs/2610.10528",
-      "publishedAt": "2026-10-07T17:58:04.000Z",
-      "timelineAt": "2026-10-08T09:41:47.294Z",
-      "category": "algorithm",
-      "tags": [
-        "论文/研究",
-        "算法",
-        "训练方法",
-        "具身智能",
-        "推理优化",
-        "部署/工程"
-      ],
-      "research": {
-        "arxivId": "2610.10528",
-        "arxivVersion": "v1",
-        "arxivVersions": [
-          "v1"
-        ],
-        "doi": null,
-        "originalPublishedAt": "2026-10-07T00:00:00.000Z",
-        "revisedAt": "2026-10-07T17:58:04.000Z",
-        "communitySelectedAt": "2026-10-08T00:00:00.000Z",
-        "observedAt": "2026-10-08T09:41:47.294Z",
-        "evidenceBasis": "abstract",
-        "announcedOn": "2026-10-08",
-        "links": [
-          {
-            "kind": "paper",
-            "url": "https://arxiv.org/abs/2610.10528",
-            "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
-          },
-          {
-            "kind": "paper",
-            "url": "https://arxiv.org/abs/2610.10528v1",
-            "sourceUrl": "https://arxiv.org/abs/2610.10528v1"
-          },
-          {
-            "kind": "paper",
-            "url": "https://arxiv.org/abs/2610.10528",
-            "sourceUrl": "https://huggingface.co/papers/2610.10528"
-          },
-          {
-            "kind": "code",
-            "url": "https://github.com/NVlabs/LongLive",
-            "sourceUrl": "https://huggingface.co/papers/2610.10528"
-          },
-          {
-            "kind": "project",
-            "url": "https://nvlabs.github.io/LongLive/Long-WAM/",
-            "sourceUrl": "https://huggingface.co/papers/2610.10528"
-          }
-        ]
-      },
-      "researchBrief": {
-        "methodChange": "作者提出 Long-WAM，一种在实时控制约束下扩展因果世界—动作模型上下文的模型与系统框架，解决机器人需要较长视觉历史来判断运动和任务进展、但历史处理会延迟动作的问题。作者报告，仅能访问历史不等于有效利用历史：视频基础模型采用自回归（AR）预训练时，较长历史的收益明显更大。方法先从不含动作标签的机器人视频和第一人称视频中学习因果预测，再在世界—动作适配阶段保留这种从历史到未来的预测结构。系统侧采用流式观测编码、异步执行和针对硬件的加速，在保留未来预测的同时支持实时部署。",
-        "applicableTasks": "资料支持的范围为实时机器人控制中的因果世界—动作建模、动态操作和长时程操作。作者报告的评测涉及 RoboCasa GR-1、LIBERO-Long、RoboTwin 2.0 和 DOMINO；实体部署对象包括 Unitree G1 和 YAM，任务示例包括动态杯子堆叠。作者还报告 Long-WAM 可作为利用记忆的执行器，与高层规划配合完成复合任务。机器人视频和第一人称视频用于无动作标签的预训练；摘要未提供更具体的训练数据构成、任务清单或适用边界。",
-        "comparisonConditions": "作者报告：①在 RoboCasa GR-1 上，上下文从 0.0 秒增加到 19.2 秒，成功率从 63.3% 提高到 78.7%；采用双向预训练初始化的比较条件则没有净增益，其具体成功率未给出。机器人领域的 AR 预训练进一步提高了 GR-1 和 LIBERO-Long 上的峰值成功率，但具体数值未知。②Long-WAM 在 LIBERO-Long、RoboTwin 2.0 和 DOMINO 这三个评测中取得了所比较方法中的最佳结果；摘要未给出这些比较的完整方法名单、模型总数、各基准任务数、具体指标数值或差值。③作者报告可在 RTX 5090、DGX Spark 和 Jetson AGX Thor 三种硬件上保留未来预测进行部署；其中仅明确给出 RTX 5090 的耗时：每个动作块为 107.4 毫秒，包含未来视频潜变量预测。该数值的平均值或其他统计口径、动作块长度、批大小、数值精度及另外两种硬件的时延未知。④在 Unitree G1 和 YAM 上的实时部署支持动态和长时程操作；动态杯子堆叠成功率为 95%，比较对象 Pi0.5 和 Fast-WAM 在摘要所述 20 次试验中均无成功。95% 对应的 Long-WAM 试验总数、该任务具体使用的平台，以及各方法是否采用完全相同的硬件和计算预算，摘要未明确。训练数据规模、模型参数量、训练算力与时长、其他评测的试验次数均未知：当前资料未提供。",
-        "limitations": "当前证据仅为摘要，未核对全文。上述效果、排名和部署性能均为作者报告，当前资料不包含独立复现证据。摘要未明确陈述作者认可的局限，也未提供误差范围、统计显著性、失败案例、完整消融结果、全部比较设置或泛化验证细节，因此不能据此判定结果的稳定性及更广范围的适用性。GR-1 的成功率变化仅对应所述上下文比较；机器人领域 AR 预训练的额外提升仅被描述为峰值提升；107.4 毫秒仅对应 RTX 5090 上包含未来视频潜变量预测的每动作块耗时，不能扩展为其他硬件的性能结论。复合任务与高层规划的配合未提供量化结果。代码、模型权重、数据开放情况及复现步骤未知：当前资料未提供；这些缺失不代表研究本身没有相关材料或验证。",
-        "evidenceBasis": "abstract",
-        "sourceRevision": 1
-      },
-      "researchRoadmap": null,
-      "selected": true
     },
     {
       "id": "pavata8f4in31dck39dpdijgd",
@@ -5044,6 +5044,69 @@
       "selected": true
     },
     {
+      "id": "i1kt74wkfu1sylbqhmi2t7dnv",
+      "title": "KaliBench 研究提出面向 Kali Linux 安全工具调用的细粒度基准与免运行可验证奖励",
+      "originalTitle": "KaliBench: A Fine-Grained Benchmark for Cybersecurity Tool Use on Kali Linux with Runtime-Free Verifiable Rewards",
+      "summary": "KaliBench 研究提出面向 Kali Linux 的自然语言到命令行翻译基准，用于评估 LLM 的工具选择与参数构造能力。根据当前材料，数据集包含 8,504 个查询—命令对，覆盖 1,642 个工具、23 个能力维度和 5 个安全阶段，采用确定性规范化与别名感知评估，并结合 LLM 验证、沙箱终端执行和人工参与改进进行多阶段验证。",
+      "reason": "通过区分工具选择与参数构造，并报告无工具提示条件下的命令准确率，材料为理解安全工具调用的具体难点提供了比较依据。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02206v1",
+      "publishedAt": "2026-10-01T17:59:55.000Z",
+      "timelineAt": "2026-10-01T17:59:55.000Z",
+      "category": "ai4ai",
+      "tags": [
+        "论文/研究",
+        "AI4AI",
+        "训练方法",
+        "评测/基准"
+      ],
+      "research": {
+        "arxivId": "2610.02206",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T17:59:55.000Z",
+        "revisedAt": "2026-10-01T17:59:55.000Z",
+        "communitySelectedAt": "2026-10-02T00:00:00.000Z",
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02206v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02206v1"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02206",
+            "sourceUrl": "https://huggingface.co/papers/2610.02206"
+          },
+          {
+            "kind": "code",
+            "url": "https://github.com/RISys-Lab/KaliBench",
+            "sourceUrl": "https://huggingface.co/papers/2610.02206"
+          },
+          {
+            "kind": "project",
+            "url": "https://risys-lab.github.io/KaliBench/",
+            "sourceUrl": "https://huggingface.co/papers/2610.02206"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 KaliBench：面向 Kali Linux 的自然语言到命令行接口（CLI）翻译的细粒度基准与数据集，针对现有知识型评测或端到端智能体任务不能直接衡量模型为真实网络安全工具生成可执行命令的能力这一缺口。具体关注工具选择与参数构造，以及微小语法错误、标志与值绑定错误、参数顺序错误导致命令无法执行的问题。作者采用以文稿为依据的构建流程、确定性规范化和别名感知评测，并结合 LLM 验证、沙箱终端执行及人工参与修订开展多阶段验证，以支持语义正确性与实际可执行性检查。作者进一步利用细粒度、确定性的评测信号，为训练提供无需运行时执行的可验证奖励。",
+        "applicableTasks": "资料支持的任务是将分析人员的自然语言意图转化为 Kali Linux 网络安全工具命令，评估工具选择和参数构造能力，并支持监督微调及使用可验证奖励的强化学习。数据集包含 8,504 个查询—命令对，覆盖 1,642 个工具、23 个能力维度和 5 个安全阶段。作者评测了通用及安全领域的开放权重模型。具体工具清单、能力维度和安全阶段名称，以及对其他操作系统或完整网络安全工作流的适用性，当前资料未提供。",
+        "comparisonConditions": "作者报告在 3 种评测模式下评测了通用及安全领域开放权重模型的 24 种配置；24 指配置数量，不能据此确定独立模型数量。数据集总规模为 8,504 个查询—命令对，覆盖 1,642 个工具、23 个能力维度和 5 个安全阶段，但评测样本量、训练与测试划分及各模式的样本分母未知。在不受限制、没有显式工具提示的设置下，作者报告所评测的开放权重模型均未超过 42% 的精确命令准确率；这一结论不能外推至其他模式或所有模型。作者还报告，通过监督微调及基于 KaliBench 可验证奖励的强化学习，一个 8B 模型得到显著改善，并达到与一个 685B MoE 模型相当的表现；8B 和 685B 分别为约 80 亿和 6,850 亿参数的规模表述，摘要未说明 MoE 的总参数与激活参数口径。具体模型名称、另外两种评测模式的定义、训练前后分数、提升幅度、相当表现对应的指标与条件、统计显著性检验、硬件、计算预算及训练超参数均未知：当前资料未提供。",
+        "limitations": "当前证据仅为摘要，未核对全文。上述数据规模、验证流程、准确率上限及训练改善均为作者报告，当前资料不包含独立复现证据。摘要指出，在无显式工具提示时准确使用网络安全 CLI 仍然困难；42% 的结果仅适用于作者所报告的不受限制设置及所评测开放权重模型。摘要未提供各工具、能力维度或安全阶段的分项结果，也未提供语义正确性、沙箱可执行性及人工修订的具体覆盖率、通过率或一致性信息。作者将评测描述为精确且可复现，但当前资料未提供可核查的完整实验设置、代码或数据获取信息，不能据此确认开放实现或独立可复现性。训练后与 685B MoE 模型表现相当的结论缺少具体分数与比较细节，不能推断全面能力相当或计算成本优势。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
       "id": "cgogkeh2te0qeshodfgr85gix",
       "title": "RPG 研究提出通过仿真练习自主改进机器人执行系统的方法",
       "originalTitle": "Reconstruct, Practice, Go Real: Guided Self-Improvement for Embodied Agents",
@@ -5184,6 +5247,118 @@
         "applicableTasks": "摘要直接支持的实验范围是 ImageNet 256×256 类别条件图像生成，研究内容包括生成器的条件、Multi-Embedding Prediction 的设计，以及 NEPA 与生成器两个模型的规模扩展。摘要在方法动机中提到类别标签和文本提示，但未提供文本条件生成或其他数据集、分辨率及任务的实验结果。",
         "comparisonConditions": "作者报告，最终模型 NEPA-DiT-XL 在引入 NEPA 并结合 REPA 的条件下，达到 FID 1.32，所用训练计算量约为 REPA 的三分之一；该计算量比较以 REPA 为参照，不能据此推断采样速度或全部配置的收益。实验数据与任务为 ImageNet 256×256 类别条件图像生成，摘要仅列出这一数据集、分辨率与任务设置，未给出样本数量。作者研究了生成器条件、Multi-Embedding Prediction 设计及两个模型的规模扩展，但完整比较模型清单、配置数量和各项结果未知。FID 的评估样本数、计算协议、重复运行次数及不确定性未知；摘要未标注 FID 单位。硬件、训练步数、批量大小、训练计算量的绝对数值与计量单位、比较双方具体计算配置及采样设置均未知。",
         "limitations": "当前证据仅为摘要，未核对全文，结果均为作者报告，未提供独立复现证据。作者明确指出，NEPA 会在每个采样步骤增加第二个网络；摘要未量化由此产生的采样时间、计算量或显存开销。最终结果来自 NEPA 与 REPA 的组合，摘要未给出可用于单独量化 NEPA 贡献的消融数值，也未报告 REPA 的对照 FID。约三分之一训练计算量的结论限定于摘要所述最终模型与 REPA 的比较，不能外推为普遍效率收益。文本条件生成、其他数据集与分辨率的验证、实现开放情况及复现细节未知：当前资料未提供。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "id": "snmbmzrubqis2mvxth8qidlnb",
+      "title": "ScholarCatalyst 提出检索研究启发文献的基准",
+      "originalTitle": "ScholarCatalyst: A Benchmark for Retrieving Papers That Inspire New Research",
+      "summary": "ScholarCatalyst 研究提出检索能启发新研究的文献的基准，作者报告智能体搜索未优于嵌入检索。根据当前材料，研究通过自动化流程支持作者标注，由 207 篇近期计算机科学论文的 184 位主要作者判断候选文献是否曾经或可能推进其项目，并提供详细理由。",
+      "reason": "研究以项目作者判断和启动时可用文献限定检索任务，为比较智能体搜索与嵌入检索能否找到启发研究的文献提供参照。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02202v1",
+      "publishedAt": "2026-10-01T17:59:47.000Z",
+      "timelineAt": "2026-10-01T17:59:47.000Z",
+      "category": "ai4ai",
+      "tags": [
+        "论文/研究",
+        "AI4AI",
+        "自动研究",
+        "搜索",
+        "Agent"
+      ],
+      "research": {
+        "arxivId": "2610.02202",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T17:59:47.000Z",
+        "revisedAt": "2026-10-01T17:59:47.000Z",
+        "communitySelectedAt": "2026-10-02T00:00:00.000Z",
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02202v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02202v1"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02202",
+            "sourceUrl": "https://huggingface.co/papers/2610.02202"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 ScholarCatalyst，以研究者对自身已完成项目的第一手认识构建检索评测：利用使作者标注可规模化的自动化流程，让论文主要作者标注候选文献是否曾经或可能推动其项目，并逐项提供详细理由，以论文作为其中研究思想的指针。作者引入带有作者判断的检索任务：给定项目最初的研究问题，仅从项目启动时已经存在的文献中检索这些论文。该方法旨在研究 AI 能否从不断增长的文献库中识别新问题所需的既有思想。",
+        "applicableTasks": "资料支持的任务是科研前期的相关先行研究检索，输入为初始研究问题，检索对象为项目开始时可获得的文献，相关性依据为作者对文献能否推进项目的判断。当前数据涉及近期计算机科学论文。作者将其定位为帮助科学智能体从尚未成形的想法找到所需先行研究的一步；跨学科适用性及真实未完成项目中的效果未知。",
+        "comparisonConditions": "作者报告，184 位主要作者为 207 篇近期计算机科学论文标注候选文献，并提供详细理由。比较包括智能体式搜索与嵌入检索；智能体式搜索虽将同一个检索器用作工具，Recall@20 仍为 0.42，嵌入检索为 0.48，作者据此称前者未优于后者。基于 Claude Fable 5.1 的智能体达到 0.51 R@20；作者同时指出，该模型可能在训练中见过已完成的论文。R@20 与 Recall@20 表示前 20 个检索结果的召回率，数值为无量纲比例。检索范围限定为各项目启动时已有的文献。摘要未说明召回率相关文献分母的具体构成、结果聚合方式、完整模型与配置数量、候选文献及语料库规模、评测划分、硬件、计算预算、检索调用次数、耗时或成本；这些设置均未知。",
+        "limitations": "证据仅为所提供摘要，未核对全文；所有结果均为作者报告，当前资料未提供独立复现证据。作者认为结果表明需要新的训练方案，以赋予模型在大规模语料中检索时所需的专家直觉，但摘要未验证此类训练方案的效果。作者明确提示 Claude Fable 5.1 可能在训练中见过已完成论文，实际接触情况及其影响未知。当前证据来自近期计算机科学已完成项目及作者回顾性判断，不能据此确认跨学科、真实前瞻性科研或科学发现质量的提升。摘要未提供标注一致性、统计不确定性、显著性检验、完整实验细节或实现开放情况，亦未提供这些比较之外的验证信息。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "id": "pgau2nc5iai5889xcnwfot4w6",
+      "title": "SILSA 提出滑动窗口切片潜变量，用于保持拓扑的高分辨率三维生成",
+      "originalTitle": "SILSA: Sliding-Window Slice Latents for Topology-Preserving High-Resolution 3D Generation",
+      "summary": "SILSA 研究提出以滑动窗口切片潜变量进行高分辨率三维生成，作者报告该方法改善结构保真度并降低生成成本。根据当前材料，该方法沿三个标准坐标轴使用固定数量的重叠切片，结合 Slice VAE、共享三维空间中的 Volumetric Anchor Lattice，以及匹配持久性图和对齐相邻切片 Betti 变化的拓扑监督，支持单阶段 rectified-flow 生成。",
+      "reason": "将三维形状压缩为重叠切片并加入拓扑监督，为兼顾生成成本与结构连续性提供了方法参考，但当前材料未列出基线名称与数据设置。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02201v1",
+      "publishedAt": "2026-10-01T17:59:46.000Z",
+      "timelineAt": "2026-10-01T17:59:46.000Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "训练方法",
+        "推理优化"
+      ],
+      "research": {
+        "arxivId": "2610.02201",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T17:59:46.000Z",
+        "revisedAt": "2026-10-01T17:59:46.000Z",
+        "communitySelectedAt": "2026-10-02T00:00:00.000Z",
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02201v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02201v1"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02201",
+            "sourceUrl": "https://huggingface.co/papers/2610.02201"
+          },
+          {
+            "kind": "project",
+            "url": "https://plan-lab.github.io/projects/silsa",
+            "sourceUrl": "https://huggingface.co/papers/2610.02201"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出拓扑感知的 3D 生成框架 SILSA，针对体素潜变量及先预测活跃结构、再合成局部几何的多阶段流程将连续表面分割为大量局部 token、增加生成成本，以及薄结构或高连通形状拓扑一致性减弱的问题。SILSA 使用沿三个标准坐标轴设置的固定数量重叠切片，以紧凑的滑动窗口切片潜变量替代昂贵的体素 token；每个 token 汇总局部深度窗口，以保留截面连续性并支持单阶段 rectified-flow 生成。Slice VAE 将带方向的表面采样编码为多轴切片潜变量，并通过稀疏体积解码器重建；Volumetric Anchor Lattice 通过共享 3D 工作空间协调不同方向的切片流。作者还引入切片级拓扑监督，通过匹配持久性图并对齐相邻切片间的 Betti 变化来保持结构正确性。",
+        "applicableTasks": "资料支持的任务为高分辨率 3D 形状生成及框架内的形状编码与重建。作者重点讨论薄结构、高连通形状的结构保持，并报告定性结果显示对薄结构、重复部件和长程连通性的保留有所改善。具体应用领域、形状类别、数据集范围、分辨率及是否支持条件生成，当前资料未提供。",
+        "comparisonConditions": "作者在摘要中报告：相较最强基线，SILSA 的 PSNR 提高 8.7%，coverage 提高 5.96 个绝对点，Betti error 改善 9.2%；摘要未进一步明确 Betti error 的变化方向及计算定义。相较 token 数量紧凑程度仅次于 SILSA 的基线，token 数减少 70.0%；相较稀疏或层次化 tokenizer，token 数减少超过 98%。作者同时报告训练内存减少 40.4%、推理时间减少 58.5%，但未明确这两项降幅各自对应的比较对象与设置。上述百分比均为作者报告的相对变化，coverage 为绝对点数变化；各指标原始数值、token 绝对数量、内存容量与时间单位未提供。最强基线及其他比较对象的名称、是否为同一基线、数据集与样本数量、模型与任务数量、硬件、训练与推理计算设置、指标计算方式、结果为平均值还是最佳值、各项比较是否使用相同条件，均未知：当前资料未提供。",
+        "limitations": "当前证据仅为摘要，未核对全文；所有性能与定性改善均为作者报告，不构成独立复现。摘要未明确陈述 SILSA 自身的限制或失败案例，对既有体素与多阶段流程问题的描述不能视作 SILSA 的已验证适用边界。当前资料未提供完整实验协议、统计不确定性、消融实验、跨数据集泛化验证或独立复现信息，也未提供代码、模型与数据的开放可用性证据。无法据此确认各组件的独立贡献、各类形状上的一致增益，或在其他硬件与计算条件下是否保持所报成本降幅；这些信息缺失不等于研究本身未开展相应验证。",
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
@@ -5381,6 +5556,74 @@
         "applicableTasks": "资料支持的任务是：在图上将质量从一个分布输送到另一个分布，同时计入沿途访问状态的成本；以及处理时间平均占用率上的二次拥堵成本。摘要报告的应用对象包括蛋白质折叠模型中的路径自由能成本、此前学习方法使用的道路网络，以及具有数百万个交叉口的网络。其他成本形式、模型或应用领域的适用性未知：当前资料未提供。",
         "comparisonConditions": "比较背景为通过学习受控连续时间马尔可夫链速率并使用时序差分惩罚的既有方法；作者在该学习方法使用的道路网络上报告精确桥的轨迹模拟结果，但摘要未提供两种方法的定量对照。计算设置为交替执行两个端点重缩放，每次需一次稀疏矩阵指数作用，不进行时间离散化或学习；硬件、运行时间、迭代次数、数值容差及软件设置未知。作者报告：在一个蛋白质折叠模型上，自由能成本降低了折叠路径的期望能垒，但降低幅度、能垒单位及具体对照条件未知；在上述道路网络上，精确桥的轨迹模拟在采样误差范围内匹配目标分布，但误差指标、采样数量及误差数值未知；在具有数百万个交叉口的网络上，内存随网络规模线性增长，但确切网络数量、各网络规模、内存数值和单位未知。摘要未列出完整的数据、模型和任务数量，也未报告最高或平均性能增益。",
         "limitations": "证据仅为当前提供的摘要，未核对全文。精确计算、收敛速率、强凸性、残差误差界及应用结果均为作者报告，当前资料未提供证明细节或独立复现证据。拥堵成本相关结论明确针对时间平均占用率上的二次成本；蛋白质结果来自摘要所述的一个模型，道路网络的目标匹配限定在采样误差范围内，线性内存增长结论针对摘要所述数百万交叉口规模的网络。作者是否明确讨论其他限制未知：当前资料未提供。当前资料也未提供实验重复次数、统计检验、详细基线配置、运行速度、代码或数据可用性信息，不能据此确认开放实现或推断其他条件下的效果。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "id": "tvhnp70ajv592y2ulmk84chi4",
+      "title": "HC-DLM 提出分层连续扩散语言模型，耦合 token 生成与潜变量更新",
+      "originalTitle": "Hierarchical Continuous Diffusion Language Models",
+      "summary": "HC-DLM 研究提出分层连续扩散语言模型，将离散 token 生成与连续潜变量轨迹耦合在同一去噪过程中。根据当前材料，连续潜变量是唯一持久的生成状态，每一步从中读出 token 并反馈以辅助下一次潜变量更新，训练目标由 token 似然的变分界推导。",
+      "reason": "该研究将离散 token 的反馈融入连续潜变量更新，为理解并行生成中的依赖建模提供了与两类扩散基线比较的视角。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02193v1",
+      "publishedAt": "2026-10-01T17:59:39.000Z",
+      "timelineAt": "2026-10-01T17:59:39.000Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "训练方法",
+        "推理"
+      ],
+      "research": {
+        "arxivId": "2610.02193",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T17:59:39.000Z",
+        "revisedAt": "2026-10-01T17:59:39.000Z",
+        "communitySelectedAt": "2026-10-02T00:00:00.000Z",
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02193v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02193v1"
+          },
+          {
+            "kind": "project",
+            "url": "https://hc-dlm.github.io/",
+            "sourceUrl": "https://arxiv.org/abs/2610.02193v1"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02193",
+            "sourceUrl": "https://huggingface.co/papers/2610.02193"
+          },
+          {
+            "kind": "code",
+            "url": "https://github.com/rhfeiyang/HC-DLM",
+            "sourceUrl": "https://huggingface.co/papers/2610.02193"
+          },
+          {
+            "kind": "project",
+            "url": "https://hc-dlm.github.io/",
+            "sourceUrl": "https://huggingface.co/papers/2610.02193"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出分层连续扩散语言模型（Hierarchical Continuous Diffusion Language Models，HC-DLM），在同一去噪过程中耦合离散词元生成与连续潜变量轨迹，训练目标由词元似然的变分界推导。其针对两类问题：离散扩散语言模型并行解码时，各词元从各自边缘分布独立采样，切断同时解码词元间的统计依赖；连续扩散语言模型虽通过共享连续状态去噪，但去噪器仅观察该状态，直到最终解码才与有效词元配置建立联系。不同于在独立运行的离散链上附加连续上下文的方法，HC-DLM将潜变量作为唯一持续保留的生成状态，每一步从中读出词元，再将词元反馈为下一次潜变量更新的支架。",
+        "applicableTasks": "摘要支持的评估范围包括3类任务及对应对象：结构化推理（Sudoku，数独）、数学规划（Countdown）和语言建模（LM1B）。作者将离散扩散语言模型描述为适合需要双向推理与全局约束满足的任务的候选方案，但当前资料仅报告HC-DLM在上述3个对象上的评估，其他任务与对象上的适用效果未知。",
+        "comparisonConditions": "作者报告，在模型规模匹配的条件下，HC-DLM优于离散扩散和连续扩散基线：Sudoku与Countdown上的谜题准确率提高，LM1B上的生成困惑度改善。摘要列出3个评估对象，未给出各对象的样本数、划分、难度或预处理设置。具体基线名称、基线模型数量、模型参数量、训练与推理计算预算、硬件、解码步数和采样设置均未知。指标为谜题准确率与生成困惑度；数值、报告单位、提升幅度、统计汇总口径、准确率分母及不确定性均未知。摘要未提供可量化的最高或平均增益。",
+        "limitations": "证据仅限用户提供的摘要，未核对全文。上述方法与效果均为作者报告，不构成独立复现。作者明确讨论了现有离散与连续扩散方法的结构性问题，但摘要未明确陈述HC-DLM自身的限制。当前资料未提供详细实验表、消融实验、重复试验、统计显著性、效率或资源开销结果，无法据此判断改进幅度、稳定性及更广泛的泛化能力；这些属于资料缺失，不能据此断言研究本身没有相关验证。摘要提供项目页链接，但不能由链接推断代码、权重或复现材料可用，开放实现与独立复现情况未知。",
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
@@ -5623,6 +5866,59 @@
       "selected": true
     },
     {
+      "id": "n7gty26hkso9o0egz436qszwh",
+      "title": "LoopCD 研究提出以循环中间状态改善 Looped Transformers 解码",
+      "originalTitle": "Decoding Looped Transformers Better for (Almost) Free",
+      "summary": "LoopCD 研究提出无需训练的对比解码框架，通过对比最后一次与较早循环的预测，引导 Looped Transformers 的 token 选择。根据当前材料，LoopCD-Logits 在 logit 空间操作，增加一次输出计算；LoopCD-Hidden 在隐藏状态空间操作，无额外输出计算开销。",
+      "reason": "循环中间状态被用作对比解码信号，为共享模块的循环模型提供了无需训练的优化思路，并给出减少循环次数后的质量与计算量比较。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02185v1",
+      "publishedAt": "2026-10-01T17:58:38.000Z",
+      "timelineAt": "2026-10-01T17:58:38.000Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "推理优化",
+        "推理"
+      ],
+      "research": {
+        "arxivId": "2610.02185",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T17:58:38.000Z",
+        "revisedAt": "2026-10-01T17:58:38.000Z",
+        "communitySelectedAt": "2026-10-02T00:00:00.000Z",
+        "observedAt": "2026-10-03T06:14:20.311Z",
+        "evidenceBasis": "abstract",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02185v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02185v1"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02185",
+            "sourceUrl": "https://huggingface.co/papers/2610.02185"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出无需训练的对比解码框架 LoopCD，针对循环 Transformer 标准解码丢弃较早循环状态的问题：共享模块在多次循环中生成可用于预测同一下一个 token 的中间表示，较早循环计算量较少，可与最终循环自然构成对齐的弱、强预测对。LoopCD 通过对比最终预测与较早循环的预测来引导 token 选择，无需辅助模型或外部训练。LoopCD-Logits 在 logit 空间操作，需额外一次输出计算；LoopCD-Hidden 在隐藏状态空间操作，作者称其输出计算开销为零，该表述不等于全部推理开销为零。",
+        "applicableTasks": "资料支持的对象为通过反复执行共享模块进行计算的循环 Transformer，应用环节为下一个 token 的解码选择。作者报告评估覆盖四个循环 Transformer 家族，摘要明确举出的任务为 Ouro-2.6B-Thinking 上的 AIME 2024 数学解题和 Huginn 上的 HumanEval 代码生成。所述应用条件包括完整循环深度，以及将循环次数减半以降低推理计算量。四个家族的完整名单、模型总数、任务总数以及其他模型架构上的适用性未知：当前资料未提供。",
+        "comparisonConditions": "作者报告，LoopCD 在四个循环 Transformer 家族的完整循环深度下带来显著且一致的提升，但摘要未给出全部逐项结果。明确数值为：LoopCD-Logits 将 Ouro-2.6B-Thinking 在 AIME 2024 上的 pass@1 从 61.88% 提升至 73.33%；LoopCD-Hidden 将 Huginn 在 HumanEval 上的 pass@1 从 22.56% 提升至 31.71%。作者另报告，将循环次数减半后，性能仍能达到或超过完整深度、未加引导的基线，前向计算 FLOPs 减少 22.5% 至 48.2%；该范围不是所有条件均减少 48.2%，摘要未列出范围端点对应的模型、任务或方法变体。两项 pass@1 示例的具体基线解码配置、评测样本量与统计分母、采样设置、原始与减半后的绝对循环次数、硬件、运行时间、绝对 FLOPs 及 FLOPs 统计细节未知：当前资料未提供。计算设置中仅明确 LoopCD-Logits 需额外一次输出计算，LoopCD-Hidden 的输出计算开销为零。",
+        "limitations": "当前证据仅为摘要，未核对全文；方法效果、四个模型家族上提升的一致性及减少计算量的结论均为作者报告，不是独立复现结果。摘要未明确陈述方法自身的限制或失败案例。完整实验表、各条件的结果分布、误差或置信区间、显著性检验、较早循环的选择方式、具体对比公式与超参数，以及独立复现信息均未知：当前资料未提供。作者报告的前向 FLOPs 降幅不能直接视为实测延迟、吞吐或能耗的改善幅度；这些指标未提供。代码或开放实现的可用性也未提供，不能据此断言其存在或不存在。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
       "id": "hzb4nouwnroix96ff64svk73j",
       "title": "SoftServe 研究提出面向深度学习的可扩展拟牛顿方法",
       "originalTitle": "SoftServe: A Scalable Quasi-Newton Method for Deep Learning",
@@ -5718,6 +6014,79 @@
       },
       "researchRoadmap": null,
       "selected": false
+    },
+    {
+      "id": "k2sij2pi8vkcxhidxw8m1uxmy",
+      "title": "SimuVerity 研究提出面向工程级 Simulink 模型生成的智能体评测基准",
+      "originalTitle": "SimuVerity: Benchmarking Agents for Engineering-Grade Simulink Model Generation",
+      "summary": "SimuVerity 研究提出涵盖十个工程领域、101 项从文本生成可执行 Simulink 模型任务的基准，评估模型是否满足工程要求。根据当前材料，每项任务以可执行系统配置为工程规范和四类原生仿真场景提供依据，分层评估器先检查交付物、原生可执行性与工程合格性，再从准确性、输出质量、机理保真度、控制与因果完整性、运行域鲁棒性及动态响应六个维度评分。",
+      "reason": "材料将模型可执行性与工程要求达标分开评估，为比较智能体生成仿真模型的实际工程能力提供了更具体的评价依据。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.02304",
+      "publishedAt": null,
+      "timelineAt": "2026-10-05T03:23:49.923Z",
+      "category": "ai4ai",
+      "tags": [
+        "论文/研究",
+        "Agent",
+        "算法"
+      ],
+      "research": {
+        "arxivId": "2610.02304",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-01T17:58:03.000Z",
+        "revisedAt": "2026-10-01T17:58:03.000Z",
+        "communitySelectedAt": "2026-10-05T00:00:00.000Z",
+        "observedAt": "2026-10-05T03:23:49.923Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-05",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02304",
+            "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02304",
+            "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02304v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.02304v1"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.02304",
+            "sourceUrl": "https://huggingface.co/papers/2610.02304"
+          },
+          {
+            "kind": "code",
+            "url": "https://github.com/SimuVerity/SimuVerity",
+            "sourceUrl": "https://huggingface.co/papers/2610.02304"
+          },
+          {
+            "kind": "project",
+            "url": "https://simuverity.github.io/SimuVerity/",
+            "sourceUrl": "https://huggingface.co/papers/2610.02304"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出 SimuVerity，将 Simulink 模型生成评测从是否可编译、可执行或与参考模型相似，推进到是否满足工程需求。作者指出，原有这些判据不足以确立模型满足工程需求。该基准为每项任务使用可执行系统配置描述来支撑工程规范及四类原生仿真场景；分层评估器先检查产物交付、原生可执行性和工程合格性，再对合格模型从准确性、输出质量、机理保真度、控制与因果完整性、运行域鲁棒性及动态响应六个维度评分。",
+        "applicableTasks": "资料支持的适用范围为从文本生成可执行 Simulink 模型的任务，用于评估智能体的工程能力并诊断生成失败。作者构建的基准包含跨十个工程领域的 101 项任务；具体领域名称、任务明细与系统类型未知：当前资料未提供。",
+        "comparisonConditions": "作者报告使用 SimuVerity 评估六个智能体系统；基准共有 101 项任务，覆盖十个工程领域，每项任务有四类原生仿真场景。最高表现系统的总体得分仅为 42.86；这是最佳系统的总体分数，不是六个系统的平均分，也不是相对增益。得分量表上限、单位、归一化方式、聚合规则、具体计分分母以及各系统得分未知：当前资料未提供。评估先检查产物交付、原生可执行性和工程合格性，再对合格模型按六个维度评分。作者报告，结构相似性不能很好地代理工程表现，能力瓶颈既出现在生成合格实现阶段，也出现在合格后满足多维要求的阶段；部分高分模型仍存在严重的视觉布局混乱。六个系统的名称、底层模型数量与版本、各系统实际评估任务数、重复运行次数、硬件与计算设置、仿真配置、与既有基准的定量比较、结构相似性与工程表现的具体统计关系未知：当前资料未提供。",
+        "limitations": "当前证据仅为摘要，未核对全文。上述基准设计、最佳得分与失败模式均为作者报告，当前资料未提供独立复现证据。作者明确报告的不足包括：受测系统在生成工程合格实现及合格后满足多维要求方面均有瓶颈，部分高分模型仍有严重视觉布局混乱。摘要未提供各任务与场景细节、工程合格判据、维度评分细则、分项结果、统计不确定性或超出该基准的泛化验证信息，因而不能据此推断所有 Simulink 任务或其他建模环境中的表现。代码、数据与可运行实现的开放状态未知：当前资料未提供；这些信息的缺失不等于研究本身不存在相应材料或验证。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
     },
     {
       "id": "ykks5xp6pl4htn6cbs14neyq3",
@@ -7387,253 +7756,6 @@
       "selected": false
     },
     {
-      "id": "i1kt74wkfu1sylbqhmi2t7dnv",
-      "title": "KaliBench 研究提出面向 Kali Linux 安全工具调用的细粒度基准与免运行可验证奖励",
-      "originalTitle": "KaliBench: A Fine-Grained Benchmark for Cybersecurity Tool Use on Kali Linux with Runtime-Free Verifiable Rewards",
-      "summary": "KaliBench 研究提出面向 Kali Linux 的自然语言到命令行翻译基准，用于评估 LLM 的工具选择与参数构造能力。根据当前材料，数据集包含 8,504 个查询—命令对，覆盖 1,642 个工具、23 个能力维度和 5 个安全阶段，采用确定性规范化与别名感知评估，并结合 LLM 验证、沙箱终端执行和人工参与改进进行多阶段验证。",
-      "reason": "通过区分工具选择与参数构造，并报告无工具提示条件下的命令准确率，材料为理解安全工具调用的具体难点提供了比较依据。",
-      "sourceName": "arXiv · AI 与机器学习",
-      "sourceUrl": "https://arxiv.org/abs/2610.02206v1",
-      "publishedAt": "2026-10-01T17:59:55.000Z",
-      "timelineAt": "2026-10-01T17:59:55.000Z",
-      "category": "ai4ai",
-      "tags": [
-        "论文/研究",
-        "AI4AI",
-        "训练方法",
-        "评测/基准"
-      ],
-      "research": {
-        "arxivId": "2610.02206",
-        "arxivVersion": "v1",
-        "arxivVersions": [
-          "v1"
-        ],
-        "doi": null,
-        "originalPublishedAt": "2026-10-01T00:00:00.000Z",
-        "revisedAt": "2026-10-01T17:59:55.000Z",
-        "communitySelectedAt": "2026-10-02T00:00:00.000Z",
-        "observedAt": "2026-10-03T06:14:20.311Z",
-        "evidenceBasis": "abstract",
-        "links": [
-          {
-            "kind": "paper",
-            "url": "https://arxiv.org/abs/2610.02206v1",
-            "sourceUrl": "https://arxiv.org/abs/2610.02206v1"
-          },
-          {
-            "kind": "paper",
-            "url": "https://arxiv.org/abs/2610.02206",
-            "sourceUrl": "https://huggingface.co/papers/2610.02206"
-          },
-          {
-            "kind": "code",
-            "url": "https://github.com/RISys-Lab/KaliBench",
-            "sourceUrl": "https://huggingface.co/papers/2610.02206"
-          },
-          {
-            "kind": "project",
-            "url": "https://risys-lab.github.io/KaliBench/",
-            "sourceUrl": "https://huggingface.co/papers/2610.02206"
-          }
-        ]
-      },
-      "researchBrief": {
-        "methodChange": "作者提出 KaliBench：面向 Kali Linux 的自然语言到命令行接口（CLI）翻译的细粒度基准与数据集，针对现有知识型评测或端到端智能体任务不能直接衡量模型为真实网络安全工具生成可执行命令的能力这一缺口。具体关注工具选择与参数构造，以及微小语法错误、标志与值绑定错误、参数顺序错误导致命令无法执行的问题。作者采用以文稿为依据的构建流程、确定性规范化和别名感知评测，并结合 LLM 验证、沙箱终端执行及人工参与修订开展多阶段验证，以支持语义正确性与实际可执行性检查。作者进一步利用细粒度、确定性的评测信号，为训练提供无需运行时执行的可验证奖励。",
-        "applicableTasks": "资料支持的任务是将分析人员的自然语言意图转化为 Kali Linux 网络安全工具命令，评估工具选择和参数构造能力，并支持监督微调及使用可验证奖励的强化学习。数据集包含 8,504 个查询—命令对，覆盖 1,642 个工具、23 个能力维度和 5 个安全阶段。作者评测了通用及安全领域的开放权重模型。具体工具清单、能力维度和安全阶段名称，以及对其他操作系统或完整网络安全工作流的适用性，当前资料未提供。",
-        "comparisonConditions": "作者报告在 3 种评测模式下评测了通用及安全领域开放权重模型的 24 种配置；24 指配置数量，不能据此确定独立模型数量。数据集总规模为 8,504 个查询—命令对，覆盖 1,642 个工具、23 个能力维度和 5 个安全阶段，但评测样本量、训练与测试划分及各模式的样本分母未知。在不受限制、没有显式工具提示的设置下，作者报告所评测的开放权重模型均未超过 42% 的精确命令准确率；这一结论不能外推至其他模式或所有模型。作者还报告，通过监督微调及基于 KaliBench 可验证奖励的强化学习，一个 8B 模型得到显著改善，并达到与一个 685B MoE 模型相当的表现；8B 和 685B 分别为约 80 亿和 6,850 亿参数的规模表述，摘要未说明 MoE 的总参数与激活参数口径。具体模型名称、另外两种评测模式的定义、训练前后分数、提升幅度、相当表现对应的指标与条件、统计显著性检验、硬件、计算预算及训练超参数均未知：当前资料未提供。",
-        "limitations": "当前证据仅为摘要，未核对全文。上述数据规模、验证流程、准确率上限及训练改善均为作者报告，当前资料不包含独立复现证据。摘要指出，在无显式工具提示时准确使用网络安全 CLI 仍然困难；42% 的结果仅适用于作者所报告的不受限制设置及所评测开放权重模型。摘要未提供各工具、能力维度或安全阶段的分项结果，也未提供语义正确性、沙箱可执行性及人工修订的具体覆盖率、通过率或一致性信息。作者将评测描述为精确且可复现，但当前资料未提供可核查的完整实验设置、代码或数据获取信息，不能据此确认开放实现或独立可复现性。训练后与 685B MoE 模型表现相当的结论缺少具体分数与比较细节，不能推断全面能力相当或计算成本优势。",
-        "evidenceBasis": "abstract",
-        "sourceRevision": 1
-      },
-      "researchRoadmap": null,
-      "selected": true
-    },
-    {
-      "id": "k2sij2pi8vkcxhidxw8m1uxmy",
-      "title": "SimuVerity 研究提出面向工程级 Simulink 模型生成的智能体评测基准",
-      "originalTitle": "SimuVerity: Benchmarking Agents for Engineering-Grade Simulink Model Generation",
-      "summary": "SimuVerity 研究提出涵盖十个工程领域、101 项从文本生成可执行 Simulink 模型任务的基准，评估模型是否满足工程要求。根据当前材料，每项任务以可执行系统配置为工程规范和四类原生仿真场景提供依据，分层评估器先检查交付物、原生可执行性与工程合格性，再从准确性、输出质量、机理保真度、控制与因果完整性、运行域鲁棒性及动态响应六个维度评分。",
-      "reason": "材料将模型可执行性与工程要求达标分开评估，为比较智能体生成仿真模型的实际工程能力提供了更具体的评价依据。",
-      "sourceName": "arXiv · AI 与机器学习",
-      "sourceUrl": "https://arxiv.org/abs/2610.02304",
-      "publishedAt": null,
-      "timelineAt": "2026-10-05T03:23:49.923Z",
-      "category": "ai4ai",
-      "tags": [
-        "论文/研究",
-        "Agent",
-        "算法"
-      ],
-      "research": {
-        "arxivId": "2610.02304",
-        "arxivVersion": "v1",
-        "arxivVersions": [
-          "v1"
-        ],
-        "doi": null,
-        "originalPublishedAt": "2026-10-01T00:00:00.000Z",
-        "revisedAt": "2026-10-01T17:58:03.000Z",
-        "communitySelectedAt": "2026-10-05T00:00:00.000Z",
-        "observedAt": "2026-10-05T03:23:49.923Z",
-        "evidenceBasis": "abstract",
-        "announcedOn": "2026-10-05",
-        "links": [
-          {
-            "kind": "paper",
-            "url": "https://arxiv.org/abs/2610.02304",
-            "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
-          },
-          {
-            "kind": "paper",
-            "url": "https://arxiv.org/abs/2610.02304",
-            "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
-          },
-          {
-            "kind": "paper",
-            "url": "https://arxiv.org/abs/2610.02304v1",
-            "sourceUrl": "https://arxiv.org/abs/2610.02304v1"
-          },
-          {
-            "kind": "paper",
-            "url": "https://arxiv.org/abs/2610.02304",
-            "sourceUrl": "https://huggingface.co/papers/2610.02304"
-          },
-          {
-            "kind": "code",
-            "url": "https://github.com/SimuVerity/SimuVerity",
-            "sourceUrl": "https://huggingface.co/papers/2610.02304"
-          },
-          {
-            "kind": "project",
-            "url": "https://simuverity.github.io/SimuVerity/",
-            "sourceUrl": "https://huggingface.co/papers/2610.02304"
-          }
-        ]
-      },
-      "researchBrief": {
-        "methodChange": "作者提出 SimuVerity，将 Simulink 模型生成评测从是否可编译、可执行或与参考模型相似，推进到是否满足工程需求。作者指出，原有这些判据不足以确立模型满足工程需求。该基准为每项任务使用可执行系统配置描述来支撑工程规范及四类原生仿真场景；分层评估器先检查产物交付、原生可执行性和工程合格性，再对合格模型从准确性、输出质量、机理保真度、控制与因果完整性、运行域鲁棒性及动态响应六个维度评分。",
-        "applicableTasks": "资料支持的适用范围为从文本生成可执行 Simulink 模型的任务，用于评估智能体的工程能力并诊断生成失败。作者构建的基准包含跨十个工程领域的 101 项任务；具体领域名称、任务明细与系统类型未知：当前资料未提供。",
-        "comparisonConditions": "作者报告使用 SimuVerity 评估六个智能体系统；基准共有 101 项任务，覆盖十个工程领域，每项任务有四类原生仿真场景。最高表现系统的总体得分仅为 42.86；这是最佳系统的总体分数，不是六个系统的平均分，也不是相对增益。得分量表上限、单位、归一化方式、聚合规则、具体计分分母以及各系统得分未知：当前资料未提供。评估先检查产物交付、原生可执行性和工程合格性，再对合格模型按六个维度评分。作者报告，结构相似性不能很好地代理工程表现，能力瓶颈既出现在生成合格实现阶段，也出现在合格后满足多维要求的阶段；部分高分模型仍存在严重的视觉布局混乱。六个系统的名称、底层模型数量与版本、各系统实际评估任务数、重复运行次数、硬件与计算设置、仿真配置、与既有基准的定量比较、结构相似性与工程表现的具体统计关系未知：当前资料未提供。",
-        "limitations": "当前证据仅为摘要，未核对全文。上述基准设计、最佳得分与失败模式均为作者报告，当前资料未提供独立复现证据。作者明确报告的不足包括：受测系统在生成工程合格实现及合格后满足多维要求方面均有瓶颈，部分高分模型仍有严重视觉布局混乱。摘要未提供各任务与场景细节、工程合格判据、维度评分细则、分项结果、统计不确定性或超出该基准的泛化验证信息，因而不能据此推断所有 Simulink 任务或其他建模环境中的表现。代码、数据与可运行实现的开放状态未知：当前资料未提供；这些信息的缺失不等于研究本身不存在相应材料或验证。",
-        "evidenceBasis": "abstract",
-        "sourceRevision": 1
-      },
-      "researchRoadmap": null,
-      "selected": true
-    },
-    {
-      "id": "n7gty26hkso9o0egz436qszwh",
-      "title": "LoopCD 研究提出以循环中间状态改善 Looped Transformers 解码",
-      "originalTitle": "Decoding Looped Transformers Better for (Almost) Free",
-      "summary": "LoopCD 研究提出无需训练的对比解码框架，通过对比最后一次与较早循环的预测，引导 Looped Transformers 的 token 选择。根据当前材料，LoopCD-Logits 在 logit 空间操作，增加一次输出计算；LoopCD-Hidden 在隐藏状态空间操作，无额外输出计算开销。",
-      "reason": "循环中间状态被用作对比解码信号，为共享模块的循环模型提供了无需训练的优化思路，并给出减少循环次数后的质量与计算量比较。",
-      "sourceName": "arXiv · AI 与机器学习",
-      "sourceUrl": "https://arxiv.org/abs/2610.02185v1",
-      "publishedAt": "2026-10-01T17:58:38.000Z",
-      "timelineAt": "2026-10-01T17:58:38.000Z",
-      "category": "algorithm",
-      "tags": [
-        "论文/研究",
-        "算法",
-        "推理优化",
-        "推理"
-      ],
-      "research": {
-        "arxivId": "2610.02185",
-        "arxivVersion": "v1",
-        "arxivVersions": [
-          "v1"
-        ],
-        "doi": null,
-        "originalPublishedAt": "2026-10-01T00:00:00.000Z",
-        "revisedAt": "2026-10-01T17:58:38.000Z",
-        "communitySelectedAt": "2026-10-02T00:00:00.000Z",
-        "observedAt": "2026-10-03T06:14:20.311Z",
-        "evidenceBasis": "abstract",
-        "links": [
-          {
-            "kind": "paper",
-            "url": "https://arxiv.org/abs/2610.02185v1",
-            "sourceUrl": "https://arxiv.org/abs/2610.02185v1"
-          },
-          {
-            "kind": "paper",
-            "url": "https://arxiv.org/abs/2610.02185",
-            "sourceUrl": "https://huggingface.co/papers/2610.02185"
-          }
-        ]
-      },
-      "researchBrief": {
-        "methodChange": "作者提出无需训练的对比解码框架 LoopCD，针对循环 Transformer 标准解码丢弃较早循环状态的问题：共享模块在多次循环中生成可用于预测同一下一个 token 的中间表示，较早循环计算量较少，可与最终循环自然构成对齐的弱、强预测对。LoopCD 通过对比最终预测与较早循环的预测来引导 token 选择，无需辅助模型或外部训练。LoopCD-Logits 在 logit 空间操作，需额外一次输出计算；LoopCD-Hidden 在隐藏状态空间操作，作者称其输出计算开销为零，该表述不等于全部推理开销为零。",
-        "applicableTasks": "资料支持的对象为通过反复执行共享模块进行计算的循环 Transformer，应用环节为下一个 token 的解码选择。作者报告评估覆盖四个循环 Transformer 家族，摘要明确举出的任务为 Ouro-2.6B-Thinking 上的 AIME 2024 数学解题和 Huginn 上的 HumanEval 代码生成。所述应用条件包括完整循环深度，以及将循环次数减半以降低推理计算量。四个家族的完整名单、模型总数、任务总数以及其他模型架构上的适用性未知：当前资料未提供。",
-        "comparisonConditions": "作者报告，LoopCD 在四个循环 Transformer 家族的完整循环深度下带来显著且一致的提升，但摘要未给出全部逐项结果。明确数值为：LoopCD-Logits 将 Ouro-2.6B-Thinking 在 AIME 2024 上的 pass@1 从 61.88% 提升至 73.33%；LoopCD-Hidden 将 Huginn 在 HumanEval 上的 pass@1 从 22.56% 提升至 31.71%。作者另报告，将循环次数减半后，性能仍能达到或超过完整深度、未加引导的基线，前向计算 FLOPs 减少 22.5% 至 48.2%；该范围不是所有条件均减少 48.2%，摘要未列出范围端点对应的模型、任务或方法变体。两项 pass@1 示例的具体基线解码配置、评测样本量与统计分母、采样设置、原始与减半后的绝对循环次数、硬件、运行时间、绝对 FLOPs 及 FLOPs 统计细节未知：当前资料未提供。计算设置中仅明确 LoopCD-Logits 需额外一次输出计算，LoopCD-Hidden 的输出计算开销为零。",
-        "limitations": "当前证据仅为摘要，未核对全文；方法效果、四个模型家族上提升的一致性及减少计算量的结论均为作者报告，不是独立复现结果。摘要未明确陈述方法自身的限制或失败案例。完整实验表、各条件的结果分布、误差或置信区间、显著性检验、较早循环的选择方式、具体对比公式与超参数，以及独立复现信息均未知：当前资料未提供。作者报告的前向 FLOPs 降幅不能直接视为实测延迟、吞吐或能耗的改善幅度；这些指标未提供。代码或开放实现的可用性也未提供，不能据此断言其存在或不存在。",
-        "evidenceBasis": "abstract",
-        "sourceRevision": 1
-      },
-      "researchRoadmap": null,
-      "selected": true
-    },
-    {
-      "id": "pgau2nc5iai5889xcnwfot4w6",
-      "title": "SILSA 提出滑动窗口切片潜变量，用于保持拓扑的高分辨率三维生成",
-      "originalTitle": "SILSA: Sliding-Window Slice Latents for Topology-Preserving High-Resolution 3D Generation",
-      "summary": "SILSA 研究提出以滑动窗口切片潜变量进行高分辨率三维生成，作者报告该方法改善结构保真度并降低生成成本。根据当前材料，该方法沿三个标准坐标轴使用固定数量的重叠切片，结合 Slice VAE、共享三维空间中的 Volumetric Anchor Lattice，以及匹配持久性图和对齐相邻切片 Betti 变化的拓扑监督，支持单阶段 rectified-flow 生成。",
-      "reason": "将三维形状压缩为重叠切片并加入拓扑监督，为兼顾生成成本与结构连续性提供了方法参考，但当前材料未列出基线名称与数据设置。",
-      "sourceName": "arXiv · AI 与机器学习",
-      "sourceUrl": "https://arxiv.org/abs/2610.02201v1",
-      "publishedAt": "2026-10-01T17:59:46.000Z",
-      "timelineAt": "2026-10-01T17:59:46.000Z",
-      "category": "algorithm",
-      "tags": [
-        "论文/研究",
-        "算法",
-        "训练方法",
-        "推理优化"
-      ],
-      "research": {
-        "arxivId": "2610.02201",
-        "arxivVersion": "v1",
-        "arxivVersions": [
-          "v1"
-        ],
-        "doi": null,
-        "originalPublishedAt": "2026-10-01T00:00:00.000Z",
-        "revisedAt": "2026-10-01T17:59:46.000Z",
-        "communitySelectedAt": "2026-10-02T00:00:00.000Z",
-        "observedAt": "2026-10-03T06:14:20.311Z",
-        "evidenceBasis": "abstract",
-        "links": [
-          {
-            "kind": "paper",
-            "url": "https://arxiv.org/abs/2610.02201v1",
-            "sourceUrl": "https://arxiv.org/abs/2610.02201v1"
-          },
-          {
-            "kind": "paper",
-            "url": "https://arxiv.org/abs/2610.02201",
-            "sourceUrl": "https://huggingface.co/papers/2610.02201"
-          },
-          {
-            "kind": "project",
-            "url": "https://plan-lab.github.io/projects/silsa",
-            "sourceUrl": "https://huggingface.co/papers/2610.02201"
-          }
-        ]
-      },
-      "researchBrief": {
-        "methodChange": "作者提出拓扑感知的 3D 生成框架 SILSA，针对体素潜变量及先预测活跃结构、再合成局部几何的多阶段流程将连续表面分割为大量局部 token、增加生成成本，以及薄结构或高连通形状拓扑一致性减弱的问题。SILSA 使用沿三个标准坐标轴设置的固定数量重叠切片，以紧凑的滑动窗口切片潜变量替代昂贵的体素 token；每个 token 汇总局部深度窗口，以保留截面连续性并支持单阶段 rectified-flow 生成。Slice VAE 将带方向的表面采样编码为多轴切片潜变量，并通过稀疏体积解码器重建；Volumetric Anchor Lattice 通过共享 3D 工作空间协调不同方向的切片流。作者还引入切片级拓扑监督，通过匹配持久性图并对齐相邻切片间的 Betti 变化来保持结构正确性。",
-        "applicableTasks": "资料支持的任务为高分辨率 3D 形状生成及框架内的形状编码与重建。作者重点讨论薄结构、高连通形状的结构保持，并报告定性结果显示对薄结构、重复部件和长程连通性的保留有所改善。具体应用领域、形状类别、数据集范围、分辨率及是否支持条件生成，当前资料未提供。",
-        "comparisonConditions": "作者在摘要中报告：相较最强基线，SILSA 的 PSNR 提高 8.7%，coverage 提高 5.96 个绝对点，Betti error 改善 9.2%；摘要未进一步明确 Betti error 的变化方向及计算定义。相较 token 数量紧凑程度仅次于 SILSA 的基线，token 数减少 70.0%；相较稀疏或层次化 tokenizer，token 数减少超过 98%。作者同时报告训练内存减少 40.4%、推理时间减少 58.5%，但未明确这两项降幅各自对应的比较对象与设置。上述百分比均为作者报告的相对变化，coverage 为绝对点数变化；各指标原始数值、token 绝对数量、内存容量与时间单位未提供。最强基线及其他比较对象的名称、是否为同一基线、数据集与样本数量、模型与任务数量、硬件、训练与推理计算设置、指标计算方式、结果为平均值还是最佳值、各项比较是否使用相同条件，均未知：当前资料未提供。",
-        "limitations": "当前证据仅为摘要，未核对全文；所有性能与定性改善均为作者报告，不构成独立复现。摘要未明确陈述 SILSA 自身的限制或失败案例，对既有体素与多阶段流程问题的描述不能视作 SILSA 的已验证适用边界。当前资料未提供完整实验协议、统计不确定性、消融实验、跨数据集泛化验证或独立复现信息，也未提供代码、模型与数据的开放可用性证据。无法据此确认各组件的独立贡献、各类形状上的一致增益，或在其他硬件与计算条件下是否保持所报成本降幅；这些信息缺失不等于研究本身未开展相应验证。",
-        "evidenceBasis": "abstract",
-        "sourceRevision": 1
-      },
-      "researchRoadmap": null,
-      "selected": true
-    },
-    {
       "id": "q08o0zdlmlmjm8z82k9ln4qzt",
       "title": "EditHero：面向长序列部件级 3D 编辑与 Vibe Modeling 的基准",
       "originalTitle": "EditHero: A Benchmark for Long-Horizon Part-Level 3D Editing and Vibe Modeling",
@@ -7701,128 +7823,6 @@
       },
       "researchRoadmap": null,
       "selected": false
-    },
-    {
-      "id": "snmbmzrubqis2mvxth8qidlnb",
-      "title": "ScholarCatalyst 提出检索研究启发文献的基准",
-      "originalTitle": "ScholarCatalyst: A Benchmark for Retrieving Papers That Inspire New Research",
-      "summary": "ScholarCatalyst 研究提出检索能启发新研究的文献的基准，作者报告智能体搜索未优于嵌入检索。根据当前材料，研究通过自动化流程支持作者标注，由 207 篇近期计算机科学论文的 184 位主要作者判断候选文献是否曾经或可能推进其项目，并提供详细理由。",
-      "reason": "研究以项目作者判断和启动时可用文献限定检索任务，为比较智能体搜索与嵌入检索能否找到启发研究的文献提供参照。",
-      "sourceName": "arXiv · AI 与机器学习",
-      "sourceUrl": "https://arxiv.org/abs/2610.02202v1",
-      "publishedAt": "2026-10-01T17:59:47.000Z",
-      "timelineAt": "2026-10-01T17:59:47.000Z",
-      "category": "ai4ai",
-      "tags": [
-        "论文/研究",
-        "AI4AI",
-        "自动研究",
-        "搜索",
-        "Agent"
-      ],
-      "research": {
-        "arxivId": "2610.02202",
-        "arxivVersion": "v1",
-        "arxivVersions": [
-          "v1"
-        ],
-        "doi": null,
-        "originalPublishedAt": "2026-10-01T00:00:00.000Z",
-        "revisedAt": "2026-10-01T17:59:47.000Z",
-        "communitySelectedAt": "2026-10-02T00:00:00.000Z",
-        "observedAt": "2026-10-03T06:14:20.311Z",
-        "evidenceBasis": "abstract",
-        "links": [
-          {
-            "kind": "paper",
-            "url": "https://arxiv.org/abs/2610.02202v1",
-            "sourceUrl": "https://arxiv.org/abs/2610.02202v1"
-          },
-          {
-            "kind": "paper",
-            "url": "https://arxiv.org/abs/2610.02202",
-            "sourceUrl": "https://huggingface.co/papers/2610.02202"
-          }
-        ]
-      },
-      "researchBrief": {
-        "methodChange": "作者提出 ScholarCatalyst，以研究者对自身已完成项目的第一手认识构建检索评测：利用使作者标注可规模化的自动化流程，让论文主要作者标注候选文献是否曾经或可能推动其项目，并逐项提供详细理由，以论文作为其中研究思想的指针。作者引入带有作者判断的检索任务：给定项目最初的研究问题，仅从项目启动时已经存在的文献中检索这些论文。该方法旨在研究 AI 能否从不断增长的文献库中识别新问题所需的既有思想。",
-        "applicableTasks": "资料支持的任务是科研前期的相关先行研究检索，输入为初始研究问题，检索对象为项目开始时可获得的文献，相关性依据为作者对文献能否推进项目的判断。当前数据涉及近期计算机科学论文。作者将其定位为帮助科学智能体从尚未成形的想法找到所需先行研究的一步；跨学科适用性及真实未完成项目中的效果未知。",
-        "comparisonConditions": "作者报告，184 位主要作者为 207 篇近期计算机科学论文标注候选文献，并提供详细理由。比较包括智能体式搜索与嵌入检索；智能体式搜索虽将同一个检索器用作工具，Recall@20 仍为 0.42，嵌入检索为 0.48，作者据此称前者未优于后者。基于 Claude Fable 5.1 的智能体达到 0.51 R@20；作者同时指出，该模型可能在训练中见过已完成的论文。R@20 与 Recall@20 表示前 20 个检索结果的召回率，数值为无量纲比例。检索范围限定为各项目启动时已有的文献。摘要未说明召回率相关文献分母的具体构成、结果聚合方式、完整模型与配置数量、候选文献及语料库规模、评测划分、硬件、计算预算、检索调用次数、耗时或成本；这些设置均未知。",
-        "limitations": "证据仅为所提供摘要，未核对全文；所有结果均为作者报告，当前资料未提供独立复现证据。作者认为结果表明需要新的训练方案，以赋予模型在大规模语料中检索时所需的专家直觉，但摘要未验证此类训练方案的效果。作者明确提示 Claude Fable 5.1 可能在训练中见过已完成论文，实际接触情况及其影响未知。当前证据来自近期计算机科学已完成项目及作者回顾性判断，不能据此确认跨学科、真实前瞻性科研或科学发现质量的提升。摘要未提供标注一致性、统计不确定性、显著性检验、完整实验细节或实现开放情况，亦未提供这些比较之外的验证信息。",
-        "evidenceBasis": "abstract",
-        "sourceRevision": 1
-      },
-      "researchRoadmap": null,
-      "selected": true
-    },
-    {
-      "id": "tvhnp70ajv592y2ulmk84chi4",
-      "title": "HC-DLM 提出分层连续扩散语言模型，耦合 token 生成与潜变量更新",
-      "originalTitle": "Hierarchical Continuous Diffusion Language Models",
-      "summary": "HC-DLM 研究提出分层连续扩散语言模型，将离散 token 生成与连续潜变量轨迹耦合在同一去噪过程中。根据当前材料，连续潜变量是唯一持久的生成状态，每一步从中读出 token 并反馈以辅助下一次潜变量更新，训练目标由 token 似然的变分界推导。",
-      "reason": "该研究将离散 token 的反馈融入连续潜变量更新，为理解并行生成中的依赖建模提供了与两类扩散基线比较的视角。",
-      "sourceName": "arXiv · AI 与机器学习",
-      "sourceUrl": "https://arxiv.org/abs/2610.02193v1",
-      "publishedAt": "2026-10-01T17:59:39.000Z",
-      "timelineAt": "2026-10-01T17:59:39.000Z",
-      "category": "algorithm",
-      "tags": [
-        "论文/研究",
-        "算法",
-        "训练方法",
-        "推理"
-      ],
-      "research": {
-        "arxivId": "2610.02193",
-        "arxivVersion": "v1",
-        "arxivVersions": [
-          "v1"
-        ],
-        "doi": null,
-        "originalPublishedAt": "2026-10-01T00:00:00.000Z",
-        "revisedAt": "2026-10-01T17:59:39.000Z",
-        "communitySelectedAt": "2026-10-02T00:00:00.000Z",
-        "observedAt": "2026-10-03T06:14:20.311Z",
-        "evidenceBasis": "abstract",
-        "links": [
-          {
-            "kind": "paper",
-            "url": "https://arxiv.org/abs/2610.02193v1",
-            "sourceUrl": "https://arxiv.org/abs/2610.02193v1"
-          },
-          {
-            "kind": "project",
-            "url": "https://hc-dlm.github.io/",
-            "sourceUrl": "https://arxiv.org/abs/2610.02193v1"
-          },
-          {
-            "kind": "paper",
-            "url": "https://arxiv.org/abs/2610.02193",
-            "sourceUrl": "https://huggingface.co/papers/2610.02193"
-          },
-          {
-            "kind": "code",
-            "url": "https://github.com/rhfeiyang/HC-DLM",
-            "sourceUrl": "https://huggingface.co/papers/2610.02193"
-          },
-          {
-            "kind": "project",
-            "url": "https://hc-dlm.github.io/",
-            "sourceUrl": "https://huggingface.co/papers/2610.02193"
-          }
-        ]
-      },
-      "researchBrief": {
-        "methodChange": "作者提出分层连续扩散语言模型（Hierarchical Continuous Diffusion Language Models，HC-DLM），在同一去噪过程中耦合离散词元生成与连续潜变量轨迹，训练目标由词元似然的变分界推导。其针对两类问题：离散扩散语言模型并行解码时，各词元从各自边缘分布独立采样，切断同时解码词元间的统计依赖；连续扩散语言模型虽通过共享连续状态去噪，但去噪器仅观察该状态，直到最终解码才与有效词元配置建立联系。不同于在独立运行的离散链上附加连续上下文的方法，HC-DLM将潜变量作为唯一持续保留的生成状态，每一步从中读出词元，再将词元反馈为下一次潜变量更新的支架。",
-        "applicableTasks": "摘要支持的评估范围包括3类任务及对应对象：结构化推理（Sudoku，数独）、数学规划（Countdown）和语言建模（LM1B）。作者将离散扩散语言模型描述为适合需要双向推理与全局约束满足的任务的候选方案，但当前资料仅报告HC-DLM在上述3个对象上的评估，其他任务与对象上的适用效果未知。",
-        "comparisonConditions": "作者报告，在模型规模匹配的条件下，HC-DLM优于离散扩散和连续扩散基线：Sudoku与Countdown上的谜题准确率提高，LM1B上的生成困惑度改善。摘要列出3个评估对象，未给出各对象的样本数、划分、难度或预处理设置。具体基线名称、基线模型数量、模型参数量、训练与推理计算预算、硬件、解码步数和采样设置均未知。指标为谜题准确率与生成困惑度；数值、报告单位、提升幅度、统计汇总口径、准确率分母及不确定性均未知。摘要未提供可量化的最高或平均增益。",
-        "limitations": "证据仅限用户提供的摘要，未核对全文。上述方法与效果均为作者报告，不构成独立复现。作者明确讨论了现有离散与连续扩散方法的结构性问题，但摘要未明确陈述HC-DLM自身的限制。当前资料未提供详细实验表、消融实验、重复试验、统计显著性、效率或资源开销结果，无法据此判断改进幅度、稳定性及更广泛的泛化能力；这些属于资料缺失，不能据此断言研究本身没有相关验证。摘要提供项目页链接，但不能由链接推断代码、权重或复现材料可用，开放实现与独立复现情况未知。",
-        "evidenceBasis": "abstract",
-        "sourceRevision": 1
-      },
-      "researchRoadmap": null,
-      "selected": true
     },
     {
       "id": "refb91oek2ihi8x6zjab2bt4a",
@@ -11540,6 +11540,7 @@
       "itemIds": [
         "pftnk0jirjv6vnewdbpcuzeqy",
         "giq82md77wfmuezocp3mv7kcq",
+        "w69nx656ffa43fx3aj726gxjj",
         "dhok5vi7r23ihrd2moii8no4u",
         "o188ab5uyo9znasp4k6yshzjv",
         "udef6ens7a05oc79x2izg3m9m",
@@ -11568,7 +11569,6 @@
         "v0yo57rzklwyjpaa2ygzqixna",
         "bqfvepe29yyabyr4f9np8qbsl",
         "zhiscshd7lkykp2cu6teyu9xz",
-        "w69nx656ffa43fx3aj726gxjj",
         "pavata8f4in31dck39dpdijgd",
         "vyro9twkqbzjir24m7hdp4c3r",
         "iuj06yxe41ly9ix308caos49u",
@@ -11587,13 +11587,17 @@
         "kl6hlup9fq14ktj9n36bkcbzr",
         "zskryg7ozbapap42lno4niu0r",
         "zoxlt1tdtedxjnuf0u3qrfrv0",
+        "pgau2nc5iai5889xcnwfot4w6",
         "xukjz8mfnifv1c57mwybn5o11",
         "w6vii04cvdz8mdf915ur5pnud",
+        "tvhnp70ajv592y2ulmk84chi4",
         "rmujtpniv4b0wgn8q2tustjac",
         "xygvbk1w7935rns002vpsn5bo",
         "s8moemck93yrl4cn1on69rv4s",
         "ikrv23aya4o9io6bh7il8k4dt",
+        "n7gty26hkso9o0egz436qszwh",
         "hzb4nouwnroix96ff64svk73j",
+        "k2sij2pi8vkcxhidxw8m1uxmy",
         "ykks5xp6pl4htn6cbs14neyq3",
         "j86msvf1gyqy2u1a6u770wddd",
         "u7o4abot2xp4y6yki22ezuqnl",
@@ -11607,10 +11611,6 @@
         "cqslz78kbayvlp19kw8fcx7hz",
         "td3vblm2252g44pvnk2kgb1m4",
         "xvclwylq6gpg9y8bnxzvxcdtm",
-        "tvhnp70ajv592y2ulmk84chi4",
-        "pgau2nc5iai5889xcnwfot4w6",
-        "n7gty26hkso9o0egz436qszwh",
-        "k2sij2pi8vkcxhidxw8m1uxmy",
         "refb91oek2ihi8x6zjab2bt4a",
         "iidhibnm4umc589tgs9n6gp22",
         "h8uop4vzqp73o7egeox5mfgfc",
@@ -11654,12 +11654,12 @@
         "hxwx5fb6efvkh91kax0lc8tob",
         "ug69io9vgywbr6pyff02vx2x2",
         "odeidsowdl1w26rm2uwbrwadm",
+        "i1kt74wkfu1sylbqhmi2t7dnv",
         "cgogkeh2te0qeshodfgr85gix",
+        "snmbmzrubqis2mvxth8qidlnb",
         "k92n912um78c2hvdqmmadyq15",
         "mv9x419gecxc33463mbm3c73x",
-        "case5tkohk008ia83c3f506hv",
-        "snmbmzrubqis2mvxth8qidlnb",
-        "i1kt74wkfu1sylbqhmi2t7dnv"
+        "case5tkohk008ia83c3f506hv"
       ]
     },
     {
@@ -11721,6 +11721,7 @@
       "latestAt": "2026-10-07T17:59:26.000Z",
       "itemIds": [
         "giq82md77wfmuezocp3mv7kcq",
+        "w69nx656ffa43fx3aj726gxjj",
         "dhok5vi7r23ihrd2moii8no4u",
         "udef6ens7a05oc79x2izg3m9m",
         "c4ksmei195e1rkqzz2duehs4n",
@@ -11733,14 +11734,16 @@
         "uzns5u4wowlhbbclesef6y0g2",
         "iqlg20ug2cqf1me4h2tjn172n",
         "zhiscshd7lkykp2cu6teyu9xz",
-        "w69nx656ffa43fx3aj726gxjj",
         "sx969jvd0olijm1ucl6929dd0",
         "us8f07yi3scbpjlnzey9esrtw",
         "kl6hlup9fq14ktj9n36bkcbzr",
         "yyzw662czlry6d5k72yw2opcb",
+        "i1kt74wkfu1sylbqhmi2t7dnv",
         "zoxlt1tdtedxjnuf0u3qrfrv0",
+        "pgau2nc5iai5889xcnwfot4w6",
         "xukjz8mfnifv1c57mwybn5o11",
         "w6vii04cvdz8mdf915ur5pnud",
+        "tvhnp70ajv592y2ulmk84chi4",
         "xygvbk1w7935rns002vpsn5bo",
         "s8moemck93yrl4cn1on69rv4s",
         "hzb4nouwnroix96ff64svk73j",
@@ -11750,9 +11753,6 @@
         "y4yg0bbo8uagmog7ty1e44pas",
         "etwg494uw7bhy1o4fhb7s7qga",
         "td3vblm2252g44pvnk2kgb1m4",
-        "tvhnp70ajv592y2ulmk84chi4",
-        "pgau2nc5iai5889xcnwfot4w6",
-        "i1kt74wkfu1sylbqhmi2t7dnv",
         "udl3sj1o6m88pb3in3v2gwyr7",
         "tho0g8k9i1yhdx3f993niqzpf",
         "v24qz1z1g4tl0ofszskkej3yi",
@@ -11770,24 +11770,24 @@
       "latestAt": "2026-10-07T17:59:26.000Z",
       "itemIds": [
         "giq82md77wfmuezocp3mv7kcq",
+        "w69nx656ffa43fx3aj726gxjj",
         "m2e5lb13sdmvkxr4wkylthb5z",
         "ni0vtaxpuhvopdv870sn38xgq",
         "uzns5u4wowlhbbclesef6y0g2",
         "v0yo57rzklwyjpaa2ygzqixna",
         "bqfvepe29yyabyr4f9np8qbsl",
-        "w69nx656ffa43fx3aj726gxjj",
         "xk86lin2ht51yorxz8nl0v98x",
         "zrn64av281qz1e8kbcyeb7vc0",
         "sqjmpfu3upeojcds6k1gt4pac",
         "qmqxh8ogq0diqsqer4l49x8cx",
         "zskryg7ozbapap42lno4niu0r",
+        "pgau2nc5iai5889xcnwfot4w6",
         "k92n912um78c2hvdqmmadyq15",
+        "tvhnp70ajv592y2ulmk84chi4",
+        "n7gty26hkso9o0egz436qszwh",
         "hzb4nouwnroix96ff64svk73j",
         "u5ccy5p5ju4sze2uyc1dmgigh",
         "case5tkohk008ia83c3f506hv",
-        "tvhnp70ajv592y2ulmk84chi4",
-        "pgau2nc5iai5889xcnwfot4w6",
-        "n7gty26hkso9o0egz436qszwh",
         "e8d0u7zawltgcjmb162ocdxqb",
         "ve6hfwu4k3n93hln34b55vv8l",
         "n7th0hl39atbikbnc1fy1wqc1",
@@ -11809,23 +11809,23 @@
         "q1im9yv8lhk1ocmmr1guenok8",
         "fks02s6y5v7ompcbouflqhn31",
         "hxwx5fb6efvkh91kax0lc8tob",
-        "ug69io9vgywbr6pyff02vx2x2",
-        "zhiscshd7lkykp2cu6teyu9xz",
         "ktw346scru68s2ds73u0zt2ut",
+        "ug69io9vgywbr6pyff02vx2x2",
         "d4fbqcijmcfvz1y4h84gbv0bf",
+        "zhiscshd7lkykp2cu6teyu9xz",
         "odeidsowdl1w26rm2uwbrwadm",
         "dlam1ztv0r19z6bc6xgyu055k",
         "iq3jq9gwfymvo6ttqwey9y652",
         "yyzw662czlry6d5k72yw2opcb",
         "cgogkeh2te0qeshodfgr85gix",
+        "snmbmzrubqis2mvxth8qidlnb",
         "k92n912um78c2hvdqmmadyq15",
+        "k2sij2pi8vkcxhidxw8m1uxmy",
         "mv9x419gecxc33463mbm3c73x",
         "u5ccy5p5ju4sze2uyc1dmgigh",
         "rwhaeiknhh2455mazau4ec1hm",
         "cqslz78kbayvlp19kw8fcx7hz",
         "case5tkohk008ia83c3f506hv",
-        "snmbmzrubqis2mvxth8qidlnb",
-        "k2sij2pi8vkcxhidxw8m1uxmy",
         "bjqsv9rkif46dwqc477albvuw",
         "qyt9daxnok7atfzs2ym06625n",
         "n7th0hl39atbikbnc1fy1wqc1",
@@ -11933,6 +11933,7 @@
       "itemIds": [
         "pftnk0jirjv6vnewdbpcuzeqy",
         "giq82md77wfmuezocp3mv7kcq",
+        "w69nx656ffa43fx3aj726gxjj",
         "dhok5vi7r23ihrd2moii8no4u",
         "o188ab5uyo9znasp4k6yshzjv",
         "udef6ens7a05oc79x2izg3m9m",
@@ -11954,18 +11955,17 @@
         "h04oe3yb6pb6hzkvs3kcl2ly1",
         "e3vi67a8z57xwvf2tlep8v1eh",
         "uzns5u4wowlhbbclesef6y0g2",
+        "ktw346scru68s2ds73u0zt2ut",
         "mfo3ak5almwy2shez0q1dujr5",
         "iqlg20ug2cqf1me4h2tjn172n",
         "cl64efx2bxic78an36ocey9vj",
         "ug69io9vgywbr6pyff02vx2x2",
         "hrv1qefxstn5xutmye8jxsbpb",
+        "d4fbqcijmcfvz1y4h84gbv0bf",
         "wc1nqcnivnp3235w8dd23u0m1",
         "v0yo57rzklwyjpaa2ygzqixna",
         "bqfvepe29yyabyr4f9np8qbsl",
         "zhiscshd7lkykp2cu6teyu9xz",
-        "w69nx656ffa43fx3aj726gxjj",
-        "ktw346scru68s2ds73u0zt2ut",
-        "d4fbqcijmcfvz1y4h84gbv0bf",
         "pavata8f4in31dck39dpdijgd",
         "vyro9twkqbzjir24m7hdp4c3r",
         "iuj06yxe41ly9ix308caos49u",
@@ -11990,16 +11990,22 @@
         "kl6hlup9fq14ktj9n36bkcbzr",
         "yyzw662czlry6d5k72yw2opcb",
         "zskryg7ozbapap42lno4niu0r",
+        "i1kt74wkfu1sylbqhmi2t7dnv",
         "cgogkeh2te0qeshodfgr85gix",
         "zoxlt1tdtedxjnuf0u3qrfrv0",
+        "snmbmzrubqis2mvxth8qidlnb",
+        "pgau2nc5iai5889xcnwfot4w6",
         "k92n912um78c2hvdqmmadyq15",
         "xukjz8mfnifv1c57mwybn5o11",
         "w6vii04cvdz8mdf915ur5pnud",
+        "tvhnp70ajv592y2ulmk84chi4",
         "rmujtpniv4b0wgn8q2tustjac",
         "xygvbk1w7935rns002vpsn5bo",
         "s8moemck93yrl4cn1on69rv4s",
         "ikrv23aya4o9io6bh7il8k4dt",
+        "n7gty26hkso9o0egz436qszwh",
         "hzb4nouwnroix96ff64svk73j",
+        "k2sij2pi8vkcxhidxw8m1uxmy",
         "ykks5xp6pl4htn6cbs14neyq3",
         "j86msvf1gyqy2u1a6u770wddd",
         "u7o4abot2xp4y6yki22ezuqnl",
@@ -12015,12 +12021,6 @@
         "td3vblm2252g44pvnk2kgb1m4",
         "xvclwylq6gpg9y8bnxzvxcdtm",
         "case5tkohk008ia83c3f506hv",
-        "tvhnp70ajv592y2ulmk84chi4",
-        "snmbmzrubqis2mvxth8qidlnb",
-        "pgau2nc5iai5889xcnwfot4w6",
-        "n7gty26hkso9o0egz436qszwh",
-        "k2sij2pi8vkcxhidxw8m1uxmy",
-        "i1kt74wkfu1sylbqhmi2t7dnv",
         "refb91oek2ihi8x6zjab2bt4a",
         "iidhibnm4umc589tgs9n6gp22",
         "h8uop4vzqp73o7egeox5mfgfc",
@@ -12131,8 +12131,8 @@
       "title": "RoboJEPA 研究报告机器人潜在世界模型的缩放规律",
       "windowStart": "2026-10-07T01:00:00.000Z",
       "windowEnd": "2026-10-08T01:00:00.000Z",
-      "generatedAt": "2026-10-08T12:37:57.922Z",
-      "revision": 4,
+      "generatedAt": "2026-10-08T12:43:47.499Z",
+      "revision": 5,
       "lead": {
         "title": "RoboJEPA 研究报告机器人潜在世界模型的缩放规律",
         "leadParagraph": "RoboJEPA 研究报告，机器人潜在世界模型的想象误差随计算量遵循二阶幂律，可用于预测超出定律拟合规模的模型质量。该模型基于 Joint Embedding Predictive Architecture（JEPA），在覆盖 12 种机器人形态的大规模数据集上训练，参数量为 8B。\n\n同时关注：为什么 forget-only 机器遗忘需要记忆训练数据；Ledger：理解第一视角视频中三维物体记忆的持久性。"
@@ -12413,9 +12413,9 @@
         "notAdmitted": 0,
         "totalEvents": 4,
         "briefPending": 1,
-        "figureChecks": 31,
+        "figureChecks": 34,
         "sourcesCount": 1,
-        "figureMissing": 12,
+        "figureMissing": 13,
         "newlyAdmitted": 392,
         "outsideWindow": 1277,
         "parseRejected": 0,
@@ -12431,7 +12431,7 @@
         "verifiedFigures": 4,
         "deferredRequests": 0,
         "duplicateRecords": 327,
-        "figureCandidates": 31,
+        "figureCandidates": 34,
         "sourcesSucceeded": 6,
         "figureUnavailable": 1,
         "quarantinedFailed": 0,
@@ -12440,7 +12440,7 @@
         "previouslyAdmitted": 0,
         "quarantinedUnknown": 0,
         "healthyEmptySources": 2,
-        "figureReviewRequired": 14,
+        "figureReviewRequired": 16,
         "modelRequestsUnknown": 34,
         "selectedWithoutBrief": 1,
         "duplicateRecordsExact": 1,
@@ -12699,8 +12699,8 @@
       "title": "DMAD 提出以对抗蒸馏实现分布匹配，加速视觉生成",
       "windowStart": "2026-09-27T16:00:00.000Z",
       "windowEnd": "2026-10-04T16:00:00.000Z",
-      "generatedAt": "2026-10-07T17:54:43.802Z",
-      "revision": 2,
+      "generatedAt": "2026-10-08T12:42:15.393Z",
+      "revision": 3,
       "lead": {
         "title": "DMAD 提出以对抗蒸馏实现分布匹配，加速视觉生成",
         "leadParagraph": "DMAD 研究提出用分类直接学习对数密度比，以训练少步生成模型，省去 DMD 中辅助扩散模型的分数拟合。\n\n同时关注：TACO 研究提出用于 LLM 微调的三值绝对最大列级单稀疏优化器；LoopCD 研究提出以循环中间状态改善 Looped Transformers 解码。"
@@ -12880,7 +12880,7 @@
                   "v1"
                 ],
                 "doi": null,
-                "originalPublishedAt": "2026-10-01T00:00:00.000Z",
+                "originalPublishedAt": "2026-10-01T17:58:38.000Z",
                 "revisedAt": "2026-10-01T17:58:38.000Z",
                 "communitySelectedAt": "2026-10-02T00:00:00.000Z",
                 "observedAt": "2026-10-03T06:14:20.311Z",
@@ -13000,7 +13000,7 @@
                   "v1"
                 ],
                 "doi": null,
-                "originalPublishedAt": "2026-10-01T00:00:00.000Z",
+                "originalPublishedAt": "2026-10-01T17:59:39.000Z",
                 "revisedAt": "2026-10-01T17:59:39.000Z",
                 "communitySelectedAt": "2026-10-02T00:00:00.000Z",
                 "observedAt": "2026-10-03T06:14:20.311Z",
@@ -13186,7 +13186,7 @@
                   "v1"
                 ],
                 "doi": null,
-                "originalPublishedAt": "2026-10-01T00:00:00.000Z",
+                "originalPublishedAt": "2026-10-01T17:59:55.000Z",
                 "revisedAt": "2026-10-01T17:59:55.000Z",
                 "communitySelectedAt": "2026-10-02T00:00:00.000Z",
                 "observedAt": "2026-10-03T06:14:20.311Z",
@@ -13256,7 +13256,7 @@
                   "v1"
                 ],
                 "doi": null,
-                "originalPublishedAt": "2026-10-01T00:00:00.000Z",
+                "originalPublishedAt": "2026-10-01T17:59:47.000Z",
                 "revisedAt": "2026-10-01T17:59:47.000Z",
                 "communitySelectedAt": "2026-10-02T00:00:00.000Z",
                 "observedAt": "2026-10-03T06:14:20.311Z",
@@ -13780,17 +13780,85 @@
       "kind": "daily",
       "key": "2026-10-04",
       "issueNumber": 1,
-      "title": "科研进展",
-      "windowStart": "2026-10-03T00:00:00.000Z",
-      "windowEnd": "2026-10-04T00:00:00.000Z",
-      "generatedAt": "2026-10-07T17:17:42.926Z",
-      "revision": 3,
+      "title": "分子晶体结构预测研究提出基于晶胞条件流的三步生成方法",
+      "windowStart": "2026-10-03T01:00:00.000Z",
+      "windowEnd": "2026-10-04T01:00:00.000Z",
+      "generatedAt": "2026-10-08T12:43:29.384Z",
+      "revision": 4,
       "lead": {
-        "title": "科研进展",
-        "leadParagraph": "这一期暂无推荐文章。可浏览其他刊期，或到全部动态中查找研究。"
+        "title": "分子晶体结构预测研究提出基于晶胞条件流的三步生成方法",
+        "leadParagraph": "Qiang Zhu 与 Yihan Weng 提出基于晶胞条件流的分子晶体结构预测方法，报告在 84 个单组分体系中为 83 个找到与实验匹配的结构。根据当前材料，方法以分子图、Hall 设置和非对称单元分子数（$Z'$）为条件学习晶格不变量分布，再通过两次顺序执行的准随机采样，重建满足所预测不变量及密度要求的晶胞，并在给定对称性与晶胞约束下搜索分子堆积。"
       },
-      "overview": "这一期暂无推荐文章。可浏览其他刊期，或到全部动态中查找研究。",
-      "sections": [],
+      "overview": "Qiang Zhu 与 Yihan Weng 提出基于晶胞条件流的分子晶体结构预测方法，报告在 84 个单组分体系中为 83 个找到与实验匹配的结构。根据当前材料，方法以分子图、Hall 设置和非对称单元分子数（$Z'$）为条件学习晶格不变量分布，再通过两次顺序执行的准随机采样，重建满足所预测不变量及密度要求的晶胞，并在给定对称性与晶胞约束下搜索分子堆积。",
+      "sections": [
+        {
+          "label": "AI4S",
+          "summary": null,
+          "items": [
+            {
+              "itemId": "mrnex2dfrlorl86h31opfnglx",
+              "title": "分子晶体结构预测研究提出基于晶胞条件流的三步生成方法",
+              "summary": "Qiang Zhu 与 Yihan Weng 提出基于晶胞条件流的分子晶体结构预测方法，报告在 84 个单组分体系中为 83 个找到与实验匹配的结构。根据当前材料，方法以分子图、Hall 设置和非对称单元分子数（$Z'$）为条件学习晶格不变量分布，再通过两次顺序执行的准随机采样，重建满足所预测不变量及密度要求的晶胞，并在给定对称性与晶胞约束下搜索分子堆积。",
+              "sourceName": "arXiv · 计算物理与材料",
+              "sourceUrl": "https://arxiv.org/abs/2610.04193",
+              "publishedAt": null,
+              "available": true,
+              "research": {
+                "arxivId": "2610.04193",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-03T01:04:01.000Z",
+                "revisedAt": "2026-10-03T01:04:01.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-06T04:50:45.191Z",
+                "evidenceBasis": "abstract",
+                "announcedOn": "2026-10-06",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.04193",
+                    "sourceUrl": "https://arxiv.org/list/cond-mat.mtrl-sci/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.04193v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.04193v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者针对分子晶体结构中空间群对称性、晶胞及不对称单元内分子排列的联合预测难题，提出将这些变量解耦的三步生成流程，以处理离散对称性选择与高维连续空间搜索混合的问题。第一步训练流模型，以分子图、给定的 Hall 设置和不对称单元中的分子数 Z′ 为条件，学习不变晶格描述符的条件分布，描述符包括直接晶格与倒易晶格的逐次极小值及 Selling 标量。随后依次进行两次准随机采样：先重建符合预测晶格不变量及密度要求的晶胞参数，再在给定对称性与晶胞约束下搜索分子堆积。",
+                "applicableTasks": "当前摘要支持的任务是给定 Hall 设置和 Z′ 条件下的分子晶体结构预测（CSP），利用学习得到的晶胞提案支持后续结构搜索。作者报告的验证对象为 84 个 Z′ ≤ 1 的单组分体系。对称性与 Z′ 均可变化的完全盲预测仅被作者列为未来可能扩展的方向，当前资料未提供该范围的验证结果。",
+                "comparisonConditions": "作者报告在 84 个 Z′ ≤ 1 的单组分体系中，83 个体系获得与实验结构匹配的结果；其余 1 个体系失败，作者将其归因于力场无法保持实验结构。摘要提供的参照是实验结构，未提供与其他预测方法或基线的定量比较。报告的结果口径为获得实验匹配的体系数，单位为个体系，分母为 84；实验匹配的具体判定指标与阈值未知。生成条件包括分子图、给定 Hall 设置及 Z′，晶胞重建须满足预测晶格不变量与密度要求，分子堆积搜索受给定对称性和晶胞约束。训练及验证数据的来源、训练数据量、数据划分、模型数量与规模、力场名称、密度要求的具体数值、每个体系的采样或搜索预算、硬件、运行时间及计算成本均未知：当前资料未提供。",
+                "limitations": "证据仅为当前提供的摘要，未核对全文；83/84 个体系获得实验匹配属于作者报告，并非独立复现结果。作者明确指出剩余失败体系涉及力场保持实验结构的局限。当前验证范围限于 84 个 Z′ ≤ 1 的单组分体系，不能据此认定方法已在其他组分范围、Z′ 范围或完全盲预测条件下得到验证。摘要未提供实验匹配判据、逐体系结果、重复运行与不确定性分析、消融实验、对比基线或效率比较，因而无法据此判断普遍增益或各步骤的独立贡献。代码、模型、数据的开放情况及独立复现信息未知：当前资料未提供；这些信息的缺失不表示研究本身不存在相应材料或验证。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1
+              },
+              "researchRoadmap": null,
+              "paperFigure": {
+                "itemId": "mrnex2dfrlorl86h31opfnglx",
+                "sourceRevision": 1,
+                "imageOrigin": "pdf-extract",
+                "imageUrl": "/paper-figures/mrnex2dfrlorl86h31opfnglx-r1-90917cdfbfaa2e09.png",
+                "sourceUrl": "https://arxiv.org/pdf/2610.04193v1#page=4",
+                "figureLabel": "原文 Figure 3 · PDF 第 4 页",
+                "caption": "Figure 3: The CellNet pipeline. (a) A molecular graph and learned Hall and Z^{\\prime} embeddings form the condition \\mathbf{c}_{0}. A Selling flow samples the six Selling scalars S from \\mathbf{c}_{0}, a second flow samples [\\log\\lambda,\\log\\lambda^{\\ast}] given [\\mathbf{c}_{0}\\|S] (Fig. 4), and a deterministic head predicts \\log\\rho, to whose implied volume \\lambda is rescaled; K=96 independent draws are taken. (b) Each draw is inverted to a Hall-compatible cell by quasi-random search on the invariants. (c) PyXtal packs the molecule in each cell and OpenFF/CHARMM relaxes coordinates and lattice for further evaluation.",
+                "attribution": "Zhu, Qiang; Weng, Yihan · Molecular Crystal Structure Prediction from Conditional Flow on the Unit Cells (arXiv v1)",
+                "licenseName": "CC BY 4.0",
+                "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+                "verifiedAt": "2026-10-07T17:35:48.763Z",
+                "width": 2125,
+                "height": 1145,
+                "contentType": "image/png",
+                "sha256": "90917cdfbfaa2e097a692863b44ca6b2f9b01c7e35a78ee56276f7456e1c5dac"
+              }
+            }
+          ]
+        }
+      ],
       "metrics": {
         "failed": 0,
         "parsed": 110,
@@ -13802,21 +13870,20 @@
         "admitted": 0,
         "inWindow": 0,
         "returned": 110,
-        "selected": 0,
+        "selected": 6,
         "processed": 0,
-        "published": 0,
+        "published": 1,
         "briefReady": 0,
         "notAdmitted": 0,
-        "totalEvents": 0,
+        "totalEvents": 1,
         "briefPending": 0,
-        "figureChecks": 0,
-        "sourcesCount": 0,
-        "figureMissing": 0,
+        "figureChecks": 6,
+        "sourcesCount": 1,
+        "figureMissing": 3,
         "newlyAdmitted": 0,
         "outsideWindow": 110,
         "parseRejected": 0,
         "sourcesFailed": 0,
-        "displayOmitted": 0,
         "failedRequests": 0,
         "sourcesPlanned": 6,
         "unknownOutcome": 0,
@@ -13824,10 +13891,10 @@
         "sourcesDeferred": 0,
         "sourcesObserved": 6,
         "unlinkedSignals": 0,
-        "verifiedFigures": 0,
+        "verifiedFigures": 1,
         "deferredRequests": 0,
         "duplicateRecords": 0,
-        "figureCandidates": 0,
+        "figureCandidates": 6,
         "sourcesSucceeded": 6,
         "figureUnavailable": 0,
         "quarantinedFailed": 0,
@@ -13836,7 +13903,7 @@
         "previouslyAdmitted": 0,
         "quarantinedUnknown": 0,
         "healthyEmptySources": 6,
-        "figureReviewRequired": 0,
+        "figureReviewRequired": 2,
         "modelRequestsUnknown": 0,
         "selectedWithoutBrief": 0,
         "duplicateRecordsExact": 1,
@@ -13846,7 +13913,7 @@
         "duplicateRecordsLowerBound": 0,
         "figureCandidatesUninspected": 0
       },
-      "status": "complete",
+      "status": "partial",
       "gaps": []
     },
     {
@@ -14056,6 +14123,7 @@
   "poolItemIds": [
     "pftnk0jirjv6vnewdbpcuzeqy",
     "giq82md77wfmuezocp3mv7kcq",
+    "w69nx656ffa43fx3aj726gxjj",
     "dhok5vi7r23ihrd2moii8no4u",
     "o188ab5uyo9znasp4k6yshzjv",
     "jr9ng0v0z257whxkz5jxpsrmt",
@@ -14084,6 +14152,7 @@
     "e3vi67a8z57xwvf2tlep8v1eh",
     "ozuf6nkj9emibelv1nh50g4sv",
     "uzns5u4wowlhbbclesef6y0g2",
+    "ktw346scru68s2ds73u0zt2ut",
     "mfo3ak5almwy2shez0q1dujr5",
     "pbayqus97x5jquzwhfxd1apyy",
     "nw9d2co2qogvzuck78in8uvw9",
@@ -14091,6 +14160,7 @@
     "cl64efx2bxic78an36ocey9vj",
     "ug69io9vgywbr6pyff02vx2x2",
     "hrv1qefxstn5xutmye8jxsbpb",
+    "d4fbqcijmcfvz1y4h84gbv0bf",
     "lnqlteu9q4k4i7ju5cr4gp3n4",
     "wc1nqcnivnp3235w8dd23u0m1",
     "v0yo57rzklwyjpaa2ygzqixna",
@@ -14098,10 +14168,7 @@
     "u7f47iz4xby058l1moqr46i91",
     "bqfvepe29yyabyr4f9np8qbsl",
     "zhiscshd7lkykp2cu6teyu9xz",
-    "w69nx656ffa43fx3aj726gxjj",
-    "ktw346scru68s2ds73u0zt2ut",
     "i7muy0v37pqmz91o1fu6cvgvg",
-    "d4fbqcijmcfvz1y4h84gbv0bf",
     "pavata8f4in31dck39dpdijgd",
     "kxmhag5siqktiy53o1jrj7upv",
     "k9q5cpl4ggpgjqwllc028yjuu",
@@ -14143,18 +14210,24 @@
     "kl6hlup9fq14ktj9n36bkcbzr",
     "yyzw662czlry6d5k72yw2opcb",
     "zskryg7ozbapap42lno4niu0r",
+    "i1kt74wkfu1sylbqhmi2t7dnv",
     "cgogkeh2te0qeshodfgr85gix",
     "zoxlt1tdtedxjnuf0u3qrfrv0",
+    "snmbmzrubqis2mvxth8qidlnb",
+    "pgau2nc5iai5889xcnwfot4w6",
     "k92n912um78c2hvdqmmadyq15",
     "xukjz8mfnifv1c57mwybn5o11",
     "w6vii04cvdz8mdf915ur5pnud",
+    "tvhnp70ajv592y2ulmk84chi4",
     "rmujtpniv4b0wgn8q2tustjac",
     "cynkcg1dyd609ugzsm2xsi4ow",
     "xygvbk1w7935rns002vpsn5bo",
     "s8moemck93yrl4cn1on69rv4s",
     "ikrv23aya4o9io6bh7il8k4dt",
+    "n7gty26hkso9o0egz436qszwh",
     "hzb4nouwnroix96ff64svk73j",
     "bcki5bdx77ohkfv1qcxdxnif4",
+    "k2sij2pi8vkcxhidxw8m1uxmy",
     "ykks5xp6pl4htn6cbs14neyq3",
     "dve8e94ltuy1zs91gip4x2pdt",
     "xo12qtsx5uxravbfya9byv8o9",
@@ -14186,13 +14259,7 @@
     "kb4rwyey2g9y3ac1zd4am13o3",
     "npn5vthpadant6v7pinyh43y8",
     "r3ok6zz215wvlcinsxuais1xx",
-    "tvhnp70ajv592y2ulmk84chi4",
-    "snmbmzrubqis2mvxth8qidlnb",
     "q08o0zdlmlmjm8z82k9ln4qzt",
-    "pgau2nc5iai5889xcnwfot4w6",
-    "n7gty26hkso9o0egz436qszwh",
-    "k2sij2pi8vkcxhidxw8m1uxmy",
-    "i1kt74wkfu1sylbqhmi2t7dnv",
     "refb91oek2ihi8x6zjab2bt4a",
     "iidhibnm4umc589tgs9n6gp22",
     "h8uop4vzqp73o7egeox5mfgfc",
@@ -14261,19 +14328,19 @@
   ],
   "researchAttention": {
     "ruleVersion": "research-source-heat-v1-168h-halflife24h",
-    "computedAt": "2026-10-08T12:37:58.567Z",
+    "computedAt": "2026-10-08T12:46:26.433Z",
     "windowHours": 168,
     "halfLifeHours": 24,
     "minSources": 2,
     "publicItems": 204,
-    "qualifyingResearch": 6,
+    "qualifyingResearch": 11,
     "recent48hResearch": 4,
     "entries": [
       {
         "rank": 1,
         "itemId": "d4fbqcijmcfvz1y4h84gbv0bf",
         "title": "RoboQuest 评测通用具身智能体的搜索、检查与测试能力",
-        "heat": 13.9,
+        "heat": 13.8,
         "sourceCount": 2,
         "signals": [
           {
@@ -14296,7 +14363,7 @@
         "rank": 2,
         "itemId": "i7muy0v37pqmz91o1fu6cvgvg",
         "title": "RunningTab 通过环境侧任务记录支持直接工作区交互",
-        "heat": 13.9,
+        "heat": 13.8,
         "sourceCount": 2,
         "signals": [
           {
@@ -14319,7 +14386,7 @@
         "rank": 3,
         "itemId": "ktw346scru68s2ds73u0zt2ut",
         "title": "RobotWorld：评测多模态智能体在多种任务与机器人形态下的操控能力",
-        "heat": 13.9,
+        "heat": 13.8,
         "sourceCount": 2,
         "signals": [
           {
@@ -14342,7 +14409,7 @@
         "rank": 4,
         "itemId": "w69nx656ffa43fx3aj726gxjj",
         "title": "Long-WAM 提出实时控制约束下的世界动作模型上下文扩展框架",
-        "heat": 13.9,
+        "heat": 13.8,
         "sourceCount": 2,
         "signals": [
           {
@@ -14402,6 +14469,98 @@
             "source": "Hugging Face Daily Papers",
             "url": "https://huggingface.co/papers/2610.02298",
             "at": "2026-10-05T00:00:00.000Z",
+            "kind": "community",
+            "precision": "timestamp"
+          }
+        ]
+      },
+      {
+        "rank": 7,
+        "itemId": "i1kt74wkfu1sylbqhmi2t7dnv",
+        "title": "KaliBench 研究提出面向 Kali Linux 安全工具调用的细粒度基准与免运行可验证奖励",
+        "heat": 0.2,
+        "sourceCount": 2,
+        "signals": [
+          {
+            "source": "arXiv",
+            "url": "https://arxiv.org/abs/2610.02206v1",
+            "at": "2026-10-01T17:59:55.000Z",
+            "kind": "publication",
+            "precision": "timestamp"
+          },
+          {
+            "source": "Hugging Face Daily Papers",
+            "url": "https://huggingface.co/papers/2610.02206",
+            "at": "2026-10-02T00:00:00.000Z",
+            "kind": "community",
+            "precision": "timestamp"
+          }
+        ]
+      },
+      {
+        "rank": 8,
+        "itemId": "snmbmzrubqis2mvxth8qidlnb",
+        "title": "ScholarCatalyst 提出检索研究启发文献的基准",
+        "heat": 0.2,
+        "sourceCount": 2,
+        "signals": [
+          {
+            "source": "arXiv",
+            "url": "https://arxiv.org/abs/2610.02202v1",
+            "at": "2026-10-01T17:59:47.000Z",
+            "kind": "publication",
+            "precision": "timestamp"
+          },
+          {
+            "source": "Hugging Face Daily Papers",
+            "url": "https://huggingface.co/papers/2610.02202",
+            "at": "2026-10-02T00:00:00.000Z",
+            "kind": "community",
+            "precision": "timestamp"
+          }
+        ]
+      },
+      {
+        "rank": 9,
+        "itemId": "pgau2nc5iai5889xcnwfot4w6",
+        "title": "SILSA 提出滑动窗口切片潜变量，用于保持拓扑的高分辨率三维生成",
+        "heat": 0.2,
+        "sourceCount": 2,
+        "signals": [
+          {
+            "source": "arXiv",
+            "url": "https://arxiv.org/abs/2610.02201v1",
+            "at": "2026-10-01T17:59:46.000Z",
+            "kind": "publication",
+            "precision": "timestamp"
+          },
+          {
+            "source": "Hugging Face Daily Papers",
+            "url": "https://huggingface.co/papers/2610.02201",
+            "at": "2026-10-02T00:00:00.000Z",
+            "kind": "community",
+            "precision": "timestamp"
+          }
+        ]
+      },
+      {
+        "rank": 10,
+        "itemId": "tvhnp70ajv592y2ulmk84chi4",
+        "title": "HC-DLM 提出分层连续扩散语言模型，耦合 token 生成与潜变量更新",
+        "heat": 0.2,
+        "sourceCount": 2,
+        "signals": [
+          {
+            "source": "arXiv",
+            "url": "https://arxiv.org/abs/2610.02193v1",
+            "at": "2026-10-01T17:59:39.000Z",
+            "kind": "publication",
+            "precision": "timestamp"
+          },
+          {
+            "source": "Hugging Face Daily Papers",
+            "url": "https://huggingface.co/papers/2610.02193",
+            "at": "2026-10-02T00:00:00.000Z",
             "kind": "community",
             "precision": "timestamp"
           }

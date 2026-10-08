@@ -325,6 +325,23 @@
       "sha256": "884537ab065c01c91862fe8eff4bd69e9f11ec3f72bc6e48cea5a7e862d45c45"
     },
     {
+      "itemId": "mrnex2dfrlorl86h31opfnglx",
+      "sourceRevision": 1,
+      "imageOrigin": "pdf-extract",
+      "imageUrl": "/paper-figures/mrnex2dfrlorl86h31opfnglx-r1-90917cdfbfaa2e09.png",
+      "sourceUrl": "https://arxiv.org/pdf/2610.04193v1#page=4",
+      "figureLabel": "原文 Figure 3 · PDF 第 4 页",
+      "caption": "Figure 3: The CellNet pipeline. (a) A molecular graph and learned Hall and Z^{\\prime} embeddings form the condition \\mathbf{c}_{0}. A Selling flow samples the six Selling scalars S from \\mathbf{c}_{0}, a second flow samples [\\log\\lambda,\\log\\lambda^{\\ast}] given [\\mathbf{c}_{0}\\|S] (Fig. 4), and a deterministic head predicts \\log\\rho, to whose implied volume \\lambda is rescaled; K=96 independent draws are taken. (b) Each draw is inverted to a Hall-compatible cell by quasi-random search on the invariants. (c) PyXtal packs the molecule in each cell and OpenFF/CHARMM relaxes coordinates and lattice for further evaluation.",
+      "attribution": "Zhu, Qiang; Weng, Yihan · Molecular Crystal Structure Prediction from Conditional Flow on the Unit Cells (arXiv v1)",
+      "licenseName": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "verifiedAt": "2026-10-07T17:35:48.763Z",
+      "width": 2125,
+      "height": 1145,
+      "contentType": "image/png",
+      "sha256": "90917cdfbfaa2e097a692863b44ca6b2f9b01c7e35a78ee56276f7456e1c5dac"
+    },
+    {
       "itemId": "cizihtr8eoatg0vtfkhh69x9r",
       "sourceRevision": 1,
       "imageOrigin": "remote",
