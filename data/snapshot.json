@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-09T10:09:10.720Z",
+  "generatedAt": "2026-10-09T10:13:25.811Z",
   "publicBaseUrl": "https://pkucy2016.github.io/algorithmhot/",
   "mode": "static-snapshot",
   "scope": "公开科研动态、精选研究、研究主题，以及日报、周报和月报归档",
@@ -13811,17 +13811,176 @@
       "kind": "daily",
       "key": "2026-10-09",
       "issueNumber": 6,
-      "title": "科研进展",
+      "title": "ARC 研究提出面向机器人基础模型的动作因果推理方法",
       "windowStart": "2026-10-08T01:00:00.000Z",
       "windowEnd": "2026-10-09T01:00:00.000Z",
-      "generatedAt": "2026-10-09T10:09:09.884Z",
-      "revision": 2,
+      "generatedAt": "2026-10-09T10:13:09.538Z",
+      "revision": 3,
       "lead": {
-        "title": "科研进展",
-        "leadParagraph": "这一期暂无推荐文章。可浏览其他刊期，或到全部动态中查找研究。"
+        "title": "ARC 研究提出面向机器人基础模型的动作因果推理方法",
+        "leadParagraph": "ARC 研究提出用解释下一步动作原因及预期效果的推理轨迹改进机器人基础模型，作者报告零样本任务表现提升。根据当前材料，研究从 DROID 的已有示范自动构建 ARC-Trace-DROID，并按模型架构适配 $π_{0.5}$ 和 Cosmos3-Nano-Policy 的微调与推理，无需新增机器人示范或基础模型规模训练。\n\n同时关注：FreeMatching 研究提出超越时空先验的可泛化稠密对应匹配框架。"
       },
-      "overview": "这一期暂无推荐文章。可浏览其他刊期，或到全部动态中查找研究。",
-      "sections": [],
+      "overview": "ARC 研究提出用解释下一步动作原因及预期效果的推理轨迹改进机器人基础模型，作者报告零样本任务表现提升。根据当前材料，研究从 DROID 的已有示范自动构建 ARC-Trace-DROID，并按模型架构适配 $π_{0.5}$ 和 Cosmos3-Nano-Policy 的微调与推理，无需新增机器人示范或基础模型规模训练。\n\n同时关注：FreeMatching 研究提出超越时空先验的可泛化稠密对应匹配框架。",
+      "sections": [
+        {
+          "label": "算法",
+          "summary": null,
+          "items": [
+            {
+              "itemId": "gwc0vh5t79fbskv91hcve365m",
+              "title": "ARC 研究提出面向机器人基础模型的动作因果推理方法",
+              "summary": "ARC 研究提出用解释下一步动作原因及预期效果的推理轨迹改进机器人基础模型，作者报告零样本任务表现提升。根据当前材料，研究从 DROID 的已有示范自动构建 ARC-Trace-DROID，并按模型架构适配 $π_{0.5}$ 和 Cosmos3-Nano-Policy 的微调与推理，无需新增机器人示范或基础模型规模训练。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.12386",
+              "publishedAt": "2026-10-08T17:38:04.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.12386",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-08T17:38:04.000Z",
+                "revisedAt": "2026-10-08T17:38:04.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-09T08:18:53.805Z",
+                "evidenceBasis": "abstract",
+                "announcedOn": "2026-10-09",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.12386",
+                    "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "project",
+                    "url": "https://arc-robot-reasoning.github.io/",
+                    "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.12386v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.12386v1"
+                  },
+                  {
+                    "kind": "project",
+                    "url": "https://arc-robot-reasoning.github.io/",
+                    "sourceUrl": "https://arxiv.org/abs/2610.12386v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出 ARC，作为扩大模型、增加机器人示范和进行昂贵大规模训练的补充路径，目标是提高现有机器人基础模型（RFM）的零样本任务表现。ARC 包含三个部分：推理轨迹、可扩展的自动标注流水线，以及让预训练 RFM 使用这些轨迹进行控制的适配策略。作者认为，有效轨迹应以机器人的下一步动作为依据，解释该动作为什么合适及其预期效果，即动作的因果结构。作者从已有 DROID 示范自动生成轨迹，构建 ARC-Trace-DROID，无需采集新的机器人数据；再依据各模型的架构和能力设计微调与推理方式，使模型利用这些轨迹进行控制。这并非无需训练的方法，摘要明确涉及微调。",
+                "applicableTasks": "摘要支持的范围是预训练机器人基础模型的控制适配与零样本机器人任务评估，点名的模型包括 VLA 类的 π₀.₅ 和 WAM 类的 Cosmos3-Nano-Policy。作者报告了 RoboLab-120、MolmoSpaces、RoboLab-Reasoning-50 上的表现，以及真实机器人上的 π₀.₅ 任务成功表现。自动轨迹生成使用已有机器人示范，具体数据来源为 DROID。具体任务类别、操作对象、机器人型号、环境范围及对其他模型的适用性：未知，当前资料未提供。",
+                "comparisonConditions": "作者报告，ARC 适配后的模型在 RoboLab-120 和 MolmoSpaces 上达到新的最佳水平，但摘要没有给出这两项比较的具体分数、完整基线名单或排名条件；在 RoboLab-Reasoning-50 上，性能增益最高为 50 个百分点，这是最高增益，不能视为平均增益或所有条件下的增益，摘要未明确该处指标的具体定义；在真实机器人上，ARC 使 π₀.₅ 的任务成功指标提高 82.2 个百分点，未给出适配前后的绝对成功率、试验分母或汇总方式。上述单位均为百分点，不能改写成相对百分比增长。作者将总体零样本性能增益限定在不增加机器人示范、不进行基础模型规模训练的条件下，并称据其所知这种增益此前未有。摘要点名 π₀.₅ 与 Cosmos3-Nano-Policy，但未说明全部参评模型数量、各模型对应的全部结果或具体对照版本。数据构建涉及 DROID 与 ARC-Trace-DROID，数据量、训练与评估划分、实际任务数及每任务试验次数均未知；不能仅凭基准名称中的数字认定任务数。硬件、计算预算、微调超参数、推理开销、随机种子、误差范围与统计检验：未知，当前资料未提供。",
+                "limitations": "当前证据仅为摘要，未核对全文。方法有效性、最佳水平和数值增益均为作者报告，当前资料未提供独立复现证据，不能以最佳水平的声称推断全面质量或普遍优势。摘要没有明确陈述方法自身的局限性，也未提供消融实验、失败案例、因果解释正确性的验证或跨模型、跨任务增益分布，因此无法据此判断三个组成部分各自的贡献及效果稳定性。零样本评估的具体定义，以及预训练、适配数据与评估任务之间的关系未知；真实机器人结果的适用范围受未披露的任务、设备和试验设置限制。资料包含项目网站链接，但链接本身不能证明代码、数据或模型权重已开放，也不能证明结果可独立复现。上述信息缺失仅指当前摘要未提供，不表示研究本身不存在相关验证。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 2
+              },
+              "researchRoadmap": null,
+              "paperFigure": {
+                "itemId": "gwc0vh5t79fbskv91hcve365m",
+                "sourceRevision": 2,
+                "imageOrigin": "remote",
+                "imageUrl": "https://arxiv.org/html/2610.12386v1/arc-pi05-finetuning.png",
+                "sourceUrl": "https://arxiv.org/html/2610.12386v1#A2.F12",
+                "figureLabel": "原文 Figure 12",
+                "caption": "Figure 12: Arc fine-tuning architecture for \\pi_{0.5}",
+                "attribution": "Puthumanaillam, Gokul; Sun, Tao; Aljalbout, Elie et al. · ARC: A Reasoning Recipe for Robot Foundation Models (arXiv v1)",
+                "licenseName": "CC BY 4.0",
+                "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+                "verifiedAt": "2026-10-09T10:13:09.573Z",
+                "width": 800,
+                "height": 810,
+                "contentType": "image/png",
+                "sha256": "deebd29be88d57c1bcbd083c8cd2f7a5c671eca8ca28fdebd68a767a68bd7f6a"
+              }
+            },
+            {
+              "itemId": "pfb19fjdhuc9ceu3zffr6j8re",
+              "title": "FreeMatching 研究提出超越时空先验的可泛化稠密对应匹配框架",
+              "summary": "FreeMatching 研究提出可泛化的稠密对应匹配框架，处理图像编辑与参考引导生成（IEG）中保留视觉身份却打破物理连续性的变换。根据当前材料，该框架融合生成式与语义基础表征，结合经典数据集、跟踪视频和合成场景的异质监督，并通过教师引导的迭代优化，在无需稠密对应标注的情况下改善 IEG 匹配。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.12421",
+              "publishedAt": "2026-10-08T17:53:04.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.12421",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-08T17:53:04.000Z",
+                "revisedAt": "2026-10-08T17:53:04.000Z",
+                "communitySelectedAt": "2026-10-09T00:00:00.000Z",
+                "observedAt": "2026-10-09T08:18:49.686Z",
+                "evidenceBasis": "abstract",
+                "announcedOn": "2026-10-09",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.12421",
+                    "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "code",
+                    "url": "https://github.com/luping-liu/FreeMatching",
+                    "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.12421v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.12421v1"
+                  },
+                  {
+                    "kind": "code",
+                    "url": "https://github.com/luping-liu/FreeMatching",
+                    "sourceUrl": "https://arxiv.org/abs/2610.12421v1"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.12421",
+                    "sourceUrl": "https://huggingface.co/papers/2610.12421"
+                  },
+                  {
+                    "kind": "code",
+                    "url": "https://github.com/luping-liu/FreeMatching",
+                    "sourceUrl": "https://huggingface.co/papers/2610.12421"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出 FreeMatching，用于建立在保留视觉身份、却打破物理连续性的变换之间的稠密对应关系。其针对的问题是：平滑运动、刚性几何等传统时空先验在图像编辑与参考引导生成（IEG）中可能失效。该框架结合生成式与语义基础表征，并使用来自经典数据集、跟踪视频和合成场景的异构监督。作者还引入教师引导的迭代细化，在不使用稠密对应标注的情况下进一步改善 IEG 对应匹配；这不意味着整个框架不使用监督。",
+                "applicableTasks": "摘要支持的任务范围包括：图像编辑与参考引导生成中的图像对稠密对应匹配，尤其是视觉身份保持但物理连续性被打破的变换；经典对应匹配基准上的评估；以及将对应匹配用于量化评估身份保持程度。作者报告后一用途的评分与人类判断相关。具体编辑类型、图像对象类别、经典基准名称及适用边界未知：当前资料未提供。",
+                "comparisonConditions": "作者报告，单个 FreeMatching 模型在具有挑战性的 IEG 图像对上显著改善对应匹配质量，同时在经典基准上保持有竞争力的表现；摘要未列明比较方法、基线或各自结果。明确给出的模型数量口径为单个 FreeMatching 模型，参与比较的模型总数未知。监督来源包括经典数据集、跟踪视频和合成场景，但具体数据集名称、数据集数量、样本量、训练与测试划分、任务总数均未知。作者报告教师引导的迭代细化无需稠密对应标注即可进一步改善 IEG 匹配，但未给出其对照设置和增益数值。身份保持评分被报告为与人类判断相关，但相关系数、相关性计算方法、人类评估人数及样本量未知。硬件、计算预算、训练与推理设置、基础模型名称与规模、指标定义、单位、定量结果及平均或最佳结果口径均未知：当前资料未提供，不能将定性改善表述为具体或普遍增益。",
+                "limitations": "当前证据仅为摘要，未核对全文；上述性能、泛化能力与人类判断相关性均为作者报告，当前资料未提供独立复现证据。摘要未明确陈述方法的失败情形或局限，不能据此认定不存在局限。缺少实验细节、定量结果、消融结果和统计不确定性信息，无法仅凭当前资料判断改善幅度、稳定性或不同变换条件下的表现。作者称代码可用并提供 GitHub 链接，但当前资料未核验链接可访问性、实现完整性或复现条件；提供链接本身不构成代码已核验或结果已独立复现的证据。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 2
+              },
+              "researchRoadmap": null,
+              "paperFigure": {
+                "itemId": "pfb19fjdhuc9ceu3zffr6j8re",
+                "sourceRevision": 2,
+                "imageOrigin": "remote",
+                "imageUrl": "https://arxiv.org/html/2610.12421v1/model.png",
+                "sourceUrl": "https://arxiv.org/html/2610.12421v1#S3.F2",
+                "figureLabel": "原文 Figure 2",
+                "caption": "Figure 2: FreeMatching Architecture. Our transformer is initialized from FLUX.2-klein-base-4B. Each image is encoded into latent tokens and augmented with projected DINOv3 features. The two token sequences are concatenated for joint attention, and a task-specific decoder predicts the dense correspondence map and covisibility mask in a single forward pass.",
+                "attribution": "Liu, Luping; Kang, Bingyi; Wang, Yifan et al. · Beyond Spatio-Temporal Priors: A Generalizable Approach for Dense Correspondence Matching (arXiv v1)",
+                "licenseName": "CC BY 4.0",
+                "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+                "verifiedAt": "2026-10-09T10:13:09.575Z",
+                "width": 576,
+                "height": 197,
+                "contentType": "image/png",
+                "sha256": "294fcffff67a311a2d7b1c16c68ed6d674621071fb07cb8d21e06f3d974b0ce3"
+              }
+            }
+          ]
+        }
+      ],
       "metrics": {
         "failed": 0,
         "parsed": 2089,
@@ -13835,19 +13994,19 @@
         "returned": 2089,
         "selected": 17,
         "processed": 28,
-        "published": 0,
+        "published": 2,
         "briefReady": 28,
         "notAdmitted": 0,
-        "totalEvents": 0,
+        "totalEvents": 2,
         "briefPending": 0,
         "figureChecks": 17,
-        "sourcesCount": 0,
+        "sourcesCount": 1,
         "figureMissing": 5,
         "newlyAdmitted": 456,
         "outsideWindow": 1185,
         "parseRejected": 0,
         "sourcesFailed": 0,
-        "displayOmitted": 17,
+        "displayOmitted": 15,
         "failedRequests": 0,
         "sourcesPlanned": 6,
         "unknownOutcome": 2,
@@ -13855,7 +14014,7 @@
         "sourcesDeferred": 0,
         "sourcesObserved": 6,
         "unlinkedSignals": 80,
-        "verifiedFigures": 0,
+        "verifiedFigures": 2,
         "deferredRequests": 0,
         "duplicateRecords": 401,
         "figureCandidates": 17,
@@ -13867,7 +14026,7 @@
         "previouslyAdmitted": 0,
         "quarantinedUnknown": 2,
         "healthyEmptySources": 2,
-        "figureReviewRequired": 7,
+        "figureReviewRequired": 5,
         "modelRequestsUnknown": 2,
         "selectedWithoutBrief": 0,
         "duplicateRecordsExact": 1,
@@ -16119,7 +16278,7 @@
   ],
   "researchAttention": {
     "ruleVersion": "research-source-heat-v1-168h-halflife24h",
-    "computedAt": "2026-10-09T10:09:10.720Z",
+    "computedAt": "2026-10-09T10:13:25.811Z",
     "windowHours": 168,
     "halfLifeHours": 24,
     "minSources": 2,
@@ -16177,7 +16336,7 @@
         "rank": 3,
         "itemId": "d4fbqcijmcfvz1y4h84gbv0bf",
         "title": "RoboQuest 评测通用具身智能体的搜索、检查与测试能力",
-        "heat": 7.5,
+        "heat": 7.4,
         "sourceCount": 2,
         "signals": [
           {
@@ -16200,7 +16359,7 @@
         "rank": 4,
         "itemId": "i7muy0v37pqmz91o1fu6cvgvg",
         "title": "RunningTab 通过环境侧任务记录支持直接工作区交互",
-        "heat": 7.5,
+        "heat": 7.4,
         "sourceCount": 2,
         "signals": [
           {
@@ -16223,7 +16382,7 @@
         "rank": 5,
         "itemId": "ktw346scru68s2ds73u0zt2ut",
         "title": "RobotWorld：评测多模态智能体在多种任务与机器人形态下的操控能力",
-        "heat": 7.5,
+        "heat": 7.4,
         "sourceCount": 2,
         "signals": [
           {
@@ -16246,7 +16405,7 @@
         "rank": 6,
         "itemId": "p32idmaka1eja0j8uavcenluo",
         "title": "SQAM 提出基于标量伴随匹配的 Q-learning 方法",
-        "heat": 7.5,
+        "heat": 7.4,
         "sourceCount": 2,
         "signals": [
           {
@@ -16269,7 +16428,7 @@
         "rank": 7,
         "itemId": "w69nx656ffa43fx3aj726gxjj",
         "title": "Long-WAM 提出实时控制约束下的世界动作模型上下文扩展框架",
-        "heat": 7.5,
+        "heat": 7.4,
         "sourceCount": 2,
         "signals": [
           {
