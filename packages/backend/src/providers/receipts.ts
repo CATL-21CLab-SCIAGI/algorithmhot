@@ -9,6 +9,7 @@ import { sql, type Db } from "../db.ts";
 import { sha256, stableJson } from "../lib/ids.ts";
 import { shutdownSignal } from "../lib/shutdown.ts";
 import { reserveModelRunCall, type ModelRunConfig } from "./model-runs.ts";
+import { authorizedDateBackfill, DATE_BACKFILL_DATES, dateBackfillRunId } from "@aihot/contracts/date-backfill";
 
 export class BudgetExceededError extends Error {
   readonly service: string;
@@ -84,16 +85,41 @@ interface ReceiptRow {
   updated_at: Date;
 }
 
-async function checkBudget(tx: Db, service: string): Promise<void> {
+const DATE_BACKFILL_BUDGET_IDS = DATE_BACKFILL_DATES.map(dateBackfillRunId);
+
+async function checkBudget(tx: Db, req: ReceiptRequest): Promise<void> {
+  const service = req.service;
+  const extra = !!req.modelRun && DATE_BACKFILL_BUDGET_IDS.includes(req.modelRun.id);
+  if (extra) {
+    const modelRun = req.modelRun!;
+    const articleId = /^article:([^@:#]+)/.exec(req.subject ?? "")?.[1];
+    const [run] = await tx<{ kind: string; window_start: Date; window_end: Date; model_budget_id: string;
+      model_call_ceiling: number; admission_frozen: boolean; admission_policy: string; model_profile: { transport?: string; model?: string } | null }[]>`
+      SELECT kind,window_start,window_end,model_budget_id,model_call_ceiling,admission_frozen,admission_policy,model_profile
+      FROM research_runs WHERE id=${modelRun.id}`;
+    if (service !== "codex_cli" || modelRun.maxCalls !== 600 || modelRun.reportReserve !== 20 || modelRun.callCeiling !== 580
+        || !articleId || !run || !run.admission_frozen || run.admission_policy !== "all-in-window"
+        || run.model_profile?.transport !== "codex_cli" || !req.model || req.model !== run.model_profile.model
+        || !authorizedDateBackfill(modelRun.id, run.model_budget_id, run.kind,
+          { start: run.window_start, end: run.window_end }, run.model_call_ceiling)) {
+      throw new Error("Historical extra allowance requires its exact frozen run, Codex model, limits and article subject");
+    }
+    const [member] = await tx`SELECT article_id FROM research_members WHERE run_id=${modelRun.id}
+      AND article_id=${articleId} AND admitted AND in_window AND NOT signal_only`;
+    if (!member) throw new Error("Historical extra allowance cannot fund an article outside its frozen admission set");
+  }
   const [budget] = await tx<{ per_minute: number; per_hour: number; per_day: number }[]>`
     SELECT per_minute, per_hour, per_day FROM budgets WHERE service = ${service}`;
+  if (!budget && extra) throw new Error("Historical extra allowance requires a configured Codex service budget");
   if (!budget) return; // default rows come with the migrations; a service an operator removed is unlimited
-  // Every request sent counts, retries of the same logical request included.
+  // Extra historical calls keep the shared minute/hour controls. Only their three exact IDs
+  // are separate from the ordinary rolling daily allowance; NULL legacy attempts still count.
   const [counts] = await tx<{ minute: number; hour: number; day: number }[]>`
     SELECT
       count(*) FILTER (WHERE started_at > now() - interval '1 minute') AS minute,
       count(*) FILTER (WHERE started_at > now() - interval '1 hour') AS hour,
-      count(*) AS day
+      count(*) FILTER (WHERE ${service !== "codex_cli"} OR model_run_id IS NULL
+        OR NOT (model_run_id = ANY(${DATE_BACKFILL_BUDGET_IDS}))) AS day
     FROM receipt_attempts
     WHERE service = ${service} AND origin = 'live' AND started_at > now() - interval '1 day'`;
   const c = counts!;
@@ -102,7 +128,7 @@ async function checkBudget(tx: Db, service: string): Promise<void> {
   }
   if (c.minute >= budget.per_minute) throw new BudgetExceededError(service, "minute", 60);
   if (c.hour >= budget.per_hour) throw new BudgetExceededError(service, "hour", 600);
-  if (c.day >= budget.per_day) throw new BudgetExceededError(service, "day", 3600);
+  if (!extra && c.day >= budget.per_day) throw new BudgetExceededError(service, "day", 3600);
 }
 
 /**
@@ -129,13 +155,13 @@ export async function paidRequest(req: ReceiptRequest, call: () => Promise<CallO
       }
       if (existing.status === "unknown") return { kind: "unknown" as const, row: existing };
       // failed: the provider did not take the request, or its answer was unusable; a new attempt is allowed.
-      await checkBudget(tx, req.service);
+      await checkBudget(tx, req);
       const [r] = await tx<{ attempts: number }[]>`
         UPDATE receipts SET status = 'pending', attempts = attempts + 1, error = NULL, updated_at = now() WHERE id = ${existing.id} RETURNING attempts`;
       const attemptId = await startAttempt(tx, existing.id, r!.attempts, req);
       return { kind: "call" as const, id: existing.id, attemptId };
     }
-    await checkBudget(tx, req.service);
+    await checkBudget(tx, req);
     const [row] = await tx<{ id: number }[]>`
       INSERT INTO receipts (logical_key, service, model, purpose, subject, status, request, attempts)
       VALUES (${logicalKey}, ${req.service}, ${req.model ?? null}, ${req.purpose}, ${req.subject ?? null}, 'pending',
@@ -239,6 +265,17 @@ export async function releaseUnknownReceipt(db: Db, id: number, error: string): 
 
 export async function completeReceipt(db: Db, receiptId: number): Promise<void> {
   await db`UPDATE receipts SET status = 'completed', completed_at = coalesce(completed_at, now()), updated_at = now() WHERE id = ${receiptId}`;
+}
+
+/** A received provider error can leave the outcome uncertain. Hold it without altering its saved evidence or creating an attempt. */
+export async function markReceivedResponseUnknown(receiptId: number, reason: string): Promise<void> {
+  await sql.begin(async (tx) => {
+    const [row] = await tx<{ attempts: number }[]>`
+      UPDATE receipts SET status = 'unknown', error = ${reason.slice(0, 2000)}, updated_at = now()
+      WHERE id = ${receiptId} RETURNING attempts`;
+    if (row) await tx`UPDATE receipt_attempts SET status = 'unknown', error = ${reason.slice(0, 2000)}
+      WHERE receipt_id = ${receiptId} AND attempt = ${row.attempts}`;
+  });
 }
 
 /** Marks a received response that could not be used (e.g. unparsable) so a fresh attempt can be made. */

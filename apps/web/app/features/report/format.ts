@@ -3,7 +3,7 @@ import { SITE, subjectAfter } from "@aihot/industry/site";
 import type { ReportNavigationEntry, ReportKind } from "@aihot/contracts/site";
 import { beijingWeekday } from "@aihot/contracts/time";
 
-export const KINDS: ReportKind[] = ["pilot", "daily", "weekly", "monthly"];
+export const KINDS: ReportKind[] = ["daily", "weekly", "monthly"];
 export const KIND_PATH: Record<ReportKind, string> = { daily: "/daily", weekly: "/weekly", monthly: "/monthly", pilot: "/pilot" };
 export const KIND_LABEL: Record<ReportKind, string> = { daily: "日报", weekly: "周报", monthly: "月报", pilot: "试刊" };
 
@@ -132,7 +132,7 @@ export function dateMark(kind: ReportKind, key: string): { figure: string; top: 
 }
 
 /** When each kind comes out (F10), for the masthead. */
-export const EDITION: Record<ReportKind, string> = { daily: "每 3 小时更新", weekly: "每周一出刊", monthly: "每月 1 日出刊", pilot: "试运行 · 按需出刊" };
+export const EDITION: Record<ReportKind, string> = { daily: "每天 09:00 · 15:00 · 21:00 更新", weekly: "每周一 09:00 出刊", monthly: "每月 1 日 09:00 出刊", pilot: "试运行 · 按需出刊" };
 
 /** The masthead's figures, in the order a reader wants them; zero model releases is left out. */
 const METRICS: Array<[key: string, unit: string]> = [
@@ -141,11 +141,10 @@ const METRICS: Array<[key: string, unit: string]> = [
   ["sourcesCount", "个来源"],
   ["firstPartyEvents", "件一手发布"],
   ["modelsReleased", "个新模型"],
-  ["selectedCount", "条精选"],
-  ["reportsCovered", "期日报"],
 ];
 export function metricItems(metrics: Record<string, number>): Array<{ value: number; unit: string }> {
-  return METRICS.filter(([k]) => typeof metrics[k] === "number" && (k !== "modelsReleased" || metrics[k]! > 0)).map(([k, unit]) => ({ value: metrics[k]!, unit }));
+  return METRICS.filter(([k]) => typeof metrics[k] === "number" && (k !== "totalStories" || typeof metrics.totalEvents !== "number")
+    && (k !== "modelsReleased" || metrics[k]! > 0)).map(([k, unit]) => ({ value: metrics[k]!, unit }));
 }
 
 /** "前一日 · 9月25日", "上一期 · 第 37 周", "下一期 · 7 月". */

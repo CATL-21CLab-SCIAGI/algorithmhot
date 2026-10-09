@@ -189,6 +189,34 @@ test("budget exhaustion stops the batch without resetting allowances or creating
   assert.equal((await sql`SELECT count(*)::int AS n FROM receipt_attempts`)[0].n, 0);
 });
 
+test("an article crossing the morning ceiling stays pending and reuses completed stages in the evening", async () => {
+  const rows = [await article("staged-review")];
+  await sql`UPDATE model_runs SET calls_used=289 WHERE id=${runId}`;
+  const saved = process.env.MODEL_RUN_CALL_CEILING;
+  const hits = provider.hits();
+  const step = (stage: string) => chatJson({ model: "default", purpose: stage, subject: "article:staged-review@1",
+    user: `${runId}:${stage}`, system: "fixture", promptVersion: "review-fixture-v1", schema: z.object({ ok: z.boolean() }) });
+  const execute = {
+    process: async () => { await step("review_first"); await step("review_second"); return { state: "pass" }; },
+    brief: async () => {}, extract: async () => {}, hasBudget: async () => true,
+  };
+  try {
+    process.env.MODEL_RUN_CALL_CEILING = "290";
+    await assert.rejects(processIsolatedResearchArticles(runId, rows, execute), BudgetExceededError);
+    assert.equal((await sql`SELECT state FROM research_members WHERE article_id='staged-review'`)[0].state, "pending");
+    assert.equal(await articleRequestHold("staged-review"), null);
+    await assertResearchRequestsIdle();
+    assert.equal((await getModelRun(runId))!.callsUsed, 290);
+    assert.equal((await sql`SELECT count(*)::int AS n FROM receipt_attempts`)[0].n, 1);
+    process.env.MODEL_RUN_CALL_CEILING = "580";
+    await processIsolatedResearchArticles(runId, rows, execute);
+    assert.equal((await sql`SELECT state FROM research_members WHERE article_id='staged-review'`)[0].state, "pass");
+    assert.equal((await getModelRun(runId))!.callsUsed, 291);
+    assert.equal((await sql`SELECT count(*)::int AS n FROM receipt_attempts`)[0].n, 2);
+    assert.equal(provider.hits() - hits, 2, "the first stage is reused; only the previously unsubmitted second stage is sent");
+  } finally { if (saved === undefined) delete process.env.MODEL_RUN_CALL_CEILING; else process.env.MODEL_RUN_CALL_CEILING = saved; }
+});
+
 test("identical inputs from different article identities cannot retry a failed logical request", async () => {
   await article("same-input-a"); await article("same-input-b");
   const ask = (id: string) => chatJson({ model: "default", purpose: "research_brief", subject: `article:${id}@1`,

@@ -8,6 +8,7 @@ import { beijingDate } from "../../lib/format";
 import { markRead, useReadSet } from "../../lib/local-state";
 import { DayHeader, TimelineSlot } from "./Timeline";
 import { FeedItem } from "./FeedItem";
+import { readerDateKnown, readerDay, readerTimelineAt } from "./research-date";
 
 export function DayList({ items, todayCount = null, showTags = true, animate = false }: { items: FeedItemSummary[]; todayCount?: number | null; showTags?: boolean; animate?: boolean }) {
   const readSet = useReadSet();
@@ -15,7 +16,7 @@ export function DayList({ items, todayCount = null, showTags = true, animate = f
   const days = useMemo(() => {
     const out: Array<{ day: string; items: FeedItemSummary[] }> = [];
     for (const it of items) {
-      const d = beijingDate(it.timelineAt);
+      const d = readerDay(it);
       const last = out[out.length - 1];
       if (last && last.day === d) last.items.push(it);
       else out.push({ day: d, items: [it] });
@@ -30,7 +31,7 @@ export function DayList({ items, todayCount = null, showTags = true, animate = f
           <DayHeader day={day} today={today} count={day === today ? todayCount : null} />
           <ol className="lg:pt-1">
             {list.map((it) => (
-              <TimelineSlot key={it.id} at={it.timelineAt} fresh={animate} delay={animate ? Math.min(order++, 12) * 25 : 0}>
+              <TimelineSlot key={it.id} at={readerTimelineAt(it)} dateLabel={readerDateKnown(it) ? undefined : "日期未知"} fresh={animate} delay={animate ? Math.min(order++, 12) * 25 : 0}>
                 <FeedItem item={it} read={readSet.has(it.id)} onOpen={markRead} showTags={showTags} />
               </TimelineSlot>
             ))}
@@ -73,4 +74,3 @@ export function Pagination({ page, pageCount, href }: { page: number; pageCount:
     </nav>
   );
 }
-

@@ -3,12 +3,14 @@
 import type { z } from "zod";
 import { config, credential } from "../config.ts";
 import { sha256 } from "../lib/ids.ts";
-import { completeReceipt, logicalKeyFor, paidRequest, ProviderRejectedError, rejectReceivedResponse, type ReceiptRequest } from "./receipts.ts";
+import { completeReceipt, logicalKeyFor, markReceivedResponseUnknown, paidRequest, ProviderRejectedError, ReceiptUnknownError, rejectReceivedResponse, type ReceiptRequest } from "./receipts.ts";
 import { sql } from "../db.ts";
 import { admittedForProcessing } from "../research/admission.ts";
 import { callCodex, CODEX_ADAPTER_VERSION } from "./codex.ts";
 import { modelRunFromEnv, withModelExecutionLock } from "./model-runs.ts";
-import { assertIsolatedModelRequestAllowed, assertIsolatedRequestKeyAllowed, rememberResearchAccountFailure } from "../research/request-isolation.ts";
+import { assertIsolatedModelRequestAllowed, assertIsolatedRequestKeyAllowed, rememberResearchAccountFailure, ResearchBatchStoppedError } from "../research/request-isolation.ts";
+import { callBedrock, validateBedrockCall, BEDROCK_ADAPTER_VERSION, type BedrockCall, type BedrockResponse } from "./bedrock.ts";
+import { assertResearchModelUsable, researchModelForRun } from "./research-model.ts";
 
 export interface ModelSpec {
   key: string;
@@ -166,20 +168,47 @@ export async function chatJson<S extends z.ZodType>(opts: ChatJsonOptions<S>): P
   const spec = MODELS[opts.model];
   if (!spec) throw new Error(`Unknown model ${opts.model}`);
   if (!config.modelCallsEnabled) throw new Error("Model calls are disabled (MODEL_CALLS_ENABLED=false)");
-  const transport = process.env.LLM_TRANSPORT || "openai_compatible";
-  if (!["codex_cli", "openai_compatible"].includes(transport)) throw new Error(`Unknown LLM_TRANSPORT ${transport}`);
+  const profile = process.env.RESEARCH_RUN_ID ? await researchModelForRun(process.env.RESEARCH_RUN_ID) : null;
+  const transport = profile?.transport ?? process.env.LLM_TRANSPORT ?? "openai_compatible";
+  if (!["codex_cli", "openai_compatible", "bedrock_converse"].includes(transport)) throw new Error(`Unknown LLM_TRANSPORT ${transport}`);
   const isCodex = transport === "codex_cli";
-  const modelRun = modelRunFromEnv(isCodex || process.env.RESEARCH_ADMISSION_ENABLED === "true");
-  const model = isCodex ? process.env.CODEX_MODEL || "gpt-6-astra" : spec.model;
-  const reasoningEffort = process.env.CODEX_REASONING_EFFORT || "medium";
-  const baseUrl = isCodex ? null : credential("models", spec.baseUrlEnv);
-  const apiKey = isCodex ? null : credential("models", spec.apiKeyEnv);
-  if (!isCodex && (!baseUrl || !apiKey || !model)) throw new Error(`Model ${opts.model} is not configured (${spec.baseUrlEnv}, ${spec.apiKeyEnv}${spec.key === "default" ? ", LLM_MODEL" : ""})`);
-  if (isCodex && typeof opts.user !== "string" && opts.user.some((part) => part.type !== "text")) throw new Error("codex_cli text processing does not accept image inputs");
+  const isBedrock = transport === "bedrock_converse";
+  const modelRun = modelRunFromEnv(isCodex || isBedrock || process.env.RESEARCH_ADMISSION_ENABLED === "true");
+  const model = profile?.model ?? (isCodex ? process.env.CODEX_MODEL || "gpt-6-astra" : isBedrock ? process.env.BEDROCK_MODEL_ID || "" : spec.model);
+  const reasoningEffort = profile?.reasoningEffort ?? process.env.CODEX_REASONING_EFFORT ?? "medium";
+  const baseUrl = isCodex || isBedrock ? null : credential("models", spec.baseUrlEnv);
+  const apiKey = isCodex ? null : credential("models", isBedrock ? "AWS_BEARER_TOKEN_BEDROCK" : spec.apiKeyEnv);
+  if (!isCodex && !isBedrock && (!baseUrl || !apiKey || !model)) throw new Error(`Model ${opts.model} is not configured (${spec.baseUrlEnv}, ${spec.apiKeyEnv}${spec.key === "default" ? ", LLM_MODEL" : ""})`);
+  if ((isCodex || isBedrock) && typeof opts.user !== "string" && opts.user.some((part) => part.type !== "text")) throw new Error(`${transport} research processing does not accept image inputs`);
 
   const temperature = opts.temperature ?? 0.2;
   const maxTokens = Math.max(opts.maxTokens ?? 1500, 512) + (spec.key.endsWith("-think") ? 4000 : 0);
   const userText = typeof opts.user === "string" ? opts.user : JSON.stringify(opts.user);
+  const bedrockCall: BedrockCall | null = isBedrock ? {
+    region: profile?.region ?? process.env.AWS_REGION ?? "", model, apiToken: apiKey ?? "", system: opts.system,
+    user: typeof opts.user === "string" ? opts.user : opts.user.map(part => part.type === "text" ? part.text : "").join("\n"),
+    json: opts.json !== false, maxTokens, timeoutMs: opts.timeoutMs ?? Number(process.env.BEDROCK_TIMEOUT_MS || 120_000), reasoningEffort: null,
+  } : null;
+  const assertModelAvailable = async () => {
+    try {
+      if (profile) await assertResearchModelUsable(profile);
+      else if (bedrockCall) await assertResearchModelUsable({ transport: "bedrock_converse", model, region: bedrockCall.region });
+    } catch (error) {
+      if ((error as { code?: string })?.code === "research_model_unavailable") {
+        // A provider-wide preflight stop is not evidence that any article failed. Keep the
+        // diagnostic as the cause; its wording must not turn this into an article/account hold.
+        throw Object.assign(new ResearchBatchStoppedError("Research model unavailable; batch stopped before submission", { cause: error }), { code: "research_model_unavailable" });
+      }
+      throw error;
+    }
+  };
+  await assertModelAvailable();
+  if (bedrockCall) {
+    validateBedrockCall(bedrockCall);
+    // Missing service rows mean unlimited in the legacy receipt layer; this paid route fails closed.
+    const [budget] = await sql`SELECT service FROM budgets WHERE service='bedrock_converse'`;
+    if (!budget) throw new Error("Bedrock service budget is not configured; no request sent");
+  }
   const body: Record<string, unknown> = {
     model,
     messages: [
@@ -195,17 +224,21 @@ export async function chatJson<S extends z.ZodType>(opts: ChatJsonOptions<S>): P
   };
 
   const requestSpec: ReceiptRequest = {
-      service: isCodex ? "codex_cli" : spec.service,
+      service: isCodex ? "codex_cli" : isBedrock ? "bedrock_converse" : spec.service,
       model,
       purpose: opts.purpose,
       subject: opts.subject,
-      identity: { transport, model, promptVersion: opts.promptVersion, system: sha256(opts.system), user: sha256(userText), temperature, maxTokens, json: opts.json !== false, extra: isCodex ? { reasoningEffort, adapterVersion: CODEX_ADAPTER_VERSION } : spec.extra ?? null },
-      requestSummary: { transport, modelRunId: modelRun?.id ?? null, promptVersion: opts.promptVersion, systemHash: sha256(opts.system), userHash: sha256(userText), userChars: userText.length, temperature, maxTokens, ...(isCodex ? { reasoningEffort, adapterVersion: CODEX_ADAPTER_VERSION, effectiveTemperature: null, maxTokensEnforcement: "prompt_hint" } : {}) },
+      identity: { transport, model, promptVersion: opts.promptVersion, system: sha256(opts.system), user: sha256(userText), temperature: isBedrock ? null : temperature, maxTokens, json: opts.json !== false, extra: isCodex ? { reasoningEffort, adapterVersion: CODEX_ADAPTER_VERSION } : isBedrock ? { region: bedrockCall!.region, adapterVersion: BEDROCK_ADAPTER_VERSION, reasoningEffort: null } : spec.extra ?? null },
+      requestSummary: { transport, modelRunId: modelRun?.id ?? null, promptVersion: opts.promptVersion, systemHash: sha256(opts.system), userHash: sha256(userText), userChars: userText.length, temperature: isBedrock ? null : temperature, maxTokens,
+        ...(profile ? { researchModelProfileId: profile.profileId } : {}),
+        ...(isBedrock ? { region: bedrockCall!.region, adapterVersion: BEDROCK_ADAPTER_VERSION, effectiveTemperature: null, reasoningEffort: null, maxTokensEnforcement: "provider" } : {}),
+        ...(isCodex ? { reasoningEffort, adapterVersion: CODEX_ADAPTER_VERSION, effectiveTemperature: null, maxTokensEnforcement: "prompt_hint" } : {}) },
       attemptTag: opts.attemptTag,
       modelRun,
     };
   const request = () => paidRequest(requestSpec, async () => {
       if (isCodex) return callCodex({ model, reasoningEffort, system: opts.system, user: typeof opts.user === "string" ? opts.user : opts.user.map((part) => part.type === "text" ? part.text : "").join("\n"), json: opts.json !== false, maxTokens, timeoutMs: opts.timeoutMs ?? Number(process.env.CODEX_TIMEOUT_MS || 180_000) });
+      if (bedrockCall) return callBedrock(bedrockCall);
       const started = Date.now();
       let res: Response;
       try {
@@ -246,16 +279,33 @@ export async function chatJson<S extends z.ZodType>(opts: ChatJsonOptions<S>): P
       await assertIsolatedModelRequestAllowed(opts.subject);
       await assertIsolatedRequestKeyAllowed(logicalKeyFor(requestSpec));
     }
+    // The call may have waited for another process. Recheck under the execution lock so a
+    // rejection recorded while it was queued still stops before reserving a receipt or budget.
+    await assertModelAvailable();
     const receipt = await request().catch(async (error: unknown) => {
       if (isolated) await rememberResearchAccountFailure(process.env.RESEARCH_RUN_ID ?? "", opts.subject, error);
       throw error;
     });
 
-    const response = receipt.response as { choices?: Array<{ message?: { content?: string }; finish_reason?: string }>; usage?: Record<string, unknown>; _invalidEnvelope?: boolean };
+    const response = receipt.response as { choices?: Array<{ message?: { content?: string }; finish_reason?: string }>; usage?: Record<string, unknown>; _invalidEnvelope?: boolean } & Partial<BedrockResponse>;
+    if (isBedrock && response._providerError) {
+      const status = response._providerError.status;
+      const restricted = status === 400 && /Access to OpenAI models is not allowed from unsupported countries, regions, or territories/i.test(response._bedrock?.rawBody ?? "");
+      const message = restricted ? "Bedrock forbidden (HTTP 400): provider country/region access restriction; response retained in receipt"
+        : `Bedrock HTTP ${status}; provider response retained in receipt`;
+      if (status >= 500 || status === 408 || status === 424) {
+        await markReceivedResponseUnknown(receipt.receiptId, message);
+        throw new ReceiptUnknownError(receipt.receiptId, `${message}; outcome UNKNOWN, no automatic resend`);
+      }
+      await rejectReceivedResponse(receipt.receiptId, message);
+      const error = new ProviderRejectedError(message, status, false);
+      if (isolated) await rememberResearchAccountFailure(process.env.RESEARCH_RUN_ID ?? "", opts.subject, error);
+      throw error;
+    }
     const content = response.choices?.[0]?.message?.content ?? "";
     let parsed: z.infer<S>;
     try {
-      if (response._invalidEnvelope) throw new Error("Invalid Codex structured-output envelope");
+      if (response._invalidEnvelope) throw new Error(`Invalid ${transport} structured-output envelope`);
       parsed = opts.schema.parse(opts.parse ? opts.parse(content) : extractJson(content));
     } catch (error) {
       // Unusable output: record it and let a later attempt pay for a fresh answer.

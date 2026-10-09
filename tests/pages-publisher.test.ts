@@ -7,8 +7,31 @@ import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { auditBundle, destination, verifyPushUrls, safeGitEnvironment, validateApprovedHeads, verifyApprovedHistory, auditStageFiles, validatePaperFigures, assertPaperFigurePng, assertPagesBranch, PAGES_BRANCH } from '../scripts/pages-publisher.ts';
 import type { PublicPaperFigure } from '../scripts/pages-publisher.ts';
+import { publicDestination } from '../scripts/daily-delivery.ts';
+import { createExport, writeExport } from '../scripts/static-site.ts';
+import type { Snapshot } from '../scripts/static-site/model.ts';
 const repo='PKUCY2016/algorithmhot';
 const branch=PAGES_BRANCH;
+test('transferred organization Pages is the default publisher target and correction destination',async()=>{
+ const transferredRepo='CATL-21CLab-SCIAGI/algorithmhot';
+ const target=destination(transferredRepo);
+ assert.deepEqual(target,{remote:'https://github.com/CATL-21CLab-SCIAGI/algorithmhot.git',base:'https://catl-21clab-sciagi.github.io/algorithmhot/'});
+ assert.equal(publicDestination(target.base,transferredRepo),target.base);
+ assert.throws(()=>publicDestination(destination(repo).base,transferredRepo),/must match/);
+ const temporary=await mkdtemp(path.join(tmpdir(),'algorithmhot-owner-transfer-'));
+ try{
+  const snapshot:Snapshot={schemaVersion:1,publicBaseUrl:target.base,generatedAt:'2026-10-09T12:00:00.000Z',mode:'static-snapshot',scope:'Public test fixture',items:[],topics:[],reports:[]};
+  const {files,manifest}=createExport(snapshot);
+  const about=files.get('about/index.html')!;
+  assert.match(about,/https:\/\/github\.com\/CATL-21CLab-SCIAGI\/algorithmhot\/issues/);
+  assert.doesNotMatch(about,/github\.com\/PKUCY2016\/algorithmhot/);
+  const output=path.join(temporary,'public');
+  await writeExport(output,files,manifest);
+  const check=spawnSync(process.execPath,[path.resolve(import.meta.dirname,'../scripts/publish-pages.ts'),'--check','--source',output],{encoding:'utf8'});
+  assert.equal(check.status,0,check.stderr);
+  assert.equal(JSON.parse(check.stdout.trim()).repo,transferredRepo);
+ }finally{await rm(temporary,{recursive:true,force:true});}
+});
 async function fixture(extra: Record<string,string | Uint8Array>={}) {
  const dir=await mkdtemp(path.join(tmpdir(),'algorithmhot-public-'));
  const files={ 'index.html':'<!doctype html><h1>科研热点</h1>', '.nojekyll':'', ...extra };
@@ -121,7 +144,7 @@ test('publisher CLI restores only its journaled generated checkout without netwo
   await writeFile(path.join(state,'checkout.json'),JSON.stringify({path:checkout,repo,branch}));
   await writeFile(path.join(state,'staging.json'),JSON.stringify(journal));
   await rm(path.join(checkout,'index.html'));await writeFile(path.join(checkout,'next.html'),next);runGit(['add','--all']);
-  const recover=()=>spawnSync(process.execPath,[path.join(app,'scripts/publish-pages.ts'),'--recover-stage'],{cwd:app,encoding:'utf8'});
+  const recover=()=>spawnSync(process.execPath,[path.join(app,'scripts/publish-pages.ts'),'--repo',repo,'--recover-stage'],{cwd:app,encoding:'utf8'});
   // Fail before recovery writes on old markers, mismatched current branches or old approval state.
   for(const marker of [{path:checkout,repo},{path:checkout,repo,branch:'main'}]){
    await writeFile(path.join(state,'checkout.json'),JSON.stringify(marker));
@@ -155,18 +178,35 @@ function figurePackage(figure=reviewedFigure): Record<string,string | Uint8Array
  const src=figure.imageOrigin==='remote'?figure.imageUrl:`/algorithmhot/assets${figure.imageUrl}`;
  const origin=figure.imageOrigin==='remote'?` ${new URL(figure.imageUrl).origin}`:'';
  const html=`<!doctype html><head><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self' data:${origin}; base-uri 'none'; form-action 'none'"></head><body><figure data-paper-figure="true" data-item-id="paper1" data-source-revision="2"><img data-paper-figure="paper1" src="${src}" alt="Original figure" width="${figure.width}" height="${figure.height}" loading="lazy" decoding="async" referrerpolicy="no-referrer"><figcaption>${figure.figureLabel} ${figure.caption} ${figure.attribution} <a href="${figure.sourceUrl}">Source</a> <a href="${figure.licenseUrl}">${figure.licenseName}</a></figcaption></figure></body>`;
- return {'pilot/2026-10-03/index.html':html,'data/paper-figures.json':JSON.stringify({schemaVersion:1,figures:[figure]}),'data/snapshot.json':JSON.stringify({items:[{id:'paper1'}],reports:[{kind:'pilot',key:'2026-10-03',revision:1,sections:[{items:[{itemId:'paper1',available:true,researchBrief:{sourceRevision:2}}]}]}]})};
+ return {'daily/2026-10-03/index.html':html,'data/paper-figures.json':JSON.stringify({schemaVersion:1,figures:[figure]}),'data/snapshot.json':JSON.stringify({items:[{id:'paper1'}],reports:[{kind:'daily',key:'2026-10-03',revision:1,sections:[{items:[{itemId:'paper1',available:true,researchBrief:{sourceRevision:2}}]}]}]})};
 }
+test('publisher audits historical pilot images while requiring every new illustrated report cover',async()=>{
+ const legacy=figurePackage();
+ legacy['pilot/2026-10-03/index.html']=legacy['daily/2026-10-03/index.html']!;
+ delete legacy['daily/2026-10-03/index.html'];
+ legacy['data/snapshot.json']=String(legacy['data/snapshot.json']).replace('"kind":"daily"','"kind":"pilot"');
+ const pilot=await fixture(legacy);try{await auditBundle(pilot,repo);}finally{await rm(pilot,{recursive:true});}
+ for(const illustrated of [false,true]){
+  const files=figurePackage();
+  files['daily/2026-10-03/index.html']='<!doctype html><h1>Historical report</h1>';
+  const snapshot=JSON.parse(String(files['data/snapshot.json']));
+  snapshot.reports[0].illustrated=illustrated;
+  snapshot.reports[0].sections[0].items[0].paperFigure=reviewedFigure;
+  files['data/snapshot.json']=JSON.stringify(snapshot);
+  const dir=await fixture(files);
+  try{if(illustrated)await assert.rejects(auditBundle(dir,repo),/missing a required original figure/);else await auditBundle(dir,repo);}finally{await rm(dir,{recursive:true});}
+ }
+});
 test('reviewed external images are bound to published citation revisions and precise per-page CSP',async()=>{
  const dir=await fixture(figurePackage());try{await auditBundle(dir,repo);}finally{await rm(dir,{recursive:true});}
  for(const transform of [
   (files:Record<string,string|Uint8Array>)=>{delete files['data/paper-figures.json'];},
   (files:Record<string,string|Uint8Array>)=>{files['data/snapshot.json']=String(files['data/snapshot.json']).replace('"sourceRevision":2','"sourceRevision":1');},
-  (files:Record<string,string|Uint8Array>)=>{files['pilot/2026-10-03/index.html']=String(files['pilot/2026-10-03/index.html']).replace('figure1.png','wrong.png');},
-  (files:Record<string,string|Uint8Array>)=>{files['pilot/2026-10-03/index.html']=String(files['pilot/2026-10-03/index.html']).replace('referrerpolicy="no-referrer"','srcset="https://other.example/image.png 2x"');},
-  (files:Record<string,string|Uint8Array>)=>{files['pilot/2026-10-03/index.html']=String(files['pilot/2026-10-03/index.html']).replace('Author et al.','Different author');},
-  (files:Record<string,string|Uint8Array>)=>{files['pilot/2026-10-03/index.html']=String(files['pilot/2026-10-03/index.html']).replace("data: https://arxiv.org;","data: https:;");},
-  (files:Record<string,string|Uint8Array>)=>{files['index.html']=files['pilot/2026-10-03/index.html'];},
+  (files:Record<string,string|Uint8Array>)=>{files['daily/2026-10-03/index.html']=String(files['daily/2026-10-03/index.html']).replace('figure1.png','wrong.png');},
+  (files:Record<string,string|Uint8Array>)=>{files['daily/2026-10-03/index.html']=String(files['daily/2026-10-03/index.html']).replace('referrerpolicy="no-referrer"','srcset="https://other.example/image.png 2x"');},
+  (files:Record<string,string|Uint8Array>)=>{files['daily/2026-10-03/index.html']=String(files['daily/2026-10-03/index.html']).replace('Author et al.','Different author');},
+  (files:Record<string,string|Uint8Array>)=>{files['daily/2026-10-03/index.html']=String(files['daily/2026-10-03/index.html']).replace("data: https://arxiv.org;","data: https:;");},
+  (files:Record<string,string|Uint8Array>)=>{files['index.html']=files['daily/2026-10-03/index.html'];},
  ]){
   const files=figurePackage();transform(files);const bad=await fixture(files);try{await assert.rejects(auditBundle(bad,repo));}finally{await rm(bad,{recursive:true});}
  }
@@ -219,7 +259,7 @@ if(['fetch','push','ls-remote'].includes(args[command])){
 const result=spawnSync(process.env.TEST_PAGES_REAL_GIT,['-c','commit.gpgsign=false',...args],{stdio:'inherit',env:{...process.env,GIT_CONFIG_GLOBAL:'/dev/null'}});process.exit(result.status??98);
 `;
   await writeFile(path.join(bin,'git'),wrapper);await chmod(path.join(bin,'git'),0o755);
-  const publish=()=>spawnSync(process.execPath,[path.join(app,'scripts/publish-pages.ts'),'--source',source],{cwd:app,encoding:'utf8',env:{...process.env,PATH:`${bin}:${process.env.PATH}`,TEST_PAGES_REAL_GIT:realGit,TEST_PAGES_REMOTE:remote,TEST_PAGES_GIT_LOG:log}});
+  const publish=()=>spawnSync(process.execPath,[path.join(app,'scripts/publish-pages.ts'),'--repo',repo,'--source',source],{cwd:app,encoding:'utf8',env:{...process.env,PATH:`${bin}:${process.env.PATH}`,TEST_PAGES_REAL_GIT:realGit,TEST_PAGES_REMOTE:remote,TEST_PAGES_GIT_LOG:log}});
   const first=publish();assert.equal(first.status,0,first.stderr);assert.match(first.stdout,/"branch":"gh-pages"/);
   const state=path.join(app,'.data/pages-publisher'),checkout=path.join(app,'.data/pages-repo');
   for(const file of ['checkout.json','approved-heads.json','receipt.json'])assert.equal(JSON.parse(await readFile(path.join(state,file),'utf8')).branch,'gh-pages');

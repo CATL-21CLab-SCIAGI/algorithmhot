@@ -9,6 +9,7 @@ import { fileURLToPath } from "node:url";
 import type { ReportDetail, ReportKind, ReportNavigationEntry, SiteItemDetail } from "@aihot/contracts/site";
 import type { ResearchMetadata } from "@aihot/contracts/research";
 import { isoWeekLabel } from "@aihot/contracts/time";
+import { load } from "cheerio";
 import { issueNumber, periodGrid } from "../app/features/report/format.ts";
 
 const kinds: ReportKind[] = ["daily", "weekly", "monthly"];
@@ -30,14 +31,17 @@ const research: ResearchMetadata = {
   evidenceBasis: "abstract", signalOnly: false,
   links: [{ kind: "paper", url: "https://arxiv.org/abs/2609.12345", sourceUrl: "https://arxiv.org/abs/2609.12345" }, { kind: "code", url: "https://example.org/research-code", sourceUrl: "https://arxiv.org/abs/2609.12345" }, { kind: "weights", url: "javascript:alert(1)", sourceUrl: "https://example.org" }],
 };
-function pilot(key = "2026-10-03", empty = false): ReportDetail {
-  const citation = { itemId: "research-fixture", title: "研究提出新的比较方法", summary: "作者报告在给定设置下的结果。", sourceName: "arXiv", sourceUrl: "https://arxiv.org/abs/2609.12345", sourceId: "arxiv-test", sourceIconUrl: null, firstParty: false, role: null, storyPublicId: null, publishedAt: research.originalPublishedAt, available: true, research };
+function illustratedReport(key = "2026-10-03", empty = false): ReportDetail {
+  const citation = { itemId: "research-fixture", title: "研究提出新的比较方法", summary: "作者报告在给定设置下的结果。", sourceName: "arXiv", sourceUrl: "https://arxiv.org/abs/2609.12345", sourceId: "arxiv-test", sourceIconUrl: null, firstParty: false, role: null, storyPublicId: null, publishedAt: research.originalPublishedAt, available: true, research,
+    researchBrief: { methodChange: "研究比较新的预测方法。", applicableTasks: "模拟控制", comparisonConditions: "作者报告模拟对比。", limitations: "缺少真实系统实验。", evidenceBasis: "abstract" as const, sourceRevision: 1, promptVersion: "fixture", generatedAt: "2026-10-03T05:00:00Z" },
+    paperFigure: { itemId: "research-fixture", sourceRevision: 1, imageOrigin: "remote" as const, imageUrl: "https://example.org/method-figure.png", sourceUrl: "https://example.org/paper#figure1", figureLabel: "原文图 1", caption: "输入经过方法模块得到预测。", attribution: "Example authors", licenseName: "CC BY 4.0", licenseUrl: "https://creativecommons.org/licenses/by/4.0/", verifiedAt: "2026-10-03T05:00:00Z", width: 1200, height: 400, contentType: "image/png", sha256: "a".repeat(64) },
+  };
   return {
-    kind: "pilot", key, issueNumber: 1, title: "科研试刊", windowStart: "2026-09-26T05:17:00Z", windowEnd: "2026-10-03T05:17:00Z", generatedAt: "2026-10-03T05:30:00Z", revision: 1,
-    lead: empty ? null : { title: "研究提出新的比较方法", leadParagraph: "作者报告在给定设置下的结果。" }, overview: null,
+    kind: "daily", key, issueNumber: 1, title: "科研日报", windowStart: "2026-09-26T05:17:00Z", windowEnd: "2026-10-03T05:17:00Z", generatedAt: "2026-10-03T05:30:00Z", revision: 1,
+    lead: empty ? null : { title: "本期部分结果：已整理 1 项研究", leadParagraph: "本期部分结果，存在处理缺口。" }, overview: null,
     highlights: empty ? [] : [citation], sections: empty ? [] : [{ label: "算法", summary: null, items: [citation] }], stories: empty ? [] : [{ ...citation, label: "算法" }], flashes: [], cover: null,
     metrics: { selectedCount: empty ? 0 : 1 }, readingMinutes: 1, prev: null, next: null,
-    run: { id: "pilot-local-fixture", kind: "pilot", status: "partial", metrics: { sourcesObserved: 5, admitted: 2, notAdmitted: 20, processed: 1, failed: 0, unknownOutcome: 1, pending: 0, selected: empty ? 0 : 1, displayed: empty ? 0 : 1 }, gaps: ["仅观测到 5/6 个来源", "1 条模型请求结果未知"] },
+    run: { id: "pilot-local-fixture", kind: "pilot", status: "partial", metrics: { sourcesObserved: 5, sourcesSucceeded: 4, sourcesDeferred: 1, deferredRequests: 1, admitted: 2, notAdmitted: 20, processed: 1, failed: 0, unknownOutcome: 1, pending: 0, selected: empty ? 0 : 1, displayed: empty ? 0 : 1 }, gaps: ["仅观测到 5/6 个来源", "1 条模型请求结果未知", "Hugging Face Daily Papers 尚未开放 2026-10-03 的社区信号，已跳过并等待下一正常刷新补采；这不表示当天没有新研究"] },
   };
 }
 const item: SiteItemDetail = {
@@ -54,13 +58,7 @@ const api = createServer((req, res) => {
   res.setHeader("Content-Type", "application/json");
   if (path === "/api/site/meta") return res.end(JSON.stringify({ changelogVersion: "2026-09-28T12:00" }));
   if (path === "/api/site/items/research-fixture") return res.end(JSON.stringify(item));
-  if (path.startsWith("/api/site/reports/pilot/")) {
-    const key = path.slice("/api/site/reports/pilot/".length);
-    const nav = [{ key: "2026-10-03", issueNumber: 1, title: "科研试刊" }];
-    if (key === "latest-page") return res.end(JSON.stringify({ index: nav, report: pilot() }));
-    if (key.startsWith("navigation/")) return res.end(JSON.stringify({ items: nav }));
-    if (key === "2026-10-03" || key === "2026-10-02") return res.end(JSON.stringify(pilot(key, key === "2026-10-02")));
-  }
+  if (path === "/api/site/reports/daily/2026-10-03" || path === "/api/site/reports/daily/2026-10-02") return res.end(JSON.stringify(illustratedReport(path.slice(-10), path.endsWith("2026-10-02"))));
   const match = /^\/api\/site\/reports\/(daily|weekly|monthly)\/(.+)$/.exec(path);
   if (match) {
     const kind = match[1] as ReportKind;
@@ -153,36 +151,42 @@ for (const kind of kinds) {
 }
 
 
-test("production SSR pilot shows its real seven-day window, bounded processing and research provenance", async () => {
+test("retired pilot URLs redirect to the daily publication without loading the old issue", async () => {
   for (const path of ["/pilot", "/pilot/2026-10-03"]) {
-    const response = await fetch(`${origin}${path}`);
-    assert.equal(response.status, 200, logs);
-    const html = await response.text();
-    const visible = html.replace(/<script[\s\S]*?<\/script>/g, "").replace(/<[^>]+>/g, "");
-    assert.match(masthead(html), /科研试刊/);
-    assert.doesNotMatch(masthead(html), /08:00|每天|本月/);
-    assert.match(visible, /2026-09-26 13:17/);
-    assert.match(visible, /2026-10-03 13:17/);
-    assert.match(visible, /部分完成/);
-    assert.match(visible, /未准入资料20/);
-    assert.match(visible, /处理失败0/);
-    assert.match(visible, /请求结果未知1/);
-    assert.match(visible, /仅观测到 5\/6 个来源/);
-    assert.match(visible, /本期看点/);
-    assert.match(visible, /基于摘要/);
-    for (const date of ["2026-09-20 10:00", "2026-09-28 11:00", "2026-10-01 12:00", "2026-10-03 13:00"]) assert(visible.includes(date));
-    assert.match(html, /href="https:\/\/example.org\/research-code"/);
-    assert.doesNotMatch(html, /href="javascript:/);
-    assert.doesNotMatch(visible, /今日看点|独立复现通过/);
+    const response = await fetch(`${origin}${path}`, { redirect: "manual" });
+    assert.equal(response.status, 301, logs);
+    assert.equal(response.headers.get("location"), "/daily");
   }
 });
 
-test("production SSR empty pilot preserves missing evidence instead of claiming no new research", async () => {
-  const response = await fetch(`${origin}/pilot/2026-10-02`);
+test("reader report leads with research and original artwork while operational diagnostics stay hidden", async () => {
+  const response = await fetch(`${origin}/daily/2026-10-03`);
   assert.equal(response.status, 200, logs);
-  const html = await response.text();
-  assert.match(html, /本期暂未刊载条目，来源或处理仍有缺口/);
-  assert.doesNotMatch(html, /今日无新研究|本期没有入选内容/);
+  const html = await response.text(), $ = load(html);
+  $("script").remove();
+  const visible = $("body").text();
+  assert.equal($('[data-report-kind="daily"][data-report-key="2026-10-03"][data-report-revision="1"]').length, 1);
+  assert.equal($('[aria-label="本期处理范围"]').length, 0);
+  assert.equal($('[aria-label="头版"] h2').first().text(), "研究提出新的比较方法");
+  const figure = $('figure[data-paper-figure="true"]');
+  assert.equal(figure.length, 1, "the first story appears once, with its own original figure");
+  assert.equal(figure.find("img").attr("src"), "https://example.org/method-figure.png");
+  assert.match(figure.find("img").attr("class")!, /object-contain/);
+  assert.ok(html.indexOf('data-paper-figure="true"') < html.indexOf('<h2 class="mt-4'));
+  assert.doesNotMatch(visible, /本期部分结果|处理缺口|未准入|请求结果未知|尚未开放|部分完成|科研试刊/);
+  assert.match(visible, /基于摘要|缺少真实系统实验/);
+  assert.match(visible, /09:00.*15:00.*21:00/);
+  assert.equal($('a[href^="/pilot"]').length, 0);
+  assert.doesNotMatch($.html(), /href="javascript:/);
+});
+
+test("an empty edition does not claim that no new research exists", async () => {
+  const response = await fetch(`${origin}/daily/2026-10-02`);
+  assert.equal(response.status, 200, logs);
+  const $ = load(await response.text());
+  $("script").remove();
+  assert.match($("body").text(), /这一期暂无推荐文章/);
+  assert.doesNotMatch($("body").text(), /今日无新研究|没有新研究|本期处理范围/);
 });
 
 test("production SSR item keeps missing publication and revision dates distinct from observation", async () => {

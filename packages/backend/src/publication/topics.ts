@@ -5,7 +5,7 @@ import path from "node:path";
 import { REPO_ROOT } from "../config.ts";
 import { sql } from "../db.ts";
 import { cached } from "../lib/cache.ts";
-import { ITEM_COLUMNS, ITEM_FROM, toFeedItemSummary, type ItemRow } from "./items.ts";
+import { ITEM_COLUMNS, ITEM_FROM, READER_TIMELINE_AT, toFeedItemSummary, type ItemRow } from "./items.ts";
 
 export interface TopicRow {
   slug: string;
@@ -91,7 +91,7 @@ export function topicCountSnapshot(now?: Date): Promise<TopicCountSnapshot> {
 async function queryTopicCounts(now: Date): Promise<TopicCountSnapshot> {
   const [topics, items, pending] = await Promise.all([
     sql<Array<Pick<TopicRow, "slug" | "entity_id" | "tags">>>`SELECT slug, entity_id, tags FROM topics ORDER BY position`,
-    sql<{ tags: string[]; timeline_at: Date }[]>`SELECT p.tags, p.timeline_at FROM publications p WHERE ${selectedCondition(now)}`,
+    sql<{ tags: string[]; timeline_at: Date }[]>`SELECT p.tags, ${READER_TIMELINE_AT} AS timeline_at FROM publications p WHERE ${selectedCondition(now)}`,
     sql<{ t: Date | null }[]>`SELECT min(p.visible_after) AS t FROM publications p
       WHERE ${pendingReleaseCondition(now)}`,
   ]);
@@ -127,11 +127,11 @@ async function queryTopicCount(slug: string, now: Date): Promise<{ count: TopicC
   const recentStart = new Date(now.getTime() - recentMs + 1);
   const [row] = await sql<{ total: number; recent: number; latest: Date | null; pending: Date | null; oldest_recent: Date | null }[]>`
     SELECT count(*)::int AS total,
-      count(*) FILTER (WHERE p.timeline_at >= ${recentStart})::int AS recent,
-      max(p.timeline_at) AS latest,
+      count(*) FILTER (WHERE ${READER_TIMELINE_AT} >= ${recentStart})::int AS recent,
+      max(${READER_TIMELINE_AT}) AS latest,
       (SELECT min(p.visible_after) FROM publications p WHERE ${pendingReleaseCondition(now)}) AS pending,
-      (SELECT min(p.timeline_at) FROM publications p
-        WHERE ${selectedCondition(now)} AND p.timeline_at >= ${recentStart}) AS oldest_recent
+      (SELECT min(${READER_TIMELINE_AT}) FROM publications p
+        WHERE ${selectedCondition(now)} AND ${READER_TIMELINE_AT} >= ${recentStart}) AS oldest_recent
     FROM publications p
     WHERE ${selectedCondition(now)} AND p.tags && ${topic ? topicMatchTags(topic) : []}::text[]`;
   const { total, recent, latest } = row!;
@@ -189,10 +189,10 @@ export async function loadTopicPage(slug: string, page: number, now = new Date()
     WITH page AS (
       SELECT p.article_id FROM publications p
       WHERE ${selectedCondition(now)} AND p.tags && ${topicMatchTags(row)}::text[]
-      ORDER BY p.timeline_at DESC, p.article_id DESC
+      ORDER BY ${READER_TIMELINE_AT} DESC, p.article_id DESC
       LIMIT ${TOPIC_PAGE_SIZE} OFFSET ${(page - 1) * TOPIC_PAGE_SIZE})
     SELECT ${ITEM_COLUMNS} ${ITEM_FROM} WHERE p.article_id IN (SELECT article_id FROM page)
-    ORDER BY p.timeline_at DESC, p.article_id DESC`;
+    ORDER BY ${READER_TIMELINE_AT} DESC, p.article_id DESC`;
   const related = row.related.map((r) => topics.find((t) => t.slug === r)).filter((t): t is TopicRow => !!t).map((t) => ({ slug: t.slug, name: t.name }));
   return { topic: { ...topic, related }, items: rows.map(toFeedItemSummary), page, pageCount, refreshAt };
 }

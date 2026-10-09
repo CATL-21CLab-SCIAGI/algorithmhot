@@ -13,6 +13,7 @@ import { escapeXml } from "../lib/text.ts";
 import { siteUrl } from "./links.ts";
 import { leaderboardUrls } from "../leaderboard/read.ts";
 import { topicCountSnapshot } from "./topics.ts";
+import { publicReportCondition } from "./report-scope.ts";
 
 async function leaderboardDetailUrls(): Promise<string[]> {
   const fixed = new Set(["/leaderboard", "/leaderboard/sources", "/leaderboard/rules"]);
@@ -37,7 +38,7 @@ async function build(): Promise<SitemapSnapshot> {
   const now = new Date();
   const entries: Entry[] = [];
   const [latestItem] = await sql<{ t: Date | null }[]>`SELECT max(p.timeline_at) AS t FROM publications p WHERE ${selectedCondition(now)}`;
-  const [latestDaily] = await sql<{ key: string | null; t: Date | null }[]>`SELECT max(key) AS key, max(generated_at) AS t FROM reports WHERE kind = 'daily'`;
+  const [latestDaily] = await sql<{ key: string | null; t: Date | null }[]>`SELECT max(key) AS key, max(generated_at) AS t FROM reports WHERE kind = 'daily' AND ${publicReportCondition()}`;
   const latest = latestItem?.t ?? now;
   entries.push(
     { loc: "/", lastmod: latest, changefreq: "hourly", priority: 1 },
@@ -63,7 +64,7 @@ async function build(): Promise<SitemapSnapshot> {
     for (const board of ["coding", "reasoning", "knowledge", "professional"]) entries.push({ loc: `/leaderboard/category/${board}`, changefreq: "daily", priority: 0.6 });
   }
   if (FEATURES.codexResetMonitor) entries.push({ loc: "/codex-reset", changefreq: "hourly", priority: 0.6 });
-  const reports = await sql<{ kind: string; key: string; generated_at: Date }[]>`SELECT kind, key, generated_at FROM reports ORDER BY kind, key DESC`;
+  const reports = await sql<{ kind: string; key: string; generated_at: Date }[]>`SELECT kind, key, generated_at FROM reports WHERE ${publicReportCondition()} ORDER BY kind, key DESC`;
   for (const r of reports) entries.push({ loc: `/${r.kind}/${r.key}`, lastmod: r.generated_at, changefreq: r.kind === "daily" ? "never" : "monthly", priority: r.kind === "daily" ? 0.6 : 0.6 });
   const topics = await topicCountSnapshot(now);
   for (const t of topics.counts) {

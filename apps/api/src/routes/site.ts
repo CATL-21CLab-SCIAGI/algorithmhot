@@ -209,7 +209,7 @@ export function registerSite(app: FastifyInstance) {
 
   app.get("/api/site/reports/:kind", siteHandler(async (req, reply) => {
     const kind = (req.params as { kind: string }).kind;
-    if (!["daily", "weekly", "monthly", "pilot"].includes(kind)) return sendProblem(req, reply, { status: 404, code: "not_found", detail: "unknown report kind" });
+    if (!["daily", "weekly", "monthly"].includes(kind)) return sendProblem(req, reply, { status: 404, code: "not_found", detail: "unknown report kind" });
     const data = await listReports(kind as ReportKind);
     return sendJsonWithEtag(req, reply, { kind, items: data }, { etagPrefix: "reports", cacheControl: "public, max-age=60, s-maxage=60" });
   }));
@@ -217,7 +217,7 @@ export function registerSite(app: FastifyInstance) {
   // The latest report page needs its archive selector and the report in one HTTP request.
   app.get("/api/site/reports/:kind/latest-page", siteHandler(async (req, reply) => {
     const kind = (req.params as { kind: string }).kind;
-    if (!["daily", "weekly", "monthly", "pilot"].includes(kind)) return sendProblem(req, reply, { status: 404, code: "not_found", detail: "unknown report kind" });
+    if (!["daily", "weekly", "monthly"].includes(kind)) return sendProblem(req, reply, { status: 404, code: "not_found", detail: "unknown report kind" });
     const index = await listReports(kind as ReportKind);
     const report = index[0] ? await loadReport(kind as ReportKind, index[0].key) : null;
     return sendJsonWithEtag(req, reply, { index: reportNavigation(kind as ReportKind, index, report?.key ?? ""), report }, { etagPrefix: "report-latest", cacheControl: "public, max-age=60, s-maxage=60" });
@@ -225,7 +225,7 @@ export function registerSite(app: FastifyInstance) {
 
   app.get("/api/site/reports/:kind/navigation/:key", siteHandler(async (req, reply) => {
     const { kind, key } = req.params as { kind: string; key: string };
-    if (!["daily", "weekly", "monthly", "pilot"].includes(kind) || !/^\d{4}-(\d{2}(-\d{2})?|W\d{2})$/.test(key)) return sendProblem(req, reply, { status: 404, code: "not_found", detail: "report not found" });
+    if (!["daily", "weekly", "monthly"].includes(kind) || !/^\d{4}-(\d{2}(-\d{2})?|W\d{2})$/.test(key)) return sendProblem(req, reply, { status: 404, code: "not_found", detail: "report not found" });
     return sendJsonWithEtag(req, reply, { items: await loadReportNavigation(kind as ReportKind, key) }, { etagPrefix: "report-navigation", cacheControl: "public, max-age=60, s-maxage=60" });
   }));
 
@@ -237,7 +237,7 @@ export function registerSite(app: FastifyInstance) {
 
   app.get("/api/site/reports/:kind/:key", siteHandler(async (req, reply) => {
     const { kind, key } = req.params as { kind: string; key: string };
-    if (!["daily", "weekly", "monthly", "pilot"].includes(kind) || !/^\d{4}-(\d{2}(-\d{2})?|W\d{2})$/.test(key)) {
+    if (!["daily", "weekly", "monthly"].includes(kind) || !/^\d{4}-(\d{2}(-\d{2})?|W\d{2})$/.test(key)) {
       return sendProblem(req, reply, { status: 404, code: "not_found", detail: "report not found" });
     }
     const data = await loadReport(kind as ReportKind, key);

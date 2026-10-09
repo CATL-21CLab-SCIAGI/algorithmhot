@@ -2,6 +2,8 @@
 const HOUR = 3_600_000;
 const DAY = 24 * HOUR;
 const SIX_HOURS = 6 * HOUR;
+// Beijing is fixed UTC+8, so the daily 09:00 checkpoint is 01:00 UTC.
+const DAILY_UTC_HOUR = 1;
 export interface ScheduleClock { nextDailyAt: string; nextSourcesAt: string }
 export interface ScheduledJob { kind: "daily" | "sources"; dueAt: string; date: string; id: string }
 const milliseconds = (date: string | number | Date) => new Date(date).getTime();
@@ -10,8 +12,8 @@ export function beijingDay(date: string | number | Date): string {
 }
 export function nextDailyAt(now: string | number | Date): string {
   const t = milliseconds(now);
-  const todayAtEight = Date.parse(`${beijingDay(t)}T00:00:00Z`);
-  return new Date(todayAtEight > t ? todayAtEight : todayAtEight + DAY).toISOString();
+  const todayAtNine = Date.parse(`${beijingDay(t)}T${String(DAILY_UTC_HOUR).padStart(2, "0")}:00:00Z`);
+  return new Date(todayAtNine > t ? todayAtNine : todayAtNine + DAY).toISOString();
 }
 /** On start, skip expired checkpoints rather than replaying missed batches. */
 export function startClock(now: string | number | Date, previous?: ScheduleClock): ScheduleClock {
@@ -27,8 +29,8 @@ export function takeDue(clock: ScheduleClock, now: string | number | Date): { cl
   const daily = Date.parse(clock.nextDailyAt);
   if (daily <= t) {
     // A long suspended process never replays a sequence of old daily editions.
-    const latestAtEight = Date.parse(`${beijingDay(t)}T00:00:00Z`);
-    const due = latestAtEight <= t ? latestAtEight : latestAtEight - DAY;
+    const latestAtNine = Date.parse(`${beijingDay(t)}T${String(DAILY_UTC_HOUR).padStart(2, "0")}:00:00Z`);
+    const due = latestAtNine <= t ? latestAtNine : latestAtNine - DAY;
     const date = beijingDay(due);
     jobs.push({ kind: "daily", dueAt: new Date(due).toISOString(), date, id: `daily-${date}` });
     next.nextDailyAt = nextDailyAt(t);

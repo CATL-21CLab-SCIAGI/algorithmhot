@@ -7,7 +7,7 @@ import { sql } from "../db.ts";
 import { decodeCursor, encodeCursor, InvalidCursorError, queryBinding } from "../lib/cursor.ts";
 import { shortHash } from "../lib/ids.ts";
 import { proxiedImage } from "../media/imgproxy.ts";
-import { ITEM_COLUMNS, ITEM_FROM, categoryCondition, channelCondition, tagCondition, toItemSummary, topicCondition, type ItemRow } from "./items.ts";
+import { ITEM_COLUMNS, ITEM_FROM, READER_SORT_AT, READER_TIMELINE_AT, categoryCondition, channelCondition, tagCondition, toItemSummary, topicCondition, type ItemRow } from "./items.ts";
 import { pickRepresentative } from "./timeline.ts";
 
 export interface GroupReportsQuery {
@@ -38,12 +38,12 @@ export async function loadGroupReports(q: GroupReportsQuery, now = new Date()): 
            s.id AS source_id, s.name AS source_name, s.kind AS source_kind, p.first_party, s.icon_url
     FROM publications p JOIN sources s ON s.id = p.source_id
     WHERE p.article_id IN (SELECT article_id FROM fact_articles WHERE fact_id = ${fact.id}) AND s.participation_mode = 'editorial' AND ${listedCondition(now)} ${filters}
-    ORDER BY p.timeline_at DESC, p.article_id ASC`;
+    ORDER BY ${READER_TIMELINE_AT} DESC, p.article_id ASC`;
   if (members.length === 0) return { kind: "not_found" };
 
   // The revision covers the actual member set; a cursor from another revision means "reload".
   const revision = shortHash(members.map((m) => m.id).join(","), 10);
-  const binding = queryBinding({ f: q.factPublicId, c: q.channel, k: q.category, t: q.tag, p: q.topicTags });
+  const binding = queryBinding({ f: q.factPublicId, c: q.channel, k: q.category, t: q.tag, p: q.topicTags, order: "original-date-v1" });
   let offset = 0;
   if (q.cursor) {
     const c = decodeCursor<{ o: number; r: string; b: string }>("gr1", q.cursor);
@@ -99,7 +99,8 @@ export async function loadDevelopments(q: DevelopmentsQuery, now = new Date()): 
   const filters = sql`${channelCondition(q.channel)} ${categoryCondition(q.category)} ${tagCondition(q.tag)} ${topicCondition(q.topicTags)}`;
   type Member = Pick<ItemRow, "id" | "fact_id" | "first_party" | "body_mode" | "score" | "timeline_at" | "sort_at">;
   const selected = await sql<Member[]>`
-    SELECT p.article_id AS id, p.fact_id, p.first_party, p.body_mode, p.score, p.timeline_at, p.sort_at
+    SELECT p.article_id AS id, p.fact_id, p.first_party, p.body_mode, p.score,
+      ${READER_TIMELINE_AT} AS timeline_at, ${READER_SORT_AT} AS sort_at
     FROM publications p JOIN sources s ON s.id = p.source_id WHERE p.story_id = ${story.id} AND s.participation_mode = 'editorial' AND ${selectedCondition(now)} ${filters}`;
   if (selected.length === 0) return { kind: "not_found" };
   const counts = new Map(
@@ -127,7 +128,7 @@ export async function loadDevelopments(q: DevelopmentsQuery, now = new Date()): 
     .map((d) => d.development);
 
   const revision = shortHash(list.map((d) => `${d.factId}:${d.representativeId}:${d.reportCount}`).join(","), 10);
-  const binding = queryBinding({ s: q.storyPublicId, c: q.channel, k: q.category, t: q.tag, p: q.topicTags });
+  const binding = queryBinding({ s: q.storyPublicId, c: q.channel, k: q.category, t: q.tag, p: q.topicTags, order: "original-date-v1" });
   let offset = 0;
   if (q.cursor) {
     const c = decodeCursor<{ o: number; r: string; b: string }>("dv1", q.cursor);

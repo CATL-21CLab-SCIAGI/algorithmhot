@@ -8,7 +8,7 @@ import { withDeliveryLock, recoverDeliveryLock, saveJson } from "./daily-deliver
 const root = path.resolve(import.meta.dirname, "..");
 const checkout = path.join(root, ".data/pages-repo");
 const state = path.join(root, ".data/pages-publisher");
-const repo = option("--repo") || "PKUCY2016/algorithmhot";
+const repo = option("--repo") || "CATL-21CLab-SCIAGI/algorithmhot";
 const branch = PAGES_BRANCH;
 const branchRef = `refs/heads/${branch}`;
 const trackingRef = `refs/remotes/origin/${branch}`;

@@ -27,7 +27,15 @@ const getApi = async (route: string): Promise<unknown> => {
   throw new Error(`Unexpected API read: ${route}`);
 };
 const shell = (body: string) => `<!doctype html><html><head><title>Local title</title><link rel="stylesheet" href="/assets/root-pool.css"></head><body><nav aria-label="主导航"><a href="/">精选</a><a href="/all">全部</a></nav><main id="main"><div>${body}</div></main></body></html>`;
-const cards = (items: PublicItem[]) => items.length ? `<section aria-label="2026-10-05"><div class="native-day-header">10月5日 <span class="num">${items.length}</span></div><ol>${items.map(item => `<li class="native-slot"><article data-item-id="${item.id}" class="native-card"><h2><a href="/items/${item.id}">${item.title}</a></h2><a href="${item.sourceUrl}">原文</a></article></li>`).join("")}</ol></section>` : "";
+const readerDay = (item: PublicItem) => {
+  const value = item.research?.originalPublishedAt ?? (item.research?.arxivId ? item.timelineAt : item.publishedAt ?? item.timelineAt);
+  return value ? new Date(Date.parse(value) + 8 * 3600_000).toISOString().slice(0, 10) : "unknown";
+};
+const cards = (items: PublicItem[]) => {
+  const groups = new Map<string, PublicItem[]>();
+  for (const item of items) groups.set(readerDay(item), [...(groups.get(readerDay(item)) ?? []), item]);
+  return [...groups].map(([day, dayItems]) => `<section aria-label="${day}"><div class="native-day-header">${day} <span class="num">${dayItems.length}</span></div><ol>${dayItems.map(item => `<li class="native-slot"><article data-item-id="${item.id}" class="native-card"><h2><a href="/items/${item.id}">${item.title}</a></h2><a href="${item.sourceUrl}">原文</a></article></li>`).join("")}</ol></section>`).join("");
+};
 const nativePool = (snapshot: Snapshot, route: string) => {
   const url = new URL(route, "http://reader.example"), category = url.searchParams.get("category"), page = Number(url.searchParams.get("page") ?? 1);
   const items = poolItems(snapshot).filter(item => !category || item.category === category), count = Math.max(1, Math.ceil(items.length / 40));
@@ -46,6 +54,40 @@ function getSsr(snapshot: Snapshot) {
     if (route.startsWith("/items/")) return shell(`<h1>Public detail</h1><a href="https://arxiv.org">原文</a>`);
     if (route === "/agent") return shell('<div class="reading-layout"><div><button role="tab">Reader</button></div><aside></aside></div>');
     return shell('<section><h1>Public shell</h1></section>');
+  };
+}
+
+/** A live reader can still group cards by announcement/observation day while the public
+ * snapshot is rebuilt around the original publication day. This fixture exercises the
+ * native-day-template fallback used by the static exporter. */
+function getObservedDaySsr(snapshot: Snapshot) {
+  const observedCards = (items: PublicItem[]) => {
+    const groups = new Map<string, PublicItem[]>();
+    for (const item of items) {
+      const at = item.timelineAt ?? item.publishedAt;
+      const day = at ? new Date(Date.parse(at) + 8 * 3600_000).toISOString().slice(0, 10) : "unknown";
+      groups.set(day, [...(groups.get(day) ?? []), item]);
+    }
+    return [...groups].map(([day, dayItems]) => {
+      const date = new Date(`${day}T00:00:00Z`), label = `${date.getUTCMonth() + 1}月${date.getUTCDate()}日`, weekday = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"][date.getUTCDay()];
+      return `<section aria-label="${day}"><div class="native-day-header"><div class="mobile"><span>${label}</span><span>${weekday.replace("星期", "周")}</span></div><div class="desktop"><button>${label}</button><span></span><span>${weekday} · <span class="num">${dayItems.length}</span> 条</span></div></div><ol>${dayItems.map(item => `<li class="native-slot"><article data-item-id="${item.id}" class="native-card"><h2><a href="/items/${item.id}">${item.title}</a></h2><a href="${item.sourceUrl}">原文</a></article></li>`).join("")}</ol></section>`;
+    }).join("");
+  };
+  return async (route: string): Promise<string> => {
+    if (route === "/assets/root-pool.css") return ".native-card{color:#123}";
+    if (route.startsWith("/all")) {
+      const url = new URL(route, "http://reader.example"), category = url.searchParams.get("category"), page = Number(url.searchParams.get("page") ?? 1);
+      const items = poolItems(snapshot).filter(item => !category || item.category === category);
+      const pageCount = Math.max(1, Math.ceil(items.length / 40));
+      const href = (n: number) => `/all?${category ? `category=${category}&` : ""}page=${n}`;
+      const pagination = pageCount > 1 ? `<nav aria-label="分页">${Array.from({ length: pageCount }, (_, i) => `<a href="${href(i + 1)}">${i + 1}</a>`).join("")}</nav>` : "";
+      return shell(`<div class="pb-6 native-all-layout"><h1>全部动态</h1><div data-native-pool="true">${observedCards(items.slice((page - 1) * 40, page * 40))}</div>${pagination}</div>`);
+    }
+    if (route === "/" || route.startsWith("/?category=")) {
+      const category = new URL(route, "http://reader.example").searchParams.get("category");
+      return shell(`<div class="pb-6"><h1>精选</h1><div class="relative">${observedCards(selectedItems(snapshot).filter(item => !category || item.category === category))}</div></div>`);
+    }
+    return getSsr(snapshot)(route);
   };
 }
 
@@ -82,12 +124,25 @@ test("actual SSR export puts reviewed nonselected items only in all pages while 
   assert.equal(itemIds("all/category/algorithm/index.html").length, 40);
   assert.deepEqual(itemIds("all/category/algorithm/page/2/index.html"), ["paper_40"]);
   assert.match(html("all/index.html"), /native-all-layout/);
-  assert.match(html("all/index.html"), /网页更新：2026-10-05 10:30 北京时间/);
-  assert.match(html("all/index.html"), /更新网页不改写研究日期/);
+  assert.doesNotMatch(html("all/index.html"), /网页更新：|更新网页不改写研究日期|data-research-coverage/);
   assert.match(html("all/index.html"), /href="\/algorithmhot\/all\/page\/2\/"/);
   assert.match(html("all/category/algorithm/index.html"), /href="\/algorithmhot\/all\/category\/algorithm\/page\/2\/"/);
   assert.match(html("all/index.html"), /https:\/\/arxiv.org\/abs\/2610.00039/);
+  const agent = load(html("agent/index.html"));
+  assert.equal(agent('#research-models').length, 0);
+  assert.doesNotMatch(html("agent/index.html"), /localhost|127\.0\.0\.1|\/api\/admin|data-live-research-model-panel|data-private-model-control/);
   validateStaticLinks(new Map([...files].map(([file, value]) => [file, String(value)])), base);
+});
+
+test("SSR export reuses a native day header when original publication dates are absent from live grouping", async () => {
+  const snapshot = await collectSnapshot(getApi, base, "2026-10-05T02:30:00.000Z");
+  const files = await renderSsrSite(snapshot, getObservedDaySsr(snapshot));
+  const $ = load(String(files.get("index.html")));
+  const section = $('section[aria-label="2026-10-02"]');
+  assert.equal(section.length, 1);
+  assert.match(section.text(), /10月2日/);
+  assert.match(section.text(), /星期五/);
+  assert.equal(section.find("article[data-item-id]").length, 2);
 });
 
 test("SSR pool export rejects live membership drift instead of leaking a newly arrived out-of-snapshot item", async () => {

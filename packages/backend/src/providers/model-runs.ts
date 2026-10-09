@@ -3,7 +3,7 @@ import { config } from "../config.ts";
 import { sql, type Db } from "../db.ts";
 import { shutdownSignal } from "../lib/shutdown.ts";
 
-export interface ModelRunConfig { id: string; maxCalls: number; reportReserve: number }
+export interface ModelRunConfig { id: string; maxCalls: number; reportReserve: number; callCeiling?: number }
 export interface ModelRunStatus extends ModelRunConfig { callsUsed: number; remaining: number }
 
 /** The local deployment sets a stable run ID; compatibility API users may leave it unset. */
@@ -13,13 +13,15 @@ export function modelRunFromEnv(required = false): ModelRunConfig | null {
     if (required) throw new Error("MODEL_RUN_ID is required for codex_cli; reuse the batch ID when restarting");
     return null;
   }
-  return validateRun({ id, maxCalls: Number(process.env.MODEL_RUN_MAX_CALLS ?? 600), reportReserve: Number(process.env.MODEL_RUN_REPORT_RESERVE ?? 20) });
+  return validateRun({ id, maxCalls: Number(process.env.MODEL_RUN_MAX_CALLS ?? 600), reportReserve: Number(process.env.MODEL_RUN_REPORT_RESERVE ?? 20),
+    ...(process.env.MODEL_RUN_CALL_CEILING ? { callCeiling: Number(process.env.MODEL_RUN_CALL_CEILING) } : {}) });
 }
 
 function validateRun(run: ModelRunConfig): ModelRunConfig {
   if (!/^[a-zA-Z0-9][a-zA-Z0-9._:-]{0,159}$/.test(run.id)) throw new Error("Invalid MODEL_RUN_ID");
   if (!Number.isInteger(run.maxCalls) || run.maxCalls < 1 || run.maxCalls > 600) throw new Error("MODEL_RUN_MAX_CALLS must be between 1 and 600");
   if (!Number.isInteger(run.reportReserve) || run.reportReserve < 0 || run.reportReserve >= run.maxCalls) throw new Error("MODEL_RUN_REPORT_RESERVE must be nonnegative and smaller than MODEL_RUN_MAX_CALLS");
+  if (run.callCeiling !== undefined && (!Number.isInteger(run.callCeiling) || run.callCeiling < 1 || run.callCeiling > run.maxCalls)) throw new Error("MODEL_RUN_CALL_CEILING must be between 1 and MODEL_RUN_MAX_CALLS");
   return run;
 }
 
@@ -44,7 +46,8 @@ export async function reserveModelRunCall(db: Db, run: ModelRunConfig, purpose: 
   const isReport = /^report(?:_|$)/.test(purpose);
   const rows = await db`
     UPDATE model_runs SET calls_used = calls_used + 1 WHERE id = ${run.id}
-    AND calls_used < max_calls - CASE WHEN ${isReport} THEN 0 ELSE report_reserve END RETURNING id`;
+    AND calls_used < max_calls - CASE WHEN ${isReport} THEN 0 ELSE report_reserve END
+    AND calls_used < ${run.callCeiling ?? run.maxCalls} RETURNING id`;
   return rows.length === 1;
 }
 

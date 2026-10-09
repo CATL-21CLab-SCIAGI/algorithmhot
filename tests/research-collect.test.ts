@@ -4,7 +4,22 @@ import { mkdtemp, readFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { test } from "node:test";
-import { researchUtcDays, hfPageDecision, responseRecordCount, researchResponsePath, saveResearchResponse, researchReparseMode } from "@aihot/backend/research/collect-utils";
+import { researchUtcDays, hfPageDecision, hfDateNotYetAvailable, responseRecordCount, researchResponsePath, saveResearchResponse, researchReparseMode } from "@aihot/backend/research/collect-utils";
+
+test("HF deferral requires its exact date upper-bound error and a valid observed UTC date", () => {
+  const body = JSON.stringify({ error: '✖ "date" must be less than or equal to "2026-10-05T00:00:00.000Z"\n  → at date' });
+  const input = { status: 400, url: "https://huggingface.co/api/daily_papers?date=2026-10-06&limit=100&p=0", body, observedAt: new Date("2026-10-06T08:00:00+08:00") };
+  assert.equal(hfDateNotYetAvailable(input), true);
+  for (const status of [200, 401, 403, 404, 429, 500, 503]) assert.equal(hfDateNotYetAvailable({ ...input, status }), false);
+  for (const badBody of ["", "null", "[]", "{", '<html>not available</html>', JSON.stringify({ error: "Date not available" }), JSON.stringify({ message: JSON.parse(body).error }), JSON.stringify({ error: `${JSON.parse(body).error}\n  → at token` }), body.replace("2026-10-05", "2026-02-30"), body.replace("00:00:00.000Z", "12:00:00.000Z")]) {
+    assert.equal(hfDateNotYetAvailable({ ...input, body: badBody }), false, badBody);
+  }
+  for (const url of [input.url.replace("https:", "http:"), input.url.replace("huggingface.co/", "huggingface.co.example/"), input.url.replace("/api/daily_papers", "/api/models"), input.url.replace("huggingface.co", "user:password@huggingface.co"), `${input.url}&date=2026-10-06`, input.url.replace("2026-10-06", "2026-02-30"), input.url.replace("2026-10-06", "2026-10-05"), input.url.replace("2026-10-06", "2026-10-04"), input.url.replace("2026-10-06", "2026-10-07")]) {
+    assert.equal(hfDateNotYetAvailable({ ...input, url }), false, url);
+  }
+  assert.equal(hfDateNotYetAvailable({ ...input, observedAt: new Date("2026-10-06T07:59:59+08:00") }), false, "Beijing's new day does not open a future UTC partition");
+  assert.equal(hfDateNotYetAvailable({ ...input, observedAt: new Date("invalid") }), false);
+});
 
 test("HF dates partition the exact UTC window and exclude an end at midnight", () => {
   assert.deepEqual(researchUtcDays(new Date("2026-09-30T23:59:59Z"), new Date("2026-10-02T00:00:00Z")), ["2026-09-30", "2026-10-01"]);

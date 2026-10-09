@@ -2,6 +2,7 @@ import { createHash, randomUUID } from "node:crypto";
 import path from "node:path";
 import { writeFile } from "node:fs/promises";
 import { XMLParser } from "fast-xml-parser";
+import { isValidDate } from "@aihot/contracts/time";
 
 /** Calendar partitions of [start, end), using the UTC dates returned by HF. */
 export function researchUtcDays(start: Date, end: Date): string[] {
@@ -15,6 +16,22 @@ export function hfPageDecision(input: { page: number; returned: number; hasNext:
   if (input.returned === 0) return { stop: true, truncated: false };
   const truncated = input.repeated || (input.hasNext && input.page >= (input.maxPages ?? 10) - 1);
   return { stop: truncated || !input.hasNext, truncated };
+}
+
+/** Only HF's explicit date upper bound means an unopened signal date, never an empty result. */
+export function hfDateNotYetAvailable(input: { status: number; url: string; body: string; observedAt: Date }): boolean {
+  if (input.status !== 400 || !Number.isFinite(input.observedAt.getTime())) return false;
+  try {
+    const url = new URL(input.url), requested = url.searchParams.get("date") ?? "";
+    if (url.origin !== "https://huggingface.co" || url.pathname !== "/api/daily_papers" || url.username || url.password
+      || url.searchParams.getAll("date").length !== 1 || !isValidDate(requested)) return false;
+    const message = JSON.parse(input.body)?.error;
+    if (typeof message !== "string") return false;
+    const match = /^✖ "date" must be less than or equal to "(\d{4}-\d{2}-\d{2})T00:00:00\.000Z"\n  → at date$/.exec(message);
+    if (!match || !isValidDate(match[1]!)) return false;
+    // A bad future-date request is a configuration error. Partition and observation use UTC.
+    return match[1]! < requested && requested <= input.observedAt.toISOString().slice(0, 10);
+  } catch { return false; }
 }
 
 export function responseRecordCount(text: string, kind: "json_list" | "rss"): number {

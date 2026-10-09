@@ -61,11 +61,22 @@ export function assertPaperFigureBindings(figures: readonly PublicPaperFigure[],
   const s = record(snapshot), ids = new Set(array(s.items).map(item => record(item).id));
   const citations = new Set(array(s.reports).flatMap(report => [...citationKeys(report)]));
   if (figures.some(figure => !ids.has(figure.itemId) || !citations.has(paperFigureKey(figure)))) throw new Error("Paper figure is not bound to a published citation revision");
+  for (const report of array(s.reports).map(record)) for (const section of array(report.sections)) for (const item of array(record(section).items)) {
+    const cited = record(item);
+    if (cited.available !== true) continue;
+    const frozen = record(cited.paperFigure);
+    if (report.illustrated === true && !frozen.itemId) throw new Error("Illustrated report is missing a frozen original figure");
+    if (!frozen.itemId) continue;
+    const found = figures.find(f => f.itemId === cited.itemId && f.sourceRevision === record(cited.researchBrief).sourceRevision);
+    if (!found || Object.keys(found).some(key => record(found)[key] !== frozen[key])) throw new Error("Frozen citation figure differs from its exported registry");
+  }
 }
 export function paperFiguresForRoute(figures: readonly PublicPaperFigure[], snapshot: unknown, route: string): PublicPaperFigure[] {
   const s = record(snapshot), parts = route.split("/").filter(Boolean);
   let keys = new Set<string>();
-  if (["pilot", "daily"].includes(parts[0] ?? "") && parts.length <= 2) {
+  // Previous approved snapshots can contain pilot routes; keep their image audit
+  // valid while the current exporter publishes only daily, weekly and monthly.
+  if (["pilot", "daily", "weekly", "monthly"].includes(parts[0] ?? "") && parts.length <= 2) {
     const reports = array(s.reports).map(record).filter(r => r.kind === parts[0] && (!parts[1] || r.key === parts[1]));
     reports.sort((a, b) => String(b.key).localeCompare(String(a.key)) || Number(b.revision) - Number(a.revision));
     if (reports[0]) keys = citationKeys(reports[0]);
@@ -77,7 +88,7 @@ export function paperFiguresForRoute(figures: readonly PublicPaperFigure[], snap
 }
 const words = (text: string) => text.replace(/\s+/g, " ").trim();
 /** Both exporter and publisher enforce the attribution and per-page image ownership boundary. */
-export function assertPaperFigureMarkup($: CheerioAPI, figures: readonly PublicPaperFigure[], publicBaseUrl: string): Set<string> {
+export function assertPaperFigureMarkup($: CheerioAPI, figures: readonly PublicPaperFigure[], publicBaseUrl: string, requireAll = false): Set<string> {
   const origins = new Set<string>(), used = new Set<string>();
   $("img").each((_, node) => {
     const img = $(node), figure = img.closest('figure[data-paper-figure="true"]');
@@ -94,6 +105,7 @@ export function assertPaperFigureMarkup($: CheerioAPI, figures: readonly PublicP
     used.add(paperFigureKey(found));
   });
   if ($('figure[data-paper-figure="true"]').length !== used.size) throw new Error("Paper figure has no approved image");
+  if (requireAll && figures.some(f => !used.has(paperFigureKey(f)))) throw new Error("Report is missing a required original figure cover");
   return origins;
 }
 
@@ -202,7 +214,11 @@ export async function auditBundle(source: string, repo: string, gitCheckout = fa
     }
     if (!file.endsWith(".html")) continue;
     const $ = load(buffer.toString("utf8")), route = file === "index.html" ? "/" : `/${file.replace(/\/index\.html$/, "")}`;
-    const origins = assertPaperFigureMarkup($, paperFiguresForRoute(figures, snapshot, route), manifest.publicBaseUrl);
+    const reportParts = route.split("/").filter(Boolean);
+    const routeReport = reportParts.length <= 2 ? array(record(snapshot).reports).map(record)
+      .filter(r => r.kind === reportParts[0] && (!reportParts[1] || r.key === reportParts[1]))
+      .sort((a, b) => String(b.key).localeCompare(String(a.key)) || Number(b.revision) - Number(a.revision))[0] : undefined;
+    const origins = assertPaperFigureMarkup($, paperFiguresForRoute(figures, snapshot, route), manifest.publicBaseUrl, routeReport?.illustrated === true);
     if ($("picture,source,svg image").length) throw new Error("Unapproved alternative image source");
     if ($("img").length) {
       const policies = $('meta[http-equiv="Content-Security-Policy"]');

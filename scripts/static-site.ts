@@ -81,7 +81,7 @@ export async function collectSnapshot(get: Get, publicBaseUrl: string, generated
     topicIds.forEach((id) => ids.add(id));
     topics.push(sanitizeTopic(t, topicIds));
   }
-  for (const kind of ["pilot", "daily"] as const) {
+  for (const kind of ["daily", "weekly", "monthly"] as const) {
     const entries = list(obj(await get(`/api/site/reports/${kind}`)).items);
     // The API index is capped at 400; do not silently drop older public reports.
     if (entries.length >= 400) throw new Error(`The ${kind} index reached its 400-report limit; add archive pagination before publishing`);
@@ -100,9 +100,18 @@ export async function collectSnapshot(get: Get, publicBaseUrl: string, generated
     if (item.id !== id) throw new Error("Public item identity mismatch");
     items.push(item);
   }
-  items.sort((a, b) => (b.timelineAt ?? "").localeCompare(a.timelineAt ?? "") || a.id.localeCompare(b.id));
+  // Sort by the source's original publication/submission time.  arXiv announcement days are
+  // retained as evidence but never promote an old paper into the current reader list; missing
+  // arXiv submission dates remain on the observation timeline and are shown as unknown in the UI.
+  const readerTime = (i: Snapshot["items"][number]) => {
+    const original = i.research?.originalPublishedAt;
+    if (original && Number.isFinite(Date.parse(original))) return Date.parse(original);
+    if (i.research?.arxivId) return Date.parse(i.timelineAt ?? "") || 0;
+    return Date.parse(i.publishedAt ?? i.timelineAt ?? "") || 0;
+  };
+  items.sort((a, b) => readerTime(b) - readerTime(a) || a.id.localeCompare(b.id));
   reports.sort((a, b) => b.windowEnd.localeCompare(a.windowEnd) || a.kind.localeCompare(b.kind));
-  const snapshot: Snapshot = { schemaVersion: 1, generatedAt, publicBaseUrl: base, mode: "static-snapshot", scope: "当前全部公开动态（已通过相关性筛选并具有摘要，少于 2,000 条）、公开精选、主题及现存试刊/日报归档（每类少于 400 期）；不含待审候选", items, topics, reports, poolItemIds };
+  const snapshot: Snapshot = { schemaVersion: 1, generatedAt, publicBaseUrl: base, mode: "static-snapshot", scope: "公开科研动态、精选研究、研究主题，以及日报、周报和月报归档", items, topics, reports, poolItemIds };
   snapshot.researchAttention = computeResearchHeat(items.filter(item => poolItemIds.includes(item.id)), generatedAt);
   if (researchCoverage) snapshot.researchCoverage = researchCoverage;
   validateSnapshot(snapshot);
@@ -127,7 +136,7 @@ export function createExport(snapshot: Snapshot, renderedFiles?: Map<string, str
   const files = renderedFiles ?? renderSite(snapshot);
   files.set(".nojekyll", "");
   files.set("LICENSE.txt", readFileSync(new URL("../LICENSE", import.meta.url), "utf8"));
-  files.set("README.md", `# AlgorithmHot · 科研热点\n\n公开静态阅读站：${snapshot.publicBaseUrl}\n\n此 gh-pages 分支只含公开网页与摘要数据；同一仓库的 main 分支保存应用源码。生成时间：${snapshot.generatedAt}。模型调用、采集、数据库和登录信息保留在本机，GitHub Pages 不运行这些任务。\n\n报告保留来源、实际窗口、研究依据与处理缺口。作者报告不等于独立复现。资料与第三方材料的权利归原作者；请参阅站点的来源与隐私说明。\n\n通过仓库 Settings → Pages，选择 Deploy from a branch，选择 gh-pages / (root) 发布。已含 .nojekyll，无需构建工作流或服务器。\n\nexport-manifest.json 记录本次发布文件的 SHA-256、字节数与公开基址。静态数据位于 data/snapshot.json。\n`);
+  files.set("README.md", `# AlgorithmHot · 科研热点\n\n公开静态阅读站：${snapshot.publicBaseUrl}\n\n此 gh-pages 分支只含公开网页与摘要数据；同一仓库的 main 分支保存应用源码。生成时间：${snapshot.generatedAt}。模型调用、采集、数据库和登录信息保留在本机，GitHub Pages 不运行这些任务。\n\n报告保留原始来源、研究依据与证据限制。作者报告不等于独立复现。资料与第三方材料的权利归原作者；请参阅站点的来源与隐私说明。\n\n通过仓库 Settings → Pages，选择 Deploy from a branch，选择 gh-pages / (root) 发布。已含 .nojekyll，无需构建工作流或服务器。\n\nexport-manifest.json 记录本次发布文件的 SHA-256、字节数与公开基址。静态数据位于 data/snapshot.json。\n`);
   validateStaticLinks(new Map([...files].map(([file, content]) => [file, typeof content === "string" ? content : ""])), snapshot.publicBaseUrl);
   const manifest: ExportManifest = {
     schemaVersion: 1, publicBaseUrl: snapshot.publicBaseUrl, generatedAt: snapshot.generatedAt,
@@ -173,7 +182,7 @@ export async function writeExport(output: string, files: Map<string, string | Ui
 }
 
 async function main(): Promise<void> {
-  const options: ExportOptions = { api: "http://127.0.0.1:3101", web: "http://127.0.0.1:3102", base: "https://pkucy2016.github.io/algorithmhot/", output: ".data/public-site" };
+  const options: ExportOptions = { api: "http://127.0.0.1:3101", web: "http://127.0.0.1:3102", base: "https://catl-21clab-sciagi.github.io/algorithmhot/", output: ".data/public-site" };
   for (let i = 2; i < process.argv.length; i += 2) {
     const key = process.argv[i], value = process.argv[i + 1];
     if (!["--api", "--web", "--base", "--output"].includes(key) || !value) throw new Error("Usage: node scripts/static-site.ts [--api local-public-api] [--web local-reader-site] [--base public-https-url] [--output directory]");

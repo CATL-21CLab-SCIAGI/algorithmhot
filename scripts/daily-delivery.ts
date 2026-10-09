@@ -5,7 +5,7 @@ import { mkdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { parseEnv } from "node:util";
-import { deliverDaily, deliveryDate, dueDaily, currentRefreshSlot, validateRefreshSlot, readReceipt, recoverDeliveryLock, type DailyInspection, type Stage } from "./daily-delivery/core.ts";
+import { deliverDaily, deliveryDate, dueDaily, currentReviewSlot, validateRefreshSlot, readReceipt, recoverDeliveryLock, DeliveryInterruptedError, PublicStageRetryableError, PublicStageFatalError, type DailyInspection, type Stage } from "./daily-delivery/core.ts";
 
 const root = path.resolve(import.meta.dirname, "..");
 const stateDir = path.join(root, ".data/daily-delivery");
@@ -32,7 +32,7 @@ export function publicDestination(base: string, repo: string): string {
   return url.href;
 }
 async function assertIdle(): Promise<void> {
-  if (privateConfig().LLM_TRANSPORT !== "codex_cli") throw new Error("Daily delivery requires the configured Codex subscription route; no API fallback was started");
+  if (!["codex_cli", "bedrock_converse"].includes(privateConfig().LLM_TRANSPORT ?? "")) throw new Error("Daily delivery requires an explicitly configured research model route; no provider fallback was started");
   for (const name of ["scheduler", "batch"]) {
     try {
       const record = JSON.parse(await readFile(path.join(root, `.data/local/${name}.process.json`), "utf8"));
@@ -43,7 +43,18 @@ async function assertIdle(): Promise<void> {
     } catch (error) { if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error; }
   }
 }
-async function command(args: string[], logFile: string): Promise<void> {
+function publicFailureKind(stage: Stage | undefined, logFile: string): "retry" | "hold" {
+  if (!stage || !["export", "publish", "verify"].includes(stage)) return "hold";
+  let detail = "";
+  try { detail = readFileSync(logFile, "utf8").slice(-64_000); } catch { return "hold"; }
+  // Validation, destination, credential, integrity and approval failures are never hidden by
+  // retries. Publisher/verification scripts retain their private receipts for explicit review.
+  if (/invalid|unsafe|security|credential|permission|unauthori[sz]ed|forbidden|mismatch|manifest|audit|unrecognized|refus|destination|approved|integrity|changed during|missing|unknown|malicious/i.test(detail)) return "hold";
+  if (stage === "export") return /fetch|network|timed out|timeout|connection|HTTP (?:4|5)\d\d|API request failed/i.test(detail) ? "retry" : "hold";
+  if (stage === "publish") return /Git (?:fetch|push|ls-remote) failed|network|timed out|timeout|connection|remote/i.test(detail) ? "retry" : "hold";
+  return /NETWORK_ERROR|HTTP_STATUS|PAGES_BUILD_(?:NOT_FOUND|PENDING)|VERIFICATION_(?:DEADLINE|ATTEMPTS_EXHAUSTED)/i.test(detail) ? "retry" : "hold";
+}
+async function command(args: string[], logFile: string, stage?: Stage): Promise<void> {
   const output = openSync(logFile, "a", 0o600);
   try {
     const child = spawn(process.execPath, args, { cwd: root, env: { ...process.env, COLLECT_ENABLED: "false", MODEL_CALLS_ENABLED: "false" }, stdio: ["ignore", output, output] });
@@ -54,7 +65,15 @@ async function command(args: string[], logFile: string): Promise<void> {
       const result = await new Promise<{ code: number | null; signal: NodeJS.Signals | null }>((resolve, reject) => {
         child.once("error", reject); child.once("exit", (code, signal) => resolve({ code, signal }));
       });
-      if (interrupted || result.code !== 0) throw new Error(`Daily stage stopped (${result.signal ?? result.code}); inspect the private stage log and preserve the same daily ID`);
+      if (interrupted || result.signal) throw new DeliveryInterruptedError("Daily delivery was interrupted; its checkpoint was retained without an automatic retry");
+      if (result.code !== 0) {
+        if (stage && ["export", "publish", "verify"].includes(stage)) {
+          const message = `Public ${stage} stage stopped (${result.code}); inspect its private receipt`;
+          if (publicFailureKind(stage, logFile) === "retry") throw new PublicStageRetryableError(message);
+          throw new PublicStageFatalError(message);
+        }
+        throw new Error(`Daily stage stopped (${result.code}); inspect the private stage log and preserve the same daily ID`);
+      }
     } finally { process.off("SIGINT", interrupt); process.off("SIGTERM", interrupt); }
   } finally { closeSync(output); }
 }
@@ -83,10 +102,18 @@ export async function main(args = process.argv.slice(2)): Promise<void> {
   }
   const now = new Date();
   if (date && (slot || args.includes("--refresh"))) throw new Error("Do not combine daily date and refresh slot");
-  const chosenSlot = slot ? validateRefreshSlot(slot, now) : args.includes("--refresh") ? currentRefreshSlot(now) : undefined;
+  const chosenSlot = slot ? validateRefreshSlot(slot, now) : args.includes("--refresh") ? currentReviewSlot(now) : undefined;
+  if (args.includes("--refresh") && !chosenSlot) {
+    console.log(JSON.stringify({ status: "not-due", reason: "Reviews run at 09:00, 15:00 and 21:00 Beijing; missed prior-day slots are not replayed" })); return;
+  }
   if (args.includes("--reconcile") && !chosenSlot) throw new Error("--reconcile requires --refresh or --slot");
   const refreshSlot = chosenSlot && args.includes("--reconcile") && !chosenSlot.endsWith("-r1") ? `${chosenSlot}-r1` : chosenSlot;
   const target = refreshSlot ?? deliveryDate(date, now);
+  const previous = refreshSlot ? await readReceipt(stateDir, target) : null;
+  if (refreshSlot && !previous && refreshSlot.replace(/-r1$/, "") !== currentReviewSlot(now)) {
+    throw new Error("A new delivery may only use the current 09:00, 15:00 or 21:00 review; older slots are available only through existing receipts");
+  }
+  const reviewPolicy = refreshSlot ? previous ? previous.reviewPolicy : "three-times-daily" as const : undefined;
   if (args.includes("--status")) {
     console.log(JSON.stringify({ dueDaily: dueDaily(now), target, receipt: await readReceipt(stateDir, target) }, null, 2)); return;
   }
@@ -95,22 +122,29 @@ export async function main(args = process.argv.slice(2)): Promise<void> {
     await recoverDeliveryLock(stateDir, processAlive);
     console.log("Stale delivery lock archived if present. No generation or publication was started; inspect receipts before --resume."); return;
   }
-  const repo = process.env.STATIC_SITE_REPO || "PKUCY2016/algorithmhot";
-  const base = publicDestination(process.env.STATIC_SITE_BASE || "https://pkucy2016.github.io/algorithmhot/", repo);
+  const repo = process.env.STATIC_SITE_REPO || "CATL-21CLab-SCIAGI/algorithmhot";
+  const base = publicDestination(process.env.STATIC_SITE_BASE || "https://catl-21clab-sciagi.github.io/algorithmhot/", repo);
   await mkdir(stateDir, { recursive: true, mode: 0o700 });
-  await deliverDaily({ date: target, refreshSlot, siteBase: base, repo, resume: args.includes("--resume"), refreshPublic: args.includes("--refresh-public") }, {
+  await deliverDaily({ date: target, refreshSlot: refreshSlot ?? undefined, reviewPolicy, siteBase: base, repo, resume: args.includes("--resume"), refreshPublic: args.includes("--refresh-public"),
+    // Scheduled reviews share the same persistent public retry policy.
+    autoRecoverPublic: true }, {
     stateDir, now: () => new Date(), assertIdle, inspect,
     log: value => console.log(JSON.stringify(value)),
-    execute: async (stage: Stage, runDate: string, windowEnd: string) => {
+    prepareEditions: async (runDate, windowEnd) => {
+      await command(["scripts/local.ts", "editions", runDate, windowEnd], path.join(stateDir, `${runDate}-generate.log`));
+    },
+    execute: async (stage: Stage, runDate: string, windowEnd: string, policy, collectionCutoff) => {
       const commands: Record<Stage, () => string[]> = {
         database: () => ["scripts/local.ts", "db"],
         readers: () => ["scripts/local.ts", "start"],
-        generate: () => refreshSlot ? ["scripts/local.ts", "refresh", runDate, windowEnd] : ["scripts/local.ts", "daily", runDate],
+        generate: () => refreshSlot ? ["scripts/local.ts", "refresh", runDate, collectionCutoff ?? windowEnd, ...(policy ? ["--review"] : [])] : ["scripts/local.ts", "daily", runDate],
         export: () => ["scripts/static-site.ts", "--api", safeSiteOrigin(privateConfig().SITE_URL), "--web", safeSiteOrigin(privateConfig().SITE_URL), "--base", base, "--output", ".data/public-site"],
         publish: () => ["scripts/publish-pages.ts", "--source", ".data/public-site", "--repo", repo],
+        verify: () => ["scripts/daily-delivery/verify.ts", "--source", ".data/public-site", "--repo", repo, refreshSlot ? "--slot" : "--date", runDate],
       };
-      await command(commands[stage](), path.join(stateDir, `${runDate}-${stage}.log`));
+      await command(commands[stage](), path.join(stateDir, `${runDate}-${stage}.log`), stage);
     },
+    classifyPublicError: error => error instanceof PublicStageRetryableError ? "retry" : "hold",
   });
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {

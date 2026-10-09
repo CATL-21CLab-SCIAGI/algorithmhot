@@ -23,7 +23,7 @@ after(async () => {
 const bj = (s: string) => new Date(`${s}+08:00`);
 
 test("a late run writes the issue that was due, not today's", () => {
-  assert.equal(dueDaily(bj("2026-09-29T08:00:05")), "2026-09-29");
+  assert.equal(dueDaily(bj("2026-09-29T09:00:05")), "2026-09-29");
   assert.equal(dueDaily(bj("2026-09-30T01:00:00")), "2026-09-29", "the 29th's run delayed past midnight");
   assert.equal(dueWeekly(bj("2026-09-28T10:00:00")), "2026-W39");
   assert.equal(dueWeekly(bj("2026-10-05T09:00:00")), "2026-W39", "Monday before 10:00: the next week is not due yet");

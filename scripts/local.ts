@@ -5,6 +5,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync, openSync, closeSync
 import { createServer } from "node:net";
 import path from "node:path";
 import { parseEnv } from "node:util";
+import { reviewCallCeiling } from "@aihot/contracts/review-schedule";
 
 const root = path.resolve(import.meta.dirname, "..");
 const dir = path.join(root, ".data/local");
@@ -50,7 +51,7 @@ function processRecord(name: Service | "batch"): ProcessRecord | null {
   const pid = record?.pid ?? legacyPid;
   if (!Number.isInteger(pid) || pid <= 1) return null;
   const entry = name === "batch" ? record?.entry : entries[name];
-  if (!entry || ![...Object.values(entries), "scripts/research-run.ts"].includes(entry)) return null;
+  if (!entry || ![...Object.values(entries), "scripts/research-run.ts", "scripts/research-editions.ts"].includes(entry)) return null;
   if (!commandLine(pid).includes(path.join(root, entry))) return null;
   if (record?.startedAt && fingerprint(pid) !== record.startedAt) return null;
   return record ?? { pid, entry, startedAt: fingerprint(pid) };
@@ -240,8 +241,16 @@ async function main() {
     const end = process.argv[4];
     if (!slot || !/^\d{4}-\d{2}-\d{2}-(00|03|06|09|12|15|18|21)(?:-r1)?$/.test(slot) || !end || !Number.isFinite(Date.parse(end))) throw new Error("Usage: local.ts refresh YYYY-MM-DD-HH frozen-cutoff-ISO");
     const id = `refresh-${slot}`;
+    const review = process.argv[5] === "--review";
+    if (process.argv[5] && !review || review && !/^\d{4}-\d{2}-\d{2}-(09|15|21)(?:-r1)?$/.test(slot)) throw new Error("New reviews run only at 09:00, 15:00 and 21:00 Beijing");
     await batch(id, "scripts/research-run.ts", [id, "refresh"], { ...env(), MODEL_RUN_ID: `daily-${slot.slice(0,10)}`, RESEARCH_RUN_ID: id,
-      RESEARCH_REFRESH_END: end, MODEL_CALLS_ENABLED: "true", COLLECT_ENABLED: "true", RESEARCH_ADMISSION_ENABLED: "true" });
+      RESEARCH_REFRESH_END: end, MODEL_CALLS_ENABLED: "true", COLLECT_ENABLED: "true", RESEARCH_ADMISSION_ENABLED: "true",
+      RESEARCH_ADMISSION_POLICY: review ? "all-in-window" : "legacy-capped", RESEARCH_MODEL_CALL_CEILING: review ? String(reviewCallCeiling(Number(slot.slice(11,13)), slot.endsWith("-r1"))) : "" });
+  } else if (command === "editions") {
+    const slot = process.argv[3], end = process.argv[4];
+    if (!slot || !/^\d{4}-\d{2}-\d{2}-(09|15|21)(?:-r1)?$/.test(slot) || !end || !Number.isFinite(Date.parse(end))) throw new Error("Usage: local.ts editions YYYY-MM-DD-HH frozen-cutoff-ISO");
+    await batch(`editions-${slot}`, "scripts/research-editions.ts", ["--due", `--now=${end}`],
+      { ...env(), COLLECT_ENABLED: "false", MODEL_CALLS_ENABLED: "false", MODEL_RUN_ID: "", RESEARCH_RUN_ID: "" });
   } else if (command === "run" || command === "daily") {
     const date = process.argv[3];
     if (command === "daily" && (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date) || new Date(`${date}T00:00:00Z`).toISOString().slice(0, 10) !== date)) throw new Error("Usage: node scripts/local.ts daily YYYY-MM-DD");

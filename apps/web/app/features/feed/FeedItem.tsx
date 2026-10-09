@@ -13,6 +13,7 @@ import { QuotedLine } from "../item/QuotedPost";
 import { EVIDENCE_LABELS } from "../item/research";
 import { fullDateTime } from "../../lib/format";
 import { OriginalSourceLink } from "../../components/OriginalSourceLink";
+import { announcementDay, originalPublicationAt } from "./research-date";
 
 export interface FeedItemProps {
   item: FeedItemSummary;
@@ -73,7 +74,10 @@ export const FeedItem = memo(function FeedItem({ item, group, filters, read = fa
       <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1">
         {item.research && <p className="text-[11.5px] font-medium text-accent">{EVIDENCE_LABELS[item.research.evidenceBasis]}</p>}
         <OriginalSourceLink url={item.originalUrl} title={item.title} />
-        {item.research?.announcedOn && <p className="text-[11.5px] text-ink-4">公告 {item.research.announcedOn}{item.research.originalPublishedAt ? ` · 原始提交 ${fullDateTime(item.research.originalPublishedAt)}` : ""}</p>}
+        {item.research && <p className="text-[11.5px] text-ink-4">
+          {item.research.arxivId ? "原始提交" : "原始发表"} {originalPublicationAt(item) ? fullDateTime(originalPublicationAt(item)!) : "未知"}
+          {announcementDay(item) ? ` · 公告 ${announcementDay(item)}` : ""}
+        </p>}
       </div>
 
       {isX && item.x!.media.length > 0 && <MediaThumbs media={item.x!.media} className="mt-2.5" />}

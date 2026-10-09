@@ -10,6 +10,7 @@ import { Timeline } from "../features/feed/Timeline";
 import { HotTopics } from "../features/feed/HotTopics";
 import { CategoryTabs, SearchField, SearchIconLink } from "../features/feed/Filters";
 import { beijingDate, beijingWeekday } from "../lib/format";
+import { reportReaderCopy } from "../features/report/reader-copy";
 import { IconArrowRight, IconDoc } from "../components/icons";
 
 export async function loader({ request }: Route.LoaderArgs) {
@@ -25,7 +26,7 @@ export async function loader({ request }: Route.LoaderArgs) {
   const upstream = new Headers();
   const [data, issue] = await Promise.all([
     loadOr404<TimelineResponse>(`/api/site/timeline${queryString({ channel: channel === "all" ? null : channel, category, tag })}`, { responseHeaders: upstream, signal: request.signal }),
-    !category && !tag ? apiGet<{ report: ReportDetail | null }>("/api/site/reports/pilot/latest-page", { signal: request.signal }).catch(() => null) : Promise.resolve(null),
+    !category && !tag ? apiGet<{ report: ReportDetail | null }>("/api/site/reports/daily/latest-page", { signal: request.signal }).catch(() => null) : Promise.resolve(null),
   ]);
   return withHeaders({ data, report: issue?.report ?? null, filters: { channel, category, tag, topic: null } }, { headers: releaseBoundCache(data.refreshAt, 60, Date.now(), upstream) });
 }
@@ -52,6 +53,7 @@ function TodayLabel() {
 
 export default function Home() {
   const { data, report, filters } = useLoaderData<typeof loader>();
+  const reportCopy = report ? reportReaderCopy(report) : null;
   const title = filters.tag ? `#${filters.tag}` : "精选";
   return (
     <div className="pb-6">
@@ -68,16 +70,16 @@ export default function Home() {
         </div>
       </div>
 
-      {report && <section aria-label="最新研究试刊" className="mb-6 mt-3 rounded-panel border border-line bg-surface p-5 lg:mt-0 lg:p-6">
+      {report && <section aria-label="最新科研日报" className="mb-6 mt-3 rounded-panel border border-line bg-surface p-5 lg:mt-0 lg:p-6">
         <div className="flex items-start gap-4">
           <span className="hidden size-12 shrink-0 items-center justify-center rounded-card bg-accent-soft text-accent sm:flex"><IconDoc size={25} /></span>
           <div className="min-w-0 flex-1">
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11.5px]"><span className="font-semibold tracking-[.12em] text-accent">最新研究试刊</span><span className="num text-ink-4">{beijingDate(report.windowStart)} — {beijingDate(report.windowEnd)} · 北京时间</span></div>
-            <h2 className="mt-2 text-[19px] font-semibold leading-snug text-ink"><Link to={`/pilot/${report.key}`} className="hover:text-accent">{report.lead?.title || report.title}</Link></h2>
-            <p className="mt-2 line-clamp-2 max-w-[900px] text-[13px] leading-relaxed text-ink-3">{report.lead?.leadParagraph || "算法、AI4AI 与 AI4S 的真实来源资料，附研究变化、比较条件和证据限制。"}</p>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11.5px]"><span className="font-semibold tracking-[.12em] text-accent">最新科研日报</span><span className="num text-ink-4">{report.key}</span></div>
+            <h2 className="mt-2 text-[19px] font-semibold leading-snug text-ink"><Link to={`/daily/${report.key}`} className="hover:text-accent">{reportCopy?.title}</Link></h2>
+            <p className="mt-2 line-clamp-2 max-w-[900px] text-[13px] leading-relaxed text-ink-3">{reportCopy?.paragraph || "算法、AI4AI 与 AI4S 的研究进展，附论文原图、方法解读与原文入口。"}</p>
             <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
-              <div className="flex flex-wrap gap-x-3 gap-y-1 text-[12px] text-ink-4"><span><b className="num font-semibold text-ink">{report.metrics.totalEvents ?? 0}</b> 条研究 · {report.sections.length} 个栏目</span>{!!report.run?.gaps.length && <span className="text-amber-ink">含 {report.run.gaps.length} 项处理缺口，已披露</span>}</div>
-              <Link to={`/pilot/${report.key}`} className="inline-flex min-h-9 items-center gap-2 rounded-control bg-accent px-3 text-[12px] font-medium text-accent-contrast hover:bg-accent-ink">阅读真实报告 <IconArrowRight size={14} /></Link>
+              <div className="flex flex-wrap gap-x-3 gap-y-1 text-[12px] text-ink-4"><span><b className="num font-semibold text-ink">{report.metrics.totalEvents ?? 0}</b> 条研究 · {report.sections.length} 个栏目</span></div>
+              <Link to={`/daily/${report.key}`} className="inline-flex min-h-9 items-center gap-2 rounded-control bg-accent px-3 text-[12px] font-medium text-accent-contrast hover:bg-accent-ink">阅读日报 <IconArrowRight size={14} /></Link>
             </div>
           </div>
         </div>

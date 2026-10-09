@@ -109,6 +109,21 @@ test("metadata merges retain versions, source links and first observation withou
   assert.equal(researchMetadataChanged(merged, mergeResearchMetadata(merged, old)), false, "repeated observations are no metadata change");
 });
 
+test("community signal dates and versions cannot replace original paper evidence in either arrival order", () => {
+  const paper = makeResearchMetadata({ identity: parseArxivIdentity("2610.10528v1"),
+    originalPublishedAt: "2026-10-07T17:58:04Z", announcedOn: "2026-10-08", revisedAt: "2026-10-07T17:58:04Z",
+    observedAt: "2026-10-08T09:41:30Z", evidenceBasis: "abstract" });
+  const signal = makeResearchMetadata({ identity: parseArxivIdentity("2610.10528v2"), doi: "unverified-signal-doi",
+    originalPublishedAt: "2026-10-07", announcedOn: "2026-10-09", revisedAt: "2026-10-09",
+    observedAt: "2026-10-08", communitySelectedAt: "2026-10-08", evidenceBasis: "fulltext", signalOnly: true,
+    links: [{ kind: "project", url: "https://example.org/project", sourceUrl: "https://huggingface.co/papers/2610.10528" }] });
+  const expected = { ...paper, communitySelectedAt: signal.communitySelectedAt, links: signal.links };
+  assert.deepEqual(mergeResearchMetadata(paper, signal), expected);
+  assert.deepEqual(mergeResearchMetadata(signal, paper), expected);
+  assert.equal(mergeResearchMetadata({ ...paper, originalPublishedAt: null }, signal).originalPublishedAt, null,
+    "a community date cannot fill an unknown original paper timestamp");
+});
+
 test("LaTeX and HTML explicit links keep clean URLs, source labels and deduplicated provenance", () => {
   const sourceUrl = "https://arxiv.org/abs/2610.00602v1";
   const raw = String.raw`\href{https://github.com/a12dongithub/PathOGen}{GitHub} and \href{https://huggingface.co/a12donhf/CPathOGen}{Hugging~Face}.`;

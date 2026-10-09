@@ -1,6 +1,6 @@
 // First-party site API (/api/site/*). Not a public API: it may evolve with the website,
 // but it is served from the same public read layer as v1, RSS and MCP.
-import type { ResearchBrief, ResearchMetadata, ResearchRoadmap } from "./research.ts";
+import type { ResearchBrief, ResearchMetadata, ResearchRoadmap, ResearchPaperFigure } from "./research.ts";
 import type { CategoryKey, ChannelKey } from "./taxonomy.ts";
 
 export type SourceKind = "rss" | "web_list" | "json_list" | "x_search" | "mp_account" | "external";
@@ -309,6 +309,7 @@ export interface StoryDetail {
 export type ReportKind = "daily" | "weekly" | "monthly" | "pilot";
 
 export interface ReportCitation {
+  paperFigure?: ResearchPaperFigure | null;
   research?: ResearchMetadata | null;
   researchBrief?: ResearchBrief | null;
   researchRoadmap?: ResearchRoadmap | null;
@@ -338,6 +339,7 @@ export interface ReportRun {
 }
 
 export interface ReportDetail {
+  illustrated?: boolean;
   run?: ReportRun;
   kind: ReportKind;
   key: string;

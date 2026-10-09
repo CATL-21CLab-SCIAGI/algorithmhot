@@ -1,6 +1,8 @@
 // Public snapshot DTOs are deliberately narrower than the API. Never spread API objects here.
 import { computeResearchHeat, type ResearchHeatRanking } from "@aihot/contracts/research-heat";
 import type { ResearchDayCoverage } from "@aihot/contracts/research-coverage";
+import type { ResearchPaperFigure } from "@aihot/contracts/research";
+import { publicPaperFigure } from "@aihot/contracts/paper-figure";
 type ObjectValue = Record<string, unknown>;
 export const obj = (value: unknown): ObjectValue => value && typeof value === "object" && !Array.isArray(value) ? value as ObjectValue : {};
 export const list = (value: unknown): unknown[] => Array.isArray(value) ? value : [];
@@ -51,11 +53,13 @@ export interface PublicTopic {
   slug: string; name: string; group: string; definition: string; total: number; recent: number; latestAt: string | null; itemIds: string[];
 }
 export interface PublicCitation {
+  paperFigure?: ResearchPaperFigure | null;
   itemId: string | null; title: string; summary: string | null; sourceName: string; sourceUrl: string | null;
   publishedAt: string | null; available: boolean; research: PublicResearch | null; researchBrief: PublicBrief | null; researchRoadmap: PublicRoadmap | null;
 }
 export interface PublicReport {
-  kind: "pilot" | "daily"; key: string; issueNumber: number; title: string; windowStart: string; windowEnd: string;
+  illustrated?: boolean;
+  kind: "pilot" | "daily" | "weekly" | "monthly"; key: string; issueNumber: number; title: string; windowStart: string; windowEnd: string;
   generatedAt: string; revision: number; lead: { title: string; leadParagraph: string } | null; overview: string | null;
   sections: Array<{ label: string; summary: string | null; items: PublicCitation[] }>;
   metrics: Record<string, number>; status: string; gaps: string[];
@@ -143,18 +147,22 @@ export function sanitizeCitation(value: unknown): PublicCitation {
   return {
     itemId: c.itemId ? identifier(c.itemId) : null, title: str(c.title), summary: nullable(c.summary), sourceName: str(c.sourceName), sourceUrl: publicUrl(c.sourceUrl),
     publishedAt: nullable(c.publishedAt), available: c.available === true, research: research(c.research), researchBrief: brief(c.researchBrief), researchRoadmap: roadmap(c.researchRoadmap),
+    paperFigure: c.available === true ? publicPaperFigure(c.paperFigure, nullable(c.itemId), brief(c.researchBrief)?.sourceRevision ?? null) : null,
   };
 }
 export function sanitizeReport(value: unknown): PublicReport {
   const r = obj(value), run = obj(r.run), lead = obj(r.lead);
-  if (r.kind !== "pilot" && r.kind !== "daily") throw new Error("Unsupported report kind");
+  if (r.kind !== "pilot" && r.kind !== "daily" && r.kind !== "weekly" && r.kind !== "monthly") throw new Error("Unsupported report kind");
   const metrics = Object.fromEntries(Object.entries(obj(r.metrics)).filter(([, v]) => typeof v === "number" && Number.isFinite(v))) as Record<string, number>;
-  return {
+  const report: PublicReport = {
+    ...(r.illustrated === true ? { illustrated: true } : {}),
     kind: r.kind, key: identifier(r.key), issueNumber: number(r.issueNumber), title: str(r.title), windowStart: str(r.windowStart), windowEnd: str(r.windowEnd),
     generatedAt: str(r.generatedAt), revision: number(r.revision), lead: r.lead ? { title: str(lead.title), leadParagraph: str(lead.leadParagraph) } : null,
     overview: nullable(r.overview), sections: list(r.sections).map((value) => { const s = obj(value); return { label: str(s.label), summary: nullable(s.summary), items: list(s.items).map(sanitizeCitation) }; }),
     metrics, status: str(run.status) || "unknown", gaps: list(run.gaps).map(str),
   };
+  if (report.illustrated && report.sections.some(s => s.items.some(i => i.available && !i.paperFigure))) throw new Error("Illustrated report contains an available citation without a verified original figure");
+  return report;
 }
 
 export function validateSnapshot(snapshot: Snapshot): void {

@@ -9,6 +9,8 @@ import { listPath, pageMeta, siteUrl } from "../lib/seo";
 import { CodeBlock, CopyButton } from "../components/CodeBlock";
 import { IconArrowUpRight, IconChevronRight } from "../components/icons";
 import { AsideCard, ReadingLayout } from "../components/ui/Page";
+import { ResearchModelPanel } from "../features/agent/ResearchModelPanel";
+import { loadResearchModelPanel } from "../lib/research-model.server";
 
 /** The status badge reflects this page request, rather than a shared cached health result. */
 export function headers() {
@@ -26,7 +28,7 @@ const RESOURCES: Array<[label: string, href: string, note: string]> = [
 
 const TABS = [
   { key: "markdown", label: "Agent Markdown", note: "把地址交给 Agent", audience: "适合能读取网页的 Agent" },
-  { key: "mcp", label: "MCP", note: "连接六个研究工具", audience: "适合支持 MCP 的客户端" },
+  { key: "mcp", label: "MCP", note: "连接五个研究工具", audience: "适合支持 MCP 的客户端" },
   { key: "rss", label: "RSS", note: "订阅研究更新", audience: "适合阅读器与自动化流程" },
   { key: "api", label: "REST API", note: "接入自己的应用", audience: "适合脚本与应用开发" },
 ] as const;
@@ -38,6 +40,7 @@ function normalizeTab(value: string | null): TabKey {
 
 export async function loader({ request }: Route.LoaderArgs) {
   const tab = new URL(request.url).searchParams.get("tab");
+  const modelPanel = loadResearchModelPanel(request);
   let healthy = true;
   try {
     const res = await fetch(`${process.env.API_BASE_URL || "http://127.0.0.1:3101"}/api/health`, { signal: AbortSignal.any([request.signal, AbortSignal.timeout(3000)]) });
@@ -46,7 +49,7 @@ export async function loader({ request }: Route.LoaderArgs) {
     healthy = false;
   }
   // The public address the examples show is the configured one, the same on the server and in the browser.
-  return { tab: normalizeTab(tab), healthy, base: siteUrl() };
+  return { tab: normalizeTab(tab), healthy, base: siteUrl(), modelPanel: await modelPanel };
 }
 
 export function meta({ loaderData }: Route.MetaArgs) {
@@ -122,7 +125,7 @@ function MarkdownTab({ base }: { base: string }) {
   const prompt = `请先读取 ${guide} 的使用说明，再根据里面提供的地址，帮我查看最近 7 天算法、AI4AI 与 AI4S 的研究动态，说明方法变化和证据限制，并附上来源和阅读链接。`;
   return <>
     <h2 className="text-[20px] font-bold text-ink">给 Agent 一个地址，就能开始阅读</h2>
-    <p className="mt-2 text-[14.5px] leading-relaxed text-ink-3">适合能读取网页的 Agent。使用说明列出最新资讯、搜索、热点、事件、日报与试刊；答案附来源、时间和阅读链接，能力更新也会出现在同一个说明地址。</p>
+    <p className="mt-2 text-[14.5px] leading-relaxed text-ink-3">适合能读取网页的 Agent。使用说明列出最新资讯、搜索、热点、事件、日报、周报与月报；答案附来源、时间和阅读链接，能力更新也会出现在同一个说明地址。</p>
     <Section step="01" title="取得阅读入口">
       <ConnectionAddress value={guide} href="/api/v1/agent" label="Agent 使用说明 · Markdown" />
     </Section>
@@ -134,7 +137,6 @@ function MarkdownTab({ base }: { base: string }) {
         "最新资讯与搜索：过去 24 小时或最近 7 天，可按分类筛选。",
         "当前热点：按榜单顺序阅读，再顺着返回的事件地址查看来龙去脉。",
         `${withSubject("日报")}：最新一期或指定日期的固定刊物。`,
-        "研究试刊：最近七天资料，附实际窗口、处理范围与缺口。",
         "资料来自外部信源，重要事实仍请回原文核对。",
       ]} />
     </Reference>
@@ -150,11 +152,10 @@ function McpTab({ base }: { base: string }) {
     [T.hot, "研究热点", "当前热点榜与事件排名"],
     [T.story, "事件脉络", "热点事件的时间线与持续更新综述"],
     [T.daily, "正常日报", "最新一期或指定日期的日报"],
-    [T.pilot, "研究试刊", "最新或指定 key，含实际窗口、处理范围与缺口"],
   ];
   return (
     <>
-      <h2 className="text-[20px] font-bold text-ink">加一个地址，Agent 直接调用六个工具</h2>
+      <h2 className="text-[20px] font-bold text-ink">加一个地址，Agent 直接调用五个工具</h2>
       <p className="mt-2 text-[14.5px] text-ink-3">适合支持远程 MCP 的 Agent 与开发工具。标准 Streamable HTTP，匿名只读，不需要 token；工具返回简洁文字与同一份结构化数据。</p>
       <Section step="01" title="在客户端添加 MCP 服务">
         <ConnectionAddress value={url} label="传输方式 · Streamable HTTP" />
@@ -194,7 +195,7 @@ function RssTab({ base }: { base: string }) {
     ["精选摘要（推荐）", "最新 50 条精选摘要，保留标题、站内阅读与原文入口。", "/feed.xml"],
     ["精选全文", "与精选摘要相同的最新 50 条；只对明确允许再分发的来源内联正文。", "/feed/full.xml"],
     ["最近 7 天全部动态", "最近 7 天公开动态，按真实发布时间倒序。", "/feed/all.xml"],
-    [withSubject("日报"), `每 3 小时累计更新的${withSubject("日报")}，保留最近 30 期。`, "/feed/daily.xml"],
+    [withSubject("日报"), `每天 09:00、15:00、21:00 更新的${withSubject("日报")}，保留最近 30 期。`, "/feed/daily.xml"],
   ];
   const categories = CATEGORY_KEYS.join("|");
   return (
@@ -248,7 +249,6 @@ function ApiTab({ base }: { base: string }) {
     ["/api/v1/dailies", `${withSubject("日报")}日期索引`],
     ["/api/v1/dailies/latest", `最新${withSubject("日报")}`],
     ["/api/v1/dailies/{date}", `指定日期的${withSubject("日报")}`],
-    ["/api/v1/pilots", "研究试刊索引；/latest 或 /{YYYY-MM-DD} 读取一期，保留实际窗口与处理缺口"],
     ["/api/v1/weeklies", "周报索引；/latest 或 /{YYYY-Www} 读取一期"],
     ["/api/v1/monthlies", "月报索引；/latest 或 /{YYYY-MM} 读取一期"],
     ["/api/v1/selected/snapshot", "当前全部精选；首次完整同步（分页）"],
@@ -300,7 +300,7 @@ function ApiTab({ base }: { base: string }) {
 }
 
 export default function AgentPage() {
-  const { tab: initialTab, healthy, base } = useLoaderData<typeof loader>();
+  const { tab: initialTab, healthy, base, modelPanel } = useLoaderData<typeof loader>();
   const [params] = useSearchParams();
   const navigate = useNavigate();
   const [tab, setTab] = useState<TabKey>(initialTab);
@@ -386,7 +386,7 @@ export default function AgentPage() {
           </span>
         </div>
         <h1 className="mt-4 max-w-[560px] text-[28px] font-semibold leading-[1.3] tracking-tight text-ink sm:text-[34px]">把科研热点，<br className="sm:hidden" />接入你的 Agent</h1>
-        <p className="mt-3 max-w-[550px] text-[14px] leading-[1.85] text-ink-3">通过 {SITE.name}，读取算法、AI4AI 与 AI4S 的研究动态、来源证据和试刊。选择适合你的方式，复制地址即可开始。</p>
+        <p className="mt-3 max-w-[550px] text-[14px] leading-[1.85] text-ink-3">通过 {SITE.name}，读取算法、AI4AI 与 AI4S 的研究动态、来源证据和日周月报。选择适合你的方式，复制地址即可开始。</p>
         <div className="mt-5 flex flex-wrap items-center gap-2">
           <span className={pill}>匿名只读 · 无需 API Key</span>
           <span className={`${pill} mono`}>API v1</span>
@@ -402,6 +402,8 @@ export default function AgentPage() {
           <p className="mt-0.5 text-ink-3">{localOnly ? "请在运行本站的电脑上连接。云端 Agent、在线阅读器或另一台电脑无法直接访问这个本机地址。" : "客户端需要能够访问本站。这里的只读接入用于读取已有资料，不会启动采集或模型处理。"}</p>
         </div>
       </div>
+
+      <ResearchModelPanel data={modelPanel} />
 
       <section className="mt-8" aria-labelledby="agent-method-heading">
         <div className="mb-3 flex items-baseline justify-between gap-3">

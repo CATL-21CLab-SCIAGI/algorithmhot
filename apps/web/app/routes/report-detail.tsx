@@ -1,5 +1,5 @@
 import { SITE, withSubject } from "@aihot/industry/site";
-import { data, useLoaderData } from "react-router";
+import { data, redirect, useLoaderData } from "react-router";
 import type { Route } from "./+types/report-detail";
 import type { ReportDetail, ReportNavigationEntry, ReportKind } from "@aihot/contracts/site";
 import { apiGet, loadOr404 } from "../lib/api.server";
@@ -7,6 +7,7 @@ import { pageMeta, titled } from "../lib/seo";
 import { beijingDate } from "../lib/format";
 import { ReportLayout } from "../features/report/ReportLayout";
 import { ReportPaper } from "../features/report/ReportPaper";
+import { reportReaderCopy } from "../features/report/reader-copy";
 import { KIND_LABEL, kindFromPath } from "../features/report/format";
 
 const PATTERN: Record<ReportKind, RegExp> = {
@@ -18,6 +19,7 @@ const PATTERN: Record<ReportKind, RegExp> = {
 
 export async function loader({ request, params }: Route.LoaderArgs) {
   const kind = kindFromPath(new URL(request.url).pathname);
+  if (kind === "pilot") throw redirect("/daily", 301);
   const key = params.key ?? "";
   if (!PATTERN[kind].test(key)) throw data({ message: "not_found" }, { status: 404 });
   const [report, { items: index }] = await Promise.all([
@@ -30,9 +32,10 @@ export async function loader({ request, params }: Route.LoaderArgs) {
 export function meta({ loaderData }: Route.MetaArgs) {
   if (!loaderData) return [{ title: titled("报告不存在") }, { name: "robots", content: "noindex" }];
   const r = loaderData.report;
+  const copy = reportReaderCopy(r);
   return pageMeta({
     title: r.kind === "daily" ? `${withSubject("日报")} ${r.key}` : r.title.replace(`${SITE.name} `, `${SITE.subject} `),
-    description: r.lead?.leadParagraph ?? r.overview?.slice(0, 150) ?? `${SITE.name} ${r.key} 的${withSubject(KIND_LABEL[r.kind])}。`,
+    description: copy.paragraph?.slice(0, 150) ?? `${SITE.name} ${r.key} 的${withSubject(KIND_LABEL[r.kind])}。`,
     path: `/${r.kind}/${r.key}`,
     image: `/og/reports/${r.kind}/${r.key}.png`,
     type: "article",

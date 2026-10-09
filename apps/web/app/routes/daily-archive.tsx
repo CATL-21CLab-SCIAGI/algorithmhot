@@ -5,6 +5,7 @@ import { apiGet } from "../lib/api.server";
 import { pageMeta } from "../lib/seo";
 import { beijingDate, beijingWeekday } from "../lib/format";
 import { ReportLayout } from "../features/report/ReportLayout";
+import { readerArchiveTitle } from "../features/report/reader-copy";
 import { archiveGroups } from "../features/report/format";
 import { Rows, SectionPage } from "../features/report/ReportPaper";
 import { Nameplate } from "../features/report/Nameplate";
@@ -53,9 +54,9 @@ export default function DailyArchive() {
                     <span className="mt-1.5 text-[10.5px] leading-none text-ink-4">{beijingWeekday(e.key).replace("星期", "周")}</span>
                   </span>
                   <span className="min-w-0">
-                    <span className="block text-[15px] font-bold leading-[1.55] text-ink transition-colors group-hover:text-accent">{e.title ?? `${withSubject("日报")} ${e.key}`}</span>
+                    <span className="block text-[15px] font-bold leading-[1.55] text-ink transition-colors group-hover:text-accent">{readerArchiveTitle(e.title, "daily", e.key)}</span>
                     <span className="mt-1 block text-[12px] text-ink-4">
-                      <span className="num">{e.count}</span> 件大事
+                      <span className="num">{e.count}</span> 条研究
                     </span>
                   </span>
                 </Link>

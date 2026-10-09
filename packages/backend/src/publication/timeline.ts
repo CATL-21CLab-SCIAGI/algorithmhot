@@ -9,6 +9,7 @@ import { sql } from "../db.ts";
 import { decodeCursor, encodeCursor, InvalidCursorError, queryBinding } from "../lib/cursor.ts";
 import {
   ITEM_COLUMNS, ITEM_FROM, categoryCondition, channelCondition, tagCondition, toFeedItemSummary, topicCondition,
+  READER_SORT_AT, READER_TIMELINE_AT,
   type ItemRow,
 } from "./items.ts";
 
@@ -29,7 +30,7 @@ function filterSql(q: TimelineQuery) {
 }
 
 function binding(q: TimelineQuery): string {
-  return queryBinding({ c: q.channel, k: q.category, t: q.tag, p: q.topic ?? null });
+  return queryBinding({ c: q.channel, k: q.category, t: q.tag, p: q.topic ?? null, order: "original-date-v1" });
 }
 
 /** Representative preference: first-party, full text, higher score, earliest. */
@@ -52,7 +53,7 @@ export function pickRepresentative<T extends RepresentativeRow>(rows: T[]): T {
 async function groupPool(q: TimelineQuery, now: Date, storyIds: number[], factIds: number[]) {
   if (!storyIds.length && !factIds.length) return [];
   return sql<{ story_id: number | null; fact_id: number; article_id: string; source_id: string; at: Date }[]>`
-    SELECT DISTINCT f.story_id, f.id AS fact_id, p.article_id, p.source_id, p.timeline_at AS at
+    SELECT DISTINCT f.story_id, f.id AS fact_id, p.article_id, p.source_id, ${READER_TIMELINE_AT} AS at
     FROM facts f JOIN fact_articles fa ON fa.fact_id = f.id JOIN publications p ON p.article_id = fa.article_id
     WHERE (f.story_id IN ${sql(storyIds.length ? storyIds : [0])} OR f.id IN ${sql(factIds.length ? factIds : [0])})
       AND ${listedCondition(now)} ${filterSql(q)}`;
@@ -95,7 +96,7 @@ async function queryGroupedAnchors(q: TimelineQuery, now: Date) {
   const rows = (
     await sql<{ gk: string; anchor_at: Date }[]>`
       WITH base AS (
-        SELECT p.sort_at, coalesce('s' || p.story_id::text, 'f' || p.fact_id::text, 'a' || p.article_id) AS gk
+        SELECT ${READER_SORT_AT} AS sort_at, coalesce('s' || p.story_id::text, 'f' || p.fact_id::text, 'a' || p.article_id) AS gk
         FROM publications p
         WHERE ${selectedCondition(now)} ${filterSql(q)}
       )
@@ -150,7 +151,8 @@ export async function loadTimeline(q: TimelineQuery): Promise<Omit<TimelineRespo
   const [members, pool] = await Promise.all([
     storyIds.length || factIds.length
       ? sql<Member[]>`
-        SELECT p.story_id, p.fact_id, p.article_id AS id, p.first_party, p.body_mode, p.score, p.timeline_at, p.sort_at FROM publications p
+        SELECT p.story_id, p.fact_id, p.article_id AS id, p.first_party, p.body_mode, p.score,
+          ${READER_TIMELINE_AT} AS timeline_at, ${READER_SORT_AT} AS sort_at FROM publications p
         WHERE (p.story_id IN ${sql(storyIds.length ? storyIds : [0])} OR (p.story_id IS NULL AND p.fact_id IN ${sql(factIds.length ? factIds : [0])}))
           AND ${selectedCondition(now)} ${filterSql(q)}`
       : Promise.resolve([] as Member[]),

@@ -1,6 +1,6 @@
 # 源码同步与仓库历史
 
-项目统一使用公开仓库 [PKUCY2016/algorithmhot](https://github.com/PKUCY2016/algorithmhot)。`main` 保存可运行源码；`gh-pages` 保存经过清单与内容审核的阅读快照。网页地址保持 https://pkucy2016.github.io/algorithmhot/ 。旧 `algorithmhot-source` 停止更新，不再作为同步目标。
+项目统一使用公开仓库 [CATL-21CLab-SCIAGI/algorithmhot](https://github.com/CATL-21CLab-SCIAGI/algorithmhot)。`main` 保存可运行源码；`gh-pages` 保存经过清单与内容审核的阅读快照。网页地址为 [AlgorithmHot 科研热点](https://catl-21clab-sciagi.github.io/algorithmhot/)。旧 `algorithmhot-source` 停止更新，不再作为同步目标。
 
 2026-10-05 合并前核对发现两仓库均为 Public；此前说明将源码仓库称为 Private 不符合当时实际设置。本次依据用户的合并要求修正。源码同步不会上传任何本机秘密或运行数据。
 

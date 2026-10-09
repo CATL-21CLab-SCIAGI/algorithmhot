@@ -3,6 +3,7 @@
 import { config } from "../config.ts";
 import { sql } from "../db.ts";
 import { siteUrl } from "../publication/links.ts";
+import { publicReportCondition } from "../publication/report-scope.ts";
 
 const MAX_URLS = 10_000;
 
@@ -12,7 +13,7 @@ export async function submitIndexNow(now = new Date()) {
   const items = await sql<{ id: string }[]>`
     SELECT article_id AS id FROM publications WHERE visibility = 'public' AND indexable AND updated_at > ${since} AND updated_at <= ${now}
     ORDER BY updated_at LIMIT ${MAX_URLS}`;
-  const reports = await sql<{ kind: string; key: string }[]>`SELECT kind, key FROM reports WHERE generated_at > ${since} AND generated_at <= ${now}`;
+  const reports = await sql<{ kind: string; key: string }[]>`SELECT kind, key FROM reports WHERE generated_at > ${since} AND generated_at <= ${now} AND ${publicReportCondition()}`;
   const stories = await sql<{ public_id: string }[]>`SELECT public_id::text FROM stories WHERE merged_into IS NULL AND created_at > ${since} AND created_at <= ${now} LIMIT 500`;
   const urls = [
     ...items.map((i) => siteUrl(`/items/${i.id}`)),

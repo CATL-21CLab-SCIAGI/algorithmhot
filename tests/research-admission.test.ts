@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { after, test } from "node:test";
 import { closeDb, sql } from "@aihot/backend/db";
 import { config } from "@aihot/backend/config";
-import { chooseAdmissions, freezeAdmissions, admittedForProcessing, type AdmissionCandidate } from "@aihot/backend/research/admission";
+import { chooseAdmissions, freezeAdmissions, admittedForProcessing, admissionSourceInWindow, type AdmissionCandidate } from "@aihot/backend/research/admission";
 import { createResearchRun } from "@aihot/backend/research/collect";
 import { upsertMaterial } from "@aihot/backend/content/materials";
 import { queueProcessing, processArticle, sweepUnprocessed } from "@aihot/backend/jobs/content";
@@ -41,6 +41,31 @@ after(async () => {
 function candidates(sourceId: string, count: number, prefix: string, date = "2026-10-02T12:00:00.000Z"): AdmissionCandidate[] {
   return Array.from({ length: count }, (_, i) => ({ id: `${prefix}-${String(i).padStart(3, "0")}`, sourceId, canonicalKey: `${prefix}:${String(i).padStart(3, "0")}`, publishedAt: date }));
 }
+
+test("source window admission excludes old or unknown arXiv dates despite a fresh public timestamp", () => {
+  const start = new Date("2026-10-07T01:00:00Z"), end = new Date("2026-10-08T01:00:00Z");
+  for (const originalPublishedAt of [null, undefined, "invalid", "2026-10-06T17:59:34Z", "2026-10-08T01:00:00Z"]) {
+    assert.equal(admissionSourceInWindow({ published_at: start, backfill: false,
+      research: { arxivId: "2610.10536", originalPublishedAt } }, start, end), false);
+  }
+  for (const originalPublishedAt of [start.toISOString(), "2026-10-07T17:59:26Z"]) {
+    assert.equal(admissionSourceInWindow({ published_at: new Date("2026-10-03T01:00:00Z"), backfill: false,
+      research: { arxivId: "2610.10536", originalPublishedAt } }, start, end), true);
+  }
+});
+
+test("source window admission uses institution publication time and preserves the backfill boundary", () => {
+  const start = new Date("2026-10-07T01:00:00Z"), end = new Date("2026-10-08T01:00:00Z");
+  const current = { published_at: start, backfill: false, research: null };
+  assert.equal(admissionSourceInWindow(current, start, end), true);
+  assert.equal(admissionSourceInWindow({ ...current, published_at: end }, start, end), false);
+  assert.equal(admissionSourceInWindow({ ...current, published_at: null }, start, end), false);
+  assert.equal(admissionSourceInWindow({ ...current, published_at: new Date("2026-09-30T15:03:07Z"),
+    research: { originalPublishedAt: start.toISOString() } }, start, end), false);
+  assert.equal(admissionSourceInWindow({ ...current, backfill: true }, start, end), false);
+  assert.equal(admissionSourceInWindow({ ...current, backfill: true }, start, end, true), true,
+    "explicit historical pilot admission may still use backfill materials");
+});
 
 test("admission quotas reserve 20/15/15/10 and select at most 60 deterministic identities", () => {
   const input = [...candidates("research-arxiv-ml-ai", 30, "ml"), ...candidates("research-arxiv-physical-science", 30, "physics"), ...candidates("research-arxiv-molecular", 30, "molecular"), ...candidates("rss-bair", 8, "bair"), ...candidates("rss-google-deepmind", 8, "deepmind")];
@@ -155,7 +180,7 @@ for (const signalFirst of [true, false]) test(`HF ${signalFirst ? "before" : "af
   const signalSource = await source(signalFirst ? "signal-a" : "signal-b", true);
   const arxivId = `9912.${String((Date.now() % 90000) + (signalFirst ? 10000 : 10001)).padStart(5, "0")}`;
   const identity = parseArxivIdentity(`${arxivId}v1`)!;
-  const paper = () => material(id, paperSource, `paper-${arxivId}`, { url: `https://arxiv.org/abs/${arxivId}v1`, research: makeResearchMetadata({ identity, originalPublishedAt: "2014-03-05", observedAt: "2014-03-08", evidenceBasis: "abstract" }) });
+  const paper = () => material(id, paperSource, `paper-${arxivId}`, { url: `https://arxiv.org/abs/${arxivId}v1`, research: makeResearchMetadata({ identity, originalPublishedAt: "2014-03-05T17:58:04Z", observedAt: "2014-03-08", evidenceBasis: "abstract" }) });
   const signal = () => material(id, signalSource, `signal-${arxivId}`, { signal: true, url: `https://huggingface.co/papers/${arxivId}`, identityKey: `hf:${arxivId}`, research: makeResearchMetadata({ identity, originalPublishedAt: "2014-03-05", communitySelectedAt: "2014-03-07", observedAt: "2014-03-08", evidenceBasis: "abstract", signalOnly: true }) });
   let paperId: string, signalId: string;
   if (signalFirst) { signalId = await signal(); paperId = await paper(); }
@@ -167,6 +192,6 @@ for (const signalFirst of [true, false]) test(`HF ${signalFirst ? "before" : "af
   await publishArticle(paperId);
   const [published] = await sql<{ research: ResearchMetadata }[]>`SELECT research FROM publications WHERE article_id=${paperId}`;
   assert.equal(published!.research.signalOnly, false);
-  assert.equal(published!.research.originalPublishedAt, "2014-03-05T00:00:00.000Z");
+  assert.equal(published!.research.originalPublishedAt, "2014-03-05T17:58:04.000Z");
   assert.equal(published!.research.communitySelectedAt, "2014-03-07T00:00:00.000Z");
 });

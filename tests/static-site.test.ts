@@ -33,6 +33,9 @@ test("rendered HTML escapes source content and every internal link respects proj
   assert.equal(files.has(".nojekyll"), true);
   assert.equal([...files.keys()].some((key) => key.startsWith(".github")), false);
   assert.match(files.get("about/index.html")!, /GitHub 可能处理访问 IP/);
+  const agent = files.get("agent/index.html")!;
+  assert.doesNotMatch(agent, /调研模型|600 次调用|本机设置/);
+  assert.doesNotMatch(agent, /<form|<select|localhost|127\.0\.0\.1|\/api\/admin/);
 });
 
 test("static validation catches missing targets and root-relative links escaping Pages prefix", () => {
@@ -64,7 +67,7 @@ test("roadmap preserves original evidence, labels interpretation and does not re
   assert.match(html, /独立复现未核验/);
   s.reports = [sanitizeReport({ kind: "pilot", key: "2026-10-03", title: "old report", sections: [{ label: "算法", items: [{ itemId: "paper_1", title: "test", available: true }] }], run: { status: "partial", gaps: ["missing brief"] }, metrics: { admitted: 60, selected: 29, totalEvents: 15 } })];
   const { files } = createExport(s);
-  assert.doesNotMatch(files.get("pilot/2026-10-03/index.html")!, /PAPER ROADMAP/);
+  assert.equal(files.has("pilot/2026-10-03/index.html"), false);
   assert.match(files.get("items/paper_1/index.html")!, /PAPER ROADMAP/);
 });
 
@@ -76,7 +79,7 @@ test("collection reads only publication HTTP routes, follows all topic pages and
     "/api/site/timeline?limit=40": { cards: [{ item: { id: "paper_1" } }], nextCursor: "next" },
     "/api/site/timeline?limit=40&cursor=next": { cards: [], nextCursor: null },
     "/api/site/topics/algorithm?page=1": { items: [raw], pageCount: 1 },
-    "/api/site/reports/pilot": { items: [] }, "/api/site/reports/daily": { items: [] }, "/api/site/items/paper_1": raw,
+    "/api/site/reports/weekly": { items: [] }, "/api/site/reports/monthly": { items: [] }, "/api/site/reports/daily": { items: [] }, "/api/site/items/paper_1": raw,
   };
   const get = async (route: string) => { calls.push(route); assert.ok(route in responses, route); return responses[route]; };
   const result = await collectSnapshot(get, snap().publicBaseUrl);

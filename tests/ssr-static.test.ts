@@ -6,12 +6,12 @@ import { sanitizeItem } from "../scripts/static-site/model.ts";
 import type { Snapshot } from "../scripts/static-site/model.ts";
 
 const snapshot: Snapshot = { schemaVersion: 1, publicBaseUrl: "https://pkucy2016.github.io/algorithmhot/", generatedAt: "2026-10-04T08:00:00.000Z", mode: "static-snapshot", scope: "only published items", topics: [], reports: [], items: [sanitizeItem({ id: "item1", title: "Public paper", source: { name: "arXiv" }, links: { original: "https://arxiv.org/abs/1234.5678" }, tags: ["算法"] })] };
-const routes = new Set(["/", "/all", "/topics", "/pilot", "/pilot/2026-10-03", "/agent", "/archive", "/about", "/category/algorithm", "/items/item1", "/data/snapshot.json"]);
+const routes = new Set(["/", "/all", "/topics", "/daily", "/daily/2026-10-03", "/agent", "/archive", "/about", "/category/algorithm", "/items/item1", "/data/snapshot.json"]);
 const shell = (body: string) => `<!DOCTYPE html><html><head><title>Local site</title><link rel="canonical" href="http://127.0.0.1:3102/topics"><link rel="stylesheet" href="/assets/root-ABC.css"><link rel="modulepreload" href="/assets/app.js"><script>window.__reactRouterContext={body:"RAW FULLTEXT",token:"SECRET"};</script></head><body><aside class="sticky top-0 hidden h-dvh w-[180px] lg:flex"><nav aria-label="主导航"><a href="/" class="flex h-10 bg-accent/10 font-semibold text-ink dark:bg-accent-soft" aria-current="page"><span class="text-accent">精选</span></a><a href="/all" class="flex h-10 font-medium text-ink-3 hover:bg-bg-sunk">全部</a></nav></aside><main id="main"><div class="mx-auto w-full max-w-[640px] lg:max-w-[var(--page-max-wide)]">${body}</div></main></body></html>`;
 const sanitize = (body: string, route = "/topics") => sanitizeSsrPage(shell(body), { route, snapshot, routes, assets: new Set(["/assets/root-ABC.css"]) });
 
 test("SSR export retains original report two rails, article columns, SVG and inline sizing", () => {
-  const html = sanitize('<div class="report-shell lg:flex"><aside class="w-[280px] lg:flex">Archive</aside><article class="@container grid @[760px]:grid-cols-2"><h1 id="report-start">Original masthead</h1><svg viewBox="0 0 420 110"><text x="0" y="88">科研试刊</text></svg><div style="grid-template-columns:repeat(4, minmax(0, 1fr))">metrics</div><details><summary>完整统计</summary>60 admitted</details></article></div>', "/pilot/2026-10-03");
+  const html = sanitize('<div class="report-shell lg:flex"><aside class="w-[280px] lg:flex">Archive</aside><article class="@container grid @[760px]:grid-cols-2"><h1 id="report-start">Original masthead</h1><svg viewBox="0 0 420 110"><text x="0" y="88">科研试刊</text></svg><div style="grid-template-columns:repeat(4, minmax(0, 1fr))">metrics</div><details><summary>完整统计</summary>60 admitted</details></article></div>', "/daily/2026-10-03");
   const $ = load(html);
   assert.equal($(".report-shell > aside").attr("class"), "w-[280px] lg:flex");
   assert.equal($("article").attr("class"), "@container grid @[760px]:grid-cols-2");
@@ -29,6 +29,12 @@ test("SSR scripts and hydration loader state are removed, not serialized into pu
   assert.doesNotMatch(html, /<script|modulepreload|window\.__reactRouter|RAW FULLTEXT|SECRET|UNPUBLISHED|tracker\.example|127\.0\.0\.1/);
   assert.match(html, /Public heading/);
   assert.equal(load(html)('meta[name="algorithmhot-renderer"]').attr("content"), "local-ssr");
+});
+
+test("static export removes live model settings and private controls before resolving admin links", () => {
+  const html = sanitize('<section data-live-research-model-panel="true"><h2>PRIVATE_MODEL_SELECTION</h2><a href="/admin/login?return=%2Fagent">Login</a><form><input name="csrf" value="PRIVATE_CSRF"><button>Save</button></form></section><div data-private-model-control="true">PRIVATE_MODEL_HISTORY</div><h1>Public Agent reading</h1>', "/agent");
+  assert.doesNotMatch(html, /PRIVATE_|\/admin|data-live-research-model-panel|data-private-model-control|<form|<select/);
+  assert.match(html, /Public Agent reading/);
 });
 
 test("item export strips original prose section, images and unsafe embedded media", () => {
@@ -90,9 +96,9 @@ test("all-public listing retains native shell but highlights the all destination
 });
 
 test("mobile tabs highlight the static route instead of the cloned page's original route", () => {
-  const input = shell("<h1>Public page</h1>").replace("</body>", '<nav aria-label="底部导航"><a href="/" class="relative flex font-semibold text-accent" aria-current="page">精选</a><a href="/all" class="relative flex text-ink-3 active:text-ink">全部</a><a href="/pilot" class="relative flex text-ink-3 active:text-ink">刊物</a><a href="/more" class="relative flex text-ink-3 active:text-ink">更多</a></nav></body>');
+  const input = shell("<h1>Public page</h1>").replace("</body>", '<nav aria-label="底部导航"><a href="/" class="relative flex font-semibold text-accent" aria-current="page">精选</a><a href="/all" class="relative flex text-ink-3 active:text-ink">全部</a><a href="/daily" class="relative flex text-ink-3 active:text-ink">刊物</a><a href="/more" class="relative flex text-ink-3 active:text-ink">更多</a></nav></body>');
   const known = new Set([...routes, "/more", "/daily", "/daily/archive"]);
-  for (const [route, expected] of [["/all", "/algorithmhot/all/"], ["/topics", "/algorithmhot/more/"], ["/daily/archive", "/algorithmhot/pilot/"], ["/category/algorithm", "/algorithmhot/"]]) {
+  for (const [route, expected] of [["/all", "/algorithmhot/all/"], ["/topics", "/algorithmhot/more/"], ["/daily/archive", "/algorithmhot/daily/"], ["/category/algorithm", "/algorithmhot/"]]) {
     const $ = load(sanitizeSsrPage(input, { route, snapshot, routes: known, assets: new Set(["/assets/root-ABC.css"]) }));
     const current = $('nav[aria-label="底部导航"] [aria-current="page"]');
     assert.equal(current.length, 1);
@@ -108,10 +114,10 @@ const originalFigure = {
   licenseUrl: "https://creativecommons.org/licenses/by/4.0/", verifiedAt: "2026-10-04T08:00:00.000Z", width: 640, height: 320, contentType: "image/png", sha256: "a".repeat(64),
 };
 const figureSnapshot: Snapshot = { ...snapshot, items: [sanitizeItem({ id: "item1", researchBrief: { sourceRevision: 2 } })], reports: [
-  { kind: "pilot", key: "2026-10-03", issueNumber: 1, title: "Pilot", windowStart: "2026-09-26T00:00:00Z", windowEnd: "2026-10-03T00:00:00Z", generatedAt: "2026-10-03T00:00:00Z", revision: 1, lead: null, overview: null, metrics: {}, status: "partial", gaps: [], sections: [{ label: "算法", summary: null, items: [{ itemId: "item1", title: "Paper", available: true, summary: null, sourceName: "arXiv", sourceUrl: originalFigure.sourceUrl, publishedAt: null, research: null, researchRoadmap: null, researchBrief: sanitizeItem({ id: "item1", researchBrief: { sourceRevision: 2 } }).researchBrief }] }] },
+  { kind: "daily", key: "2026-10-03", issueNumber: 1, title: "Pilot", windowStart: "2026-09-26T00:00:00Z", windowEnd: "2026-10-03T00:00:00Z", generatedAt: "2026-10-03T00:00:00Z", revision: 1, lead: null, overview: null, metrics: {}, status: "partial", gaps: [], sections: [{ label: "算法", summary: null, items: [{ itemId: "item1", title: "Paper", available: true, summary: null, sourceName: "arXiv", sourceUrl: originalFigure.sourceUrl, publishedAt: null, research: null, researchRoadmap: null, researchBrief: sanitizeItem({ id: "item1", researchBrief: { sourceRevision: 2 } }).researchBrief }] }] },
 ] };
 const figureMarkup = (src = originalFigure.imageUrl) => `<figure data-paper-figure="true" data-item-id="item1" data-source-revision="2"><img data-paper-figure="item1" src="${src}" class="w-full" srcset="https://tracker.example/alternate.png 2x" onerror="alert(1)"><figcaption>${originalFigure.figureLabel} · ${originalFigure.caption} ${originalFigure.attribution} <a href="${originalFigure.sourceUrl}">原文</a> <a href="${originalFigure.licenseUrl}">${originalFigure.licenseName}</a></figcaption></figure>`;
-const sanitizeFigure = (markup: string, route = "/pilot/2026-10-03", figures = [originalFigure], data = figureSnapshot) => sanitizeSsrPage(shell(markup), { route, snapshot: data, routes, assets: new Set(["/assets/root-ABC.css"]), figures });
+const sanitizeFigure = (markup: string, route = "/daily/2026-10-03", figures = [originalFigure], data = figureSnapshot) => sanitizeSsrPage(shell(markup), { route, snapshot: data, routes, assets: new Set(["/assets/root-ABC.css"]), figures });
 
 test("original figures require exact paper revision and URL, preserve attribution, strip trackers and use narrow CSP", () => {
   const $ = load(sanitizeFigure(figureMarkup() + '<img src="https://tracker.example/pixel">'));
@@ -128,12 +134,12 @@ test("original figures require exact paper revision and URL, preserve attributio
   assert.throws(() => sanitizeFigure(figureMarkup().replace('data-source-revision="2"', 'data-source-revision="1"')), /Unapproved/);
   assert.throws(() => sanitizeFigure(figureMarkup(), "/topics"), /Unapproved/);
   assert.throws(() => sanitizeFigure(figureMarkup().replace(originalFigure.attribution, "Other author")), /attribution/);
-  assert.throws(() => sanitizeFigure(figureMarkup(), "/pilot/2026-10-03", [originalFigure], { ...figureSnapshot, reports: [] }), /published citation revision/);
+  assert.throws(() => sanitizeFigure(figureMarkup(), "/daily/2026-10-03", [originalFigure], { ...figureSnapshot, reports: [] }), /published citation revision/);
 });
 
 test("PDF extracts map to scoped local static assets and never broaden external image CSP", () => {
   const local = { ...originalFigure, imageOrigin: "pdf-extract" as const, imageUrl: "/paper-figures/figure1.png" };
-  const $ = load(sanitizeSsrPage(shell(figureMarkup(local.imageUrl) + `<a href="${local.imageUrl}">查看大图</a>`), { route: "/pilot/2026-10-03", snapshot: figureSnapshot, routes, assets: new Set(["/assets/root-ABC.css"]), figures: [local] }));
+  const $ = load(sanitizeSsrPage(shell(figureMarkup(local.imageUrl) + `<a href="${local.imageUrl}">查看大图</a>`), { route: "/daily/2026-10-03", snapshot: figureSnapshot, routes, assets: new Set(["/assets/root-ABC.css"]), figures: [local] }));
   assert.equal($("img").attr("src"), "/algorithmhot/assets/paper-figures/figure1.png");
   assert.equal($('a').filter((_, node) => $(node).text() === "查看大图").attr("href"), "/algorithmhot/assets/paper-figures/figure1.png");
   assert.match($('meta[http-equiv="Content-Security-Policy"]').attr("content")!, /img-src 'self' data:;/);

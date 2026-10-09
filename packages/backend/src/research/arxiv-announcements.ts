@@ -6,7 +6,9 @@ import { config } from "../config.ts";
 import { sql } from "../db.ts";
 import { guardedFetch } from "../lib/http-fetch.ts";
 import { withArxivRateLimit } from "../lib/arxiv-rate-limit.ts";
-import { parseArxivIdentity } from "../sources/research.ts";
+import { makeResearchMetadata, parseArxivIdentity, researchLinks } from "../sources/research.ts";
+import { sanitizeBody } from "../content/sanitize.ts";
+import { collapseWhitespace } from "../lib/text.ts";
 import { parseRss } from "../sources/rss.ts";
 import type { Candidate, SourceRow } from "../sources/types.ts";
 import { parseArxivNewPage } from "./arxiv-new.ts";
@@ -51,6 +53,51 @@ export function announcementInWindow(day: string, start: Date, end: Date): boole
   return isValidDate(day) && day >= beijingDate(start) && day <= beijingDate(end);
 }
 
+/** Admission uses the original arXiv submission timestamp, not the later announcement day. */
+export function submissionInWindow(value: string | null | undefined, start: Date, end: Date): boolean {
+  const time = value ? Date.parse(value) : NaN;
+  return Number.isFinite(time) && time >= start.getTime() && time < end.getTime();
+}
+
+/** The date-only citation metadata is not precise enough for a 09:00 cutoff. Read v1 history. */
+export function parseArxivAbstractPage(html: string, url: string, source: SourceRow, observedAt: Date): Candidate {
+  const requested = new URL(url), identity = parseArxivIdentity(url), $ = load(html);
+  if (requested.protocol !== "https:" || requested.hostname !== "arxiv.org" || !/^\/abs\//.test(requested.pathname) || !identity) throw new Error("Expected official arXiv abstract URL");
+  const declared = $('meta[name="citation_arxiv_id"]');
+  if (declared.length !== 1 || parseArxivIdentity(declared.attr("content") ?? "")?.id !== identity.id) throw new Error("ArXiv abstract identity mismatch");
+  const history = $(".submission-history");
+  if (history.length !== 1) throw new Error("Missing unique arXiv submission history");
+  const versions = [...collapseWhitespace(history.text()).matchAll(/\[v(\d+)\]\s*((?:Mon|Tue|Wed|Thu|Fri|Sat|Sun),\s+(\d{1,2})\s+([A-Z][a-z]{2})\s+(\d{4})\s+(\d{2}:\d{2}:\d{2})\s+UTC)/g)];
+  const first = versions.filter(match => match[1] === "1");
+  if (first.length !== 1) throw new Error("Missing unique precise arXiv v1 submission timestamp");
+  const dates = versions.map(match => {
+    const month = months.indexOf(match[4]!);
+    const date = `${match[5]}-${String(month + 1).padStart(2, "0")}-${match[3]!.padStart(2, "0")}`;
+    const iso = `${date}T${match[6]}Z`, time = Date.parse(iso);
+    if (Number(match[1]) < 1 || month < 0 || !isValidDate(date) || !Number.isFinite(time) || new Date(time).toISOString().slice(0, 19) !== iso.slice(0, 19)
+      || time > observedAt.getTime()) throw new Error("Invalid arXiv submission timestamp");
+    return { version: Number(match[1]), at: new Date(time) };
+  }).sort((a, b) => a.version - b.version);
+  const submitted = dates[0]!.at, revised = dates.at(-1)!.at;
+  if (dates.some((entry, i) => i > 0 && (entry.version === dates[i - 1]!.version || entry.at < dates[i - 1]!.at))) throw new Error("Inconsistent arXiv version history");
+  const titleNode = $("h1.title").clone(), abstract = $("blockquote.abstract").clone();
+  if (titleNode.length !== 1 || abstract.length !== 1) throw new Error("Missing unique arXiv title or abstract");
+  titleNode.find(".descriptor").remove(); abstract.find(".descriptor").remove();
+  const title = collapseWhitespace(titleNode.text()), bodyHtml = sanitizeBody(abstract.html() ?? "", url);
+  const bodyText = collapseWhitespace(load(bodyHtml, null, false).text());
+  if (!title || !bodyText || title === bodyText) throw new Error("Empty arXiv title or abstract");
+  const versioned = { ...identity, version: `v${dates.at(-1)!.version}` };
+  return {
+    identityKey: identity.canonicalKey, url: identity.canonicalUrl, title,
+    author: $(".authors a").map((_, node) => collapseWhitespace($(node).text())).get().join(", ") || null,
+    publishedAt: submitted, sourceUpdatedAt: revised, bodyHtml, bodyText, excerpt: bodyText, bodyStatus: "ok", media: [],
+    research: makeResearchMetadata({ identity: versioned, originalPublishedAt: submitted, revisedAt: revised, observedAt,
+      evidenceBasis: "abstract", signalOnly: source.participation_mode !== "editorial", links: researchLinks(url, [{ kind: "paper", url }], bodyHtml + ($(".comments").html() ?? "")) }),
+    raw: { kind: "arxiv-abstract-page", sourceId: source.id, sourceUrl: url, arxivId: identity.id,
+      originalPublishedAt: submitted.toISOString(), revisedAt: revised.toISOString() },
+  };
+}
+
 type PageResult<T> = { value: T; returned: number; parsed: number; excluded?: number; truncated?: boolean };
 async function recordedPage<T>(id: string, source: SourceRow, url: string, label: string, fetchResponse: typeof guardedFetch,
   consume: (body: string, observed: Date) => Promise<PageResult<T>>): Promise<T | null> {
@@ -70,7 +117,7 @@ async function recordedPage<T>(id: string, source: SourceRow, url: string, label
       const response = await withArxivRateLimit(url, () => fetchResponse(url, { timeoutMs: 30_000, maxBytes: 12 * 1024 * 1024 }));
       status = response.status;
       hash = await saveResearchResponse(file, response.body, { url, finalUrl: response.url, sourceId: source.id, observedAt: observed.toISOString(), status,
-        headers: { contentType: response.headers.get("content-type") }, evidence: label.startsWith("listing") ? "announcement-index" : "original-paper-metadata" });
+        headers: { contentType: response.headers.get("content-type"), date: response.headers.get("date"), age: response.headers.get("age"), lastModified: response.headers.get("last-modified") }, evidence: label.startsWith("listing") ? "announcement-index" : "original-paper-metadata" });
       await sql`UPDATE research_fetches SET http_status=${status},response_sha256=${hash} WHERE id=${receipt.id}`;
       if (status !== 200) throw new Error(`HTTP ${status}`);
       const body = response.text();
@@ -84,6 +131,9 @@ async function recordedPage<T>(id: string, source: SourceRow, url: string, label
         await sql`UPDATE research_fetches SET returned_count=${returned} WHERE id=${receipt.id}`;
         parsed = parseArxivNewPage(body, url, source, observed).candidates.length;
         await sql`UPDATE research_fetches SET parsed_count=${parsed} WHERE id=${receipt.id}`;
+      } else if (label.startsWith("abstract-page")) {
+        returned = 1;
+        await sql`UPDATE research_fetches SET returned_count=1 WHERE id=${receipt.id}`;
       }
       const result = await consume(body, observed);
       await sql`UPDATE research_fetches SET status='ok',returned_count=${result.returned},parsed_count=${result.parsed},excluded_count=${result.excluded ?? 0},truncated=${result.truncated ?? false} WHERE id=${receipt.id}`;
@@ -101,6 +151,8 @@ async function recordedPage<T>(id: string, source: SourceRow, url: string, label
 
 export async function collectArxivAnnouncements(id: string, run: { window_start: Date; window_end: Date }, source: SourceRow,
   categories: string[], fetchResponse: typeof guardedFetch = guardedFetch) {
+  const [state] = await sql`SELECT admission_frozen FROM research_runs WHERE id=${id}`;
+  if (state?.admission_frozen) return;
   const announcements = new Map<string, string>();
   for (const category of categories) {
     let offset = 0;
@@ -121,27 +173,82 @@ export async function collectArxivAnnouncements(id: string, run: { window_start:
       offset = result.nextOffset;
     }
   }
-  const ids = [...announcements.keys()].sort();
-  console.log(JSON.stringify({ source: source.id, announcements: ids.length, basis: "official-announcement-date" }));
-  const remaining = new Set(ids);
-  const existing = await sql`SELECT a.research->>'arxivId' AS arxiv_id FROM research_members m JOIN articles a ON a.id=m.article_id
-    WHERE m.run_id=${id} AND m.source_id=${source.id} AND a.body_status='ok' AND a.research->>'evidenceBasis'='abstract'`;
-  for (const row of existing) remaining.delete(row.arxiv_id);
+  const complete = new Set<string>();
+  async function membership(articleId: string, submitted: string | null | undefined) {
+    await sql`INSERT INTO research_members(run_id,article_id,source_id,in_window,signal_only)
+      SELECT ${id},${articleId},${source.id},${submissionInWindow(submitted, run.window_start, run.window_end)},false
+      WHERE EXISTS(SELECT 1 FROM research_runs WHERE id=${id} AND NOT admission_frozen)
+      ON CONFLICT(run_id,article_id) DO UPDATE SET in_window=EXCLUDED.in_window
+      WHERE EXISTS(SELECT 1 FROM research_runs WHERE id=${id} AND NOT admission_frozen)`;
+  }
+  async function reuseKnown() {
+    if (!announcements.size) return;
+    const existing = await sql`SELECT a.id,a.research->>'arxivId' AS arxiv_id,a.research->>'originalPublishedAt' AS submitted
+      FROM articles a JOIN sources s ON s.id=a.source_id WHERE a.research->>'arxivId'=ANY(${[...announcements.keys()]})
+      AND s.config->>'researchSourceKind'='arxiv' AND s.participation_mode='editorial'
+      AND a.identity_key='arxiv:' || (a.research->>'arxivId') AND a.research->>'canonicalKey'=a.identity_key
+      AND a.research->'signalOnly'='false'::jsonb AND a.body_status='ok' AND a.research->>'evidenceBasis'='abstract'`;
+    for (const row of existing) if (!complete.has(row.arxiv_id) && row.submitted && Number.isFinite(Date.parse(row.submitted))) {
+      // The current listing proves rediscovery; the previously retained source proves submission.
+      // Reuse both without moving its publication timestamp or spending another HTTP request.
+      await membership(row.id, row.submitted);
+      complete.add(row.arxiv_id);
+    }
+  }
+  await reuseKnown();
   async function persist(candidate: Candidate, observed: Date) {
     const identity = parseArxivIdentity(candidate.url);
     if (!identity || !announcements.has(identity.id) || !candidate.research) return false;
     candidate.research.announcedOn = announcements.get(identity.id)!;
     const material = await upsertMaterial({ ...candidate, sourceId: source.id, via: "import", discoveredAt: observed, backfill: null });
-    await sql`INSERT INTO research_members(run_id,article_id,source_id,in_window,signal_only)
-      VALUES(${id},${material.articleId},${source.id},true,false) ON CONFLICT DO NOTHING`;
+    const submitted = candidate.research.originalPublishedAt;
+    const precise = !!submitted && Number.isFinite(Date.parse(submitted));
+    // Only an unfrozen run can change membership; neither a fallback nor a replay reopens admission.
+    await membership(material.articleId, submitted);
+    if (precise) {
+      // The earlier abstract-list fallback deliberately had no source timestamp. Fill its gap only.
+      await sql`UPDATE articles SET published_at=${new Date(submitted!)},published_at_claim=${new Date(submitted!)},updated_at=now()
+        WHERE id=${material.articleId} AND published_at IS NULL`;
+      complete.add(identity.id);
+    }
     if (material.metadataChanged && !material.created && !material.revised) await publishArticle(material.articleId);
-    remaining.delete(identity.id);
-    return true;
+    return precise;
   }
-  const [apiOutage] = await sql`SELECT 1 FROM research_fetches WHERE run_id=${id} AND url LIKE 'https://export.arxiv.org/api/%'
-    AND status='failed' AND (http_status IS NULL OR http_status=429 OR http_status>=500) LIMIT 1`;
-  for (let offset = 0; !apiOutage && offset < ids.length; offset += 100) {
-    const requested = ids.slice(offset, offset + 100);
+  // /recent and /new can be served from different caches. Always read /new as an independent
+  // official discovery surface, even when every identity from the older index is complete.
+  for (const category of categories) {
+    let offset = 0;
+    for (let page = 0; page < 20; page++) {
+      const url = `https://arxiv.org/list/${category}/new?skip=${offset}&show=500`;
+      const result = await recordedPage(id, source, url, `abstract-list-${category.replaceAll(".", "-")}-${page}`, fetchResponse, async (body, observed) => {
+        const parsed = parseArxivNewPage(body, url, source, observed);
+        let excluded = 0;
+        for (const candidate of parsed.candidates) {
+          const identity = parseArxivIdentity(candidate.url);
+          if (!identity || !announcementInWindow(parsed.day, run.window_start, run.window_end)) { excluded++; continue; }
+          announcements.set(identity.id, [announcements.get(identity.id) ?? "", parsed.day].sort().at(-1)!);
+          if (!complete.has(identity.id)) await persist(candidate, observed);
+        }
+        console.log(JSON.stringify({ source: source.id, abstractList: category, page, returned: parsed.candidates.length, excluded,
+          missingMetadata: [...announcements.keys()].filter(key => !complete.has(key)).length }));
+        return { value: parsed, returned: parsed.candidates.length, parsed: parsed.candidates.length, excluded,
+          truncated: page === 19 && parsed.nextOffset !== null };
+      });
+      if (!result || result.nextOffset === null) break;
+      if (result.nextOffset <= offset) throw new Error("Abstract listing pagination did not advance");
+      offset = result.nextOffset;
+    }
+  }
+  await reuseKnown();
+  const ids = [...announcements.keys()].sort();
+  console.log(JSON.stringify({ source: source.id, announcements: ids.length, basis: "official-announcement-date" }));
+  const pending = ids.filter(key => !complete.has(key));
+  // A 200 response with invalid Atom is an API failure too. Resuming or changing an id-list
+  // must not allocate another API retry budget; precise metadata can still be recovered from /abs.
+  const [apiFailure] = await sql`SELECT 1 FROM research_fetches WHERE run_id=${id} AND url LIKE 'https://export.arxiv.org/api/%'
+    AND status='failed' LIMIT 1`;
+  for (let offset = 0; !apiFailure && offset < pending.length; offset += 100) {
+    const requested = pending.slice(offset, offset + 100);
     const url = `https://export.arxiv.org/api/query?${new URLSearchParams({ id_list: requested.join(","), max_results: "100" })}`;
     const receivedCount = await recordedPage(id, source, url, `metadata-${offset / 100}`, fetchResponse, async (body, observed) => {
       const candidates = parseRss(body, source, url, observed);
@@ -151,38 +258,35 @@ export async function collectArxivAnnouncements(id: string, run: { window_start:
         if (!identity || !requested.includes(identity.id) || !candidate.research) continue;
         if (await persist(candidate, observed)) received.add(identity.id);
       }
-      const truncated = requested.some(key => !received.has(key));
+      const truncated = requested.some(key => !complete.has(key));
       console.log(JSON.stringify({ source: source.id, metadataPage: offset / 100, requested: requested.length, parsed: received.size, truncated }));
       return { value: received.size, returned: responseRecordCount(body, "rss"), parsed: received.size, truncated };
     });
-    // A source outage is not one fresh retry allowance per hundred identities.
+    // An API outage is not one fresh retry allowance per hundred identities.
     if (receivedCount === null || receivedCount < requested.length) break;
   }
-  if (remaining.size) for (const category of categories) {
-    let offset = 0;
-    for (let page = 0; page < 20; page++) {
-      const url = `https://arxiv.org/list/${category}/new?skip=${offset}&show=500`;
-      const result = await recordedPage(id, source, url, `abstract-list-${category.replaceAll(".", "-")}-${page}`, fetchResponse, async (body, observed) => {
-        const parsed = parseArxivNewPage(body, url, source, observed);
-        let excluded = 0;
-        for (const candidate of parsed.candidates) {
-          const identity = parseArxivIdentity(candidate.url);
-          if (!identity || announcements.get(identity.id) !== parsed.day) { excluded++; continue; }
-          await persist(candidate, observed);
-        }
-        console.log(JSON.stringify({ source: source.id, abstractList: category, page, returned: parsed.candidates.length, excluded, missingMetadata: remaining.size }));
-        return { value: parsed, returned: parsed.candidates.length, parsed: parsed.candidates.length, excluded,
-          truncated: page === 19 && parsed.nextOffset !== null };
-      });
-      if (!result || result.nextOffset === null) break;
-      if (result.nextOffset <= offset) throw new Error("Abstract listing pagination did not advance");
-      offset = result.nextOffset;
+  let consecutiveUnavailable = 0;
+  for (const paperId of ids.filter(key => !complete.has(key))) {
+    const url = `https://arxiv.org/abs/${paperId}`;
+    const result = await recordedPage(id, source, url, `abstract-page-${paperId.replaceAll(".", "-")}`, fetchResponse, async (body, observed) => {
+      const candidate = parseArxivAbstractPage(body, url, source, observed);
+      await persist(candidate, observed);
+      return { value: true, returned: 1, parsed: 1 };
+    });
+    if (result) consecutiveUnavailable = 0;
+    else {
+      const [last] = await sql`SELECT http_status FROM research_fetches WHERE run_id=${id} AND source_id=${source.id} AND url=${url} ORDER BY attempt_number DESC LIMIT 1`;
+      const unavailable = last && (last.http_status === null || last.http_status === 200 || last.http_status === 403 || last.http_status === 429 || last.http_status >= 500);
+      consecutiveUnavailable = unavailable ? consecutiveUnavailable + 1 : 0;
+      // Bound a source-wide outage, not the candidate count. Resume keeps every missing identity.
+      if (consecutiveUnavailable >= 2) break;
     }
   }
-  if (remaining.size) await sql`UPDATE research_fetches SET truncated=true WHERE status='ok' AND id=(
-    SELECT id FROM research_fetches WHERE run_id=${id} AND source_id=${source.id} ORDER BY id DESC LIMIT 1)`;
+  const remaining = ids.filter(key => !complete.has(key));
+  if (remaining.length) await sql`UPDATE research_fetches SET truncated=true WHERE status='ok' AND id=(
+    SELECT id FROM research_fetches WHERE run_id=${id} AND source_id=${source.id} AND status='ok' ORDER BY id DESC LIMIT 1)`;
   await writeFile(path.join(config.dataDir, "research", id, `${source.id}-announcement-coverage.json`), JSON.stringify({
     runId: id, sourceId: source.id, windowStart: run.window_start, windowEnd: run.window_end,
-    announcedIdentities: ids, metadataObtained: ids.filter(key => !remaining.has(key)), missingMetadata: [...remaining],
+    announcedIdentities: ids, metadataObtained: ids.filter(key => complete.has(key)), missingMetadata: remaining,
   }, null, 2), { mode: 0o600 });
 }

@@ -1,5 +1,5 @@
 import { SITE, subjectAfter, withSubject } from "@aihot/industry/site";
-import { useLoaderData } from "react-router";
+import { redirect, useLoaderData } from "react-router";
 import type { Route } from "./+types/report-latest";
 import type { ReportDetail, ReportNavigationEntry } from "@aihot/contracts/site";
 import { loadOr404 } from "../lib/api.server";
@@ -12,6 +12,7 @@ import { KIND_LABEL, kindFromPath } from "../features/report/format";
 
 export async function loader({ request }: Route.LoaderArgs) {
   const kind = kindFromPath(new URL(request.url).pathname);
+  if (kind === "pilot") throw redirect("/daily", 301);
   const { index, report } = await loadOr404<{ index: ReportNavigationEntry[]; report: ReportDetail | null }>(`/api/site/reports/${kind}/latest-page`, { signal: request.signal });
   return { kind, report, index, today: beijingDate(Date.now()) };
 }
@@ -20,9 +21,9 @@ export function meta({ loaderData, location }: Route.MetaArgs) {
   const kind = loaderData?.kind ?? "daily";
   return pageMeta({
     title: withSubject(KIND_LABEL[kind]),
-    description: kind === "pilot" ? "最近七天研究试刊，展示实际时间窗口、处理范围与证据缺口。" : kind === "daily" ? `${SITE.name} 每 3 小时更新的${withSubject("日报")}。` : kind === "weekly" ? "每周综合回顾。" : "每月盘点。",
+    description: kind === "daily" ? `${SITE.name} 每天 09:00、15:00 和 21:00 更新的${withSubject("日报")}。` : kind === "weekly" ? "每周一 09:00，回顾上周值得阅读的科研进展。" : "每月 1 日 09:00，盘点上月研究方法与进展。",
     path: location.pathname,
-    image: `/og/pages/${kind === "pilot" ? "daily" : kind}.png`,
+    image: `/og/pages/${kind}.png`,
   });
 }
 

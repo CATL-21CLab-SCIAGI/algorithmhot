@@ -6,15 +6,12 @@ export function ResearchEvidence({ research, researchBrief, compact = false }: {
   if (!research) return null;
   const links = publicResearchLinks(research);
   const content = <>
-    {researchBrief?.editorialReview && <p className="mt-3 text-[12px] leading-relaxed text-ink-3">
-      <span className="font-semibold text-accent">已按原文复核修订</span>：{researchBrief.editorialReview.note}
-    </p>}
     {researchBrief ? <dl className="mt-3 space-y-3 text-[13px] leading-relaxed">
       {Object.entries(RESEARCH_BRIEF_LABELS).map(([key, label]) => <div key={key}>
         <dt className="font-semibold text-ink-2">{label}</dt>
         <dd className="mt-1 whitespace-pre-line text-ink-3">{researchBrief[key as keyof typeof RESEARCH_BRIEF_LABELS]}</dd>
       </div>)}
-    </dl> : <p className="mt-3 text-[12px] text-ink-4">结构化研究解读待补充。</p>}
+    </dl> : null}
     <dl className="mt-3 grid grid-cols-2 gap-x-4 gap-y-3 text-[12px]">
       {researchDates(research).map(date => <div key={date.label}>
         <dt className="text-ink-4">{date.label}</dt>
@@ -26,7 +23,6 @@ export function ResearchEvidence({ research, researchBrief, compact = false }: {
       {links.map(link => <a key={`${link.kind}:${link.url}`} href={link.url} target="_blank" rel="noopener noreferrer" title={`资料链接来源：${link.sourceUrl}`} className="font-medium text-accent hover:underline">{RESEARCH_LINK_LABELS[link.kind]} ↗</a>)}
     </div>}
     <p className="mt-3 text-[12px] text-ink-4">{!links.some(link => link.kind === "code") && "代码：未知，当前资料未提供入口。"}{!links.some(link => link.kind === "weights") && " 权重：未知，当前资料未提供入口。"}</p>
-    <p className="mt-2 text-[12px] text-ink-4">筛选评分尚未经过用户标注集校准。</p>
     <p className="mt-3 text-[12px] leading-relaxed text-ink-3">研究结果按作者报告呈现；资料入口与社区关注不代表独立复现。</p>
   </>;
   const heading = <span className="flex flex-wrap items-center gap-x-2 gap-y-1">

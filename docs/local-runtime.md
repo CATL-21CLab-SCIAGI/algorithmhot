@@ -24,7 +24,37 @@ node scripts/local.ts status
 
 完成网页构建后，使用 `node scripts/local.ts restart-reading` 刷新网页/API 进程；该命令不停止或重新提交活动的模型批次。数据库迁移会拒绝在模型批次或调度活跃时运行，并在迁移前后重新建立阅读进程连接。
 
-## 手动批次与正常日报
+## 切换调研模型
+
+在运行本项目的电脑上打开 [Agent 接入](http://127.0.0.1:3102/agent)，进入「调研模型」并登录管理员账号；端口若变化，以 `local.ts status` 显示的站点地址为准。选择 GPT-6 Astra 等预设并保存，只影响下一次新建调研批次；已有批次保留固定配置。阅读页面或保存选择均不会发起模型请求。
+
+该控件仅在本机动态页面提供，公开静态阅读页不提供模型管理。面板区分 Codex 订阅与 AWS Bedrock 按量付费，并显示实际验证状态。截至 2026-10-06，当前 Bedrock GPT-6 Astra 路线因地域限制被拒绝，暂不可选；Codex 预设配置就绪不等于实际生成已验证。600 次调用上限不是美元费用上限。
+
+## 每日三次更新与图文刊物
+
+当前日常入口为 `daily-delivery.ts --refresh`，由 Codex heartbeat `algorithmhot` 在北京时间每天 **09:00、15:00、21:00** 触发。普通 `start` 不启动它；原产品 scheduler 保持停止，避免两个生产者并行。脚本执行与自动化是否启用分别核对，不把文档或启动网页当成已配置调度。
+
+```bash
+# 当前到期时段；完成研究处理后整理刊物、导出、发布并核验。
+node scripts/daily-delivery.ts --refresh
+
+# 只读查询；恢复须使用回执中已有的完整时段身份。
+node scripts/daily-delivery.ts --refresh --status
+node scripts/daily-delivery.ts --slot 2026-10-08-09 --status
+node scripts/daily-delivery.ts --slot 2026-10-08-09 --resume
+```
+
+新建09、15、21点时段采用 `all-in-window`，取消每日 60 条及分来源名额，按来源与窗口条件对研究身份去重后全部准入。三个时段共享 `daily-YYYY-MM-DD` 的 600 次应用模型调用硬上限：09点累计至多 290 次，15点累计至多 435 次，21点累计至多 580 次，另保留 20 次报告额度。全量准入、完成处理与实际刊载是三个不同分母；达到处理上限后保留待处理状态。重启或同日修订不清零，UNKNOWN 保留占用并隔离，failed 不自动重发。
+
+日报每栏目最多 5 条；周报在周一 09:00 整理上一自然周，每栏目最多 8 条；月报在每月 1 日 09:00 整理上个月，每栏目最多 12 条。图文刊物只使用已经公开、通过精选且有研究解读的材料，每条还必须通过原论文配图及资料版本绑定检查。缺图、许可待确认、需复核的资料保留在私有检查记录，不以生成式示意图替代。成刊不增加导语模型调用；周/月刊无合格条目时不保存空刊。
+
+周期成刊由串联入口调用 `local.ts editions`，与研究批次共用项目批次锁，只使用既有材料。日常只处理最新到期刊期；历史周/月刊补建必须显式指定已关闭的刊期。2026-W40 与 2026-09 为本次明确补建范围，完成和上线以实际回执确认。
+
+公开入口为 `/daily`、`/weekly`、`/monthly`。旧试刊保留本机历史证据，移出公开导航和静态导出，旧 `/pilot` 阅读路径转到日报。读者页面展示科研结论、依据和原图归属；批次、预算、处理状态等保留在私有运行材料。完整规则与历史变更见 [每日更新说明](daily-delivery.md)。
+
+## 历史批次及 09:00 入口（仅兼容与恢复）
+
+以下命令保留旧的冻结窗口、准入与预算，不代表现行早晚更新规则；不应使用新 ID 绕过既有回执。
 
 ```bash
 # 稳定的批次 ID：恢复时继续使用原 ID，保留原始模型回执和调用额度。
@@ -33,34 +63,33 @@ node scripts/local.ts run pilot-20261003-01 all
 # 分阶段调用：collect / process / report / revise / status
 node scripts/local.ts run pilot-20261003-01 status
 
-# 正常日报，日期指北京时间 08:00 的刊期终点。
+# 正常日报，日期指北京时间 09:00 的刊期终点。
 node scripts/local.ts daily 2026-10-03
 
 # 单独检查六条来源，保存采集结果；不启用模型，也不将来源设为 enabled。
 node scripts/local.ts check-sources
 ```
 
-`daily YYYY-MM-DD` 委托 `scripts/research-run.ts daily-YYYY-MM-DD all`，并传入 `RESEARCH_RUN_KIND=daily` 与 `RESEARCH_RUN_DATE`。日报窗口为前一天北京时间 08:00 至刊期当天 08:00。手动回补历史日报需要显式指定日期。
+`daily YYYY-MM-DD` 委托 `scripts/research-run.ts daily-YYYY-MM-DD all`，并传入 `RESEARCH_RUN_KIND=daily` 与 `RESEARCH_RUN_DATE`。日报窗口为前一天北京时间 09:00 至刊期当天 09:00；论文还必须以原始提交时间落入该窗口，公告或本站观测时间不替代原始提交时间。手动回补历史日报需要显式指定日期。
 
 macOS 批次运行期间阻止空闲自动休眠，批次退出立即释放；不会阻止手动休眠或关机。断网或手动休眠仍可能留下 UNKNOWN 回执，应核对证据再恢复。
 
 `run <id> status` 可在批次运行时并发查询，关闭模型与采集开关，不获取批次锁。所有执行模型的批次与来源检查共享 `.data/local/batch.lock`。同一时间只允许一个批次；冲突返回退出码 `75`，不提交第二个任务。活动批次 PID 和进程身份写入 `batch.process.json` / `batch.pid`，各次运行状态写入 `batch-<id>.json`。停止的批次可能留下结果未知的模型请求，应先检查模型回执，再使用原批次 ID 恢复；不要通过删除回执或更换 ID 强制重发。
 
-## 可选调度，默认关闭
+## 旧产品 scheduler（保持停止）
 
 ```bash
 # 只读预览下一次时间，不采集、不调用模型、不启动调度。
 node scripts/research-scheduler.ts --once
 
-# 显式启用和停止。
-node scripts/local.ts scheduler-start
+# 当前只查看和停止旧 scheduler；不与 heartbeat 同时启用。
 node scripts/local.ts scheduler-stop
 node scripts/local.ts status
 ```
 
-调度启用后有两项工作：
+以下仅说明旧 scheduler 的兼容行为。当前日常更新使用上方 heartbeat，旧 scheduler 保持停止；显式启用旧 scheduler 时有两项工作：
 
-- 北京时间每天 08:00 运行当期 `local.ts daily YYYY-MM-DD`。
+- 北京时间每天 09:00 运行当期 `local.ts daily YYYY-MM-DD`。
 - 每六小时串行检查六条来源。首次检查在首次启动调度的六小时后；重启可沿用尚未到期的检查时间。检查使用 `MODEL_CALLS_ENABLED=false`、空 `MODEL_RUN_ID` 和研究准入约束，保留来源的禁用状态，不进入模型处理队列。
 
 如果两项工作同时到期，先运行日报，再执行来源检查。运行期间无第二个并发批次；遇到手动批次占用时只等待锁释放，每 30 秒检查一次，不会重复提交已经开始的模型任务。已提交任务失败或中断后不自动重试。
@@ -72,8 +101,8 @@ node scripts/local.ts status
 ## 停止与保留数据
 
 ```bash
-# 只停止指定 ID 的活动批次；其他批次不会被误停。
-node scripts/local.ts stop-batch pilot-20261003-01
+# 只停止指定 ID 的活动时段；以当前回执中的实际 ID 为准。
+node scripts/local.ts stop-batch refresh-2026-10-08-09
 
 # 停止调度及其当前子任务，保留网页与数据库。
 node scripts/local.ts scheduler-stop
@@ -87,12 +116,12 @@ node scripts/local.ts stop-all
 
 停止前核对保存的 PID、启动时间与本项目入口，避免误停已复用 PID 的其他进程。停止使用 `SIGTERM`，等待最多十秒；未退出时明确报错并保留 PID，不升级成强制清除。重试 `status` 检查状态。
 
-验收交付状态应为网页、API 和数据库可读，`scheduler: stopped`、`batch: stopped`。运行 `scheduler-stop` 不会关闭网页；普通 `start` 也不会重新启用调度。
+阅读服务交付时应能读网页、API 和数据库，旧 `scheduler: stopped`。`batch` 是否运行取决于当时早晚串联进度，应使用回执核对；停止阅读服务不等于暂停 Codex 自动化。运行 `scheduler-stop` 不会关闭网页；普通 `start` 也不会重新启用调度。
 
 ## 检查与恢复证据
 
 ```bash
-# 纯离线时钟测试：08:00、六小时碰撞、停机与跨年边界。
+# 旧兼容调度的纯离线时钟测试；现行早晚更新另见 daily-delivery 测试。
 node --test tests/scheduler-clock.test.ts
 
 # 完整离线验收：每次创建独立新测试库，模型只走本地 mock。

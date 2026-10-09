@@ -18,8 +18,7 @@ const PAGES: Record<string, OgCard> = {
   site: { kicker: SITE.name, title: SITE.tagline, subtitle: SITE.description },
   all: { kicker: `全部${withSubject("动态")}`, title: "所有信源的最新动态，一站看完", subtitle: "按时间汇总各信源的最新动态，可按类别与标签筛选。" },
   hot: { kicker: "热点榜", title: `过去 48 小时，大家在讨论什么`, subtitle: "热度指数、趋势与组成热度的公开来源。", accent: "hot" },
-  pilot: { kicker: "科研试刊", title: "最近七天科研试刊", subtitle: "有限候选范围的真实试运行；包含处理数量与来源缺口。" },
-  daily: { kicker: withSubject("日报"), title: `每天 8 点，一份读得完的${withSubject("日报")}`, subtitle: `前一天值得关注的${S}动态。` },
+  daily: { kicker: withSubject("日报"), title: `每天早晚 9 点，一份读得完的${withSubject("日报")}`, subtitle: `前一天值得关注的${S}动态。` },
   weekly: { kicker: withSubject("周报"), title: "一周大事，一次看清", subtitle: "本周的主线、重要发布与值得回看的讨论。" },
   monthly: { kicker: withSubject("月报"), title: "一个月的变化", subtitle: "月度主线与关键事件回顾。" },
   topics: { kicker: "主题", title: "长期追踪的方向", subtitle: "公司与机构、专题方向、内容形态。" },
@@ -102,7 +101,7 @@ export function registerOg(app: FastifyInstance) {
 
   app.get("/og/reports/:kind/:file", async (req, reply) => {
     const { kind, file } = req.params as { kind: string; file: string };
-    if (!["daily", "weekly", "monthly", "pilot"].includes(kind) || !file.endsWith(".png")) return notFound(reply);
+    if (!["daily", "weekly", "monthly"].includes(kind) || !file.endsWith(".png")) return notFound(reply);
     const r = await loadReport(kind as ReportKind, file.slice(0, -4));
     if (!r) return notFound(reply);
     return send(req, reply, {

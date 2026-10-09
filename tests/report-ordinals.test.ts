@@ -100,17 +100,15 @@ test("complete-series ordinals cross the navigation boundary without changing re
     assert.ok(!("issueNumber" in (await v1Daily(key))!.report), "the v1 report contract is unchanged");
   });
 
-  await t.test("later appends preserve old numbers within cached and refreshed snapshots", async () => {
+  await t.test("later appends appear immediately and preserve existing issue numbers", async () => {
     const oldNumbers = await Promise.all([1, 100, 399].map(async (n) => (await loadReport("daily", daily[n - 1]!))!.issueNumber));
     const warm = await listReports("daily");
     await insert("daily", daily.slice(405));
-    const cached = await listReports("daily");
-    assert.deepEqual(cached, warm, "the existing fresh-cache window is preserved");
     assert.equal((await loadReport("daily", daily[406]!))!.issueNumber, baseline.daily + 407);
-    refresh();
     const updated = await listReports("daily");
     assert.equal(updated.length, 400);
     assert.equal(updated[0]!.issueNumber, baseline.daily + 407);
+    assert.equal(updated.find(entry => entry.key === warm[0]!.key)!.issueNumber, warm[0]!.issueNumber);
     assert.deepEqual(await Promise.all([1, 100, 399].map(async (n) => (await loadReport("daily", daily[n - 1]!))!.issueNumber)), oldNumbers);
     const key = daily[99]!;
     await sql`UPDATE reports SET revision = revision + 1 WHERE kind = 'daily' AND key = ${key}`;

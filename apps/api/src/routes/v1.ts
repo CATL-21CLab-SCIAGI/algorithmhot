@@ -7,7 +7,7 @@ import { InvalidCursorError } from "@aihot/backend/lib/cursor";
 import { SearchBusyError } from "@aihot/backend/publication/pool";
 import { selectedChanges, selectedSnapshot, SnapshotRequiredError, v1Items } from "@aihot/backend/publication/v1";
 import { resolveStory, v1HotTopics, v1Story } from "@aihot/backend/publication/stories";
-import { v1Dailies, v1Daily, v1Periods, v1Period, v1Pilots, v1Pilot } from "@aihot/backend/publication/reports";
+import { v1Dailies, v1Daily, v1Periods, v1Period } from "@aihot/backend/publication/reports";
 import { codexResetsRecent, codexResetsSnapshot } from "@aihot/backend/monitor/read";
 import { isValidDate, isoWeekRange, monthRange } from "@aihot/contracts/time";
 import { applyPublicHeaders, QueryError, sendJsonWithEtag, sendProblem, strictQuery } from "../http/respond.ts";
@@ -116,28 +116,6 @@ export function registerV1(app: FastifyInstance) {
     const body = await v1Daily(date);
     if (!body) return sendProblem(req, reply, { status: 404, code: "not_found", detail: `No daily report exists for ${date}.`, cacheControl: "public, max-age=60" });
     return sendJsonWithEtag(req, reply, body, { etagPrefix: "v1-daily", cacheControl: V1_CACHE_CONTROL.dailyByDate });
-  }));
-
-  app.get("/api/v1/pilots", publicHandler(async (req, reply) => {
-    const q = strictQuery(req, ["limit"]);
-    const limit = intParam(q.limit, "limit", 1, 180, 30);
-    return sendJsonWithEtag(req, reply, await v1Pilots(limit), { etagPrefix: "v1-pilots", cacheControl: V1_CACHE_CONTROL.dailies });
-  }));
-
-  app.get("/api/v1/pilots/latest", publicHandler(async (req, reply) => {
-    strictQuery(req, []);
-    const body = await v1Pilot("latest");
-    if (!body) return sendProblem(req, reply, { status: 404, code: "not_found", detail: "No pilot report has been published yet." });
-    return sendJsonWithEtag(req, reply, body, { etagPrefix: "v1-pilot", cacheControl: V1_CACHE_CONTROL.latestDaily });
-  }));
-
-  app.get("/api/v1/pilots/:key", publicHandler(async (req, reply) => {
-    strictQuery(req, []);
-    const key = (req.params as { key: string }).key;
-    if (!isValidDate(key)) throw new QueryError("key must be a real YYYY-MM-DD calendar date.");
-    const body = await v1Pilot(key);
-    if (!body) return sendProblem(req, reply, { status: 404, code: "not_found", detail: `No pilot report exists for ${key}.`, cacheControl: "public, max-age=60" });
-    return sendJsonWithEtag(req, reply, body, { etagPrefix: "v1-pilot", cacheControl: V1_CACHE_CONTROL.dailyByDate });
   }));
 
   for (const { kind, path, latestCache, issueCache } of [

@@ -1,14 +1,11 @@
-import { useCallback, useMemo, useRef, useState, type ReactNode } from "react";
+import { useState } from "react";
 import { Link, useLoaderData } from "react-router";
-import type { SiteStats } from "@aihot/contracts/site";
 import { apiGet } from "../lib/api.server";
-import { shortSourceName } from "../lib/format";
 import { ABOUT, SITE, withSubject } from "@aihot/industry/site";
 import { organizationLd, pageMeta } from "../lib/seo";
 import { Kicker } from "../components/ui/Kicker";
 import { buttonClass } from "../components/ui/Controls";
 import { IconArrowRight } from "../components/icons";
-import { SignalRiver, type RiverSource } from "../features/about/SignalRiver";
 
 /** Shared caches may keep this page for five minutes. */
 export function headers() {
@@ -23,48 +20,17 @@ interface ContactSettings {
 }
 
 export async function loader({ request }: { request: Request }) {
-  const [contact, stats] = await Promise.all([
-    apiGet<ContactSettings>("/api/site/contact", { signal: request.signal }).catch((): ContactSettings => ({ wechatQr: null, feishuQr: null, makerAvatar: null })),
-    apiGet<SiteStats>("/api/site/stats", { signal: request.signal }).catch(() => null),
-  ]);
-  return { contact, stats };
+  const contact = await apiGet<ContactSettings>("/api/site/contact", { signal: request.signal })
+    .catch((): ContactSettings => ({ wechatQr: null, feishuQr: null, makerAvatar: null }));
+  return { contact };
 }
 
 export function meta() {
   return pageMeta({ title: "关于", description: `关于 ${SITE.name}：${SITE.description}`, path: "/about", image: "/og/pages/about.png", jsonLd: organizationLd() });
 }
 
-const NO_SOURCES: RiverSource[] = [];
-
-/** 3.6 万 from ten thousand up, digits with separators below. */
-function figure(n: number): { value: string; unit: string } {
-  return n >= 10_000 ? { value: (n / 10_000).toFixed(1).replace(/\.0$/, ""), unit: "万" } : { value: n.toLocaleString("en-US"), unit: "" };
-}
-
-function Figure({ n, unit }: { n: number; unit: string }) {
-  const f = figure(n);
-  return (
-    <div className="flex items-baseline gap-1.5">
-      <span className="num text-[30px] font-black leading-none tracking-[-0.03em] text-ink xl:text-[36px]">{f.value}</span>
-      <span className="text-[13px] text-ink-3">
-        {f.unit}
-        {unit}
-      </span>
-    </div>
-  );
-}
-
-const KIND_ORDER: Array<[string, string]> = [
-  ["x_search", "X"],
-  ["rss", "RSS"],
-  ["web_list", "网页"],
-  ["mp_account", "公众号"],
-  ["json_list", "接口"],
-];
-
 /**
- * The stage columns' rules: one column on phones, two by two from sm, and from lg four in a row whose
- * edges fall on the river's stage boundaries.
+ * Reading principles keep the site's hairline columns: one on phones, two from sm, four from lg.
  */
 const STAGE_CELL = [
   "sm:pr-6 lg:pr-6",
@@ -76,44 +42,34 @@ const STAGE_CELL = [
 interface Stage {
   no: string;
   title: string;
-  figure: ReactNode;
   text: string;
-  note: ReactNode;
+  note?: string;
 }
 
-function stagesOf(stats: SiteStats | null): Stage[] {
-  const kinds = stats ? KIND_ORDER.filter(([k]) => stats.sourceKinds[k]).map(([k, label]) => `${label} ${stats.sourceKinds[k]}`).join(" · ") : null;
-  return [
+const STAGES: Stage[] = [
     {
       no: "01",
-      title: "采集",
-      figure: stats && <Figure n={stats.sources} unit="个信源" />,
+      title: "研究来源",
       text: ABOUT.steps.collect,
-      note: kinds,
     },
     {
       no: "02",
-      title: "收录",
-      figure: stats && <Figure n={stats.items} unit="条动态" />,
+      title: "资料整理",
       text: ABOUT.steps.store,
-      note: stats && <>过去 24 小时收进 {stats.day.collected.toLocaleString("en-US")} 条</>,
     },
     {
       no: "03",
-      title: "精选",
-      figure: stats && <Figure n={stats.selected} unit="条精选" />,
+      title: "阅读精选",
       text: ABOUT.steps.select,
-      note: stats && <>过去 24 小时 {stats.day.selected} 条进了精选</>,
+      note: "比较条件与证据限制随文章保留；作者报告不等于独立复现。",
     },
     {
       no: "04",
-      title: "成刊",
-      figure: stats && <Figure n={stats.dailies} unit="期日报" />,
+      title: "图文刊物",
       text: ABOUT.steps.publish,
       note: "也可以用 RSS、API、MCP 订阅",
     },
   ];
-}
 
 /** The maker's round avatar before the greeting; it steps aside if the image fails. */
 function MakerFace({ src }: { src: string }) {
@@ -178,35 +134,8 @@ function Maker({ maker, contact }: { maker: NonNullable<typeof ABOUT.maker>; con
   );
 }
 
-/** The latest 精选 under the river's paper; it moves on each time an item reaches the paper. */
-function Latest({ item, className = "" }: { item: SiteStats["latest"][number] | undefined; className?: string }) {
-  if (!item) return null;
-  return (
-    <Link to={`/items/${item.id}`} prefetch="intent" className={`group block ${className}`}>
-      <span className="text-[11px] font-semibold tracking-[0.2em] text-accent">最近精选</span>
-      <span key={item.id} className="animate-fade-up mt-1.5 block">
-        <span className="line-clamp-2 text-[13.5px] font-semibold leading-[1.55] text-ink transition-colors group-hover:text-accent">{item.title}</span>
-        <span className="mt-1 block truncate text-[12px] text-ink-4">{shortSourceName(item.source)}</span>
-      </span>
-    </Link>
-  );
-}
-
 export default function AboutPage() {
-  const { contact, stats } = useLoaderData<typeof loader>();
-  const [focus, setFocus] = useState<number | null>(null);
-  const [at, setAt] = useState(0);
-  const shown = useRef(0);
-  const sources = useMemo(() => stats?.sampleSources ?? NO_SOURCES, [stats]);
-  const stages = useMemo(() => stagesOf(stats), [stats]);
-  const latest = stats?.latest ?? [];
-  // A pulse reaches the paper every second or so; the headline under it changes at most every 2.8s.
-  const onArrive = useCallback(() => {
-    const now = Date.now();
-    if (now - shown.current < 2800 || latest.length < 2) return;
-    shown.current = now;
-    setAt((i) => (i + 1) % latest.length);
-  }, [latest.length]);
+  const { contact } = useLoaderData<typeof loader>();
 
   return (
     <div className="mx-auto max-w-[var(--page-max-reading)] pb-14 pt-6 lg:pt-3">
@@ -219,12 +148,7 @@ export default function AboutPage() {
             <span className="text-accent">{ABOUT.headline[1]}</span>
           </h1>
           <p className="mt-5 max-w-[36em] text-[15.5px] leading-[1.85] text-ink-3 xl:text-[17px]">
-            {ABOUT.lead.split("{sources}").map((part, i) => (
-              <span key={i}>
-                {i > 0 && (stats ? <span className="num font-semibold text-ink">{stats.sources}</span> : "上百")}
-                {part}
-              </span>
-            ))}
+            {ABOUT.lead}
           </p>
         </div>
         <div className="flex flex-wrap gap-3 lg:pb-2">
@@ -239,29 +163,18 @@ export default function AboutPage() {
 
       <section aria-labelledby="how" className="mt-10 xl:mt-14">
         <h2 id="how" className="sr-only">
-          {SITE.name} 怎么工作
+          {SITE.name} 如何组织科研阅读
         </h2>
-        <SignalRiver sources={sources} focus={focus} onArrive={onArrive} className="h-[230px] sm:h-[300px] lg:h-[360px] 2xl:h-[420px]">
-          <Latest item={latest[at]} className="absolute left-[75%] top-[calc(42%+42px)] hidden w-[25%] px-6 lg:block" />
-        </SignalRiver>
-        <p className="sr-only">示意图：每条线是一个信源；线汇成一束束，代表同一件事的多篇报道；经过精选的闸门，只有少数几束通过，汇入每天的{withSubject("日报")}。</p>
-        <Latest item={latest[at]} className="mt-2 border-t border-line pt-4 lg:hidden" />
-        <ol className="mt-4 grid grid-cols-1 border-t border-line-strong sm:grid-cols-2 lg:mt-0 lg:grid-cols-4">
-          {stages.map((s, i) => (
+        <ol className="grid grid-cols-1 border-t border-line-strong sm:grid-cols-2 lg:grid-cols-4">
+          {STAGES.map((s, i) => (
             <li
               key={s.no}
-              tabIndex={0}
-              onPointerEnter={() => setFocus(i)}
-              onPointerLeave={() => setFocus(null)}
-              onFocus={() => setFocus(i)}
-              onBlur={() => setFocus(null)}
-              className={`border-line py-6 outline-none transition-colors ${STAGE_CELL[i]} ${focus === i ? "bg-accent-softer" : ""}`}
+              className={`border-line py-6 ${STAGE_CELL[i]}`}
             >
               <div className="flex items-baseline gap-2.5">
                 <span className="num text-[12px] font-bold tracking-[0.12em] text-accent">{s.no}</span>
                 <h3 className="text-[17px] font-bold text-ink">{s.title}</h3>
               </div>
-              {s.figure && <div className="mt-4">{s.figure}</div>}
               <p className="mt-3 text-[14px] leading-[1.8] text-ink-3">{s.text}</p>
               {s.note && <p className="mt-3 text-[12px] text-ink-4">{s.note}</p>}
             </li>

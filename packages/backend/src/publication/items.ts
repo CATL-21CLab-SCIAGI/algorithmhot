@@ -27,6 +27,8 @@ export interface ItemRow {
   published_at: Date | null;
   discovered_at: Date;
   timeline_at: Date;
+  /** Public listing order only; raw discovery/timeline timestamps retain their audit meaning. */
+  reader_at?: Date;
   /** Reading-group anchor for a selected item (timeline_at otherwise). */
   sort_at: Date;
   first_party: boolean;
@@ -54,10 +56,30 @@ export interface ItemRow {
   quoted_zh: string | null;
 }
 
+/**
+ * The reader's date is the source's original publication/submission timestamp.  In particular,
+ * an arXiv RSS `pubDate`/recent-listing heading is an announcement signal and must never turn an
+ * old submission into a new paper.  When an arXiv source has not yielded the original timestamp,
+ * retain the material at its observation timeline (the UI calls the source date unknown) rather
+ * than using `announcedOn` as a fabricated publication date.
+ */
+const ORIGINAL_PUBLICATION_AT = sql`CASE
+  WHEN nullif(p.research->>'originalPublishedAt', '') IS NOT NULL
+    AND pg_input_is_valid(p.research->>'originalPublishedAt', 'timestamptz')
+  THEN (p.research->>'originalPublishedAt')::timestamptz
+  ELSE NULL END`;
+export const READER_TIMELINE_AT = sql`CASE
+  WHEN ${ORIGINAL_PUBLICATION_AT} IS NOT NULL THEN ${ORIGINAL_PUBLICATION_AT}
+  WHEN nullif(p.research->>'arxivId', '') IS NOT NULL THEN p.timeline_at
+  ELSE coalesce(p.published_at, p.timeline_at)
+END`;
+/** Selected reading groups use the same original source date when it is known. */
+export const READER_SORT_AT = sql`coalesce(${ORIGINAL_PUBLICATION_AT}, p.sort_at)`;
+
 /** Columns every item listing selects. Internal judgement details never leave this layer. */
 export const ITEM_COLUMNS = sql`
   p.article_id AS id, p.research, p.research_brief, p.research_roadmap, p.revision, p.title, p.original_title, p.summary, p.reason, p.category, p.tags, p.score,
-  p.selected, p.eligible, p.channel, p.url, p.published_at, p.discovered_at, p.timeline_at, p.sort_at, p.first_party, p.visibility,
+  p.selected, p.eligible, p.channel, p.url, p.published_at, p.discovered_at, p.timeline_at, p.sort_at, ${READER_TIMELINE_AT} AS reader_at, p.first_party, p.visibility,
   p.body_mode, p.syndicate, p.indexable, p.visible_after, p.backfill, p.fact_id, p.story_id,
   s.id AS source_id, s.name AS source_name, s.kind AS source_kind, s.participation_mode AS source_mode, s.icon_url AS source_icon,
   a.x_post, a.author, a.language,

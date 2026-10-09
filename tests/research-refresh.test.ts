@@ -4,12 +4,13 @@ import { after, before, test } from "node:test";
 import { sql, closeDb } from "@aihot/backend/db";
 import { refreshWindow, prepareRefreshRun, refreshFamilyPattern, researchFamilyDate } from "@aihot/backend/research/refresh";
 import { createResearchRun } from "@aihot/backend/research/collect";
-import { admittedForProcessing, chooseAdditionalAdmissions, freezeAdmissions, researchRunMetrics, type AdmissionCandidate } from "@aihot/backend/research/admission";
+import { admittedForProcessing, chooseAdditionalAdmissions, chooseOpenAdmissions, freezeAdmissions, researchProcessingQueue, researchRunMetrics, type AdmissionCandidate } from "@aihot/backend/research/admission";
 import { upsertMaterial } from "@aihot/backend/content/materials";
 import { ensureModelRun, getModelRun } from "@aihot/backend/providers/model-runs";
 import { BudgetExceededError, paidRequest, ReceiptUnknownError } from "@aihot/backend/providers/receipts";
 import { dailyWindow } from "@aihot/contracts/time";
 import { composePilot } from "@aihot/backend/reports/compose";
+import { makeResearchMetadata, parseArxivIdentity } from "@aihot/backend/sources/research";
 
 const T = tag(), sourceId = `refresh-fixture-${T}`;
 const runIds = new Set<string>(), articleIds = new Set<string>(), budgetIds = new Set<string>(), receiptIds = new Set<number>();
@@ -46,13 +47,13 @@ async function material(runId: string, label: string, date: string) {
   return result.articleId;
 }
 
-test("refresh slots freeze Beijing cutoffs without changing normal 08:00 daily boundaries", () => {
+test("refresh slots freeze Beijing cutoffs without changing normal 09:00 daily boundaries", () => {
   const now = new Date("2026-10-05T04:00:00Z");
   const plan = refreshWindow("refresh-2026-10-05-09", new Date("2026-10-05T02:00:00Z"), now);
   assert.equal(plan.modelRunId, "daily-2026-10-05");
-  assert.equal(plan.start.toISOString(), "2026-10-04T00:00:00.000Z");
+  assert.equal(plan.start.toISOString(), "2026-10-04T01:00:00.000Z");
   assert.equal(plan.end.toISOString(), "2026-10-05T02:00:00.000Z");
-  assert.equal(dailyWindow("2026-10-05").end.toISOString(), "2026-10-05T00:00:00.000Z");
+  assert.equal(dailyWindow("2026-10-05").end.toISOString(), "2026-10-05T01:00:00.000Z");
   assert.equal(researchFamilyDate("refresh-2026-10-05-09"), "2026-10-05");
   assert.equal(researchFamilyDate("refresh-2026-02-30-09"), null);
   assert.throws(() => refreshWindow("refresh-2026-10-05-06", plan.end, now), /slot/);
@@ -76,6 +77,141 @@ test("incremental selection deducts prior identities and per-source quotas", () 
   assert.equal(next.filter(a => a.sourceId === "rss-bair").length, 10);
   assert.deepEqual(chooseAdditionalAdmissions([...pool].reverse(), prior), next);
   assert.deepEqual(chooseAdditionalAdmissions(pool, [...prior, ...next]), []);
+});
+
+test("open admission has no replacement item cap and deduplicates deterministically", () => {
+  const input: AdmissionCandidate[] = Array.from({ length: 1801 }, (_, i) => ({ id: String(i), canonicalKey: `research:${i}`,
+    sourceId, publishedAt: `2026-10-${i < 900 ? "07" : "08"}` }));
+  const prior = input.slice(0, 60);
+  const chosen = chooseOpenAdmissions([...input, ...input], prior);
+  assert.equal(chosen.length, 1741);
+  assert.deepEqual(chooseOpenAdmissions([...input].reverse(), prior), chosen);
+  assert.equal(chosen[0]!.publishedAt, "2026-10-08");
+});
+
+test("two review windows allow delayed same-day execution while legacy three-hour cutoffs stay frozen", () => {
+  const date = "2013-05-16", cutoff = new Date(`${date}T20:59:00+08:00`);
+  const morning = refreshWindow(`refresh-${date}-09`, cutoff, new Date(), "all-in-window");
+  assert.equal(morning.end.toISOString(), dailyWindow(date).end.toISOString());
+  assert.equal(morning.observedAt, cutoff);
+  assert.throws(() => refreshWindow(`refresh-${date}-09`, cutoff), /slot/);
+  assert.throws(() => refreshWindow(`refresh-${date}-09`, new Date(`${date}T21:00:00+08:00`), new Date(), "all-in-window"), /slot/);
+  assert.throws(() => refreshWindow(`refresh-${date}-06`, new Date(`${date}T08:00:00+08:00`), new Date(), "all-in-window"), /slot/);
+  assert.equal(refreshWindow(`refresh-${date}-21`, new Date(`${date}T23:59:00+08:00`), new Date(), "all-in-window").date, date);
+  const afternoon = refreshWindow(`refresh-${date}-15`, cutoff, new Date(), "all-in-window");
+  assert.equal(afternoon.end.toISOString(), morning.end.toISOString());
+  assert.throws(() => refreshWindow(`refresh-${date}-15`, new Date(`${date}T14:59:00+08:00`), new Date(), "all-in-window"), /slot/);
+  assert.throws(() => refreshWindow(`refresh-${date}-15`, new Date(`${date}T21:00:00+08:00`), new Date(), "all-in-window"), /slot/);
+});
+
+test("afternoon admits new research with 435 cumulative calls while inherited UNKNOWN stays isolated", async () => {
+  const date = "2013-05-20", morningId = `refresh-${date}-09`, afternoonId = `refresh-${date}-15`;
+  runIds.add(morningId); runIds.add(afternoonId);
+  const morning = await prepareRefreshRun(morningId, new Date(`${date}T17:00:00+08:00`), { admissionPolicy: "all-in-window", modelCallCeiling: 290 });
+  const held = await material(morningId, "afternoon-held", date);
+  await freezeAdmissions(morningId);
+  await sql`UPDATE research_members SET state='unknown-receipt',error='held original attempt' WHERE run_id=${morningId} AND article_id=${held}`;
+  await assert.rejects(prepareRefreshRun(afternoonId, new Date(`${date}T18:00:00+08:00`), { admissionPolicy: "all-in-window", modelCallCeiling: 580 }), /ceiling/);
+  const afternoon = await prepareRefreshRun(afternoonId, new Date(`${date}T18:00:00+08:00`), { admissionPolicy: "all-in-window", modelCallCeiling: 435 });
+  assert.equal(afternoon.model_call_ceiling, 435);
+  assert.equal(afternoon.max_candidates, null);
+  assert.equal(afternoon.window_end.toISOString(), morning.window_end.toISOString());
+  const fresh = await material(afternoonId, "afternoon-new", date);
+  assert.equal(await freezeAdmissions(afternoonId), 2);
+  const queue = await researchProcessingQueue(afternoonId);
+  assert.deepEqual(queue.map(item => item.article_id), [fresh, held]);
+  assert.equal(queue[1]!.state, "unknown-receipt", "the terminal checkpoint remains available to the request-isolation layer");
+  assert.deepEqual((await sql`SELECT state,error FROM research_members WHERE run_id=${afternoonId} AND article_id=${held}`)[0], { state: "unknown-receipt", error: "held original attempt" });
+  const resumed = await prepareRefreshRun(afternoonId, new Date(`${date}T20:00:00+08:00`), { admissionPolicy: "all-in-window", modelCallCeiling: 580 });
+  assert.equal(resumed.model_call_ceiling, 435);
+  assert.equal(resumed.collection_cutoff.toISOString(), afternoon.collection_cutoff.toISOString());
+});
+
+test("open review inherits only actual source-window members and keeps eligible UNKNOWN isolated", async () => {
+  const date = "2013-05-19", window = dailyWindow(date), legacy = await refresh(date, "06");
+  const labels = ["old-arxiv", "unknown-arxiv-date", "old-institution", "backfilled", "held-current", "current-institution", "at-end"];
+  const ids = new Map<string, string>();
+  for (const label of labels) ids.set(label, await material(legacy.id, `source-window-${label}`, date));
+  assert.equal(await freezeAdmissions(legacy.id), labels.length);
+  const held = ids.get("held-current")!;
+  await sql`UPDATE research_members SET state='unknown-receipt',error='held original attempt'
+    WHERE run_id=${legacy.id} AND article_id=${held}`;
+  for (const [index, label] of ["old-arxiv", "unknown-arxiv-date", "held-current", "at-end"].entries()) {
+    const metadata = makeResearchMetadata({ identity: parseArxivIdentity(`1305.9${String(index).padStart(4, "0")}`),
+      originalPublishedAt: label === "unknown-arxiv-date" ? null : label === "old-arxiv"
+        ? new Date(window.start.getTime() - 1).toISOString() : label === "at-end" ? window.end.toISOString() : window.start.toISOString(),
+      announcedOn: date, observedAt: window.end, evidenceBasis: "abstract" });
+    await sql`UPDATE articles SET research=${sql.json({ ...metadata })} WHERE id=${ids.get(label)!}`;
+  }
+  await sql`UPDATE articles SET published_at=${new Date(window.start.getTime() - 1)} WHERE id=${ids.get("old-institution")!}`;
+  await sql`UPDATE articles SET backfill=true,backfill_reason='fixture' WHERE id=${ids.get("backfilled")!}`;
+  const before = await sql`SELECT article_id,state,error,admitted,in_window FROM research_members WHERE run_id=${legacy.id} ORDER BY article_id`;
+
+  const morningId = `refresh-${date}-09`; runIds.add(morningId);
+  await prepareRefreshRun(morningId, new Date(`${date}T10:00:00+08:00`), { admissionPolicy: "all-in-window", modelCallCeiling: 290 });
+  // Even stale current-run flags must not re-admit an excluded inherited identity as a new candidate.
+  for (const articleId of ids.values()) await sql`INSERT INTO research_members(run_id,article_id,source_id,in_window)
+    VALUES(${morningId},${articleId},${sourceId},true)`;
+  assert.equal(await freezeAdmissions(morningId), 2);
+  const inherited = await sql`SELECT article_id,state,error FROM research_members WHERE run_id=${morningId} AND admitted ORDER BY article_id`;
+  assert.deepEqual(inherited.map(row => row.article_id).sort(), [held, ids.get("current-institution")!].sort());
+  assert.deepEqual(inherited.find(row => row.article_id === held), { article_id: held, state: "unknown-receipt", error: "held original attempt" });
+  assert.deepEqual(await sql`SELECT article_id,state,error,admitted,in_window FROM research_members WHERE run_id=${legacy.id} ORDER BY article_id`, before,
+    "excluded dates and held attempts remain unchanged in their original frozen batch");
+  assert.equal((await researchRunMetrics(morningId)).metrics.previouslyAdmitted, 2);
+});
+
+test("new policy inherits held legacy admissions without inheriting its 60-item ceiling", async () => {
+  const date = "2013-05-17", legacy = await refresh(date, "06");
+  const held = await material(legacy.id, "open-legacy-held", date);
+  for (let i = 0; i < 59; i++) await material(legacy.id, `open-legacy-${i}`, date);
+  assert.equal(await freezeAdmissions(legacy.id), 60);
+  await sql`UPDATE research_members SET state='unknown-receipt',error='held original attempt' WHERE run_id=${legacy.id} AND article_id=${held}`;
+  const morningId = `refresh-${date}-09`;
+  runIds.add(morningId);
+  const morning = await prepareRefreshRun(morningId, new Date(`${date}T17:00:00+08:00`), { admissionPolicy: "all-in-window", modelCallCeiling: 290 });
+  assert.equal(morning.max_candidates, null);
+  assert.equal(morning.model_call_ceiling, 290);
+  for (let i = 0; i < 72; i++) await material(morningId, `open-new-${i}`, date);
+  assert.equal(await freezeAdmissions(morningId), 132);
+  assert.deepEqual((await sql`SELECT state,error FROM research_members WHERE run_id=${morningId} AND article_id=${held}`)[0],
+    { state: "unknown-receipt", error: "held original attempt" });
+  const reopened = await prepareRefreshRun(morningId, new Date(`${date}T19:00:00+08:00`), { admissionPolicy: "all-in-window", modelCallCeiling: 580 });
+  assert.equal(reopened.model_call_ceiling, 290, "reopen cannot widen the frozen per-review allowance");
+  assert.equal(reopened.window_end.toISOString(), morning.window_end.toISOString());
+  assert.equal((await sql`SELECT max_candidates FROM research_runs WHERE id=${legacy.id}`)[0].max_candidates, 60);
+  const eveningId = `refresh-${date}-21`; runIds.add(eveningId);
+  await assert.rejects(prepareRefreshRun(eveningId, new Date(`${date}T21:30:00+08:00`), { admissionPolicy: "all-in-window", modelCallCeiling: 290 }), /ceiling/);
+  await prepareRefreshRun(eveningId, new Date(`${date}T21:30:00+08:00`), { admissionPolicy: "all-in-window", modelCallCeiling: 580 });
+  const fresh = await material(eveningId, "open-evening-fresh", date);
+  assert.equal(await freezeAdmissions(eveningId), 133);
+  const queue = await researchProcessingQueue(eveningId);
+  assert.equal(queue[0]!.article_id, fresh, "evening discoveries precede inherited unfinished entries of the same date");
+  assert.equal((await researchRunMetrics(eveningId)).metrics.previouslyAdmitted, 132);
+  assert.equal((await researchRunMetrics(eveningId)).metrics.newlyAdmitted, 1);
+  assert.equal((await researchRunMetrics(eveningId)).metrics.notAdmitted, 0);
+});
+
+test("historical research can bind the existing day allowance once without changing it on resume", async () => {
+  const id = `historical-review-${T}`; runIds.add(id);
+  const now = new Date("2013-05-18T10:00:00+08:00"), window = dailyWindow("2013-05-10");
+  const run = await createResearchRun(id, "pilot", now, window,
+    { admissionPolicy: "all-in-window", modelCallCeiling: 290, modelBudgetId: "daily-2013-05-18" });
+  assert.equal(run.model_budget_id, "daily-2013-05-18");
+  const historical = await material(id, "open-historical-backfill", "2013-05-10");
+  await sql`UPDATE articles SET backfill=true,backfill_reason='explicit-history' WHERE id=${historical}`;
+  assert.equal(await freezeAdmissions(id), 1, "explicit historical shared-budget runs admit backfilled source materials");
+  assert.equal((await sql`SELECT id FROM model_runs WHERE id=${id}`).length, 0, "creating a historical run grants no independent model allowance");
+  const resumed = await createResearchRun(id, "pilot", new Date("2013-05-19T10:00:00+08:00"), window,
+    { admissionPolicy: "all-in-window", modelCallCeiling: 580, modelBudgetId: "daily-2013-05-19" });
+  assert.equal(resumed.model_budget_id, "daily-2013-05-18");
+  assert.equal(resumed.model_call_ceiling, 290);
+  await assert.rejects(createResearchRun(`${id}-invalid`, "pilot", now, window,
+    { admissionPolicy: "all-in-window", modelCallCeiling: 290, modelBudgetId: "daily-2013-05-19" }), /today/);
+  await assert.rejects(createResearchRun(`${id}-independent`, "pilot", now, window,
+    { admissionPolicy: "all-in-window", modelCallCeiling: 290 }), /explicitly shared/);
+  await assert.rejects(createResearchRun(`${id}-independent-daily`, "daily", now, window,
+    { admissionPolicy: "all-in-window", modelCallCeiling: 290 }), /explicitly shared/);
 });
 
 test("snapshots aggregate all prior admissions, retain failures and UNKNOWN, and share a 60-identity ceiling", async () => {

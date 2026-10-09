@@ -231,7 +231,7 @@ test("invalid Agent method links recover to MCP with a readable, uncached panel"
   assert.match(html, /id="agent-tab-mcp" aria-selected="true"/);
   assert.match(html, /id="agent-panel-mcp"[^>]*>/);
   assert.doesNotMatch(html.match(/<div[^>]*id="agent-panel-mcp"[^>]*>/)?.[0] ?? "", /hidden/);
-  assert.match(html, /加一个地址，Agent 直接调用六个工具/);
+  assert.match(html, /加一个地址，Agent 直接调用五个工具/);
   assert.match(html, /API 未能连通/); // A failed health check is visible, never an invented success badge.
 });
 

@@ -58,3 +58,23 @@ export const RESEARCH_BRIEF_LABELS = {
   comparisonConditions: "作者报告的比较条件",
   limitations: "证据限制",
 } as const;
+
+/** Original paper artwork, bound to one source revision. Never a generated roadmap.
+ * A verified source/caption binding does not establish that the paper's claims are correct. */
+export interface ResearchPaperFigure {
+  itemId: string;
+  sourceRevision: number;
+  imageOrigin: "remote" | "pdf-extract";
+  imageUrl: string;
+  sourceUrl: string;
+  figureLabel: string;
+  caption: string;
+  attribution: string;
+  licenseName: string;
+  licenseUrl: string;
+  verifiedAt: string;
+  width: number;
+  height: number;
+  contentType: string;
+  sha256: string;
+}

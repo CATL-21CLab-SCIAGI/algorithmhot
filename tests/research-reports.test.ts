@@ -195,19 +195,19 @@ test("normal daily empty issue separates healthy collection from an unobserved w
   const healthy = await report("daily", healthyKey);
   assert.equal(healthy.content.run.status, "complete");
   assert.equal(healthy.content.run.metrics.healthySources, planned.length);
-  assert.equal(healthy.window_start.toISOString(), "2013-07-19T00:00:00.000Z");
-  assert.equal(healthy.window_end.toISOString(), "2013-07-20T00:00:00.000Z");
+  assert.equal(healthy.window_start.toISOString(), "2013-07-19T01:00:00.000Z");
+  assert.equal(healthy.window_end.toISOString(), "2013-07-20T01:00:00.000Z");
   await composeDaily(partialKey);
   assert.equal((await report("daily", partialKey)).content.run.status, "partial");
   assert.equal(provider.hits(), hits);
 });
 
-test("normal daily becomes due exactly at Beijing 08:00", () => {
-  assert.equal(dueDaily(new Date("2026-10-03T07:59:59.999+08:00")), "2026-10-02");
-  assert.equal(dueDaily(new Date("2026-10-03T08:00:00.000+08:00")), "2026-10-03");
+test("normal daily becomes due exactly at Beijing 09:00", () => {
+  assert.equal(dueDaily(new Date("2026-10-03T08:59:59.999+08:00")), "2026-10-02");
+  assert.equal(dueDaily(new Date("2026-10-03T09:00:00.000+08:00")), "2026-10-03");
 });
 
-test("a frozen daily keeps the previous 08:00-to-08:00 window and is independent of a same-date pilot", async () => {
+test("a frozen daily keeps the previous 09:00-to-09:00 window and is independent of a same-date pilot", async () => {
   await sources();
   const id = `research-report-${T}-daily`;
   const key = "2013-07-10";
@@ -215,12 +215,12 @@ test("a frozen daily keeps the previous 08:00-to-08:00 window and is independent
   const oldDate = process.env.RESEARCH_RUN_DATE;
   try {
     process.env.RESEARCH_RUN_DATE = key;
-    await assert.rejects(createResearchRun(id, "daily", new Date("2013-07-09T23:59:59.999Z")), /not closed/);
-    const daily = await createResearchRun(id, "daily", new Date("2013-07-10T00:00:00.000Z"));
+    await assert.rejects(createResearchRun(id, "daily", new Date("2013-07-10T00:59:59.999Z")), /not closed/);
+    const daily = await createResearchRun(id, "daily", new Date("2013-07-10T01:00:00.000Z"));
     runIds.push(id); dailyKeys.push(key);
     assert.equal(daily.kind, "daily");
-    assert.equal(daily.window_start.toISOString(), "2013-07-09T00:00:00.000Z");
-    assert.equal(daily.window_end.toISOString(), "2013-07-10T00:00:00.000Z");
+    assert.equal(daily.window_start.toISOString(), "2013-07-09T01:00:00.000Z");
+    assert.equal(daily.window_end.toISOString(), "2013-07-10T01:00:00.000Z");
     for (const sourceId of sourceIds) await sql`INSERT INTO research_fetches(run_id,source_id,url,status)
       VALUES(${id},${sourceId},${`https://example.org/${id}/${sourceId}`},'ok')`;
     process.env.MODEL_RUN_ID = id;
@@ -307,7 +307,7 @@ test("rule-only intraday revisions retain the monotonic cutoff guard without mod
     const firstId = `refresh-${key}-09`, nextId = `refresh-${key}-12`;
     for (const [id, end] of [[firstId, "2013-07-15T01:30:00Z"], [nextId, "2013-07-15T04:30:00Z"]]) {
       runIds.push(id);
-      await createResearchRun(id, "daily", new Date(end), { start: new Date("2013-07-14T00:00:00Z"), end: new Date(end) });
+      await createResearchRun(id, "daily", new Date(end), { start: new Date("2013-07-14T01:00:00Z"), end: new Date(end) });
       await material(id, id, "algorithm", true, "pass", false);
       await freezeAdmissions(id);
       await sql`UPDATE research_members SET state='pass' WHERE run_id=${id} AND admitted`;

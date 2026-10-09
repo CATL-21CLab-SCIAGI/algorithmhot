@@ -117,6 +117,12 @@ export function mergeResearchMetadata(previous: ResearchMetadata | null, incomin
   const first = (a: string | null, b: string | null) => !a ? b : !b ? a : a < b ? a : b;
   const last = (a: string | null, b: string | null) => !a ? b : !b ? a : a > b ? a : b;
   const links = [...new Map([...previous.links, ...incoming.links].map(link => [`${link.kind}:${link.url}:${link.sourceUrl}`, link])).values()];
+  // Community feeds may provide only a calendar date or a different paper version. They
+  // contribute selection/link evidence, never replace the original paper's source evidence.
+  if (previous.signalOnly !== incoming.signalOnly) {
+    const paper = previous.signalOnly ? incoming : previous;
+    return { ...paper, communitySelectedAt: first(previous.communitySelectedAt, incoming.communitySelectedAt), links };
+  }
   const rank = { unknown: 0, source_summary: 1, abstract: 2, fulltext: 3 };
   return {
     canonicalKey: previous.canonicalKey ?? incoming.canonicalKey,

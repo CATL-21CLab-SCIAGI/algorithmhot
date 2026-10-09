@@ -65,7 +65,7 @@ export async function collectFindings(now = Date.now()): Promise<Finding[]> {
         since: p!.waiting >= 10 && p!.oldest ? p!.oldest : undefined,
       });
     }
-    // The daily report is composed at 08:00 and caught up hourly.
+    // The daily report is composed at 09:00 and caught up hourly.
     if (Number(beijingTime(now).slice(0, 2)) >= 10) {
       const [r] = await sql`SELECT 1 FROM reports WHERE kind = 'daily' AND key = ${beijingDate(now)}`;
       if (!r) {

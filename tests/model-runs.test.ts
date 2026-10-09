@@ -7,7 +7,7 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import { closeDb, sql } from "@aihot/backend/db";
 import { chatJson, ModelOutputError } from "@aihot/backend/providers/llm";
-import { ensureModelRun, getModelRun, withModelExecutionLock } from "@aihot/backend/providers/model-runs";
+import { ensureModelRun, getModelRun, modelRunFromEnv, withModelExecutionLock } from "@aihot/backend/providers/model-runs";
 import { BudgetExceededError, paidRequest, ReceiptUnknownError } from "@aihot/backend/providers/receipts";
 
 after(closeDb);
@@ -38,6 +38,57 @@ test("concurrent application calls cannot overshoot the frozen allowance", async
   assert.equal(hits, 2);
   assert.equal(outcomes.filter((result) => result.status === "fulfilled").length, 2);
   assert.equal((await getModelRun(run.id))!.callsUsed, 2);
+});
+
+test("review call ceilings preserve the daily budget and evening allowance without failed attempts", async () => {
+  const daily = { id: `review-${tag()}`, maxCalls: 600, reportReserve: 20 };
+  const morning = { ...daily, callCeiling: 290 }, afternoon = { ...daily, callCeiling: 435 }, evening = { ...daily, callCeiling: 580 };
+  await ensureModelRun(daily);
+  await sql`UPDATE model_runs SET calls_used=289 WHERE id=${daily.id}`;
+  let hits = 0;
+  const service = `review-budget-fixture-${daily.id}`;
+  const ask = (run: typeof morning, identity: string) => paidRequest({ service, purpose: "score_article", identity: `${daily.id}:${identity}`, modelRun: run },
+    async () => { hits++; return { response: { ok: true } }; });
+  const first = await ask(morning, "first");
+  await assert.rejects(ask(morning, "next-stage"), BudgetExceededError);
+  assert.equal(hits, 1);
+  assert.equal((await getModelRun(daily.id))!.callsUsed, 290);
+  assert.equal((await sql`SELECT id FROM receipts WHERE service=${service} AND status IN ('unknown','failed')`).length, 0);
+  const [attempts] = await sql`SELECT count(*)::int AS n FROM receipt_attempts WHERE model_run_id=${daily.id}`;
+  assert.equal(attempts.n, 1, "no attempt or spent unit exists for a call stopped by the morning ceiling");
+  assert.equal((await ask(afternoon, "first")).receiptId, first.receiptId);
+  await ask(afternoon, "next-stage");
+  assert.equal(hits, 2);
+  assert.equal((await getModelRun(daily.id))!.callsUsed, 291);
+  await sql`UPDATE model_runs SET calls_used=434 WHERE id=${daily.id}`;
+  const lastAfternoon = await ask(afternoon, "last-afternoon");
+  await assert.rejects(ask(afternoon, "afternoon-overflow"), BudgetExceededError);
+  assert.equal((await getModelRun(daily.id))!.callsUsed, 435);
+  assert.equal((await ask(evening, "last-afternoon")).receiptId, lastAfternoon.receiptId);
+  assert.equal((await sql`SELECT id FROM receipts WHERE service=${service} AND status IN ('unknown','failed')`).length, 0);
+  await sql`UPDATE model_runs SET calls_used=579 WHERE id=${daily.id}`;
+  await ask(evening, "last-article");
+  await assert.rejects(ask(evening, "overflow"), BudgetExceededError);
+  assert.deepEqual(await getModelRun(daily.id), { ...daily, callsUsed: 580, remaining: 20 });
+});
+
+test("invalid process ceilings cannot enlarge or reset the model allowance", () => {
+  const saved = { ...process.env };
+  try {
+    process.env.MODEL_RUN_ID = "ceiling-fixture";
+    process.env.MODEL_RUN_MAX_CALLS = "600";
+    process.env.MODEL_RUN_REPORT_RESERVE = "20";
+    for (const value of ["0", "601", "290.5", "NaN"]) {
+      process.env.MODEL_RUN_CALL_CEILING = value;
+      assert.throws(() => modelRunFromEnv(true), /CALL_CEILING/);
+    }
+    process.env.MODEL_RUN_CALL_CEILING = "290";
+    assert.equal(modelRunFromEnv(true)!.callCeiling, 290);
+  } finally {
+    for (const key of ["MODEL_RUN_ID", "MODEL_RUN_MAX_CALLS", "MODEL_RUN_REPORT_RESERVE", "MODEL_RUN_CALL_CEILING"]) {
+      if (saved[key] === undefined) delete process.env[key]; else process.env[key] = saved[key];
+    }
+  }
 });
 
 test("model execution lock serializes work while receipt storage remains usable", async () => {

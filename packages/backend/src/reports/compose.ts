@@ -6,14 +6,17 @@ import { SITE } from "@aihot/industry/site";
 import { CATEGORIES } from "@aihot/industry/taxonomy";
 import { promptText, promptVersion } from "../editorial/prompts.ts";
 import { modelFor } from "../editorial/models.ts";
-import { addDays, beijingDate, beijingMidnight, isoWeekLabel, isoWeekRange } from "@aihot/contracts/time";
+import { addDays, beijingDate, beijingMidnight, dailyWindow, isoWeekLabel, isoWeekRange, isValidDate, monthRange } from "@aihot/contracts/time";
+import { authorizedDateBackfill, dateBackfillRunId } from "@aihot/contracts/date-backfill";
 import { sql } from "../db.ts";
 import { Conflict } from "../audit.ts";
 import { chatJson, ModelOutputError } from "../providers/llm.ts";
 import { completeReceipt, rejectReceivedResponse } from "../providers/receipts.ts";
 import { shutdownSignal } from "../jobs/queue.ts";
 import { researchRunMetrics } from "../research/admission.ts";
-import type { ResearchMetadata, ResearchBrief, ResearchRoadmap } from "@aihot/contracts/research";
+import { researchFamilyDate, researchSnapshotRank } from "../research/refresh.ts";
+import { ensureResearchPaperFigure, getResearchPaperFigure, type ResearchFigureResult } from "../research/figures.ts";
+import type { ResearchMetadata, ResearchBrief, ResearchRoadmap, ResearchPaperFigure } from "@aihot/contracts/research";
 
 export const REPORT_VERSION = promptVersion("report-daily-lead", "report-period");
 
@@ -23,6 +26,7 @@ const SECTION_ORDER = [...new Set(CATEGORIES.map((c) => c.section))];
 const DEFAULT_SECTION = SECTION_OF.industry ?? SECTION_ORDER.at(-1)!;
 
 export interface ReportEntry {
+  paperFigure?: ResearchPaperFigure;
   research?: ResearchMetadata | null;
   researchBrief?: ResearchBrief | null;
   researchRoadmap?: ResearchRoadmap | null;
@@ -43,6 +47,24 @@ export interface ReportEntry {
 export interface Candidate extends ReportEntry {
   category: string | null;
   factKey: string;
+}
+
+/** Daily selection uses the original submission timestamp, not a later announcement or arrival. */
+export function submissionInWindow(entry: Pick<ReportEntry, "research" | "publishedAt">, start: Date, end: Date): boolean {
+  // The SQL candidate window already uses release/visibility timestamps for ordinary reader
+  // items. Only research papers need a second check because their original submission date is
+  // deliberately different from the later public release or announcement date.
+  if (!entry.research?.arxivId) return true;
+  const value = entry.research.originalPublishedAt;
+  const time = value ? Date.parse(value) : NaN;
+  return Number.isFinite(time) && time >= start.getTime() && time < end.getTime();
+}
+
+/** Historical research editions are rebuilt from source dates, not the live release window. */
+export function researchSourceInWindow(entry: Pick<ReportEntry, "research" | "publishedAt">, start: Date, end: Date): boolean {
+  const value = entry.research?.arxivId ? entry.research.originalPublishedAt : entry.publishedAt;
+  const time = value ? Date.parse(value) : NaN;
+  return Number.isFinite(time) && time >= start.getTime() && time < end.getTime();
 }
 
 function roleOf(kind: string, firstParty: boolean): string {
@@ -86,7 +108,8 @@ export async function candidates(start: Date, end: Date): Promise<Candidate[]> {
     const prev = byFact.get(key);
     if (!prev || Number(c.firstParty) - Number(prev.firstParty) > 0 || (c.firstParty === prev.firstParty && (c.score ?? 0) > (prev.score ?? 0))) byFact.set(key, c);
   }
-  return [...byFact.values()].sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
+  return [...byFact.values()].filter(entry => submissionInWindow(entry, start, end))
+    .sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
 }
 
 /** Facts and items already covered by recent editions are not repeated. */
@@ -135,13 +158,13 @@ async function savedReport(kind: ReportKind, key: string) {
   return row;
 }
 
-async function saveReport(kind: ReportKind, key: string, start: Date, end: Date, content: Record<string, unknown>, reason: string, model: string, receiptId: number | null, expectedRevision: number, monotonicWindow = false) {
+export async function saveReport(kind: ReportKind, key: string, start: Date, end: Date, content: Record<string, unknown>, reason: string, model: string, receiptId: number | null, expectedRevision: number, monotonicWindow = false) {
   await sql.begin(async (tx) => {
     // The row may not exist yet. Serialize only the commit; model calls hold no transaction open.
     await tx`SELECT pg_advisory_xact_lock(hashtext(${`report:${kind}:${key}`}))`;
     const [existing] = await tx<{ id: number; revision: number; content: unknown; generated_at: Date; window_end: Date }[]>`
       SELECT id, revision, content, generated_at, window_end FROM reports WHERE kind = ${kind} AND key = ${key} FOR UPDATE`;
-    if (monotonicWindow && existing && existing.window_end > end) throw new Conflict("已有截止时间更新的日报，旧时段不能覆盖");
+    if (monotonicWindow && existing && olderResearchSnapshot(content, end, existing.content, existing.window_end)) throw new Conflict("已有更新时段的日报，旧时段不能覆盖");
     if (existing && automatic(reason)) {
       if (receiptId !== null) await completeReceipt(tx, receiptId);
       return;
@@ -160,12 +183,20 @@ async function saveReport(kind: ReportKind, key: string, start: Date, end: Date,
   });
 }
 
-/** Daily report for Beijing date D covers [D-1 08:00, D 08:00) Beijing time. */
+function olderResearchSnapshot(content: unknown, end: Date, previous: unknown, previousEnd: Date): boolean {
+  const id = (content as { run?: { id?: string } })?.run?.id;
+  const previousId = (previous as { run?: { id?: string } })?.run?.id;
+  if (id && previousId && researchFamilyDate(id) && researchFamilyDate(id) === researchFamilyDate(previousId)) {
+    return researchSnapshotRank(id) < researchSnapshotRank(previousId);
+  }
+  return previousEnd > end;
+}
+
+/** Daily report for Beijing date D covers [D-1 09:00, D 09:00) Beijing time. */
 export async function composeDaily(date: string, reason = "scheduled"): Promise<{ key: string; entries: number }> {
   const previous = await savedReport("daily", date);
   if (previous && automatic(reason)) return { key: date, entries: previous.entries };
-  const end = new Date(beijingMidnight(date).getTime() + 8 * 3600 * 1000);
-  const start = new Date(end.getTime() - 86400000);
+  const { start, end } = dailyWindow(date);
   const covered = await recentlyCovered("daily", date);
   const all = await candidates(start, end);
   const fresh = all.filter((c) => !covered.has(c.factKey) && !covered.has(`a:${c.itemId}`));
@@ -228,6 +259,255 @@ export async function researchDailyHealth(start: Date, end: Date): Promise<{ met
 
 export const RESEARCH_RULE_LEAD_VERSION = "research-rule-lead-v1";
 
+export const ILLUSTRATED_RESEARCH_VERSION = "research-illustrated-edition-v1";
+export interface IllustratedCandidate extends Candidate { originalTitle?: string | null }
+export interface IllustratedSection { label: string; summary: string | null; items: ReportEntry[] }
+
+/** A paper belongs to its original submission calendar date, regardless of later announcement or arrival. */
+export function researchEditionDay(entry: Pick<ReportEntry, "research" | "publishedAt">): string | null {
+  const research = entry.research;
+  const at = research?.originalPublishedAt ?? entry.publishedAt;
+  return at && Number.isFinite(Date.parse(at)) ? beijingDate(at) : null;
+}
+
+/** Reader copy uses only the saved research titles and summaries, never run diagnostics. */
+export function illustratedResearchLead(entries: ReportEntry[]) {
+  const first = entries[0];
+  const supporting = entries.slice(1, 3).map(entry => entry.title.trim()).filter(Boolean);
+  return {
+    lead: {
+      title: first?.title ?? "科研进展",
+      leadParagraph: first
+        ? [first.summary.trim(), supporting.length ? `同时关注：${supporting.join("；")}。` : ""].filter(Boolean).join("\n\n")
+        : "这一期暂无推荐文章。可浏览其他刊期，或到全部动态中查找研究。",
+    },
+    highlights: entries.slice(0, 4).map(entry => entry.itemId),
+    receiptId: null,
+  };
+}
+
+async function originalFigure(entry: IllustratedCandidate): Promise<ResearchFigureResult> {
+  const input = { itemId: entry.itemId, sourceRevision: entry.researchBrief!.sourceRevision };
+  // Existing source-bound failures and review requests are checkpoints, not automatic retries.
+  const saved = await getResearchPaperFigure(input);
+  return saved ?? ensureResearchPaperFigure({ ...input, arxivId: entry.research?.arxivId,
+    arxivVersion: entry.research?.arxivVersion, title: entry.originalTitle ?? undefined });
+}
+
+/** Inspect in ranking order until each page is full. Missing artwork never becomes a placeholder. */
+export async function selectIllustratedResearch(
+  candidates: IllustratedCandidate[], perSection = 5,
+  resolveFigure: (entry: IllustratedCandidate) => Promise<ResearchFigureResult> = originalFigure,
+): Promise<{ sections: IllustratedSection[]; metrics: Record<string, number> }> {
+  if (!Number.isInteger(perSection) || perSection < 1 || perSection > 20) throw new Error("Invalid illustrated edition section limit");
+  const seen = new Set<string>();
+  const ready = candidates.filter(entry => {
+    if (!entry.researchBrief || !Number.isSafeInteger(entry.researchBrief.sourceRevision) || entry.researchBrief.sourceRevision < 1) return false;
+    const key = entry.research?.canonicalKey ?? (entry.research?.arxivId ? `arxiv:${entry.research.arxivId.replace(/v\d+$/, "")}` : `a:${entry.itemId}`);
+    if (seen.has(key)) return false;
+    seen.add(key); return true;
+  });
+  const metrics = { figureCandidates: ready.length, figureChecks: 0, verifiedFigures: 0,
+    figureMissing: 0, figureReviewRequired: 0, figureUnavailable: 0, figureCandidatesUninspected: 0 };
+  const sections: IllustratedSection[] = [];
+  for (const category of CATEGORIES) {
+    const items: ReportEntry[] = [];
+    for (const entry of ready.filter(candidate => candidate.category === category.key)) {
+      if (items.length >= perSection) break;
+      const result = await resolveFigure(entry);
+      metrics.figureChecks++;
+      if (result.itemId !== entry.itemId || result.sourceRevision !== entry.researchBrief!.sourceRevision) throw new Error("Original figure receipt does not match the selected research revision");
+      if (result.status !== "verified") {
+        if (result.status === "review_required") metrics.figureReviewRequired++;
+        else if (result.status === "unavailable") metrics.figureUnavailable++;
+        else metrics.figureMissing++;
+        continue;
+      }
+      const figure = result.figure;
+      if (!figure || !result.verificationBasis || figure.itemId !== entry.itemId || figure.sourceRevision !== entry.researchBrief!.sourceRevision) throw new Error("Verified original figure lost its research revision binding");
+      const { category: _category, factKey: _factKey, originalTitle: _originalTitle, ...citation } = entry;
+      items.push({ ...citation, paperFigure: figure });
+      metrics.verifiedFigures++;
+    }
+    if (items.length) sections.push({ label: category.section, summary: null, items });
+  }
+  metrics.figureCandidatesUninspected = ready.length - metrics.figureChecks;
+  return { sections, metrics };
+}
+
+/** Complete source/figure binding is part of the format marker used for automatic reuse. */
+export function isIllustratedResearchReport(content: unknown): boolean {
+  if (!content || typeof content !== "object") return false;
+  const value = content as { generator?: { version?: string }; sections?: Array<{ items?: ReportEntry[] }> };
+  if (value.generator?.version !== ILLUSTRATED_RESEARCH_VERSION || !Array.isArray(value.sections)) return false;
+  const entries = value.sections.flatMap(section => Array.isArray(section.items) ? section.items : []);
+  return entries.length > 0 && entries.every(entry => entry.paperFigure && entry.researchBrief
+    && entry.paperFigure.itemId === entry.itemId && entry.paperFigure.sourceRevision === entry.researchBrief.sourceRevision);
+}
+
+/** Revisit historical research using its publication/announcement date, including imported papers. */
+export async function researchEditionCandidates(startDate: string, endDateInclusive: string, exactWindow?: { start: Date; end: Date }): Promise<IllustratedCandidate[]> {
+  if (!isValidDate(startDate) || !isValidDate(endDateInclusive) || startDate > endDateInclusive) throw new Error("Invalid research edition window");
+  const rows = await sql<{
+    id: string; title: string; original_title: string | null; summary: string; url: string; category: string | null;
+    source_id: string; source_name: string; first_party: boolean; score: number | null; published_at: Date | null;
+    research: ResearchMetadata | null; research_brief: ResearchBrief; research_roadmap: ResearchRoadmap | null;
+  }[]>`SELECT p.article_id AS id,p.title,p.original_title,coalesce(p.summary,'') AS summary,p.url,p.category,p.source_id,
+      s.name AS source_name,p.first_party,p.score,p.published_at,p.research,p.research_brief,p.research_roadmap
+    FROM publications p JOIN sources s ON s.id=p.source_id
+    WHERE p.visibility='public' AND p.eligible AND p.selected AND p.visible_after<=now()
+      AND p.research_brief IS NOT NULL
+    ORDER BY p.score DESC NULLS LAST,p.published_at DESC NULLS LAST,p.article_id`;
+  return rows.map((row): IllustratedCandidate => ({
+    itemId: row.id, factId: null, factKey: `a:${row.id}`, storyPublicId: null, title: row.title, originalTitle: row.original_title,
+    summary: row.summary, category: row.category, sourceName: row.source_name, sourceUrl: row.url, sourceId: row.source_id,
+    firstParty: row.first_party, role: row.first_party ? "机构发布" : "研究论文", score: row.score, publishedAt: row.published_at?.toISOString() ?? "",
+    research: row.research, researchBrief: row.research_brief, researchRoadmap: row.research_roadmap,
+  })).filter(entry => exactWindow
+    ? researchSourceInWindow(entry, exactWindow.start, exactWindow.end)
+    : (() => { const day = researchEditionDay(entry); return !!day && day >= startDate && day <= endDateInclusive; })());
+}
+
+export interface ResearchPeriodResult { kind: "weekly" | "monthly"; key: string; entries: number; state: "saved" | "reused" | "not-ready"; metrics?: Record<string, number> }
+
+/** Deterministic illustrated period edition. No model, new research batch, or ingestion window. */
+export async function composeResearchPeriod(kind: "weekly" | "monthly", key: string, options: { revise?: boolean } = {}): Promise<ResearchPeriodResult> {
+  const range = kind === "weekly" ? isoWeekRange(key) : monthRange(key);
+  if (!range) throw new Error(`Invalid ${kind} edition key ${key}`);
+  if (beijingMidnight(addDays(range.end, 1)).getTime() > Date.now()) throw new Error("Research edition window is not closed");
+  const [previous] = await sql<{ revision: number; content: unknown }[]>`SELECT revision,content FROM reports WHERE kind=${kind} AND key=${key}`;
+  if (previous && !options.revise && isIllustratedResearchReport(previous.content)) {
+    const saved = await savedReport(kind, key);
+    return { kind, key, entries: saved!.entries, state: "reused" };
+  }
+  const ready = await researchEditionCandidates(range.start, range.end);
+  const illustrated = await selectIllustratedResearch(ready, kind === "weekly" ? 8 : 12);
+  const entries = illustrated.sections.flatMap(section => section.items);
+  if (!entries.length) return { kind, key, entries: 0, state: "not-ready", metrics: illustrated.metrics };
+  const lead = illustratedResearchLead(entries);
+  const start = beijingMidnight(range.start), end = beijingMidnight(addDays(range.end, 1));
+  const [daily] = await sql<{ n: number }[]>`SELECT count(*)::int AS n FROM reports WHERE kind='daily' AND key>=${range.start} AND key<=${range.end}`;
+  const content = {
+    kind, illustrated: true, title: lead.lead.title, headline: lead.lead.title, lead: lead.lead, overview: lead.lead.leadParagraph,
+    ...(kind === "weekly" ? { isoLabel: key } : { monthLabel: key }), periodStart: range.start, periodEnd: range.end,
+    windowStart: start.toISOString(), windowEnd: end.toISOString(), highlights: lead.highlights,
+    sections: illustrated.sections, themes: illustrated.sections.map(section => ({ heading: section.label, summary: section.summary ?? "", storyRefs: section.items })),
+    storyOrder: entries.map(entry => entry.itemId), flashes: [],
+    metrics: { ...illustrated.metrics, totalStories: entries.length, totalEvents: entries.length, selectedCount: ready.length,
+      reportsCovered: daily?.n ?? 0, sourcesCount: new Set(entries.map(entry => entry.sourceId)).size },
+    generator: { version: ILLUSTRATED_RESEARCH_VERSION, model: "rule", basis: "source-dated-published-research", modelCalls: 0 },
+  };
+  await saveReport(kind, key, start, end, content, "illustrated-edition", "rule", null, previous?.revision ?? 0);
+  return { kind, key, entries: entries.length, state: "saved", metrics: illustrated.metrics };
+}
+
+export interface ResearchDailyRepairResult {
+  key: string;
+  entries: number;
+  state: "saved" | "reused" | "not-ready";
+  candidates: number;
+  metrics?: Record<string, number>;
+}
+
+/**
+ * Rebuild a historical daily issue from the source's official research date.
+ * This is deliberately cache-only: repairing a report must not trigger new
+ * figure downloads or model calls. It exists for legacy daily runs whose
+ * rolling 60-item admission pool was reused across dates.
+ */
+export async function composeResearchDailyDate(key: string, options: { revise?: boolean; sourceRunId?: string; expectedRevision?: number } = {}): Promise<ResearchDailyRepairResult> {
+  if (!isValidDate(key)) throw new Error("Invalid daily research date");
+  let sourceRun: { id: string; kind: string; collection_cutoff: Date } | undefined;
+  if (options.sourceRunId) {
+    const [run] = await sql<{ id: string; kind: string; window_start: Date; window_end: Date; collection_cutoff: Date; admission_frozen: boolean;
+      admission_policy: string; model_budget_id: string | null; model_call_ceiling: number | null }[]>`SELECT * FROM research_runs WHERE id=${options.sourceRunId}`;
+    if (!run?.admission_frozen || run.admission_policy !== "all-in-window" || run.id !== dateBackfillRunId(key)
+      || !authorizedDateBackfill(run.id, run.model_budget_id ?? undefined, run.kind, { start: run.window_start, end: run.window_end }, run.model_call_ceiling ?? undefined)) {
+      throw new Error("Historical daily report requires its exact authorized, frozen source run and date window");
+    }
+    sourceRun = run;
+  }
+  const [previous] = await sql<{ revision: number; content: any }[]>`SELECT revision,content FROM reports WHERE kind='daily' AND key=${key}`;
+  if (options.expectedRevision !== undefined && (!Number.isSafeInteger(options.expectedRevision) || options.expectedRevision < 0 || (previous?.revision ?? 0) !== options.expectedRevision)) {
+    throw new Conflict("Historical report changed after its prepared revision; preserve the checkpoint");
+  }
+  const expectedRevision = options.expectedRevision ?? previous?.revision ?? 0;
+  if (previous && !options.revise && isIllustratedResearchReport(previous.content) && (!sourceRun || previous.content.run?.id === sourceRun.id)) {
+    const { start, end } = dailyWindow(key);
+    const oldItems = (previous.content.sections ?? []).flatMap((section: any) => section.items ?? []);
+    const valid = oldItems.every((item: any) => researchSourceInWindow(item, start, end));
+    if (valid) {
+      const saved = await savedReport("daily", key);
+      return { key, entries: saved?.entries ?? 0, candidates: 0, state: "reused" };
+    }
+  }
+  const candidates = await researchEditionCandidates(key, key, dailyWindow(key));
+  const illustrated = await selectIllustratedResearch(candidates, 5, async (entry) => {
+    const input = { itemId: entry.itemId, sourceRevision: entry.researchBrief!.sourceRevision };
+    const saved = await getResearchPaperFigure(input);
+    if (saved) return saved;
+    return {
+      schemaVersion: 1, ...input, inputHash: "cache-only", checkedAt: new Date().toISOString(),
+      status: "missing", reason: "No cached figure receipt; historical repair does not fetch new artwork.",
+      verificationBasis: null, figure: null, candidate: null,
+    } satisfies ResearchFigureResult;
+  });
+  const entries = illustrated.sections.flatMap(section => section.items);
+  const { start, end } = dailyWindow(key);
+  const admittedIds = sourceRun ? new Set((await sql<{ article_id: string }[]>`SELECT article_id FROM research_members WHERE run_id=${sourceRun.id} AND admitted`).map(row => row.article_id)) : null;
+  const reuseMetrics = admittedIds ? { outsideRunCandidates: candidates.filter(entry => !admittedIds.has(entry.itemId!)).length,
+    outsideRunReused: entries.filter(entry => !admittedIds.has(entry.itemId!)).length } : {};
+  const health = sourceRun ? await researchRunMetrics(sourceRun.id) : null;
+  if (health && illustrated.metrics.figureMissing + illustrated.metrics.figureReviewRequired + illustrated.metrics.figureUnavailable > 0) {
+    health.gaps.push("部分已精选研究尚无可刊载的已核验原图，资料保留在全部动态。");
+  }
+  const oldRun = sourceRun ? { id: sourceRun.id, kind: "daily", sourceRunKind: sourceRun.kind, status: "partial",
+    collectionCutoff: sourceRun.collection_cutoff.toISOString(), ...health! }
+    : (previous?.content as any)?.run ?? { id: `research-date-repair-${key}`, kind: "daily", status: "partial", gaps: [] };
+  const finishSourceRun = async () => {
+    if (sourceRun) await sql`UPDATE research_runs SET report_key=${key},status='partial',updated_at=now() WHERE id=${sourceRun.id}`;
+  };
+  if (!entries.length) {
+    const oldMetrics = oldRun.metrics && typeof oldRun.metrics === "object" ? oldRun.metrics : {};
+    const content = {
+      date: key, illustrated: true, title: `本期研究：原始提交窗口内暂无可刊载条目`,
+      lead: { title: `本期暂无可刊载的研究精选`, leadParagraph: `本期按 ${key} 北京时间 09:00 日报窗口核验原始提交日期，尚无同时完成研究解读与原图核验的刊载条目。` },
+      highlights: [], sections: [], themes: [], storyOrder: [], flashes: [], overview: `本期按原始提交日期核验，暂无可刊载条目。`,
+      windowStart: start.toISOString(), windowEnd: end.toISOString(),
+      run: { ...oldRun, status: "partial", repairBasis: "official-research-date-and-cached-figure-receipts", metrics: sourceRun ? oldMetrics : { ...oldMetrics, ...illustrated.metrics, selected: candidates.length, published: 0, totalEvents: 0 } },
+      metrics: { ...oldMetrics, ...illustrated.metrics, ...reuseMetrics, selected: candidates.length, published: 0, totalEvents: 0, sourcesCount: 0 },
+      generator: { version: ILLUSTRATED_RESEARCH_VERSION, model: "rule", basis: "official-research-date-cached-figure-receipts", modelCalls: 0 },
+    };
+    await saveReport("daily", key, start, end, content, "research-date-repair", "rule", null, expectedRevision);
+    await finishSourceRun();
+    return { key, entries: 0, candidates: candidates.length, state: "saved", metrics: illustrated.metrics };
+  }
+  const oldMetrics = oldRun.metrics && typeof oldRun.metrics === "object" ? oldRun.metrics : {};
+  const lead = illustratedResearchLead(entries);
+  const content = {
+    date: key, illustrated: true, title: lead.lead.title, lead: lead.lead, highlights: lead.highlights,
+    sections: illustrated.sections, themes: illustrated.sections.map(section => ({ heading: section.label, summary: section.summary ?? "", storyRefs: section.items })),
+    storyOrder: entries.map(entry => entry.itemId), flashes: [], overview: lead.lead.leadParagraph,
+    windowStart: start.toISOString(), windowEnd: end.toISOString(),
+    run: { ...oldRun, status: "partial", repairBasis: "official-research-date-and-cached-figure-receipts", metrics: sourceRun ? oldMetrics : { ...oldMetrics, ...illustrated.metrics, selected: candidates.length, published: entries.length, totalEvents: entries.length } },
+    metrics: { ...oldMetrics, ...illustrated.metrics, ...reuseMetrics, selected: candidates.length, published: entries.length, totalEvents: entries.length, sourcesCount: new Set(entries.map(entry => entry.sourceId)).size },
+    generator: { version: ILLUSTRATED_RESEARCH_VERSION, model: "rule", basis: "official-research-date-cached-figures", modelCalls: 0 },
+  };
+  await saveReport("daily", key, start, end, content, "research-date-repair", "rule", null, expectedRevision);
+  await finishSourceRun();
+  return { key, entries: entries.length, candidates: candidates.length, state: "saved", metrics: illustrated.metrics };
+}
+
+/** Latest due periods only; there is no loop over missed issues after an offline interval. */
+export function dueResearchEditions(now = new Date()): { weekly: string; monthly: string } {
+  const today = beijingDate(now), hour = Number(new Date(now.getTime() + 8 * 3600_000).toISOString().slice(11, 13));
+  const dow = (new Date(`${today}T00:00:00Z`).getUTCDay() + 6) % 7;
+  const weekly = isoWeekLabel(addDays(today, -dow - (dow > 0 || hour >= 9 ? 7 : 14)));
+  const [year, month, day] = today.split("-").map(Number) as [number, number, number];
+  const previousMonth = year * 12 + month - 1 - (day > 1 || hour >= 9 ? 1 : 2);
+  return { weekly, monthly: `${Math.floor(previousMonth / 12)}-${String(previousMonth % 12 + 1).padStart(2, "0")}` };
+}
+
 function ruleResearchLead(entries: ReportEntry[], gaps: string[]) {
   return {
     lead: {
@@ -242,48 +522,59 @@ function ruleResearchLead(entries: ReportEntry[], gaps: string[]) {
 /** A pilot has its own kind and explicit seven-day window; it never occupies a daily issue key.
  * ruleOnly is an explicit recovery mode: it never resolves or calls a model, including nonempty issues.
  */
-export async function composePilot(runId: string, revise = false, options: { ruleOnly?: boolean } = {}): Promise<{ key: string; entries: number }> {
-  const [run] = await sql<{ kind: "pilot" | "daily"; window_start: Date; window_end: Date; admission_frozen: boolean }[]>`SELECT * FROM research_runs WHERE id = ${runId}`;
+export async function composePilot(runId: string, revise = false, options: { ruleOnly?: boolean; illustrated?: boolean } = {}): Promise<{ key: string; entries: number }> {
+  const [run] = await sql<{ kind: "pilot" | "daily"; window_start: Date; window_end: Date; collection_cutoff: Date; admission_frozen: boolean }[]>`SELECT * FROM research_runs WHERE id = ${runId}`;
   if (!run?.admission_frozen) throw new Error("research admission is not frozen");
   const kind = run.kind;
   const key = beijingDate(run.window_end);
   const previous = await savedReport(kind, key);
   if (runId.startsWith("refresh-")) {
-    const [current] = await sql<{ window_end: Date }[]>`SELECT window_end FROM reports WHERE kind=${kind} AND key=${key}`;
-    if (current && current.window_end > run.window_end) throw new Conflict("已有截止时间更新的日报，旧时段不能覆盖");
+    const [current] = await sql<{ window_end: Date; content: unknown }[]>`SELECT window_end,content FROM reports WHERE kind=${kind} AND key=${key}`;
+    if (current && olderResearchSnapshot({ run: { id: runId } }, run.window_end, current.content, current.window_end)) throw new Conflict("已有更新时段的日报，旧时段不能覆盖");
   }
   if (previous && !revise) {
     const [saved] = await sql<{ id: string }[]>`SELECT content->'run'->>'id' AS id FROM reports WHERE kind = ${kind} AND key = ${key}`;
     if (saved?.id !== runId) throw new Conflict("已有另一批次试刊，请显式生成修订");
     return { key, entries: previous.entries };
   }
-  const rows = await sql<{ id: string; title: string; summary: string; url: string; source_id: string; source_name: string; first_party: boolean; category: string; score: number; published_at: Date | null; research: ResearchMetadata | null; research_brief: ResearchBrief | null; research_roadmap: ResearchRoadmap | null }[]>`
-    SELECT p.article_id AS id,p.title,coalesce(p.summary,'') AS summary,p.url,p.source_id,s.name AS source_name,p.first_party,p.category,p.score,p.published_at,p.research,p.research_brief, p.research_roadmap
+  const rows = await sql<{ id: string; title: string; summary: string; url: string; source_id: string; source_name: string; first_party: boolean; category: string; score: number; original_title: string | null; published_at: Date | null; research: ResearchMetadata | null; research_brief: ResearchBrief | null; research_roadmap: ResearchRoadmap | null }[]>`
+    SELECT p.article_id AS id,p.title,coalesce(p.summary,'') AS summary,p.url,p.source_id,s.name AS source_name,p.first_party,p.category,p.score,p.original_title,p.published_at,p.research,p.research_brief, p.research_roadmap
     FROM publications p JOIN research_members m ON m.article_id = p.article_id JOIN sources s ON s.id = p.source_id
     WHERE m.run_id = ${runId} AND m.admitted AND p.selected AND p.visibility = 'public' AND p.visible_after <= now()
       AND p.research_brief IS NOT NULL
-      AND (${!options.ruleOnly} OR (m.state='pass' AND p.eligible))
-      AND (${kind}='pilot' OR NOT p.backfill)
+      AND (${!options.ruleOnly && !options.illustrated} OR (m.state='pass' AND p.eligible))
+      AND (${kind}='pilot' OR ${!!options.illustrated} OR NOT p.backfill)
     ORDER BY p.score DESC,p.published_at DESC,p.article_id`;
-  const sections = CATEGORIES.map((category) => ({ label: category.section, items: rows.filter((r) => r.category === category.key).slice(0, 5).map((r): ReportEntry => ({
-    itemId: r.id, factId: null, storyPublicId: null, title: r.title, summary: r.summary, sourceName: r.source_name, sourceUrl: r.url,
+  const ready = rows.map((r): IllustratedCandidate => ({
+    itemId: r.id, factId: null, storyPublicId: null, title: r.title, originalTitle: r.original_title, summary: r.summary, sourceName: r.source_name, sourceUrl: r.url,
     sourceId: r.source_id, firstParty: r.first_party, role: r.first_party ? "机构发布" : "研究论文", score: r.score,
     publishedAt: r.published_at?.toISOString() ?? "", research: r.research, researchBrief: r.research_brief, researchRoadmap: r.research_roadmap,
-  })) })).filter((s) => s.items.length);
+    category: r.category, factKey: `a:${r.id}`,
+  })).filter((entry) => kind !== "daily" || researchSourceInWindow(entry, run.window_start, run.window_end));
+  const illustrated = options.illustrated ? await selectIllustratedResearch(ready, 5) : null;
+  const sections = illustrated?.sections ?? CATEGORIES.map((category) => ({ label: category.section,
+    items: ready.filter(r => r.category === category.key).slice(0, 5).map(({ category: _c, factKey: _f, originalTitle: _t, ...entry }) => entry),
+  })).filter(s => s.items.length);
   const ordered = sections.flatMap((s) => s.items);
   const health = await researchRunMetrics(runId);
-  const model = ordered.length && !options.ruleOnly ? await modelFor("report") : "rule";
-  const lead = ordered.length ? options.ruleOnly ? ruleResearchLead(ordered, health.gaps) : await writeLead(kind, key, ordered, model) : emptyLead(health.gaps);
+  if (illustrated) {
+    Object.assign(health.metrics, illustrated.metrics);
+    if (illustrated.metrics.figureMissing + illustrated.metrics.figureReviewRequired + illustrated.metrics.figureUnavailable > 0) health.gaps.push("部分已精选研究尚无可刊载的已核验原图，资料保留在全部动态。");
+  }
+  const model = ordered.length && !options.ruleOnly && !options.illustrated ? await modelFor("report") : "rule";
+  const lead = options.illustrated ? illustratedResearchLead(ordered)
+    : ordered.length ? options.ruleOnly ? ruleResearchLead(ordered, health.gaps) : await writeLead(kind, key, ordered, model) : emptyLead(health.gaps);
   health.metrics.published = ordered.length;
   health.metrics.roadmapsPublished = ordered.filter(e => e.researchRoadmap).length;
-  health.metrics.excludedByDisplayLimit = rows.length - ordered.length;
+  health.metrics.excludedByDisplayLimit = illustrated?.metrics.figureCandidatesUninspected ?? rows.length - ordered.length;
   const status = health.gaps.length ? "partial" : "complete";
   const title = kind === "pilot" ? `${SITE.name} · 最近七天试刊` : `${SITE.name} · ${runId.startsWith("refresh-") ? "日内更新" : "日报"}`;
-  const content = { date: key, title: `${title}${options.ruleOnly && status === "partial" ? " · 部分结果" : ""}`, lead: lead.lead, highlights: lead.highlights, sections, flashes: [],
+  const content = { date: key, ...(options.illustrated ? { illustrated: true } : {}), title: options.illustrated ? lead.lead.title : `${title}${options.ruleOnly && status === "partial" ? " · 部分结果" : ""}`, lead: lead.lead, highlights: lead.highlights, sections, flashes: [],
+    ...(options.illustrated ? { themes: sections.map(s => ({ heading: s.label, summary: "", storyRefs: s.items })), storyOrder: ordered.map(e => e.itemId), overview: lead.lead.leadParagraph } : {}),
     windowStart: run.window_start.toISOString(), windowEnd: run.window_end.toISOString(),
-    run: { id: runId, kind, status, ...health },
+    run: { id: runId, kind, status, collectionCutoff: run.collection_cutoff.toISOString(), ...health },
     metrics: { ...health.metrics, totalEvents: ordered.length, sourcesCount: new Set(ordered.map((e) => e.sourceId)).size, displayOmitted: rows.length - ordered.length },
-    generator: { version: options.ruleOnly ? RESEARCH_RULE_LEAD_VERSION : REPORT_VERSION, model, calibration: "NOT_EVALUATED" } };
+    generator: { version: options.illustrated ? ILLUSTRATED_RESEARCH_VERSION : options.ruleOnly ? RESEARCH_RULE_LEAD_VERSION : REPORT_VERSION, model, calibration: "NOT_EVALUATED" } };
   await saveReport(kind, key, run.window_start, run.window_end, content, revise ? "research-revision" : "scheduled", model, lead.receiptId, previous?.revision ?? 0, runId.startsWith("refresh-"));
   await sql`UPDATE research_runs SET report_key = ${key}, status = ${status}, updated_at = now() WHERE id = ${runId}`;
   return { key, entries: ordered.length };
@@ -373,10 +664,10 @@ const bjParts = (now: Date) => {
   return { hour: Number(iso.slice(11, 13)), minute: Number(iso.slice(14, 16)) };
 };
 
-/** The newest daily due by `now`: today's from 08:00 Beijing time, yesterday's before. */
+/** The newest daily due by `now`: today's from 09:00 Beijing time, yesterday's before. */
 export function dueDaily(now = new Date()): string {
   const today = beijingDate(now);
-  return bjParts(now).hour >= 8 ? today : addDays(today, -1);
+  return bjParts(now).hour >= 9 ? today : addDays(today, -1);
 }
 
 /** The newest weekly due by `now`: the last complete ISO week from Monday 10:00, the one before until then. */

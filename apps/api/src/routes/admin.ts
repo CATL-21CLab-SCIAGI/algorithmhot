@@ -6,6 +6,7 @@ import { actorOf } from "@aihot/backend/admin/auth";
 
 import { importSelectBenchRun, listSelectBenchRuns, selectBenchRun } from "@aihot/backend/admin/selectbench";
 import { modelsOverview, switchModel } from "@aihot/backend/admin/models";
+import { researchModelOverview, switchResearchModel } from "@aihot/backend/admin/research-model";
 
 import { contentChain, overrideFields, rerun, searchContent, setSeoIndexed, setVisibility } from "@aihot/backend/admin/content";
 import { banSource, eraseFeedback, feedbackScreenshot, listFeedback, unbanSource, updateFeedback } from "@aihot/backend/admin/feedback";
@@ -118,6 +119,8 @@ export function registerAdmin(app: FastifyInstance) {
 
 
   // Models and evaluation (F20)
+  app.get("/api/admin/research-model", adminHandler(async () => researchModelOverview()));
+  app.put("/api/admin/research-model", adminHandler(async (req, _reply, admin) => switchResearchModel(body(req), actorOf(admin))));
   app.get("/api/admin/models", adminHandler(async (req) => modelsOverview(Math.min(90, Number(q(req).days) || 7))));
   app.post("/api/admin/models/:capability", adminHandler(async (req, _reply, admin) => {
     const b = body<{ model: string | null; reason: string }>(req);

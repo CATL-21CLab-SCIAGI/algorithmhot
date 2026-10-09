@@ -20,7 +20,7 @@
 2. 模型：LLM_TRANSPORT=codex_cli / openai_compatible；本机 /opt/homebrew/bin/codex，gpt-6-astra medium，独立上下文与结构校验；保留回执/原始结果/用量。持久总上限600、并发1、预留报告额度；未知结果不自动重发，不切账户、不自动付费降级。
 3. 数据：research 元数据贯穿 Candidate/MaterialInput/articles/publications/public API；增量迁移。arXiv abs/pdf/version关联，HF保留独立信号身份通过canonicalKey关联正文；固定来源节奏。
 4. 批次：冻结七天窗口，保存响应和全部可解析metadata，然后在分析准入层限制60条；算法20、物理材料15、分子15、博客10，不足按确定顺序补足。所有队列、直接处理、sweep共享准入规则。记录重复、窗口外、未准入、失败、未知、待处理。
-5. 报告/UI：真实七天试刊允许首次回灌；正常日报仍前日08:00至当日08:00（Asia/Shanghai）。每节最多5条、总15条；健康空刊与未完成/源失败区分；同窗幂等、修订可追溯；不改写历史日期。
+5. 报告/UI：真实七天试刊允许首次回灌；正常日报按前日 09:00（含）至当日 09:00（不含，Asia/Shanghai）筛选，并要求研究论文的原始提交时间落在该窗口。每节最多5条、总15条；健康空刊与未完成/源失败区分；同窗幂等、修订可追溯；不改写历史日期。
 6. 验收：typecheck、隔离DB测试、web build与web tests、smoke、实际页面；真实Codex预筛/评分/摘要；六来源状态与批次回执；逐条检查刊载原文，检查至少10条未选（不足则全部），不称人工金标准评测。
 
 模型层子任务独占0042迁移与providers/operations-recover；metadata子任务独占0043迁移、sources/content-materials/publication/contracts；行业子任务独占industry。主代理负责0044迁移、research批次、jobs准入、report composer、运行脚本、UI整合和全套验收。

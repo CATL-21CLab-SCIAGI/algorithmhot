@@ -19,8 +19,8 @@ import { Nameplate } from "./Nameplate";
 import { IssueDots } from "./IssueDots";
 import { ReportIllustration } from "./ReportIllustration";
 import { ResearchEvidence } from "../item/ResearchEvidence";
-import { RunStatus } from "./RunStatus";
-import { EDITION, KIND_LABEL, MOTTO, dateLine, dateMark, headline, metricItems, neighbourLabel, reportPath, shortDay } from "./format";
+import { isRunNarrative, readerArchiveTitle, reportLeadCitation, reportReaderCopy } from "./reader-copy";
+import { EDITION, KIND_LABEL, MOTTO, dateLine, dateMark, metricItems, neighbourLabel, reportPath, shortDay } from "./format";
 
 const pad = (n: number) => String(n).padStart(2, "0");
 const keyOf = (c: ReportCitation) => c.itemId ?? c.title;
@@ -100,7 +100,7 @@ function Original({ c, className = "" }: { c: ReportCitation; className?: string
 }
 
 /** One story: source, headline, at most four lines of summary, and the original at the foot. */
-function Story({ c, dated, illustrated = false, className = "" }: { c: ReportCitation; dated: boolean; illustrated?: boolean; className?: string }) {
+function Story({ c, dated, className = "" }: { c: ReportCitation; dated: boolean; className?: string }) {
   return (
     <article id={anchorOf(c) ?? undefined} className={`flex min-w-0 scroll-mt-6 flex-col py-6 ${className}`}>
       <div className="flex items-center gap-2 text-[12px] text-ink-3">
@@ -109,6 +109,7 @@ function Story({ c, dated, illustrated = false, className = "" }: { c: ReportCit
       </div>
       {c.available ? (
         <>
+          <ReportIllustration citation={c} />
           <h3 className="mt-3 text-[19px] font-bold leading-[1.5] tracking-[-0.01em] text-ink [overflow-wrap:anywhere] [text-wrap:pretty] @[880px]:text-[20px]">
             {c.itemId ? (
               <Link to={`/items/${c.itemId}`} prefetch="intent" className="transition-colors hover:text-accent">
@@ -119,7 +120,6 @@ function Story({ c, dated, illustrated = false, className = "" }: { c: ReportCit
             )}
           </h3>
           {c.summary && <p className="mt-2 line-clamp-4 text-[15px] leading-[1.85] text-ink-2 [overflow-wrap:anywhere] @[560px]:text-justify">{c.summary}</p>}
-          {illustrated && <ReportIllustration citation={c} />}
           <ResearchEvidence research={c.research} researchBrief={c.researchBrief} compact />
           <div className="mt-auto pt-3">
             <Original c={c} />
@@ -159,10 +159,9 @@ interface Page {
   items: ReportCitation[];
 }
 
-/** A daily without an editors' lead leads with its first highlight (else its first story). */
+/** The first available research article anchors the lead image and source details. */
 function leadStoryOf(report: ReportDetail): ReportCitation | null {
-  if (report.lead || (report.kind !== "daily" && report.kind !== "pilot")) return null;
-  return report.highlights[0] ?? report.sections.find((s) => s.items.length > 0)?.items[0] ?? null;
+  return reportLeadCitation(report);
 }
 
 /**
@@ -175,7 +174,7 @@ function pagesOf(report: ReportDetail, leadStory: ReportCitation | null): Page[]
     .map((s, i) => ({
       id: `s-${i + 1}`,
       label: s.label,
-      summary: s.summary,
+      summary: s.summary && !isRunNarrative(s.summary) ? s.summary : null,
       items: s.items
         .filter((c) => {
           const k = keyOf(c);
@@ -188,19 +187,16 @@ function pagesOf(report: ReportDetail, leadStory: ReportCitation | null): Page[]
 }
 
 /**
- * The lead's picture; landscape pictures are cropped to between 16:10 and 2:1. A picture that is not
- * the lead's own (a weekly or monthly's, from its first highlight) is captioned with its story.
+ * Legacy editorial covers retain their full image. Research articles use their bound original figure.
  */
 function LeadPicture({ cover, onError, priority = false, className = "" }: { cover: NonNullable<ReportDetail["cover"]>; onError: () => void; priority?: boolean; className?: string }) {
-  const ratio = cover.width && cover.height ? cover.width / cover.height : 16 / 9;
-  const shown = ratio >= 1.25 ? Math.min(2, Math.max(1.6, ratio)) : Math.max(0.8, ratio);
   return (
     <figure className={className}>
-      <div className="overflow-hidden well rounded-panel" style={{ aspectRatio: shown }}>
+      <div className="overflow-hidden well rounded-panel">
         <img src={cover.url} srcSet={cover.srcSet}
           sizes={priority ? "(min-width: 1700px) 780px, (min-width: 1580px) calc(100vw - 920px), (min-width: 1420px) calc(100vw - 880px), (min-width: 1024px) calc(100vw - 540px), (min-width: 640px) 608px, calc(100vw - 32px)" : "auto, (min-width: 1180px) 300px, (min-width: 640px) 608px, calc(100vw - 32px)"}
           width={cover.width ?? undefined} height={cover.height ?? undefined}
-          alt="" loading={priority ? "eager" : "lazy"} fetchPriority={priority ? "high" : "auto"} decoding="async" onError={onError} className="size-full object-cover" />
+          alt="" loading={priority ? "eager" : "lazy"} fetchPriority={priority ? "high" : "auto"} decoding="async" onError={onError} className="block h-auto w-full object-contain" />
       </div>
       {cover.caption && <figcaption className="mt-2.5 line-clamp-2 text-[12.5px] leading-[1.6] text-ink-4">图 · {cover.caption}</figcaption>}
     </figure>
@@ -208,15 +204,16 @@ function LeadPicture({ cover, onError, priority = false, className = "" }: { cov
 }
 
 /** The front page: the lead beside a column of today's highlights and the index of pages. */
-function FrontPage({ report, pages, leadStory, count }: { report: ReportDetail; pages: Page[]; leadStory: ReportCitation | null; count: number }) {
+function FrontPage({ report, pages, leadStory }: { report: ReportDetail; pages: Page[]; leadStory: ReportCitation | null }) {
   const daily = report.kind === "daily";
   // A picture that fails to load is dropped, and the lead is set as if it had none.
   const [broken, setBroken] = useState<string | null>(null);
-  const cover = report.cover && report.cover.url !== broken ? report.cover : null;
+  const cover = !leadStory && report.cover && report.cover.url !== broken ? report.cover : null;
   // A landscape picture opens the lead above its headline; a squarer one sits beside the paragraph.
   const wide = !cover?.width || !cover.height || cover.width / cover.height >= 1.25;
-  const title = report.lead?.title ?? leadStory?.title ?? (report.kind === "pilot" ? report.title : headline(report.kind, report.key, count));
-  const dek = report.lead?.leadParagraph ?? leadStory?.summary ?? report.overview;
+  const copy = reportReaderCopy(report);
+  const title = copy.title;
+  const dek = copy.paragraph;
   const highlights = report.highlights.filter((h) => !leadStory || keyOf(h) !== keyOf(leadStory)).slice(0, 3);
   const inPage = new Set(pages.flatMap((p) => p.items.map((c) => c.itemId)).filter(Boolean));
   const period = daily ? "今日" : report.kind === "pilot" ? "本期" : report.kind === "weekly" ? "本周" : "本月";
@@ -226,6 +223,7 @@ function FrontPage({ report, pages, leadStory, count }: { report: ReportDetail; 
     <section aria-label="头版" className="grid @[880px]:grid-cols-[minmax(0,1fr)_300px] @[1040px]:grid-cols-[minmax(0,1fr)_340px]">
       <div id={leadStory ? (anchorOf(leadStory) ?? undefined) : undefined} className="min-w-0 scroll-mt-6 py-7 @[880px]:border-r @[880px]:border-line @[880px]:py-10 @[880px]:pr-10">
         <Kicker>{daily ? "头条" : "本期导读"}</Kicker>
+        {leadStory && <ReportIllustration citation={leadStory} priority />}
         {cover && wide && <LeadPicture cover={cover} onError={() => setBroken(cover.url)} priority className="mt-5" />}
         <h2 className="mt-4 text-[32px] font-black leading-[1.28] tracking-[-0.03em] text-ink [text-wrap:balance] @[520px]:text-[40px] @[1040px]:text-[48px] @[1040px]:leading-[1.22]">
           {leadStory?.itemId ? (
@@ -242,7 +240,6 @@ function FrontPage({ report, pages, leadStory, count }: { report: ReportDetail; 
             {cover && !wide && <LeadPicture cover={cover} onError={() => setBroken(cover.url)} />}
           </div>
         )}
-        {leadStory && report.kind === "pilot" && <ReportIllustration citation={leadStory} />}
         {leadStory && <ResearchEvidence research={leadStory.research} researchBrief={leadStory.researchBrief} />}
         {leadStory && (
           <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-1 text-[12.5px] text-ink-3">
@@ -317,7 +314,7 @@ export function SectionPage({ id, no, label, children }: { id: string; no?: numb
 const COLUMNS = "@[760px]:columns-2 @[760px]:gap-x-12 @[760px]:[column-rule:1px_solid_var(--line)]";
 
 function Neighbours({ report, index }: { report: ReportDetail; index: ReportNavigationEntry[] }) {
-  const titleOf = (key: string) => index.find((e) => e.key === key)?.title ?? `${withSubject(KIND_LABEL[report.kind])} · ${key}`;
+  const titleOf = (key: string) => readerArchiveTitle(index.find((e) => e.key === key)?.title, report.kind, key);
   const cell = "group flex min-w-0 flex-col py-6";
   const title = "mt-2.5 line-clamp-2 text-[16px] font-bold leading-[1.5] text-ink transition-colors group-hover:text-accent @[880px]:text-[18px]";
   return (
@@ -357,7 +354,7 @@ function History({ report, index }: { report: ReportDetail; index: ReportNavigat
           <li key={e.key}>
             <Link to={reportPath(report.kind, e.key)} className="group flex items-baseline gap-4 border-b border-line py-3">
               <span className="num w-[76px] shrink-0 text-[12.5px] text-ink-4">{e.key}</span>
-              <span className="min-w-0 flex-1 truncate text-[14px] text-ink-2 transition-colors group-hover:text-accent">{e.title ?? `${SITE.name} ${KIND_LABEL[report.kind]} · ${e.key}`}</span>
+              <span className="min-w-0 flex-1 truncate text-[14px] text-ink-2 transition-colors group-hover:text-accent">{readerArchiveTitle(e.title, report.kind, e.key)}</span>
             </Link>
           </li>
         ))}
@@ -372,13 +369,12 @@ export function ReportPaper({ report, index }: { report: ReportDetail; index: Re
   const pages = pagesOf(report, leadStory);
   const count = pages.reduce((sum, p) => sum + p.items.length, 0) + (leadStory ? 1 : 0);
   return (
-    <article className="@container">
+    <article className="@container" data-report-kind={report.kind} data-report-key={report.key} data-report-revision={report.revision}>
       <Masthead report={report} index={index} />
-      <RunStatus report={report} />
       {count === 0 && report.flashes.length === 0 ? (
-        <p className="py-16 text-center text-[14px] text-ink-4">{report.run?.gaps.length ? "本期暂未刊载条目，来源或处理仍有缺口，详见上方运行记录。" : "本期没有刊载内容；请结合处理范围判断覆盖情况。"}</p>
+        <p className="py-16 text-center text-[14px] text-ink-4">这一期暂无推荐文章。你可以浏览其他刊期，或到全部动态中查找研究。</p>
       ) : (
-        <FrontPage report={report} pages={pages} leadStory={leadStory} count={count} />
+        <FrontPage report={report} pages={pages} leadStory={leadStory} />
       )}
 
       {pages.map((p, i) => (
@@ -389,7 +385,7 @@ export function ReportPaper({ report, index }: { report: ReportDetail; index: Re
               {p.summary}
             </p>
           )}
-          <Rows items={p.items}>{(c, cell) => <Story key={`${p.id}-${keyOf(c)}`} c={c} dated={!daily} illustrated={report.kind === "pilot"} className={cell} />}</Rows>
+          <Rows items={p.items}>{(c, cell) => <Story key={`${p.id}-${keyOf(c)}`} c={c} dated={!daily} className={cell} />}</Rows>
         </SectionPage>
       ))}
 
@@ -421,7 +417,7 @@ export function ReportPaper({ report, index }: { report: ReportDetail; index: Re
       <footer className="py-10 text-center">
         <div className="text-[13px] font-semibold tracking-[0.6em] text-ink-4">（本期完）</div>
         <p className="mt-3 text-[12px] text-ink-4">
-          {SITE.name} {KIND_LABEL[report.kind]}由编辑系统根据公开来源自动{daily ? "编辑" : "综合"}，每条均附原文 ·{" "}
+          {SITE.name} · 论文原图、研究解读与原文入口 ·{" "}
           <Link to={daily ? "/daily/archive" : "#report-history"} className="font-medium text-ink-3 transition-colors hover:text-accent">
             {daily ? "日报合订本" : `往期${KIND_LABEL[report.kind]}`}
           </Link>

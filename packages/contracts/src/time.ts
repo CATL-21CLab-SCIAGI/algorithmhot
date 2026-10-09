@@ -19,10 +19,10 @@ export function beijingMidnight(date: string): Date {
   return new Date(Date.parse(`${date}T00:00:00+08:00`));
 }
 
-/** Daily issue D covers [D-1 08:00, D 08:00) in Beijing. */
+/** Daily issue D covers [D-1 09:00, D 09:00) in Beijing. */
 export function dailyWindow(date: string): { start: Date; end: Date } {
   if (!isValidDate(date)) throw new Error(`Invalid daily date ${date}`);
-  const end = new Date(beijingMidnight(date).getTime() + OFFSET_MS);
+  const end = new Date(beijingMidnight(date).getTime() + OFFSET_MS + 3600000);
   return { start: new Date(end.getTime() - 86400000), end };
 }
 

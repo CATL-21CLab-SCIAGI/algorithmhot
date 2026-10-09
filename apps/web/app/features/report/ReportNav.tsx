@@ -4,11 +4,12 @@ import { Link } from "react-router";
 import type { ReportNavigationEntry, ReportKind } from "@aihot/contracts/site";
 import { PillTabs } from "../../components/ui/Tabs";
 import { IconChevronRight } from "../../components/icons";
+import { readerArchiveTitle } from "./reader-copy";
 import { KINDS, KIND_LABEL, KIND_PATH, archiveGroups, archiveMark, chipLabel, reportPath } from "./format";
 
 /** 日报 / 周报 / 月报 as the site's pill switch, spread across the column. */
 function KindSwitch({ kind }: { kind: ReportKind }) {
-  return <PillTabs fill layoutId="report-kind" label="切换试刊、日报、周报、月报" active={kind} items={KINDS.map((k) => ({ key: k, label: KIND_LABEL[k], to: KIND_PATH[k] }))} />;
+  return <PillTabs fill layoutId="report-kind" label="切换日报、周报、月报" active={kind} items={KINDS.map((k) => ({ key: k, label: KIND_LABEL[k], to: KIND_PATH[k] }))} />;
 }
 
 /** Desktop archive column: every issue of this kind, grouped, the current one highlighted. */
@@ -68,7 +69,7 @@ function ArchiveGroup({ g, kind, current, initiallyOpen }: {
               <Link
                 to={reportPath(kind, e.key)}
                 aria-current={on ? "page" : undefined}
-                title={e.title ?? undefined}
+                title={readerArchiveTitle(e.title, kind, e.key)}
                 prefetch="intent"
                 className={`group flex gap-3 rounded-tile py-2.5 pl-2.5 pr-2 transition-colors ${on ? "bg-accent-soft" : "hover:bg-bg-sunk"}`}
               >
@@ -76,7 +77,7 @@ function ArchiveGroup({ g, kind, current, initiallyOpen }: {
                   <span className={`num text-[19px] font-black leading-none tracking-[-0.03em] ${on ? "text-accent" : "text-ink"}`}>{mark(e.key).big}</span>
                   {mark(e.key).small && <span className="mt-1 whitespace-nowrap text-[10px] leading-none text-ink-4">{mark(e.key).small}</span>}
                 </span>
-                <span className={`line-clamp-2 min-w-0 text-[12.5px] leading-[18px] transition-colors ${on ? "font-semibold text-ink" : "text-ink-2 group-hover:text-ink"}`}>{e.title ?? `${KIND_LABEL[kind]} ${e.key}`}</span>
+                <span className={`line-clamp-2 min-w-0 text-[12.5px] leading-[18px] transition-colors ${on ? "font-semibold text-ink" : "text-ink-2 group-hover:text-ink"}`}>{readerArchiveTitle(e.title, kind, e.key)}</span>
               </Link>
             </li>
           );
@@ -94,7 +95,7 @@ export function ReportPhoneNav({ kind, index, current, today }: { kind: ReportKi
   const chip = "inline-flex h-9 shrink-0 items-center rounded-full border px-4 text-[13px] transition-colors";
   return (
     <div className="pt-3 lg:hidden">
-      <PillTabs fill layoutId="report-kind-phone" label="切换试刊、日报、周报、月报" active={kind} items={KINDS.map((k) => ({ key: k, label: KIND_LABEL[k], to: KIND_PATH[k] }))} />
+      <PillTabs fill layoutId="report-kind-phone" label="切换日报、周报、月报" active={kind} items={KINDS.map((k) => ({ key: k, label: KIND_LABEL[k], to: KIND_PATH[k] }))} />
       {recent.length > 0 && (
         <div className="scrollbar-none -mx-4 mt-3 flex gap-2 overflow-x-auto px-4 pb-1">
           {recent.map((e) => {
