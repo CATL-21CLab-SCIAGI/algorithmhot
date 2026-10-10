@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-10T07:08:03.134Z",
+  "generatedAt": "2026-10-10T15:30:02.535Z",
   "publicBaseUrl": "https://catl-21clab-sciagi.github.io/algorithmhot/",
   "mode": "static-snapshot",
   "scope": "公开科研动态、精选研究、研究主题，以及日报、周报和月报归档",
@@ -10,6 +10,7 @@
         "status": "JOURNAL_SCREENED",
         "domain": "hydrogen",
         "rationale": "来源标注期刊为《Journal of the American Chemical Society》。所供摘要研究燃料电池及电解槽用无氟质子交换膜，属于制氢相关膜材料；作者提出膜优化并报告扩散速率增至三倍，支持判为原创研究。机器学习原子间势用于分子动力学、质子迁移描述符识别并指导膜设计，是核心研究方法，故主栏目归 AI4S。判断仅依据所供摘要。",
+        "aiRole": "core",
         "journal": {
           "name": "Journal of the American Chemical Society",
           "publisher": "American Chemical Society",
@@ -30406,80 +30407,114 @@
   ],
   "reports": [
     {
-      "illustrated": true,
+      "readingUpdate": {
+        "scope": "research",
+        "checkedAt": "2026-10-10T15:28:05.724Z",
+        "windowStart": "2026-10-09T01:00:00.000Z",
+        "windowEnd": "2026-10-10T01:00:00.000Z",
+        "nextReviewAt": "2026-10-11T01:00:00.000Z",
+        "status": "partial",
+        "reasons": [
+          "no-window-records",
+          "coverage-unverified",
+          "source-unavailable"
+        ]
+      },
       "kind": "daily",
       "key": "2026-10-10",
       "issueNumber": 6,
-      "title": "科研进展",
+      "title": "AlgorithmHot · 科研热点 · 日报 · 部分结果",
       "windowStart": "2026-10-09T01:00:00.000Z",
       "windowEnd": "2026-10-10T01:00:00.000Z",
-      "generatedAt": "2026-10-10T07:08:02.535Z",
-      "revision": 3,
+      "generatedAt": "2026-10-10T15:28:05.724Z",
+      "revision": 4,
       "lead": {
-        "title": "科研进展",
-        "leadParagraph": "这一期暂无推荐文章。可浏览其他刊期，或到全部动态中查找研究。"
+        "title": "本期处理尚有缺口",
+        "leadParagraph": "未形成完整精选结果：2 个来源采集尚不完整（历史失败请求共 9 次）；4 个来源的新鲜度或窗口覆盖尚未确认；成功响应或未观察到窗口内记录不表示当天没有新研究。"
       },
-      "overview": "这一期暂无推荐文章。可浏览其他刊期，或到全部动态中查找研究。",
+      "overview": null,
       "sections": [],
       "metrics": {
         "failed": 0,
-        "parsed": 1233,
+        "parsed": 10,
         "passed": 0,
-        "stored": 1079,
+        "stored": 10,
         "blocked": 0,
         "pending": 0,
-        "signals": 72,
+        "signals": 0,
         "admitted": 0,
         "inWindow": 0,
-        "returned": 1233,
+        "lateHeld": 0,
+        "returned": 10,
         "selected": 0,
         "processed": 0,
         "published": 0,
         "briefReady": 0,
+        "latePending": 0,
         "notAdmitted": 0,
         "totalEvents": 0,
         "briefPending": 0,
-        "figureChecks": 0,
+        "lateAdmitted": 0,
         "sourcesCount": 0,
-        "figureMissing": 0,
+        "lateProcessed": 0,
+        "latePublished": 0,
         "newlyAdmitted": 0,
-        "outsideWindow": 1079,
+        "outsideWindow": 10,
         "parseRejected": 0,
-        "sourcesFailed": 0,
+        "sourcesFailed": 2,
         "displayOmitted": 0,
-        "failedRequests": 0,
+        "failedRequests": 9,
+        "lateDiscovered": 0,
+        "lateDuplicates": 0,
         "sourcesPlanned": 6,
         "unknownOutcome": 0,
         "decisionUnknown": 0,
         "sourcesDeferred": 0,
         "sourcesObserved": 6,
-        "unlinkedSignals": 51,
-        "verifiedFigures": 0,
+        "unlinkedSignals": 0,
         "deferredRequests": 0,
-        "duplicateRecords": 154,
-        "figureCandidates": 0,
-        "sourcesSucceeded": 6,
-        "figureUnavailable": 0,
+        "duplicateRecords": 0,
+        "sourcesSucceeded": 4,
         "quarantinedFailed": 0,
         "roadmapsPublished": 0,
         "truncatedRequests": 0,
         "previouslyAdmitted": 0,
         "quarantinedUnknown": 0,
-        "healthyEmptySources": 6,
-        "figureReviewRequired": 0,
+        "healthyEmptySources": 0,
         "modelRequestsUnknown": 0,
+        "observedEmptySources": 4,
         "selectedWithoutBrief": 0,
+        "strictWindowAdmitted": 0,
         "duplicateRecordsExact": 1,
         "excludedSourceRecords": 0,
+        "sourcesConfirmedEmpty": 0,
         "excludedByDisplayLimit": 0,
+        "lateEvidenceUnverified": 0,
+        "latePreviouslyProcessed": 0,
         "persistenceUnreconciled": 0,
-        "duplicateRecordsLowerBound": 154,
-        "figureCandidatesUninspected": 0
+        "sourcesTransportSucceeded": 4,
+        "duplicateRecordsLowerBound": 0,
+        "sourcesFreshnessUnverified": 4
       },
-      "status": "complete",
-      "gaps": []
+      "status": "partial",
+      "gaps": [
+        "2 个来源采集尚不完整（历史失败请求共 9 次）",
+        "4 个来源的新鲜度或窗口覆盖尚未确认；成功响应或未观察到窗口内记录不表示当天没有新研究"
+      ]
     },
     {
+      "readingUpdate": {
+        "scope": "research",
+        "checkedAt": "2026-10-09T10:13:09.538Z",
+        "windowStart": "2026-10-08T01:00:00.000Z",
+        "windowEnd": "2026-10-09T01:00:00.000Z",
+        "nextReviewAt": "2026-10-09T13:00:00.000Z",
+        "status": "partial",
+        "reasons": [
+          "coverage-unverified",
+          "review-pending"
+        ]
+      },
       "illustrated": true,
       "kind": "daily",
       "key": "2026-10-09",
@@ -30719,6 +30754,18 @@
       ]
     },
     {
+      "readingUpdate": {
+        "scope": "research",
+        "checkedAt": "2026-10-08T13:30:23.438Z",
+        "windowStart": "2026-10-07T01:00:00.000Z",
+        "windowEnd": "2026-10-08T01:00:00.000Z",
+        "nextReviewAt": "2026-10-09T01:00:00.000Z",
+        "status": "partial",
+        "reasons": [
+          "coverage-unverified",
+          "review-pending"
+        ]
+      },
       "illustrated": true,
       "kind": "daily",
       "key": "2026-10-08",
@@ -31054,6 +31101,18 @@
       ]
     },
     {
+      "readingUpdate": {
+        "scope": "research",
+        "checkedAt": "2026-10-10T02:06:22.984Z",
+        "windowStart": "2026-10-06T01:00:00.000Z",
+        "windowEnd": "2026-10-07T01:00:00.000Z",
+        "nextReviewAt": "2026-10-10T07:00:00.000Z",
+        "status": "partial",
+        "reasons": [
+          "coverage-unverified",
+          "review-pending"
+        ]
+      },
       "illustrated": true,
       "kind": "daily",
       "key": "2026-10-07",
@@ -31209,6 +31268,18 @@
       ]
     },
     {
+      "readingUpdate": {
+        "scope": "research",
+        "checkedAt": "2026-10-09T17:06:42.805Z",
+        "windowStart": "2026-10-04T01:00:00.000Z",
+        "windowEnd": "2026-10-05T01:00:00.000Z",
+        "nextReviewAt": "2026-10-10T01:00:00.000Z",
+        "status": "partial",
+        "reasons": [
+          "coverage-unverified",
+          "review-pending"
+        ]
+      },
       "illustrated": true,
       "kind": "daily",
       "key": "2026-10-05",
@@ -32700,6 +32771,18 @@
       "gaps": []
     },
     {
+      "readingUpdate": {
+        "scope": "research",
+        "checkedAt": "2026-10-08T12:43:29.384Z",
+        "windowStart": "2026-10-03T01:00:00.000Z",
+        "windowEnd": "2026-10-04T01:00:00.000Z",
+        "nextReviewAt": "2026-10-08T13:00:00.000Z",
+        "status": "partial",
+        "reasons": [
+          "no-window-records",
+          "coverage-unverified"
+        ]
+      },
       "illustrated": true,
       "kind": "daily",
       "key": "2026-10-04",
@@ -33566,7 +33649,7 @@
   ],
   "researchAttention": {
     "ruleVersion": "research-source-heat-v1-168h-halflife24h",
-    "computedAt": "2026-10-10T07:08:03.134Z",
+    "computedAt": "2026-10-10T15:30:02.535Z",
     "windowHours": 168,
     "halfLifeHours": 24,
     "minSources": 2,
@@ -33578,7 +33661,7 @@
         "rank": 1,
         "itemId": "hanixmufefm7910t9gu3yxdtd",
         "title": "BrickBench：评测智能体的 LEGO 套装设计能力",
-        "heat": 8.1,
+        "heat": 6.4,
         "sourceCount": 2,
         "signals": [
           {
@@ -33601,7 +33684,7 @@
         "rank": 2,
         "itemId": "pfb19fjdhuc9ceu3zffr6j8re",
         "title": "FreeMatching 研究提出超越时空先验的可泛化稠密对应匹配框架",
-        "heat": 8.1,
+        "heat": 6.4,
         "sourceCount": 2,
         "signals": [
           {
@@ -33624,7 +33707,7 @@
         "rank": 3,
         "itemId": "a3h7f3a96xpi9ovv9z7svq67x",
         "title": "U-Space 探索语言模型不确定性的产生时机与原因",
-        "heat": 6.1,
+        "heat": 4.8,
         "sourceCount": 2,
         "signals": [
           {
@@ -33647,7 +33730,7 @@
         "rank": 4,
         "itemId": "d4fbqcijmcfvz1y4h84gbv0bf",
         "title": "RoboQuest 评测通用具身智能体的搜索、检查与测试能力",
-        "heat": 4.1,
+        "heat": 3.2,
         "sourceCount": 2,
         "signals": [
           {
@@ -33670,7 +33753,7 @@
         "rank": 5,
         "itemId": "i7muy0v37pqmz91o1fu6cvgvg",
         "title": "RunningTab 通过环境侧任务记录支持直接工作区交互",
-        "heat": 4.1,
+        "heat": 3.2,
         "sourceCount": 2,
         "signals": [
           {
@@ -33693,7 +33776,7 @@
         "rank": 6,
         "itemId": "ktw346scru68s2ds73u0zt2ut",
         "title": "RobotWorld：评测多模态智能体在多种任务与机器人形态下的操控能力",
-        "heat": 4.1,
+        "heat": 3.2,
         "sourceCount": 2,
         "signals": [
           {
@@ -33716,7 +33799,7 @@
         "rank": 7,
         "itemId": "p32idmaka1eja0j8uavcenluo",
         "title": "SQAM 提出基于标量伴随匹配的 Q-learning 方法",
-        "heat": 4.1,
+        "heat": 3.2,
         "sourceCount": 2,
         "signals": [
           {
@@ -33739,7 +33822,7 @@
         "rank": 8,
         "itemId": "rty4i3a2lmzo0nsy4l5oov1mo",
         "title": "CADFather：通过协同工具调用实现自主 CAD 重建",
-        "heat": 4.1,
+        "heat": 3.2,
         "sourceCount": 2,
         "signals": [
           {
@@ -33762,7 +33845,7 @@
         "rank": 9,
         "itemId": "w69nx656ffa43fx3aj726gxjj",
         "title": "Long-WAM 提出实时控制约束下的世界动作模型上下文扩展框架",
-        "heat": 4.1,
+        "heat": 3.2,
         "sourceCount": 2,
         "signals": [
           {
@@ -33785,7 +33868,7 @@
         "rank": 10,
         "itemId": "b7dlmapuxp2ni3ox7d66s2c78",
         "title": "Oracle 计算研究提出统一描述 Agent 与 Workflow 的抽象机",
-        "heat": 3.1,
+        "heat": 2.4,
         "sourceCount": 2,
         "signals": [
           {
@@ -33979,5 +34062,32 @@
         }
       ]
     }
-  ]
+  ],
+  "readingUpdates": {
+    "research": {
+      "scope": "research",
+      "checkedAt": "2026-10-10T07:08:02.540Z",
+      "windowStart": "2026-10-09T01:00:00.000Z",
+      "windowEnd": "2026-10-10T01:00:00.000Z",
+      "nextReviewAt": "2026-10-10T13:00:00.000Z",
+      "status": "partial",
+      "reasons": [
+        "no-window-records",
+        "coverage-unverified"
+      ]
+    },
+    "materials": {
+      "scope": "materials",
+      "checkedAt": "2026-10-10T07:07:23.548Z",
+      "windowStart": null,
+      "windowEnd": null,
+      "nextReviewAt": "2026-10-10T13:00:00.000Z",
+      "status": "partial",
+      "reasons": [
+        "coverage-bounded",
+        "evidence-pending",
+        "review-pending"
+      ]
+    }
+  }
 }
