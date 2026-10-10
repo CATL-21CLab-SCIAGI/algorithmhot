@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-10T06:44:13.606Z",
+  "generatedAt": "2026-10-10T07:08:03.134Z",
   "publicBaseUrl": "https://catl-21clab-sciagi.github.io/algorithmhot/",
   "mode": "static-snapshot",
   "scope": "公开科研动态、精选研究、研究主题，以及日报、周报和月报归档",
@@ -30413,8 +30413,8 @@
       "title": "科研进展",
       "windowStart": "2026-10-09T01:00:00.000Z",
       "windowEnd": "2026-10-10T01:00:00.000Z",
-      "generatedAt": "2026-10-10T06:42:20.458Z",
-      "revision": 2,
+      "generatedAt": "2026-10-10T07:08:02.535Z",
+      "revision": 3,
       "lead": {
         "title": "科研进展",
         "leadParagraph": "这一期暂无推荐文章。可浏览其他刊期，或到全部动态中查找研究。"
@@ -33566,7 +33566,7 @@
   ],
   "researchAttention": {
     "ruleVersion": "research-source-heat-v1-168h-halflife24h",
-    "computedAt": "2026-10-10T06:44:13.606Z",
+    "computedAt": "2026-10-10T07:08:03.134Z",
     "windowHours": 168,
     "halfLifeHours": 24,
     "minSources": 2,
@@ -33578,7 +33578,7 @@
         "rank": 1,
         "itemId": "hanixmufefm7910t9gu3yxdtd",
         "title": "BrickBench：评测智能体的 LEGO 套装设计能力",
-        "heat": 8.2,
+        "heat": 8.1,
         "sourceCount": 2,
         "signals": [
           {
@@ -33601,7 +33601,7 @@
         "rank": 2,
         "itemId": "pfb19fjdhuc9ceu3zffr6j8re",
         "title": "FreeMatching 研究提出超越时空先验的可泛化稠密对应匹配框架",
-        "heat": 8.2,
+        "heat": 8.1,
         "sourceCount": 2,
         "signals": [
           {
@@ -33624,7 +33624,7 @@
         "rank": 3,
         "itemId": "a3h7f3a96xpi9ovv9z7svq67x",
         "title": "U-Space 探索语言模型不确定性的产生时机与原因",
-        "heat": 6.2,
+        "heat": 6.1,
         "sourceCount": 2,
         "signals": [
           {
