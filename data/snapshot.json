@@ -1,10 +1,73 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-10T06:13:12.617Z",
+  "generatedAt": "2026-10-10T06:44:13.606Z",
   "publicBaseUrl": "https://catl-21clab-sciagi.github.io/algorithmhot/",
   "mode": "static-snapshot",
   "scope": "公开科研动态、精选研究、研究主题，以及日报、周报和月报归档",
   "items": [
+    {
+      "materialsQuality": {
+        "status": "JOURNAL_SCREENED",
+        "domain": "hydrogen",
+        "rationale": "来源标注期刊为《Journal of the American Chemical Society》。所供摘要研究燃料电池及电解槽用无氟质子交换膜，属于制氢相关膜材料；作者提出膜优化并报告扩散速率增至三倍，支持判为原创研究。机器学习原子间势用于分子动力学、质子迁移描述符识别并指导膜设计，是核心研究方法，故主栏目归 AI4S。判断仅依据所供摘要。",
+        "journal": {
+          "name": "Journal of the American Chemical Society",
+          "publisher": "American Chemical Society",
+          "selectionBasis": "EXPLICIT_USER_ALLOWLIST",
+          "sourceUrl": "https://pubs.acs.org/journal/jacsat"
+        },
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1,
+        "policyVersion": "energy-materials-journal-topic-v2"
+      },
+      "id": "s3yc1gka8o90s8cbj0umck0t6",
+      "title": "调控无氟质子交换膜的孔道限域与化学环境",
+      "originalTitle": "Tuning Pore Confinement and Chemistry of Fluorine-Free Membranes",
+      "summary": "研究作者报告，通过调控无氟液晶聚环氧氯丙烷膜的孔道限域与化学环境，膜内质子扩散速率增至 3 倍，更接近 Nafion 水平。基于摘要，研究利用源自第一性原理计算的机器学习原子间势（MLIPs）开展大量分子动力学模拟，识别质子迁移的关键描述符。",
+      "reason": "研究把分子动力学得到的质子迁移描述符用于功能基团调整，为无氟质子交换膜的定向设计提供可迁移的思路。",
+      "sourceName": "Journal of the American Chemical Society · 材料研究候选",
+      "sourceUrl": "https://doi.org/10.1021/jacs.6c15621",
+      "publishedAt": null,
+      "timelineAt": "2026-10-10T06:37:40.630Z",
+      "category": "ai4s",
+      "tags": [
+        "论文/研究",
+        "电池与新能源材料",
+        "制氢材料",
+        "AI4S",
+        "分子建模"
+      ],
+      "research": {
+        "arxivId": null,
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": "10.1021/jacs.6c15621",
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-10T06:37:40.630Z",
+        "evidenceBasis": "abstract",
+        "originalPublishedDate": "2026-10-09",
+        "publicationDatePrecision": "day",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://doi.org/10.1021/jacs.6c15621",
+            "sourceUrl": "https://api.crossref.org/works/10.1021%2Fjacs.6c15621"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出以质子迁移关键描述符指导无氟液晶聚环氧氯丙烷膜的定向优化：使用由第一性原理计算得到的机器学习原子间势（MLIPs）开展广泛分子动力学模拟，识别影响质子迁移的因素。作者报告，质子转移受水的限域作用与内部孔道化学性质的共同控制，据此调整活性官能团，使其直接参与质子扩散。该方法针对含氟化合物禁用法规背景下，寻找可替代Nafion的无氟质子交换膜这一需求；作者将所优化的膜描述为可持续、低成本材料。",
+        "applicableTasks": "资料支持的任务是无氟质子交换膜的质子迁移机制研究、关键描述符识别及官能团定向设计；具体研究对象为液晶聚环氧氯丙烷膜。应用背景为使用质子交换膜的低温燃料电池和电解槽，作者希望据此推动下一代无氟质子交换膜的商业开发。摘要未提供其他膜材料、具体器件或运行条件下的适用性验证。",
+        "comparisonConditions": "作者报告，调整活性官能团后，膜内质子扩散速率获得3倍提升，并称其更接近Nafion标准；摘要未展开该倍数的具体定义与比较基线，也未提供绝对扩散速率、单位或与Nafion的定量差距。Nafion是摘要中的性能参照，但是否开展相同条件下的直接对比未知。已知计算设置为第一性原理计算衍生的MLIPs及广泛分子动力学模拟；数据规模、模型数量、任务数量、膜配方或样本数量、硬件、计算资源、模拟时长、温度、含水量及其他计算参数均未知。摘要未说明3倍结果属于最高值、平均值还是某一特定条件，也未给出误差或统计不确定性。",
+        "limitations": "当前证据仅为摘要，未核对全文；上述机制与性能改善均为作者报告，独立复现情况未知。摘要未明确陈述方法本身的限制，也未提供MLIPs精度验证、实验验证、器件级性能、长期稳定性或跨条件适用性验证信息。不能由质子扩散速率提升推断膜的质子电导率、燃料电池或电解槽性能同步提升，也不能据“更接近Nafion标准”认定达到或超过Nafion整体性能。可持续性与低成本为作者描述，摘要未提供量化依据；代码、数据及实现的开放可用性未知。以上缺失仅指当前资料未提供，不能据此断言研究本身未开展相关工作。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
     {
       "id": "r9o3pcnhkravka8hdyts5j6bs",
       "title": "均衡数据配比：SGS 应对机器人控制超大规模 RL 的探索瓶颈",
@@ -29519,10 +29582,11 @@
       "name": "AI4S",
       "group": "field",
       "definition": "用 AI 解决材料、计算物理、分子建模等科学问题，关注数据条件与科学证据。",
-      "total": 64,
-      "recent": 62,
-      "latestAt": "2026-10-08T17:58:36.000Z",
+      "total": 65,
+      "recent": 63,
+      "latestAt": "2026-10-10T06:37:40.630Z",
       "itemIds": [
+        "s3yc1gka8o90s8cbj0umck0t6",
         "yyetvg917timuv8uhljbtb3en",
         "up3ku9xuhfbxh1yk5yawv3twu",
         "qq21ufb5cjwz29e7wib8g1mbc",
@@ -29594,10 +29658,12 @@
       "name": "电池与新能源材料",
       "group": "field",
       "definition": "聚焦电池、光伏与制氢的原创材料研究。依据与主张相匹配的方法、比较条件和验证证据甄选；证据不足保留待核验。",
-      "total": 0,
-      "recent": 0,
-      "latestAt": null,
-      "itemIds": []
+      "total": 1,
+      "recent": 1,
+      "latestAt": "2026-10-10T06:37:40.630Z",
+      "itemIds": [
+        "s3yc1gka8o90s8cbj0umck0t6"
+      ]
     },
     {
       "slug": "data-training",
@@ -29930,10 +29996,11 @@
       "name": "分子建模",
       "group": "field",
       "definition": "分子、蛋白与定量生物学中的 AI 方法及任务边界。",
-      "total": 13,
-      "recent": 13,
-      "latestAt": "2026-10-06T00:47:54.000Z",
+      "total": 14,
+      "recent": 14,
+      "latestAt": "2026-10-10T06:37:40.630Z",
       "itemIds": [
+        "s3yc1gka8o90s8cbj0umck0t6",
         "ebff39ykx0ozqx05g804n0aq4",
         "ogt35bec3ro6azhgbjqabod8e",
         "xvuh3qfpqr0qaojcl7yxqsips",
@@ -29974,10 +30041,11 @@
       "name": "论文研究",
       "group": "genre",
       "definition": "论文与技术报告，明确摘要依据、作者主张和证据限制。",
-      "total": 288,
-      "recent": 282,
-      "latestAt": "2026-10-08T17:59:50.000Z",
+      "total": 289,
+      "recent": 283,
+      "latestAt": "2026-10-10T06:37:40.630Z",
       "itemIds": [
+        "s3yc1gka8o90s8cbj0umck0t6",
         "r9o3pcnhkravka8hdyts5j6bs",
         "flzdt4vyj848qw5q9pw37po2m",
         "d1urz9t0uy50qxyqtdeul5kk7",
@@ -30345,8 +30413,8 @@
       "title": "科研进展",
       "windowStart": "2026-10-09T01:00:00.000Z",
       "windowEnd": "2026-10-10T01:00:00.000Z",
-      "generatedAt": "2026-10-10T06:13:12.034Z",
-      "revision": 1,
+      "generatedAt": "2026-10-10T06:42:20.458Z",
+      "revision": 2,
       "lead": {
         "title": "科研进展",
         "leadParagraph": "这一期暂无推荐文章。可浏览其他刊期，或到全部动态中查找研究。"
@@ -32977,6 +33045,7 @@
     }
   ],
   "poolItemIds": [
+    "s3yc1gka8o90s8cbj0umck0t6",
     "r9o3pcnhkravka8hdyts5j6bs",
     "flzdt4vyj848qw5q9pw37po2m",
     "d1urz9t0uy50qxyqtdeul5kk7",
@@ -33497,11 +33566,11 @@
   ],
   "researchAttention": {
     "ruleVersion": "research-source-heat-v1-168h-halflife24h",
-    "computedAt": "2026-10-10T06:13:12.617Z",
+    "computedAt": "2026-10-10T06:44:13.606Z",
     "windowHours": 168,
     "halfLifeHours": 24,
     "minSources": 2,
-    "publicItems": 517,
+    "publicItems": 518,
     "qualifyingResearch": 22,
     "recent48hResearch": 2,
     "entries": [
@@ -33509,7 +33578,7 @@
         "rank": 1,
         "itemId": "hanixmufefm7910t9gu3yxdtd",
         "title": "BrickBench：评测智能体的 LEGO 套装设计能力",
-        "heat": 8.4,
+        "heat": 8.2,
         "sourceCount": 2,
         "signals": [
           {
@@ -33532,7 +33601,7 @@
         "rank": 2,
         "itemId": "pfb19fjdhuc9ceu3zffr6j8re",
         "title": "FreeMatching 研究提出超越时空先验的可泛化稠密对应匹配框架",
-        "heat": 8.4,
+        "heat": 8.2,
         "sourceCount": 2,
         "signals": [
           {
@@ -33555,7 +33624,7 @@
         "rank": 3,
         "itemId": "a3h7f3a96xpi9ovv9z7svq67x",
         "title": "U-Space 探索语言模型不确定性的产生时机与原因",
-        "heat": 6.3,
+        "heat": 6.2,
         "sourceCount": 2,
         "signals": [
           {
@@ -33578,7 +33647,7 @@
         "rank": 4,
         "itemId": "d4fbqcijmcfvz1y4h84gbv0bf",
         "title": "RoboQuest 评测通用具身智能体的搜索、检查与测试能力",
-        "heat": 4.2,
+        "heat": 4.1,
         "sourceCount": 2,
         "signals": [
           {
@@ -33601,7 +33670,7 @@
         "rank": 5,
         "itemId": "i7muy0v37pqmz91o1fu6cvgvg",
         "title": "RunningTab 通过环境侧任务记录支持直接工作区交互",
-        "heat": 4.2,
+        "heat": 4.1,
         "sourceCount": 2,
         "signals": [
           {
@@ -33624,7 +33693,7 @@
         "rank": 6,
         "itemId": "ktw346scru68s2ds73u0zt2ut",
         "title": "RobotWorld：评测多模态智能体在多种任务与机器人形态下的操控能力",
-        "heat": 4.2,
+        "heat": 4.1,
         "sourceCount": 2,
         "signals": [
           {
@@ -33647,7 +33716,7 @@
         "rank": 7,
         "itemId": "p32idmaka1eja0j8uavcenluo",
         "title": "SQAM 提出基于标量伴随匹配的 Q-learning 方法",
-        "heat": 4.2,
+        "heat": 4.1,
         "sourceCount": 2,
         "signals": [
           {
@@ -33670,7 +33739,7 @@
         "rank": 8,
         "itemId": "rty4i3a2lmzo0nsy4l5oov1mo",
         "title": "CADFather：通过协同工具调用实现自主 CAD 重建",
-        "heat": 4.2,
+        "heat": 4.1,
         "sourceCount": 2,
         "signals": [
           {
@@ -33693,7 +33762,7 @@
         "rank": 9,
         "itemId": "w69nx656ffa43fx3aj726gxjj",
         "title": "Long-WAM 提出实时控制约束下的世界动作模型上下文扩展框架",
-        "heat": 4.2,
+        "heat": 4.1,
         "sourceCount": 2,
         "signals": [
           {
