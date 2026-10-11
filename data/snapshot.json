@@ -1,10 +1,151 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-11T13:35:01.171Z",
+  "generatedAt": "2026-10-11T15:02:07.837Z",
   "publicBaseUrl": "https://catl-21clab-sciagi.github.io/algorithmhot/",
   "mode": "static-snapshot",
   "scope": "公开科研动态、精选研究、研究主题，以及日报、周报和月报归档",
   "items": [
+    {
+      "id": "u910chq97l6cmyhuvvkygnbs8",
+      "title": "融合熵感知特征学习与联邦智能的因果驱动混合入侵检测",
+      "originalTitle": "Causality-driven hybrid intrusion detection with entropy-aware feature learning and federated intelligence",
+      "summary": "根据当前材料，作者提出融合因果学习、熵引导特征压缩与联邦智能的混合入侵检测框架。在控制训练泄漏的数据划分下，经五折验证和十个随机种子评估，作者报告其在cicids2017、unsw-nb15和IoT-23上的检测准确率分别为97.4%、96.1%和95.6%。与优化XGBoost等基线的比较采用相近预处理与类别分布。",
+      "reason": null,
+      "sourceName": "Scientific Reports",
+      "sourceUrl": "https://www.nature.com/articles/s41598-026-69897-2",
+      "publishedAt": null,
+      "timelineAt": "2026-10-11T14:54:11.612Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "训练方法"
+      ],
+      "research": {
+        "arxivId": null,
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": "10.1038/s41598-026-69897-2",
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-11T14:54:11.612Z",
+        "evidenceBasis": "abstract",
+        "originalPublishedDate": "2026-10-11",
+        "publicationDatePrecision": "day",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://www.nature.com/articles/s41598-026-69897-2",
+            "sourceUrl": "https://www.nature.com/articles/s41598-026-69897-2"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出因果驱动的混合入侵检测系统（IDS）框架，将因果自适应签名学习引擎、熵引导特征压缩网络、基于注意力的混合认知检测合成器、对抗鲁棒性校准模块，以及信任加权的联邦威胁情报演化框架整合起来。作者认为，规则方法、表征学习方法和联邦方法在许多情况下独立运行，难以支持因果可解释性、特征信息的高效利用、对抗攻击下的稳定性能和跨站点泛化。所提框架旨在解决这些问题，并在地理分布的多个站点部署时，以计算上可行的方式检测和识别新形式的攻击流量，包括来自已知攻击者的攻击。上述内容属于作者提出的设计目标，摘要并未逐项提供验证结果。",
+        "applicableTasks": "资料支持的任务是网络流量入侵检测与攻击识别。作者报告在三个公开网络流量数据集 CICIDS2017、UNSW-NB15 和 IoT-23 上测试了框架，并进行了有界、基于梯度的扰动测试。多个地理分布站点之间的协作检测及威胁情报演化属于作者提出的应用方向；真实多站点部署、跨站点迁移效果及对未见攻击的专门测试结果，当前摘要未提供。",
+        "comparisonConditions": "作者使用三个公开数据集：CICIDS2017、UNSW-NB15、IoT-23。测试包括针对各数据集设置的、控制训练泄漏的数据划分，用于检验训练数据内模式学习能力的五折验证，以及十个不同随机种子的受控评估。比较对象为三类 IDS 框架：基于区块链的协作式 IDS、传统机器学习 IDS、优化的 XGBoost IDS；具体基线模型名称、模型总数和独立任务数量未知。作者称所有比较均采用相似的预处理条件和类别分布，不能据此认定条件完全相同。作者报告的检测准确率分别为：CICIDS2017 上 97.4%，UNSW-NB15 上 96.1%，IoT-23 上的总体检测准确率为 95.6%。摘要称，相较各数据集原有特征数量，框架将保留特征数降至 18 个，减少 70.9%；各数据集的原始特征数及逐数据集压缩明细未知。作者报告跨十次迭代的汇总指标为：总体准确率 96.37%、精确率 95.97%、召回率 95.43%、F1 分数 95.68%；摘要未说明这些汇总指标的平均方式、数据集权重及统计分母。平均每次推理处理时间为 18.6 毫秒，未给出分数据集耗时或基线耗时。在有界、基于梯度的扰动条件下，作者报告检测准确率保持在 >91.5%；该结果仅对应所述扰动测试。数据集样本量、划分比例、各类别样本数、模型训练设置、硬件、软件环境、计算资源配置、推理批量和计时范围均未知。摘要未提供各比较方法的对应数值，因此无法据此确定相对或绝对性能增益。",
+        "limitations": "证据仅为用户提供的摘要，未核对全文。所有实验数值均为作者报告，当前资料未提供独立复现信息，也未提供代码、模型或运行产物的可用性证据。摘要未明确陈述作者对该方法的限制。当前资料还未提供各随机种子或各折结果、方差、置信区间、显著性检验、混淆矩阵及各攻击类别表现，无法评估汇总结果的波动或类别差异。扰动算法、扰动界限及其他攻击条件未知，不能将 >91.5% 的准确率推广至任意对抗攻击。虽然作者描述了控制训练泄漏的数据划分，但未给出划分细节，无法从摘要独立核验。因果可解释性、各模块贡献、跨站点泛化、实际分布式部署的计算可行性，以及新形式攻击识别能力的专项验证均未在当前资料中呈现；这表示当前证据不足，不表示研究本身不存在这些验证。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": false
+    },
+    {
+      "id": "tglc9o6xtg60cdttn2tkro4of",
+      "title": "眼动分类研究评估 CNN、LSTM 与混合架构的跨受试者及跨数据集表现",
+      "originalTitle": "Person-independent and cross-dataset evaluation of convolutional and recurrent architectures for eye movement classification",
+      "summary": "研究报告，在受试者独立眼动四分类中，LSTM 与 CNN–LSTM 均优于 CNN，跨数据集测试也保留了这一排序。研究使用 GazeCom 的 54 名受试者、250 Hz 采样且经专家逐帧标注的数据，采用留一受试者交叉验证，比较原始凝视位置与加入速度、加速度及角度变化的衍生输入，并对受试者层面的 54 折配对检验进行 Holm 校正。",
+      "reason": null,
+      "sourceName": "Scientific Reports",
+      "sourceUrl": "https://www.nature.com/articles/s41598-026-69589-x",
+      "publishedAt": null,
+      "timelineAt": "2026-10-11T14:54:11.612Z",
+      "category": "ai4s",
+      "tags": [
+        "论文/研究",
+        "AI4S",
+        "算法"
+      ],
+      "research": {
+        "arxivId": null,
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": "10.1038/s41598-026-69589-x",
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-11T14:54:11.612Z",
+        "evidenceBasis": "abstract",
+        "originalPublishedDate": "2026-10-11",
+        "publicationDatePrecision": "day",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://www.nature.com/articles/s41598-026-69589-x",
+            "sourceUrl": "https://www.nature.com/articles/s41598-026-69589-x"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者报告了一项面向未见参与者的眼动分类比较，针对常见的训练集与测试集窗口共享参与者、难以判断模型对新参与者泛化能力的问题，采用留一人交叉验证：每次完整留出一名参与者测试。比较一维 CNN、LSTM 和 CNN–LSTM 混合架构，并为每种架构分别使用原始注视位置输入，以及加入速度、加速度和角度变化的派生输入。模型差异在参与者层面进行配对检验并作 Holm 校正，而非以重叠窗口作为比较单位。作者据此认为，普通 LSTM 已足以承担该任务，增加卷积前端的收益未得到这些数据支持。",
+        "applicableTasks": "资料支持的任务是眼动记录的逐帧事件分类，涉及注视、扫视和平滑追踪。主实验为 GazeCom 数据集上的四分类，但摘要未说明第四类名称。研究覆盖同一数据集内对未见参与者的泛化，以及将 GazeCom 训练的模型不经重新训练直接用于 Lund2013 记录的跨数据集测试。三个非学习型或轻量基线的结果明确对应注视、扫视和平滑追踪三类任务。对其他人群、采样条件、设备或应用场景的适用性，当前资料未提供验证。",
+        "comparisonConditions": "作者比较了 3 种深度架构：一维 CNN、LSTM、CNN–LSTM；每种使用 2 种输入表示：原始注视位置，以及加入速度、加速度和角度变化的派生输入。主数据集 GazeCom 含 54 名参与者，采样率为 250 Hz，采用专家逐帧标注；训练与测试使用留一人交叉验证，共 54 折，每名参与者依次被留出。统计比较是在 54 折上按参与者配对检验，并使用 Holm 校正；具体检验类型、显著性阈值、p 值及置信区间未知。作者报告，在派生输入条件下，LSTM 与混合架构的 macro-F1 均约为 0.82，CNN 为 0.71；循环模型相对 CNN 的优势在每名参与者上均成立，不表示每人的差值相同。原始输入下，混合架构与普通 LSTM 的差异在统计上不可区分；派生输入下，两者 macro-F1 相差小于 0.01，摘要未给出该差值方向或具体显著性结果。混合架构参数量比 LSTM 约多 70%，作者称其没有可测得的收益；绝对参数量未知。派生输入改善了所有架构，改善对 CNN 和平滑追踪类别最突出，但各项增幅未知。另比较 3 个非学习型或轻量基线：速度阈值法、速度–离散度法、使用运动学特征的随机森林；各基线逐折调参并采用相同评估协议，在注视／扫视／平滑追踪任务上的 macro-F1 约为 0.53–0.54，作者称其远低于全部 3 个深度模型。该三类任务与前述四分类分数的具体对应关系未说明。macro-F1 为无量纲指标，摘要未说明上述分数的折间汇总口径，不能认定为平均值或最高值。跨数据集测试使用 GazeCom 训练的模型，在 Lund2013 记录上不重新训练，并分别对照 2 名专家标注者评分；作者报告准确率下降，但架构排序保持。外部测试的样本量、准确率数值及下降幅度未知。硬件、训练时长、计算开销、模型规模明细、窗口设置、训练超参数和随机重复次数均未知：当前资料未提供。",
+        "limitations": "证据仅为用户提供的摘要，未核对全文，也没有独立复现证据；全部实验结果和结论均为作者报告。作者明确指出，平滑追踪仍是主要错误来源，也是未来最值得改进的目标；跨数据集测试准确率下降，说明摘要所报告的性能未在外部数据上原样保持。摘要没有提供第四类定义、类别分布、逐类指标、混淆矩阵、完整统计结果或外部测试具体数值，因而无法核查误差构成、效应不确定性及跨数据集下降幅度。普通 LSTM 足够、卷积前端未带来可测收益的结论限于所报告的数据、架构与协议，不能推广到所有眼动任务或模型。资料未提供代码、权重、实现获取方式或复现材料；这些信息缺失不等于研究本身不存在相关材料。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": false
+    },
+    {
+      "id": "lenkrqsbpf4ckw8gua82pi66x",
+      "title": "研究分析四类特征测量误差对机器学习性能与可解释性的影响",
+      "originalTitle": "Effect of features burdened with classical error, misclassifications, Berkson error, and group-summary assignments on machine learning performance and interpretability",
+      "summary": "该研究报告，输入测量误差通常降低机器学习预测性能，并可能显著改变高预测力特征的重要性排序与估计贡献。研究通过覆盖回归和分类任务的受控 Monte Carlo 模拟，考察经典误差、预测特征误分类、源于算法或模型赋值错误的 Berkson 误差，以及组汇总（聚合）赋值误差。",
+      "reason": null,
+      "sourceName": "Scientific Reports",
+      "sourceUrl": "https://www.nature.com/articles/s41598-026-74435-1",
+      "publishedAt": null,
+      "timelineAt": "2026-10-11T14:54:11.612Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "数据/训练"
+      ],
+      "research": {
+        "arxivId": null,
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": "10.1038/s41598-026-74435-1",
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-11T14:54:11.612Z",
+        "evidenceBasis": "abstract",
+        "originalPublishedDate": "2026-10-11",
+        "publicationDatePrecision": "day",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://www.nature.com/articles/s41598-026-74435-1",
+            "sourceUrl": "https://www.nature.com/articles/s41598-026-74435-1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者采用受控 Monte Carlo 模拟，系统评估输入测量误差对预测准确性和模型解释性的影响，覆盖经典误差、预测特征误分类、由算法或模型赋值造成的 Berkson 误差，以及组汇总（聚合）赋值误差四类。为区分测量误差与优化问题的影响，作者对每个数据集分别调节超参数，并通过标准预测指标和置换特征重要性评估结果。研究针对测量误差影响容易被低估、性能下降可能被误判为分布变化，以及特征重要性判断受到干扰的问题；摘要未提供新的误差校正算法。",
+        "applicableTasks": "资料支持的研究范围是受控模拟中的回归与分类任务，考察不同测量误差水平下的预测性能和特征重要性。研究对象包括广义线性模型、支持向量机、随机森林、XGBoost 和多层感知机五类模型。作者认为，在判断模型稳健性、泛化能力或变量相关性之前，应诊断并校正测量误差。具体真实应用领域及真实数据上的验证范围未知：当前资料未提供。",
+        "comparisonConditions": "作者评估五类模型、四类测量误差，覆盖回归与分类两类任务及多个误差水平；具体任务实例数量、数据集数量、样本量、特征数量、Monte Carlo 重复次数、误差水平数值，以及是否设置无误差基线，均未知。计算设置仅明确每个数据集分别调节超参数，以区分误差效应与优化问题；超参数搜索方法、预算、数据划分、硬件、软件配置及计算耗时未知。评估采用标准预测指标和置换特征重要性，具体预测指标名称、计算细节和单位未提供。作者报告，测量误差通常降低预测性能，并可能显著改变预测能力较强特征的排名及估计贡献；退化模式随误差类型和模型而异。摘要未给出各模型或误差条件下的定量结果、平均或最大变化幅度、统计检验或不确定性区间，不能据此给出统一降幅或模型优劣排序。",
+        "limitations": "当前证据仅为摘要，未核对全文。作者报告的证据来自受控 Monte Carlo 模拟；摘要未提供真实数据验证、外部验证或独立复现信息，不能据此断言这些验证在研究中不存在。作者明确指出误差影响随误差类型和模型变化，并强调应先诊断和校正测量误差，再判断模型稳健性、泛化能力或变量相关性。除上述条件差异外，作者明确陈述的其他研究局限未知。具体误差生成机制、模型实现、评估协议和定量结果尚不明确，无法仅凭摘要评估效应大小、统计可靠性或向其他模型与应用场景推广的程度。代码、数据和可复现材料是否开放未知：当前资料未提供。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": false
+    },
     {
       "materialsQuality": {
         "status": "JOURNAL_SCREENED",
@@ -30659,16 +30800,16 @@
       "kind": "daily",
       "key": "2026-10-11",
       "issueNumber": 7,
-      "title": "科研进展",
+      "title": "本期处理尚有缺口",
       "windowStart": "2026-10-10T16:00:00.000Z",
-      "windowEnd": "2026-10-11T13:34:01.225Z",
-      "generatedAt": "2026-10-11T13:35:00.524Z",
-      "revision": 3,
+      "windowEnd": "2026-10-11T15:01:11.937Z",
+      "generatedAt": "2026-10-11T15:02:07.319Z",
+      "revision": 4,
       "lead": {
-        "title": "科研进展",
-        "leadParagraph": "这一期暂无推荐文章。可浏览其他刊期，或到全部动态中查找研究。"
+        "title": "本期处理尚有缺口",
+        "leadParagraph": "未形成完整精选结果：来源处理窗口用于有界补查迟到资料；日报仅按本日原始发表日期归档，处理窗口外的来源覆盖尚未核验。。"
       },
-      "overview": "这一期暂无推荐文章。可浏览其他刊期，或到全部动态中查找研究。",
+      "overview": "未形成完整精选结果：来源处理窗口用于有界补查迟到资料；日报仅按本日原始发表日期归档，处理窗口外的来源覆盖尚未核验。。",
       "sections": [
         {
           "label": "算法",
@@ -34992,6 +35133,9 @@
     }
   ],
   "poolItemIds": [
+    "u910chq97l6cmyhuvvkygnbs8",
+    "tglc9o6xtg60cdttn2tkro4of",
+    "lenkrqsbpf4ckw8gua82pi66x",
     "vzts1o949ft66h47tym3tyux6",
     "pmemcl0rmz92kfe6jyxb8vf0u",
     "kpgbgy1li7qq1lie3jaj5w1wk",
@@ -35517,11 +35661,11 @@
   ],
   "researchAttention": {
     "ruleVersion": "research-source-heat-v1-168h-halflife24h",
-    "computedAt": "2026-10-11T13:35:01.171Z",
+    "computedAt": "2026-10-11T15:02:07.837Z",
     "windowHours": 168,
     "halfLifeHours": 24,
     "minSources": 2,
-    "publicItems": 522,
+    "publicItems": 525,
     "qualifyingResearch": 22,
     "recent48hResearch": 0,
     "entries": [
@@ -35529,7 +35673,7 @@
         "rank": 1,
         "itemId": "hanixmufefm7910t9gu3yxdtd",
         "title": "BrickBench：评测智能体的 LEGO 套装设计能力",
-        "heat": 3.4,
+        "heat": 3.2,
         "sourceCount": 2,
         "signals": [
           {
@@ -35552,7 +35696,7 @@
         "rank": 2,
         "itemId": "pfb19fjdhuc9ceu3zffr6j8re",
         "title": "FreeMatching 研究提出超越时空先验的可泛化稠密对应匹配框架",
-        "heat": 3.4,
+        "heat": 3.2,
         "sourceCount": 2,
         "signals": [
           {
@@ -35575,7 +35719,7 @@
         "rank": 3,
         "itemId": "a3h7f3a96xpi9ovv9z7svq67x",
         "title": "U-Space 探索语言模型不确定性的产生时机与原因",
-        "heat": 2.5,
+        "heat": 2.4,
         "sourceCount": 2,
         "signals": [
           {
@@ -35598,7 +35742,7 @@
         "rank": 4,
         "itemId": "d4fbqcijmcfvz1y4h84gbv0bf",
         "title": "RoboQuest 评测通用具身智能体的搜索、检查与测试能力",
-        "heat": 1.7,
+        "heat": 1.6,
         "sourceCount": 2,
         "signals": [
           {
@@ -35621,7 +35765,7 @@
         "rank": 5,
         "itemId": "i7muy0v37pqmz91o1fu6cvgvg",
         "title": "RunningTab 通过环境侧任务记录支持直接工作区交互",
-        "heat": 1.7,
+        "heat": 1.6,
         "sourceCount": 2,
         "signals": [
           {
@@ -35644,7 +35788,7 @@
         "rank": 6,
         "itemId": "ktw346scru68s2ds73u0zt2ut",
         "title": "RobotWorld：评测多模态智能体在多种任务与机器人形态下的操控能力",
-        "heat": 1.7,
+        "heat": 1.6,
         "sourceCount": 2,
         "signals": [
           {
@@ -35667,7 +35811,7 @@
         "rank": 7,
         "itemId": "p32idmaka1eja0j8uavcenluo",
         "title": "SQAM 提出基于标量伴随匹配的 Q-learning 方法",
-        "heat": 1.7,
+        "heat": 1.6,
         "sourceCount": 2,
         "signals": [
           {
@@ -35690,7 +35834,7 @@
         "rank": 8,
         "itemId": "rty4i3a2lmzo0nsy4l5oov1mo",
         "title": "CADFather：通过协同工具调用实现自主 CAD 重建",
-        "heat": 1.7,
+        "heat": 1.6,
         "sourceCount": 2,
         "signals": [
           {
@@ -35713,7 +35857,7 @@
         "rank": 9,
         "itemId": "w69nx656ffa43fx3aj726gxjj",
         "title": "Long-WAM 提出实时控制约束下的世界动作模型上下文扩展框架",
-        "heat": 1.7,
+        "heat": 1.6,
         "sourceCount": 2,
         "signals": [
           {
@@ -35736,7 +35880,7 @@
         "rank": 10,
         "itemId": "b7dlmapuxp2ni3ox7d66s2c78",
         "title": "Oracle 计算研究提出统一描述 Agent 与 Workflow 的抽象机",
-        "heat": 1.3,
+        "heat": 1.2,
         "sourceCount": 2,
         "signals": [
           {
