@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-10T15:30:02.535Z",
+  "generatedAt": "2026-10-11T12:40:43.199Z",
   "publicBaseUrl": "https://catl-21clab-sciagi.github.io/algorithmhot/",
   "mode": "static-snapshot",
   "scope": "公开科研动态、精选研究、研究主题，以及日报、周报和月报归档",
@@ -10,7 +10,6 @@
         "status": "JOURNAL_SCREENED",
         "domain": "hydrogen",
         "rationale": "来源标注期刊为《Journal of the American Chemical Society》。所供摘要研究燃料电池及电解槽用无氟质子交换膜，属于制氢相关膜材料；作者提出膜优化并报告扩散速率增至三倍，支持判为原创研究。机器学习原子间势用于分子动力学、质子迁移描述符识别并指导膜设计，是核心研究方法，故主栏目归 AI4S。判断仅依据所供摘要。",
-        "aiRole": "core",
         "journal": {
           "name": "Journal of the American Chemical Society",
           "publisher": "American Chemical Society",
@@ -9703,6 +9702,62 @@
         "evidenceBasis": "abstract",
         "sourceRevision": 2
       },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "materialsQuality": {
+        "status": "JOURNAL_SCREENED",
+        "domain": "photovoltaic",
+        "rationale": "来源标注为《Journal of the American Chemical Society》，当前证据仅为摘要，未提供独立期刊核验信息。摘要报告新的自组装单分子层设计、分子动力学模拟及太阳能电池器件实验，支持归为光伏材料原创研究。机器学习直接指导候选分子设计，是核心研究方法，因此主栏目归为 AI4S；效率与稳定性结果均为作者报告。",
+        "journal": {
+          "name": "Journal of the American Chemical Society",
+          "publisher": "American Chemical Society",
+          "selectionBasis": "EXPLICIT_USER_ALLOWLIST",
+          "sourceUrl": "https://pubs.acs.org/journal/jacsat"
+        },
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1,
+        "policyVersion": "energy-materials-journal-topic-v2"
+      },
+      "id": "y0ynb3sd89lg13suox6l8bvn0",
+      "title": "机器学习引导设计半刚性空穴选择性自组装单分子层，用于高效稳定钙钛矿太阳能电池",
+      "originalTitle": "Machine-Learning-Guided Design of Semirigid Hole-Selective Self-Assembled Monolayers for High-Efficiency and Stable Perovskite Solar Cells",
+      "summary": "基于摘要，研究报告机器学习引导设计的半刚性 4PAHBAP 自组装单分子层可提升倒置钙钛矿太阳能电池的效率与稳定性。作者以已发表的 SAM 对照–目标配对数据训练成对排序孪生 D-MPNN，以降低尾基平面性为设计线索，并通过 AIMD 模拟考察非平面七元环对 π–π 堆积和界面相互作用的影响。",
+      "reason": "利用已发表的自组装单分子层配对数据训练排序模型，为同类界面材料从已有对照实验中提取设计线索提供方法参考。",
+      "sourceName": "Journal of the American Chemical Society · 材料研究候选",
+      "sourceUrl": "https://doi.org/10.1021/jacs.6c10673",
+      "publishedAt": null,
+      "timelineAt": "2026-10-10T06:37:40.630Z",
+      "category": "ai4s",
+      "tags": [
+        "论文/研究",
+        "电池与新能源材料",
+        "光伏材料",
+        "AI4S",
+        "分子建模"
+      ],
+      "research": {
+        "arxivId": null,
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": "10.1021/jacs.6c10673",
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-10T06:37:40.630Z",
+        "evidenceBasis": "abstract",
+        "originalPublishedDate": "2026-10-06",
+        "publicationDatePrecision": "day",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://doi.org/10.1021/jacs.6c10673",
+            "sourceUrl": "https://api.crossref.org/works/10.1021%2Fjacs.6c10673"
+          }
+        ]
+      },
+      "researchBrief": null,
       "researchRoadmap": null,
       "selected": true
     },
@@ -29583,8 +29638,8 @@
       "name": "AI4S",
       "group": "field",
       "definition": "用 AI 解决材料、计算物理、分子建模等科学问题，关注数据条件与科学证据。",
-      "total": 65,
-      "recent": 63,
+      "total": 66,
+      "recent": 64,
       "latestAt": "2026-10-10T06:37:40.630Z",
       "itemIds": [
         "s3yc1gka8o90s8cbj0umck0t6",
@@ -29604,6 +29659,7 @@
         "e3du2ehr3jqf458hmywfftcsb",
         "akl0mq1dkn0g35i84gy6xttlk",
         "f39xai1ih2pn2wzcgawc8mx2f",
+        "y0ynb3sd89lg13suox6l8bvn0",
         "ebff39ykx0ozqx05g804n0aq4",
         "hih6go52nqgcwlgoui8ubnshi",
         "d5vvgfqctmr7dul8nzwbvauc1",
@@ -29659,11 +29715,12 @@
       "name": "电池与新能源材料",
       "group": "field",
       "definition": "聚焦电池、光伏与制氢的原创材料研究。依据与主张相匹配的方法、比较条件和验证证据甄选；证据不足保留待核验。",
-      "total": 1,
-      "recent": 1,
+      "total": 2,
+      "recent": 2,
       "latestAt": "2026-10-10T06:37:40.630Z",
       "itemIds": [
-        "s3yc1gka8o90s8cbj0umck0t6"
+        "s3yc1gka8o90s8cbj0umck0t6",
+        "y0ynb3sd89lg13suox6l8bvn0"
       ]
     },
     {
@@ -29997,11 +30054,12 @@
       "name": "分子建模",
       "group": "field",
       "definition": "分子、蛋白与定量生物学中的 AI 方法及任务边界。",
-      "total": 14,
-      "recent": 14,
+      "total": 15,
+      "recent": 15,
       "latestAt": "2026-10-10T06:37:40.630Z",
       "itemIds": [
         "s3yc1gka8o90s8cbj0umck0t6",
+        "y0ynb3sd89lg13suox6l8bvn0",
         "ebff39ykx0ozqx05g804n0aq4",
         "ogt35bec3ro6azhgbjqabod8e",
         "xvuh3qfpqr0qaojcl7yxqsips",
@@ -30042,8 +30100,8 @@
       "name": "论文研究",
       "group": "genre",
       "definition": "论文与技术报告，明确摘要依据、作者主张和证据限制。",
-      "total": 289,
-      "recent": 283,
+      "total": 290,
+      "recent": 284,
       "latestAt": "2026-10-10T06:37:40.630Z",
       "itemIds": [
         "s3yc1gka8o90s8cbj0umck0t6",
@@ -30154,6 +30212,7 @@
         "szpf7r4zakkl6tn5h1ajdes56",
         "f39xai1ih2pn2wzcgawc8mx2f",
         "sdwclm0auvc46gcwagyed5xki",
+        "y0ynb3sd89lg13suox6l8bvn0",
         "sfbjmqn69eswoem63w0jslht6",
         "bhyyia9m3f9tfdre3syh4lg8p",
         "ebff39ykx0ozqx05g804n0aq4",
@@ -30407,114 +30466,154 @@
   ],
   "reports": [
     {
-      "readingUpdate": {
-        "scope": "research",
-        "checkedAt": "2026-10-10T15:28:05.724Z",
-        "windowStart": "2026-10-09T01:00:00.000Z",
-        "windowEnd": "2026-10-10T01:00:00.000Z",
-        "nextReviewAt": "2026-10-11T01:00:00.000Z",
-        "status": "partial",
-        "reasons": [
-          "no-window-records",
-          "coverage-unverified",
-          "source-unavailable"
-        ]
-      },
+      "illustrated": true,
       "kind": "daily",
-      "key": "2026-10-10",
-      "issueNumber": 6,
-      "title": "AlgorithmHot · 科研热点 · 日报 · 部分结果",
-      "windowStart": "2026-10-09T01:00:00.000Z",
-      "windowEnd": "2026-10-10T01:00:00.000Z",
-      "generatedAt": "2026-10-10T15:28:05.724Z",
-      "revision": 4,
+      "key": "2026-10-11",
+      "issueNumber": 7,
+      "title": "科研进展",
+      "windowStart": "2026-10-10T01:00:00.000Z",
+      "windowEnd": "2026-10-11T01:00:00.000Z",
+      "generatedAt": "2026-10-11T12:39:32.664Z",
+      "revision": 1,
       "lead": {
-        "title": "本期处理尚有缺口",
-        "leadParagraph": "未形成完整精选结果：2 个来源采集尚不完整（历史失败请求共 9 次）；4 个来源的新鲜度或窗口覆盖尚未确认；成功响应或未观察到窗口内记录不表示当天没有新研究。"
+        "title": "科研进展",
+        "leadParagraph": "这一期暂无推荐文章。可浏览其他刊期，或到全部动态中查找研究。"
       },
-      "overview": null,
+      "overview": "这一期暂无推荐文章。可浏览其他刊期，或到全部动态中查找研究。",
       "sections": [],
       "metrics": {
         "failed": 0,
-        "parsed": 10,
+        "parsed": 1161,
         "passed": 0,
-        "stored": 10,
+        "stored": 110,
         "blocked": 0,
         "pending": 0,
         "signals": 0,
         "admitted": 0,
         "inWindow": 0,
-        "lateHeld": 0,
-        "returned": 10,
+        "returned": 1161,
         "selected": 0,
         "processed": 0,
         "published": 0,
         "briefReady": 0,
-        "latePending": 0,
         "notAdmitted": 0,
         "totalEvents": 0,
         "briefPending": 0,
-        "lateAdmitted": 0,
+        "figureChecks": 0,
         "sourcesCount": 0,
-        "lateProcessed": 0,
-        "latePublished": 0,
+        "figureMissing": 0,
         "newlyAdmitted": 0,
-        "outsideWindow": 10,
+        "outsideWindow": 110,
         "parseRejected": 0,
-        "sourcesFailed": 2,
+        "sourcesFailed": 0,
         "displayOmitted": 0,
-        "failedRequests": 9,
-        "lateDiscovered": 0,
-        "lateDuplicates": 0,
+        "failedRequests": 0,
         "sourcesPlanned": 6,
         "unknownOutcome": 0,
         "decisionUnknown": 0,
         "sourcesDeferred": 0,
         "sourcesObserved": 6,
         "unlinkedSignals": 0,
+        "verifiedFigures": 0,
         "deferredRequests": 0,
         "duplicateRecords": 0,
-        "sourcesSucceeded": 4,
+        "figureCandidates": 0,
+        "sourcesSucceeded": 6,
+        "figureUnavailable": 0,
         "quarantinedFailed": 0,
         "roadmapsPublished": 0,
         "truncatedRequests": 0,
         "previouslyAdmitted": 0,
         "quarantinedUnknown": 0,
-        "healthyEmptySources": 0,
+        "healthyEmptySources": 6,
+        "figureReviewRequired": 0,
         "modelRequestsUnknown": 0,
-        "observedEmptySources": 4,
         "selectedWithoutBrief": 0,
-        "strictWindowAdmitted": 0,
         "duplicateRecordsExact": 1,
-        "excludedSourceRecords": 0,
-        "sourcesConfirmedEmpty": 0,
+        "excludedSourceRecords": 1051,
         "excludedByDisplayLimit": 0,
-        "lateEvidenceUnverified": 0,
-        "latePreviouslyProcessed": 0,
         "persistenceUnreconciled": 0,
-        "sourcesTransportSucceeded": 4,
         "duplicateRecordsLowerBound": 0,
-        "sourcesFreshnessUnverified": 4
+        "figureCandidatesUninspected": 0
       },
-      "status": "partial",
-      "gaps": [
-        "2 个来源采集尚不完整（历史失败请求共 9 次）",
-        "4 个来源的新鲜度或窗口覆盖尚未确认；成功响应或未观察到窗口内记录不表示当天没有新研究"
-      ]
+      "status": "complete",
+      "gaps": []
     },
     {
-      "readingUpdate": {
-        "scope": "research",
-        "checkedAt": "2026-10-09T10:13:09.538Z",
-        "windowStart": "2026-10-08T01:00:00.000Z",
-        "windowEnd": "2026-10-09T01:00:00.000Z",
-        "nextReviewAt": "2026-10-09T13:00:00.000Z",
-        "status": "partial",
-        "reasons": [
-          "coverage-unverified",
-          "review-pending"
-        ]
+      "illustrated": true,
+      "kind": "daily",
+      "key": "2026-10-10",
+      "issueNumber": 6,
+      "title": "科研进展",
+      "windowStart": "2026-10-09T01:00:00.000Z",
+      "windowEnd": "2026-10-10T01:00:00.000Z",
+      "generatedAt": "2026-10-10T07:08:02.535Z",
+      "revision": 3,
+      "lead": {
+        "title": "科研进展",
+        "leadParagraph": "这一期暂无推荐文章。可浏览其他刊期，或到全部动态中查找研究。"
       },
+      "overview": "这一期暂无推荐文章。可浏览其他刊期，或到全部动态中查找研究。",
+      "sections": [],
+      "metrics": {
+        "failed": 0,
+        "parsed": 1233,
+        "passed": 0,
+        "stored": 1079,
+        "blocked": 0,
+        "pending": 0,
+        "signals": 72,
+        "admitted": 0,
+        "inWindow": 0,
+        "returned": 1233,
+        "selected": 0,
+        "processed": 0,
+        "published": 0,
+        "briefReady": 0,
+        "notAdmitted": 0,
+        "totalEvents": 0,
+        "briefPending": 0,
+        "figureChecks": 0,
+        "sourcesCount": 0,
+        "figureMissing": 0,
+        "newlyAdmitted": 0,
+        "outsideWindow": 1079,
+        "parseRejected": 0,
+        "sourcesFailed": 0,
+        "displayOmitted": 0,
+        "failedRequests": 0,
+        "sourcesPlanned": 6,
+        "unknownOutcome": 0,
+        "decisionUnknown": 0,
+        "sourcesDeferred": 0,
+        "sourcesObserved": 6,
+        "unlinkedSignals": 51,
+        "verifiedFigures": 0,
+        "deferredRequests": 0,
+        "duplicateRecords": 154,
+        "figureCandidates": 0,
+        "sourcesSucceeded": 6,
+        "figureUnavailable": 0,
+        "quarantinedFailed": 0,
+        "roadmapsPublished": 0,
+        "truncatedRequests": 0,
+        "previouslyAdmitted": 0,
+        "quarantinedUnknown": 0,
+        "healthyEmptySources": 6,
+        "figureReviewRequired": 0,
+        "modelRequestsUnknown": 0,
+        "selectedWithoutBrief": 0,
+        "duplicateRecordsExact": 1,
+        "excludedSourceRecords": 0,
+        "excludedByDisplayLimit": 0,
+        "persistenceUnreconciled": 0,
+        "duplicateRecordsLowerBound": 154,
+        "figureCandidatesUninspected": 0
+      },
+      "status": "complete",
+      "gaps": []
+    },
+    {
       "illustrated": true,
       "kind": "daily",
       "key": "2026-10-09",
@@ -30754,18 +30853,6 @@
       ]
     },
     {
-      "readingUpdate": {
-        "scope": "research",
-        "checkedAt": "2026-10-08T13:30:23.438Z",
-        "windowStart": "2026-10-07T01:00:00.000Z",
-        "windowEnd": "2026-10-08T01:00:00.000Z",
-        "nextReviewAt": "2026-10-09T01:00:00.000Z",
-        "status": "partial",
-        "reasons": [
-          "coverage-unverified",
-          "review-pending"
-        ]
-      },
       "illustrated": true,
       "kind": "daily",
       "key": "2026-10-08",
@@ -31101,18 +31188,6 @@
       ]
     },
     {
-      "readingUpdate": {
-        "scope": "research",
-        "checkedAt": "2026-10-10T02:06:22.984Z",
-        "windowStart": "2026-10-06T01:00:00.000Z",
-        "windowEnd": "2026-10-07T01:00:00.000Z",
-        "nextReviewAt": "2026-10-10T07:00:00.000Z",
-        "status": "partial",
-        "reasons": [
-          "coverage-unverified",
-          "review-pending"
-        ]
-      },
       "illustrated": true,
       "kind": "daily",
       "key": "2026-10-07",
@@ -31268,18 +31343,6 @@
       ]
     },
     {
-      "readingUpdate": {
-        "scope": "research",
-        "checkedAt": "2026-10-09T17:06:42.805Z",
-        "windowStart": "2026-10-04T01:00:00.000Z",
-        "windowEnd": "2026-10-05T01:00:00.000Z",
-        "nextReviewAt": "2026-10-10T01:00:00.000Z",
-        "status": "partial",
-        "reasons": [
-          "coverage-unverified",
-          "review-pending"
-        ]
-      },
       "illustrated": true,
       "kind": "daily",
       "key": "2026-10-05",
@@ -32771,18 +32834,6 @@
       "gaps": []
     },
     {
-      "readingUpdate": {
-        "scope": "research",
-        "checkedAt": "2026-10-08T12:43:29.384Z",
-        "windowStart": "2026-10-03T01:00:00.000Z",
-        "windowEnd": "2026-10-04T01:00:00.000Z",
-        "nextReviewAt": "2026-10-08T13:00:00.000Z",
-        "status": "partial",
-        "reasons": [
-          "no-window-records",
-          "coverage-unverified"
-        ]
-      },
       "illustrated": true,
       "kind": "daily",
       "key": "2026-10-04",
@@ -33300,6 +33351,7 @@
     "h7yq0ponwziprhr7tvwtwg5oo",
     "autk24r754woyte0wmh8y493y",
     "sdwclm0auvc46gcwagyed5xki",
+    "y0ynb3sd89lg13suox6l8bvn0",
     "sfbjmqn69eswoem63w0jslht6",
     "rsumzuxstntltykaozlig4adc",
     "g36vjq1t5h83947haryn3k6l7",
@@ -33649,19 +33701,19 @@
   ],
   "researchAttention": {
     "ruleVersion": "research-source-heat-v1-168h-halflife24h",
-    "computedAt": "2026-10-10T15:30:02.535Z",
+    "computedAt": "2026-10-11T12:40:43.199Z",
     "windowHours": 168,
     "halfLifeHours": 24,
     "minSources": 2,
-    "publicItems": 518,
+    "publicItems": 519,
     "qualifyingResearch": 22,
-    "recent48hResearch": 2,
+    "recent48hResearch": 0,
     "entries": [
       {
         "rank": 1,
         "itemId": "hanixmufefm7910t9gu3yxdtd",
         "title": "BrickBench：评测智能体的 LEGO 套装设计能力",
-        "heat": 6.4,
+        "heat": 3.5,
         "sourceCount": 2,
         "signals": [
           {
@@ -33684,7 +33736,7 @@
         "rank": 2,
         "itemId": "pfb19fjdhuc9ceu3zffr6j8re",
         "title": "FreeMatching 研究提出超越时空先验的可泛化稠密对应匹配框架",
-        "heat": 6.4,
+        "heat": 3.5,
         "sourceCount": 2,
         "signals": [
           {
@@ -33707,7 +33759,7 @@
         "rank": 3,
         "itemId": "a3h7f3a96xpi9ovv9z7svq67x",
         "title": "U-Space 探索语言模型不确定性的产生时机与原因",
-        "heat": 4.8,
+        "heat": 2.6,
         "sourceCount": 2,
         "signals": [
           {
@@ -33730,7 +33782,7 @@
         "rank": 4,
         "itemId": "d4fbqcijmcfvz1y4h84gbv0bf",
         "title": "RoboQuest 评测通用具身智能体的搜索、检查与测试能力",
-        "heat": 3.2,
+        "heat": 1.7,
         "sourceCount": 2,
         "signals": [
           {
@@ -33753,7 +33805,7 @@
         "rank": 5,
         "itemId": "i7muy0v37pqmz91o1fu6cvgvg",
         "title": "RunningTab 通过环境侧任务记录支持直接工作区交互",
-        "heat": 3.2,
+        "heat": 1.7,
         "sourceCount": 2,
         "signals": [
           {
@@ -33776,7 +33828,7 @@
         "rank": 6,
         "itemId": "ktw346scru68s2ds73u0zt2ut",
         "title": "RobotWorld：评测多模态智能体在多种任务与机器人形态下的操控能力",
-        "heat": 3.2,
+        "heat": 1.7,
         "sourceCount": 2,
         "signals": [
           {
@@ -33799,7 +33851,7 @@
         "rank": 7,
         "itemId": "p32idmaka1eja0j8uavcenluo",
         "title": "SQAM 提出基于标量伴随匹配的 Q-learning 方法",
-        "heat": 3.2,
+        "heat": 1.7,
         "sourceCount": 2,
         "signals": [
           {
@@ -33822,7 +33874,7 @@
         "rank": 8,
         "itemId": "rty4i3a2lmzo0nsy4l5oov1mo",
         "title": "CADFather：通过协同工具调用实现自主 CAD 重建",
-        "heat": 3.2,
+        "heat": 1.7,
         "sourceCount": 2,
         "signals": [
           {
@@ -33845,7 +33897,7 @@
         "rank": 9,
         "itemId": "w69nx656ffa43fx3aj726gxjj",
         "title": "Long-WAM 提出实时控制约束下的世界动作模型上下文扩展框架",
-        "heat": 3.2,
+        "heat": 1.7,
         "sourceCount": 2,
         "signals": [
           {
@@ -33868,7 +33920,7 @@
         "rank": 10,
         "itemId": "b7dlmapuxp2ni3ox7d66s2c78",
         "title": "Oracle 计算研究提出统一描述 Agent 与 Workflow 的抽象机",
-        "heat": 2.4,
+        "heat": 1.3,
         "sourceCount": 2,
         "signals": [
           {
@@ -34062,32 +34114,5 @@
         }
       ]
     }
-  ],
-  "readingUpdates": {
-    "research": {
-      "scope": "research",
-      "checkedAt": "2026-10-10T07:08:02.540Z",
-      "windowStart": "2026-10-09T01:00:00.000Z",
-      "windowEnd": "2026-10-10T01:00:00.000Z",
-      "nextReviewAt": "2026-10-10T13:00:00.000Z",
-      "status": "partial",
-      "reasons": [
-        "no-window-records",
-        "coverage-unverified"
-      ]
-    },
-    "materials": {
-      "scope": "materials",
-      "checkedAt": "2026-10-10T07:07:23.548Z",
-      "windowStart": null,
-      "windowEnd": null,
-      "nextReviewAt": "2026-10-10T13:00:00.000Z",
-      "status": "partial",
-      "reasons": [
-        "coverage-bounded",
-        "evidence-pending",
-        "review-pending"
-      ]
-    }
-  }
+  ]
 }
