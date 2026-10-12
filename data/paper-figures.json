@@ -138,6 +138,40 @@
       "sha256": "bfb9ab1f79a0972011ccb4fe70ccbd06b8615a8166aa31f26bf9dd1e3e90b75f"
     },
     {
+      "itemId": "c4ksmei195e1rkqzz2duehs4n",
+      "sourceRevision": 1,
+      "imageOrigin": "remote",
+      "imageUrl": "https://arxiv.org/html/2610.10515v1/robojepa_kvcache_figure.png",
+      "sourceUrl": "https://arxiv.org/html/2610.10515v1#S2.F3",
+      "figureLabel": "原文 Figure 3",
+      "caption": "Figure 3: RoboJEPA training. The frozen V-JEPA 2.1 encoder f (Mur-Labadia et al., 2026) maps the input multiview frames x_{t}^{(1:V)} to a grid of features. The predictor g_{\\theta} consumes per-step sequences of multiview visual (z_{t}^{(1:V)}), action (a_{t}) and proprioceptive state (s_{t}) tokens, conditioned on view and embodiment identifiers, and predicts the next-step features \\hat{z}_{t+1}. Training minimises two losses: (left) the teacher-forcing loss, the per-token \\ell_{1} distance between predicted features and the next-step features from the encoder (Equation 5); and (right) the rollout loss, which attempts to predict the same target sequence as the teacher-forcing loss, but given fewer input frames. The model is given the full training sequence of actions but only a prefix of the encoded features, and predicts the remaining features autoregressively, with a KV-cache. This way the model learns to make accurate long term predictions.",
+      "attribution": "Zholus, Artem; Beltran-Velez, Nicolas; Yuan, Jianhao et al. · RoboJEPA: Scaling Robotic Latent World Models (arXiv v1)",
+      "licenseName": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "verifiedAt": "2026-10-08T10:25:14.243Z",
+      "width": 2032,
+      "height": 1191,
+      "contentType": "image/png",
+      "sha256": "6fbd814a9f5cb51281e9e2d1b2b7187839896857ccf8001ffdcf0eaf7dddaa7c"
+    },
+    {
+      "itemId": "bmgca771l8fyyno6hz3ieh174",
+      "sourceRevision": 1,
+      "imageOrigin": "remote",
+      "imageUrl": "https://arxiv.org/html/2610.05649v1/model-arch.png",
+      "sourceUrl": "https://arxiv.org/html/2610.05649v1#S3.F2",
+      "figureLabel": "原文 Figure 2",
+      "caption": "Figure 2: Overview of Aether architecture, pretraining, and downstream adaptation. (a) Bidirectional Gated DeltaNet (Bi-GDN) and grouped-query attention (GQA) blocks form a repeating 3{:}1 hybrid pattern. (b) Multichannel waveforms are divided into 200 ms patches, and the FM learns to reconstruct randomly masked patches. (c) The pretrained FM is frozen, and its mean-pooled representations support linear probing for downstream clinical prediction.",
+      "attribution": "Li, Pingzhi; Peng, Jie; Luo, Shuqing et al. · Training and Scaling Compute-Optimal Physiological Waveform Foundation Models (arXiv v1)",
+      "licenseName": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "verifiedAt": "2026-10-09T17:05:36.896Z",
+      "width": 1911,
+      "height": 1339,
+      "contentType": "image/png",
+      "sha256": "bf244345ea3f4a8fc6e4385f78c2e7302550e990818e56dd211333337cdd519f"
+    },
+    {
       "itemId": "gwc0vh5t79fbskv91hcve365m",
       "sourceRevision": 2,
       "imageOrigin": "remote",
@@ -170,23 +204,6 @@
       "height": 197,
       "contentType": "image/png",
       "sha256": "294fcffff67a311a2d7b1c16c68ed6d674621071fb07cb8d21e06f3d974b0ce3"
-    },
-    {
-      "itemId": "c4ksmei195e1rkqzz2duehs4n",
-      "sourceRevision": 1,
-      "imageOrigin": "remote",
-      "imageUrl": "https://arxiv.org/html/2610.10515v1/robojepa_kvcache_figure.png",
-      "sourceUrl": "https://arxiv.org/html/2610.10515v1#S2.F3",
-      "figureLabel": "原文 Figure 3",
-      "caption": "Figure 3: RoboJEPA training. The frozen V-JEPA 2.1 encoder f (Mur-Labadia et al., 2026) maps the input multiview frames x_{t}^{(1:V)} to a grid of features. The predictor g_{\\theta} consumes per-step sequences of multiview visual (z_{t}^{(1:V)}), action (a_{t}) and proprioceptive state (s_{t}) tokens, conditioned on view and embodiment identifiers, and predicts the next-step features \\hat{z}_{t+1}. Training minimises two losses: (left) the teacher-forcing loss, the per-token \\ell_{1} distance between predicted features and the next-step features from the encoder (Equation 5); and (right) the rollout loss, which attempts to predict the same target sequence as the teacher-forcing loss, but given fewer input frames. The model is given the full training sequence of actions but only a prefix of the encoded features, and predicts the remaining features autoregressively, with a KV-cache. This way the model learns to make accurate long term predictions.",
-      "attribution": "Zholus, Artem; Beltran-Velez, Nicolas; Yuan, Jianhao et al. · RoboJEPA: Scaling Robotic Latent World Models (arXiv v1)",
-      "licenseName": "CC BY 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
-      "verifiedAt": "2026-10-08T10:25:14.243Z",
-      "width": 2032,
-      "height": 1191,
-      "contentType": "image/png",
-      "sha256": "6fbd814a9f5cb51281e9e2d1b2b7187839896857ccf8001ffdcf0eaf7dddaa7c"
     },
     {
       "itemId": "udef6ens7a05oc79x2izg3m9m",
@@ -323,23 +340,6 @@
       "height": 378,
       "contentType": "image/png",
       "sha256": "38610fc8310f22cf0f22e8c9a8cbb3352c3998d0182bc0f195b98979638d1f94"
-    },
-    {
-      "itemId": "bmgca771l8fyyno6hz3ieh174",
-      "sourceRevision": 1,
-      "imageOrigin": "remote",
-      "imageUrl": "https://arxiv.org/html/2610.05649v1/model-arch.png",
-      "sourceUrl": "https://arxiv.org/html/2610.05649v1#S3.F2",
-      "figureLabel": "原文 Figure 2",
-      "caption": "Figure 2: Overview of Aether architecture, pretraining, and downstream adaptation. (a) Bidirectional Gated DeltaNet (Bi-GDN) and grouped-query attention (GQA) blocks form a repeating 3{:}1 hybrid pattern. (b) Multichannel waveforms are divided into 200 ms patches, and the FM learns to reconstruct randomly masked patches. (c) The pretrained FM is frozen, and its mean-pooled representations support linear probing for downstream clinical prediction.",
-      "attribution": "Li, Pingzhi; Peng, Jie; Luo, Shuqing et al. · Training and Scaling Compute-Optimal Physiological Waveform Foundation Models (arXiv v1)",
-      "licenseName": "CC BY 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
-      "verifiedAt": "2026-10-09T17:05:36.896Z",
-      "width": 1911,
-      "height": 1339,
-      "contentType": "image/png",
-      "sha256": "bf244345ea3f4a8fc6e4385f78c2e7302550e990818e56dd211333337cdd519f"
     },
     {
       "itemId": "yyzw662czlry6d5k72yw2opcb",

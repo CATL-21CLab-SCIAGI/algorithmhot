@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-11T15:02:07.837Z",
+  "generatedAt": "2026-10-12T01:33:22.940Z",
   "publicBaseUrl": "https://catl-21clab-sciagi.github.io/algorithmhot/",
   "mode": "static-snapshot",
   "scope": "公开科研动态、精选研究、研究主题，以及日报、周报和月报归档",
@@ -342,7 +342,7 @@
         },
         "evidenceBasis": "abstract",
         "sourceRevision": 1,
-        "policyVersion": "energy-materials-journal-topic-v2"
+        "policyVersion": "energy-materials-journal-topic-v3"
       },
       "id": "s3yc1gka8o90s8cbj0umck0t6",
       "title": "调控无氟质子交换膜的孔道限域与化学环境",
@@ -386,6 +386,127 @@
         "applicableTasks": "资料支持的任务是无氟质子交换膜的质子迁移机制研究、关键描述符识别及官能团定向设计；具体研究对象为液晶聚环氧氯丙烷膜。应用背景为使用质子交换膜的低温燃料电池和电解槽，作者希望据此推动下一代无氟质子交换膜的商业开发。摘要未提供其他膜材料、具体器件或运行条件下的适用性验证。",
         "comparisonConditions": "作者报告，调整活性官能团后，膜内质子扩散速率获得3倍提升，并称其更接近Nafion标准；摘要未展开该倍数的具体定义与比较基线，也未提供绝对扩散速率、单位或与Nafion的定量差距。Nafion是摘要中的性能参照，但是否开展相同条件下的直接对比未知。已知计算设置为第一性原理计算衍生的MLIPs及广泛分子动力学模拟；数据规模、模型数量、任务数量、膜配方或样本数量、硬件、计算资源、模拟时长、温度、含水量及其他计算参数均未知。摘要未说明3倍结果属于最高值、平均值还是某一特定条件，也未给出误差或统计不确定性。",
         "limitations": "当前证据仅为摘要，未核对全文；上述机制与性能改善均为作者报告，独立复现情况未知。摘要未明确陈述方法本身的限制，也未提供MLIPs精度验证、实验验证、器件级性能、长期稳定性或跨条件适用性验证信息。不能由质子扩散速率提升推断膜的质子电导率、燃料电池或电解槽性能同步提升，也不能据“更接近Nafion标准”认定达到或超过Nafion整体性能。可持续性与低成本为作者描述，摘要未提供量化依据；代码、数据及实现的开放可用性未知。以上缺失仅指当前资料未提供，不能据此断言研究本身未开展相关工作。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "materialsQuality": {
+        "status": "JOURNAL_SCREENED",
+        "domain": "hydrogen",
+        "rationale": "来源标注为Journal of the American Chemical Society，现有证据仅为摘要。作者采用扫描电化学显微、水合力测量及第一性原理分子动力学研究双功能界面的碱性析氢动力学，属于制氢电催化原创研究。摘要不足以确认AI是否参与，期刊身份及影响因子不在此核验。",
+        "journal": {
+          "name": "Journal of the American Chemical Society",
+          "publisher": "American Chemical Society",
+          "selectionBasis": "EXPLICIT_USER_ALLOWLIST",
+          "sourceUrl": "https://pubs.acs.org/journal/jacsat"
+        },
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1,
+        "policyVersion": "energy-materials-journal-topic-v3"
+      },
+      "id": "p2rgy0o4c07m7y6dl6z3wlyj1",
+      "title": "Pt/NiO与Pt/Ni模型界面的电双层组织调控碱性析氢质子传递路径",
+      "originalTitle": "Electric Double Layer Organization of Proton-Transfer Pathways Regulates Alkaline Hydrogen Evolution",
+      "summary": "该研究利用Pt/Ni和Pt/NiO模型界面，报告电双层中的界面静电与水合结构会调控碱性析氢的质子传递和反应动力学。研究结合空间分辨扫描电化学显微、水合力测量与从头算分子动力学，在多个长度尺度上关联局部HER动力学、界面静电和水合结构。基于摘要，Pt/NiO界面的零电荷电势（PZC）更低且更接近析氢工作电势，并具有更互联的界面氢键网络；Pt/Ni界面则表现出更高的PZC和较不互联的水合结构。",
+      "reason": "研究比较Pt/NiO与Pt/Ni模型界面的零电荷电势和水合结构，呈现电双层组织与碱性析氢质子传递及动力学的关联。",
+      "sourceName": "Journal of the American Chemical Society · 材料研究候选",
+      "sourceUrl": "https://doi.org/10.1021/jacs.6c12095",
+      "publishedAt": null,
+      "timelineAt": "2026-10-10T06:37:40.630Z",
+      "category": "energy-materials",
+      "tags": [
+        "论文/研究",
+        "制氢材料"
+      ],
+      "research": {
+        "arxivId": null,
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": "10.1021/jacs.6c12095",
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-10T06:37:40.630Z",
+        "evidenceBasis": "abstract",
+        "originalPublishedDate": "2026-10-09",
+        "publicationDatePrecision": "day",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://doi.org/10.1021/jacs.6c12095",
+            "sourceUrl": "https://api.crossref.org/works/10.1021%2Fjacs.6c12095"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者以定义清楚的 Pt/Ni 和 Pt/NiO 双功能模型界面为对象，将空间分辨扫描电化学显微镜、 hydration force 测量和从头算分子动力学模拟跨多个长度尺度结合起来，建立局部 HER 动力学、界面静电学与水合结构之间的关联。该方法针对碱性 HER 动力学迟缓，以及纳米尺度双功能界面如何调控界面质子转移环境尚不清楚的问题。",
+        "applicableTasks": "资料支持的范围是碱性介质中的 HER 及其界面机理研究，具体对象为 Pt/Ni 和 Pt/NiO 模型界面；可考察局部 HER 动力学、界面零电荷电势（PZC）、电双层中的界面静电学、水合结构和界面氢键网络，以及它们与质子转移的关联。除上述模型体系和任务外，适用对象、介质范围及可推广规模未知：当前资料未提供。",
+        "comparisonConditions": "作者比较了 2 个模型界面：Pt/NiO-derived interface 与 Pt/Ni-derived interface。所用手段为跨多个长度尺度的空间分辨扫描电化学显微镜、 hydration force 测量和从头算分子动力学模拟。作者报告：Pt/NiO-derived interface 的 PZC 较低并更接近 HER 工作电位，界面氢键网络更具互联性；Pt/Ni-derived interface 的 PZC 较高，水合结构的互联性较低。作者据此指出，电双层中的界面静电学和水合组织是双功能界面增强 HER 动力学的重要因素。摘要未给出局部 HER 速率或增益的数值、最高/平均口径、单位、统计分母、温度、电解质组成和浓度、电位数值、样本或重复数、硬件型号、计算软件、模型规模、采样或时间步长；这些设置均未知：当前资料未提供。",
+        "limitations": "证据基础仅为摘要，未核对全文。摘要明确说明研究所针对的背景限制是：纳米尺度上双功能界面如何调控界面环境和质子转移此前理解不足；摘要没有进一步陈述本研究的具体局限。PZC、水合结构差异及其对 HER 动力学的解释属于作者报告，不能据此推断普适性或 SOTA。当前资料未提供与其他催化剂、方法或更多任务的定量基准比较，也未提供完整数据、统计不确定性、实验复现信息、开放代码可用性或独立复现结果；这些验证信息未知：当前资料未提供。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "materialsQuality": {
+        "status": "JOURNAL_SCREENED",
+        "domain": "battery",
+        "rationale": "来源标注期刊为《Journal of the American Chemical Society》。所提供的完整摘要提出钠离子电池负极结构设计，并报告容量、倍率及循环性能，支持归为电池材料原创研究。摘要未明确说明AI是否参与，其作用记为未知；性能结果属于作者报告。",
+        "journal": {
+          "name": "Journal of the American Chemical Society",
+          "publisher": "American Chemical Society",
+          "selectionBasis": "EXPLICIT_USER_ALLOWLIST",
+          "sourceUrl": "https://pubs.acs.org/journal/jacsat"
+        },
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1,
+        "policyVersion": "energy-materials-journal-topic-v3"
+      },
+      "id": "epsa4dil6hx06nv8iuaiirzsr",
+      "title": "石墨烯状包覆双壳 TiO2 纳米片组装体实现高载量下快速稳定钠存储",
+      "originalTitle": "Graphene-Like-Armored Nanosheet Assemblies toward Fast and Stable High-Mass-Loading Sodium Storage",
+      "summary": "该研究报告了一种由交叉分布的 2 nm 厚纳米片组装成的双壳 TiO2 球，并均匀包覆石墨烯状保护层的钠离子电池负极结构。作者报告该结构以表面控制储钠为主，达到 2.13 mAh cm–2 的面容量和 100 C 时 121 mAh g–1 的倍率性能。在 10.5 mg cm–2 高载量、5 C 条件下循环 3,000 次后容量保持率超过 90%；当前材料未提供独立复现信息。",
+      "reason": "摘要给出双壳 TiO2 纳米片与石墨烯状包覆的结构设计及高载量下容量、倍率和循环数据，便于评估钠离子电池负极的性能权衡。",
+      "sourceName": "Journal of the American Chemical Society · 材料研究候选",
+      "sourceUrl": "https://doi.org/10.1021/jacs.6c13892",
+      "publishedAt": null,
+      "timelineAt": "2026-10-10T06:37:40.630Z",
+      "category": "energy-materials",
+      "tags": [
+        "论文/研究",
+        "电池与新能源材料",
+        "材料"
+      ],
+      "research": {
+        "arxivId": null,
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": "10.1021/jacs.6c13892",
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-10T06:37:40.630Z",
+        "evidenceBasis": "abstract",
+        "originalPublishedDate": "2026-10-09",
+        "publicationDatePrecision": "day",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://doi.org/10.1021/jacs.6c13892",
+            "sourceUrl": "https://api.crossref.org/works/10.1021%2Fjacs.6c13892"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出双层壳TiO2球形负极：由交叉分布的2 nm厚纳米片组装，并均匀包覆类石墨烯保护层。该结构使钠存储以表面控制行为为主，提升反应动力学与稳定性，针对高负载电极中的离子传输迟缓、界面化学不稳定，以及容量、倍率性能和循环寿命之间的权衡。",
+        "applicableTasks": "资料支持的对象是钠离子电池负极，尤其是高负载电极配置和实际高功率电池中的先进负极设计。当前资料未提供超出该电池负极场景的适用任务、对象或范围。",
+        "comparisonConditions": "作者报告该电极的面容量为2.13 mAh cm⁻²；在100 C下倍率容量为121 mAh g⁻¹；在5 C、质量负载10.5 mg cm⁻²条件下循环3000次后容量仍保持超过90%。作者称其优于传统负极结构，但未说明具体比较结构、数据或模型数量，也未提供硬件、计算设置或更多测试条件。上述结果分别对应面容量、倍率容量和循环容量保持率，不能据此推断所有条件下均有相同增益。",
+        "limitations": "证据基础仅为摘要，未核对全文。作者在摘要中未明确列出研究限制；资料未提供独立复现、代码或开放实现信息，也未提供具体传统负极对照、数据/模型/任务数量、硬件与计算设置、完整测试方案及统计信息。独立复现状态未知：当前资料未提供。",
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
@@ -1996,6 +2117,310 @@
         "limitations": "当前证据仅为摘要，未核对全文。方法有效性、最佳水平和数值增益均为作者报告，当前资料未提供独立复现证据，不能以最佳水平的声称推断全面质量或普遍优势。摘要没有明确陈述方法自身的局限性，也未提供消融实验、失败案例、因果解释正确性的验证或跨模型、跨任务增益分布，因此无法据此判断三个组成部分各自的贡献及效果稳定性。零样本评估的具体定义，以及预训练、适配数据与评估任务之间的关系未知；真实机器人结果的适用范围受未披露的任务、设备和试验设置限制。资料包含项目网站链接，但链接本身不能证明代码、数据或模型权重已开放，也不能证明结果可独立复现。上述信息缺失仅指当前摘要未提供，不表示研究本身不存在相关验证。",
         "evidenceBasis": "abstract",
         "sourceRevision": 2
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "materialsQuality": {
+        "status": "JOURNAL_SCREENED",
+        "domain": "photovoltaic",
+        "rationale": "来源名称标注为 Science，期刊身份留待程序核验。当前证据为摘要，作者报告共晶添加剂调控结晶、结构表征及太阳能电池和组件测试，支持归为光伏材料原创研究。所述核心方法为化学与材料实验，但摘要未明确说明是否辅助使用 AI，故 AI 角色记为 unknown。",
+        "journal": {
+          "name": "Science",
+          "publisher": "American Association for the Advancement of Science",
+          "selectionBasis": "EXPLICIT_USER_ALLOWLIST",
+          "sourceUrl": "https://www.science.org/journal/science"
+        },
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1,
+        "policyVersion": "energy-materials-journal-topic-v3"
+      },
+      "id": "r47aded0njnibkubaq5frwt2y",
+      "title": "挥发性共晶调控卤化物钙钛矿光电器件结晶",
+      "originalTitle": "Volatile eutectics to tailor crystallization for perovskite optoelectronics",
+      "summary": "该研究利用溴化锌与甲基氯化铵添加剂的共晶相互作用调控卤化物钙钛矿结晶。纳米探针X射线显微分析显示，退火时共晶在晶界局部熔融，降低晶内结构缺陷并均匀卤素分布，同时使锌向晶界偏聚。",
+      "reason": "文章展示挥发性共晶调控卤化物钙钛矿结晶的路径，并报告晶界缺陷、太阳能电池、发光二极管及高温运行稳定性的关键数据。",
+      "sourceName": "Science · 材料研究候选",
+      "sourceUrl": "https://doi.org/10.1126/science.aeb4554",
+      "publishedAt": null,
+      "timelineAt": "2026-10-10T06:37:45.877Z",
+      "category": "energy-materials",
+      "tags": [
+        "论文/研究",
+        "光伏材料",
+        "材料"
+      ],
+      "research": {
+        "arxivId": null,
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": "10.1126/science.aeb4554",
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-10T06:37:45.877Z",
+        "evidenceBasis": "abstract",
+        "originalPublishedDate": "2026-10-08",
+        "publicationDatePrecision": "day",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://doi.org/10.1126/science.aeb4554",
+            "sourceUrl": "https://api.crossref.org/works/10.1126%2Fscience.aeb4554"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者通过利用溴化锌（ZnBr₂）与甲基铵氯（methylammonium chloride）添加剂之间的共晶相互作用来调控卤化物钙钛矿结晶。退火时，纳米探针X射线显微镜观察到晶界处共晶局部熔融，从而降低晶粒内结构缺陷密度；退火还使卤素分布均匀化并促使锌向晶界偏析。该变化旨在提高薄膜辐射效率，表现为高光致发光量子产率、较长电荷载流子衰减时间和较低表面复合速度，以接近太阳电池的基本性能极限。",
+        "applicableTasks": "资料支持的对象和任务包括：采用该挥发性共晶处理的卤化物钙钛矿薄膜及其太阳电池；面积超过15平方厘米的钙钛矿最小组件；使用poly[bis(4-phenyl)(2,4,6-trimethylphenyl)amine]空穴传输材料的小面积太阳电池及其高温连续运行稳定性；以及作为发光二极管的钙钛矿器件。更具体的材料组成范围、器件结构范围和适用边界未知：当前资料未提供。",
+        "comparisonConditions": "摘要未给出明确的基线、对照方法或比较模型，也未报告数据集/样本数量，因此相对增益和统计口径未知。作者报告：采用挥发性共晶的太阳电池功率转换效率（PCE）为26.5%，经认证为25.9%；钙钛矿最小组件（面积>15平方厘米）PCE为23.9%；带所述聚合物空穴传输材料的小面积电池初始PCE为24.1%，在85°C连续运行1400小时后保留初始值的85.8%；该方法还实现发光二极管26.1%的外量子效率。薄膜的光致发光量子产率、载流子衰减时间和表面复合速度分别被描述为高、长和低，但未给出数值、单位或分母。已知表征包括退火过程中的纳米探针X射线显微镜观察；具体退火温度/时间、器件面积（小面积电池）、样品数、硬件型号、测量协议及其他计算设置未知：当前资料未提供。",
+        "limitations": "证据基础仅为摘要，未核对全文。摘要没有明确陈述作者局限，也没有提供完整实验方法、添加剂浓度、退火程序、器件制备细节、样品数量、误差/重复性、对照组、测试协议或开放代码；因此这些验证信息均未知：当前资料未提供。文中数值和稳定性结论只能归属于作者报告，不能据此推断相对于未给出的基线或领域SOTA的质量。85°C、1400小时和85.8%保持率是作者报告的条件与结果；当前资料没有独立复现或第三方核验信息。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "materialsQuality": {
+        "status": "JOURNAL_SCREENED",
+        "domain": "battery",
+        "rationale": "输入来源标注为《Journal of the American Chemical Society》。摘要围绕硒化铜锌电池正极，报告阴离子氧化还原活化策略及电化学、结构和光谱证据，符合电池材料原创研究类型。容量与循环性能改善属于作者报告的结果；当前仅有摘要，无法确定是否辅助使用了 AI。",
+        "journal": {
+          "name": "Journal of the American Chemical Society",
+          "publisher": "American Chemical Society",
+          "selectionBasis": "EXPLICIT_USER_ALLOWLIST",
+          "sourceUrl": "https://pubs.acs.org/journal/jacsat"
+        },
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1,
+        "policyVersion": "energy-materials-journal-topic-v3"
+      },
+      "id": "kw77o8e5jk9crmkukfeevfwpt",
+      "title": "激活阴离子氧化还原突破锌电池转化型铜硒化物正极的晶相选择限制",
+      "originalTitle": "Beyond Phase Selectivity in Conversion Copper Selenides Cathode through Activated Anionic Redox",
+      "summary": "该研究报告通过激活阴离子氧化还原突破转化型铜硒化物正极的晶相选择限制，并在不同化学计量的锌储存铜硒化物中验证该策略。以六方 CuSe 为例，激活硒阴离子氧化还原后，容量从 4 mAh g–1 增至 413 mAh g–1，电池电压翻倍。",
+      "reason": "论文以 CuSe 为例说明激活硒阴离子氧化还原如何绕开晶相选择限制，为锌电池铜硒化物正极的容量开发提供可迁移思路。",
+      "sourceName": "Journal of the American Chemical Society · 材料研究候选",
+      "sourceUrl": "https://doi.org/10.1021/jacs.6c14588",
+      "publishedAt": null,
+      "timelineAt": "2026-10-10T06:37:40.630Z",
+      "category": "energy-materials",
+      "tags": [
+        "论文/研究",
+        "电池与新能源材料"
+      ],
+      "research": {
+        "arxivId": null,
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": "10.1021/jacs.6c14588",
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-10T06:37:40.630Z",
+        "evidenceBasis": "abstract",
+        "originalPublishedDate": "2026-10-08",
+        "publicationDatePrecision": "day",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://doi.org/10.1021/jacs.6c14588",
+            "sourceUrl": "https://api.crossref.org/works/10.1021%2Fjacs.6c14588"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出激活硒阴离子氧化还原，并通过亲核试剂诱导阴离子氧化还原，使原本受晶体相选择限制的铜硒化物发生结构重构：以六方 CuSe 为例，重构为有利相并与活性 Se⁰ 交织，从而促进深度、可逆的多电子转化，解决传统相选择导致的容量和高电位氧化还原利用受限问题。",
+        "applicableTasks": "资料支持的对象是锌储存铜硒化物家族 CuySe（y = 0.5–2），重点示例为六方 CuSe；用途是作为锌电池高容量、稳定的正极。作者还报告该策略可适用于其他亲核添加剂，但未提供添加剂种类、数量或适用范围的具体清单。",
+        "comparisonConditions": "作者将未激活阴离子氧化还原的六方 CuSe（热力学最稳定且对锌不友好）与激活硒阴离子氧化还原后的体系比较：容量由 4 mAh g⁻¹ 增至 413 mAh g⁻¹，摘要称为百倍增加；电池电压加倍，但绝对电压值未知；循环寿命达到 4000 个循环。研究还涉及 y = 0.5–2 的铜硒化物系列，但具体样品数量、逐样品结果、硬件、计算设置、测试条件、倍率及其他指标均未知：当前资料未提供。",
+        "limitations": "证据基础仅为摘要，未核对全文。作者报告了原位电化学过程中的结构和光谱证据、容量、电压及循环寿命结果，但摘要未提供实验细节、数据统计口径、误差、完整比较对象或其他验证设置。未见作者明确列出的局限性。其他亲核添加剂的适用性只有概括性确认，缺少具体验证范围和结果。独立复现、开放代码或外部验证情况未知：当前资料未提供。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "materialsQuality": {
+        "status": "JOURNAL_SCREENED",
+        "domain": "hydrogen",
+        "rationale": "来源标注的期刊为Angewandte Chemie International Edition，当前证据仅为摘要。摘要描述新型串联催化剂、碱性析氢及阴离子交换膜水电解，作者报告了性能与动力学机制，符合制氢领域原创材料研究。所述方法包括温度依赖动力学分析、原位及理论表征，AI是否参与及其作用未明确，故记为unknown。",
+        "journal": {
+          "name": "Angewandte Chemie International Edition",
+          "publisher": "Wiley-VCH on behalf of Gesellschaft Deutscher Chemiker",
+          "selectionBasis": "EXPLICIT_USER_ALLOWLIST",
+          "sourceUrl": "https://onlinelibrary.wiley.com/journal/15213773"
+        },
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1,
+        "policyVersion": "energy-materials-journal-topic-v3"
+      },
+      "id": "q1ij9vxne9pid0bhhxfb25af7",
+      "title": "MoS₂上的Ru–Tm串联位点调控熵焓权衡以提升碱性析氢性能",
+      "originalTitle": "Tandem Ru–Tm Sites on MoS 2 Tune Entropy–Enthalpy Tradeoff for Enhanced Alkaline Hydrogen Evolution",
+      "summary": "基于摘要，该研究在MoS₂上锚定Ru并引入Tm单原子位点，构建串联催化剂，报告其提升碱性析氢性能。Ru/Tm SAs-MoS₂在10 mA cm⁻²下过电位为8 mV，并在阴离子交换膜水电解中以1.74 V达到1.0 A cm⁻²，运行超过600 h。",
+      "reason": "论文从熵焓权衡角度解释Tm调控碱性析氢动力学，并结合8 mV过电位与超过600小时运行数据，提供稀土位点设计的机制线索。",
+      "sourceName": "Angewandte Chemie International Edition · 材料研究候选",
+      "sourceUrl": "https://doi.org/10.1002/anie.3060071",
+      "publishedAt": null,
+      "timelineAt": "2026-10-10T06:37:37.460Z",
+      "category": "energy-materials",
+      "tags": [
+        "论文/研究",
+        "电池与新能源材料",
+        "制氢材料"
+      ],
+      "research": {
+        "arxivId": null,
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": "10.1002/anie.3060071",
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-10T06:37:37.460Z",
+        "evidenceBasis": "abstract",
+        "originalPublishedDate": "2026-10-08",
+        "publicationDatePrecision": "day",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://doi.org/10.1002/anie.3060071",
+            "sourceUrl": "https://api.crossref.org/works/10.1002%2Fanie.3060071"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者将稀土调控从主要依据吸附能的讨论扩展为同时考察表观活化能（E_a）和活化熵（Δ‡S），并制备Ru锚定于负载Tm单原子位点的MoS2串联催化剂（Ru/Tm SAs-MoS2）。该变化用于解释和调节碱性HER动力学：低过电位下降低E_a以促进反应，高过电位时放大的Δ‡S贡献抵消升高的HER能垒；摘要还称Tm会重组界面氢键网络、调节Ru电子结构并减缓H*吸附导致的过量电子重构。",
+        "applicableTasks": "资料支持的对象与任务是Ru/Tm SAs-MoS2催化剂用于碱性析氢反应（HER），以及其在阴离子交换膜水电解中的运行。摘要涉及低过电位和较高电流密度场景，但未提供其他反应、催化剂体系、电解质或更广适用范围的证据。",
+        "comparisonConditions": "作者报告Ru/Tm SAs-MoS2在HER中达到10 mA cm−2时过电位为8 mV；在阴离子交换膜水电解中达到1.0 A cm−2时电压为1.74 V，并称运行寿命超过600 h。作者还报告进行了温度依赖动力学分析。摘要未列出明确的基线催化剂、对照组数量、数据集或模型/任务数量，也未提供硬件、计算设置、温度范围、测试电解质与浓度、催化剂负载量、统计口径或更多指标；这些信息未知。",
+        "limitations": "证据仅为摘要，未核对全文。作者在当前摘要中未明确陈述局限。摘要未提供完整对照体系、实验与计算设置、数据或样本数量、重复次数与不确定性、温度和电解条件细节、寿命测试协议、代码或可复现实验材料，因此这些信息未知。上述性能和机理仅归属于作者报告；当前没有独立复现或独立验证。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "materialsQuality": {
+        "status": "JOURNAL_SCREENED",
+        "domain": "hydrogen",
+        "rationale": "来源标注期刊为《Angewandte Chemie International Edition》，所供证据为完整摘要。作者报告RuIr/C催化剂、高温聚合物电解质膜电解槽及电解槽堆的制氢实验，主题属于制氢电催化与电解槽，稿件可判断为原创研究。摘要未明确说明AI是否参与，AI角色记为未知。",
+        "journal": {
+          "name": "Angewandte Chemie International Edition",
+          "publisher": "Wiley-VCH on behalf of Gesellschaft Deutscher Chemiker",
+          "selectionBasis": "EXPLICIT_USER_ALLOWLIST",
+          "sourceUrl": "https://onlinelibrary.wiley.com/journal/15213773"
+        },
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1,
+        "policyVersion": "energy-materials-journal-topic-v3"
+      },
+      "id": "fqteqczcjr319m625fihgrnq0",
+      "title": "高温聚合物电解质膜电解器实现水煤气变换反应高纯氢制备",
+      "originalTitle": "High‐Purity Hydrogen Production From Water–Gas Shift Reaction in a High‐Temperature Polymer Electrolyte Membrane Electrolyzer",
+      "summary": "该研究报告了一种在120–200°C运行的高温聚合物电解质膜电解器，通过水煤气变换反应制备高纯氢。其RuIr/C催化剂利用Ir位点调节Ru上的*OH与CO吸附，气固反应界面用于缓解传质限制。在0.6 V下，系统稳态电流密度达1179 mA cm⁻²，产氢纯度≥99.99%且无需外部分离，并放大到由5个45 cm²膜电极组件组成的电解槽堆。",
+      "reason": "材料报告了120–200°C高温聚合物电解质膜电解器在无外部分离下制备≥99.99%纯氢的电化学水煤气变换方案，并给出五片45 cm²膜电极组件堆栈的放大结果。",
+      "sourceName": "Angewandte Chemie International Edition · 材料研究候选",
+      "sourceUrl": "https://doi.org/10.1002/anie.6581557",
+      "publishedAt": null,
+      "timelineAt": "2026-10-10T06:37:37.460Z",
+      "category": "energy-materials",
+      "tags": [
+        "论文/研究",
+        "制氢材料",
+        "材料"
+      ],
+      "research": {
+        "arxivId": null,
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": "10.1002/anie.6581557",
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-10T06:37:37.460Z",
+        "evidenceBasis": "abstract",
+        "originalPublishedDate": "2026-10-08",
+        "publicationDatePrecision": "day",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://doi.org/10.1002/anie.6581557",
+            "sourceUrl": "https://api.crossref.org/works/10.1002%2Fanie.6581557"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出在120°C–200°C运行的高温聚合物电解质膜电解槽（HT‑PEME），用RuIr/C催化剂实施电化学水煤气变换反应（WGSR）。其中Ir位点调节Ru上的*OH与CO吸附平衡，以加快WGSR动力学并降低过电位；在高于水沸点的条件下形成气–固反应界面，以缓解传质限制，并免除外部气体分离。",
+        "applicableTasks": "资料支持的任务是通过电化学WGSR制备高纯氢，适用于需要兼顾产品纯度与规模化的氢生产场景。摘要报告了从单一HT‑PEME装置到由5个、每个膜电极组件面积为45 cm²的MEA组成的电解槽堆的放大；除此之外的对象、规模范围和任务边界未知：当前资料未提供。",
+        "comparisonConditions": "作者将该方案与两类现有方法作定性对照：热催化WGSR可获得高产品纯度，但需要高能耗气体分离；室温电催化受传质限制，电流密度较低。对于所提出的HT‑PEME，硬件为RuIr/C催化剂和5个45 cm² MEA组成的电解槽堆（摘要同时描述装置在120°C–200°C运行）；报告的稳态电流密度为1179 mA cm⁻²，电压为0.6 V，产氢纯度为≥99.99%，且无需外部分离。Ir调节吸附平衡、加快动力学和降低过电位的表述为定性结果，未给出过电位数值或与基线的定量差值。摘要未提供对照实验的具体数据、数据集或模型数量、运行时长、能耗/效率、压力、流量、面积归一化口径之外的统计口径及其他硬件设置；这些信息未知：当前资料未提供。",
+        "limitations": "证据范围仅为作者摘要，未核对全文、补充材料或原始数据。作者在该摘要中未明确陈述局限。摘要未提供长期稳定性、重复实验与误差、完整放大性能、能耗或系统效率、操作压力与流量、与热催化或室温电催化的定量对照、催化剂寿命、产物组成核验方法或开放代码；这些验证信息未知，不能据此断言研究本身不存在。当前没有独立复现证据；所述性能均应归属于作者报告。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "materialsQuality": {
+        "status": "JOURNAL_SCREENED",
+        "domain": "battery",
+        "rationale": "来源标注为《Angewandte Chemie International Edition》，提供的证据为完整摘要，未独立核验期刊身份。摘要提出水系锌电池界面构筑策略，并报告对称电池及安时级软包电池测试，支持归为电池材料原创研究。核心贡献围绕添加剂催化与界面调控；摘要未明确筛选是否使用AI，故AI角色记为未知。性能结果均为作者报告。",
+        "journal": {
+          "name": "Angewandte Chemie International Edition",
+          "publisher": "Wiley-VCH on behalf of Gesellschaft Deutscher Chemiker",
+          "selectionBasis": "EXPLICIT_USER_ALLOWLIST",
+          "sourceUrl": "https://onlinelibrary.wiley.com/journal/15213773"
+        },
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1,
+        "policyVersion": "energy-materials-journal-topic-v3"
+      },
+      "id": "ekj9lushmz4xzqxudc9283a7d",
+      "title": "阴离子-偶极催化分解助力Ah级水系锌电池构筑稳健固态电解质界面",
+      "originalTitle": "Anion‐Dipole Catalytic Decomposition Enables Robust Solid Electrolyte Interfaces for Ah‐Level Aqueous Zinc Batteries",
+      "summary": "基于摘要，该研究提出阴离子-偶极催化分解策略，以阴离子-偶极结合能和静电势差筛选微量添加剂，构筑富无机相固态电解质界面。电子缺陷芳香族苯乙酮优先进入电双层并选择性富集阴离子，催化其分解，促进脱溶剂化和(002)织构锌沉积。",
+      "reason": "摘要给出以阴离子-偶极结合能和静电势差筛选微量添加剂的界面设计路径，并在Ah级水系锌电池中报告了对称电池循环与软包电池容量保持数据。",
+      "sourceName": "Angewandte Chemie International Edition · 材料研究候选",
+      "sourceUrl": "https://doi.org/10.1002/anie.7075150",
+      "publishedAt": null,
+      "timelineAt": "2026-10-10T06:37:37.460Z",
+      "category": "energy-materials",
+      "tags": [
+        "论文/研究",
+        "电池与新能源材料",
+        "材料"
+      ],
+      "research": {
+        "arxivId": null,
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": "10.1002/anie.7075150",
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-10T06:37:37.460Z",
+        "evidenceBasis": "abstract",
+        "originalPublishedDate": "2026-10-08",
+        "publicationDatePrecision": "day",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://doi.org/10.1002/anie.7075150",
+            "sourceUrl": "https://api.crossref.org/works/10.1002%2Fanie.7075150"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出以阴离子-偶极结合能和静电势差作为双描述符，筛选痕量添加剂作为阴离子分子捕获剂，并采用阴离子-偶极催化分解策略调控水系锌离子电池的固态电解质界面（SEI）。具体地，电子缺陷芳香酮乙酰苯优先进入电双层，选择性识别并富集阴离子，同时通过加快断键动力学、降低活化自由能催化阴离子分解，形成富无机SEI，以应对稳健富无机SEI与安全性、界面动力学难以兼顾的问题。",
+        "applicableTasks": "资料支持的适用对象和范围是水系锌离子电池中的痕量添加剂筛选、SEI构筑及锌沉积调控；验证对象包括Zn//Zn对称电池，以及Ah级Zn//VO₂软包电池。软包电池的正极质量载量为20 mg·cm⁻²。更广泛的任务、材料体系或适用范围未知：当前资料未提供。",
+        "comparisonConditions": "当前摘要未提供明确比较对象、对照组、数据集或模型数量、任务数量、硬件与计算设置。作者报告的结果包括：Zn²⁺迁移数为0.75；界面促进脱溶剂化并促进平面（002）织构化锌沉积；Zn//Zn对称电池循环稳定性为7200 h；Ah级Zn//VO₂软包电池在0.2 A·g⁻¹下容量为4.28 Ah，并在1 A·g⁻¹下循环100次后保持初始容量的88.9%。上述结果的具体对照条件、统计口径及其他指标未知：当前资料未提供。",
+        "limitations": "证据仅来自摘要，未核对全文。作者指出，在不牺牲安全性和界面动力学的前提下构筑稳健富无机SEI仍具挑战。当前资料未提供对照基线、完整实验方案、数据或模型数量、硬件与计算设置，也未提供安全性直接测量、界面动力学定量结果、统计重复与误差、超过100次循环的验证或开放代码信息。所列性能均为作者报告；当前资料没有独立复现或第三方验证证据，不能据此推断普遍优越性或SOTA地位。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
       },
       "researchRoadmap": null,
       "selected": true
@@ -4706,6 +5131,128 @@
         ]
       },
       "researchBrief": null,
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "materialsQuality": {
+        "status": "JOURNAL_SCREENED",
+        "domain": "battery",
+        "rationale": "来源标注期刊为 Angewandte Chemie International Edition，当前证据为摘要。作者提出硫化物固态电解质调控策略，并报告离子电导率及锂金属电池循环结果，属于电池材料原创研究；现有信息不足以确定 AI 是否参与研究。",
+        "journal": {
+          "name": "Angewandte Chemie International Edition",
+          "publisher": "Wiley-VCH on behalf of Gesellschaft Deutscher Chemiker",
+          "selectionBasis": "EXPLICIT_USER_ALLOWLIST",
+          "sourceUrl": "https://onlinelibrary.wiley.com/journal/15213773"
+        },
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1,
+        "policyVersion": "energy-materials-journal-topic-v3"
+      },
+      "id": "wxr74g12how3z5u0cn718a7ik",
+      "title": "位点选择性阴阳离子调控 Li6PS5Cl 硫化物电解质，支持低堆叠压力下抑制枝晶的全固态锂金属电池",
+      "originalTitle": "Site‐Selective Anion‐Cation Regulation of Sulfide Electrolyte Enables Low‐Pressure Dendrite‐Suppressed All‐Solid‐State Lithium Metal Batteries",
+      "summary": "该研究提出针对 Li6PS5Cl 硫化物电解质的位点选择性阴阳离子调控策略，使全固态锂金属电池在低堆叠压力下实现抑制枝晶的长期循环。基于摘要，Al³⁺替代P⁵⁺形成与AlS₄相关的局部单元并增强Al–S键，Cl⁻进入4a/4d阴离子亚晶格后使室温离子电导率达7.22 mS cm−1。",
+      "reason": "摘要报告一种位点选择性阴阳离子调控策略，将硫化物电解质骨架稳定与界面化学结合，在3 MPa、0.5 mA cm−2下实现锂对称电池超过8000小时循环。",
+      "sourceName": "Angewandte Chemie International Edition · 材料研究候选",
+      "sourceUrl": "https://doi.org/10.1002/anie.3893843",
+      "publishedAt": null,
+      "timelineAt": "2026-10-10T06:37:37.460Z",
+      "category": "energy-materials",
+      "tags": [
+        "论文/研究",
+        "电池材料",
+        "材料"
+      ],
+      "research": {
+        "arxivId": null,
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": "10.1002/anie.3893843",
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-10T06:37:37.460Z",
+        "evidenceBasis": "abstract",
+        "originalPublishedDate": "2026-10-07",
+        "publicationDatePrecision": "day",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://doi.org/10.1002/anie.3893843",
+            "sourceUrl": "https://api.crossref.org/works/10.1002%2Fanie.3893843"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出对硫化物固态电解质精氨银矿型 Li₆PS₅Cl 实施位点选择性阴离子—阳离子调控：以 Al³⁺取代 P⁵⁺形成 AlS₄ 相关局部单元并增强 Al–S 键，稳定电解质骨架、抑制氧化还原分解；将 Cl⁻引入 4a/4d 阴离子位点以促进 Li⁺传输；通过 F/Cl 调控把界面分解由富 Li₂S/LiCl 转为富 LiF/LiCl、贫 Li₂S 的钝化层，并形成与锂金属黏附更强的 LiF/LiCl（200）晶面。该耦合调控旨在解决低堆压下固—固界面不稳定和枝晶诱发短路问题。",
+        "applicableTasks": "资料支持的对象和范围是：以锂金属为负极的硫化物全固态锂电池，尤其是低堆压运行；Li|LAPSCF-Cl|Li 对称电池；以及锂金属配对 NCM811 或硫正极的电池。摘要报告了低压下抑制枝晶和长期循环，但未给出更广泛电池体系、正极负载或容量范围。",
+        "comparisonConditions": "摘要未提供明确的外部比较对象或基线，也未提供数据集、模型或任务数量、硬件及计算设置。作者报告该电解质室温离子电导率为 7.22 mS cm⁻¹；Li|LAPSCF-Cl|Li 对称电池在 0.5 mA cm⁻²、3 MPa 下循环超过 8000 h；锂金属配对 NCM811 和硫正极在 30 MPa 下实现稳定循环。NCM811 和硫电池的循环时长、容量、库仑效率及其他性能指标未知：当前资料未提供。",
+        "limitations": "证据基础仅为摘要，未核对全文。作者指出低堆压硫化物全固态锂电池仍因不稳定固—固界面和枝晶短路而具有挑战性；摘要未陈述该方法的其他明确局限。未提供详细实验协议、对照组统计、NCM811/硫正极的完整循环数据、长期安全性、规模化验证、代码或可复现实验材料。上述性能仅归属于作者报告；独立复现情况未知：当前资料未提供。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "materialsQuality": {
+        "status": "JOURNAL_SCREENED",
+        "domain": "hydrogen",
+        "rationale": "来源标注期刊为《Angewandte Chemie International Edition》。摘要描述RuBi催化剂的合成、表征、理论分析及碱性析氢和阴离子交换膜水电解槽测试，支持归为制氢材料原创研究。活性与稳定性提升属于作者报告；当前仅有摘要，未明确是否使用AI，也未提供理论分析的具体方法，故AI角色记为未知。",
+        "journal": {
+          "name": "Angewandte Chemie International Edition",
+          "publisher": "Wiley-VCH on behalf of Gesellschaft Deutscher Chemiker",
+          "selectionBasis": "EXPLICIT_USER_ALLOWLIST",
+          "sourceUrl": "https://onlinelibrary.wiley.com/journal/15213773"
+        },
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1,
+        "policyVersion": "energy-materials-journal-topic-v3"
+      },
+      "id": "d5em7fy5obs0go477vo9wgukm",
+      "title": "双重空间限域构筑高度稳定且可接近的亚纳米 RuBi 异质团簇驱动高效碱性析氢",
+      "originalTitle": "Highly Stabilized and Accessible Sub‐Nanometer RuBi Heteroclusters Drive Efficient Alkaline Hydrogen Evolution",
+      "summary": "该研究采用双重空间限域策略，将均匀分散的亚纳米 RuBi 双金属异质团簇嵌入多孔碳纳米纤维，用于碱性析氢反应。金属有机框架内部孔道和电纺聚合物基体分别作为纳米反应器与物理屏障，抑制高温热解中的金属迁移与团聚；表征和理论分析显示，Ru 与 Bi 的原子邻近及电子相互作用可优化中间体吸附并加快限速水解离步骤。",
+      "reason": "摘要给出双重空间限域构筑亚纳米 RuBi 异质团簇的路线，并报告其碱性析氢活性、耐久性及 AEM 水电解槽运行表现，可供制氢催化剂设计参考。",
+      "sourceName": "Angewandte Chemie International Edition · 材料研究候选",
+      "sourceUrl": "https://doi.org/10.1002/anie.2036983",
+      "publishedAt": null,
+      "timelineAt": "2026-10-10T06:37:37.460Z",
+      "category": "energy-materials",
+      "tags": [
+        "论文/研究",
+        "制氢材料",
+        "电池与新能源材料"
+      ],
+      "research": {
+        "arxivId": null,
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": "10.1002/anie.2036983",
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-10T06:37:37.460Z",
+        "evidenceBasis": "abstract",
+        "originalPublishedDate": "2026-10-07",
+        "publicationDatePrecision": "day",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://doi.org/10.1002/anie.2036983",
+            "sourceUrl": "https://api.crossref.org/works/10.1002%2Fanie.2036983"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出双重空间限域合成策略：以金属有机框架内部孔道作一级纳米反应器，以电纺聚合物基体作二级物理屏障，在高温热解中抑制金属迁移与并聚，从而在多孔碳纳米纤维中构筑均匀分散、亚纳米 RuBi 双金属异质团簇（RuBi HCs/PCNFs），针对双金属团簇易烧结和相分离、尺寸及界面结构难控制的问题。作者的表征和理论分析还报告 Ru-Bi 原子邻近与电子相互作用可优化中间体吸附并加快限速水解离步骤。",
+        "applicableTasks": "资料支持的对象与范围包括：构筑小于 2 nm、尤其亚纳米尺度的 RuBi 双金属异质团簇并嵌入多孔碳纳米纤维；将其用于碱性析氢反应（HER）电催化评价；在阴离子交换膜（AEM）水电解槽中评估其长期运行稳定性。除上述 RuBi/PCNFs、碱性 HER 与 AEM 水电解场景外，其他催化反应、材料体系或规模范围未知：当前资料未提供。",
+        "comparisonConditions": "作者报告的结果仅为定性：RuBi HCs/PCNFs 表现出增强的电催化碱性 HER 活性和稳健运行耐久性，并在 AEM 水电解槽中实现稳定长期运行。当前摘要未给出明确比较对象（如基准催化剂）、数据集/模型/任务数量、理论模型细节、硬件与计算设置、测试电流、电压、过电位、斜率等指标、单位、数值、最高或平均口径及分母；这些比较条件和定量结果未知：当前资料未提供。",
+        "limitations": "证据仅来自摘要（evidenceBasis=abstract），未核对全文。作者在当前资料中明确提到的背景挑战是双金属异质团簇在热力学上易烧结和相分离；未明确陈述该策略的失效边界、适用限制、成本或规模化限制及长期运行时长。虽然摘要称有表征和理论分析并报告稳定长期运行，但未提供样品数、重复实验、原始数据、统计不确定度、完整表征或计算细节、对照结果。独立复现情况未知；资料未提供代码、数据或足以复现实验的协议。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
       "researchRoadmap": null,
       "selected": true
     },
@@ -10042,7 +10589,7 @@
         },
         "evidenceBasis": "abstract",
         "sourceRevision": 1,
-        "policyVersion": "energy-materials-journal-topic-v2"
+        "policyVersion": "energy-materials-journal-topic-v3"
       },
       "id": "y0ynb3sd89lg13suox6l8bvn0",
       "title": "机器学习引导设计半刚性空穴选择性自组装单分子层，用于高效稳定钙钛矿太阳能电池",
@@ -10081,7 +10628,190 @@
           }
         ]
       },
+      "researchBrief": {
+        "methodChange": "作者提出以机器学习先行、实验验证的SAM设计策略：用在已发表SAM对照—目标对数据集上训练的成对排序孪生定向消息传递神经网络（D-MPNN）替代仅依赖传统分子经验的筛选，并以尾基平面性降低为设计线索，设计半刚性七元环SAM 4PABAP和4PAHBAP。该变化针对倒置钙钛矿太阳能电池埋藏界面中传统咔唑类SAM（如4PACz）过度π–π堆积引起的聚集、膜不均匀、陷阱态密度升高和器件加速降解问题；AIMD结果据作者报告显示，非平面七元环可抑制π–π堆积、增强ITO锚定并促进SAM/钙钛矿界面电荷转移。",
+        "applicableTasks": "资料支持的对象和任务是倒置钙钛矿太阳能电池埋藏界面的空穴传输自组装单分子层设计、分子排序和后续器件验证，具体涉及4PACz基准以及作者设计的4PABAP、4PAHBAP。作者将该流程表述为可推广的SAM理性设计范式，但当前摘要未给出其在其他器件架构、材料类别或更广泛任务范围上的验证，因此这些范围未知。",
+        "comparisonConditions": "模型对4PABAP和4PAHBAP的ML分数分别为+2.54和+5.52，4PACz为−0.32；训练数据为整理的已发表SAM对照—目标分子对数据集，但数据集数量、划分和其他训练设置未知。AIMD比较给出4PAHBAP与ITO相互作用能−1.23 eV，4PACz为−0.74 eV；AIMD的硬件、泛函、温度、轨迹长度等设置未知。器件实验报告的是4PAHBAP倒置PSC的冠军PCE 26.36%、FF 84.35%，并与4PACz对照的PCE 23.52%、FF 77.51%比较；“冠军”口径不等于所有器件或平均值，器件数量、误差和统计方法未知。稳定性方面，4PAHBAP器件在ISOS-L-3标准下连续1-sun最大功率点运行1200 h后保持初始PCE的92.5%，在ISOS-D-2标准下85 °C热老化1200 h后保持95.7%；对照器件在这些稳定性条件下的结果、硬件和环境细节未知。摘要未提供其他比较模型、任务数量或计算资源信息。",
+        "limitations": "证据范围仅为所给摘要，未核对全文；摘要未明确陈述局限性，因此作者报告的限制未知。当前资料未提供数据集规模与代表性、模型训练和测试划分、随机性或外部测试、AIMD及器件实验的完整参数、样本量、误差/显著性统计、长期稳定性对照、代码或数据获取方式，也不能据此确认开放实现或独立复现。上述PCE、FF、相互作用能和稳定性数值均仅归属于作者在摘要中的报告，未作独立验证。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "materialsQuality": {
+        "status": "JOURNAL_SCREENED",
+        "domain": "battery",
+        "rationale": "输入来源标注为《Journal of the American Chemical Society》，提供的证据为完整摘要。作者报告锌负极应力异质性与枝晶生长的关联、添加剂调控策略及电池循环实验，属于电池负极与界面方向的原创研究。摘要未明确是否使用AI及其作用，故AI角色记为未知。",
+        "journal": {
+          "name": "Journal of the American Chemical Society",
+          "publisher": "American Chemical Society",
+          "selectionBasis": "EXPLICIT_USER_ALLOWLIST",
+          "sourceUrl": "https://pubs.acs.org/journal/jacsat"
+        },
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1,
+        "policyVersion": "energy-materials-journal-topic-v3"
+      },
+      "id": "ubnlgts7qlo4ee49nbtyfx9np",
+      "title": "锌负极沉积诱导的应力异质性决定锌枝晶生长",
+      "originalTitle": "Plating-Induced Stress Heterogeneity Dictates Zinc Dendrite Growth",
+      "summary": "基于摘要，该研究报告锌负极沉积诱导的局部拉伸/压缩应力异质性会产生化学势梯度，促进凸起区域优先生长并推动锌枝晶形成。研究引入可选择性吸附于 Zn (100) 晶面的应力缓释添加剂，引导形成 (100) 织构锌负极，降低局部化学势差并抑制应力驱动的枝晶形成。",
+      "reason": "研究将锌负极沉积诱导的应力异质性与锌枝晶启动关联起来，并展示通过应力缓释添加剂调控界面、延长锌负极循环寿命的方法。",
+      "sourceName": "Journal of the American Chemical Society · 材料研究候选",
+      "sourceUrl": "https://doi.org/10.1021/jacs.6c15035",
+      "publishedAt": null,
+      "timelineAt": "2026-10-10T06:37:40.630Z",
+      "category": "energy-materials",
+      "tags": [
+        "论文/研究",
+        "电池材料",
+        "材料"
+      ],
+      "research": {
+        "arxivId": null,
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": "10.1021/jacs.6c15035",
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-10T06:37:40.630Z",
+        "evidenceBasis": "abstract",
+        "originalPublishedDate": "2026-10-06",
+        "publicationDatePrecision": "day",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://doi.org/10.1021/jacs.6c15035",
+            "sourceUrl": "https://api.crossref.org/works/10.1021%2Fjacs.6c15035"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者建立了镀锌诱导应力与枝晶起始的直接关联：局部拉应力/压应力异质性改变沉积Zn的化学势，造成界面空间化学势梯度和非均匀沉积；提出加入可选择吸附于Zn(100)晶面的应力缓解添加剂，引导形成(100)织构Zn负极，使沉积更平坦并形成更均匀的压应力分布，降低局部化学势差，从而抑制应力驱动的枝晶形成，针对水系Zn离子电池Zn负极枝晶阻碍实用化的问题。",
+        "applicableTasks": "资料支持的对象与任务为水系Zn离子电池中的金属Zn负极及Zn/电解液界面枝晶抑制；作者报告了Zn||Zn对称电池循环和Zn||I2全电池长循环，并将该策略表述为可用于无枝晶金属负极的界面应力调控。除这些Zn体系与测试外的材料、体系和任务范围未知。",
+        "comparisonConditions": "当前摘要未给出明确对照组、对照数值或与其他方法/SOTA的比较。仅有定性条件对比：应力异质性促进凸起处优先生长并加速界面失稳，应力均匀化可抑制局部沉积；采用该添加剂和(100)织构Zn后，作者报告Zn||Zn对称电池具有3500 h的高循环寿命，Zn||I2全电池在2 A g⁻¹电流密度下具有超过10,000个循环的长期稳定性（g对应的质量基准未说明）。测试构型明确为2种；数据集、模型或样本数量、添加剂身份和浓度、电解液、容量、温度、电池尺寸、其他硬件与计算设置、统计口径（如平均值/最高值及分母）均未知，摘要未报告其他指标。",
+        "limitations": "证据仅来自所给摘要，不能据此核对全文、实验细节或完整验证。作者在当前摘要中未明确陈述局限性；摘要只报告上述Zn体系的循环结果，未提供对照实验细节、应力和形貌定量方法、重复数与误差、添加剂化学信息、原始数据、代码或独立复现。独立复现状态未知，不能据此宣称普适性、优于现有方法或SOTA。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "materialsQuality": {
+        "status": "JOURNAL_SCREENED",
+        "domain": "hydrogen",
+        "rationale": "来源标注期刊为Journal of the American Chemical Society，当前证据仅为摘要。研究以电化学析氢为模型反应，开发聚合物膜内pH测量方法，并结合显微成像、有限元建模和伏安实验研究涂层作用，属于制氢电催化相关原创研究。作者报告PEI涂层的局部缓冲及传质效应；所述核心方法为实验与物理建模，AI使用情况未明确，记为未知。",
+        "journal": {
+          "name": "Journal of the American Chemical Society",
+          "publisher": "American Chemical Society",
+          "selectionBasis": "EXPLICIT_USER_ALLOWLIST",
+          "sourceUrl": "https://pubs.acs.org/journal/jacsat"
+        },
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1,
+        "policyVersion": "energy-materials-journal-topic-v3"
+      },
+      "id": "fdgyb5x9w8q05m1npyl91u6n7",
+      "title": "操作态电化学荧光显微镜揭示聚合物促进电催化中的局部缓冲与传质效应",
+      "originalTitle": "Operando Electrochemical Fluorescence Microscopy Highlights Local Buffering and Mass Transport Effects in Polymer-Promoted Electrocatalysis",
+      "summary": "该研究开发操作态电化学荧光显微镜测定质子型聚合物涂层内的 pH，并解析其对电化学析氢的局部影响。研究者将带荧光 pH 探针的聚乙烯亚胺（PEI）涂覆在多晶金上，结合宽场和共聚焦显微镜量化膜内 pH 的时间变化与空间分布。基于摘要，有限元建模识别出质子供体传质差异和铵基的局部缓冲作用；线性扫描伏安法显示 PEI 降低析氢起始电位，而聚乙烯醇和 PiperION 对照涂层未促进该电催化反应。",
+      "reason": "研究将操作态电化学荧光显微镜与有限元建模结合，分离聚合物涂层中的局部缓冲和质子传输效应，为 PCET 电催化涂层设计提供可观测依据。",
+      "sourceName": "Journal of the American Chemical Society · 材料研究候选",
+      "sourceUrl": "https://doi.org/10.1021/jacs.6c11297",
+      "publishedAt": null,
+      "timelineAt": "2026-10-10T06:37:40.630Z",
+      "category": "energy-materials",
+      "tags": [
+        "论文/研究",
+        "制氢材料",
+        "材料"
+      ],
+      "research": {
+        "arxivId": null,
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": "10.1021/jacs.6c11297",
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-10T06:37:40.630Z",
+        "evidenceBasis": "abstract",
+        "originalPublishedDate": "2026-10-06",
+        "publicationDatePrecision": "day",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://doi.org/10.1021/jacs.6c11297",
+            "sourceUrl": "https://api.crossref.org/works/10.1021%2Fjacs.6c11297"
+          }
+        ]
+      },
       "researchBrief": null,
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "materialsQuality": {
+        "status": "JOURNAL_SCREENED",
+        "domain": "photovoltaic",
+        "rationale": "来源标注期刊为《Angewandte Chemie International Edition》，当前证据为完整摘要。研究提出钙钛矿太阳能电池界面退化机制，并报告添加1-甲基咪唑后的器件效率与运行稳定性，属于光伏材料原创研究。摘要呈现的主要方法为界面化学调控，但未充分交代是否使用AI，故AI角色记为未知；性能结果均为作者报告。",
+        "journal": {
+          "name": "Angewandte Chemie International Edition",
+          "publisher": "Wiley-VCH on behalf of Gesellschaft Deutscher Chemiker",
+          "selectionBasis": "EXPLICIT_USER_ALLOWLIST",
+          "sourceUrl": "https://onlinelibrary.wiley.com/journal/15213773"
+        },
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1,
+        "policyVersion": "energy-materials-journal-topic-v3"
+      },
+      "id": "ul2v4uxqoahlihghss5i057ex",
+      "title": "阻断质子耦合电子转移稳定空气制备倒置钙钛矿太阳能电池的埋藏界面",
+      "originalTitle": "Blocked Proton‐Coupled Electron Transfer Stabilizes Buried Interface in Air‐Processed Inverted Perovskite Solar Cells",
+      "summary": "基于摘要，该研究识别出NiOₓ/SAM/钙钛矿体系中由质子耦合电子转移（PCET）引发的埋藏界面降解路径，并将1-甲基咪唑引入SAM以阻断质子和电子转移。该处理通过捕获质子、减少I⁻空位形成并增强SAM在NiOₓ基底上的锚定，促进界面空穴转移。环境空气中制备的倒置钙钛矿太阳能电池功率转换效率超过26.3%，在约50°C最大功率点跟踪2000小时后仍保持初始效率的90%以上。",
+      "reason": "研究识别出NiOₓ/SAM/钙钛矿界面的PCET降解路径，并给出1-甲基咪唑同时抑制质子与电子转移后的器件效率和稳定性结果。",
+      "sourceName": "Angewandte Chemie International Edition · 材料研究候选",
+      "sourceUrl": "https://doi.org/10.1002/anie.2426576",
+      "publishedAt": null,
+      "timelineAt": "2026-10-10T06:37:37.460Z",
+      "category": "energy-materials",
+      "tags": [
+        "论文/研究",
+        "光伏材料",
+        "材料"
+      ],
+      "research": {
+        "arxivId": null,
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": "10.1002/anie.2426576",
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-10T06:37:37.460Z",
+        "evidenceBasis": "abstract",
+        "originalPublishedDate": "2026-10-06",
+        "publicationDatePrecision": "day",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://doi.org/10.1002/anie.2426576",
+            "sourceUrl": "https://api.crossref.org/works/10.1002%2Fanie.2426576"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出并识别了NiOₓ/SAM/钙钛矿埋藏界面的质子耦合电子转移（PCET）降解路径：SAM释放的质子加速NiOₓ与I⁻的氧化还原反应，且在高温和紫外照射下尤其明显。方法是在SAM中加入1-甲基咪唑，通过捕获质子抑制质子转移，并通过减少I⁻空位形成来阻碍电子转移，从质子和电子两方面阻断界面PCET；该处理还增强SAM在NiOₓ基底上的锚定，促进界面空穴转移并提高界面稳定性。",
+        "applicableTasks": "资料支持的对象是倒置钙钛矿太阳能电池（PSC）中的NiOₓ/自组装单分子层（SAM）复合空穴传输层及其NiOₓ/SAM/钙钛矿埋藏界面。摘要报告的器件在环境空气中制备，并涉及运行稳定性评估；高温和紫外照射被描述为降解路径尤其相关的操作条件。其他器件架构、材料体系、任务或适用范围未知：当前资料未提供。",
+        "comparisonConditions": "作者报告：采用该处理后、在环境空气中制备的PSC，功率转换效率（PCE）超过26.3%；在约50°C下进行最大功率点（MPP）跟踪2000小时后，仍保持初始效率的>90%（分母为初始效率）。摘要未提供明确的对照器件或比较对象、数据/器件数量、模型或任务数量、硬件、计算设置、统计口径，以及紫外照射的具体测试参数；这些信息未知：当前资料未提供。",
+        "limitations": "证据基础仅为摘要，当前未核对全文。作者将NiOₓ/SAM/钙钛矿体系的耦合界面降解机制及其对器件稳定性的限制作为研究背景；当前摘要未陈述其他明确的方法局限。未提供完整实验方案、对照设计、样本数量、重复性或统计分析、硬件与计算设置、紫外测试细节及开放实现信息，不能据此推断研究不存在这些信息。效率和稳定性均属于作者报告；当前资料没有独立复现或外部验证证据。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
       "researchRoadmap": null,
       "selected": true
     },
@@ -15405,6 +16135,188 @@
         "applicableTasks": "资料支持的对象是使用长期记忆的智能体，任务包括判断记忆对当前查询是否可准入、比较检索路由、追踪提示词中的记忆暴露以及评估答案中的目标信息披露。涉及的准入问题包括跨主体信息、策略违规及生命周期状态不兼容。作者报告的实证范围为 RHELM、MemOps 两个公开长期记忆基准的冻结排序重分析，以及开发诊断、基准原生配对案例和受控暴露场景；各阶段使用独立且未合并的评测样本群体。对其他领域、系统或部署规模的适用性验证，当前资料未提供。",
         "comparisonConditions": "作者报告了四组独立、未合并的评估。① 对 RHELM 和 MemOps 两个公开长期记忆基准的冻结排名进行事后 top-20 重分析，共覆盖 3,767 个查询。所有已发布锚点均位于受信任的查询命名空间内；在命名空间内分数不变的条件下，过滤命名空间外候选不会降低这些锚点的排名。作者报告 top-20 锚点召回率由 0.432 升至 0.533，达到 80% 召回率的可行性由 0.237 升至 0.311，精确相似度计算次数减少 98.3%。该降幅对应计算次数，摘要未报告运行时间或成本降幅。② 在冻结的 72 案例开发诊断中，基于已发布元数据的参考方法保留了必需证据；在必需锚点误拒率上限为 1% 的约束下，两个仅使用文本的验证器均未检测到违规。③ 在 1,523 个基准原生配对案例中，命名空间路由在三个阅读器上的评判准确率增益为 0.053–0.068；作者明确指出召回率也发生变化，因此这一比较属于观察性比较，不能视为在召回率匹配条件下得到的效果。④ 在 16 个受控暴露场景中，针对相关但不可准入信息的字面披露，四个阅读器各自对应的 95% 置信区间中仅一个排除零，该结果为 +0.156，95% CI [0.031, 0.312]；不能将这一结果推广为所有阅读器均出现明确变化。以上小数按摘要原值保留。阅读器和验证器的具体模型名称、跨阶段去重后的模型总数、具体路由基线、硬件、计算资源、运行参数，以及指标的完整定义和统计分母细节，未知：当前资料未提供。",
         "limitations": "当前证据仅为摘要，未核对全文；所有结果均为作者报告，当前资料不包含独立复现证据。各阶段评测样本群体独立且未合并，不能把不同阶段结果当作同一总体上的连续验证。冻结排名的事后分析受已发布锚点均位于受信任查询命名空间、且命名空间内分数不变的条件限制；召回改善不能直接证明对其他可准入性问题同样有效。72 案例诊断中，两个文本验证器在指定误拒率约束下未检测到违规，其结论限于该诊断及约束。1,523 个配对案例中的准确率变化伴随召回变化，作者将其界定为观察性比较，无法据此单独确定可准入性机制的因果贡献。16 个受控场景中仅一个阅读器对应的披露差异置信区间排除零，证据不支持所有阅读器效果一致。未解决状态的界限算法及具体结果、完整实验协议、统计检验细节、外部泛化验证、实现可用性与复现所需材料，未知：当前资料未提供；这不等于研究本身不存在这些信息。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "materialsQuality": {
+        "status": "JOURNAL_SCREENED",
+        "domain": "battery",
+        "rationale": "来源标注期刊为Journal of the American Chemical Society，当前证据为摘要。作者报告COF电极的合成、储能机理及钠双离子电池性能，属于电池材料原创研究。摘要未说明理论计算是否涉及AI，AI作用无法确定。",
+        "journal": {
+          "name": "Journal of the American Chemical Society",
+          "publisher": "American Chemical Society",
+          "selectionBasis": "EXPLICIT_USER_ALLOWLIST",
+          "sourceUrl": "https://pubs.acs.org/journal/jacsat"
+        },
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1,
+        "policyVersion": "energy-materials-journal-topic-v3"
+      },
+      "id": "x2rattac801zdt2ytqpgnc2f9",
+      "title": "具有互补氧化还原核心的同构共价有机框架实现高电压全 COF 钠双离子电池",
+      "originalTitle": "Isoreticular Covalent Organic Frameworks with Complementary Redox Cores Enable High-Voltage All-COF Sodium Dual-Ion Batteries",
+      "summary": "该研究提出同构氧化还原核心调控策略，构建互补的 n 型 Trz-COF 负极和 p 型 TPA-COF 正极，用于高电压全 COF 钠双离子电池。",
+      "reason": "研究通过在同构 COF 中调节氧化还原核心，构建互补负极与正极并实现高电压全 COF 钠双离子电池，为有机框架电极的分子设计提供可迁移思路。",
+      "sourceName": "Journal of the American Chemical Society · 材料研究候选",
+      "sourceUrl": "https://doi.org/10.1021/jacs.6c13060",
+      "publishedAt": null,
+      "timelineAt": "2026-10-10T06:37:42.217Z",
+      "category": "energy-materials",
+      "tags": [
+        "论文/研究",
+        "电池与新能源材料"
+      ],
+      "research": {
+        "arxivId": null,
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": "10.1021/jacs.6c13060",
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-10T06:37:42.217Z",
+        "evidenceBasis": "abstract",
+        "originalPublishedDate": "2026-10-05",
+        "publicationDatePrecision": "day",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://doi.org/10.1021/jacs.6c13060",
+            "sourceUrl": "https://api.crossref.org/works/10.1021%2Fjacs.6c13060"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者提出同构（isoreticular）氧化还原核心调控策略，在保持相近二维COF骨架和离子传输结构的同时更换氧化还原核心，构建互补的n型低电位负极与p型高电位正极，以解决高电压全COF钠电池中互补电极难以构建的问题。电子缺陷三嗪核心形成Trz-COF负极，主要工作于0.01–1.4 V（vs. Na+/Na）；电子丰富三苯胺核心形成TPA-COF正极，主要工作于3.4–4.2 V（vs. Na+/Na），用于可逆PF6−存储。原位光谱和理论计算表明，氧化还原核心变化决定储能行为与电极电位，而保留的骨架有助于离子传输。",
+        "applicableTasks": "资料支持的对象与范围为高结晶二维COF电极、钠离子电池和钠双离子电池，具体包括以Trz-COF作低电位n型负极、以TPA-COF作高电位p型正极，并将两者配对用于2.0–4.2 V工作的全COF钠双离子电池；TPA-COF的应用涉及可逆PF6−存储。对其他材料、离子体系或更广泛任务的适用性，当前资料未提供。",
+        "comparisonConditions": "摘要未报告与其他材料、方法、模型或基线的直接比较；数据集、模型或任务数量未知。作者报告合成并研究了2种架构 closely related 的二维COF（Trz-COF和TPA-COF），并报告其配对电池：工作电压2.0–4.2 V，平均放电电压3.40 V，容量116 mAh g−1；在0.5 A g−1下循环1000次后容量为76 mAh g−1。单电极主要电位范围分别为Trz-COF的0.01–1.4 V和TPA-COF的3.4–4.2 V（均vs. Na+/Na）。摘要未给出硬件型号、计算资源、完整测试协议、重复数或统计误差。",
+        "limitations": "证据仅来自作者摘要，不能据此核对全文方法、合成与测试细节。当前资料未提供作者明确列出的局限，也未提供对照材料、独立重复、统计不确定性、完整循环/倍率数据、硬件与计算设置、原始数据或开放实现的信息；这些缺失不等同于研究本身不存在。所述电化学性能和机理解释均应视为作者报告，当前没有独立复现或足以支持更广泛性能声称的证据。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "materialsQuality": {
+        "status": "JOURNAL_SCREENED",
+        "domain": "hydrogen",
+        "rationale": "来源标注期刊为《Angewandte Chemie International Edition》，当前证据仅为摘要。研究涉及碱性水电解制氢的阴极腐蚀与稳定性；作者提出CeOx保护层并报告电解运行及启停循环测试结果，据此归为制氢材料原创研究。摘要未明确AI参与情况，因此记为unknown。",
+        "journal": {
+          "name": "Angewandte Chemie International Edition",
+          "publisher": "Wiley-VCH on behalf of Gesellschaft Deutscher Chemiker",
+          "selectionBasis": "EXPLICIT_USER_ALLOWLIST",
+          "sourceUrl": "https://onlinelibrary.wiley.com/journal/15213773"
+        },
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1,
+        "policyVersion": "energy-materials-journal-topic-v3"
+      },
+      "id": "n4qpb9bde4tv2no0iyycei4rk",
+      "title": "CeOₓ保护层抑制碱性水电解槽中杂质阳离子诱导的Raney Ni阴极腐蚀",
+      "originalTitle": "Suppressing Cathode Corrosion Induced by Impurity Cations in Alkaline Water Electrolyzers",
+      "summary": "该研究报告在碱性水电解槽Raney Ni阴极表面引入Lewis酸性CeOₓ层，以抑制杂质阳离子尤其是Fe离子诱导的腐蚀。基于摘要，Fe物种积累会促进crossover oxygen的两电子还原并形成驱动Ni位点氧化腐蚀的HO₂•自由基，CeOₓ层可抑制Fe还原沉积并清除这些自由基。",
+      "reason": "研究解析了杂质阳离子诱导Raney Ni阴极腐蚀的反应路径，并展示CeOₓ保护层在长时运行和多种杂质阳离子条件下的稳定性。",
+      "sourceName": "Angewandte Chemie International Edition · 材料研究候选",
+      "sourceUrl": "https://doi.org/10.1002/anie.6363490",
+      "publishedAt": null,
+      "timelineAt": "2026-10-10T06:37:37.460Z",
+      "category": "energy-materials",
+      "tags": [
+        "论文/研究",
+        "电池与新能源材料",
+        "制氢材料"
+      ],
+      "research": {
+        "arxivId": null,
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": "10.1002/anie.6363490",
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-10T06:37:37.460Z",
+        "evidenceBasis": "abstract",
+        "originalPublishedDate": "2026-10-05",
+        "publicationDatePrecision": "day",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://doi.org/10.1002/anie.6363490",
+            "sourceUrl": "https://api.crossref.org/works/10.1002%2Fanie.6363490"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "针对碱性水电解长期运行中腐蚀溶解产生的阳离子在循环电解液中累积、尤其 Fe 物种破坏 Raney Ni 阴极结构稳定性的问题，作者在阴极表面引入 Lewis 酸性的 CeOₓ 层。该层抑制 Fe 在阴极上的还原沉积，并由配位不饱和的高价 Ce 位点直接清除反应性 HO₂• 自由基，从而减轻由交叉氧两电子还原及自由基引发的 Ni 氧化腐蚀。",
+        "applicableTasks": "资料支持的范围是工业条件或实际运行条件下的碱性水电解，保护对象为 Raney Ni 阴极，场景包括含 Fe 杂质的循环电解液及系统部件产生的阳离子污染。作者报告在最高 200 µM Fe(III) 存在时保持稳定阴极性能，并涉及 Co(II)、Mn(II)、Mo(VI)、Cr(III) 和 Al(III) 等来源于系统部件的杂质阳离子。超出这些碱性水电解、Raney Ni 阴极、所列阳离子及浓度范围的任务或对象，未知：当前资料未提供。",
+        "comparisonConditions": "作者报告的性能结果包括：CeOₓ 保护的 Raney Ni 阴极在含 Fe 电解液中于 1.0 A cm⁻² 下稳定运行超过 3,500 h，并经受 15,000 次加速启停循环；在最高 200 µM Fe(III) 或 Co(II)、Mn(II)、Mo(VI)、Cr(III)、Al(III) 等杂质阳离子存在时，作者称其阴极性能仍稳定。资料提到 Fe 物种会损害未保护 Raney Ni，但未给出未保护对照的定量运行时长、性能数值或明确的直接比较表。数据集、模型或任务数量、装置面积与其他硬件、温度、压力、电解质组成、启停协议、统计口径、重复次数、误差以及电压、过电位、能耗或法拉第效率等指标：未知：当前资料未提供。",
+        "limitations": "证据仅为摘要（evidenceBasis 为 abstract），因此不能视为已核对全文。作者在摘要中明确报告了 3,500 h、15,000 次循环以及最高 200 µM Fe(III) 和所列杂质阳离子条件下的结果，并将策略描述为在实际条件下具有可行性和普适性；摘要未明确陈述其他限制。未提供未保护对照的完整定量数据、实验重复与统计不确定性、更多运行条件、机理表征细节、全电解槽或其他阴极材料验证、代码或开放实现信息。独立复现：未知：当前资料未提供。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "materialsQuality": {
+        "status": "JOURNAL_SCREENED",
+        "domain": "photovoltaic",
+        "rationale": "来源标注为《Angewandte Chemie International Edition》，当前证据为摘要。摘要报告开发不同芳香桥连接的二聚体受体并比较有机太阳能电池性能，属于光伏材料原创研究。器件效率为作者报告的结果；摘要未充分交代是否使用辅助AI方法，因此AI角色记为未知。",
+        "journal": {
+          "name": "Angewandte Chemie International Edition",
+          "publisher": "Wiley-VCH on behalf of Gesellschaft Deutscher Chemiker",
+          "selectionBasis": "EXPLICIT_USER_ALLOWLIST",
+          "sourceUrl": "https://onlinelibrary.wiley.com/journal/15213773"
+        },
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1,
+        "policyVersion": "energy-materials-journal-topic-v3"
+      },
+      "id": "f1lzek6qyc0zp4lb1yk3p0u8g",
+      "title": "芳香桥调控二聚受体实现有机太阳能电池21.02%效率",
+      "originalTitle": "Using Aromatic‐Bridge‐Tuned Dimer Acceptors to Harmonize Photoluminescence Quantum Yield and Crystallinity for Organic Solar Cells Exceeding 21% Efficiency",
+      "summary": "基于摘要，该研究开发了以苯、萘和蒽为桥联的二聚受体，其中 Naph-dimer 平衡了有机太阳能电池的光致发光量子产率与结晶性，相关器件效率达21.02%。PM6:Naph-dimer 器件的 PCE 为18.90%、V_oc 为0.974 V、ΔE₃ 为0.192 eV；将 Naph-dimer 加入 PM6:L8-BO 主体后，PCE 达21.02%。摘要未提供更具体的比较设置或独立复现信息。",
+      "reason": "研究比较苯、萘和蒽桥联二聚受体的器件表现，说明桥联调控可兼顾发光量子产率与结晶性，并实现21.02%效率。",
+      "sourceName": "Angewandte Chemie International Edition · 材料研究候选",
+      "sourceUrl": "https://doi.org/10.1002/anie.4058890",
+      "publishedAt": null,
+      "timelineAt": "2026-10-10T06:37:37.460Z",
+      "category": "energy-materials",
+      "tags": [
+        "论文/研究",
+        "电池与新能源材料",
+        "光伏材料"
+      ],
+      "research": {
+        "arxivId": null,
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": "10.1002/anie.4058890",
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-10T06:37:37.460Z",
+        "evidenceBasis": "abstract",
+        "originalPublishedDate": "2026-10-05",
+        "publicationDatePrecision": "day",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://doi.org/10.1002/anie.4058890",
+            "sourceUrl": "https://api.crossref.org/works/10.1002%2Fanie.4058890"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者针对有机太阳能电池活性层、尤其受体组分提高光致发光量子产率（PLQY）时难以同时保持有利结晶性和聚集行为、导致非辐射能量损失的问题，提出用苯、萘和蒽桥连接的二聚受体，分别命名为 Ph-dimer、Naph-dimer 和 Ant-dimer，通过桥结构调控协调 PLQY 与晶体有序性。作者报告 Naph-dimer 在结晶性和 PLQY 之间达到较优平衡，增强分子堆积、降低无序，从而抑制能量损失并促进电荷提取。",
+        "applicableTasks": "资料支持的适用范围是有机太阳能电池（OSC）活性层受体材料设计及其光伏器件评价，涉及 PM6 与 Ph-dimer、Naph-dimer、Ant-dimer 的共混体系，以及将 Naph-dimer 引入 PM6:L8-BO 主体的体系。更广泛的材料、器件或其他任务范围未知：当前摘要未提供相关证据。",
+        "comparisonConditions": "摘要比较了三种桥连接二聚受体及其 PM6 共混器件：PM6:Ph-dimer、PM6:Naph-dimer 和 PM6:Ant-dimer；并另报告 Naph-dimer 引入 PM6:L8-BO 主体后的结果。苯到蒽的共轭长度和核心本征发光增强，但光伏性能与该趋势没有线性相关。PM6:Naph-dimer 的作者报告结果为功率转换效率（PCE）18.90%、开路电压（Voc）0.974 V、ΔE3 0.192 eV，并称其优于 PM6:Ph-dimer 和 PM6:Ant-dimer；将 Naph-dimer 引入 PM6:L8-BO 主体时报告 PCE 21.02%。摘要未给出 Ph-dimer 和 Ant-dimer 的数值、PLQY及结晶性数值、器件或样本数量、数据集/模型/任务数量、实验或计算硬件、计算设置、重复次数、误差范围，也未说明上述数值是最高值、平均值还是其他统计口径。",
+        "limitations": "证据基础仅为作者摘要，未核对全文。作者在当前摘要中未明确列出进一步的局限；摘要仅说明结晶性与聚集行为同高 PLQY 往往相互冲突，并报告桥结构调控的上述结果。当前资料未提供完整实验条件、器件结构与制备细节、统计方法、样本量、数值 PLQY、长期稳定性或更广泛验证，也未提供代码、开放实现或独立复现证据。所有性能数值和优于对照的判断均属于作者报告，独立复现未知。",
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
@@ -22145,6 +23057,122 @@
         "evidenceBasis": "abstract",
         "sourceRevision": 1
       },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "materialsQuality": {
+        "status": "JOURNAL_SCREENED",
+        "domain": "hydrogen",
+        "rationale": "来源为Angewandte Chemie International Edition摘要；内容聚焦钌修饰MoS2用于析氢电催化，属于制氢材料原创研究，未涉及AI方法。",
+        "journal": {
+          "name": "Angewandte Chemie International Edition",
+          "publisher": "Wiley-VCH on behalf of Gesellschaft Deutscher Chemiker",
+          "selectionBasis": "EXPLICIT_USER_ALLOWLIST",
+          "sourceUrl": "https://onlinelibrary.wiley.com/journal/15213773"
+        },
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1,
+        "policyVersion": "energy-materials-journal-topic-v3"
+      },
+      "id": "qsjzefwpy9jozozqnm4habiu6",
+      "title": "Ru 固溶改性 MoS₂ 边缘位点增强析氢活性",
+      "originalTitle": "Enhanced Hydrogen Evolution Activity of MoS 2 Through Solid Solution Modification of Its Edge Sites With Ruthenium",
+      "summary": "基于摘要，该研究在 MoS₂ 边缘位点及近边缘基面电化学沉积 Ru，形成 Ru 配位固溶物，作者报告其可提升析氢活性。作者报告 Ru 位点促进水解离并提高质子供给速率，使反应路径由原始 MoS₂ 的 Volmer–Heyrovsky 转为 Volmer–Tafel，并形成局部酸性环境。",
+      "reason": "摘要报告在 MoS₂ 边缘位点引入 Ru 固溶物可改变析氢反应路径并改善动力学，为阴离子交换膜电解水催化剂设计提供机制线索。",
+      "sourceName": "Angewandte Chemie International Edition · 材料研究候选",
+      "sourceUrl": "https://doi.org/10.1002/anie.1871980",
+      "publishedAt": null,
+      "timelineAt": "2026-10-10T06:37:39.687Z",
+      "category": "energy-materials",
+      "tags": [
+        "论文/研究",
+        "制氢材料",
+        "电池与新能源材料",
+        "材料"
+      ],
+      "research": {
+        "arxivId": null,
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": "10.1002/anie.1871980",
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-10T06:37:39.687Z",
+        "evidenceBasis": "abstract",
+        "originalPublishedDate": "2026-10-02",
+        "publicationDatePrecision": "day",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://doi.org/10.1002/anie.1871980",
+            "sourceUrl": "https://api.crossref.org/works/10.1002%2Fanie.1871980"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者通过电化学沉积将钌（Ru）引入 MoS₂ 的边缘位点及近边缘基面，形成 Ru 配位的固溶体；Ru 原子作为水解离位点，提高质子供应速率和催化活性，并据 Tafel 斜率、原位 Raman 与电化学阻抗谱分析，指出该边缘固溶体形成局部酸性环境，使氢析出反应路径由未改性 MoS₂ 的 Volmer–Heyrovsky 转为 Volmer–Tafel，从而改善反应动力学。",
+        "applicableTasks": "资料支持的任务是制氢中的氢析出反应，尤其是阴离子交换膜水电解（AEMWE）；对象是边缘配位 Ru 固溶体改性的 MoS₂ 催化剂，应用指向可再生燃料生成。具体电解条件、适用装置范围和其他任务边界未知：当前资料未提供。",
+        "comparisonConditions": "作者将该催化剂与其他已报道的 MoS₂ 基和 Ru 基催化剂比较，并称其在 AEMWE 中具有‘very high’电流密度及‘excellent long-term stability’；这些是作者报告的定性结果，资料未给出电流密度数值、单位、测试条件、稳定性持续时间或比较分母。作者还报告使用 Tafel 斜率、原位 Raman 和电化学阻抗谱分析反应动力学与路径，但未提供具体数值、数据集或模型数量、任务数量、硬件、计算设置、催化剂负载量及其他评价指标；上述设置均未知。",
+        "limitations": "证据仅为摘要，未核对全文。资料未提供作者明确列出的局限，也未提供电流密度、Tafel 斜率、阻抗、稳定性时长及实验条件等可复核细节；‘very high’和‘excellent’的定量基准未知。摘要没有代码、开放数据或独立复现信息，因此独立复现未知；不能据此断言已完成全文验证或证明普遍优于所有相关催化剂。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "materialsQuality": {
+        "status": "JOURNAL_SCREENED",
+        "domain": "photovoltaic",
+        "rationale": "输入标明来源为 Angewandte Chemie International Edition，摘要报告了宽带隙混合卤化物钙钛矿太阳能电池中的卤素均匀化与深能级缺陷调控策略及器件结果，属于光伏材料原创研究。",
+        "journal": {
+          "name": "Angewandte Chemie International Edition",
+          "publisher": "Wiley-VCH on behalf of Gesellschaft Deutscher Chemiker",
+          "selectionBasis": "EXPLICIT_USER_ALLOWLIST",
+          "sourceUrl": "https://onlinelibrary.wiley.com/journal/15213773"
+        },
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1,
+        "policyVersion": "energy-materials-journal-topic-v3"
+      },
+      "id": "noe9wyixucgs0rxg3ee08np6l",
+      "title": "双功能分子调控实现无MA宽带隙混合卤化物钙钛矿的卤素均匀化与深能级缺陷控制",
+      "originalTitle": "Bifunctional Molecular Regulation Couples Halide Homogenization With Deep‐Level Defect Control in MA‐Free Wide‐Bandgap Perovskites for Tandem Solar Cells",
+      "summary": "该研究提出双功能铵盐策略，在无MA宽带隙混合卤化物钙钛矿中顺序调控碘掺入并控制深能级缺陷。基于摘要，4-(2-aminoethyl)benzenesulfonic acid hydrochloride的磺酸基调节碘掺入，铵基重构卤素三聚体局部原子构型。",
+      "reason": "研究将卤素均匀化相关深能级缺陷追溯到卤素三聚体结构，并报告双功能铵盐策略在两类器件中的效率与1000 h光照稳定性数据。",
+      "sourceName": "Angewandte Chemie International Edition · 材料研究候选",
+      "sourceUrl": "https://doi.org/10.1002/anie.2375835",
+      "publishedAt": null,
+      "timelineAt": "2026-10-10T06:37:37.460Z",
+      "category": "energy-materials",
+      "tags": [
+        "论文/研究",
+        "光伏材料",
+        "材料"
+      ],
+      "research": {
+        "arxivId": null,
+        "arxivVersion": null,
+        "arxivVersions": [],
+        "doi": "10.1002/anie.2375835",
+        "originalPublishedAt": null,
+        "revisedAt": null,
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-10T06:37:37.460Z",
+        "evidenceBasis": "abstract",
+        "originalPublishedDate": "2026-10-02",
+        "publicationDatePrecision": "day",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://doi.org/10.1002/anie.2375835",
+            "sourceUrl": "https://api.crossref.org/works/10.1002%2Fanie.2375835"
+          }
+        ]
+      },
+      "researchBrief": null,
       "researchRoadmap": null,
       "selected": true
     },
@@ -30039,15 +31067,24 @@
       "name": "电池与新能源材料",
       "group": "field",
       "definition": "聚焦电池、光伏与制氢的原创材料研究。依据与主张相匹配的方法、比较条件和验证证据甄选；证据不足保留待核验。",
-      "total": 5,
-      "recent": 5,
+      "total": 14,
+      "recent": 14,
       "latestAt": "2026-10-11T12:34:23.610Z",
       "itemIds": [
         "vzts1o949ft66h47tym3tyux6",
         "pmemcl0rmz92kfe6jyxb8vf0u",
         "kpgbgy1li7qq1lie3jaj5w1wk",
         "s3yc1gka8o90s8cbj0umck0t6",
-        "y0ynb3sd89lg13suox6l8bvn0"
+        "epsa4dil6hx06nv8iuaiirzsr",
+        "kw77o8e5jk9crmkukfeevfwpt",
+        "q1ij9vxne9pid0bhhxfb25af7",
+        "ekj9lushmz4xzqxudc9283a7d",
+        "d5em7fy5obs0go477vo9wgukm",
+        "y0ynb3sd89lg13suox6l8bvn0",
+        "x2rattac801zdt2ytqpgnc2f9",
+        "n4qpb9bde4tv2no0iyycei4rk",
+        "f1lzek6qyc0zp4lb1yk3p0u8g",
+        "qsjzefwpy9jozozqnm4habiu6"
       ]
     },
     {
@@ -30323,17 +31360,27 @@
       "name": "材料",
       "group": "field",
       "definition": "材料性质预测、设计与发现方法，保留数据和验证条件。",
-      "total": 12,
-      "recent": 12,
-      "latestAt": "2026-10-08T17:58:36.000Z",
+      "total": 22,
+      "recent": 22,
+      "latestAt": "2026-10-10T06:37:45.877Z",
       "itemIds": [
+        "epsa4dil6hx06nv8iuaiirzsr",
         "yyetvg917timuv8uhljbtb3en",
+        "r47aded0njnibkubaq5frwt2y",
+        "fqteqczcjr319m625fihgrnq0",
+        "ekj9lushmz4xzqxudc9283a7d",
+        "wxr74g12how3z5u0cn718a7ik",
         "we4eyfm5ae8lv075m8bo22noy",
+        "ubnlgts7qlo4ee49nbtyfx9np",
+        "fdgyb5x9w8q05m1npyl91u6n7",
+        "ul2v4uxqoahlihghss5i057ex",
         "h30z31o1l7rcc0gq303ud9j5o",
         "mrnex2dfrlorl86h31opfnglx",
         "rqydzgttc3xc5ri54lj6epqcm",
         "sqjmpfu3upeojcds6k1gt4pac",
         "ctpafzky1hjkn3ja0004nk4px",
+        "qsjzefwpy9jozozqnm4habiu6",
+        "noe9wyixucgs0rxg3ee08np6l",
         "tppoduvljm472kubjwmwyj5a2",
         "iq3jq9gwfymvo6ttqwey9y652",
         "jowiuumhfic42ozfpw3x1cjdw",
@@ -30427,14 +31474,16 @@
       "name": "论文研究",
       "group": "genre",
       "definition": "论文与技术报告，明确摘要依据、作者主张和证据限制。",
-      "total": 293,
-      "recent": 287,
+      "total": 310,
+      "recent": 304,
       "latestAt": "2026-10-11T12:34:23.610Z",
       "itemIds": [
         "vzts1o949ft66h47tym3tyux6",
         "pmemcl0rmz92kfe6jyxb8vf0u",
         "kpgbgy1li7qq1lie3jaj5w1wk",
         "s3yc1gka8o90s8cbj0umck0t6",
+        "p2rgy0o4c07m7y6dl6z3wlyj1",
+        "epsa4dil6hx06nv8iuaiirzsr",
         "r9o3pcnhkravka8hdyts5j6bs",
         "flzdt4vyj848qw5q9pw37po2m",
         "d1urz9t0uy50qxyqtdeul5kk7",
@@ -30452,6 +31501,11 @@
         "up3ku9xuhfbxh1yk5yawv3twu",
         "qq21ufb5cjwz29e7wib8g1mbc",
         "gwc0vh5t79fbskv91hcve365m",
+        "r47aded0njnibkubaq5frwt2y",
+        "kw77o8e5jk9crmkukfeevfwpt",
+        "q1ij9vxne9pid0bhhxfb25af7",
+        "fqteqczcjr319m625fihgrnq0",
+        "ekj9lushmz4xzqxudc9283a7d",
         "pftnk0jirjv6vnewdbpcuzeqy",
         "giq82md77wfmuezocp3mv7kcq",
         "w69nx656ffa43fx3aj726gxjj",
@@ -30487,6 +31541,8 @@
         "v0yo57rzklwyjpaa2ygzqixna",
         "bqfvepe29yyabyr4f9np8qbsl",
         "zhiscshd7lkykp2cu6teyu9xz",
+        "wxr74g12how3z5u0cn718a7ik",
+        "d5em7fy5obs0go477vo9wgukm",
         "clmhlzrvh8h87ad0p0qykt3r2",
         "lrtd1ru685578inxui32r92fu",
         "a4ghbcpd5csjh03eifw12uoxt",
@@ -30543,6 +31599,9 @@
         "f39xai1ih2pn2wzcgawc8mx2f",
         "sdwclm0auvc46gcwagyed5xki",
         "y0ynb3sd89lg13suox6l8bvn0",
+        "ubnlgts7qlo4ee49nbtyfx9np",
+        "fdgyb5x9w8q05m1npyl91u6n7",
+        "ul2v4uxqoahlihghss5i057ex",
         "sfbjmqn69eswoem63w0jslht6",
         "bhyyia9m3f9tfdre3syh4lg8p",
         "ebff39ykx0ozqx05g804n0aq4",
@@ -30583,6 +31642,9 @@
         "o67zh0yegqkm64ul0b4xymht3",
         "gd0anvclpqktuun3e64209rxz",
         "mllnztt6s4t381wvtibcxeo07",
+        "x2rattac801zdt2ytqpgnc2f9",
+        "n4qpb9bde4tv2no0iyycei4rk",
+        "f1lzek6qyc0zp4lb1yk3p0u8g",
         "pavata8f4in31dck39dpdijgd",
         "vaxsntp2nm7a5aj0nkxyatv20",
         "bmgca771l8fyyno6hz3ieh174",
@@ -30653,6 +31715,8 @@
         "dlam1ztv0r19z6bc6xgyu055k",
         "ctpafzky1hjkn3ja0004nk4px",
         "qmqxh8ogq0diqsqer4l49x8cx",
+        "qsjzefwpy9jozozqnm4habiu6",
+        "noe9wyixucgs0rxg3ee08np6l",
         "m1flphou3b3kggq4immlsqvks",
         "us8f07yi3scbpjlnzey9esrtw",
         "tppoduvljm472kubjwmwyj5a2",
@@ -30795,6 +31859,1806 @@
     }
   ],
   "reports": [
+    {
+      "illustrated": true,
+      "kind": "daily",
+      "key": "2026-10-12",
+      "issueNumber": 8,
+      "title": "本期处理尚有缺口",
+      "windowStart": "2026-10-11T16:00:00.000Z",
+      "windowEnd": "2026-10-12T01:08:17.915Z",
+      "generatedAt": "2026-10-12T01:33:22.362Z",
+      "revision": 1,
+      "lead": {
+        "title": "本期处理尚有缺口",
+        "leadParagraph": "未形成完整精选结果：10 次共享模型预算的请求结果未知，未自动重发；来源处理窗口用于有界补查迟到资料；日报仅按本日原始发表日期归档，处理窗口外的来源覆盖尚未核验。。"
+      },
+      "overview": "未形成完整精选结果：10 次共享模型预算的请求结果未知，未自动重发；来源处理窗口用于有界补查迟到资料；日报仅按本日原始发表日期归档，处理窗口外的来源覆盖尚未核验。。",
+      "sections": [
+        {
+          "label": "算法",
+          "summary": null,
+          "items": []
+        },
+        {
+          "label": "AI4AI",
+          "summary": null,
+          "items": []
+        },
+        {
+          "label": "AI4S",
+          "summary": null,
+          "items": []
+        },
+        {
+          "label": "电池与新能源材料",
+          "summary": null,
+          "items": []
+        }
+      ],
+      "metrics": {
+        "failed": 0,
+        "parsed": 1233,
+        "passed": 0,
+        "stored": 182,
+        "blocked": 0,
+        "pending": 0,
+        "signals": 72,
+        "admitted": 0,
+        "inWindow": 0,
+        "returned": 1233,
+        "selected": 0,
+        "processed": 0,
+        "published": 0,
+        "briefReady": 0,
+        "notAdmitted": 0,
+        "totalEvents": 0,
+        "briefPending": 0,
+        "figureChecks": 0,
+        "sourcesCount": 0,
+        "figureMissing": 0,
+        "newlyAdmitted": 0,
+        "outsideWindow": 182,
+        "parseRejected": 0,
+        "selectedCount": 0,
+        "sourcesFailed": 0,
+        "displayOmitted": 0,
+        "failedRequests": 0,
+        "sourcesPlanned": 6,
+        "unknownOutcome": 0,
+        "decisionUnknown": 0,
+        "sourcesDeferred": 0,
+        "sourcesObserved": 6,
+        "unlinkedSignals": 72,
+        "verifiedFigures": 0,
+        "deferredRequests": 0,
+        "duplicateRecords": 0,
+        "figureCandidates": 0,
+        "sourcesSucceeded": 6,
+        "figureUnavailable": 0,
+        "quarantinedFailed": 0,
+        "truncatedRequests": 0,
+        "previouslyAdmitted": 0,
+        "quarantinedUnknown": 0,
+        "healthyEmptySources": 6,
+        "figureReviewRequired": 0,
+        "modelRequestsUnknown": 10,
+        "selectedWithoutBrief": 0,
+        "duplicateRecordsExact": 1,
+        "excludedSourceRecords": 1051,
+        "persistenceUnreconciled": 0,
+        "duplicateRecordsLowerBound": 0,
+        "figureCandidatesUninspected": 0
+      },
+      "status": "partial",
+      "gaps": [
+        "10 次共享模型预算的请求结果未知，未自动重发",
+        "来源处理窗口用于有界补查迟到资料；日报仅按本日原始发表日期归档，处理窗口外的来源覆盖尚未核验。"
+      ]
+    },
+    {
+      "illustrated": true,
+      "kind": "weekly",
+      "key": "2026-W41",
+      "issueNumber": 2,
+      "title": "研究提出 ScaleIn，用于时间序列基础模型的尺度不变训练",
+      "windowStart": "2026-10-04T16:00:00.000Z",
+      "windowEnd": "2026-10-11T16:00:00.000Z",
+      "generatedAt": "2026-10-12T01:33:22.802Z",
+      "revision": 1,
+      "lead": {
+        "title": "研究提出 ScaleIn，用于时间序列基础模型的尺度不变训练",
+        "leadParagraph": "作者提出面向时间序列基础模型（TSFMs）的尺度不变训练方法 ScaleIn，在缩放后的目标上计算损失，以避免高尺度序列主导训练。在缩放器具有尺度等变性、残差损失为 $p$ 次齐次函数的条件下，作者证明每个 mini-batch 的梯度及完整优化轨迹对训练序列的任意独立重缩放保持不变。\n\n同时关注：Consistent Distribution Matching：面向无数据扩散蒸馏的一致分布匹配方法；随机图双样本检验研究量化缺少顶点对应关系的样本代价。"
+      },
+      "overview": "作者提出面向时间序列基础模型（TSFMs）的尺度不变训练方法 ScaleIn，在缩放后的目标上计算损失，以避免高尺度序列主导训练。在缩放器具有尺度等变性、残差损失为 $p$ 次齐次函数的条件下，作者证明每个 mini-batch 的梯度及完整优化轨迹对训练序列的任意独立重缩放保持不变。\n\n同时关注：Consistent Distribution Matching：面向无数据扩散蒸馏的一致分布匹配方法；随机图双样本检验研究量化缺少顶点对应关系的样本代价。",
+      "sections": [
+        {
+          "label": "算法",
+          "summary": null,
+          "items": [
+            {
+              "itemId": "o67zh0yegqkm64ul0b4xymht3",
+              "title": "研究提出 ScaleIn，用于时间序列基础模型的尺度不变训练",
+              "summary": "作者提出面向时间序列基础模型（TSFMs）的尺度不变训练方法 ScaleIn，在缩放后的目标上计算损失，以避免高尺度序列主导训练。在缩放器具有尺度等变性、残差损失为 $p$ 次齐次函数的条件下，作者证明每个 mini-batch 的梯度及完整优化轨迹对训练序列的任意独立重缩放保持不变。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.07324",
+              "publishedAt": null,
+              "available": true,
+              "research": {
+                "arxivId": "2610.07324",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-05T19:56:49.000Z",
+                "revisedAt": "2026-10-05T19:56:49.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-07T04:31:42.045Z",
+                "evidenceBasis": "abstract",
+                "announcedOn": "2026-10-07",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.07324",
+                    "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.07324",
+                    "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.07324v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.07324v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出尺度不变训练（ScaleIn）：在缩放后的目标上计算损失，而不是像 ReVIN 等仿射缩放方法的相关训练流程那样，先逆变换再计算损失。作者指出，后一种做法相对于在缩放目标上计算损失，会将每条序列的梯度乘以 b^p，其中 b 是缩放分母（例如标准差），p 是损失的次数；这使序列尺度成为隐含的重要性权重，让高尺度序列主导训练，作者称之为尺度污染训练（ScaleCon）。作者报告证明：对于任意尺度等变缩放器及 p 次齐次的残差损失，在缩放目标上计算损失，可使每个小批量的梯度及整个优化轨迹对训练序列各自任意的独立重缩放保持不变。作者称多数现有时间序列预测流程只需修改一行代码即可采用 ScaleIn，但摘要未提供具体实现。",
+                "applicableTasks": "资料支持的应用范围为时间序列预测，包括在形态与领域多样、序列数值尺度差异较大的数据上预训练时间序列基础模型（TSFM），以及有监督神经网络预测。作者在合成数据和真实数据上开展受控研究，并在四种 TSFM 架构的预训练中评估。理论结论的适用条件是缩放器具有尺度等变性、残差损失具有 p 次齐次性，摘要列举的损失包括 MSE、MAE 和 Quantile Loss。具体应用领域、预测长度、数据规模及更广泛任务的适用性未知：当前资料未提供。",
+                "comparisonConditions": "核心比较是 ScaleIn（在缩放后的目标上计算损失）与 ScaleCon（逆变换后计算损失）。作者报告在合成及真实数据的受控研究中，分离出 ScaleCon 引起的收敛差异及 ScaleIn 对该差异的纠正，但摘要没有给出这些受控实验的数值结果。预训练评估涉及四种 TSFM 架构：在全部 24 个架构—基准比较中，ScaleIn 均降低 MASE；按摘要所述跨 TSFM 的平均降幅，GIFT-Eval 为 18.8%，M-competitions 为 21.9%。这两个百分比是不同基准上的平均降幅，不能解释为每个模型或每次比较都有同等增益。有监督神经预测中，作者报告 ScaleIn 在 20 个匹配设置中的 16 个降低 MASE；其余 4 个设置的变化方向、各设置降幅均未提供。四种架构的名称、基准内数据集与任务数量、20 个设置的具体组成及匹配细节未知；24 个架构—基准比较不等于 24 个独立数据集。MASE 的绝对值、单位、平均方式与权重，以及硬件、计算预算、训练时长、优化器、超参数和重复运行设置均未知：当前资料未提供。",
+                "limitations": "证据仅来自所提供的摘要，未核对全文、证明或实验细节；上述理论结论、性能改进及一行代码即可采用的说法均为作者报告，不是独立复现结果。理论结论有尺度等变缩放器和齐次残差损失的明确前提，摘要没有提供超出这些条件的保证。实验证据限于摘要报告的受控研究、四种 TSFM 架构的 24 个架构—基准比较及有监督预测的 20 个匹配设置，不能据此推断所有模型、数据或预测任务均获益。作者还指出，现有 TSFM 使用两种训练目标，但训练损失的计算方式缺少一致报告与共同约定。摘要未提供统计显著性、误差区间、随机种子、完整结果、代码或开放实现信息，无法据此评估结果稳定性或独立可复现性；这些信息缺失不代表研究本身没有相关验证。除上述条件及报告问题外，作者明确陈述的其他限制未知：当前资料未提供。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            },
+            {
+              "itemId": "ceikkdnynoak8tbgg56e9d350",
+              "title": "Consistent Distribution Matching：面向无数据扩散蒸馏的一致分布匹配方法",
+              "summary": "研究提出 Consistent Distribution Matching，通过免模拟、无数据的蒸馏加速扩散模型和流模型。根据当前材料，该方法用同一学生网络完成样本生成与分数估计，仅需冻结的教师和可训练的学生，并优化单一目标。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.09221",
+              "publishedAt": "2026-10-06T23:34:13.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.09221",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-06T23:34:13.000Z",
+                "revisedAt": "2026-10-06T23:34:13.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-08T09:41:41.607Z",
+                "evidenceBasis": "abstract",
+                "announcedOn": "2026-10-08",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.09221",
+                    "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "code",
+                    "url": "https://consistentdmd.github.io/",
+                    "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.09221",
+                    "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "code",
+                    "url": "https://consistentdmd.github.io/",
+                    "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.09221v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.09221v1"
+                  },
+                  {
+                    "kind": "code",
+                    "url": "https://consistentdmd.github.io/",
+                    "sourceUrl": "https://arxiv.org/abs/2610.09221v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出 Consistent Distribution Matching，一种无需仿真、无需数据的蒸馏方法，用于加速扩散模型与流模型的生成。它针对数值积分计算昂贵导致推理缓慢，以及现有蒸馏方法常依赖专门整理的蒸馏数据集、昂贵的教师轨迹采样或辅助代理网络所带来的训练与扩展复杂性。核心变化是由同一个学生网络统一承担样本生成和分数估计，因此框架仅包含一个冻结的教师模型和一个可训练的学生模型，并优化一个目标。作者报告证明了最小化该目标意味着学生流映射的推前分布在 Wasserstein 意义下收敛到教师的边缘分布；具体证明条件未在摘要中提供。",
+                "applicableTasks": "资料支持的目标任务是扩散模型与流模型的生成加速，利用蒸馏实现单步或少步生成。摘要明确报告的实验对象是 ImageNet 上的 256×256 分辨率图像生成。其他数据集、分辨率、模态、具体模型架构及其适用范围，未知：当前资料未提供。",
+                "comparisonConditions": "作者报告，在 ImageNet 256×256 图像生成上，训练不超过 40 个 epoch 时，单次函数评估（1-NFE）的 FID 为 2.04，4 次函数评估（4-NFE）的 FID 为 1.37；两项结果对应不同的函数评估次数，不能合并为同一推理条件。作者称其方法在无需数据的条件下超过当时最先进的蒸馏基线，但摘要未列出基线名称、数量、各自结果或比较设置，也未明确所有基线是否同样无需数据。摘要明确提及 1 个数据集和上述 2 种 NFE 设置；框架包含 2 个模型，即冻结教师与可训练学生，这不等于受测模型架构的数量。实验任务总数、受测模型架构数量、硬件、数值精度、批量大小、优化器、实际训练耗时及推理耗时均未知。FID 的评估样本数、统计方式、是否为平均或最佳结果，以及重复实验次数均未提供；摘要也未给出实际速度提升倍数。",
+                "limitations": "当前证据仅为摘要，未核对全文。上述实验结果、优于基线的说法及理论结论均属于作者报告，未获得独立复现验证；不能仅凭作者的最先进水平声称推断普遍生成质量或跨任务优势。摘要未明确陈述该方法自身的限制，理论假设、完整实验协议、消融实验、结果波动及其他场景验证均未知，不能据此断言研究中不存在这些内容。作者声称代码和模型可在 https://consistentdmd.github.io/ 获取，但当前资料仅包含这一声明与链接，未验证链接内容、实现可用性、开放许可或可复现性。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 2
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            },
+            {
+              "itemId": "y79vtomcvba3a9qjqtayeiq6q",
+              "title": "随机图双样本检验研究量化缺少顶点对应关系的样本代价",
+              "summary": "该研究报告，在特定随机图模型中，缺少顶点对应关系会增加双样本检验的样本需求，有符号三角形计数可达到最优速率。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.07503",
+              "publishedAt": null,
+              "available": true,
+              "research": {
+                "arxivId": "2610.07503",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-05T23:09:29.000Z",
+                "revisedAt": "2026-10-05T23:09:29.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-07T04:31:42.045Z",
+                "evidenceBasis": "abstract",
+                "announcedOn": "2026-10-07",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.07503",
+                    "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.07503v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.07503v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者研究无顶点对应关系的两组图如何进行双样本检验，将统计量选择与所需图样本数联系起来，解决顶点未对齐时哪些结构差异可被检测、检测需要多少张图的问题。针对 Erdős–Rényi 零假设及保持每个顶点期望度不变的植入式双块差异，作者报告有符号三角形计数能够达到最优样本量阶；三角形信号抵消时，则需要使用4环统计量。作者还分析树统计量无法区分的差异，并针对非恒定零假设提出简单的模体检验。此外，作者给出每组仅有1或2张图时仍具有精确有效性的检验，但其检验功效有所牺牲。",
+                "applicableTasks": "资料支持的任务是没有顶点对应关系的两组图之间的分布比较，例如比较来自不同社区的网络，或将图生成模型产生的图与留出图进行比较；这些是摘要列举的应用情境，不能据此认定已完成相应真实数据验证。理论分析覆盖 Erdős–Rényi 零假设下保持各顶点期望度不变的植入式双块差异、三角形信号抵消的情形，以及非恒定零假设下的一般性差异。作者还讨论 graphon 极限中的度分布与消息传递图神经网络特征，并提供每组1或2张图的小样本检验。具体真实数据集、应用领域和图生成模型名单未知：当前资料未提供。",
+                "comparisonConditions": "作者报告：在 Erdős–Rényi 零假设与保持每个顶点期望度不变的植入式双块差异之间，若每张图的信噪比为 t<1，无顶点对齐时每组所需图数 m 的必要且充分阶为 m≍t⁻³，有符号三角形计数达到该阶，且下界对所有图大小成立。顶点对齐时，每组 m≍t⁻¹ 张图即可，因此未对齐带来阶为 t⁻² 的样本量倍数代价；这些是渐近阶，不能视为精确样本数。当三角形信号抵消时，所需样本量阶变为 t⁻⁴，并需要4环。作者报告树构成的统计量在两种假设下期望完全相同，基于有限多个此类统计量的检验渐近没有区分能力；在 graphon 极限中，该类包括度分布及消息传递图神经网络特征。非恒定零假设下，一般性差异可在一阶被检测，简单模体检验达到与顶点对齐情形相同的样本量阶。每组1或2张图的检验精确有效，但功效降低。模拟中，作者报告拟合指数接近理论预测；在有符号三角形约需65张图的一个设置中，基于度和随机GNN的评估指标仍停留在检验水平。摘要未说明这65张图是每组数量还是总量，也未给出对应目标功效、显著性水平、具体拟合指数或误差范围。数据集、模型和具体任务的数量、模拟次数、图的顶点数、硬件、运行时间及其他计算设置均未知：当前资料未提供。",
+                "limitations": "证据仅为用户提供的摘要，未核对全文、证明或实验细节。上述理论结论和模拟结果均为作者报告，当前资料没有独立复现证据。结论受各自条件限定：t⁻³ 的必要且充分阶对应指定的 Erdős–Rényi 零假设和保持期望度不变的双块差异；t⁻⁴ 对应三角形信号抵消；度分布与消息传递GNN特征被纳入树统计量类别的陈述处于 graphon 极限，不能直接推广为所有有限图、所有GNN或所有差异都不可检测。作者将未对齐代价主要集中于低阶不可见差异的判断表述为提示，而非无条件结论。小样本精确有效检验明确以功效为代价。模拟中约65张图的结果仅对应一个未详述设置，不能作为通用样本量要求。当前资料未提供真实数据验证细节、完整实验配置、置信区间、代码或实现可用性信息；这些信息缺失不代表研究本身不存在相应内容。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            },
+            {
+              "itemId": "w69nx656ffa43fx3aj726gxjj",
+              "title": "Long-WAM 提出实时控制约束下的世界动作模型上下文扩展框架",
+              "summary": "Long-WAM 研究提出面向实时机器人控制的上下文扩展框架，作者报告自回归预训练能使世界动作模型更充分地利用视觉历史。根据当前材料，该方法先用无动作标签的机器人与第一视角视频学习因果预测，再在世界动作适配中保留历史到未来的结构；在 RoboCasa GR-1 上，上下文从 0.0 秒增至 19.2 秒时，成功率从 63.3% 升至 78.7%，双向预训练初始化则无净收益。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.10528",
+              "publishedAt": "2026-10-07T17:58:04.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.10528",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-07T17:58:04.000Z",
+                "revisedAt": "2026-10-07T17:58:04.000Z",
+                "communitySelectedAt": "2026-10-08T00:00:00.000Z",
+                "observedAt": "2026-10-08T09:41:47.294Z",
+                "evidenceBasis": "abstract",
+                "announcedOn": "2026-10-08",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.10528",
+                    "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.10528v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.10528v1"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.10528",
+                    "sourceUrl": "https://huggingface.co/papers/2610.10528"
+                  },
+                  {
+                    "kind": "code",
+                    "url": "https://github.com/NVlabs/LongLive",
+                    "sourceUrl": "https://huggingface.co/papers/2610.10528"
+                  },
+                  {
+                    "kind": "project",
+                    "url": "https://nvlabs.github.io/LongLive/Long-WAM/",
+                    "sourceUrl": "https://huggingface.co/papers/2610.10528"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出 Long-WAM，一种在实时控制约束下扩展因果世界—动作模型上下文的模型与系统框架，解决机器人需要较长视觉历史来判断运动和任务进展、但历史处理会延迟动作的问题。作者报告，仅能访问历史不等于有效利用历史：视频基础模型采用自回归（AR）预训练时，较长历史的收益明显更大。方法先从不含动作标签的机器人视频和第一人称视频中学习因果预测，再在世界—动作适配阶段保留这种从历史到未来的预测结构。系统侧采用流式观测编码、异步执行和针对硬件的加速，在保留未来预测的同时支持实时部署。",
+                "applicableTasks": "资料支持的范围为实时机器人控制中的因果世界—动作建模、动态操作和长时程操作。作者报告的评测涉及 RoboCasa GR-1、LIBERO-Long、RoboTwin 2.0 和 DOMINO；实体部署对象包括 Unitree G1 和 YAM，任务示例包括动态杯子堆叠。作者还报告 Long-WAM 可作为利用记忆的执行器，与高层规划配合完成复合任务。机器人视频和第一人称视频用于无动作标签的预训练；摘要未提供更具体的训练数据构成、任务清单或适用边界。",
+                "comparisonConditions": "作者报告：①在 RoboCasa GR-1 上，上下文从 0.0 秒增加到 19.2 秒，成功率从 63.3% 提高到 78.7%；采用双向预训练初始化的比较条件则没有净增益，其具体成功率未给出。机器人领域的 AR 预训练进一步提高了 GR-1 和 LIBERO-Long 上的峰值成功率，但具体数值未知。②Long-WAM 在 LIBERO-Long、RoboTwin 2.0 和 DOMINO 这三个评测中取得了所比较方法中的最佳结果；摘要未给出这些比较的完整方法名单、模型总数、各基准任务数、具体指标数值或差值。③作者报告可在 RTX 5090、DGX Spark 和 Jetson AGX Thor 三种硬件上保留未来预测进行部署；其中仅明确给出 RTX 5090 的耗时：每个动作块为 107.4 毫秒，包含未来视频潜变量预测。该数值的平均值或其他统计口径、动作块长度、批大小、数值精度及另外两种硬件的时延未知。④在 Unitree G1 和 YAM 上的实时部署支持动态和长时程操作；动态杯子堆叠成功率为 95%，比较对象 Pi0.5 和 Fast-WAM 在摘要所述 20 次试验中均无成功。95% 对应的 Long-WAM 试验总数、该任务具体使用的平台，以及各方法是否采用完全相同的硬件和计算预算，摘要未明确。训练数据规模、模型参数量、训练算力与时长、其他评测的试验次数均未知：当前资料未提供。",
+                "limitations": "当前证据仅为摘要，未核对全文。上述效果、排名和部署性能均为作者报告，当前资料不包含独立复现证据。摘要未明确陈述作者认可的局限，也未提供误差范围、统计显著性、失败案例、完整消融结果、全部比较设置或泛化验证细节，因此不能据此判定结果的稳定性及更广范围的适用性。GR-1 的成功率变化仅对应所述上下文比较；机器人领域 AR 预训练的额外提升仅被描述为峰值提升；107.4 毫秒仅对应 RTX 5090 上包含未来视频潜变量预测的每动作块耗时，不能扩展为其他硬件的性能结论。复合任务与高层规划的配合未提供量化结果。代码、模型权重、数据开放情况及复现步骤未知：当前资料未提供；这些缺失不代表研究本身没有相关材料或验证。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            },
+            {
+              "itemId": "c4ksmei195e1rkqzz2duehs4n",
+              "title": "RoboJEPA 研究报告机器人潜在世界模型的缩放规律",
+              "summary": "RoboJEPA 研究报告，机器人潜在世界模型的想象误差随计算量遵循二阶幂律，可用于预测超出定律拟合规模的模型质量。该模型基于 Joint Embedding Predictive Architecture（JEPA），在覆盖 12 种机器人形态的大规模数据集上训练，参数量为 8B。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.10515",
+              "publishedAt": "2026-10-07T17:54:42.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.10515",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-07T17:54:42.000Z",
+                "revisedAt": "2026-10-07T17:54:42.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-08T09:41:47.294Z",
+                "evidenceBasis": "abstract",
+                "announcedOn": "2026-10-08",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.10515",
+                    "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.10515v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.10515v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出 RoboJEPA：一种基于联合嵌入预测架构（JEPA）、使用覆盖 12 种机器人具身形态的大规模数据集训练的潜在世界模型，针对缺乏原则性方法估计世界模型能力如何随模型规模、数据与计算量变化的问题。作者报告，其 imagination error（潜在空间滚动预测的误差）随计算量遵循二阶幂律，可用于预测远超该规律拟合规模的模型质量；下游机器人规划表现也随计算量可预测地改善，且与 imagination error 强相关，因此作者将该误差作为真实机器人评估的代理指标。摘要明确报告的是关于计算量的规律，未提供分别针对数据量和参数量的缩放规律。",
+                "applicableTasks": "资料支持的范围是使用真实机器人数据训练的多具身形态潜在世界模型，涉及未来状态预测、潜在空间多步滚动预测以及下游机器人规划。训练数据覆盖 12 种机器人具身形态，但具体类型未知。作者还报告，潜在世界模型可以零样本部署为机器人智能体，以单张目标图像为规划目标，在真实硬件上完成需要长时程规划的任务。具体任务名称、任务数量、环境与对象，以及零样本部署是否涉及训练中未见的具身形态，当前摘要均未提供。",
+                "comparisonConditions": "作者报告了模型误差及下游规划表现随计算量变化的关系，但摘要未列出具名基线或逐项比较结果。数据为覆盖 12 种机器人具身形态的大规模真实机器人数据集；12 指具身形态数量，并非已知的机器人实体数量或任务数量。数据集数量、样本量、训练与评估划分未知。摘要明确给出 RoboJEPA 的 8B（80 亿）参数规模；参与规律拟合和外推验证的模型数量、其他模型规模、计算量档位及任务数量未知。计算设置方面，训练硬件、加速器数量、训练时长、计算量数值及单位未知；部署仅明确为真实硬件，机器人型号和推理预算未知。指标包括 imagination error，即潜在空间滚动预测误差，以及下游机器人规划表现；具体计算公式、误差单位、规划表现的衡量方式和单位未知。作者报告 imagination error 随计算量遵循二阶幂律，模型质量可外推至远超拟合规模的范围，下游规划表现随计算量可预测地改善，且与该误差强相关；摘要未提供拟合系数、拟合与外推范围、预测精度、相关系数、成功率、增益数值或统计不确定性。作者称，据其所知，这是首项为使用真实机器人数据训练的多具身形态机器人世界模型建立缩放规律的工作，并称 8B 参数的 RoboJEPA 是截至该工作时训练过的最大 JEPA 预测器模型；这些是作者的优先性与规模声明，不能据此推断其任务质量优于其他模型。",
+                "limitations": "当前证据仅为摘要，未核对全文，所有研究结果均为作者报告，不构成独立复现。摘要未明确列出研究局限，也未提供足以检查缩放规律稳健性、代理指标有效性和零样本规划泛化范围的实验细节；具体比较基线、评估协议、重复次数、统计检验、消融实验与失败案例均未知。这些信息未出现在当前资料中，不代表研究本身未开展相应工作。关于 imagination error 是真实机器人评估的可靠代理指标，当前仅能转述作者基于强相关性的判断，不能确认其在未披露任务或环境中的适用性。作者声明发布全部模型检查点、训练代码和机器人部署代码；当前资料未提供可核验的实现地址或访问验证，因此开放实现的实际可用性与可复现性未知。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1
+              },
+              "researchRoadmap": null,
+              "paperFigure": {
+                "itemId": "c4ksmei195e1rkqzz2duehs4n",
+                "sourceRevision": 1,
+                "imageOrigin": "remote",
+                "imageUrl": "https://arxiv.org/html/2610.10515v1/robojepa_kvcache_figure.png",
+                "sourceUrl": "https://arxiv.org/html/2610.10515v1#S2.F3",
+                "figureLabel": "原文 Figure 3",
+                "caption": "Figure 3: RoboJEPA training. The frozen V-JEPA 2.1 encoder f (Mur-Labadia et al., 2026) maps the input multiview frames x_{t}^{(1:V)} to a grid of features. The predictor g_{\\theta} consumes per-step sequences of multiview visual (z_{t}^{(1:V)}), action (a_{t}) and proprioceptive state (s_{t}) tokens, conditioned on view and embodiment identifiers, and predicts the next-step features \\hat{z}_{t+1}. Training minimises two losses: (left) the teacher-forcing loss, the per-token \\ell_{1} distance between predicted features and the next-step features from the encoder (Equation 5); and (right) the rollout loss, which attempts to predict the same target sequence as the teacher-forcing loss, but given fewer input frames. The model is given the full training sequence of actions but only a prefix of the encoded features, and predicts the remaining features autoregressively, with a KV-cache. This way the model learns to make accurate long term predictions.",
+                "attribution": "Zholus, Artem; Beltran-Velez, Nicolas; Yuan, Jianhao et al. · RoboJEPA: Scaling Robotic Latent World Models (arXiv v1)",
+                "licenseName": "CC BY 4.0",
+                "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+                "verifiedAt": "2026-10-08T10:25:14.243Z",
+                "width": 2032,
+                "height": 1191,
+                "contentType": "image/png",
+                "sha256": "6fbd814a9f5cb51281e9e2d1b2b7187839896857ccf8001ffdcf0eaf7dddaa7c"
+              }
+            },
+            {
+              "itemId": "g4hhmhudprmcb92nl5am0s1fl",
+              "title": "研究给出并行扩散采样的多项式级轮数下界",
+              "summary": "该研究报告，使用近似得分函数的扩散采样存在多项式级并行轮数下界，即使每轮允许多项式次并行查询。对于 $R^d$ 中平滑、近各向同性的高斯混合分布，作者证明了 $\\widetildeΩ(d^{1/3})$ 轮下界；对于单位球内各向异性、轴对齐盒状区域上的均匀采样，作者证明了 $Ω(d)$ 轮下界，且该下界对所构造的盒状区域族是紧的。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.09166",
+              "publishedAt": "2026-10-06T22:09:42.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.09166",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-06T22:09:42.000Z",
+                "revisedAt": "2026-10-06T22:09:42.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-08T09:41:41.607Z",
+                "evidenceBasis": "abstract",
+                "announcedOn": "2026-10-08",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.09166",
+                    "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.09166",
+                    "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.09166v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.09166v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者研究并行扩散采样中不可避免的顺序依赖：标准扩散采样器反复评估学习到的分数函数，并行方法则通过增加评估次数来减少顺序轮数。作者报告的贡献是近似分数条件下的理论下界，称首次建立了多项式级并行轮数下界。其构造使用固定的近似分数预言机，在每个噪声水平满足精度保证，同时强制算法按顺序获取隐藏信息，用于证明即使允许大量并行查询，仍存在无法消除的顺序轮数需求。",
+                "applicableTasks": "摘要支持两类采样问题：一是在 d 维实空间 R^d 中对光滑、近各向同性的高斯混合分布采样；二是在单位球内的各向异性、轴对齐盒体上进行均匀采样。作者报告的两个下界均适用于任意随机化算法，条件是每轮进行多项式数量的分数查询，查询位置和噪声水平可任意选择，分数误差为逆多项式量级，目标为常数级总变差精度。",
+                "comparisonConditions": "作者报告两个分布族的理论结果：光滑、近各向同性高斯混合分布需要至少 Ω̃(d^{1/3}) 个并行轮；单位球内各向异性、轴对齐盒体的均匀采样需要至少 Ω(d) 个并行轮。d 表示维度，轮数的单位为并行轮；第一项保留带波浪号的渐近下界口径。作者称线性下界对于其构造的盒体族是紧的。两个结果均允许每轮多项式数量、任意位置及任意噪声水平的查询，并以逆多项式分数误差和常数级总变差精度为条件。摘要仅将标准采样的重复评估与并行采样的额外评估换取更少顺序轮数作概念性对照，未报告具名基线的实验比较、实际加速倍数、最高或平均收益。实验数据集、模型与实测任务数量，硬件、运行时间、具体维度、查询预算的多项式次数、分数误差的度量及具体阈值、总变差精度的具体常数均未知：当前资料未提供。",
+                "limitations": "证据仅为用户提供的摘要，未核对全文或证明细节。上述下界、盒体族上的紧性以及‘首次’均为作者报告，当前资料未提供独立复现或独立验证信息。结论的范围受指定分布族、每轮多项式查询、近似分数误差及常数级总变差精度等条件限定；不能据此断言所有扩散采样场景均具有相同下界，也不能将渐近轮数下界解释为实际运行时间或生成质量结果。盒体族紧性所对应的具体算法与证明、实际学习所得分数模型上的验证、代码或开放实现情况均未知：当前资料未提供。摘要未另行明确陈述其他限制。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 2
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            },
+            {
+              "itemId": "xv7zfv13q8gv9mkgwq6l36zwq",
+              "title": "生成流的普适性与收敛性研究",
+              "summary": "Leo Brunswic 的研究报告，差值型平衡损失可给出生成流采样器的总变差误差界，且界中常数不依赖策略。相比之下，比值型流匹配损失若其生成函数在平衡处连续，则即使在单个环上也不存在这类界。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.05490",
+              "publishedAt": null,
+              "available": true,
+              "research": {
+                "arxivId": "2610.05490",
+                "arxivVersion": "v2",
+                "arxivVersions": [
+                  "v1",
+                  "v2"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-04T19:58:52.000Z",
+                "revisedAt": "2026-10-08T12:26:51.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-06T04:50:02.175Z",
+                "evidenceBasis": "abstract",
+                "announcedOn": "2026-10-09",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.05490",
+                    "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.05490v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.05490v1"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.05490v2",
+                    "sourceUrl": "https://arxiv.org/abs/2610.05490v2"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者研究生成流的平衡训练损失能否证明采样准确、损失能否降至零，以及梯度下降的收敛速度。作者报告，按平衡等式两侧的差值构造的损失，可用不依赖策略的显式常数约束所诱导采样器的总体变差误差；按两侧比值构造的流匹配损失，在其生成函数于平衡处连续时，即使在单个环上也不具备这类界。对于图上的生成流，作者通过固定反向策略，将平衡条件转化为反向链的不变性条件，并用该链的 Green 算子范数联系损失曲率与训练收敛速度，解释机制为梯度下降沿反向策略扩散流。",
+                "applicableTasks": "资料支持的研究对象是通过训练生成流，从未归一化目标分布采样；涉及训练损失的可靠性、平衡流的存在性与梯度下降收敛分析。作者报告，固定反向策略后，有限图上存在平衡流。对于详细平衡和轨迹平衡的平方对数生成函数，在状态上训练平衡损失，可在每个有限且路径连通的图上，从任意正初始化实现全局收敛。作者还在可枚举状态空间上通过精确计算检验理论界与速率。具体应用领域、数据集和模型架构未知：当前资料未提供。",
+                "comparisonConditions": "作者比较差值型平衡损失与比值型流匹配损失，理论指标包括采样分布的总体变差误差、损失能否降至零、平衡流附近的损失曲率及梯度下降收敛速率。差值型损失的误差界具有不依赖策略的显式常数，但摘要未给出公式或数值；比值型损失的否定结论以生成函数在平衡处连续为条件，单个环即可构成反例。固定反向策略后，反向链 Green 算子的范数起类似逆谱隙的作用，从上下两侧确定平衡流附近损失曲率的量级，并给出附近训练收敛速率的下限；具体界和速率数值未知。全局收敛结论限于平方对数生成函数、在状态上训练平衡损失、有限路径连通图及正初始化。作者称通过可枚举状态空间上的精确计算测试理论界与速率，但未提供数据集数、模型数、任务数、状态空间数量或规模，也未提供硬件、学习率、迭代次数、运行时间、计量单位、数值结果或增益统计。每条定理附有由 Lean 4 开发计算的认证状态，具体状态未列出。",
+                "limitations": "证据仅为用户提供的摘要，未核对全文。上述结论及精确计算检验均为作者报告，当前资料不构成独立复现。作者明确指出，即使反向轨迹平均较短，Green 算子范数仍可能为无穷，此时精确流匹配可能失败；摘要未给出该情形的具体构造与状态空间条件，不能擅自将其与有限路径连通图上的全局收敛结论混为一谈。比值型损失不具备所述误差界的结论带有生成函数连续性条件，不能扩展为所有损失都无法约束采样误差。证明细节、常数公式、实验配置与数值结果、实现开放情况及独立复现信息均未知：当前资料未提供。Lean 4 认证状态的报告不等于摘要已证明所有定理均完成形式化验证。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            },
+            {
+              "itemId": "te0ed7m0i56dq4r6arglriwl9",
+              "title": "VioLA：从人类数据学习人形机器人通用控制策略",
+              "summary": "VioLA 研究提出预测身体与手部运动潜变量的人形机器人通用策略，由预训练控制器执行这些潜变量。运动编码器将人类与机器人运动映射到相同潜在空间，训练示范包含 140.6 million frames，其中 93.2% 来自人类。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.12435",
+              "publishedAt": "2026-10-08T17:57:27.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.12435",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-08T17:57:27.000Z",
+                "revisedAt": "2026-10-08T17:57:27.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-09T08:18:49.686Z",
+                "evidenceBasis": "abstract",
+                "announcedOn": "2026-10-09",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.12435",
+                    "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.12435v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.12435v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出通用人形机器人策略 VioLA，将策略预测目标从关节指令改为身体与手部运动潜变量，再由预训练的身体控制器和手部控制器在机器人上执行。相应的运动编码器把人类与机器人运动映射到共同的潜空间，使人类录像能够在策略的动作空间中获得标签。该变化旨在解决两类问题：腿、臂、手指运动与平衡维持高度耦合，导致关节级动作难以学习；人形机器人示范稀缺，而数量更多的人类示范不能直接作为机器人命令，现有通用策略因而依赖部署前针对各任务的遥操作示范微调。",
+                "applicableTasks": "资料支持的对象是人形机器人，任务包括移动指令执行与操作任务。作者报告，VioLA 能在真实机器人上零样本执行移动指令，无需针对任务微调；操作任务也报告了无需针对任务微调的成功率。作者还报告该方法适用于两种 VLA 骨干和一种世界动作模型骨干，并报告仅用人类示范训练的通用策略也能在真实机器人上零样本完成移动任务。具体移动与操作任务清单、机器人型号、场景范围及未见指令的划分方式未知。",
+                "comparisonConditions": "作者报告，训练示范池包含 140.6 million frames，即 1.406 亿帧，其中 93.2% 为人类示范。真实机器人移动任务中，VioLA 在零样本、无需针对任务微调的条件下成功率达到 100%；摘要列出的比较对象 GR00T N1.7 与 Ψ_0 成功率分别为 16.7% 和 0%。操作任务中，VioLA 无需针对任务微调的成功率为 88.6%，摘要未给出该任务的基线结果。上述数值均为作者报告的成功率，单位为百分比；任务数量、试验次数、各比例的分母、成功判定标准、任务间汇总方式及不确定性未知，不能据此解释为跨任务平均值或普遍表现。作者称方法在两种 VLA 与一种世界动作模型骨干上有效，共三种骨干，但未列出骨干名称及各自结果；这些骨干与上述比较模型的对应关系未知。仅用人类示范训练的策略报告了真实机器人移动任务的零样本能力，其训练规模和成功率未知。机器人硬件、计算硬件、训练与推理计算设置、数据划分，以及比较模型的训练、微调和评测条件是否一致，当前资料均未提供。",
+                "limitations": "证据仅为所提供的摘要，未核对全文；所有方法效果与数值均为作者报告，当前资料未提供独立复现信息。摘要未明确陈述 VioLA 方法自身的适用边界或失败模式，也未提供消融实验、统计显著性、重复试验、长期运行或跨机器人验证信息；这些属于当前资料缺失，不能断言研究本身没有相关验证。现有摘要不足以判断身体与手部潜变量设计、人类示范及预训练控制器各自对结果的贡献，也不足以将移动任务中的比较结果推广到操作任务或其他条件。作者表示代码与检查点将发布，这是未来发布计划；当前资料不能确认其已经开放、可用或经过独立复现。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 2
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            }
+          ]
+        },
+        {
+          "label": "AI4AI",
+          "summary": null,
+          "items": [
+            {
+              "itemId": "oed8ktv7xfjtlrf850uci1f2r",
+              "title": "LLM 智能体失败预测研究区分任务难度与单次运行失败",
+              "summary": "该研究报告，LLM 智能体失败预测即使总体 AUROC 较高，对同一任务内早期运行成败的判别仍较弱。根据当前材料，研究使用同一智能体对同一任务重复尝试的基准，所评估语料中用于计算总体 AUROC 的正负样本对超过 99.93% 来自不同的模型-任务单元。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.05572",
+              "publishedAt": null,
+              "available": true,
+              "research": {
+                "arxivId": "2610.05572",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-04T22:17:04.000Z",
+                "revisedAt": "2026-10-04T22:17:04.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-06T04:50:02.175Z",
+                "evidenceBasis": "abstract",
+                "announcedOn": "2026-10-06",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.05572",
+                    "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.05572v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.05572v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出将 LLM agent 失败预测的评估拆分为跨单元比较，以及同一模型—任务单元内成功运行与失败运行之间的比较，以区分任务难度信号和当前运行的失败信号。作者假设，将许多任务的运行混合训练和评估时，较高的预测表现可能部分来自识别任务难度，而非识别某次运行是否正在走向失败。为此，作者研究同一 agent 对同一任务进行多次尝试的基准，并主张除结果预测准确性外，还应评估预测信号是否支持预期的部署决策：任务难度用于分配计算资源，运行级预测用于决定是否干预正在执行的轨迹。",
+                "applicableTasks": "资料支持的研究范围是 LLM agent 执行过程中的失败预测，尤其是包含同一 agent 对同一任务重复尝试、可比较同一模型—任务单元内成功与失败运行的基准。涉及任务级计算资源分配、执行中的干预决策，以及固定 token 预算下的仅中止策略和提前停止策略。作者考察了轨迹预测器、已发布的监控器与隐藏状态探针。具体任务领域、数据集名称、agent 与模型名称及适用规模未知：当前资料未提供。",
+                "comparisonConditions": "摘要提及，近期失败预测方法报告的 AUROC 经常在 0.85–0.94 之间；这是对既有方法表现的概述。作者报告，在所评估的各语料中，构成混合计算的 pooled AUROC 的正负样本对中，超过 99.93% 是跨模型—任务单元的样本对；该比例的分母是用于计算 pooled AUROC 的正负样本对，而非任务数或运行数。完全不观察当前运行的预测器也能获得较高的 pooled 表现，其中难度 oracle 的 AUROC 最高达到 0.945，但任务内判别仍处于随机水平；0.945 是最高值，不能视为平均或普遍表现。作者报告，轨迹预测器、已发布监控器和隐藏状态探针的早期运行级判别能力一致较弱，随执行推进有所改善，且对较弱 agent 的判别能力更强。在固定 token 预算下，任务级资源分配优于仅中止策略；提前停止只有在任务内 AUROC 达到约 0.84–0.93 时才产生收益，明显高于早期监控器被观察到的 0.50–0.55。摘要未给出资源分配优势的具体增益、收益指标与单位，也未解释阈值范围分别对应哪些条件。数据集或语料数量、模型数量、任务数量、每个任务的尝试次数、成功与失败样本量、硬件、训练与推理计算设置、固定 token 预算的具体数值及早期和后期的划分均未知：当前资料未提供。",
+                "limitations": "当前证据仅为摘要，未核对全文；上述实验发现均属于作者报告，不能视为独立复现结果。摘要明确指出的评估局限是：pooled AUROC 可能主要反映任务难度差异，因此较高的混合预测表现不足以证明其能支持当前运行中的干预。作者报告的早期运行级判别较弱、后期改善及较弱 agent 上判别更强，也限制了将这些结果无条件推广到所有执行阶段和 agent 的依据。摘要未提供具体基准组成、预测器实现、数据划分、统计不确定性、显著性检验、干预收益定义或完整实验协议，无法据此核查结果稳健性及跨任务、跨模型的泛化范围。代码与数据可用性、独立复现及其他部署验证信息未知：当前资料未提供；不能据此断言研究本身没有这些材料或验证。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            },
+            {
+              "itemId": "chpstfz4hrr5ly8vfuftdtkda",
+              "title": "WOVEN 研究提出将视觉世界建模融入多模态 LLM 的训练方案",
+              "summary": "WOVEN 研究提出面向多模态 LLM 的视觉状态转变推理训练数据与基准，并报告其训练收益可迁移至外部任务。根据当前材料，数据来自视频预训练生成模型的演化序列，含 36,076 个样本，覆盖 20 类场景、5 类动作和 8 类推理；作者评估了包括 GPT-5.4 和 Qwen3-VL-235B-A22B 在内的 38 个前沿 MLLM，报告最强模型仍远低于人类水平。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.12417",
+              "publishedAt": "2026-10-08T17:52:03.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.12417",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-08T17:52:03.000Z",
+                "revisedAt": "2026-10-08T17:52:03.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-09T08:18:49.686Z",
+                "evidenceBasis": "abstract",
+                "announcedOn": "2026-10-09",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.12417",
+                    "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.12417v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.12417v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出假设：多模态大语言模型（MLLMs）在空间、具身、物理和时间推理中的困难，可能反映了共同的视觉状态转变推理能力不足，并检验这种能力能否成为跨模型、监督来源和任务复用的训练基础。针对现有基准分别记录这些缺陷、但不支持跨场景、动作和推理操作进行受控比较的问题，作者提出兼作训练来源与基准的WOVEN，使用视频预训练生成模型产生的多样、逼真的演化序列，按场景、动作和推理类型组织监督。作者进一步提出训练方案：依据监督所教授的推理操作选择数据，而非依据其中展示的动作、场景或领域；优先选择视觉状态变化较大的样本，以提高稳健性。",
+                "applicableTasks": "资料支持的对象是MLLMs的视觉状态转变推理训练与评估，以及视觉世界模型训练。作者关注空间、具身、物理和时间推理，并报告在多个规模的MLLMs上训练后向外部基准迁移，以及用WOVEN数据替换部分任务自身训练数据。WOVEN覆盖20种场景类型、5种动作类型和8种推理类型；具体类型名称、外部基准名称与逐项任务内容未知。摘要未提供机器人实机部署或其他具体应用场景的验证信息。",
+                "comparisonConditions": "作者报告WOVEN包含36,076个样例，覆盖20种场景类型、5种动作类型和8种推理类型，数据来自视频预训练生成模型的演化序列。作者首先评估38个前沿MLLMs，举例包括GPT-5.4和Qwen3-VL-235B-A22B，并报告即使最强模型也远低于人类，失败跨模型家族重复出现，且随规模扩大仍然存在；模型及人类的具体分数、人类参与人数和评测设置未知。随后，作者在多个规模的MLLMs上进行WOVEN训练，报告若干各仅约2,000条样本的训练子集，合计使26个外部基准中的22个得到改善，最高提升27.3个百分点；这是最高增幅，不是平均或所有基准的普遍增幅，也不表示每个子集都改善了22个基准。训练子集数量、逐模型及逐基准结果、该增幅对应的具体指标与比较基线未知。作者还报告WOVEN数据可替换某任务自身训练数据的30–50%，并保持相近准确率；分母为该任务自身的训练数据，具体任务、数据总量和准确率数值未知。受控比较支持按推理操作而非动作、场景或领域选择监督，并支持优先选择更大的视觉状态变化；作者称该训练方案在留出基准上获得前瞻性验证，但留出基准数量、具体结果和稳健性指标未知。训练模型数量及具体规模、硬件、计算预算、训练时长、超参数和推理设置均未知。",
+                "limitations": "当前证据仅为摘要，未核对全文；上述结果均为作者报告，没有当前资料支持的独立复现证据。摘要未明确列出方法自身的局限或完整适用边界。共同能力缺陷是作者提出并检验的假设，摘要所述迁移和受控比较不足以据此宣称所有相关推理问题已解决。外部迁移结果覆盖26个基准中的22个，另外4个基准的具体表现未提供，不能断言全部下降或完全不变；最高27.3个百分点的提升不能外推为平均收益或任意任务的收益。‘相近准确率’未给出容差、统计检验或具体数值。数据划分、训练与评测重叠检查、重复实验、误差范围、统计显著性、生成数据质量核验及更广泛部署验证信息未知。代码、数据及模型权重是否开放、是否可获取，当前资料未提供；这些信息缺失不等于研究本身不存在相应材料或验证。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            },
+            {
+              "itemId": "og2b2e36a8fqvx1p43m52k33d",
+              "title": "认证污染预算：自适应操纵下任意时刻有效的排行榜结论",
+              "summary": "Hamed Khosravi 的研究提出认证污染预算，将 AI 排行榜成对比较结论与可容忍的污染记录数一同发布。根据当前材料，作者给出的保证是，以至少 1-α 的概率在所有时刻同时成立，结论正确或污染记录数超过认证预算，且允许攻击者观察所有已发布证书、无需限制其预算。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.10597",
+              "publishedAt": "2026-10-06T21:20:14.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.10597",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-06T21:20:14.000Z",
+                "revisedAt": "2026-10-06T21:20:14.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-09T08:18:53.805Z",
+                "evidenceBasis": "abstract",
+                "announcedOn": "2026-10-09",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.10597",
+                    "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.10597v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.10597v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出“认证污染预算”（certified corruption budget）：在收到 t 条记录后计算容忍量 B̂_t，并随每个两两比较断言公布。作者报告，其保证以至少 1−α 的概率对所有时刻同时成立：断言正确，或被污染的记录数超过 B̂_t。该方法针对公开排行榜持续被观察、攻击者可突发污染记录的问题，区别于假设记录真实或限制每一步污染量的既有保证；攻击者可观察每次公布的证书，且无需预设其总污染预算上限。作者区分伪造记录与看过记录后再修改的攻击：针对伪造的证书不能直接用于后一种情形，需要采用对每条记录计入约两倍代价的证书。",
+                "applicableTasks": "资料支持的任务是持续更新的 AI 模型公开排行榜中的两两比较，以及对比较断言可承受多少污染记录的认证。摘要将刷票、选择性披露私有变体和基准污染列为可能改变排名的途径，并讨论从 V 个私有变体中选出最佳者公布的情形。实证对象为 Chatbot Arena 投票；对其他排行榜、数据模态或基准污染机制的具体实证适用范围未知。",
+                "comparisonConditions": "作者的理论比较包括：既有依赖真实记录或逐步污染上限的保证、针对伪造记录的证书、针对看过后修改记录的证书，以及有效方法所允许的预算增长速度。作者报告，伪造记录证书面对翻转已观察投票的攻击者时，失效概率趋近于 1；对每条记录计入约两倍代价的证书仍有效，采用恒定下注时甚至能抵御可预见未来的攻击者，且不存在在所有水平上均有效的更小计费代价。预算增长的条件是胜率为 1/2+δ：每新增一条记录，可承受的伪造记录数增加接近 2δ，可承受的翻转记录数增加接近 δ；作者称这一增长速度接近任何有效方法所允许的速度。从 V 个私有变体中公布最佳者所付出的代价按 log V 量级增长，具体常数及实验中的 V 未给出。实证方面，作者在 180 万张 Chatbot Arena 投票上进行回放，报告几百张被操纵的投票即可使标准置信区间认证错误排序，而其方法保持有效；在真实投票上，其证书显示差距明显的模型可承受约 2,000 张伪造投票。这是特定模型分离程度下的污染容忍量，不是所有模型的统一结果。总体保证概率为至少 1−α，但 α 的具体取值未知。比较模型数、模型对数、任务数、回放次数、标准置信区间的具体构造、硬件与计算设置、运行时间和资源消耗均未知：当前资料未提供。",
+                "limitations": "当前证据仅为摘要，未核对全文、证明、实验细节或补充材料；所有保证和实验结果均为作者报告，当前资料未提供独立复现证据。作者明确指出，针对伪造的证书在翻转已观察投票的攻击下会失效，因此两种污染机制不能混用同一证书。抵御可预见未来攻击者的表述带有恒定下注条件；预算增长率带有胜率 1/2+δ 条件；约 2,000 张伪造投票的容忍量限于差距明显的模型。摘要未提供 δ、α、具体模型对、攻击安排、逐项结果及结果波动，无法据此评估所有排名或其他数据集上的表现。代码、数据获取方式及可复现计算配置未知：当前资料未提供；这不代表研究本身没有这些材料。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 2
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            },
+            {
+              "itemId": "mjj28p6ond3rusrqchh9zjdpr",
+              "title": "研究分析 LLM 自我改进循环中的赢家诅咒：选择噪声、锁定与接受规则",
+              "summary": "该研究报告，LLM 自我改进循环反复使用评估集时，选择集上测得的收益会高估留出集上的收益。根据当前材料，作者让 Qwen 模型改写自身指令，并将每个候选另在 600 个留出样本上评分；预注册研究中，选择集包含 16 个样本时，贪心循环最终的选择集分数比留出集准确率高 13 至 20 个百分点，包含 256 个样本时高 1 至 5 个百分点。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.09239",
+              "publishedAt": "2026-10-07T00:05:23.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.09239",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-07T00:05:23.000Z",
+                "revisedAt": "2026-10-07T00:05:23.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-08T09:41:41.607Z",
+                "evidenceBasis": "abstract",
+                "announcedOn": "2026-10-08",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.09239",
+                    "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.09239",
+                    "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.09239v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.09239v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者将自我改进 LLM 系统中‘候选在小评估集上得分更高就保留’的步骤，建模为测量噪声下的选择问题，在单次决策中考虑候选误差的相关性，并实证研究重复使用选择集的影响。该方法旨在量化每代最佳候选的‘赢家诅咒’，解释选择集上观察到的改进为何可能高估留出集上的实际收益。作者还报告，使用从未参与选择的独立样本评估初始指令与当前指令，可消除所测循环报告增益的平均偏差，并建议自我改进研究报告留出集增益及其不确定性。",
+                "applicableTasks": "资料支持的研究范围是 LLM 自我改进过程中候选指令的评估、接受与收益估计，包括 Qwen 模型改写自身指令、贪心接受循环、某个当前模型改进已有较好指令，以及 GEPA 和 MIPROv2 的验证得分。摘要明确提到 TREC 与 GSM8K 两个任务；未提供其他任务清单，也不能据此认定整个研究仅含这两个任务。结论的证据范围限于作者所测试的模型、任务和设置，其他模型或领域的适用性未知。",
+                "comparisonConditions": "作者报告的比较与结果如下：①在 Qwen 模型改写自身指令的运行中，每个候选还在 600 个留出样本上评分；首次之后的大多数提案有害，所建模型能够给出一代最佳候选的赢家诅咒幅度。采用来自独立先导实验的先验时，模型与原生循环中第一代被接受改动的平均高估程度相符，但不能逐个设置匹配。②在预注册研究中，采用 16 个选择样本时，贪心循环最终的选择集得分比留出集准确率高 13–20 个点；采用 256 个选择样本时，高 1–5 个点。这里比较的是最终选择集得分与留出集准确率，并非普遍的性能增益；‘点’对应原文 points，摘要未进一步说明单位。③随选择集扩大，TREC 上的留出集增益增加，GSM8K 上则未出现这一趋势；所测试的接受规则在完整运行层面未胜过贪心接受，具体规则、数量和差值未知。④某个当前模型改进已有较好指令时，选择集测得的增益也超过留出集增益；GEPA 与 MIPROv2 的验证得分中同样观察到增益高估，具体幅度未知。⑤用 64 个从未用于选择的样本分别评分初始指令和当前指令，作者报告可消除循环所报告增益的平均偏差，但单次估计仍有约 6 个点的误差；摘要未说明该误差采用何种统计量。已知名称包括 Qwen、TREC、GSM8K、GEPA 和 MIPROv2；模型具体版本、模型总数、任务总数、重复运行次数、候选数量、迭代次数、先导实验规模、硬件、计算预算与其他计算设置均未知：当前资料未提供。",
+                "limitations": "当前证据仅为摘要，未核对全文；上述结果均为作者报告，不代表独立复现。摘要明确指出：模型能匹配第一代被接受改动的平均高估程度，但不能逐个设置匹配；扩大选择集带来的留出集收益具有任务差异；测试过的接受规则在完整运行中未优于贪心接受；独立的 64 样本评估虽消除平均偏差，单次估计仍可偏离约 6 个点。平均偏差消除不等于每次估计准确。当前资料未提供完整实验协议、具体接受规则、逐设置结果、置信区间、误差统计量定义，以及足以复核各项比较的模型与计算细节；也未提供代码可用性、开放实现或独立复现证据。这些属于当前资料的信息缺口，不能据此断言研究本身不存在相应材料或验证。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            },
+            {
+              "itemId": "dqordqdpid75c6fvmnpavft0e",
+              "title": "视觉语言模型安全研究：定位输出的有害请求拒绝率低于问答",
+              "summary": "研究报告，五个视觉语言模型对有害请求的定位输出平均拒绝率比自由文本问答低 31-59 个百分点，差距随安全领域变化。研究将直接伤害（VLSU）、社会偏见（BBQ-V）和情境安全（Asimov-2.0）三个基准改造成 15,401 对仅在输出要求上不同的有害请求，分别要求自由文本回答（VQA）或点、边界框定位，安全系统提示未能消除上述差距。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.05637",
+              "publishedAt": null,
+              "available": true,
+              "research": {
+                "arxivId": "2610.05637",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-05T00:14:23.000Z",
+                "revisedAt": "2026-10-05T00:14:23.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-06T04:50:05.862Z",
+                "evidenceBasis": "abstract",
+                "announcedOn": "2026-10-06",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.05637",
+                    "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=500&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.05637",
+                    "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.05637v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.05637v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者针对视觉语言模型（VLM）结构化定位输出的安全对齐问题，提出将定位形式的拒绝样本、用于保持定位能力的数据，以及用于抑制过度拒绝的自蒸馏良性数据结合起来进行微调。要解决的问题是：同一有害请求以自由文本问答形式提出时，模型往往拒绝，但改为要求输出点或边界框时却可能配合。作者报告，微调能提高定位与问答的拒绝表现，同时保持定位能力并限制过度拒绝。",
+                "applicableTasks": "资料支持的研究范围是VLM的视觉定位安全，涉及自由文本视觉问答（VQA）与点或边界框定位输出，覆盖直接伤害、社会偏见和情境安全三个领域。安全差距分析覆盖五个VLM；所提微调方法的结果明确报告于Qwen3-VL-8B和VisionReasoner-7B，其中Asimov-2.0用于留出的领域评估。摘要提到结构化输出可供下游界面、智能体和机器人使用，但未提供这些下游系统的实际部署验证。",
+                "comparisonConditions": "作者将三个安全基准改造为共15,401对有害请求：VLSU对应直接伤害，BBQ-V对应社会偏见，Asimov-2.0对应情境安全。每对请求仅在要求的输出形式上不同，分别要求自由文本答案（VQA）或定位结果（点或边界框）。在五个VLM上，按模型平均后，定位拒绝率比VQA拒绝率低31—59个百分点，差距随领域而异；作者报告安全系统提示未能消除该差距。对Qwen3-VL-8B和VisionReasoner-7B，作者报告微调使VLSU和BBQ-V上的定位拒绝率提高77—95个百分点，在留出的Asimov-2.0领域提高64—85个百分点。上述数值是摘要报告的范围，不能解释为所有模型、领域均获得范围上限的增益；各模型与各领域对应的具体数值未知。作者还报告VQA拒绝表现改善、定位能力得到保持、过度拒绝有限，但未提供这些结果的具体数值。表示分析显示，微调将有害请求的表示推向各模型的拒绝方向，定位请求的变化最强，而良性请求仍接近无害参考。每个基准的请求对数、其余三个模型名称、微调训练样本量与配比、具体比较基线配置、微调前后绝对拒绝率、点与边界框的分项结果、定位能力及过度拒绝的指标定义与数值、硬件、计算资源、训练超参数和计算耗时均未知：当前资料未提供。",
+                "limitations": "证据仅来自所提供摘要，未核对全文。所有性能提升和表示分析结论均为作者报告，当前资料没有提供独立复现证据。摘要未明确列出方法自身的限制；当前可确认的证据范围限于三个安全基准、五个VLM的安全差距分析，以及两个具名模型的微调结果。其他模型、领域和真实下游场景中的适用性未知。摘要未提供评估判定流程、统计不确定性、重复实验、消融实验或开放实现的可用性信息，无法据此判断各训练数据组成的独立贡献，也不能将表示分析视为已确立的因果机制。上述信息缺失仅指当前摘要未提供，不能断言研究本身没有相关验证。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            },
+            {
+              "itemId": "ug69io9vgywbr6pyff02vx2x2",
+              "title": "Kernel Autoresearch 提出面向开放式模型发现的核函数设计方法",
+              "summary": "Kernel Autoresearch（Kernaut）研究提出由编码智能体编写核函数程序，并以构造契约保证获接纳核函数有效的开放式模型发现方法。方法通过质量与多样性档案保留行为不同的高性能核函数，以新颖性筛查引导搜索；作者的压力测试显示，通过随机输入数值检查的 LLM 生成核函数中，22-58% 在其他尺度或维度下未通过测试。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.10394",
+              "publishedAt": "2026-10-07T16:48:45.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.10394",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-07T16:48:45.000Z",
+                "revisedAt": "2026-10-07T16:48:45.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-08T09:41:41.607Z",
+                "evidenceBasis": "abstract",
+                "announcedOn": "2026-10-08",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.10394",
+                    "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.10394v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.10394v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出 Kernel Autoresearch（Kernaut），将核设计视为开放式模型发现：编码智能体以程序形式编写核，通过构造契约确保每个被接受的核有效；质量—多样性档案保留性能较好且行为不同的核，新颖性筛选引导智能体探索功能上新的候选。该方法针对自动核设计中的两难：固定基础核与算子语法能保证有效性，但限制可表达的结构；不受限程序扩大表达范围，却不再保证有效性。有效性保障是作者的主张，摘要未给出契约的具体定义或证明。",
+                "applicableTasks": "摘要中的实验涉及留出的黑盒优化任务族，以及酶动力学速率规律与未见机制上的预测。作者报告，发现的核包含可复用的归纳偏置，能够泛化到实验中的未见任务；核以可解释程序呈现，可由研究人员进一步修改。摘要支持的具体范围包括从10种酶动力学速率规律发现核，并在5种未见机制上评估。其他机器学习任务、其他领域及更广泛泛化范围的验证情况未知：当前资料未提供。",
+                "comparisonConditions": "作者报告的压力测试中，在随机输入上通过数值检查的LLM生成核，有22%–58%在不同尺度或维度下评估时失败；分母是通过上述随机输入数值检查的LLM生成核，不能视为全部生成核的失败率。该范围对应的具体条件、样本量、LLM种类与数量，以及尺度和维度取值未知。留出的黑盒优化任务族上，一个发现的核优于在相同episodes上训练的元学习深核；任务族数量、episodes数量、具体评估指标和优势幅度未提供。从10种酶动力学速率规律发现的核，在5种未见机制上，作者报告其误差低于经调优的ARD核和深核基线；摘要未给出误差定义、绝对数值或降低幅度。一个发现核经人类改进后，作者报告留出预测误差进一步降低5.7%，优化遗憾进一步降低7.8%；这些是该改进版本的两项结果，不能推广为所有发现核的增益。两项百分比的具体参照数值、计算公式及汇总口径未明确。数据样本量、发现核总数、完整模型与任务数量、硬件、计算预算、运行时间、重复次数、随机种子，以及误差和优化遗憾的具体定义与单位均未知：当前资料未提供。",
+                "limitations": "证据仅为用户提供的摘要，未核对全文，全部研究结果均归属于作者报告，当前材料不包含独立复现证据。作者指出固定语法的表达限制、不受限程序的有效性风险，以及随机输入数值检查可能遗漏跨尺度或跨维度失效；这些是研究动机与压力测试发现，不能直接当作Kernaut已接受核的失败率。摘要未明确列出Kernaut自身的适用边界或失败案例，也未提供构造契约的验证细节、实验完整配置、统计不确定性、消融结果、人类修改内容与投入，以及代码或数据开放情况。作者关于有效性、可解释性和未见任务泛化的主张，无法仅凭该摘要独立核验；这些信息未提供，不等于研究本身没有相关验证。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            },
+            {
+              "itemId": "jxogfpuzy2kjyiqgedxa88cbf",
+              "title": "SpecGuard 在智能体作弊前检测并形式化认证任务意图与测试的冲突",
+              "summary": "SpecGuard 研究提出在编码智能体执行前检测并形式化认证任务意图与测试冲突的方法。根据当前材料，该方法仅依据任务描述和代码库，将预期行为自动转为 Lean 4 规范，并独立形式化测试，通过 Lean 内核检查是否存在同时满足两套形式化规范的实现，在不存在时提供机器校验的证书。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.09159",
+              "publishedAt": "2026-10-06T22:00:49.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.09159",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-06T22:00:49.000Z",
+                "revisedAt": "2026-10-06T22:00:49.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-08T09:41:47.294Z",
+                "evidenceBasis": "abstract",
+                "announcedOn": "2026-10-08",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.09159",
+                    "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "code",
+                    "url": "https://github.com/prmbiy/specguard",
+                    "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.09159v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.09159v1"
+                  },
+                  {
+                    "kind": "code",
+                    "url": "https://github.com/prmbiy/specguard",
+                    "sourceUrl": "https://arxiv.org/abs/2610.09159v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出 SpecGuard，在编码代理执行任务前，检测并形式化认证任务意图与测试之间的冲突。给定任务描述和代码库，系统将预期行为自动形式化为 Lean 4 规范，并独立形式化测试；Lean 内核检查是否存在能够同时满足两种形式化描述的实现，在不存在时生成机器检查的证书。该方法针对意外或对抗性注入的任务错误规范：摘要援引既有工作称，代理面对此类任务往往不指出冲突，而会修改测试、硬编码预期输出，甚至删除安全防御以通过被破坏的测试。SpecGuard 的变化是通过任务层面的形式化冲突认证，在尚未观察到代理行为时识别奖励投机机会。",
+                "applicableTasks": "资料支持的目标场景是自主编码代理所接收的任务描述与测试存在冲突时的执行前安全检查，输入为任务描述和代码库，关注意外或对抗性注入的错误规范。作者报告的评估范围为存在冲突的 SWE-bench 任务。对其他基准、编程语言、代码库规模及无冲突任务的适用表现，未知：当前资料未提供。",
+                "comparisonConditions": "作者报告：在存在冲突的 SWE-bench 任务上，SpecGuard 的冲突检出比例最高为 72.8%，形式化认证比例最高为 51.1%；两者单位均为百分比，且均为最高口径，不能视为平均表现或所有条件下的结果。作者还称，相较于基于模型的判断，冲突漏检率低近 5 倍（原文为 nearly five-fold lower）；摘要未给出双方漏检率原值，也未说明该比较与两个最高百分比是否采用相同设置。比较对象仅明确为基于模型的判断，具体方法、模型名称及数量未知。任务总数、各指标具体分母、数据划分、冲突构造方式、重复次数、各结果对应配置、硬件、运行时间、计算预算及成本均未知：当前资料未提供。已明确的形式化工具与检查机制为 Lean 4 和 Lean 内核。",
+                "limitations": "当前证据仅为摘要，未核对全文；上述方法与结果均为作者报告，不属于独立复现结论。摘要未明确列出方法局限，也未提供误报率、无冲突任务表现、统计不确定性或跨基准验证信息。摘要所述证书针对两种形式化描述无法被同时满足；任务意图与测试的形式化转换是否忠实于原始内容、如何验证该忠实性，当前资料未提供。检出与认证的最高比例均未达到全部覆盖，但具体失败类型及原因未知。作者声明代码位于 https://github.com/prmbiy/specguard；该链接未经访问，不能据此确认代码实际可用、实现完整或结果已被独立复现。信息缺失仅反映当前摘要的证据范围，不能据此断言研究本身没有相关验证。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 2
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            },
+            {
+              "itemId": "l9je1c3abyb9575oof2z6jpep",
+              "title": "sk-bench 研究提出原生数据优先的斯洛伐克语 LLM 评测基准",
+              "summary": "sk-bench 研究提出原生数据优先的斯洛伐克语 LLM 评测基准，包含 30 个数据集、33 个计分任务变体，覆盖十类能力。根据当前材料，作者在统一框架下评测了 55 个开放权重与闭源权重模型，报告最佳开放模型落后专有 API 12.6 分。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.09152",
+              "publishedAt": "2026-10-06T21:51:22.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.09152",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-06T21:51:22.000Z",
+                "revisedAt": "2026-10-06T21:51:22.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-08T09:41:47.294Z",
+                "evidenceBasis": "abstract",
+                "announcedOn": "2026-10-08",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.09152",
+                    "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "code",
+                    "url": "https://github.com/slovak-nlp/sk-bench",
+                    "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.09152v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.09152v1"
+                  },
+                  {
+                    "kind": "code",
+                    "url": "https://github.com/slovak-nlp/sk-bench",
+                    "sourceUrl": "https://arxiv.org/abs/2610.09152v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出 sk-bench，一个原生数据优先的斯洛伐克语基准，旨在解决现有多语言 LLM 基准遗漏斯洛伐克语，或仅通过机器翻译覆盖该语言的问题。斯洛伐克语是一种形态丰富、约有五百万使用者的西斯拉夫语言。该基准包含 30 个数据集、33 个计分任务变体，覆盖十类能力；其中 11 项资源是新引入或首次被整理用于生成式 LLM 评测，包括配备斯洛伐克语适配指令检查器的 IFEval-SK，以及用于斯洛伐克语语法和形态评测的原生 Chiby/SKJ1 资源。作者在统一评测框架下评估模型，并比较数据来源、语言适应训练及测试时推理对结果的影响。",
+                "applicableTasks": "资料支持的范围是生成式 LLM 的斯洛伐克语能力评测，涉及开放权重与封闭权重模型。摘要明确涉及指令遵循、斯洛伐克语语法与形态、封闭式（closed-form）任务和问答；十类能力的完整清单未知。作者还据此为其他低资源语言提出四条设计建议：在翻译失效的场景使用原生数据；语言适应后规划指令能力修复；扩大模型规模前先启用测试时推理；避免对目标语言提示投入过多。摘要未提供这些建议在其他语言上的验证。",
+                "comparisonConditions": "作者报告在同一评测框架下评估 55 个开放权重和封闭权重模型，基准规模为 30 个数据集、33 个计分任务变体、十类能力。最佳开放模型落后于专有 API 模型 12.6 个分数点；具体模型名称、对应 API 比较对象及分数尺度未知。原生与翻译的封闭式数据所得模型排名相似，相关系数 ρ≥0.98，但翻译数据对最强模型的区分能力较弱；人工编写与 LLM 生成的问答问题所得模型排名存在差异，ρ=0.72。ρ 的具体计算定义及各项相关性比较纳入的模型数量未知。对 Qwen3-14B，继续进行斯洛伐克语预训练使总体分数下降 13.9 个分数点；一个小规模指令集恢复了这部分损失的四分之三，该比例的分母是此前的分数损失。对于 9B 及以上规模的模型，测试时推理使分数提高 8.5 至 12.5 个分数点；这是作者报告的区间，不能视为所有模型的普遍增益或平均增益。摘要未提供该项比较的具体模型名单和数量、区间端点对应条件。硬件、计算预算、训练与推理配置、提示设置、指令集规模、各数据集样本数、评分归一化尺度及总体分数聚合方式均未知；上述分数点不能直接换写为百分比提升。",
+                "limitations": "当前证据仅为摘要，未核对全文；全部实验结果均为作者报告，并非独立复现。作者报告的限制性发现包括：翻译数据较难区分最强模型，人工与 LLM 生成问答会产生不同排名，以及 Qwen3-14B 的斯洛伐克语继续预训练在所测条件下导致总体分数下降。上述结果不能外推为所有任务、模型或语言都具有相同表现；原生与翻译封闭式数据的高排名相关性，也不能证明两者在其他评测方面等价。摘要未提供完整任务与模型清单、逐项结果、统计不确定性、重复运行信息及详细实验设置，因此目前无法据此核查结果的稳健性或可复现性。作者声明在 https://github.com/slovak-nlp/sk-bench 发布数据与代码；当前资料仅提供这一声明和链接，未验证仓库可访问性、实现完整性、数据许可或独立复现情况。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 2
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            }
+          ]
+        },
+        {
+          "label": "AI4S",
+          "summary": null,
+          "items": [
+            {
+              "itemId": "we4eyfm5ae8lv075m8bo22noy",
+              "title": "研究通过扭转 SrTiO3 薄膜构建准晶氧化物界面",
+              "summary": "研究作者报告，45° 扭转的 SrTiO3 双层及逐层相继旋转 30° 的三层分别形成八重和十二重旋转对称的准晶界面。根据当前材料，制备过程包括在牺牲层上生长外延薄膜、释放、按指定角度扭转并键合到选定衬底，多种电子衍射、成像及实空间铺砌分析支持长程准晶有序。",
+              "sourceName": "arXiv · 计算物理与材料",
+              "sourceUrl": "https://arxiv.org/abs/2610.09222",
+              "publishedAt": "2026-10-06T23:36:49.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.09222",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-06T23:36:49.000Z",
+                "revisedAt": "2026-10-06T23:36:49.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-08T09:42:40.068Z",
+                "evidenceBasis": "abstract",
+                "announcedOn": "2026-10-08",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.09222",
+                    "sourceUrl": "https://arxiv.org/list/cond-mat.mtrl-sci/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.09222v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.09222v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出通过可控扭转与转移键合设计准晶氧化物界面：先在牺牲层上外延生长 SrTiO3 膜，释放后按预定角度扭转，再键合到选定基底。该路线针对作者所述强键合准晶界面的确定性设计途径尚未得到探索的问题，以层数和扭转角调控界面准周期有序及旋转对称性。作者进一步报告了相关电子重构与非线性光学响应。",
+                "applicableTasks": "当前资料支持的对象为扭转组装的 SrTiO3 双层与三层氧化物膜，任务包括构筑长程准晶界面、研究扭转角与准晶有序的关系，以及表征界面的电子结构和非线性光学响应。作者将扭转氧化物膜描述为可拓展至复杂氧化物的工程化路线，用于关联准周期有序、界面键合、轨道重构和非线性光学响应；摘要未提供其他氧化物或具体基底上的验证结果，其拓展适用范围未知。",
+                "comparisonConditions": "作者报告的结构条件与结果为：SrTiO3 双层扭转 45° 时形成具有八重旋转对称性的八角准晶界面；三层按逐次 30° 旋转组装时形成具有十二重对称性的十二角准晶界面。作者使用选区及纳米束电子衍射、多切片电子叠层成像、原子分辨暗场成像、傅里叶分析和实空间铺砌，确认长程准晶有序，并以退火后的电子能量损失谱观察电子重构。基于机器学习原子间势的原子模拟显示，双层扭转角接近 45° 时出现八角有序。对 1.5 nm 扭转双层的偏振依赖 X 射线吸收光谱测量显示，电子响应随扭转变化；太赫兹场诱导的二次谐波产生圆二色性测量在 45° 准晶条件下识别出与对称性有关的非线性光学响应。摘要未提供完整的角度对照序列、基准方法对照、样品及重复测量数量、训练数据规模、势模型数量或任务总数；计算硬件、模拟体系规模与运行设置、退火温度及时间、具体基底和仪器参数均未知。除角度、旋转对称性阶数及 1.5 nm 尺度外，未给出响应强度、键合强度、误差、统计显著性或性能增益等定量比较结果，也未报告最高或平均增益。",
+                "limitations": "证据仅来自所提供摘要，未核对全文；所有结构、电子与光学结果均为作者报告，当前资料不构成独立复现。摘要未明确陈述方法自身的限制。关于样品均一性、界面键合强度、稳定性、制备良率、可重复性、可扩展制备能力，以及不同材料和基底的适用边界，当前资料未提供验证信息。机器学习原子间势的训练、精度验证及模拟细节未知；原始数据、代码和开放实现状态未知。摘要所述可拓展路线不能据此视为已在广泛复杂氧化物体系中得到验证；这些信息缺口也不表示研究全文中不存在相关证据。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            },
+            {
+              "itemId": "bmgca771l8fyyno6hz3ieh174",
+              "title": "Aether 研究分析生理波形基础模型的计算最优训练与扩展规律",
+              "summary": "Aether 研究报告了生理波形基础模型的扩展规律，用模型规模、预训练时长和标注患者数预测下游临床任务的排序误差。根据当前材料，作者训练了超过一百个参数量为 20M 至 2.1B 的模型，使用最多 36.3M 小时的生理波形数据；其中 720M 模型在 MIMIC-III 构建的八项临床预测任务中，经线性探测评估均优于所比较的现有基础模型基线。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.05649",
+              "publishedAt": null,
+              "available": true,
+              "research": {
+                "arxivId": "2610.05649",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-05T00:52:44.000Z",
+                "revisedAt": "2026-10-05T00:52:44.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-06T04:50:02.175Z",
+                "evidenceBasis": "abstract",
+                "announcedOn": "2026-10-06",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.05649",
+                    "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.05649v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.05649v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者研究生理波形基础模型（FM）的缩放规律与计算最优训练，训练了 Aether 模型家族，并拟合模型参数量、预训练小时数和有标签患者数与下游排序误差（1−AUROC）之间的关系，用于预测不同资源配置下的表现、指导计算资源分配及估计数据和标注需求。作者报告的主要发现是：计算最优训练应同时扩大模型与预训练时长；更大模型能更高效地利用波形数据，更多预训练又增强扩大模型的收益；预训练与临床监督相互促进，更多有标签患者提高预训练收益，而更大模型及更长预训练可降低标注需求。摘要未说明新的模型架构或训练损失。",
+                "applicableTasks": "资料支持的研究对象为生理波形基础模型及下游临床预测。作者从 MIMIC-III 构建了8项临床预测任务，通过线性探测评估模型；缩放关系用于分析这些任务中的模型规模、预训练时长及有标签患者数与预测表现的关系。具体波形类型、8项任务名称、患者纳入范围，以及其他数据集或评估方式下的适用性，未知：当前资料未提供。",
+                "comparisonConditions": "模型与数据：作者训练了超过100个 Aether 基础模型，参数量范围为20M至2.1B（2000万至21亿），使用的生理波形数据最多为36.3M小时（3630万小时）；这些是模型家族范围及数据量上限，不表示每个模型均使用最大数据量。下游比较：在来自 MIMIC-III 的全部8项临床预测任务中采用线性探测；作者报告720M参数（7.2亿）的模型在全部8项任务上优于所有现有基线FM，但摘要未列出基线名称、数量、各项任务分数或领先幅度。缩放规律预测指标：下游排序误差定义为1−AUROC；作者报告，在留出的资源尺度上，预测平均绝对误差（MAE）为0.5%；外推至2.1B参数时，MAE为0.9%，两者属于不同预测条件。计算最优配置：在拟合规律下，计算量（FLOPs，浮点运算次数）增至10.0倍时，模型规模增至1.2倍，预训练小时数增至8.2倍。波形数据效率示例：以25M参数（2500万）和4.8M预训练小时（480万小时）为起点，将模型规模翻倍，达到相同性能所需的预测预训练小时数减少51.8%，其比较基准为翻倍前配置。标注效率示例：对720M参数模型，将预训练从120K小时（12万小时）延长至36.3M小时，在同一目标排序误差下，预测所需患者数相较较短预训练配置减少61%；目标误差具体值及减少前后的患者绝对数未知。这些资源节省是特定条件下的模型预测，不能解释为所有配置的实测或平均收益。硬件型号与数量、训练耗时、绝对FLOPs预算、优化器、批量大小、训练轮次、预训练数据来源与构成、标注患者数及数据划分细节，未知：当前资料未提供。",
+                "limitations": "当前证据仅为摘要，未核对全文；上述表现、规律及资源节省均为作者报告，当前资料未提供独立复现证据。摘要未明确陈述研究局限，但也未提供基线与任务明细、具体AUROC、统计不确定性、重复实验次数、缩放拟合与验证样本数量、MAE的具体汇总方式及完整计算设置，因此无法据此独立核验比较公平性或结论稳健性。51.8%和61%的降幅均为指定条件下的预测；10.0倍计算量对应的配置变化也依赖拟合规律，不能当作任意资源范围内已实测的通用结论。其他医院、人群、波形类型、临床任务及实际临床部署中的验证情况未知。代码、权重、数据访问与复现材料的可用性未知：当前资料未提供；这不等于断言研究本身没有这些材料或验证。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1
+              },
+              "researchRoadmap": null,
+              "paperFigure": {
+                "itemId": "bmgca771l8fyyno6hz3ieh174",
+                "sourceRevision": 1,
+                "imageOrigin": "remote",
+                "imageUrl": "https://arxiv.org/html/2610.05649v1/model-arch.png",
+                "sourceUrl": "https://arxiv.org/html/2610.05649v1#S3.F2",
+                "figureLabel": "原文 Figure 2",
+                "caption": "Figure 2: Overview of Aether architecture, pretraining, and downstream adaptation. (a) Bidirectional Gated DeltaNet (Bi-GDN) and grouped-query attention (GQA) blocks form a repeating 3{:}1 hybrid pattern. (b) Multichannel waveforms are divided into 200 ms patches, and the FM learns to reconstruct randomly masked patches. (c) The pretrained FM is frozen, and its mean-pooled representations support linear probing for downstream clinical prediction.",
+                "attribution": "Li, Pingzhi; Peng, Jie; Luo, Shuqing et al. · Training and Scaling Compute-Optimal Physiological Waveform Foundation Models (arXiv v1)",
+                "licenseName": "CC BY 4.0",
+                "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+                "verifiedAt": "2026-10-09T17:05:36.896Z",
+                "width": 1911,
+                "height": 1339,
+                "contentType": "image/png",
+                "sha256": "bf244345ea3f4a8fc6e4385f78c2e7302550e990818e56dd211333337cdd519f"
+              }
+            },
+            {
+              "itemId": "xvuh3qfpqr0qaojcl7yxqsips",
+              "title": "研究提出推理时投影，改善 Boltz-2 与 OpenFold-3 的结构物理有效性",
+              "summary": "研究提出面向 AlphaFold 3 风格共折叠模型的推理时投影方法，通过修正扩散采样坐标改善生物分子预测结构的物理有效性。方法对去噪后的干净坐标估计施加链间 van der Waals 投影与配体距离几何投影，分别缓解严重原子碰撞，以及恢复键长、键角、内部接触、平面性和手性，无需重新训练、额外网络计算或梯度计算。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.07037",
+              "publishedAt": null,
+              "available": true,
+              "research": {
+                "arxivId": "2610.07037",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-04T23:15:03.000Z",
+                "revisedAt": "2026-10-04T23:15:03.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-07T04:31:42.045Z",
+                "evidenceBasis": "abstract",
+                "announcedOn": "2026-10-07",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.07037",
+                    "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.07037",
+                    "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.07037v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.07037v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者将物理有效性视为约束推理问题：其依据是，物理有效性不同于结构准确性，可在推理时利用采样器已有的量进行完全检验。针对 AF3 风格共折叠模型输出中的链间界面重叠、配体键长与键角畸变、环非平面及手性中心反转，作者在扩散模型去噪后的干净坐标估计值 x̂₀ 上施加两个闭式投影算子：链间范德华投影，将冲突最严重的原子对推开；配体距离几何投影，恢复键长、键角、内部接触、平面性和手性。两个算子均为局部、稀疏且位移受限的操作，无需额外网络求值、梯度或重要性采样，保持去噪器及其权重不变，无需重新训练。作者希望借此避免物理势引导采样带来的采样成本和内存开销增加，以及微调所需的时间和对特定架构的依赖。",
+                "applicableTasks": "资料支持的任务是 AF3 风格扩散共折叠模型的全原子生物分子结构预测，重点改善复合物链间冲突和配体几何、手性等物理有效性问题。作者主张该方法可直接接入任何 AF3 风格采样器；摘要实际报告的应用模型为 Boltz-2 和 OpenFold-3，评估范围为 CASP15、CASP16、PoseBusters 单体集、PoseBusters 复合物集及 Boltz 物理有效性测试集。超出这两个模型和五个基准的实际验证范围未知。",
+                "comparisonConditions": "作者报告在两个独立开发的模型 Boltz-2、OpenFold-3 上，跨五个基准开展评估：CASP15、CASP16、PoseBusters 单体集、PoseBusters 复合物集和 Boltz 物理有效性测试集。作者称该方法恢复了完全的物理有效性，同时保持结构准确性与配体放置指标，运行时间和内存开销可忽略。摘要未提供具体指标名称、计算定义、数值、单位、统计分母、逐模型或逐基准结果，也未说明这些结果采用平均、最优或其他汇总口径，因此不能进一步量化有效率、增益或开销。作为背景比较，作者称物理势引导采样会使采样成本和内存开销成倍增加，导致大型复合物无法推理；微调则耗时且将修正绑定于某一架构。摘要没有列出这些方法的具体名称或直接对照实验结果。各基准样本数量、预测或采样次数、复合物规模、模型版本、硬件、精度、批量、扩散步数及其他计算设置均未知；已明确的计算特性是投影无需额外网络求值、梯度、重要性采样或重新训练。",
+                "limitations": "当前证据仅为所提供的摘要，未核对全文。完全物理有效、结构准确性及配体放置指标保持、时间与内存开销可忽略，均为作者报告，当前资料不构成独立复现。两个模型独立开发不等于该方法已获独立复现。摘要未明确陈述本方法自身的局限，也未提供详细实验流程、物理有效性判定标准与阈值、统计不确定性、消融实验、失败案例或规模扩展结果；这些信息的缺失不能解释为研究本身不存在相应验证。作者关于可接入任何 AF3 风格采样器及模型无关性的主张，其摘要中列出的实验证据限于上述两个模型和五个基准，不能外推为所有模型、输入或规模均已验证。代码、实现开放情况及可复现性材料未知：当前资料未提供。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            },
+            {
+              "materialsQuality": {
+                "status": "JOURNAL_SCREENED",
+                "domain": "photovoltaic",
+                "rationale": "来源标注为《Journal of the American Chemical Society》，当前证据仅为摘要，未提供独立期刊核验信息。摘要报告新的自组装单分子层设计、分子动力学模拟及太阳能电池器件实验，支持归为光伏材料原创研究。机器学习直接指导候选分子设计，是核心研究方法，因此主栏目归为 AI4S；效率与稳定性结果均为作者报告。",
+                "journal": {
+                  "name": "Journal of the American Chemical Society",
+                  "publisher": "American Chemical Society",
+                  "selectionBasis": "EXPLICIT_USER_ALLOWLIST",
+                  "sourceUrl": "https://pubs.acs.org/journal/jacsat"
+                },
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1,
+                "policyVersion": "energy-materials-journal-topic-v3"
+              },
+              "itemId": "y0ynb3sd89lg13suox6l8bvn0",
+              "title": "机器学习引导设计半刚性空穴选择性自组装单分子层，用于高效稳定钙钛矿太阳能电池",
+              "summary": "基于摘要，研究报告机器学习引导设计的半刚性 4PAHBAP 自组装单分子层可提升倒置钙钛矿太阳能电池的效率与稳定性。作者以已发表的 SAM 对照–目标配对数据训练成对排序孪生 D-MPNN，以降低尾基平面性为设计线索，并通过 AIMD 模拟考察非平面七元环对 π–π 堆积和界面相互作用的影响。",
+              "sourceName": "Journal of the American Chemical Society · 材料研究候选",
+              "sourceUrl": "https://doi.org/10.1021/jacs.6c10673",
+              "publishedAt": null,
+              "available": true,
+              "research": {
+                "arxivId": null,
+                "arxivVersion": null,
+                "arxivVersions": [],
+                "doi": "10.1021/jacs.6c10673",
+                "originalPublishedAt": null,
+                "revisedAt": null,
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-10T06:37:40.630Z",
+                "evidenceBasis": "abstract",
+                "originalPublishedDate": "2026-10-06",
+                "publicationDatePrecision": "day",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://doi.org/10.1021/jacs.6c10673",
+                    "sourceUrl": "https://api.crossref.org/works/10.1021%2Fjacs.6c10673"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出以机器学习先行、实验验证的SAM设计策略：用在已发表SAM对照—目标对数据集上训练的成对排序孪生定向消息传递神经网络（D-MPNN）替代仅依赖传统分子经验的筛选，并以尾基平面性降低为设计线索，设计半刚性七元环SAM 4PABAP和4PAHBAP。该变化针对倒置钙钛矿太阳能电池埋藏界面中传统咔唑类SAM（如4PACz）过度π–π堆积引起的聚集、膜不均匀、陷阱态密度升高和器件加速降解问题；AIMD结果据作者报告显示，非平面七元环可抑制π–π堆积、增强ITO锚定并促进SAM/钙钛矿界面电荷转移。",
+                "applicableTasks": "资料支持的对象和任务是倒置钙钛矿太阳能电池埋藏界面的空穴传输自组装单分子层设计、分子排序和后续器件验证，具体涉及4PACz基准以及作者设计的4PABAP、4PAHBAP。作者将该流程表述为可推广的SAM理性设计范式，但当前摘要未给出其在其他器件架构、材料类别或更广泛任务范围上的验证，因此这些范围未知。",
+                "comparisonConditions": "模型对4PABAP和4PAHBAP的ML分数分别为+2.54和+5.52，4PACz为−0.32；训练数据为整理的已发表SAM对照—目标分子对数据集，但数据集数量、划分和其他训练设置未知。AIMD比较给出4PAHBAP与ITO相互作用能−1.23 eV，4PACz为−0.74 eV；AIMD的硬件、泛函、温度、轨迹长度等设置未知。器件实验报告的是4PAHBAP倒置PSC的冠军PCE 26.36%、FF 84.35%，并与4PACz对照的PCE 23.52%、FF 77.51%比较；“冠军”口径不等于所有器件或平均值，器件数量、误差和统计方法未知。稳定性方面，4PAHBAP器件在ISOS-L-3标准下连续1-sun最大功率点运行1200 h后保持初始PCE的92.5%，在ISOS-D-2标准下85 °C热老化1200 h后保持95.7%；对照器件在这些稳定性条件下的结果、硬件和环境细节未知。摘要未提供其他比较模型、任务数量或计算资源信息。",
+                "limitations": "证据范围仅为所给摘要，未核对全文；摘要未明确陈述局限性，因此作者报告的限制未知。当前资料未提供数据集规模与代表性、模型训练和测试划分、随机性或外部测试、AIMD及器件实验的完整参数、样本量、误差/显著性统计、长期稳定性对照、代码或数据获取方式，也不能据此确认开放实现或独立复现。上述PCE、FF、相互作用能和稳定性数值均仅归属于作者在摘要中的报告，未作独立验证。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            },
+            {
+              "itemId": "fj9a44h7zyxy09j8mbwzdip5o",
+              "title": "ColdDDI：评估冷启动药物相互作用预测中的知识利用",
+              "summary": "ColdDDI 研究提出基于 DrugBank 5.1.13 的冷启动药物相互作用（DDI）诊断基准，检验模型是否实际利用药理证据。根据当前材料，基准包含 1,900 种获批小分子药物和 565,731 对阳性 DDI，评估了八种常规 DDI 方法与 13 个 LLM。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.05590",
+              "publishedAt": null,
+              "available": true,
+              "research": {
+                "arxivId": "2610.05590",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-04T22:54:19.000Z",
+                "revisedAt": "2026-10-04T22:54:19.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-06T04:50:02.175Z",
+                "evidenceBasis": "abstract",
+                "announcedOn": "2026-10-06",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.05590",
+                    "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "code",
+                    "url": "https://github.com/0217ljh/ColdDDI-NeurIPS2026",
+                    "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.05590v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.05590v1"
+                  },
+                  {
+                    "kind": "code",
+                    "url": "https://github.com/0217ljh/ColdDDI-NeurIPS2026",
+                    "sourceUrl": "https://arxiv.org/abs/2610.05590v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出 ColdDDI，旨在补足现有 DDI 基准主要报告汇总边预测分数、难以判断模型是否真正使用药理学支持证据的评估缺口。该基准按药物是否在训练时出现、相互作用改变药物暴露还是药物效应，以及生物医学知识图谱（KG）是否包含可能介导相互作用的共享酶、转运体或靶点进行诊断。作者通过这些标注区分证据是否可获得与预测是否依赖证据，并使用遮蔽、药物替换和通道敏感性指标探查知识利用，而不只评估知识接入。",
+                "applicableTasks": "资料支持的任务是冷启动药物–药物相互作用（DDI）预测及其知识利用诊断，关注模型能否识别训练时没有相互作用历史的药物所涉及的临床显著相互作用。基准覆盖药物对中有零个、一个或两个未见药物的条件；对象为 DrugBank 5.1.13 中的获批小分子药物。诊断涉及分子、文本或 KG 证据，并按药物暴露或药物效应变化、共享酶／转运体／靶点是否可用分层。摘要未提供对其他药物类型或该数据来源之外对象的适用性验证。",
+                "comparisonConditions": "作者报告 ColdDDI 基于 DrugBank 5.1.13 构建，包含 1,900 种获批小分子药物和 565,731 个阳性 DDI 药物对；评估了 8 种常规 DDI 方法和 13 个 LLM，其中对开放权重 LLM 测试了 5 种提示模式。作者报告，在两个药物均未见的最困难划分中，主要性能差异与介导因素是否可用有关：一个经微调的 1B 参数 LLM 对具有共享酶、转运体或靶点的相互作用恢复了 89–93%，对没有此类共享介导因素的相互作用仅恢复了 40–62%。两个百分比范围分别针对上述两类相互作用，不能视为全体药物对上的统一表现；各组样本数及区间端点对应的具体条件未知。摘要使用“recovers”描述该结果，未给出正式指标名称或计算定义。作者还报告，若干 KG 增强基线在共享介导因素被遮蔽或破坏时预测变化很小，而经微调的 LLM 对该干预反应强烈；此比较仅提供定性描述，没有变化幅度或统计检验结果。具体模型名称、各模型分项得分、负例构建、划分比例、硬件、训练与推理计算设置、计算开销及通道敏感性指标定义均未知：当前资料未提供。",
+                "limitations": "当前证据仅为摘要，未核对全文；方法描述与结果均为作者报告，不代表独立复现。作者报告的诊断性局限包括：在两个药物均未见时，缺少共享介导因素的相互作用恢复比例较低；部分 KG 增强基线即使获得相关证据，也未表现出对该证据的明显预测依赖。摘要不足以证明模型普遍使用了正确药理机制，或已获得临床应用验证。数据划分细节、标注准确性、数据泄漏检查、重复实验、统计不确定性、外部验证及临床验证信息未知：当前资料未提供，不能据此断言研究本身没有开展这些工作。作者将基准称为可重建，并声称代码位于 https://github.com/0217ljh/ColdDDI-NeurIPS2026；当前未访问该链接，代码可访问性、实现完整性、可运行性及独立复现情况均未验证。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 2
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            },
+            {
+              "itemId": "l1246fc6zyq27j0r8ijmjlpt4",
+              "title": "胸部 X 线报告核查研究称，清单未提及的征象会改变强化学习的表观增益",
+              "summary": "胸部 X 线报告核查研究报告，清单格式及未提及征象的处理方式会改变强化学习在报告核查中测得的增益。作者用强化学习训练视觉语言模型，在不查看待核查句子的条件下，根据胸部 X 线片填写含 12 项征象的清单，再由另一模型据此核查句子。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.05425",
+              "publishedAt": null,
+              "available": true,
+              "research": {
+                "arxivId": "2610.05425",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-04T18:06:43.000Z",
+                "revisedAt": "2026-10-04T18:06:43.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-06T04:50:05.862Z",
+                "evidenceBasis": "abstract",
+                "announcedOn": "2026-10-06",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.05425",
+                    "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=500&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.05425v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.05425v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者针对自动核查放射学报告时，AI生成的检查清单可能遗漏影像发现的问题，使用强化学习训练视觉语言模型，使其仅根据胸部X线影像填写包含12项发现的清单，生成时不查看待核查句子；再由另一个核查模型依据清单判断该句子。作者还比较了清单呈现格式的影响：训练格式固定发现的排列顺序，并将未提及的发现填为不存在。",
+                "applicableTasks": "资料支持的任务是根据胸部X线影像生成12项发现的清单，并辅助核查放射学报告中的句子。评估涉及留出患者，以及核查模型对未提及发现的、与标签一致的否定陈述的接受情况。12项发现的具体名称、患者人群与疾病构成、其他影像模态或其他报告任务的适用性未知：当前资料未提供。",
+                "comparisonConditions": "作者报告，在留出患者上，未参与训练的规则核查器和独立医学核查器测得的区分能力增益（Youden指数）分别为12.6%和11.8%；只有规则核查器达到预设的误报标准。改用固定发现顺序、将未提及发现填为不存在的训练格式后，训练核查器测得的增益上升，独立核查器测得的增益下降。作者对此预设比较报告6.2%（95%区间为2.0%至10.5%），并报告留出患者上事后分析的结果为7.7%；摘要未明确这两个数值的具体统计定义及其与各核查器结果的对应关系。上述百分数沿用摘要单位，未说明是相对百分比还是百分点，也未明确增益的比较基线或分母。在8个核查模型中，对未提及发现的、与标签一致的否定陈述的接受率范围为1.0%至97.0%；这是跨模型范围，不是平均值或普遍表现。清单包含12项发现；8个核查模型与前述核查器是否重合未知。患者、影像、句子、数据集及任务总数，各接受率分母，模型名称与规模，硬件、计算预算、强化学习配置，误报标准的具体阈值，以及其他结果的不确定性区间均未知：当前资料未提供。",
+                "limitations": "证据仅为用户提供的摘要，未核对全文，所有结果均属于作者报告，当前资料未提供独立复现证据。摘要明确指出，标签来自报告，而非放射科医师裁定，因此与标签一致不能直接视为经专家确认的影像事实。独立医学核查器未达到预设误报标准；格式切换对训练核查器和独立核查器的测量结果产生相反方向的影响，8个模型的接受率也有明显差异，这些结果不能表述为所有核查模型均获得一致收益。7.7%来自留出患者上的事后分析，应与预设比较区分。未参与训练的独立核查器不等于独立研究团队复现。当前资料未提供外部人群或机构验证、临床部署效果、完整实验细节、代码或数据可用性信息；这些信息缺失不代表研究本身不存在相应工作。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            },
+            {
+              "itemId": "ytolecpwlz5p9tvmhmxwnljrq",
+              "title": "SciExam for ENSO：AI 智能体能否构建气候模型？",
+              "summary": "SciExam for ENSO 研究提出气候建模基准，作者报告 12 个智能体系统中有 6 个得分高于已发表模型。智能体在六小时预算内处理真实观测、编写随后被冻结的诊断程序，再仅依靠这些诊断反馈构建 ENSO 低阶随机模型。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.10513",
+              "publishedAt": "2026-10-07T17:52:52.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.10513",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-07T17:52:52.000Z",
+                "revisedAt": "2026-10-07T17:52:52.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-08T09:41:41.607Z",
+                "evidenceBasis": "abstract",
+                "announcedOn": "2026-10-08",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.10513",
+                    "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.10513",
+                    "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.10513v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.10513v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出面向厄尔尼诺—南方涛动（ENSO）的 AI Science Exam 基准（SciExam for ENSO），针对开放式科研智能体通常依赖已知答案、评分规则或语言模型评审，而这些方式无法判断新科学模型是否有效的问题。智能体从真实观测构建低阶随机模型，在6小时预算内处理观测、编写随后被冻结的自有诊断，并仅以这些诊断作为反馈开发模型。隐藏评分器随后检验模型能否再现 ENSO 的统计特征、恢复未观测变量及预测留出年份，并以相同方式评价一个已发表模型。作者据此提出一种无需预设研究答案的科研评测方式。",
+                "applicableTasks": "当前资料直接支持的对象是语言模型智能体及其从真实观测构建的 ENSO 低阶随机模型；摘要将 ENSO 描述为年际气候变率的主导模态。任务包括观测处理、诊断编写、模型开发，以及模型统计特征再现、未观测变量重建和留出年份预测的评估。作者还分析较强模型的简化结构与 ENSO 暖冷不对称性解释之间的相容性。跨其他气候现象、科学领域或模型类型的适用性验证未知：当前资料未提供。",
+                "comparisonConditions": "作者比较了12个智能体系统，并使用同一隐藏评分方式评价一个已发表模型；其中6个系统生成的模型得分高于该已发表模型，作者报告优势主要来自更好的重建和预测。该结果适用于所报告的6/12个系统，不能表述为所有系统均获提升。计算设置明确给出6小时预算，但硬件、并行度、模型调用与计算资源配置、费用及实际耗时未知。评分涉及 ENSO 统计特征再现、未观测变量恢复和留出年份预测；具体指标名称、公式、权重、分数单位、各项分数、增益幅度、平均或最高增益、误差与显著性检验未知。观测数据集名称与数量、年份范围、样本量、具体划分、12个系统的身份与底层模型配置、生成模型总数、任务实例数量和已发表基线模型的身份均未知。作者报告，较强模型的简化形式各自与 ENSO 暖冷不对称性两种竞争解释中的一种相容，尽管任务未提及这一争论；摘要未给出这些模型的数量。作者还对表现最好的系统改变所提供的信息开展受控运行，结果提示其分数并非来自对带日期观测记录的回忆，且获得的信息会影响建模方式；具体信息条件、受控运行次数和量化结果未知。",
+                "limitations": "证据仅为用户提供的摘要，未核对全文、补充材料、数据或实现。上述结果均为作者报告，当前资料未提供独立复现证据；链接、代码和数据的开放可用性也未知。摘要未明确列出作者认定的研究限制，也未提供足以核验评分方法、比较公平性、重复运行稳定性或统计不确定性的细节。信息变化下的受控运行仅被作者表述为提示性证据，不能据此断言已彻底排除记忆或信息泄漏。模型简化形式与两种竞争解释之一相容，不等于验证了该解释或解决了科学争论；超过一个已发表模型的评分也不能推广为普遍科研能力或全面质量优势。未提供的信息应保持未知，不能据此断言相关研究或验证不存在。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            },
+            {
+              "itemId": "clmhlzrvh8h87ad0p0qykt3r2",
+              "title": "用傅里叶符号测量神经 PDE 求解器的数值来源",
+              "summary": "根据当前材料，Ridham Patel 的研究提出经验性傅里叶符号诊断，用于检验神经 PDE 替代模型是否模仿训练求解器的离散误差。该方法用单个傅里叶模态探测模型的线性化单步算子，对照精确演化与训练格式，并比较由耗散、色散特征正交的格式训练的相同网络所学算子。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.09255",
+              "publishedAt": "2026-10-07T00:42:11.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.09255",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-07T00:42:11.000Z",
+                "revisedAt": "2026-10-07T00:42:11.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-08T09:41:41.607Z",
+                "evidenceBasis": "abstract",
+                "announcedOn": "2026-10-08",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.09255",
+                    "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.09255v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.09255v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出经验性 Fourier 符号诊断：用单个 Fourier 模态探测已训练神经 PDE 替代模型的线性化单步算子，并同时与精确演化参考和训练所用数值格式参考比较。该方法针对的问题是：数值求解器的训练数据混合了物理演化与求解器特有的离散误差，而采用同一求解器生成的留出轨迹评估时，标准基准无法区分模型对精确演化的忠实程度与对数值格式的模仿。为处理架构谱偏置的影响，作者在具有相互正交耗散与色散特征的数值格式上分别训练相同网络，再比较其学得的算子。",
+                "applicableTasks": "资料支持用于诊断神经 PDE 替代模型学得算子的数值来源，以及其是否继承训练格式的幅度与相位误差。摘要报告的验证对象包括线性平流、非局部 Fourier 神经算子，以及非线性 Burgers 动力学；其中 Burgers 的结论限定在算子层面。对其他 PDE、网络架构或应用场景的适用性，当前资料未提供验证。",
+                "comparisonConditions": "作者将替代模型的线性化单步算子与精确演化、训练数值格式两类参考比较，并比较在两种具有正交耗散与色散特征的格式上训练的相同网络。摘要明确涉及线性平流与非线性 Burgers 两类动力学，但未给出完整任务总数、数据集总数、模型总数或具体离散格式名称。考察内容包括幅度误差、相位误差及两种格式对应的学习算子之差。作者报告，在线性平流中，替代模型复现了训练格式的幅度和相位误差，两格式间的学习算子差异达到解析预测的完全模仿上限的 99.8% 以上；该百分比的分母是完全模仿上限，不是预测准确率或普遍性能增益。摘要未说明这一比例的平均、最高或跨重复实验汇总口径。作者还报告，非局部 Fourier 神经算子出现相同行为，非线性 Burgers 在算子层面也出现相同行为，但未提供这两项的对应数值。数据规模、空间与时间离散设置、训练与测试划分细节、网络具体配置、训练超参数、硬件、计算资源、运行时间，以及幅度与相位误差的具体单位和原始数值均未知：当前资料未提供。",
+                "limitations": "当前证据仅为摘要，未核对全文；上述方法与结果均为作者报告，不构成独立复现。作者明确指出，与求解器生成的测试数据一致，本身不足以证明模型忠实于精确演化。超过 99.8% 的结果仅明确对应线性平流中的两格式差异，不能外推为所有模型或任务的共同数值。摘要未提供重复实验次数、误差条、统计不确定性、完整实验条件、代码或数据可用性及独立复现信息；这些信息缺失不表示研究本身不存在相应内容。其他作者明确陈述的限制未知：当前资料未提供。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            }
+          ]
+        },
+        {
+          "label": "电池与新能源材料",
+          "summary": null,
+          "items": [
+            {
+              "materialsQuality": {
+                "status": "JOURNAL_SCREENED",
+                "domain": "hydrogen",
+                "rationale": "来源标注期刊为《Angewandte Chemie International Edition》。摘要描述RuBi催化剂的合成、表征、理论分析及碱性析氢和阴离子交换膜水电解槽测试，支持归为制氢材料原创研究。活性与稳定性提升属于作者报告；当前仅有摘要，未明确是否使用AI，也未提供理论分析的具体方法，故AI角色记为未知。",
+                "journal": {
+                  "name": "Angewandte Chemie International Edition",
+                  "publisher": "Wiley-VCH on behalf of Gesellschaft Deutscher Chemiker",
+                  "selectionBasis": "EXPLICIT_USER_ALLOWLIST",
+                  "sourceUrl": "https://onlinelibrary.wiley.com/journal/15213773"
+                },
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1,
+                "policyVersion": "energy-materials-journal-topic-v3"
+              },
+              "itemId": "d5em7fy5obs0go477vo9wgukm",
+              "title": "双重空间限域构筑高度稳定且可接近的亚纳米 RuBi 异质团簇驱动高效碱性析氢",
+              "summary": "该研究采用双重空间限域策略，将均匀分散的亚纳米 RuBi 双金属异质团簇嵌入多孔碳纳米纤维，用于碱性析氢反应。金属有机框架内部孔道和电纺聚合物基体分别作为纳米反应器与物理屏障，抑制高温热解中的金属迁移与团聚；表征和理论分析显示，Ru 与 Bi 的原子邻近及电子相互作用可优化中间体吸附并加快限速水解离步骤。",
+              "sourceName": "Angewandte Chemie International Edition · 材料研究候选",
+              "sourceUrl": "https://doi.org/10.1002/anie.2036983",
+              "publishedAt": null,
+              "available": true,
+              "research": {
+                "arxivId": null,
+                "arxivVersion": null,
+                "arxivVersions": [],
+                "doi": "10.1002/anie.2036983",
+                "originalPublishedAt": null,
+                "revisedAt": null,
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-10T06:37:37.460Z",
+                "evidenceBasis": "abstract",
+                "originalPublishedDate": "2026-10-07",
+                "publicationDatePrecision": "day",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://doi.org/10.1002/anie.2036983",
+                    "sourceUrl": "https://api.crossref.org/works/10.1002%2Fanie.2036983"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出双重空间限域合成策略：以金属有机框架内部孔道作一级纳米反应器，以电纺聚合物基体作二级物理屏障，在高温热解中抑制金属迁移与并聚，从而在多孔碳纳米纤维中构筑均匀分散、亚纳米 RuBi 双金属异质团簇（RuBi HCs/PCNFs），针对双金属团簇易烧结和相分离、尺寸及界面结构难控制的问题。作者的表征和理论分析还报告 Ru-Bi 原子邻近与电子相互作用可优化中间体吸附并加快限速水解离步骤。",
+                "applicableTasks": "资料支持的对象与范围包括：构筑小于 2 nm、尤其亚纳米尺度的 RuBi 双金属异质团簇并嵌入多孔碳纳米纤维；将其用于碱性析氢反应（HER）电催化评价；在阴离子交换膜（AEM）水电解槽中评估其长期运行稳定性。除上述 RuBi/PCNFs、碱性 HER 与 AEM 水电解场景外，其他催化反应、材料体系或规模范围未知：当前资料未提供。",
+                "comparisonConditions": "作者报告的结果仅为定性：RuBi HCs/PCNFs 表现出增强的电催化碱性 HER 活性和稳健运行耐久性，并在 AEM 水电解槽中实现稳定长期运行。当前摘要未给出明确比较对象（如基准催化剂）、数据集/模型/任务数量、理论模型细节、硬件与计算设置、测试电流、电压、过电位、斜率等指标、单位、数值、最高或平均口径及分母；这些比较条件和定量结果未知：当前资料未提供。",
+                "limitations": "证据仅来自摘要（evidenceBasis=abstract），未核对全文。作者在当前资料中明确提到的背景挑战是双金属异质团簇在热力学上易烧结和相分离；未明确陈述该策略的失效边界、适用限制、成本或规模化限制及长期运行时长。虽然摘要称有表征和理论分析并报告稳定长期运行，但未提供样品数、重复实验、原始数据、统计不确定度、完整表征或计算细节、对照结果。独立复现情况未知；资料未提供代码、数据或足以复现实验的协议。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            },
+            {
+              "materialsQuality": {
+                "status": "JOURNAL_SCREENED",
+                "domain": "battery",
+                "rationale": "来源标注为《Angewandte Chemie International Edition》，提供的证据为完整摘要，未独立核验期刊身份。摘要提出水系锌电池界面构筑策略，并报告对称电池及安时级软包电池测试，支持归为电池材料原创研究。核心贡献围绕添加剂催化与界面调控；摘要未明确筛选是否使用AI，故AI角色记为未知。性能结果均为作者报告。",
+                "journal": {
+                  "name": "Angewandte Chemie International Edition",
+                  "publisher": "Wiley-VCH on behalf of Gesellschaft Deutscher Chemiker",
+                  "selectionBasis": "EXPLICIT_USER_ALLOWLIST",
+                  "sourceUrl": "https://onlinelibrary.wiley.com/journal/15213773"
+                },
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1,
+                "policyVersion": "energy-materials-journal-topic-v3"
+              },
+              "itemId": "ekj9lushmz4xzqxudc9283a7d",
+              "title": "阴离子-偶极催化分解助力Ah级水系锌电池构筑稳健固态电解质界面",
+              "summary": "基于摘要，该研究提出阴离子-偶极催化分解策略，以阴离子-偶极结合能和静电势差筛选微量添加剂，构筑富无机相固态电解质界面。电子缺陷芳香族苯乙酮优先进入电双层并选择性富集阴离子，催化其分解，促进脱溶剂化和(002)织构锌沉积。",
+              "sourceName": "Angewandte Chemie International Edition · 材料研究候选",
+              "sourceUrl": "https://doi.org/10.1002/anie.7075150",
+              "publishedAt": null,
+              "available": true,
+              "research": {
+                "arxivId": null,
+                "arxivVersion": null,
+                "arxivVersions": [],
+                "doi": "10.1002/anie.7075150",
+                "originalPublishedAt": null,
+                "revisedAt": null,
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-10T06:37:37.460Z",
+                "evidenceBasis": "abstract",
+                "originalPublishedDate": "2026-10-08",
+                "publicationDatePrecision": "day",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://doi.org/10.1002/anie.7075150",
+                    "sourceUrl": "https://api.crossref.org/works/10.1002%2Fanie.7075150"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出以阴离子-偶极结合能和静电势差作为双描述符，筛选痕量添加剂作为阴离子分子捕获剂，并采用阴离子-偶极催化分解策略调控水系锌离子电池的固态电解质界面（SEI）。具体地，电子缺陷芳香酮乙酰苯优先进入电双层，选择性识别并富集阴离子，同时通过加快断键动力学、降低活化自由能催化阴离子分解，形成富无机SEI，以应对稳健富无机SEI与安全性、界面动力学难以兼顾的问题。",
+                "applicableTasks": "资料支持的适用对象和范围是水系锌离子电池中的痕量添加剂筛选、SEI构筑及锌沉积调控；验证对象包括Zn//Zn对称电池，以及Ah级Zn//VO₂软包电池。软包电池的正极质量载量为20 mg·cm⁻²。更广泛的任务、材料体系或适用范围未知：当前资料未提供。",
+                "comparisonConditions": "当前摘要未提供明确比较对象、对照组、数据集或模型数量、任务数量、硬件与计算设置。作者报告的结果包括：Zn²⁺迁移数为0.75；界面促进脱溶剂化并促进平面（002）织构化锌沉积；Zn//Zn对称电池循环稳定性为7200 h；Ah级Zn//VO₂软包电池在0.2 A·g⁻¹下容量为4.28 Ah，并在1 A·g⁻¹下循环100次后保持初始容量的88.9%。上述结果的具体对照条件、统计口径及其他指标未知：当前资料未提供。",
+                "limitations": "证据仅来自摘要，未核对全文。作者指出，在不牺牲安全性和界面动力学的前提下构筑稳健富无机SEI仍具挑战。当前资料未提供对照基线、完整实验方案、数据或模型数量、硬件与计算设置，也未提供安全性直接测量、界面动力学定量结果、统计重复与误差、超过100次循环的验证或开放代码信息。所列性能均为作者报告；当前资料没有独立复现或第三方验证证据，不能据此推断普遍优越性或SOTA地位。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            },
+            {
+              "materialsQuality": {
+                "status": "JOURNAL_SCREENED",
+                "domain": "battery",
+                "rationale": "来源标注期刊为《Journal of the American Chemical Society》。所提供的完整摘要提出钠离子电池负极结构设计，并报告容量、倍率及循环性能，支持归为电池材料原创研究。摘要未明确说明AI是否参与，其作用记为未知；性能结果属于作者报告。",
+                "journal": {
+                  "name": "Journal of the American Chemical Society",
+                  "publisher": "American Chemical Society",
+                  "selectionBasis": "EXPLICIT_USER_ALLOWLIST",
+                  "sourceUrl": "https://pubs.acs.org/journal/jacsat"
+                },
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1,
+                "policyVersion": "energy-materials-journal-topic-v3"
+              },
+              "itemId": "epsa4dil6hx06nv8iuaiirzsr",
+              "title": "石墨烯状包覆双壳 TiO2 纳米片组装体实现高载量下快速稳定钠存储",
+              "summary": "该研究报告了一种由交叉分布的 2 nm 厚纳米片组装成的双壳 TiO2 球，并均匀包覆石墨烯状保护层的钠离子电池负极结构。作者报告该结构以表面控制储钠为主，达到 2.13 mAh cm–2 的面容量和 100 C 时 121 mAh g–1 的倍率性能。在 10.5 mg cm–2 高载量、5 C 条件下循环 3,000 次后容量保持率超过 90%；当前材料未提供独立复现信息。",
+              "sourceName": "Journal of the American Chemical Society · 材料研究候选",
+              "sourceUrl": "https://doi.org/10.1021/jacs.6c13892",
+              "publishedAt": null,
+              "available": true,
+              "research": {
+                "arxivId": null,
+                "arxivVersion": null,
+                "arxivVersions": [],
+                "doi": "10.1021/jacs.6c13892",
+                "originalPublishedAt": null,
+                "revisedAt": null,
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-10T06:37:40.630Z",
+                "evidenceBasis": "abstract",
+                "originalPublishedDate": "2026-10-09",
+                "publicationDatePrecision": "day",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://doi.org/10.1021/jacs.6c13892",
+                    "sourceUrl": "https://api.crossref.org/works/10.1021%2Fjacs.6c13892"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出双层壳TiO2球形负极：由交叉分布的2 nm厚纳米片组装，并均匀包覆类石墨烯保护层。该结构使钠存储以表面控制行为为主，提升反应动力学与稳定性，针对高负载电极中的离子传输迟缓、界面化学不稳定，以及容量、倍率性能和循环寿命之间的权衡。",
+                "applicableTasks": "资料支持的对象是钠离子电池负极，尤其是高负载电极配置和实际高功率电池中的先进负极设计。当前资料未提供超出该电池负极场景的适用任务、对象或范围。",
+                "comparisonConditions": "作者报告该电极的面容量为2.13 mAh cm⁻²；在100 C下倍率容量为121 mAh g⁻¹；在5 C、质量负载10.5 mg cm⁻²条件下循环3000次后容量仍保持超过90%。作者称其优于传统负极结构，但未说明具体比较结构、数据或模型数量，也未提供硬件、计算设置或更多测试条件。上述结果分别对应面容量、倍率容量和循环容量保持率，不能据此推断所有条件下均有相同增益。",
+                "limitations": "证据基础仅为摘要，未核对全文。作者在摘要中未明确列出研究限制；资料未提供独立复现、代码或开放实现信息，也未提供具体传统负极对照、数据/模型/任务数量、硬件与计算设置、完整测试方案及统计信息。独立复现状态未知：当前资料未提供。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            },
+            {
+              "materialsQuality": {
+                "status": "JOURNAL_SCREENED",
+                "domain": "photovoltaic",
+                "rationale": "来源标注为《Angewandte Chemie International Edition》，当前证据为摘要。摘要报告开发不同芳香桥连接的二聚体受体并比较有机太阳能电池性能，属于光伏材料原创研究。器件效率为作者报告的结果；摘要未充分交代是否使用辅助AI方法，因此AI角色记为未知。",
+                "journal": {
+                  "name": "Angewandte Chemie International Edition",
+                  "publisher": "Wiley-VCH on behalf of Gesellschaft Deutscher Chemiker",
+                  "selectionBasis": "EXPLICIT_USER_ALLOWLIST",
+                  "sourceUrl": "https://onlinelibrary.wiley.com/journal/15213773"
+                },
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1,
+                "policyVersion": "energy-materials-journal-topic-v3"
+              },
+              "itemId": "f1lzek6qyc0zp4lb1yk3p0u8g",
+              "title": "芳香桥调控二聚受体实现有机太阳能电池21.02%效率",
+              "summary": "基于摘要，该研究开发了以苯、萘和蒽为桥联的二聚受体，其中 Naph-dimer 平衡了有机太阳能电池的光致发光量子产率与结晶性，相关器件效率达21.02%。PM6:Naph-dimer 器件的 PCE 为18.90%、V_oc 为0.974 V、ΔE₃ 为0.192 eV；将 Naph-dimer 加入 PM6:L8-BO 主体后，PCE 达21.02%。摘要未提供更具体的比较设置或独立复现信息。",
+              "sourceName": "Angewandte Chemie International Edition · 材料研究候选",
+              "sourceUrl": "https://doi.org/10.1002/anie.4058890",
+              "publishedAt": null,
+              "available": true,
+              "research": {
+                "arxivId": null,
+                "arxivVersion": null,
+                "arxivVersions": [],
+                "doi": "10.1002/anie.4058890",
+                "originalPublishedAt": null,
+                "revisedAt": null,
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-10T06:37:37.460Z",
+                "evidenceBasis": "abstract",
+                "originalPublishedDate": "2026-10-05",
+                "publicationDatePrecision": "day",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://doi.org/10.1002/anie.4058890",
+                    "sourceUrl": "https://api.crossref.org/works/10.1002%2Fanie.4058890"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者针对有机太阳能电池活性层、尤其受体组分提高光致发光量子产率（PLQY）时难以同时保持有利结晶性和聚集行为、导致非辐射能量损失的问题，提出用苯、萘和蒽桥连接的二聚受体，分别命名为 Ph-dimer、Naph-dimer 和 Ant-dimer，通过桥结构调控协调 PLQY 与晶体有序性。作者报告 Naph-dimer 在结晶性和 PLQY 之间达到较优平衡，增强分子堆积、降低无序，从而抑制能量损失并促进电荷提取。",
+                "applicableTasks": "资料支持的适用范围是有机太阳能电池（OSC）活性层受体材料设计及其光伏器件评价，涉及 PM6 与 Ph-dimer、Naph-dimer、Ant-dimer 的共混体系，以及将 Naph-dimer 引入 PM6:L8-BO 主体的体系。更广泛的材料、器件或其他任务范围未知：当前摘要未提供相关证据。",
+                "comparisonConditions": "摘要比较了三种桥连接二聚受体及其 PM6 共混器件：PM6:Ph-dimer、PM6:Naph-dimer 和 PM6:Ant-dimer；并另报告 Naph-dimer 引入 PM6:L8-BO 主体后的结果。苯到蒽的共轭长度和核心本征发光增强，但光伏性能与该趋势没有线性相关。PM6:Naph-dimer 的作者报告结果为功率转换效率（PCE）18.90%、开路电压（Voc）0.974 V、ΔE3 0.192 eV，并称其优于 PM6:Ph-dimer 和 PM6:Ant-dimer；将 Naph-dimer 引入 PM6:L8-BO 主体时报告 PCE 21.02%。摘要未给出 Ph-dimer 和 Ant-dimer 的数值、PLQY及结晶性数值、器件或样本数量、数据集/模型/任务数量、实验或计算硬件、计算设置、重复次数、误差范围，也未说明上述数值是最高值、平均值还是其他统计口径。",
+                "limitations": "证据基础仅为作者摘要，未核对全文。作者在当前摘要中未明确列出进一步的局限；摘要仅说明结晶性与聚集行为同高 PLQY 往往相互冲突，并报告桥结构调控的上述结果。当前资料未提供完整实验条件、器件结构与制备细节、统计方法、样本量、数值 PLQY、长期稳定性或更广泛验证，也未提供代码、开放实现或独立复现证据。所有性能数值和优于对照的判断均属于作者报告，独立复现未知。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            },
+            {
+              "materialsQuality": {
+                "status": "JOURNAL_SCREENED",
+                "domain": "hydrogen",
+                "rationale": "来源标注期刊为《Angewandte Chemie International Edition》，所供证据为完整摘要。作者报告RuIr/C催化剂、高温聚合物电解质膜电解槽及电解槽堆的制氢实验，主题属于制氢电催化与电解槽，稿件可判断为原创研究。摘要未明确说明AI是否参与，AI角色记为未知。",
+                "journal": {
+                  "name": "Angewandte Chemie International Edition",
+                  "publisher": "Wiley-VCH on behalf of Gesellschaft Deutscher Chemiker",
+                  "selectionBasis": "EXPLICIT_USER_ALLOWLIST",
+                  "sourceUrl": "https://onlinelibrary.wiley.com/journal/15213773"
+                },
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1,
+                "policyVersion": "energy-materials-journal-topic-v3"
+              },
+              "itemId": "fqteqczcjr319m625fihgrnq0",
+              "title": "高温聚合物电解质膜电解器实现水煤气变换反应高纯氢制备",
+              "summary": "该研究报告了一种在120–200°C运行的高温聚合物电解质膜电解器，通过水煤气变换反应制备高纯氢。其RuIr/C催化剂利用Ir位点调节Ru上的*OH与CO吸附，气固反应界面用于缓解传质限制。在0.6 V下，系统稳态电流密度达1179 mA cm⁻²，产氢纯度≥99.99%且无需外部分离，并放大到由5个45 cm²膜电极组件组成的电解槽堆。",
+              "sourceName": "Angewandte Chemie International Edition · 材料研究候选",
+              "sourceUrl": "https://doi.org/10.1002/anie.6581557",
+              "publishedAt": null,
+              "available": true,
+              "research": {
+                "arxivId": null,
+                "arxivVersion": null,
+                "arxivVersions": [],
+                "doi": "10.1002/anie.6581557",
+                "originalPublishedAt": null,
+                "revisedAt": null,
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-10T06:37:37.460Z",
+                "evidenceBasis": "abstract",
+                "originalPublishedDate": "2026-10-08",
+                "publicationDatePrecision": "day",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://doi.org/10.1002/anie.6581557",
+                    "sourceUrl": "https://api.crossref.org/works/10.1002%2Fanie.6581557"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出在120°C–200°C运行的高温聚合物电解质膜电解槽（HT‑PEME），用RuIr/C催化剂实施电化学水煤气变换反应（WGSR）。其中Ir位点调节Ru上的*OH与CO吸附平衡，以加快WGSR动力学并降低过电位；在高于水沸点的条件下形成气–固反应界面，以缓解传质限制，并免除外部气体分离。",
+                "applicableTasks": "资料支持的任务是通过电化学WGSR制备高纯氢，适用于需要兼顾产品纯度与规模化的氢生产场景。摘要报告了从单一HT‑PEME装置到由5个、每个膜电极组件面积为45 cm²的MEA组成的电解槽堆的放大；除此之外的对象、规模范围和任务边界未知：当前资料未提供。",
+                "comparisonConditions": "作者将该方案与两类现有方法作定性对照：热催化WGSR可获得高产品纯度，但需要高能耗气体分离；室温电催化受传质限制，电流密度较低。对于所提出的HT‑PEME，硬件为RuIr/C催化剂和5个45 cm² MEA组成的电解槽堆（摘要同时描述装置在120°C–200°C运行）；报告的稳态电流密度为1179 mA cm⁻²，电压为0.6 V，产氢纯度为≥99.99%，且无需外部分离。Ir调节吸附平衡、加快动力学和降低过电位的表述为定性结果，未给出过电位数值或与基线的定量差值。摘要未提供对照实验的具体数据、数据集或模型数量、运行时长、能耗/效率、压力、流量、面积归一化口径之外的统计口径及其他硬件设置；这些信息未知：当前资料未提供。",
+                "limitations": "证据范围仅为作者摘要，未核对全文、补充材料或原始数据。作者在该摘要中未明确陈述局限。摘要未提供长期稳定性、重复实验与误差、完整放大性能、能耗或系统效率、操作压力与流量、与热催化或室温电催化的定量对照、催化剂寿命、产物组成核验方法或开放代码；这些验证信息未知，不能据此断言研究本身不存在。当前没有独立复现证据；所述性能均应归属于作者报告。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            },
+            {
+              "materialsQuality": {
+                "status": "JOURNAL_SCREENED",
+                "domain": "battery",
+                "rationale": "来源标注为《Angewandte Chemie International Edition》，当前证据仅为摘要。作者提出钛掺杂正极材料策略，并报告倍率性能及软包电池循环测试，属于钠离子电池原创材料研究。摘要未明确交代AI使用情况，AI角色记为unknown；期刊身份与准入条件由程序核验。",
+                "journal": {
+                  "name": "Angewandte Chemie International Edition",
+                  "publisher": "Wiley-VCH on behalf of Gesellschaft Deutscher Chemiker",
+                  "selectionBasis": "EXPLICIT_USER_ALLOWLIST",
+                  "sourceUrl": "https://onlinelibrary.wiley.com/journal/15213773"
+                },
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1,
+                "policyVersion": "energy-materials-journal-topic-v3"
+              },
+              "itemId": "kpgbgy1li7qq1lie3jaj5w1wk",
+              "title": "研究报告 V─O─Ti 桥键极性促进钒基氟磷酸盐中的 Na+ 迁移与快速储钠",
+              "summary": "基于摘要，该研究提出通过 Ti4+ 掺杂引入极性 V─O─Ti 桥键，促进钒基氟磷酸盐正极中的 Na+ 迁移与快速储钠。作者将性能改善归因于 V 电子结构调整及桥氧位移引起的一维、二维 Na+ 传输通道拓宽，报告 Na3V1.92Ti0.08O(PO4)2F2 在 0.1C 和 50C 下的容量分别为 121.8 和 62.1 mA h g −1。",
+              "sourceName": "Angewandte Chemie International Edition · 材料研究候选",
+              "sourceUrl": "https://doi.org/10.1002/anie.6142534",
+              "publishedAt": null,
+              "available": true,
+              "research": {
+                "arxivId": null,
+                "arxivVersion": null,
+                "arxivVersions": [],
+                "doi": "10.1002/anie.6142534",
+                "originalPublishedAt": null,
+                "revisedAt": null,
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-11T12:34:20.876Z",
+                "evidenceBasis": "abstract",
+                "originalPublishedDate": "2026-10-10",
+                "publicationDatePrecision": "day",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://doi.org/10.1002/anie.6142534",
+                    "sourceUrl": "https://api.crossref.org/works/10.1002%2Fanie.6142534"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出Ti⁴⁺掺杂诱导的桥键极性调控策略，针对钒基氟磷酸盐正极在高电压下Na⁺扩散明显退化、限制快充能力的问题。作者报告，该策略重塑V的电子结构，促进V—O电子交换，抑制高电压下的电压滞后、极化和结构畸变，并提高电子电导率；同时，极性V—O—Ti桥键诱导桥接氧位移，拓宽主要的一维和二维Na⁺传输通道，增强Na⁺迁移能力。摘要给出的具体材料为Na₃V₁.₉₂Ti₀.₀₈O(PO₄)₂F₂。",
+                "applicableTasks": "资料支持的应用对象为钠离子电池中的钒基氟磷酸盐正极，目标是改善高电压下的离子传输和快充、高倍率性能。作者报告了上述掺Ti材料的比容量、循环表现，以及与HC配对的软包电池表现；摘要未解释HC的含义。作者将该策略指向高功率聚阴离子型钠离子电池，但摘要未提供其他材料体系的验证结果。",
+                "comparisonConditions": "作者报告：①Na₃V₁.₉₂Ti₀.₀₈O(PO₄)₂F₂在0.1C和50C下的比容量分别为121.8和62.1 mA h g⁻¹，并定性称其循环稳定性优异，但未给出该项循环测试的次数与容量保持率。②0.92 Ah的Na₃V₁.₉₂Ti₀.₀₈O(PO₄)₂F₂//HC软包电池在1C下循环1000次后，容量保持率为80%。③9 Ah规模软包电池的能量密度为154 Wh kg⁻¹；该结果对应的倍率及循环条件未知，不能套用0.92 Ah电池的条件。摘要涉及一种明确的掺杂组成和两种软包电池规模，完整比较材料数量、电池样本数、重复次数及数据集/模型/任务数量未知。对照材料及其定量结果、测试设备、计算硬件与计算设置均未提供。电压窗口、温度、电极载量、电解液、C倍率定义、比容量和能量密度的质量核算边界均未知。",
+                "limitations": "证据仅为当前提供的摘要，未核对全文。机理解释、性能数值及循环稳定性评价均属于作者报告，当前资料未提供独立复现信息。摘要未展示支撑电子结构变化、桥接氧位移、通道拓宽及电导率提升的具体表征或计算证据，也未给出误差、统计分析、完整倍率曲线和循环曲线，因此无法仅据此核验机制或评估结果的重复性。摘要未明确陈述该方法自身的限制，也未提供其他组成或材料体系的适用性验证。9 Ah电池的循环寿命和快充表现未知；0.92 Ah电池的循环结果不能直接推广到9 Ah规模。上述缺失仅指当前资料未提供，不代表研究全文中不存在相关信息。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            },
+            {
+              "materialsQuality": {
+                "status": "JOURNAL_SCREENED",
+                "domain": "battery",
+                "rationale": "输入来源标注为《Journal of the American Chemical Society》。摘要围绕硒化铜锌电池正极，报告阴离子氧化还原活化策略及电化学、结构和光谱证据，符合电池材料原创研究类型。容量与循环性能改善属于作者报告的结果；当前仅有摘要，无法确定是否辅助使用了 AI。",
+                "journal": {
+                  "name": "Journal of the American Chemical Society",
+                  "publisher": "American Chemical Society",
+                  "selectionBasis": "EXPLICIT_USER_ALLOWLIST",
+                  "sourceUrl": "https://pubs.acs.org/journal/jacsat"
+                },
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1,
+                "policyVersion": "energy-materials-journal-topic-v3"
+              },
+              "itemId": "kw77o8e5jk9crmkukfeevfwpt",
+              "title": "激活阴离子氧化还原突破锌电池转化型铜硒化物正极的晶相选择限制",
+              "summary": "该研究报告通过激活阴离子氧化还原突破转化型铜硒化物正极的晶相选择限制，并在不同化学计量的锌储存铜硒化物中验证该策略。以六方 CuSe 为例，激活硒阴离子氧化还原后，容量从 4 mAh g–1 增至 413 mAh g–1，电池电压翻倍。",
+              "sourceName": "Journal of the American Chemical Society · 材料研究候选",
+              "sourceUrl": "https://doi.org/10.1021/jacs.6c14588",
+              "publishedAt": null,
+              "available": true,
+              "research": {
+                "arxivId": null,
+                "arxivVersion": null,
+                "arxivVersions": [],
+                "doi": "10.1021/jacs.6c14588",
+                "originalPublishedAt": null,
+                "revisedAt": null,
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-10T06:37:40.630Z",
+                "evidenceBasis": "abstract",
+                "originalPublishedDate": "2026-10-08",
+                "publicationDatePrecision": "day",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://doi.org/10.1021/jacs.6c14588",
+                    "sourceUrl": "https://api.crossref.org/works/10.1021%2Fjacs.6c14588"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者提出激活硒阴离子氧化还原，并通过亲核试剂诱导阴离子氧化还原，使原本受晶体相选择限制的铜硒化物发生结构重构：以六方 CuSe 为例，重构为有利相并与活性 Se⁰ 交织，从而促进深度、可逆的多电子转化，解决传统相选择导致的容量和高电位氧化还原利用受限问题。",
+                "applicableTasks": "资料支持的对象是锌储存铜硒化物家族 CuySe（y = 0.5–2），重点示例为六方 CuSe；用途是作为锌电池高容量、稳定的正极。作者还报告该策略可适用于其他亲核添加剂，但未提供添加剂种类、数量或适用范围的具体清单。",
+                "comparisonConditions": "作者将未激活阴离子氧化还原的六方 CuSe（热力学最稳定且对锌不友好）与激活硒阴离子氧化还原后的体系比较：容量由 4 mAh g⁻¹ 增至 413 mAh g⁻¹，摘要称为百倍增加；电池电压加倍，但绝对电压值未知；循环寿命达到 4000 个循环。研究还涉及 y = 0.5–2 的铜硒化物系列，但具体样品数量、逐样品结果、硬件、计算设置、测试条件、倍率及其他指标均未知：当前资料未提供。",
+                "limitations": "证据基础仅为摘要，未核对全文。作者报告了原位电化学过程中的结构和光谱证据、容量、电压及循环寿命结果，但摘要未提供实验细节、数据统计口径、误差、完整比较对象或其他验证设置。未见作者明确列出的局限性。其他亲核添加剂的适用性只有概括性确认，缺少具体验证范围和结果。独立复现、开放代码或外部验证情况未知：当前资料未提供。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            },
+            {
+              "materialsQuality": {
+                "status": "JOURNAL_SCREENED",
+                "domain": "hydrogen",
+                "rationale": "来源标注期刊为《Angewandte Chemie International Edition》，当前证据仅为摘要。研究涉及碱性水电解制氢的阴极腐蚀与稳定性；作者提出CeOx保护层并报告电解运行及启停循环测试结果，据此归为制氢材料原创研究。摘要未明确AI参与情况，因此记为unknown。",
+                "journal": {
+                  "name": "Angewandte Chemie International Edition",
+                  "publisher": "Wiley-VCH on behalf of Gesellschaft Deutscher Chemiker",
+                  "selectionBasis": "EXPLICIT_USER_ALLOWLIST",
+                  "sourceUrl": "https://onlinelibrary.wiley.com/journal/15213773"
+                },
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1,
+                "policyVersion": "energy-materials-journal-topic-v3"
+              },
+              "itemId": "n4qpb9bde4tv2no0iyycei4rk",
+              "title": "CeOₓ保护层抑制碱性水电解槽中杂质阳离子诱导的Raney Ni阴极腐蚀",
+              "summary": "该研究报告在碱性水电解槽Raney Ni阴极表面引入Lewis酸性CeOₓ层，以抑制杂质阳离子尤其是Fe离子诱导的腐蚀。基于摘要，Fe物种积累会促进crossover oxygen的两电子还原并形成驱动Ni位点氧化腐蚀的HO₂•自由基，CeOₓ层可抑制Fe还原沉积并清除这些自由基。",
+              "sourceName": "Angewandte Chemie International Edition · 材料研究候选",
+              "sourceUrl": "https://doi.org/10.1002/anie.6363490",
+              "publishedAt": null,
+              "available": true,
+              "research": {
+                "arxivId": null,
+                "arxivVersion": null,
+                "arxivVersions": [],
+                "doi": "10.1002/anie.6363490",
+                "originalPublishedAt": null,
+                "revisedAt": null,
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-10T06:37:37.460Z",
+                "evidenceBasis": "abstract",
+                "originalPublishedDate": "2026-10-05",
+                "publicationDatePrecision": "day",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://doi.org/10.1002/anie.6363490",
+                    "sourceUrl": "https://api.crossref.org/works/10.1002%2Fanie.6363490"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "针对碱性水电解长期运行中腐蚀溶解产生的阳离子在循环电解液中累积、尤其 Fe 物种破坏 Raney Ni 阴极结构稳定性的问题，作者在阴极表面引入 Lewis 酸性的 CeOₓ 层。该层抑制 Fe 在阴极上的还原沉积，并由配位不饱和的高价 Ce 位点直接清除反应性 HO₂• 自由基，从而减轻由交叉氧两电子还原及自由基引发的 Ni 氧化腐蚀。",
+                "applicableTasks": "资料支持的范围是工业条件或实际运行条件下的碱性水电解，保护对象为 Raney Ni 阴极，场景包括含 Fe 杂质的循环电解液及系统部件产生的阳离子污染。作者报告在最高 200 µM Fe(III) 存在时保持稳定阴极性能，并涉及 Co(II)、Mn(II)、Mo(VI)、Cr(III) 和 Al(III) 等来源于系统部件的杂质阳离子。超出这些碱性水电解、Raney Ni 阴极、所列阳离子及浓度范围的任务或对象，未知：当前资料未提供。",
+                "comparisonConditions": "作者报告的性能结果包括：CeOₓ 保护的 Raney Ni 阴极在含 Fe 电解液中于 1.0 A cm⁻² 下稳定运行超过 3,500 h，并经受 15,000 次加速启停循环；在最高 200 µM Fe(III) 或 Co(II)、Mn(II)、Mo(VI)、Cr(III)、Al(III) 等杂质阳离子存在时，作者称其阴极性能仍稳定。资料提到 Fe 物种会损害未保护 Raney Ni，但未给出未保护对照的定量运行时长、性能数值或明确的直接比较表。数据集、模型或任务数量、装置面积与其他硬件、温度、压力、电解质组成、启停协议、统计口径、重复次数、误差以及电压、过电位、能耗或法拉第效率等指标：未知：当前资料未提供。",
+                "limitations": "证据仅为摘要（evidenceBasis 为 abstract），因此不能视为已核对全文。作者在摘要中明确报告了 3,500 h、15,000 次循环以及最高 200 µM Fe(III) 和所列杂质阳离子条件下的结果，并将策略描述为在实际条件下具有可行性和普适性；摘要未明确陈述其他限制。未提供未保护对照的完整定量数据、实验重复与统计不确定性、更多运行条件、机理表征细节、全电解槽或其他阴极材料验证、代码或开放实现信息。独立复现：未知：当前资料未提供。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 1
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            }
+          ]
+        }
+      ],
+      "metrics": {
+        "totalEvents": 32,
+        "figureChecks": 32,
+        "sourcesCount": 4,
+        "totalStories": 32,
+        "figureMissing": 20,
+        "selectedCount": 220,
+        "reportsCovered": 7,
+        "verifiedFigures": 2,
+        "figureCandidates": 220,
+        "figureUnavailable": 2,
+        "figureReviewRequired": 8,
+        "figureCandidatesUninspected": 188
+      },
+      "status": "unknown",
+      "gaps": []
+    },
     {
       "illustrated": true,
       "kind": "daily",
@@ -35140,6 +38004,8 @@
     "pmemcl0rmz92kfe6jyxb8vf0u",
     "kpgbgy1li7qq1lie3jaj5w1wk",
     "s3yc1gka8o90s8cbj0umck0t6",
+    "p2rgy0o4c07m7y6dl6z3wlyj1",
+    "epsa4dil6hx06nv8iuaiirzsr",
     "r9o3pcnhkravka8hdyts5j6bs",
     "flzdt4vyj848qw5q9pw37po2m",
     "d1urz9t0uy50qxyqtdeul5kk7",
@@ -35168,6 +38034,11 @@
     "gxvkwresc07k8cy2bf07e1da1",
     "qibf2o5yyqjz68uo75vhzonyt",
     "gwc0vh5t79fbskv91hcve365m",
+    "r47aded0njnibkubaq5frwt2y",
+    "kw77o8e5jk9crmkukfeevfwpt",
+    "q1ij9vxne9pid0bhhxfb25af7",
+    "fqteqczcjr319m625fihgrnq0",
+    "ekj9lushmz4xzqxudc9283a7d",
     "pftnk0jirjv6vnewdbpcuzeqy",
     "giq82md77wfmuezocp3mv7kcq",
     "w69nx656ffa43fx3aj726gxjj",
@@ -35216,6 +38087,8 @@
     "u7f47iz4xby058l1moqr46i91",
     "bqfvepe29yyabyr4f9np8qbsl",
     "zhiscshd7lkykp2cu6teyu9xz",
+    "wxr74g12how3z5u0cn718a7ik",
+    "d5em7fy5obs0go477vo9wgukm",
     "pl5066f4vp7ju4mpq8nj41avz",
     "clmhlzrvh8h87ad0p0qykt3r2",
     "lrtd1ru685578inxui32r92fu",
@@ -35312,6 +38185,9 @@
     "autk24r754woyte0wmh8y493y",
     "sdwclm0auvc46gcwagyed5xki",
     "y0ynb3sd89lg13suox6l8bvn0",
+    "ubnlgts7qlo4ee49nbtyfx9np",
+    "fdgyb5x9w8q05m1npyl91u6n7",
+    "ul2v4uxqoahlihghss5i057ex",
     "sfbjmqn69eswoem63w0jslht6",
     "rsumzuxstntltykaozlig4adc",
     "g36vjq1t5h83947haryn3k6l7",
@@ -35407,6 +38283,9 @@
     "gd0anvclpqktuun3e64209rxz",
     "vp2a4l1fvt62fpci3s1jzgy64",
     "mllnztt6s4t381wvtibcxeo07",
+    "x2rattac801zdt2ytqpgnc2f9",
+    "n4qpb9bde4tv2no0iyycei4rk",
+    "f1lzek6qyc0zp4lb1yk3p0u8g",
     "pavata8f4in31dck39dpdijgd",
     "r3tx41aayc6c7qyq4gdi7e3cg",
     "vaxsntp2nm7a5aj0nkxyatv20",
@@ -35527,6 +38406,8 @@
     "umxkmkikwok0ytc5fmioyxcby",
     "ersemx0fvwaln1nml2nnhj373",
     "qmqxh8ogq0diqsqer4l49x8cx",
+    "qsjzefwpy9jozozqnm4habiu6",
+    "noe9wyixucgs0rxg3ee08np6l",
     "kx0khiq9ryemdgyjuj8bt7wq3",
     "gecwh35c6uw2eduv37cs7w6y9",
     "m1flphou3b3kggq4immlsqvks",
@@ -35661,19 +38542,19 @@
   ],
   "researchAttention": {
     "ruleVersion": "research-source-heat-v1-168h-halflife24h",
-    "computedAt": "2026-10-11T15:02:07.837Z",
+    "computedAt": "2026-10-12T01:33:22.940Z",
     "windowHours": 168,
     "halfLifeHours": 24,
     "minSources": 2,
-    "publicItems": 525,
-    "qualifyingResearch": 22,
+    "publicItems": 542,
+    "qualifyingResearch": 19,
     "recent48hResearch": 0,
     "entries": [
       {
         "rank": 1,
         "itemId": "hanixmufefm7910t9gu3yxdtd",
         "title": "BrickBench：评测智能体的 LEGO 套装设计能力",
-        "heat": 3.2,
+        "heat": 2.4,
         "sourceCount": 2,
         "signals": [
           {
@@ -35696,7 +38577,7 @@
         "rank": 2,
         "itemId": "pfb19fjdhuc9ceu3zffr6j8re",
         "title": "FreeMatching 研究提出超越时空先验的可泛化稠密对应匹配框架",
-        "heat": 3.2,
+        "heat": 2.4,
         "sourceCount": 2,
         "signals": [
           {
@@ -35719,7 +38600,7 @@
         "rank": 3,
         "itemId": "a3h7f3a96xpi9ovv9z7svq67x",
         "title": "U-Space 探索语言模型不确定性的产生时机与原因",
-        "heat": 2.4,
+        "heat": 1.8,
         "sourceCount": 2,
         "signals": [
           {
@@ -35742,7 +38623,7 @@
         "rank": 4,
         "itemId": "d4fbqcijmcfvz1y4h84gbv0bf",
         "title": "RoboQuest 评测通用具身智能体的搜索、检查与测试能力",
-        "heat": 1.6,
+        "heat": 1.2,
         "sourceCount": 2,
         "signals": [
           {
@@ -35765,7 +38646,7 @@
         "rank": 5,
         "itemId": "i7muy0v37pqmz91o1fu6cvgvg",
         "title": "RunningTab 通过环境侧任务记录支持直接工作区交互",
-        "heat": 1.6,
+        "heat": 1.2,
         "sourceCount": 2,
         "signals": [
           {
@@ -35788,7 +38669,7 @@
         "rank": 6,
         "itemId": "ktw346scru68s2ds73u0zt2ut",
         "title": "RobotWorld：评测多模态智能体在多种任务与机器人形态下的操控能力",
-        "heat": 1.6,
+        "heat": 1.2,
         "sourceCount": 2,
         "signals": [
           {
@@ -35811,7 +38692,7 @@
         "rank": 7,
         "itemId": "p32idmaka1eja0j8uavcenluo",
         "title": "SQAM 提出基于标量伴随匹配的 Q-learning 方法",
-        "heat": 1.6,
+        "heat": 1.2,
         "sourceCount": 2,
         "signals": [
           {
@@ -35834,7 +38715,7 @@
         "rank": 8,
         "itemId": "rty4i3a2lmzo0nsy4l5oov1mo",
         "title": "CADFather：通过协同工具调用实现自主 CAD 重建",
-        "heat": 1.6,
+        "heat": 1.2,
         "sourceCount": 2,
         "signals": [
           {
@@ -35857,7 +38738,7 @@
         "rank": 9,
         "itemId": "w69nx656ffa43fx3aj726gxjj",
         "title": "Long-WAM 提出实时控制约束下的世界动作模型上下文扩展框架",
-        "heat": 1.6,
+        "heat": 1.2,
         "sourceCount": 2,
         "signals": [
           {
@@ -35880,7 +38761,7 @@
         "rank": 10,
         "itemId": "b7dlmapuxp2ni3ox7d66s2c78",
         "title": "Oracle 计算研究提出统一描述 Agent 与 Workflow 的抽象机",
-        "heat": 1.2,
+        "heat": 0.9,
         "sourceCount": 2,
         "signals": [
           {
