@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-12T01:33:22.940Z",
+  "generatedAt": "2026-10-12T04:15:21.618Z",
   "publicBaseUrl": "https://catl-21clab-sciagi.github.io/algorithmhot/",
   "mode": "static-snapshot",
   "scope": "公开科研动态、精选研究、研究主题，以及日报、周报和月报归档",
@@ -330,6 +330,59 @@
       "selected": true
     },
     {
+      "id": "k10g87qk5f6baxinos31ypjnx",
+      "title": "论文提出基于输出Betti数的神经网络拓扑表达能力界",
+      "originalTitle": "Constructive Bounds for the Topological Expressivity of Neural Networks",
+      "summary": "根据当前材料，论文以神经网络输出的Betti数刻画拓扑表达能力，给出ReLU网络表达楔和球面乘积空间的构造上界，并提出球面情形的更强紧界猜想。",
+      "reason": "论文将拓扑表达能力从分类决策边界扩展到网络输出，并给出 ReLU 架构构造界与球面情形的更强猜想；具体结论仍需结合完整论文核对。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.13931",
+      "publishedAt": "2026-10-09T17:55:33.000Z",
+      "timelineAt": "2026-10-12T02:54:23.108Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "arXiv"
+      ],
+      "research": {
+        "arxivId": "2610.13931",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-09T17:55:33.000Z",
+        "revisedAt": "2026-10-09T17:55:33.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-12T02:54:23.108Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-12",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.13931",
+            "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.13931v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.13931v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者将拓扑表达能力的刻画从分类决策边界的Betti数改为神经网络输出的Betti数，以覆盖回归等不依赖决策边界的问题，并构造ReLU网络表达特定同伦类型空间的架构上界。",
+        "applicableTasks": "资料支持用于分析ReLU神经网络对具有给定Betti数的楔和球面乘积空间的表达能力，适用于分类以外的拓扑表达能力研究；具体回归任务实例未知。",
+        "comparisonConditions": "作者报告了架构上界公式：任意连通Betti数序列对应的网络宽度和输出维度，以及由N个球面维度d_n给出的更紧界；未提供数据集、模型数量、硬件、运行时间或数值指标。",
+        "limitations": "当前仅有摘要材料，无法核对完整证明、适用条件或实验；摘要末尾的球面架构(d,d+1,d+1)是作者提出的更强紧界猜想，不是已证明结论；未见独立复现信息。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 2
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
       "materialsQuality": {
         "status": "JOURNAL_SCREENED",
         "domain": "hydrogen",
@@ -604,7 +657,7 @@
         "communitySelectedAt": null,
         "observedAt": "2026-10-09T08:18:53.805Z",
         "evidenceBasis": "abstract",
-        "announcedOn": "2026-10-09",
+        "announcedOn": "2026-10-12",
         "links": [
           {
             "kind": "paper",
@@ -3685,7 +3738,7 @@
         "communitySelectedAt": null,
         "observedAt": "2026-10-08T09:41:47.294Z",
         "evidenceBasis": "abstract",
-        "announcedOn": "2026-10-08",
+        "announcedOn": "2026-10-12",
         "links": [
           {
             "kind": "paper",
@@ -16457,7 +16510,7 @@
         "communitySelectedAt": "2026-10-07T00:00:00.000Z",
         "observedAt": "2026-10-07T04:31:42.045Z",
         "evidenceBasis": "abstract",
-        "announcedOn": "2026-10-07",
+        "announcedOn": "2026-10-12",
         "links": [
           {
             "kind": "paper",
@@ -17024,7 +17077,7 @@
         "communitySelectedAt": null,
         "observedAt": "2026-10-06T04:50:07.353Z",
         "evidenceBasis": "abstract",
-        "announcedOn": "2026-10-06",
+        "announcedOn": "2026-10-12",
         "links": [
           {
             "kind": "paper",
@@ -30689,10 +30742,11 @@
       "name": "算法",
       "group": "field",
       "definition": "AI/机器学习的训练、推理、优化、模型方法与理论进展。",
-      "total": 260,
-      "recent": 254,
-      "latestAt": "2026-10-08T17:59:50.000Z",
+      "total": 261,
+      "recent": 255,
+      "latestAt": "2026-10-09T17:55:33.000Z",
       "itemIds": [
+        "k10g87qk5f6baxinos31ypjnx",
         "r9o3pcnhkravka8hdyts5j6bs",
         "flzdt4vyj848qw5q9pw37po2m",
         "d1urz9t0uy50qxyqtdeul5kk7",
@@ -31474,13 +31528,14 @@
       "name": "论文研究",
       "group": "genre",
       "definition": "论文与技术报告，明确摘要依据、作者主张和证据限制。",
-      "total": 310,
-      "recent": 304,
+      "total": 311,
+      "recent": 305,
       "latestAt": "2026-10-11T12:34:23.610Z",
       "itemIds": [
         "vzts1o949ft66h47tym3tyux6",
         "pmemcl0rmz92kfe6jyxb8vf0u",
         "kpgbgy1li7qq1lie3jaj5w1wk",
+        "k10g87qk5f6baxinos31ypjnx",
         "s3yc1gka8o90s8cbj0umck0t6",
         "p2rgy0o4c07m7y6dl6z3wlyj1",
         "epsa4dil6hx06nv8iuaiirzsr",
@@ -38003,6 +38058,7 @@
     "vzts1o949ft66h47tym3tyux6",
     "pmemcl0rmz92kfe6jyxb8vf0u",
     "kpgbgy1li7qq1lie3jaj5w1wk",
+    "k10g87qk5f6baxinos31ypjnx",
     "s3yc1gka8o90s8cbj0umck0t6",
     "p2rgy0o4c07m7y6dl6z3wlyj1",
     "epsa4dil6hx06nv8iuaiirzsr",
@@ -38542,19 +38598,42 @@
   ],
   "researchAttention": {
     "ruleVersion": "research-source-heat-v1-168h-halflife24h",
-    "computedAt": "2026-10-12T01:33:22.940Z",
+    "computedAt": "2026-10-12T04:15:21.618Z",
     "windowHours": 168,
     "halfLifeHours": 24,
     "minSources": 2,
-    "publicItems": 542,
+    "publicItems": 543,
     "qualifyingResearch": 19,
     "recent48hResearch": 0,
     "entries": [
       {
         "rank": 1,
+        "itemId": "vaxsntp2nm7a5aj0nkxyatv20",
+        "title": "TRIAGE 以方向感知方法稳定原生 NVFP4 强化学习",
+        "heat": 9.1,
+        "sourceCount": 2,
+        "signals": [
+          {
+            "source": "arXiv",
+            "url": "https://arxiv.org/abs/2610.07043",
+            "at": "2026-10-12T00:00:00.000Z",
+            "kind": "announcement",
+            "precision": "day"
+          },
+          {
+            "source": "Hugging Face Daily Papers",
+            "url": "https://huggingface.co/papers/2610.07043",
+            "at": "2026-10-07T00:00:00.000Z",
+            "kind": "community",
+            "precision": "timestamp"
+          }
+        ]
+      },
+      {
+        "rank": 2,
         "itemId": "hanixmufefm7910t9gu3yxdtd",
         "title": "BrickBench：评测智能体的 LEGO 套装设计能力",
-        "heat": 2.4,
+        "heat": 2.2,
         "sourceCount": 2,
         "signals": [
           {
@@ -38574,10 +38653,10 @@
         ]
       },
       {
-        "rank": 2,
+        "rank": 3,
         "itemId": "pfb19fjdhuc9ceu3zffr6j8re",
         "title": "FreeMatching 研究提出超越时空先验的可泛化稠密对应匹配框架",
-        "heat": 2.4,
+        "heat": 2.2,
         "sourceCount": 2,
         "signals": [
           {
@@ -38597,10 +38676,10 @@
         ]
       },
       {
-        "rank": 3,
+        "rank": 4,
         "itemId": "a3h7f3a96xpi9ovv9z7svq67x",
         "title": "U-Space 探索语言模型不确定性的产生时机与原因",
-        "heat": 1.8,
+        "heat": 1.7,
         "sourceCount": 2,
         "signals": [
           {
@@ -38620,10 +38699,10 @@
         ]
       },
       {
-        "rank": 4,
+        "rank": 5,
         "itemId": "d4fbqcijmcfvz1y4h84gbv0bf",
         "title": "RoboQuest 评测通用具身智能体的搜索、检查与测试能力",
-        "heat": 1.2,
+        "heat": 1.1,
         "sourceCount": 2,
         "signals": [
           {
@@ -38643,10 +38722,10 @@
         ]
       },
       {
-        "rank": 5,
+        "rank": 6,
         "itemId": "i7muy0v37pqmz91o1fu6cvgvg",
         "title": "RunningTab 通过环境侧任务记录支持直接工作区交互",
-        "heat": 1.2,
+        "heat": 1.1,
         "sourceCount": 2,
         "signals": [
           {
@@ -38666,10 +38745,10 @@
         ]
       },
       {
-        "rank": 6,
+        "rank": 7,
         "itemId": "ktw346scru68s2ds73u0zt2ut",
         "title": "RobotWorld：评测多模态智能体在多种任务与机器人形态下的操控能力",
-        "heat": 1.2,
+        "heat": 1.1,
         "sourceCount": 2,
         "signals": [
           {
@@ -38689,10 +38768,10 @@
         ]
       },
       {
-        "rank": 7,
+        "rank": 8,
         "itemId": "p32idmaka1eja0j8uavcenluo",
         "title": "SQAM 提出基于标量伴随匹配的 Q-learning 方法",
-        "heat": 1.2,
+        "heat": 1.1,
         "sourceCount": 2,
         "signals": [
           {
@@ -38712,10 +38791,10 @@
         ]
       },
       {
-        "rank": 8,
+        "rank": 9,
         "itemId": "rty4i3a2lmzo0nsy4l5oov1mo",
         "title": "CADFather：通过协同工具调用实现自主 CAD 重建",
-        "heat": 1.2,
+        "heat": 1.1,
         "sourceCount": 2,
         "signals": [
           {
@@ -38735,10 +38814,10 @@
         ]
       },
       {
-        "rank": 9,
+        "rank": 10,
         "itemId": "w69nx656ffa43fx3aj726gxjj",
         "title": "Long-WAM 提出实时控制约束下的世界动作模型上下文扩展框架",
-        "heat": 1.2,
+        "heat": 1.1,
         "sourceCount": 2,
         "signals": [
           {
@@ -38752,29 +38831,6 @@
             "source": "Hugging Face Daily Papers",
             "url": "https://huggingface.co/papers/2610.10528",
             "at": "2026-10-08T00:00:00.000Z",
-            "kind": "community",
-            "precision": "timestamp"
-          }
-        ]
-      },
-      {
-        "rank": 10,
-        "itemId": "b7dlmapuxp2ni3ox7d66s2c78",
-        "title": "Oracle 计算研究提出统一描述 Agent 与 Workflow 的抽象机",
-        "heat": 0.9,
-        "sourceCount": 2,
-        "signals": [
-          {
-            "source": "arXiv",
-            "url": "https://arxiv.org/abs/2610.09243",
-            "at": "2026-10-08T00:00:00.000Z",
-            "kind": "announcement",
-            "precision": "day"
-          },
-          {
-            "source": "Hugging Face Daily Papers",
-            "url": "https://huggingface.co/papers/2610.09243",
-            "at": "2026-10-07T00:00:00.000Z",
             "kind": "community",
             "precision": "timestamp"
           }
