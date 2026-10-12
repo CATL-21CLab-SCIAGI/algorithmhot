@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-12T04:15:21.618Z",
+  "generatedAt": "2026-10-12T09:58:58.479Z",
   "publicBaseUrl": "https://catl-21clab-sciagi.github.io/algorithmhot/",
   "mode": "static-snapshot",
   "scope": "公开科研动态、精选研究、研究主题，以及日报、周报和月报归档",
@@ -381,6 +381,172 @@
       },
       "researchRoadmap": null,
       "selected": true
+    },
+    {
+      "id": "ykk2odpr9zl0pn27aku6veqo3",
+      "title": "研究报告多种约束非光滑非凸随机优化设置下的最优算法",
+      "originalTitle": "Optimal Algorithms for Nonsmooth Nonconvex Stochastic Optimization with Constraints",
+      "summary": "Gon Buzaglo 的研究提出面向凸约束集合的非光滑非凸随机优化算法，并报告若干设置下的最优收敛率。基于摘要，算法寻找 $(δ,\\varepsilon)$-Goldstein 驻点，将问题归约为在线线性优化，涵盖投影与无投影方法。",
+      "reason": "将约束与非光滑条件放在同一复杂度框架中，有助于比较投影和无投影方法的理论代价与可迁移分析思路。",
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.13787",
+      "publishedAt": "2026-10-09T16:04:13.000Z",
+      "timelineAt": "2026-10-12T02:54:23.108Z",
+      "category": "algorithm",
+      "tags": [
+        "论文/研究",
+        "算法",
+        "arXiv"
+      ],
+      "research": {
+        "arxivId": "2610.13787",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-09T16:04:13.000Z",
+        "revisedAt": "2026-10-09T16:04:13.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-12T02:54:23.108Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-12",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.13787",
+            "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.13787v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.13787v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "基于摘要，作者针对目标函数非光滑且非凸、可行集合为凸集的随机优化问题，提出投影与无投影算法，以寻找 Liu 等人于 2024 年为约束问题定义的 $(δ,\\varepsilon)$-Goldstein 驻点。分析将问题归约为在线线性优化，把已有无约束优化中的相关技术扩展到约束情形；作者报告在若干设置下改进复杂度并达到最优收敛率。",
+        "applicableTasks": "当前资料支持的对象是凸约束集合上的非光滑非凸随机优化，涵盖可使用随机梯度的设置及采用零阶查询的设置。作者还指出，以 Frank-Wolfe 间隙表述的下界对光滑问题也成立。具体数据集、机器学习模型、科学应用任务与实验规模未知，当前摘要未提供；不能据此声称已在某一训练或科学任务中验证。",
+        "comparisonConditions": "作者报告，使用随机梯度时，投影与无投影算法达到 $\\widetilde O(δ^{-1}\\varepsilon^{-3})$ 的复杂度，并称该速率最优；使用零阶查询时达到 $\\widetilde O(dδ^{-1}\\varepsilon^{-3})$，其中 d 为维度，作者明确声称其对 d 的依赖最优且改进既有工作。两类查询条件不同，不能合并成同一实测性能指标。下界以 Frank-Wolfe 间隙表述，并在光滑问题中仍成立；作者据此报告在所研究的非凸随机优化设置中，约束与非光滑性不劣化该收敛率。比较针对理论复杂度，摘要没有给出既有工作对应的完整速率表、具体基线算法、隐藏常数与对数因子，也没有数据或模型数量、硬件、运行时、重复次数或经验实验结果；这些设置均未知。",
+        "limitations": "证据仅为摘要，未核对全文、定理证明或独立复现。非光滑、非凸目标及凸约束集合是当前明确给出的范围，但具体定理的完整假设、查询模型细节和不同设置的适用条件未提供。随机梯度速率最优、零阶速率在维度依赖上最优，以及约束和非光滑性不劣化速率，均是作者报告，不能扩大为未列明设置下的已验证结论。摘要未提供代码、数据、权重、许可证或实践验证信息；未提供不等于研究本身不存在这些内容。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 2
+      },
+      "researchRoadmap": null,
+      "selected": true
+    },
+    {
+      "id": "kn2e61fj6tks7etmq7qm5r6r7",
+      "title": "研究报告离散图扩散模型存在条件记忆",
+      "originalTitle": "Your Discrete Graph Diffusion Model is Secretly Memorizing",
+      "summary": "该研究报告，离散图扩散模型在双块随机块模型实验中会出现生成样本相似度指标未能揭示的条件记忆。根据当前材料，研究关注无节点特征的无条件图生成，通过比较由加噪训练图和留出测试图出发的反向扩散轨迹，发现模型对训练图的重建近乎完美，且这种偏向伴随训练损失下降、测试损失恶化。",
+      "reason": null,
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.13786",
+      "publishedAt": "2026-10-09T16:04:06.000Z",
+      "timelineAt": "2026-10-12T02:54:23.108Z",
+      "category": "ai4ai",
+      "tags": [
+        "论文/研究",
+        "AI4AI",
+        "算法",
+        "数据/训练"
+      ],
+      "research": {
+        "arxivId": "2610.13786",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-09T16:04:06.000Z",
+        "revisedAt": "2026-10-09T16:04:06.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-12T02:54:23.108Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-12",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.13786",
+            "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.13786",
+            "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.13786v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.13786v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者把记忆诊断从生成样本层面的相似度转向反向扩散轨迹，比较模型从加噪训练图与留出测试图出发时的恢复行为。作者将模型对训练图的强恢复偏向称为条件记忆，因为该现象依赖于以加噪训练图为条件的反向轨迹，而在通常的生成推理中并不明显。当前摘要描述了诊断方式与观察结果，未提供消除记忆的新训练算法。",
+        "applicableTasks": "资料支持的任务是离散图扩散模型的训练集记忆与泛化诊断。摘要讨论无节点特征的无条件图生成及等变去噪器，具体研究采用双块随机块模型（SBM）图，并考察不同节点规模下的反向扩散轨迹和生成社区结构。适用证据限于所述图生成设置；当前资料未给出真实图数据、带节点特征的图或其他生成模型上的验证。",
+        "comparisonConditions": "作者报告，在双块SBM实验中，相较于留出测试图，模型能近乎完美地恢复加噪训练图。文中将这一轨迹级差异与生成样本层面的边重叠、WL核相似度未发现记忆证据的情况作对照，并报告训练损失继续改善而留出图损失恶化的泛化差距。作者还报告，在所有测试的节点规模下，记忆出现均早于生成图中社区结构的形成，因此记忆发生之前的检查点只生成缺乏结构的图，早停未能缓解这一问题。“双块”是SBM的块数，“所有测试节点规模”仅指作者所测范围，不能理解为任意图规模。节点数及测试规模数量、训练与测试图数量、具体架构、噪声强度与调度、训练轮数、重复次数、硬件和计算开销均未知，当前摘要未提供；重建误差、相似度、训练和测试损失的具体数值及不确定性也未知。",
+        "limitations": "证据基础仅为摘要，未核对全文，也没有独立复现结果。所述条件记忆是作者在双块SBM实验中的报告，不等于已经在普通无条件生成输出中观察到训练图复制，更不能直接推及所有图扩散模型或真实科学图数据。作者明确报告早停无法在其测试设置中兼顾避免记忆与形成社区结构；摘要未提供该结论在其他模型、图分布或训练策略下的适用边界。代码、权重、数据入口、许可和独立验证状态均未知，当前资料未提供。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": false
+    },
+    {
+      "id": "jjly22wn5mf46qqhro8ssr6fy",
+      "title": "UkrMeme研究乌克兰语模因中的多模态可解释说服识别",
+      "originalTitle": "UkrMeme: Multimodal Explainable Persuasion Detection in Ukrainian Memes",
+      "summary": "UkrMeme研究提出包含200条乌克兰战时模因的数据集，并评测视觉语言模型对说服技巧的识别。基于摘要，作者另将Propaganda 950基准的一个子集译为乌克兰语构成PTM-UA，保留原图像内容，以层级F1比较零样本提示下的图像、文本和多模态输入。研究还比较逐层相关性传播（LRP）与模型生成的token归因；摘要未给出具体模型、性能数值或代码和数据链接。",
+      "reason": null,
+      "sourceName": "arXiv · AI 与机器学习",
+      "sourceUrl": "https://arxiv.org/abs/2610.13783",
+      "publishedAt": "2026-10-09T16:03:27.000Z",
+      "timelineAt": "2026-10-12T02:54:27.967Z",
+      "category": "ai4ai",
+      "tags": [
+        "论文/研究",
+        "AI4AI",
+        "多模态",
+        "数据/训练"
+      ],
+      "research": {
+        "arxivId": "2610.13783",
+        "arxivVersion": "v1",
+        "arxivVersions": [
+          "v1"
+        ],
+        "doi": null,
+        "originalPublishedAt": "2026-10-09T16:03:27.000Z",
+        "revisedAt": "2026-10-09T16:03:27.000Z",
+        "communitySelectedAt": null,
+        "observedAt": "2026-10-12T02:54:27.967Z",
+        "evidenceBasis": "abstract",
+        "announcedOn": "2026-10-12",
+        "links": [
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.13783",
+            "sourceUrl": "https://arxiv.org/list/cs.AI/new?skip=0&show=500"
+          },
+          {
+            "kind": "paper",
+            "url": "https://arxiv.org/abs/2610.13783v1",
+            "sourceUrl": "https://arxiv.org/abs/2610.13783v1"
+          }
+        ]
+      },
+      "researchBrief": {
+        "methodChange": "作者构建用于乌克兰语模因说服技巧识别的UkrMeme数据集，并将Propaganda 950基准的一个子集翻译为PTM-UA，保留原始图像而翻译模因文本；另比较两类解释方法对证据语义类别的关注。",
+        "applicableTasks": "当前摘要支持乌克兰战时模因中的说服技巧识别，以及视觉语言模型在图像、文本和多模态输入下的零样本评测与归因分析。UkrMeme包含200条自然产生的乌克兰战时模因，标注内容为说服技巧。",
+        "comparisonConditions": "作者报告在零样本提示设置下比较图像、文本和多模态输入，使用层级F1指标；解释方法比较逐层相关性传播（LRP）与模型生成的token归因。UkrMeme的规模为200条；PTM-UA来自Propaganda 950基准的一个子集，其实际条数未知，950不能当作该译文子集的样本量。模型名称与数量、提示细节、数据划分、硬件与计算设置、各条件F1数值和解释方法的量化结果均未在摘要中提供。",
+        "limitations": "仅依据摘要，未核对全文。摘要未给出可判断具体性能差异的结果、误差或统计检验，也未提供标注一致性、代码、数据获取方式或独立复现信息。上述信息缺失不表示研究本身没有相关内容；当前材料不足以据此判断跨语言、跨领域的泛化能力或两种解释方法的优劣。",
+        "evidenceBasis": "abstract",
+        "sourceRevision": 1
+      },
+      "researchRoadmap": null,
+      "selected": false
     },
     {
       "materialsQuality": {
@@ -30742,11 +30908,12 @@
       "name": "算法",
       "group": "field",
       "definition": "AI/机器学习的训练、推理、优化、模型方法与理论进展。",
-      "total": 261,
-      "recent": 255,
+      "total": 262,
+      "recent": 256,
       "latestAt": "2026-10-09T17:55:33.000Z",
       "itemIds": [
         "k10g87qk5f6baxinos31ypjnx",
+        "ykk2odpr9zl0pn27aku6veqo3",
         "r9o3pcnhkravka8hdyts5j6bs",
         "flzdt4vyj848qw5q9pw37po2m",
         "d1urz9t0uy50qxyqtdeul5kk7",
@@ -31528,14 +31695,15 @@
       "name": "论文研究",
       "group": "genre",
       "definition": "论文与技术报告，明确摘要依据、作者主张和证据限制。",
-      "total": 311,
-      "recent": 305,
+      "total": 312,
+      "recent": 306,
       "latestAt": "2026-10-11T12:34:23.610Z",
       "itemIds": [
         "vzts1o949ft66h47tym3tyux6",
         "pmemcl0rmz92kfe6jyxb8vf0u",
         "kpgbgy1li7qq1lie3jaj5w1wk",
         "k10g87qk5f6baxinos31ypjnx",
+        "ykk2odpr9zl0pn27aku6veqo3",
         "s3yc1gka8o90s8cbj0umck0t6",
         "p2rgy0o4c07m7y6dl6z3wlyj1",
         "epsa4dil6hx06nv8iuaiirzsr",
@@ -31921,14 +32089,14 @@
       "issueNumber": 8,
       "title": "本期处理尚有缺口",
       "windowStart": "2026-10-11T16:00:00.000Z",
-      "windowEnd": "2026-10-12T01:08:17.915Z",
-      "generatedAt": "2026-10-12T01:33:22.362Z",
-      "revision": 1,
+      "windowEnd": "2026-10-12T08:14:46.511Z",
+      "generatedAt": "2026-10-12T09:58:57.795Z",
+      "revision": 2,
       "lead": {
         "title": "本期处理尚有缺口",
-        "leadParagraph": "未形成完整精选结果：10 次共享模型预算的请求结果未知，未自动重发；来源处理窗口用于有界补查迟到资料；日报仅按本日原始发表日期归档，处理窗口外的来源覆盖尚未核验。。"
+        "leadParagraph": "未形成完整精选结果：2 条资料处理失败；35 条模型请求结果未知；45 次共享模型预算的请求结果未知，未自动重发；35 条资料因历史未知请求已隔离，未重发；其他未提交资料独立处理；2 条资料因历史失败已隔离，未自动重试；来源处理窗口用于有界补查迟到资料；日报仅按本日原始发表日期归档，处理窗口外的来源覆盖尚未核验。。"
       },
-      "overview": "未形成完整精选结果：10 次共享模型预算的请求结果未知，未自动重发；来源处理窗口用于有界补查迟到资料；日报仅按本日原始发表日期归档，处理窗口外的来源覆盖尚未核验。。",
+      "overview": "未形成完整精选结果：2 条资料处理失败；35 条模型请求结果未知；45 次共享模型预算的请求结果未知，未自动重发；35 条资料因历史未知请求已隔离，未重发；其他未提交资料独立处理；2 条资料因历史失败已隔离，未自动重试；来源处理窗口用于有界补查迟到资料；日报仅按本日原始发表日期归档，处理窗口外的来源覆盖尚未核验。。",
       "sections": [
         {
           "label": "算法",
@@ -31952,20 +32120,20 @@
         }
       ],
       "metrics": {
-        "failed": 0,
-        "parsed": 1233,
-        "passed": 0,
-        "stored": 182,
-        "blocked": 0,
+        "failed": 2,
+        "parsed": 1031,
+        "passed": 4,
+        "stored": 902,
+        "blocked": 2,
         "pending": 0,
-        "signals": 72,
-        "admitted": 0,
-        "inWindow": 0,
-        "returned": 1233,
-        "selected": 0,
-        "processed": 0,
+        "signals": 109,
+        "admitted": 43,
+        "inWindow": 80,
+        "returned": 1031,
+        "selected": 2,
+        "processed": 6,
         "published": 0,
-        "briefReady": 0,
+        "briefReady": 4,
         "notAdmitted": 0,
         "totalEvents": 0,
         "briefPending": 0,
@@ -31973,41 +32141,45 @@
         "sourcesCount": 0,
         "figureMissing": 0,
         "newlyAdmitted": 0,
-        "outsideWindow": 182,
+        "outsideWindow": 822,
         "parseRejected": 0,
         "selectedCount": 0,
         "sourcesFailed": 0,
         "displayOmitted": 0,
         "failedRequests": 0,
         "sourcesPlanned": 6,
-        "unknownOutcome": 0,
+        "unknownOutcome": 35,
         "decisionUnknown": 0,
         "sourcesDeferred": 0,
         "sourcesObserved": 6,
-        "unlinkedSignals": 72,
+        "unlinkedSignals": 100,
         "verifiedFigures": 0,
         "deferredRequests": 0,
-        "duplicateRecords": 0,
+        "duplicateRecords": 129,
         "figureCandidates": 0,
         "sourcesSucceeded": 6,
         "figureUnavailable": 0,
-        "quarantinedFailed": 0,
+        "quarantinedFailed": 2,
         "truncatedRequests": 0,
-        "previouslyAdmitted": 0,
-        "quarantinedUnknown": 0,
-        "healthyEmptySources": 6,
+        "previouslyAdmitted": 43,
+        "quarantinedUnknown": 35,
+        "healthyEmptySources": 3,
         "figureReviewRequired": 0,
-        "modelRequestsUnknown": 10,
+        "modelRequestsUnknown": 45,
         "selectedWithoutBrief": 0,
-        "duplicateRecordsExact": 1,
-        "excludedSourceRecords": 1051,
+        "duplicateRecordsExact": 0,
+        "excludedSourceRecords": 0,
         "persistenceUnreconciled": 0,
-        "duplicateRecordsLowerBound": 0,
+        "duplicateRecordsLowerBound": 129,
         "figureCandidatesUninspected": 0
       },
       "status": "partial",
       "gaps": [
-        "10 次共享模型预算的请求结果未知，未自动重发",
+        "2 条资料处理失败",
+        "35 条模型请求结果未知",
+        "45 次共享模型预算的请求结果未知，未自动重发",
+        "35 条资料因历史未知请求已隔离，未重发；其他未提交资料独立处理",
+        "2 条资料因历史失败已隔离，未自动重试",
         "来源处理窗口用于有界补查迟到资料；日报仅按本日原始发表日期归档，处理窗口外的来源覆盖尚未核验。"
       ]
     },
@@ -33815,21 +33987,112 @@
       "kind": "daily",
       "key": "2026-10-10",
       "issueNumber": 6,
-      "title": "研究报告 V─O─Ti 桥键极性促进钒基氟磷酸盐中的 Na+ 迁移与快速储钠",
+      "title": "论文提出基于输出Betti数的神经网络拓扑表达能力界",
       "windowStart": "2026-10-09T16:00:00.000Z",
       "windowEnd": "2026-10-10T16:00:00.000Z",
-      "generatedAt": "2026-10-11T13:26:49.039Z",
-      "revision": 4,
+      "generatedAt": "2026-10-12T09:58:57.732Z",
+      "revision": 5,
       "lead": {
-        "title": "研究报告 V─O─Ti 桥键极性促进钒基氟磷酸盐中的 Na+ 迁移与快速储钠",
-        "leadParagraph": "基于摘要，该研究提出通过 Ti4+ 掺杂引入极性 V─O─Ti 桥键，促进钒基氟磷酸盐正极中的 Na+ 迁移与快速储钠。作者将性能改善归因于 V 电子结构调整及桥氧位移引起的一维、二维 Na+ 传输通道拓宽，报告 Na3V1.92Ti0.08O(PO4)2F2 在 0.1C 和 50C 下的容量分别为 121.8 和 62.1 mA h g −1。\n\n同时关注：研究报告 Pd/CFO 可通过金属–载体磁相互作用克服锂–氧电池氧化还原自旋势垒；研究报告铯诱导 FeOOH 助催化剂重构，提升钒酸铋光阳极水氧化活性与稳定性。"
+        "title": "论文提出基于输出Betti数的神经网络拓扑表达能力界",
+        "leadParagraph": "根据当前材料，论文以神经网络输出的Betti数刻画拓扑表达能力，给出ReLU网络表达楔和球面乘积空间的构造上界，并提出球面情形的更强紧界猜想。\n\n同时关注：研究报告多种约束非光滑非凸随机优化设置下的最优算法；研究报告 V─O─Ti 桥键极性促进钒基氟磷酸盐中的 Na+ 迁移与快速储钠。"
       },
-      "overview": "基于摘要，该研究提出通过 Ti4+ 掺杂引入极性 V─O─Ti 桥键，促进钒基氟磷酸盐正极中的 Na+ 迁移与快速储钠。作者将性能改善归因于 V 电子结构调整及桥氧位移引起的一维、二维 Na+ 传输通道拓宽，报告 Na3V1.92Ti0.08O(PO4)2F2 在 0.1C 和 50C 下的容量分别为 121.8 和 62.1 mA h g −1。\n\n同时关注：研究报告 Pd/CFO 可通过金属–载体磁相互作用克服锂–氧电池氧化还原自旋势垒；研究报告铯诱导 FeOOH 助催化剂重构，提升钒酸铋光阳极水氧化活性与稳定性。",
+      "overview": "根据当前材料，论文以神经网络输出的Betti数刻画拓扑表达能力，给出ReLU网络表达楔和球面乘积空间的构造上界，并提出球面情形的更强紧界猜想。\n\n同时关注：研究报告多种约束非光滑非凸随机优化设置下的最优算法；研究报告 V─O─Ti 桥键极性促进钒基氟磷酸盐中的 Na+ 迁移与快速储钠。",
       "sections": [
         {
           "label": "算法",
           "summary": null,
-          "items": []
+          "items": [
+            {
+              "itemId": "k10g87qk5f6baxinos31ypjnx",
+              "title": "论文提出基于输出Betti数的神经网络拓扑表达能力界",
+              "summary": "根据当前材料，论文以神经网络输出的Betti数刻画拓扑表达能力，给出ReLU网络表达楔和球面乘积空间的构造上界，并提出球面情形的更强紧界猜想。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.13931",
+              "publishedAt": "2026-10-09T17:55:33.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.13931",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-09T17:55:33.000Z",
+                "revisedAt": "2026-10-09T17:55:33.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-12T02:54:23.108Z",
+                "evidenceBasis": "abstract",
+                "announcedOn": "2026-10-12",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.13931",
+                    "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.13931v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.13931v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "作者将拓扑表达能力的刻画从分类决策边界的Betti数改为神经网络输出的Betti数，以覆盖回归等不依赖决策边界的问题，并构造ReLU网络表达特定同伦类型空间的架构上界。",
+                "applicableTasks": "资料支持用于分析ReLU神经网络对具有给定Betti数的楔和球面乘积空间的表达能力，适用于分类以外的拓扑表达能力研究；具体回归任务实例未知。",
+                "comparisonConditions": "作者报告了架构上界公式：任意连通Betti数序列对应的网络宽度和输出维度，以及由N个球面维度d_n给出的更紧界；未提供数据集、模型数量、硬件、运行时间或数值指标。",
+                "limitations": "当前仅有摘要材料，无法核对完整证明、适用条件或实验；摘要末尾的球面架构(d,d+1,d+1)是作者提出的更强紧界猜想，不是已证明结论；未见独立复现信息。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 2
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            },
+            {
+              "itemId": "ykk2odpr9zl0pn27aku6veqo3",
+              "title": "研究报告多种约束非光滑非凸随机优化设置下的最优算法",
+              "summary": "Gon Buzaglo 的研究提出面向凸约束集合的非光滑非凸随机优化算法，并报告若干设置下的最优收敛率。基于摘要，算法寻找 $(δ,\\varepsilon)$-Goldstein 驻点，将问题归约为在线线性优化，涵盖投影与无投影方法。",
+              "sourceName": "arXiv · AI 与机器学习",
+              "sourceUrl": "https://arxiv.org/abs/2610.13787",
+              "publishedAt": "2026-10-09T16:04:13.000Z",
+              "available": true,
+              "research": {
+                "arxivId": "2610.13787",
+                "arxivVersion": "v1",
+                "arxivVersions": [
+                  "v1"
+                ],
+                "doi": null,
+                "originalPublishedAt": "2026-10-09T16:04:13.000Z",
+                "revisedAt": "2026-10-09T16:04:13.000Z",
+                "communitySelectedAt": null,
+                "observedAt": "2026-10-12T02:54:23.108Z",
+                "evidenceBasis": "abstract",
+                "announcedOn": "2026-10-12",
+                "links": [
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.13787",
+                    "sourceUrl": "https://arxiv.org/list/cs.LG/new?skip=0&show=500"
+                  },
+                  {
+                    "kind": "paper",
+                    "url": "https://arxiv.org/abs/2610.13787v1",
+                    "sourceUrl": "https://arxiv.org/abs/2610.13787v1"
+                  }
+                ]
+              },
+              "researchBrief": {
+                "methodChange": "基于摘要，作者针对目标函数非光滑且非凸、可行集合为凸集的随机优化问题，提出投影与无投影算法，以寻找 Liu 等人于 2024 年为约束问题定义的 $(δ,\\varepsilon)$-Goldstein 驻点。分析将问题归约为在线线性优化，把已有无约束优化中的相关技术扩展到约束情形；作者报告在若干设置下改进复杂度并达到最优收敛率。",
+                "applicableTasks": "当前资料支持的对象是凸约束集合上的非光滑非凸随机优化，涵盖可使用随机梯度的设置及采用零阶查询的设置。作者还指出，以 Frank-Wolfe 间隙表述的下界对光滑问题也成立。具体数据集、机器学习模型、科学应用任务与实验规模未知，当前摘要未提供；不能据此声称已在某一训练或科学任务中验证。",
+                "comparisonConditions": "作者报告，使用随机梯度时，投影与无投影算法达到 $\\widetilde O(δ^{-1}\\varepsilon^{-3})$ 的复杂度，并称该速率最优；使用零阶查询时达到 $\\widetilde O(dδ^{-1}\\varepsilon^{-3})$，其中 d 为维度，作者明确声称其对 d 的依赖最优且改进既有工作。两类查询条件不同，不能合并成同一实测性能指标。下界以 Frank-Wolfe 间隙表述，并在光滑问题中仍成立；作者据此报告在所研究的非凸随机优化设置中，约束与非光滑性不劣化该收敛率。比较针对理论复杂度，摘要没有给出既有工作对应的完整速率表、具体基线算法、隐藏常数与对数因子，也没有数据或模型数量、硬件、运行时、重复次数或经验实验结果；这些设置均未知。",
+                "limitations": "证据仅为摘要，未核对全文、定理证明或独立复现。非光滑、非凸目标及凸约束集合是当前明确给出的范围，但具体定理的完整假设、查询模型细节和不同设置的适用条件未提供。随机梯度速率最优、零阶速率在维度依赖上最优，以及约束和非光滑性不劣化速率，均是作者报告，不能扩大为未列明设置下的已验证结论。摘要未提供代码、数据、权重、许可证或实践验证信息；未提供不等于研究本身不存在这些内容。",
+                "evidenceBasis": "abstract",
+                "sourceRevision": 2
+              },
+              "researchRoadmap": null,
+              "paperFigure": null
+            }
+          ]
         },
         {
           "label": "AI4AI",
@@ -34018,16 +34281,16 @@
         "admitted": 0,
         "inWindow": 0,
         "returned": 1233,
-        "selected": 3,
+        "selected": 5,
         "processed": 0,
-        "published": 3,
+        "published": 5,
         "briefReady": 0,
         "notAdmitted": 0,
-        "totalEvents": 3,
+        "totalEvents": 5,
         "briefPending": 0,
-        "figureChecks": 3,
-        "sourcesCount": 2,
-        "figureMissing": 3,
+        "figureChecks": 5,
+        "sourcesCount": 3,
+        "figureMissing": 5,
         "newlyAdmitted": 0,
         "outsideWindow": 1079,
         "parseRejected": 0,
@@ -34042,7 +34305,7 @@
         "verifiedFigures": 0,
         "deferredRequests": 0,
         "duplicateRecords": 154,
-        "figureCandidates": 3,
+        "figureCandidates": 5,
         "sourcesSucceeded": 6,
         "figureUnavailable": 0,
         "quarantinedFailed": 0,
@@ -38059,6 +38322,9 @@
     "pmemcl0rmz92kfe6jyxb8vf0u",
     "kpgbgy1li7qq1lie3jaj5w1wk",
     "k10g87qk5f6baxinos31ypjnx",
+    "ykk2odpr9zl0pn27aku6veqo3",
+    "kn2e61fj6tks7etmq7qm5r6r7",
+    "jjly22wn5mf46qqhro8ssr6fy",
     "s3yc1gka8o90s8cbj0umck0t6",
     "p2rgy0o4c07m7y6dl6z3wlyj1",
     "epsa4dil6hx06nv8iuaiirzsr",
@@ -38598,11 +38864,11 @@
   ],
   "researchAttention": {
     "ruleVersion": "research-source-heat-v1-168h-halflife24h",
-    "computedAt": "2026-10-12T04:15:21.618Z",
+    "computedAt": "2026-10-12T09:58:58.479Z",
     "windowHours": 168,
     "halfLifeHours": 24,
     "minSources": 2,
-    "publicItems": 543,
+    "publicItems": 546,
     "qualifyingResearch": 19,
     "recent48hResearch": 0,
     "entries": [
@@ -38610,7 +38876,7 @@
         "rank": 1,
         "itemId": "vaxsntp2nm7a5aj0nkxyatv20",
         "title": "TRIAGE 以方向感知方法稳定原生 NVFP4 强化学习",
-        "heat": 9.1,
+        "heat": 7.7,
         "sourceCount": 2,
         "signals": [
           {
@@ -38633,7 +38899,7 @@
         "rank": 2,
         "itemId": "hanixmufefm7910t9gu3yxdtd",
         "title": "BrickBench：评测智能体的 LEGO 套装设计能力",
-        "heat": 2.2,
+        "heat": 1.9,
         "sourceCount": 2,
         "signals": [
           {
@@ -38656,7 +38922,7 @@
         "rank": 3,
         "itemId": "pfb19fjdhuc9ceu3zffr6j8re",
         "title": "FreeMatching 研究提出超越时空先验的可泛化稠密对应匹配框架",
-        "heat": 2.2,
+        "heat": 1.9,
         "sourceCount": 2,
         "signals": [
           {
@@ -38679,7 +38945,7 @@
         "rank": 4,
         "itemId": "a3h7f3a96xpi9ovv9z7svq67x",
         "title": "U-Space 探索语言模型不确定性的产生时机与原因",
-        "heat": 1.7,
+        "heat": 1.4,
         "sourceCount": 2,
         "signals": [
           {
@@ -38702,7 +38968,7 @@
         "rank": 5,
         "itemId": "d4fbqcijmcfvz1y4h84gbv0bf",
         "title": "RoboQuest 评测通用具身智能体的搜索、检查与测试能力",
-        "heat": 1.1,
+        "heat": 0.9,
         "sourceCount": 2,
         "signals": [
           {
@@ -38725,7 +38991,7 @@
         "rank": 6,
         "itemId": "i7muy0v37pqmz91o1fu6cvgvg",
         "title": "RunningTab 通过环境侧任务记录支持直接工作区交互",
-        "heat": 1.1,
+        "heat": 0.9,
         "sourceCount": 2,
         "signals": [
           {
@@ -38748,7 +39014,7 @@
         "rank": 7,
         "itemId": "ktw346scru68s2ds73u0zt2ut",
         "title": "RobotWorld：评测多模态智能体在多种任务与机器人形态下的操控能力",
-        "heat": 1.1,
+        "heat": 0.9,
         "sourceCount": 2,
         "signals": [
           {
@@ -38771,7 +39037,7 @@
         "rank": 8,
         "itemId": "p32idmaka1eja0j8uavcenluo",
         "title": "SQAM 提出基于标量伴随匹配的 Q-learning 方法",
-        "heat": 1.1,
+        "heat": 0.9,
         "sourceCount": 2,
         "signals": [
           {
@@ -38794,7 +39060,7 @@
         "rank": 9,
         "itemId": "rty4i3a2lmzo0nsy4l5oov1mo",
         "title": "CADFather：通过协同工具调用实现自主 CAD 重建",
-        "heat": 1.1,
+        "heat": 0.9,
         "sourceCount": 2,
         "signals": [
           {
@@ -38817,7 +39083,7 @@
         "rank": 10,
         "itemId": "w69nx656ffa43fx3aj726gxjj",
         "title": "Long-WAM 提出实时控制约束下的世界动作模型上下文扩展框架",
-        "heat": 1.1,
+        "heat": 0.9,
         "sourceCount": 2,
         "signals": [
           {
