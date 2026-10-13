@@ -9,6 +9,28 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[Gemini 4 Argon 以多步推理应对复杂工程与科学任务]]></title>
+      <link>http://localhost:3300/items/u6ttyul11fbzr3az2o78nbcra</link>
+      <description><![CDATA[<p>Google 宣布 Gemini 4 Argon 今日面向全球开放，支持编码、金融、法律、网络安全和科学等领域的复杂多步任务。</p>
+<p>🔗 <a href="https://deepmind.google/blog/introducing-gemini-4-argon/">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/u6ttyul11fbzr3az2o78nbcra">http://localhost:3300/items/u6ttyul11fbzr3az2o78nbcra</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Tue, 13 Oct 2026 16:01:52 GMT</pubDate>
+      <guid isPermaLink="false">u6ttyul11fbzr3az2o78nbcra</guid>
+      <author>noreply@localhost (Google DeepMind)</author>
+    </item>
+    <item>
+      <title><![CDATA[水系铝离子电池研究以弱配位非对称电解液破解添加剂困境]]></title>
+      <link>http://localhost:3300/items/r7xzrmu0c8u3zkfmpvc08ca86</link>
+      <description><![CDATA[<p>该研究提出弱配位非对称电解液，通过耦合溶剂化结构调节与介电及界面补偿，改善水系铝离子电池的可逆性。根据当前材料，电解液由三氟甲磺酸铝（Al(OTF)3）、二甲基亚砜（DMSO）和氟代碳酸乙烯酯（FEC）组成，DMSO 置换配位水以抑制水活性，FEC 则通过高介电常数、弱氢键及还原分解形成固体电解质界面膜（SEI）提供补偿。</p>
+<p>🔗 <a href="https://doi.org/10.1002/anie.8801354">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/r7xzrmu0c8u3zkfmpvc08ca86">http://localhost:3300/items/r7xzrmu0c8u3zkfmpvc08ca86</a></p>]]></description>
+      <category>电池与新能源材料</category>
+      <pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">r7xzrmu0c8u3zkfmpvc08ca86</guid>
+      <author>noreply@localhost (Angewandte Chemie International Edition)</author>
+    </item>
+    <item>
       <title><![CDATA[专才模型学得更快：预训练中的知识组织影响后续知识更新效率]]></title>
       <link>http://localhost:3300/items/zsvpj21cdwmb4k2jp9n160h37</link>
       <description><![CDATA[<p>该研究报告，预训练时按时间顺序学习知识的专才模型，比学习相同但随机打乱知识的通才模型需要更少的知识更新步骤。基于摘要，专才模型擅长最近接触的知识，通才模型则在所覆盖的各个时期均表现良好；作者从第一性原理推导了关联更新成本与优化动态的定律，并报告其预测与实证结果接近。</p>
@@ -535,28 +557,6 @@
       <pubDate>Mon, 12 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">rb2zk0p0yykkcep4yqtq578c5</guid>
       <author>noreply@localhost (arXiv · 计算物理与材料)</author>
-    </item>
-    <item>
-      <title><![CDATA[State-OPD 提出面向多轮智能体的交互状态锚定 On-Policy 蒸馏]]></title>
-      <link>http://localhost:3300/items/r1bvmes8bp2yg18t0liueizrm</link>
-      <description><![CDATA[<p>State-OPD 研究提出以交互状态锚定教师监督的多轮智能体蒸馏框架，作者报告其提升了小模型的任务成功率。基于摘要，该方法将任务及已执行的动作—观测记录与学生内部推理轨迹区分，教师监督不包含学生先前推理，同时保留学生的完整历史生成，并将采样预算分配给响应熵较高的状态以生成多个完整推理—动作响应。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.13238">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/r1bvmes8bp2yg18t0liueizrm">http://localhost:3300/items/r1bvmes8bp2yg18t0liueizrm</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Mon, 12 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">r1bvmes8bp2yg18t0liueizrm</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[BoundaryEvo 提出面向长链推理蒸馏的能力边界数据—模型协同演化框架]]></title>
-      <link>http://localhost:3300/items/qxtwpnt2xlfia0tl3k2xszo4e</link>
-      <description><![CDATA[<p>BoundaryEvo 提出两阶段数据—模型协同演化框架，让长链推理蒸馏的训练数据随学生模型能力变化而更新。基于摘要，该方法先直接蒸馏少量教师生成的长推理轨迹，不使用独立模型评判和筛选，再反复选择学生尚未掌握、专家能够可靠解答的问题。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.13285">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/qxtwpnt2xlfia0tl3k2xszo4e">http://localhost:3300/items/qxtwpnt2xlfia0tl3k2xszo4e</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Mon, 12 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">qxtwpnt2xlfia0tl3k2xszo4e</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
 </rss>

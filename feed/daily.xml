@@ -32,7 +32,7 @@
 <p><strong>电池与新能源材料</strong></p>
 <ul><li><a href="http://localhost:3300/items/tpsco4fprwml3wmihzl93rikq">Ti3C2Tx MXene 在卤化物钙钛矿前驱体环境中的动态化学变化</a></li><li><a href="http://localhost:3300/items/kt3w5shdsvq8b831yupxwhabg">工况下 XRD 与 XAS 联合研究解析 LiCoxMn2-xO4 正极循环中的体积变化</a></li><li><a href="http://localhost:3300/items/y3m1kj1dzrg32ikrgmrai4n8f">BMD‐6F 协同调控介电常数与H型聚集，提升有机太阳能电池效率与厚度容忍度</a></li></ul>
 <p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/daily/2026-10-12">http://localhost:3300/daily/2026-10-12</a></p>]]></description>
-      <pubDate>Tue, 13 Oct 2026 06:50:29 GMT</pubDate>
+      <pubDate>Tue, 13 Oct 2026 16:38:55 GMT</pubDate>
       <guid isPermaLink="false">daily-2026-10-12</guid>
       <author>noreply@localhost (AlgorithmHot · 科研热点)</author>
     </item>
@@ -59,15 +59,17 @@
       <author>noreply@localhost (AlgorithmHot · 科研热点)</author>
     </item>
     <item>
-      <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-10-09 — 异质偏好下的模型排序需要多少次重复成对比较？]]></title>
+      <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-10-09 — 在未来数据上训练？时间序列预测测试时适应的标签延迟审计]]></title>
       <link>http://localhost:3300/daily/2026-10-09</link>
-      <description><![CDATA[<p>该研究提出按群体平均效用恢复模型排序的算法，并报告每个用户—任务情境所需的重复比较次数可达到对数级最优界。</p>
+      <description><![CDATA[<p>该研究报告，在遵守真实标签到达延迟的评测中，四种时间序列预测测试时适应方法的收益有限，且部分设置下会损害预测表现。根据当前材料，作者仅在 s+d 时刻释放预测起点 s 的标签，要求 d≥H，并在五个基准上使用 TAFAS、COSA、PETSA 和 DynaTTA 各自的骨干与检查点评测，同时引入 RLS 滤波器组和 ELF 风格线性校正器作为参照。</p>
 <p><strong>算法</strong></p>
-<ul><li><a href="http://localhost:3300/items/avy5s867dr083fqi5kokckbid">异质偏好下的模型排序需要多少次重复成对比较？</a></li><li><a href="http://localhost:3300/items/i7akdi9cikxb66nfscepg1fph">对抗性 MDP 策略优化研究消除遗憾界的时域依赖差距</a></li><li><a href="http://localhost:3300/items/hgxef6p3d401ubrtlbcrsvivd">SELF 研究重新审视智能体事后自蒸馏中的环境反馈建模</a></li><li><a href="http://localhost:3300/items/qxtj7p1977a02qo5e28tu9xfm">通过谱可靠性理解动力系统学习中的潜在维度扩展效应</a></li><li><a href="http://localhost:3300/items/hotxpbfjdtk90bfoy8ok57m50">RIT-RAG 提出检索诱导树方法，结合内容检索与文档结构导航</a></li></ul>
+<ul><li><a href="http://localhost:3300/items/bcqbssbehx4l1at19t3w5bxrm">转移律格研究提出预测扩散与自回归模型解码调度表现的统一框架</a></li><li><a href="http://localhost:3300/items/fjsudu2no7au9ua628lbs0juu">Keyframe Mnemonics 通过自监督关键帧发现实现时域不变的行为克隆</a></li><li><a href="http://localhost:3300/items/s8ojyr18m9snh53u7blud9v0r">草稿树何处丢失目标概率质量：退出引导的推测解码</a></li><li><a href="http://localhost:3300/items/t6gyxqxd3eewbeqfq59g2346i">ReadKV 提出面向 KV 缓存的查询自适应量化</a></li><li><a href="http://localhost:3300/items/avy5s867dr083fqi5kokckbid">异质偏好下的模型排序需要多少次重复成对比较？</a></li></ul>
 <p><strong>AI4AI</strong></p>
-<ul><li><a href="http://localhost:3300/items/lch2n5k5fpa0vfsr6cu00xrm7">MultiWorldBench：独立控制的多个视角是否描述同一个共享世界？</a></li><li><a href="http://localhost:3300/items/li9k84tg8en0x1fuh6934qswn">AI 智能体能否通过学习登顶？AAArena 长期游戏竞赛中的启发式学习评测</a></li></ul>
+<ul><li><a href="http://localhost:3300/items/ud5f26ic5k1uwcqa95hxyypff">在未来数据上训练？时间序列预测测试时适应的标签延迟审计</a></li><li><a href="http://localhost:3300/items/nzu956xealkpch7ftgqrsnvza">扩散模型研究通过吸引域几何与循环去噪识别早期记忆迹象</a></li></ul>
+<p><strong>AI4S</strong></p>
+<ul><li><a href="http://localhost:3300/items/hvs9mw8zombnqjcovxgm7s2ww">研究揭示并修正贝叶斯物理信息神经网络中的碰撞点偏差</a></li><li><a href="http://localhost:3300/items/cupofosu26r5zfc7nbe9sq5vz">超越特殊准随机结构：用能量累积量计算无序相自由能</a></li><li><a href="http://localhost:3300/items/y6cfq6uq11pf0sqigtyq1kxet">MD-LLM-2：具有物理条件控制与显式路径概率的可迁移分子动力学语言模型</a></li><li><a href="http://localhost:3300/items/dduwz86bcr0msppmbnirwhzpb">Ghost tasking 通过辅助任务构建求解线性微分方程的参数化高斯过程</a></li><li><a href="http://localhost:3300/items/nmmtgqgj3r9ddqwcyy36tdm61">研究评估基础机器学习势核验 Crystallography Open Database 结构可靠性的能力</a></li><li><a href="http://localhost:3300/items/r2jrki7l3cq520xfkrxh9yyx9">跨物种表征学习对齐小鼠与人类神经动态，回溯关联临床药效</a></li><li><a href="http://localhost:3300/items/p3kjtkbalgw6s7jzld786yxx6">通用机器学习原子间势评测：二元与高熵难熔碳化物的温度依赖弹性</a></li><li><a href="http://localhost:3300/items/l9mmzvxn6z0fl31vo95k23x3q">研究提出模式选择性电子-声子耦合驱动 YRu₃Si₂ 和 LaRu₃Si₂ 的电荷密度波</a></li><li><a href="http://localhost:3300/items/sxk5zk6neibmxw60n446ve3k2">VenusRX：解析酶促反应空间的统一基准与预训练模型</a></li><li><a href="http://localhost:3300/items/tlr2zbjmfdut2yaufslouaixp">21 种元素金属的大量重叠级联模拟研究报告结果对原子间势高度敏感</a></li><li><a href="http://localhost:3300/items/aejnrxyywcn7bska3ui07ihd4">La-Ribo 提出基于几何潜空间流匹配的 RNA 序列与结构协同设计框架</a></li></ul>
 <p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/daily/2026-10-09">http://localhost:3300/daily/2026-10-09</a></p>]]></description>
-      <pubDate>Tue, 13 Oct 2026 06:51:18 GMT</pubDate>
+      <pubDate>Tue, 13 Oct 2026 16:38:55 GMT</pubDate>
       <guid isPermaLink="false">daily-2026-10-09</guid>
       <author>noreply@localhost (AlgorithmHot · 科研热点)</author>
     </item>
