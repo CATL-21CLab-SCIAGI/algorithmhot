@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>AlgorithmHot · 科研热点 日报</title>
+    <link>http://localhost:3300/daily</link>
+    <description>AlgorithmHot · 科研热点 每天上午（北京时间）发布的精编日报，保留最近 30 期。</description>
+    <language>zh-CN</language>
+    <atom:link href="http://localhost:3300/feed/daily.xml" rel="self" type="application/rss+xml" />
+    <ttl>30</ttl>
+    <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
+    <item>
+      <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-10-13 — ZnO/纤维素复合隔膜调节溶剂化结构，改善镁金属电池循环耐久性]]></title>
+      <link>http://localhost:3300/daily/2026-10-13</link>
+      <description><![CDATA[<p>该研究提出以ZnO增强层与纤维素构建复合隔膜，通过锚定溶剂分子调节镁金属电池的溶剂化结构。根据当前材料，作者的光谱与理论分析表明，ZnO上缺电子的Zn位点通过双向电荷转移增强纤维素极性羟基的溶剂捕获能力，使Mg2+溶剂化壳层形成单簇结构，进而促进致密、超薄且富含无机组分的SEI形成。</p>
+<p><strong>电池与新能源材料</strong></p>
+<ul><li><a href="http://localhost:3300/items/gcfw516lw5o5xvrp081bdztv8">ZnO/纤维素复合隔膜调节溶剂化结构，改善镁金属电池循环耐久性</a></li></ul>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/daily/2026-10-13">http://localhost:3300/daily/2026-10-13</a></p>]]></description>
+      <pubDate>Tue, 13 Oct 2026 05:24:20 GMT</pubDate>
+      <guid isPermaLink="false">daily-2026-10-13</guid>
+      <author>noreply@localhost (AlgorithmHot · 科研热点)</author>
+    </item>
+    <item>
+      <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-10-12 — 研究报告表格基础模型可大幅削减深度，保留多数预测性能]]></title>
+      <link>http://localhost:3300/daily/2026-10-12</link>
+      <description><![CDATA[<p>该研究报告，表格基础模型存在大量深度冗余，在八种模型、171个分类数据集的实验中，替换一半模块带来的 AUROC 中位数损失在各架构上均不超过 0.002。根据当前材料，作者使用具有闭式解、无需标签的仿射转换器替换最多 96% 的连续 Transformer 模块，其余部分保持不变；半深度 TabFM 仍优于其他全深度表格基础模型及调优后的 GBDTs。</p>
+<p><strong>算法</strong></p>
+<ul><li><a href="http://localhost:3300/items/m886b8g3d4lstktaavmpfns67">研究报告表格基础模型可大幅削减深度，保留多数预测性能</a></li><li><a href="http://localhost:3300/items/f0vyoiymda4cxdn7o6dydot04">离线到在线线性 bandit 研究给出高斯宽度界</a></li><li><a href="http://localhost:3300/items/q7fvftampqfps8s3ze0zml2q1">研究给出 Transformer 掩码扩散模型学习潜在结构分布的理论保证</a></li><li><a href="http://localhost:3300/items/vb3qdmm9olyqv105kj9azjkqp">DualQuant 提出免校准的 LLM 双尺度权重与激活量化方法</a></li><li><a href="http://localhost:3300/items/vv1nondy677evaorlt5jlcp6f">DiffusionART：高效、稳定且可扩展的扩散模型强化学习方法</a></li><li><a href="http://localhost:3300/items/b9zzfr87qbdo0fkt8223pwyex">ReplaySSM：缓存 SSM 输入而非逐步读写状态</a></li></ul>
+<p><strong>AI4AI</strong></p>
+<ul><li><a href="http://localhost:3300/items/yl7ve8c8sez8epbexujtcypgt">研究报告 AI 模型可在密码学假设下隐藏任意计算能力</a></li></ul>
+<p><strong>AI4S</strong></p>
+<ul><li><a href="http://localhost:3300/items/zfvt9zt0wknmufjs2o5v5yu4b">Critical Mass 研究报告结构不相交划分随分子库扩张发生偏移</a></li><li><a href="http://localhost:3300/items/tyyglolgwf0mz80ad46uylf0z">AutoDrude 通过端到端学习构建聚合物电解质的可极化 Drude 力场</a></li><li><a href="http://localhost:3300/items/i5bxd6gk7kn6emasc3f7z0eys">物理状态监督使内爆模拟高斯过程代理模型仅凭设计变量预测</a></li><li><a href="http://localhost:3300/items/pcrjbs0r4ea1ldpxjvtmypz30">AI 辅助力学研究建立 Eshelby 定量稳定性的局部与有限形状理论</a></li><li><a href="http://localhost:3300/items/rb2zk0p0yykkcep4yqtq578c5">研究提出学习成对方向特征的多凸神经网络代理，用于各向异性超弹性均匀化</a></li><li><a href="http://localhost:3300/items/txs2bge2fimzoztssbvkvuzya">VN-GraphGG 提出基于 von Neumann–Mullins 定律的二维图晶粒生长模拟方法</a></li><li><a href="http://localhost:3300/items/kjl5h22mknex2tpf8sbr6rtks">研究提出下一代材料发现 AI 基准评测的必要条件</a></li><li><a href="http://localhost:3300/items/l1xg0cz61pukgnd2r2kbvh8sx">TopoLIA 提出面向药物发现的拓扑启发潜在交互注意力机制</a></li></ul>
+<p><strong>电池与新能源材料</strong></p>
+<ul><li><a href="http://localhost:3300/items/tpsco4fprwml3wmihzl93rikq">Ti3C2Tx MXene 在卤化物钙钛矿前驱体环境中的动态化学变化</a></li><li><a href="http://localhost:3300/items/kt3w5shdsvq8b831yupxwhabg">工况下 XRD 与 XAS 联合研究解析 LiCoxMn2-xO4 正极循环中的体积变化</a></li><li><a href="http://localhost:3300/items/y3m1kj1dzrg32ikrgmrai4n8f">BMD‐6F 协同调控介电常数与H型聚集，提升有机太阳能电池效率与厚度容忍度</a></li></ul>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/daily/2026-10-12">http://localhost:3300/daily/2026-10-12</a></p>]]></description>
+      <pubDate>Tue, 13 Oct 2026 05:25:52 GMT</pubDate>
+      <guid isPermaLink="false">daily-2026-10-12</guid>
+      <author>noreply@localhost (AlgorithmHot · 科研热点)</author>
+    </item>
+    <item>
+      <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-10-11 — V─O─Ti 桥键极性促进钒基氟磷酸盐中 Na⁺ 迁移，实现快速储钠]]></title>
+      <link>http://localhost:3300/daily/2026-10-11</link>
+      <description><![CDATA[<p>该研究提出以 Ti⁴⁺ 掺杂诱导 V─O─Ti 桥键极性，改善钒基氟磷酸盐正极的高电压 Na⁺ 传输与快速储钠性能。根据当前材料，该策略通过重塑 V 电子结构促进 V─O 电子交换，并借助桥接 O 位移拓宽主要的一维、二维 Na⁺ 传输通道，同时抑制高电压下的电压滞后、极化和结构畸变。</p>
+<p><strong>电池与新能源材料</strong></p>
+<ul><li><a href="http://localhost:3300/items/qwqrf6deppa2e5sjpgcgh9q7q">V─O─Ti 桥键极性促进钒基氟磷酸盐中 Na⁺ 迁移，实现快速储钠</a></li><li><a href="http://localhost:3300/items/ita25rnpgux5puncpe2mxnsyu">研究报告铯诱导稳定钒酸铋光阳极上的 FeOOH 助催化剂，改善光电化学水氧化</a></li></ul>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/daily/2026-10-11">http://localhost:3300/daily/2026-10-11</a></p>]]></description>
+      <pubDate>Tue, 13 Oct 2026 05:24:20 GMT</pubDate>
+      <guid isPermaLink="false">daily-2026-10-11</guid>
+      <author>noreply@localhost (AlgorithmHot · 科研热点)</author>
+    </item>
+  </channel>
+</rss>
