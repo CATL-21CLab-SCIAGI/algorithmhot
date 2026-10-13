@@ -295,6 +295,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[邻近工程双原子钴位点通过自适应自旋催化实现氧与过氧化氢还原]]></title>
+      <link>http://localhost:3300/items/up2jif4d8hj9ise7hgu0neuls</link>
+      <description><![CDATA[<p>该研究提出通过调节双原子 Co 位点间距实现自适应自旋催化，以缓解氧还原反应中不同中间体的吸附冲突。根据当前材料，作者在一维共价有机框架中保持局部配位环境并调控 Co–Co 间距，光谱表征与理论计算支持位点间电子耦合及高、低自旋 Co 构型互补催化的机制。</p>
+<p>🔗 <a href="https://doi.org/10.1002/anie.3109429">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/up2jif4d8hj9ise7hgu0neuls">http://localhost:3300/items/up2jif4d8hj9ise7hgu0neuls</a></p>]]></description>
+      <category>电池与新能源材料</category>
+      <pubDate>Mon, 12 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">up2jif4d8hj9ise7hgu0neuls</guid>
+      <author>noreply@localhost (Angewandte Chemie International Edition)</author>
+    </item>
+    <item>
       <title><![CDATA[跨骨架与表位的推理时引导，提高从头纳米抗体设计的采样效率]]></title>
       <link>http://localhost:3300/items/unhnva5zkn2fn1mgwtdif3ofl</link>
       <description><![CDATA[<p>该研究提出跨骨架与靶表位动态分配算力的方法，作者报告每 GPU-hour 产出的可设计候选数量提高至近 5 倍，且未牺牲多样性。基于摘要，方法将生成条件选择视为推理时资源分配问题，分别采用联合 Global Sequential Monte Carlo（SMC）同时引导生成与分配算力，以及基于 Batched Successive Elimination（BaSE）的解耦方案。</p>
@@ -545,17 +556,6 @@
       <category>算法</category>
       <pubDate>Mon, 12 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">qxtwpnt2xlfia0tl3k2xszo4e</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[重新审视在线策略蒸馏中的相对策略差异迁移]]></title>
-      <link>http://localhost:3300/items/qqszf3a371wh4zpw4g9gjaxqv</link>
-      <description><![CDATA[<p>该研究提出在线策略蒸馏（OPD）的统一视角，并报告相对策略差异能否有效迁移取决于差异来源、参考策略与目标策略。基于摘要，作者将代理专家与代理参考策略之间的对数概率比建模为 KL 正则化策略优化的隐式奖励，由此导出目标策略的在线更新，并将传统 OPD 纳入特例。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.13205">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/qqszf3a371wh4zpw4g9gjaxqv">http://localhost:3300/items/qqszf3a371wh4zpw4g9gjaxqv</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Mon, 12 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">qqszf3a371wh4zpw4g9gjaxqv</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
