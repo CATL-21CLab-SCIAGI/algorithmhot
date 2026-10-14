@@ -1,10 +1,10 @@
-// The report nameplates (industry/brand/nameplates/, made by scripts/nameplates.ts from the pack's
+// The report nameplates (site/brand/nameplates/, made by scripts/nameplates.ts from the pack's
 // subject word). Each logotype is cached on its own; the two paths take the theme's ink and accent.
-import daily from "@aihot/industry/brand/nameplates/daily.svg?url&no-inline";
-import weekly from "@aihot/industry/brand/nameplates/weekly.svg?url&no-inline";
-import monthly from "@aihot/industry/brand/nameplates/monthly.svg?url&no-inline";
-import archive from "@aihot/industry/brand/nameplates/archive.svg?url&no-inline";
-import viewBoxes from "@aihot/industry/brand/nameplates/index.json";
+import daily from "@aihot/site/brand/nameplates/daily.svg?url&no-inline";
+import weekly from "@aihot/site/brand/nameplates/weekly.svg?url&no-inline";
+import monthly from "@aihot/site/brand/nameplates/monthly.svg?url&no-inline";
+import archive from "@aihot/site/brand/nameplates/archive.svg?url&no-inline";
+import viewBoxes from "@aihot/site/brand/nameplates/index.json";
 
 const NAMEPLATES = {
   daily: { url: daily, viewBox: viewBoxes.daily },
@@ -13,13 +13,7 @@ const NAMEPLATES = {
   archive: { url: archive, viewBox: viewBoxes.archive },
 } as const;
 
-export function Nameplate({ which, className = "" }: { which: keyof typeof NAMEPLATES | "pilot"; className?: string }) {
-  if (which === "pilot") return (
-    <svg viewBox="0 0 420 110" className={className} aria-hidden="true" focusable="false">
-      <text x="0" y="88" fontSize="96" fontWeight="900" className="fill-accent">科研</text>
-      <text x="199" y="88" fontSize="96" fontWeight="900" className="fill-ink">试刊</text>
-    </svg>
-  );
+export function Nameplate({ which, className = "" }: { which: keyof typeof NAMEPLATES; className?: string }) {
   const n = NAMEPLATES[which];
   return (
     <svg viewBox={n.viewBox} className={className} aria-hidden="true" focusable="false">

@@ -1,20 +1,19 @@
 // Article body extraction: readable text from the article page, or "unconfirmed" — never a wrong body.
 // Jina Reader is the budgeted fallback for pages that only render in a browser.
 import { Readability } from "@mozilla/readability";
-import type { ResearchMetadata } from "@aihot/contracts/research";
 import { parseHTML } from "linkedom";
 import { sql } from "../db.ts";
 import { guardedFetch } from "../lib/http-fetch.ts";
-import { withArxivRateLimit } from "../lib/arxiv-rate-limit.ts";
-import { publishArticleTx } from "../publication/publish.ts";
-import { mergeResearchMetadata, parseArxivIdentity, researchLinks, researchMetadataChanged } from "../sources/research.ts";
-import { collapseWhitespace, stripTags } from "../lib/text.ts";
+import { stripTags } from "../lib/text.ts";
+import { isVideoPageUrl } from "../lib/video-url.ts";
 import { jinaRead } from "../providers/jina.ts";
 import { BudgetExceededError } from "../providers/receipts.ts";
 import { getArticle } from "../providers/socialdata.ts";
+import { articleUtcOffset, parseLooseDate } from "../sources/dates.ts";
+import type { SourceRow } from "../sources/types.ts";
 import { onlyXArticleLink, xArticleText } from "../sources/x.ts";
 import { sanitizeBody, trimTrailingChrome } from "./sanitize.ts";
-import { contentHash } from "./materials.ts";
+import { contentHash, fillPublicationTime, reviseMaterial } from "./materials.ts";
 import { markdownBody } from "./markdown.ts";
 
 export interface ExtractedBody {
@@ -22,12 +21,84 @@ export interface ExtractedBody {
   text: string;
   images: Array<{ kind: "image"; url: string; width: number | null; height: number | null }>;
   via: "readability" | "jina";
-  sourceUrl: string;
+  /** The page's publication metadata; neither modification time nor dates mentioned in its prose. */
+  publishedAt?: Date | null;
 }
 
 const MIN_BODY_CHARS = 200;
 
-export function readable(html: string, url: string): ExtractedBody | null {
+/** Restore only completed React streaming boundaries, without evaluating any page script. */
+function settleStreamedContent(document: ReturnType<typeof parseHTML>["document"]) {
+  for (const script of document.querySelectorAll("script:not([src])")) {
+    const type = script.getAttribute("type")?.toLowerCase();
+    if (type && type !== "text/javascript" && type !== "application/javascript") continue;
+    const text = script.textContent ?? "";
+    // React emits a standalone completion call, or appends it to its runtime definition. Do not
+    // interpret occurrences inside data, comments, documentation strings or arbitrary programs.
+    const call = /\$RC\("(B:[\w:.-]+)","(S:[\w:.-]+)"\)\s*;?\s*$/.exec(text);
+    if (!call) continue;
+    const before = text.slice(0, call.index).trim();
+    if (before && !(/^\$R[BCV]=/.test(before) && before.includes("$RC=function(") && before.endsWith("};"))) continue;
+    const boundary = document.getElementById(call[1]!);
+    const segment = document.getElementById(call[2]!);
+    const start = boundary?.previousSibling;
+    const parent = boundary?.parentNode;
+    if (!boundary || boundary.localName !== "template" || !segment?.hasAttribute("hidden") || !parent
+      || !start || start.nodeType !== 8 || !["$?", "$~"].includes(start.textContent ?? "") || segment.contains(boundary)) continue;
+    let end = boundary.nextSibling;
+    let depth = 0;
+    while (end) {
+      if (end.nodeType === 8) {
+        const marker = end.textContent;
+        if (marker === "/$") {
+          if (depth === 0) break;
+          depth -= 1;
+        } else if (["$", "$?", "$!", "$~"].includes(marker ?? "")) depth += 1;
+      }
+      end = end.nextSibling;
+    }
+    if (!end) continue;
+    let fallback = boundary.nextSibling;
+    parent.removeChild(boundary);
+    while (fallback && fallback !== end) {
+      const next = fallback.nextSibling;
+      parent.removeChild(fallback);
+      fallback = next;
+    }
+    while (segment.firstChild) parent.insertBefore(segment.firstChild, end);
+    segment.remove();
+    start.textContent = "$";
+  }
+}
+
+/**
+ * Readability leaves out what an inline style hides, but compares style.display and style.visibility
+ * literally, and linkedom keeps the author's case and "!important" in them. A style that sets either is
+ * reduced to what a browser applies: names and keywords in any case, an important declaration over a
+ * later plain one, else the last. The nodes stay in place: Readability restores noscript images beside
+ * their hidden placeholders, and drops every style from the body afterwards.
+ */
+function settleInlineVisibility(document: ReturnType<typeof parseHTML>["document"]) {
+  for (const el of document.querySelectorAll("[style]")) {
+    const style = el.getAttribute("style") ?? "";
+    if (!/display|visibility/i.test(style)) continue;
+    const applied = new Map<string, { value: string; important: boolean }>();
+    for (const declaration of style.split(";")) {
+      const colon = declaration.indexOf(":");
+      const name = declaration.slice(0, colon).trim().toLowerCase();
+      if (colon < 0 || (name !== "display" && name !== "visibility")) continue;
+      const raw = declaration.slice(colon + 1).trim().toLowerCase();
+      const important = /!\s*important$/.test(raw);
+      const value = raw.replace(/!\s*important$/, "").trim();
+      if (value && (important || !applied.get(name)?.important)) applied.set(name, { value, important });
+    }
+    el.setAttribute("style", [...applied].map(([name, { value }]) => `${name}:${value}`).join(";"));
+  }
+}
+
+/** A publication time the page prints without a zone is read in utcOffset (the source's articleUtcOffset). */
+export function readable(html: string, url: string, utcOffset?: string): ExtractedBody | null {
+  if (isVideoPageUrl(url)) return null;
   const { document } = parseHTML(html);
   try {
     const base = document.createElement("base");
@@ -36,6 +107,8 @@ export function readable(html: string, url: string): ExtractedBody | null {
   } catch {
     // no head
   }
+  settleStreamedContent(document);
+  settleInlineVisibility(document);
   const article = new Readability(document as unknown as ConstructorParameters<typeof Readability>[0], { charThreshold: MIN_BODY_CHARS, keepClasses: false }).parse();
   if (!article?.content) return null;
   const clean = trimTrailingChrome(sanitizeBody(article.content, url));
@@ -48,46 +121,37 @@ export function readable(html: string, url: string): ExtractedBody | null {
     images.push({ kind: "image", url: m[1]!.replace(/&amp;/g, "&"), width: w ? Number(w[1]) : null, height: h ? Number(h[1]) : null });
     if (images.length >= 12) break;
   }
-  return { html: clean, text, images, via: "readability", sourceUrl: url };
+  return { html: clean, text, images, via: "readability", publishedAt: parseLooseDate(article.publishedTime, utcOffset) };
 }
 
-export async function extractFromUrl(url: string, opts: { allowJina: boolean; subject: string }): Promise<ExtractedBody | null> {
+export async function extractFromUrl(url: string, subject: string, utcOffset?: string): Promise<ExtractedBody | null> {
+  if (isVideoPageUrl(url)) return null;
   try {
-    const res = await withArxivRateLimit(url, () => guardedFetch(url, { timeoutMs: 20_000, maxBytes: 6 * 1024 * 1024 }));
+    const res = await guardedFetch(url, { timeoutMs: 20_000, maxBytes: 6 * 1024 * 1024 });
+    if (isVideoPageUrl(res.url)) return null;
     const type = res.headers.get("content-type") ?? "";
     if (res.status === 200 && /html/.test(type)) {
-      const got = readable(res.text(), res.url);
+      const got = readable(res.text(), res.url, utcOffset);
       if (got) return got;
     }
   } catch {
     // fall through to Jina
   }
-  if (!opts.allowJina) return null;
   try {
-    const page = await jinaRead(url, { purpose: "body_fallback", subject: opts.subject });
+    const page = await jinaRead(url, { purpose: "body_fallback", subject });
     const html = markdownBody(page.markdown, url);
     const text = stripTags(html);
     if (text.length < MIN_BODY_CHARS) return null;
-    return { html, text, images: [], via: "jina", sourceUrl: url };
+    return { html, text, images: [], via: "jina" };
   } catch (error) {
     if (error instanceof BudgetExceededError) return null;
     throw error;
   }
 }
 
-/** Full source text means the institution's article, never an arXiv abstract landing page. */
-export function researchAfterExtraction(previous: ResearchMetadata | null, sourceKind: string | null, originalUrl: string, body: ExtractedBody): ResearchMetadata | null {
-  if (!previous || previous.signalOnly || sourceKind !== "institution" || parseArxivIdentity(originalUrl) || parseArxivIdentity(body.sourceUrl)) return previous;
-  try {
-    const host = (url: string) => new URL(url).hostname.replace(/^www\./i, "").toLowerCase();
-    if (host(originalUrl) !== host(body.sourceUrl)) return previous;
-  } catch { return previous; }
-  return mergeResearchMetadata(previous, { ...previous, evidenceBasis: "fulltext", links: researchLinks(body.sourceUrl, [], body.html) });
-}
-
-/** Pages extraction can fetch: ordinary web pages (X posts and WeChat articles arrive whole or not at all). */
+/** Ordinary article pages; player pages have no article body, and social posts arrive separately. */
 export function pageFetchable(url: string, sourceKind: string): boolean {
-  if (sourceKind === "x_search" || sourceKind === "mp_account") return false;
+  if (sourceKind === "x_search" || sourceKind === "mp_account" || isVideoPageUrl(url)) return false;
   try {
     const u = new URL(url);
     return /^https?:$/.test(u.protocol) && !/(^|\.)(x\.com|twitter\.com|mp\.weixin\.qq\.com)$/i.test(u.hostname);
@@ -97,39 +161,33 @@ export function pageFetchable(url: string, sourceKind: string): boolean {
 }
 
 /** Fetches and stores the body of one article. Unconfirmed bodies are recorded as such. */
-export async function extractArticleBody(articleId: string, allowJina = process.env.JINA_BODY_FALLBACK !== "false"): Promise<"ok" | "unconfirmed" | "skipped"> {
-  const [a] = await sql<{ id: string; url: string; body_status: string; revision: number; x_post: { tweetId?: string } | null; research_source_kind: string | null }[]>`
-    SELECT a.id, a.url, a.body_status, a.revision, a.x_post, s.config->>'researchSourceKind' AS research_source_kind
-    FROM articles a JOIN sources s ON s.id=a.source_id WHERE a.id = ${articleId}`;
+export async function extractArticleBody(articleId: string): Promise<"ok" | "unconfirmed" | "skipped"> {
+  const [a] = await sql<{ id: string; url: string; body_status: string; revision: number; x_post: { tweetId?: string } | null; config: SourceRow["config"] }[]>`
+    SELECT a.id, a.url, a.body_status, a.revision, a.x_post, s.config
+    FROM articles a JOIN sources s ON s.id = a.source_id WHERE a.id = ${articleId}`;
   if (!a || a.body_status === "ok") return "skipped";
   if (a.x_post?.tweetId) return extractXArticle(a.id, a.x_post.tweetId, a.revision);
-  const got = await extractFromUrl(a.url, { allowJina, subject: `article:${a.id}` });
+  const got = await extractFromUrl(a.url, `article:${a.id}`, articleUtcOffset(a.config));
   if (!got) {
     return markUnconfirmed(articleId, a.revision);
   }
   // The body is new content: a new revision, so an analysis of the body-less input counts as stale.
   return sql.begin(async (tx) => {
-    const [row] = await tx<{ title: string; excerpt: string | null; content_hash: string | null; research: ResearchMetadata | null }[]>`
-      SELECT title, excerpt, content_hash, research FROM articles
+    const [row] = await tx<{ title: string; excerpt: string | null; content_hash: string | null }[]>`
+      SELECT title, excerpt, content_hash FROM articles
       WHERE id = ${articleId} AND revision = ${a.revision} AND body_status <> 'ok' FOR UPDATE`;
     if (!row) return "skipped";
-    const research = researchAfterExtraction(row.research, a.research_source_kind, a.url, got);
-    const metadataChanged = research !== null && researchMetadataChanged(row.research, research);
-    if (metadataChanged) await tx`UPDATE articles SET research=${tx.json(research as never)} WHERE id=${articleId}`;
+    const time = a.config.detail?.publishedAtAuthoritative === true ? null : await fillPublicationTime(tx, articleId, got.publishedAt);
     const hash = contentHash({ title: row.title, bodyText: got.text, excerpt: row.excerpt });
-    if (hash === row.content_hash) {
+    if (!time && hash === row.content_hash) {
       await tx`UPDATE articles SET body_status = 'ok', updated_at = now() WHERE id = ${articleId}`;
-      if (metadataChanged) await publishArticleTx(tx, articleId);
       return "ok";
     }
-    const [r] = await tx<{ revision: number }[]>`
-      UPDATE articles SET body_html = ${got.html}, body_text = ${got.text}, body_status = 'ok',
-        media = CASE WHEN jsonb_array_length(media) = 0 THEN ${tx.json(got.images as never)}::jsonb ELSE media END,
-        revision = revision + 1, content_hash = ${hash}, processing_state = 'new', updated_at = now()
-      WHERE id = ${articleId} RETURNING revision`;
-    await tx`INSERT INTO article_revisions (article_id, revision, content_hash, title, body_text)
-             VALUES (${articleId}, ${r!.revision}, ${hash}, ${row.title}, ${got.text})`;
-    if (metadataChanged) await publishArticleTx(tx, articleId);
+    await reviseMaterial(tx, articleId, {
+      set: sql`body_html = ${got.html}, body_text = ${got.text}, body_status = 'ok',
+        media = CASE WHEN jsonb_array_length(media) = 0 THEN ${sql.json(got.images as never)}::jsonb ELSE media END`,
+      hash, title: row.title, bodyText: got.text,
+    });
     return "ok";
   });
 }
@@ -170,15 +228,10 @@ async function extractXArticle(articleId: string, tweetId: string, revision: num
       await tx`UPDATE articles SET body_status = 'ok', x_article = ${tx.json(got as never)}, updated_at = now() WHERE id = ${articleId}`;
       return "ok";
     }
-    const hash = contentHash({ title, bodyText, excerpt: row.excerpt });
-    const [r] = await tx<{ revision: number }[]>`
-      UPDATE articles SET title = ${title}, body_text = ${bodyText}, x_article = ${tx.json(got as never)}, body_status = 'ok',
-        revision = revision + 1, content_hash = ${hash}, processing_state = 'new', updated_at = now()
-      WHERE id = ${articleId} RETURNING revision`;
-    await tx`INSERT INTO article_revisions (article_id, revision, content_hash, title, body_text)
-             VALUES (${articleId}, ${r!.revision}, ${hash}, ${title}, ${bodyText})`;
+    await reviseMaterial(tx, articleId, {
+      set: sql`title = ${title}, body_text = ${bodyText}, x_article = ${sql.json(got as never)}, body_status = 'ok'`,
+      hash: contentHash({ title, bodyText, excerpt: row.excerpt }), title, bodyText,
+    });
     return "ok";
   });
 }
-
-export { collapseWhitespace };

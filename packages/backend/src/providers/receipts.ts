@@ -1,21 +1,23 @@
-// Paid requests (models, SocialData, Jina, Dajiala) go through here.
+// Paid requests (models, SocialData, Jina; historical Dajiala records retained) go through here.
 //
 // 1. A logical request has a stable key bound to task, input revision, provider, model, prompt and config.
 // 2. Before calling, a placeholder row and an attempt row are persisted; budgets count attempts.
 // 3. The raw response is saved before any business write; recovery reuses a received response.
 // 4. A request whose outcome is unknown (timeout after sending, crash mid-flight) is not re-sent by the
-//    caller or timer. An operator must reconcile it before explicitly releasing it.
+//    caller. ops.recover releases it once after 30 minutes (operations/recover.ts), so a lost answer
+//    costs at most one repeat; after that it waits for the admin.
 import { sql, type Db } from "../db.ts";
 import { sha256, stableJson } from "../lib/ids.ts";
 import { shutdownSignal } from "../lib/shutdown.ts";
-import { reserveModelRunCall, type ModelRunConfig } from "./model-runs.ts";
-import { authorizedDateBackfill, DATE_BACKFILL_DATES, dateBackfillRunId } from "@aihot/contracts/date-backfill";
+
+/** The text of a spent budget's error; with `%` for both parts it is the LIKE pattern that finds every saved one. */
+export const budgetMessage = (service: string, window: string) => `Budget for ${service} exhausted (${window})`;
 
 export class BudgetExceededError extends Error {
   readonly service: string;
   readonly retryAfterSeconds: number;
   constructor(service: string, window: string, retryAfterSeconds: number) {
-    super(`Budget for ${service} exhausted (${window})`);
+    super(budgetMessage(service, window));
     this.service = service;
     this.retryAfterSeconds = retryAfterSeconds;
   }
@@ -25,8 +27,8 @@ export class ReceiptBusyError extends Error {}
 
 export class ReceiptUnknownError extends Error {
   readonly receiptId: number;
-  constructor(receiptId: number, message: string) {
-    super(message);
+  constructor(receiptId: number, message: string, options?: ErrorOptions) {
+    super(message, options);
     this.receiptId = receiptId;
   }
 }
@@ -40,6 +42,15 @@ export class ProviderRejectedError extends Error {
     this.status = status;
     this.retryable = retryable;
   }
+}
+
+/**
+ * The HTTP rule for every provider: an answer outside 2xx means the request was not taken. Rate limits
+ * and server errors may pass; any other status is a refusal the same request would meet again.
+ */
+export function assertAccepted(service: string, status: number, body: string): void {
+  if (status >= 200 && status < 300) return;
+  throw new ProviderRejectedError(`${service} HTTP ${status}: ${body.slice(0, 500)}`, status, status === 429 || status >= 500);
 }
 
 export interface CallOutcome {
@@ -60,8 +71,6 @@ export interface ReceiptRequest {
   requestSummary?: Record<string, unknown>;
   /** Distinguishes an explicit re-run (e.g. admin "re-evaluate") from recovery of the same request. */
   attemptTag?: string;
-  /** Frozen application-model batch allowance, charged atomically with a new attempt. */
-  modelRun?: ModelRunConfig | null;
 }
 
 export interface ReceiptResult {
@@ -85,41 +94,45 @@ interface ReceiptRow {
   updated_at: Date;
 }
 
-const DATE_BACKFILL_BUDGET_IDS = DATE_BACKFILL_DATES.map(dateBackfillRunId);
+/**
+ * Issues are what readers come for: their writing (purpose report_*) is held only by the per-minute and
+ * per-hour limits, so a day's limit spent on judging material still lets that morning's issue out.
+ */
+const outsideDailyLimit = (purpose: string) => purpose.startsWith("report_");
 
-async function checkBudget(tx: Db, req: ReceiptRequest): Promise<void> {
-  const service = req.service;
-  const extra = !!req.modelRun && DATE_BACKFILL_BUDGET_IDS.includes(req.modelRun.id);
-  if (extra) {
-    const modelRun = req.modelRun!;
-    const articleId = /^article:([^@:#]+)/.exec(req.subject ?? "")?.[1];
-    const [run] = await tx<{ kind: string; window_start: Date; window_end: Date; model_budget_id: string;
-      model_call_ceiling: number; admission_frozen: boolean; admission_policy: string; model_profile: { transport?: string; model?: string } | null }[]>`
-      SELECT kind,window_start,window_end,model_budget_id,model_call_ceiling,admission_frozen,admission_policy,model_profile
-      FROM research_runs WHERE id=${modelRun.id}`;
-    if (service !== "codex_cli" || modelRun.maxCalls !== 600 || modelRun.reportReserve !== 20 || modelRun.callCeiling !== 580
-        || !articleId || !run || !run.admission_frozen || run.admission_policy !== "all-in-window"
-        || run.model_profile?.transport !== "codex_cli" || !req.model || req.model !== run.model_profile.model
-        || !authorizedDateBackfill(modelRun.id, run.model_budget_id, run.kind,
-          { start: run.window_start, end: run.window_end }, run.model_call_ceiling)) {
-      throw new Error("Historical extra allowance requires its exact frozen run, Codex model, limits and article subject");
-    }
-    const [member] = await tx`SELECT article_id FROM research_members WHERE run_id=${modelRun.id}
-      AND article_id=${articleId} AND admitted AND in_window AND NOT signal_only`;
-    if (!member) throw new Error("Historical extra allowance cannot fund an article outside its frozen admission set");
-  }
+/**
+ * The default model's limits from the environment (LLM_BUDGET_PER_MINUTE / _PER_HOUR / _PER_DAY), written
+ * into the budgets table when the worker starts, so a deployment sets its own soft limits without a code
+ * change; unset values keep what the table (and the admin's settings page) has. Reaching a limit pauses
+ * paid requests until the window moves on: work waits and resumes, nothing fails for it.
+ */
+export async function applyBudgetEnv(env: NodeJS.ProcessEnv = process.env): Promise<void> {
+  const read = (name: string) => {
+    const value = env[name];
+    if (value === undefined || value === "") return null;
+    if (!/^\d+$/.test(value)) throw new Error(`${name} must be a non-negative integer, e.g. 3000`);
+    return Number(value);
+  };
+  const limits = { per_minute: read("LLM_BUDGET_PER_MINUTE"), per_hour: read("LLM_BUDGET_PER_HOUR"), per_day: read("LLM_BUDGET_PER_DAY") };
+  if (Object.values(limits).every((v) => v === null)) return;
+  await sql`INSERT INTO budgets (service, per_minute, per_hour, per_day)
+    VALUES ('llm', ${limits.per_minute ?? 300}, ${limits.per_hour ?? 6000}, ${limits.per_day ?? 40000})
+    ON CONFLICT (service) DO UPDATE SET
+      per_minute = coalesce(${limits.per_minute}::int, budgets.per_minute),
+      per_hour = coalesce(${limits.per_hour}::int, budgets.per_hour),
+      per_day = coalesce(${limits.per_day}::int, budgets.per_day)`;
+}
+
+async function checkBudget(tx: Db, service: string, purpose: string): Promise<void> {
   const [budget] = await tx<{ per_minute: number; per_hour: number; per_day: number }[]>`
     SELECT per_minute, per_hour, per_day FROM budgets WHERE service = ${service}`;
-  if (!budget && extra) throw new Error("Historical extra allowance requires a configured Codex service budget");
   if (!budget) return; // default rows come with the migrations; a service an operator removed is unlimited
-  // Extra historical calls keep the shared minute/hour controls. Only their three exact IDs
-  // are separate from the ordinary rolling daily allowance; NULL legacy attempts still count.
+  // Every request sent counts, retries of the same logical request included.
   const [counts] = await tx<{ minute: number; hour: number; day: number }[]>`
     SELECT
       count(*) FILTER (WHERE started_at > now() - interval '1 minute') AS minute,
       count(*) FILTER (WHERE started_at > now() - interval '1 hour') AS hour,
-      count(*) FILTER (WHERE ${service !== "codex_cli"} OR model_run_id IS NULL
-        OR NOT (model_run_id = ANY(${DATE_BACKFILL_BUDGET_IDS}))) AS day
+      count(*) AS day
     FROM receipt_attempts
     WHERE service = ${service} AND origin = 'live' AND started_at > now() - interval '1 day'`;
   const c = counts!;
@@ -128,12 +141,12 @@ async function checkBudget(tx: Db, req: ReceiptRequest): Promise<void> {
   }
   if (c.minute >= budget.per_minute) throw new BudgetExceededError(service, "minute", 60);
   if (c.hour >= budget.per_hour) throw new BudgetExceededError(service, "hour", 600);
-  if (!extra && c.day >= budget.per_day) throw new BudgetExceededError(service, "day", 3600);
+  if (c.day >= budget.per_day && !outsideDailyLimit(purpose)) throw new BudgetExceededError(service, "day", 3600);
 }
 
 /**
  * Runs a paid request at most once per logical key and returns its raw response.
- * The caller parses the response and commits business results, then calls completeReceipt.
+ * A caller persisting business results completes the receipt in the same transaction.
  */
 export async function paidRequest(req: ReceiptRequest, call: () => Promise<CallOutcome>): Promise<ReceiptResult> {
   const logicalKey = logicalKeyFor(req);
@@ -155,13 +168,13 @@ export async function paidRequest(req: ReceiptRequest, call: () => Promise<CallO
       }
       if (existing.status === "unknown") return { kind: "unknown" as const, row: existing };
       // failed: the provider did not take the request, or its answer was unusable; a new attempt is allowed.
-      await checkBudget(tx, req);
+      await checkBudget(tx, req.service, req.purpose);
       const [r] = await tx<{ attempts: number }[]>`
         UPDATE receipts SET status = 'pending', attempts = attempts + 1, error = NULL, updated_at = now() WHERE id = ${existing.id} RETURNING attempts`;
       const attemptId = await startAttempt(tx, existing.id, r!.attempts, req);
       return { kind: "call" as const, id: existing.id, attemptId };
     }
-    await checkBudget(tx, req);
+    await checkBudget(tx, req.service, req.purpose);
     const [row] = await tx<{ id: number }[]>`
       INSERT INTO receipts (logical_key, service, model, purpose, subject, status, request, attempts)
       VALUES (${logicalKey}, ${req.service}, ${req.model ?? null}, ${req.purpose}, ${req.subject ?? null}, 'pending',
@@ -174,7 +187,7 @@ export async function paidRequest(req: ReceiptRequest, call: () => Promise<CallO
   if (claimed.kind === "reuse") return { receiptId: claimed.row.id, response: claimed.row.response, reused: true };
   if (claimed.kind === "busy") throw new ReceiptBusyError(`Receipt ${claimed.row.id} is in flight`);
   if (claimed.kind === "unknown") {
-    throw new ReceiptUnknownError(claimed.row.id, `Receipt ${claimed.row.id} has an unknown outcome; reconcile the existing attempt before an explicit release`);
+    throw new ReceiptUnknownError(claimed.row.id, `Receipt ${claimed.row.id} has an unknown outcome; it is released once automatically, then from the admin`);
   }
 
   const { id: receiptId, attemptId } = claimed;
@@ -190,6 +203,8 @@ export async function paidRequest(req: ReceiptRequest, call: () => Promise<CallO
       await tx`UPDATE receipts SET status = ${status}, error = ${message}, updated_at = now() WHERE id = ${receiptId}`;
       await tx`UPDATE receipt_attempts SET status = ${status}, error = ${message}, latency_ms = ${Date.now() - started}, finished_at = now() WHERE id = ${attemptId}`;
     });
+    // The first transport failure needs the same durable identity as a later unknown-result retry.
+    if (status === "unknown") throw new ReceiptUnknownError(receiptId, message, { cause: error });
     throw error;
   }
 
@@ -209,7 +224,6 @@ export async function paidRequest(req: ReceiptRequest, call: () => Promise<CallO
     await tx`
       UPDATE receipt_attempts SET
         status = 'received', request_id = ${outcome.requestId ?? null}, usage = ${outcome.usage ? tx.json(outcome.usage as never) : null},
-        response = ${tx.json((outcome.response ?? null) as never)},
         cost = ${outcome.cost?.amount ?? null}, currency = ${outcome.cost?.currency ?? null}, cost_basis = ${outcome.cost?.basis ?? null},
         latency_ms = ${Date.now() - started}, finished_at = now()
       WHERE id = ${attemptId}`;
@@ -218,12 +232,8 @@ export async function paidRequest(req: ReceiptRequest, call: () => Promise<CallO
 }
 
 async function startAttempt(tx: Db, receiptId: number, attempt: number, req: ReceiptRequest): Promise<number> {
-  if (req.modelRun && !await reserveModelRunCall(tx, req.modelRun, req.purpose)) {
-    throw new BudgetExceededError(`model-run:${req.modelRun.id}`, /^report(?:_|$)/.test(req.purpose) ? "batch" : "batch (report allowance reserved)", 86_400);
-  }
   const [row] = await tx<{ id: number }[]>`
-    INSERT INTO receipt_attempts (receipt_id, attempt, service, model, status, model_run_id)
-    VALUES (${receiptId}, ${attempt}, ${req.service}, ${req.model ?? null}, 'pending', ${req.modelRun?.id ?? null})
+    INSERT INTO receipt_attempts (receipt_id, attempt, service, model, status) VALUES (${receiptId}, ${attempt}, ${req.service}, ${req.model ?? null}, 'pending')
     RETURNING id`;
   return row!.id;
 }
@@ -235,7 +245,7 @@ async function markUnknown(tx: Db, receiptId: number, reason: string) {
 
 /**
  * Placeholders left behind by a process that stopped mid-request (crash, kill) become "unknown", so
- * they remain held for reconciliation even when nothing retries them.
+ * they are released like any other unknown outcome even when nothing retries them.
  */
 export async function markStalePendingReceipts(): Promise<number> {
   const reason = "placeholder went stale without a recorded result";
@@ -267,21 +277,7 @@ export async function completeReceipt(db: Db, receiptId: number): Promise<void> 
   await db`UPDATE receipts SET status = 'completed', completed_at = coalesce(completed_at, now()), updated_at = now() WHERE id = ${receiptId}`;
 }
 
-/** A received provider error can leave the outcome uncertain. Hold it without altering its saved evidence or creating an attempt. */
-export async function markReceivedResponseUnknown(receiptId: number, reason: string): Promise<void> {
-  await sql.begin(async (tx) => {
-    const [row] = await tx<{ attempts: number }[]>`
-      UPDATE receipts SET status = 'unknown', error = ${reason.slice(0, 2000)}, updated_at = now()
-      WHERE id = ${receiptId} RETURNING attempts`;
-    if (row) await tx`UPDATE receipt_attempts SET status = 'unknown', error = ${reason.slice(0, 2000)}
-      WHERE receipt_id = ${receiptId} AND attempt = ${row.attempts}`;
-  });
-}
-
 /** Marks a received response that could not be used (e.g. unparsable) so a fresh attempt can be made. */
 export async function rejectReceivedResponse(receiptId: number, reason: string): Promise<void> {
-  await sql.begin(async (tx) => {
-    const [row] = await tx<{ attempts: number }[]>`UPDATE receipts SET status = 'failed', error = ${reason.slice(0, 2000)}, updated_at = now() WHERE id = ${receiptId} RETURNING attempts`;
-    if (row) await tx`UPDATE receipt_attempts SET status = 'failed', error = ${reason.slice(0, 2000)} WHERE receipt_id = ${receiptId} AND attempt = ${row.attempts} AND status = 'received'`;
-  });
+  await sql`UPDATE receipts SET status = 'failed', error = ${reason.slice(0, 2000)}, updated_at = now() WHERE id = ${receiptId}`;
 }

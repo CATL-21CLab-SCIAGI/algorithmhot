@@ -1,33 +1,13 @@
-/** A fulfilled Clipboard API request or a true legacy result is the only success signal. */
-export async function copyText(text: string): Promise<boolean> {
+/** Copies text; in-app browsers without the async clipboard (WeChat and the like) fall back to a selection copy. */
+export async function copyText(text: string): Promise<void> {
   try {
     await navigator.clipboard.writeText(text);
-    return true;
   } catch {
-    // Older browsers and denied Clipboard API access may still allow a user-initiated copy.
-  }
-
-  const previousFocus = document.activeElement as HTMLElement | null;
-  let textarea: HTMLTextAreaElement | null = null;
-  try {
-    textarea = document.createElement("textarea");
-    textarea.value = text;
-    textarea.readOnly = true;
-    textarea.tabIndex = -1;
-    textarea.setAttribute("aria-hidden", "true");
-    Object.assign(textarea.style, { position: "fixed", left: "-9999px", top: "0", opacity: "0" });
-    document.body.appendChild(textarea);
-    textarea.focus({ preventScroll: true });
-    textarea.select();
-    return document.execCommand("copy") === true;
-  } catch {
-    return false;
-  } finally {
-    textarea?.remove();
-    try {
-      previousFocus?.focus?.({ preventScroll: true });
-    } catch {
-      // The original control may have disappeared while the clipboard request was pending.
-    }
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    ta.remove();
   }
 }

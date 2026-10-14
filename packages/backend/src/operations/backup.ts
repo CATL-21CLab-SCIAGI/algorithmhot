@@ -9,6 +9,7 @@ import path from "node:path";
 import { promisify } from "node:util";
 import { config, credential } from "../config.ts";
 import { sql } from "../db.ts";
+import { screenshotsForwarded } from "./feedback.ts";
 
 const run = promisify(execFile);
 const KEEP_LOCAL = 3;
@@ -40,14 +41,13 @@ function store(): Store | null {
 const hex = (b: Buffer | string) => createHash("sha256").update(b).digest("hex");
 const hmac = (key: Buffer | string, data: string) => createHmac("sha256", key).update(data).digest();
 
-/** AWS Signature V4 headers for one request (exported for the test vector check). */
-export function signV4(opts: {
-  method: string; url: URL; region: string; service?: string; accessKey: string; secretKey: string; payloadHash: string; headers?: Record<string, string>; now?: Date;
+/** AWS Signature V4 headers for one S3 request. */
+function signV4(opts: {
+  method: string; url: URL; region: string; accessKey: string; secretKey: string; payloadHash: string; headers?: Record<string, string>;
 }): Record<string, string> {
-  const now = opts.now ?? new Date();
-  const amzDate = now.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+  const amzDate = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
   const day = amzDate.slice(0, 8);
-  const service = opts.service ?? "s3";
+  const service = "s3";
   const headers: Record<string, string> = { ...(opts.headers ?? {}), host: opts.url.host, "x-amz-content-sha256": opts.payloadHash, "x-amz-date": amzDate };
   const names = Object.keys(headers).map((h) => h.toLowerCase()).sort();
   const lower = Object.fromEntries(Object.entries(headers).map(([k, v]) => [k.toLowerCase(), String(v).trim()]));
@@ -79,21 +79,33 @@ export async function runBackup(now = new Date()) {
   const dir = path.join(config.dataDir, "backups");
   await mkdir(dir, { recursive: true });
   const stamp = now.toISOString().slice(0, 16).replace(/[-:T]/g, "");
-  const dump = path.join(dir, `aihot-${stamp}.dump`);
+  // Named after the database ("news_db" → news-db-…), so two databases backed up into one store stay apart.
+  const name = sql.options.database.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+  const dump = path.join(dir, `${name}-${stamp}.dump`);
   await run("pg_dump", ["--format=custom", "--compress=6", "--no-owner", "--file", dump, config.databaseUrl], { maxBuffer: 16 * 1024 * 1024 });
   // Verify before shipping: the archive must list cleanly.
   await run("pg_restore", ["--list", dump], { maxBuffer: 64 * 1024 * 1024 });
-  const files = path.join(dir, `aihot-files-${stamp}.tar.gz`);
+  const files = path.join(dir, `${name}-files-${stamp}.tar.gz`);
   // An empty archive only when there is nothing to keep. A failure to read or pack existing files is
   // tried once more and otherwise reported: the database dump still ships, but the run fails.
   const kept: string[] = [];
-  // 尚未转发的反馈截图仍由数据库的 local: 引用，恢复时必须和上传文件一起保留。
-  for (const d of ["uploads", "feedback-screenshots"]) if (await stat(path.join(config.dataDir, d)).then((i) => i.isDirectory(), () => false)) kept.push(d);
+  // Feedback screenshots only waiting to be forwarded are not kept (once forwarded, only the Feishu image
+  // key remains). Without the internal chat they stay here for good, referred to as local: files.
+  for (const d of screenshotsForwarded() ? ["uploads"] : ["uploads", "feedback-screenshots"]) {
+    const info = await stat(path.join(config.dataDir, d)).catch((error: NodeJS.ErrnoException) => {
+      if (error.code === "ENOENT") return null;
+      throw error;
+    });
+    if (!info) continue;
+    if (!info.isDirectory()) throw new Error(`backup ${d} path is not a directory`);
+    kept.push(d);
+  }
   let filesError: string | null = null;
   if (!kept.length) await run("tar", ["-czf", files, "-T", "/dev/null"]);
   else {
     const pack = () => run("tar", ["-czf", files, "-C", config.dataDir, ...kept]);
     await pack().catch(() => pack()).catch((error: unknown) => {
+      // tar's own words: the message starts with the whole command line, which can fill the excerpt.
       const stderr = (error as { stderr?: unknown })?.stderr;
       filesError = String(typeof stderr === "string" && stderr.trim() ? stderr.trim() : error instanceof Error ? error.message : error).slice(0, 300);
     });
@@ -115,7 +127,7 @@ export async function runBackup(now = new Date()) {
     }
   }
   // Local copies: keep the newest few of each kind.
-  for (const kind of ["aihot-2", "aihot-files-"]) {
+  for (const kind of [`${name}-2`, `${name}-files-`]) {
     const list = (await readdir(dir)).filter((f) => f.startsWith(kind)).sort().reverse();
     for (const f of list.slice(KEEP_LOCAL)) await rm(path.join(dir, f), { force: true });
   }

@@ -1,0 +1,207 @@
+// MCP answers only requests addressed to this site (SITE_URL, MCP_ALLOWED_HOSTS and localhost): the Host,
+// or the forwarded host, is parsed whole (one host and an optional port). Failure cases: an IPv6 host
+// with a port ([::1]:3001) cut at its first colon and refused; a port that is not a port (localhost:abc,
+// localhost:80:90) passing as localhost; a request naming its host twice judged by Node's first value;
+// X-Forwarded-Host losing its precedence over Host; an extra host allowed in a spelling nobody configured.
+import "./setup.ts";
+import assert from "node:assert/strict";
+import { execFile } from "node:child_process";
+import { request } from "node:http";
+import { after, test } from "node:test";
+import { promisify } from "node:util";
+import Fastify from "fastify";
+import { config } from "@aihot/backend/config";
+import { registerMcp } from "../apps/api/src/routes/mcp.ts";
+
+const initialize = {
+  jsonrpc: "2.0", id: 1, method: "initialize",
+  params: { protocolVersion: "2025-03-26", capabilities: {}, clientInfo: { name: "host-test", version: "1.0.0" } },
+};
+
+const SITE = new URL(config.siteUrl).hostname;
+const app = Fastify();
+registerMcp(app);
+after(() => app.close());
+
+function post(headers: Record<string, string | string[]>) {
+  return app.inject({
+    method: "POST", url: "/api/mcp", payload: initialize,
+    headers: { "content-type": "application/json", accept: "application/json, text/event-stream", ...headers },
+  });
+}
+
+function assertDenied(response: Awaited<ReturnType<typeof post>>, status = 421) {
+  assert.equal(response.statusCode, status, response.body);
+  assert.deepEqual(response.json(), { error: status === 421 ? "misdirected_request" : "origin_not_allowed" });
+  assert.equal(response.headers["cache-control"], "no-store");
+  assert.equal(response.headers["access-control-allow-origin"], undefined);
+}
+
+test("MCP initializes through each of its hosts, with or without a port", async () => {
+  const requests: Array<Record<string, string>> = [
+    { host: SITE },
+    { host: `${SITE.toUpperCase()}:443` },
+    { host: "localhost" },
+    { host: "LOCALHOST:65535" },
+    { host: "127.0.0.1" },
+    { host: "127.0.0.1:3001" },
+    { host: "[::1]" },
+    { host: "[::1]:0" },
+    { host: "[::1]:00080" },
+    { host: "[::1]:3001" },
+    { host: "[0:0:0:0:0:0:0:1]:3001" },
+    { host: "127.0.0.1:3001", "x-forwarded-host": "[::1]:3000" },
+  ];
+  for (const headers of requests) {
+    const response = await post(headers);
+    assert.equal(response.statusCode, 200, `${JSON.stringify(headers)}: ${response.body}`);
+    const body = response.headers["content-type"]?.startsWith("text/event-stream")
+      ? JSON.parse(response.body.split("\n").find((line) => line.startsWith("data: "))!.slice(6))
+      : response.json();
+    assert.equal(body.id, 1);
+    assert.equal(body.result.protocolVersion, "2025-03-26");
+    assert.equal(response.headers["cache-control"], "no-store");
+  }
+});
+
+test("MCP refuses malformed or other Host and forwarded authorities", async () => {
+  const authorities = [
+    "", "evil.invalid", "localhost.", "127.0.0.1.", `${SITE}.`, `evil.${SITE}`, `${SITE}.evil.invalid`,
+    "127.1", "2130706433", "0x7f000001", "0177.0.0.1",
+    "evil@localhost", "localhost@evil.invalid", "localhost/path", "localhost?query", " localhost", "localhost\t", "localhost\0",
+    "localhost,evil.invalid", "::1", "[::1", "[::1]extra", "[::g]", "[]", "%6cocalhost", "http://localhost",
+    "localhost:", "localhost:-1", "localhost:abc", "localhost:65536", "localhost:80:90", "[::1]:", "[::1]:abc",
+  ];
+  for (const authority of authorities) {
+    const requests: Array<Record<string, string>> = [{ host: "localhost", "x-forwarded-host": authority }];
+    if (authority) requests.push({ host: authority });
+    for (const headers of requests) {
+      const response = await post(headers);
+      assert.equal(response.statusCode, 421, `${JSON.stringify(headers)}: ${response.body}`);
+      assertDenied(response);
+    }
+  }
+  for (const authority of [["localhost", "evil.invalid"], ["[::1]", "localhost"], []]) {
+    assertDenied(await post({ host: "localhost", "x-forwarded-host": authority }));
+  }
+});
+
+/** A request sent with exactly these header fields: the injector would merge a repeated Host or fill in an empty one. */
+function rawRequest(address: string, fields: string[]) {
+  return new Promise<{ status: number | undefined; body: string; cache: string | undefined }>((resolve, reject) => {
+    const req = request(`${address}/api/mcp`, {
+      method: "POST", setHost: false, headers: [...fields, "Content-Type", "application/json", "Accept", "application/json, text/event-stream"],
+    }, (res) => {
+      let body = "";
+      res.setEncoding("utf8");
+      res.on("data", (chunk) => { body += chunk; });
+      res.on("end", () => resolve({ status: res.statusCode, body, cache: res.headers["cache-control"] }));
+      res.on("error", reject);
+    });
+    req.on("error", reject);
+    req.end(JSON.stringify(initialize));
+  });
+}
+
+test("MCP refuses an empty Host and a host named twice", async () => {
+  const server = Fastify();
+  registerMcp(server);
+  try {
+    const address = await server.listen({ host: "127.0.0.1", port: 0 });
+    for (const fields of [
+      ["Host", ""],
+      ["Host", "[::1]", "Host", "evil.invalid"],
+      ["Host", "localhost", "Host", "localhost"],
+      ["Host", "localhost", "hOsT", "evil.invalid"],
+      ["Host", "evil.invalid", "Host", "localhost"],
+      ["Host", "localhost", "X-Forwarded-Host", "[::1]", "X-Forwarded-Host", "[::1]"],
+      ["Host", "localhost", "X-Forwarded-Host", "[::1]", "x-forwarded-host", "evil.invalid"],
+    ]) {
+      const response = await rawRequest(address, fields);
+      assert.equal(response.status, 421, `${JSON.stringify(fields)}: ${response.body}`);
+      assert.deepEqual(JSON.parse(response.body), { error: "misdirected_request" });
+      assert.equal(response.cache, "no-store");
+    }
+    // The forwarded host decides when there is one, so the Host fields behind it do not matter.
+    const forwarded = await rawRequest(address, ["Host", "evil.invalid", "Host", "localhost", "X-Forwarded-Host", "[::1]"]);
+    assert.equal(forwarded.status, 200, forwarded.body);
+  } finally {
+    await server.close();
+  }
+});
+
+test("an IPv6 host gets the same Origin answers as IPv4, and GET and DELETE check the Host too", async () => {
+  for (const host of ["127.0.0.1:3001", "[::1]:3001"]) {
+    for (const origin of ["http://localhost:3000", "https://localhost:3443", "http://127.0.0.1:3000"]) {
+      const response = await post({ host, origin });
+      assert.equal(response.statusCode, 200, response.body);
+      assert.equal(response.headers["access-control-allow-origin"], origin);
+      assert.equal(response.headers.vary, "Origin");
+      assert.match(response.headers["access-control-expose-headers"] ?? "", /MCP-Protocol-Version/);
+    }
+    for (const origin of ["http://[::1]:3000", "https://evil.invalid", "not-an-origin"]) assertDenied(await post({ host, origin }), 403);
+  }
+  for (const method of ["GET", "DELETE"] as const) {
+    assertDenied(await app.inject({ method, url: "/api/mcp", headers: { host: "evil.invalid", accept: "application/json, text/event-stream" } }));
+  }
+});
+
+test("MCP answers preflights for allowed origins only", async () => {
+  for (const host of ["127.0.0.1:3001", "[::1]:3001", "evil.invalid"]) {
+    const response = await app.inject({ method: "OPTIONS", url: "/api/mcp", headers: { host, origin: "http://localhost:3000" } });
+    assert.equal(response.statusCode, 204);
+    assert.equal(response.headers["access-control-allow-origin"], "http://localhost:3000");
+    assert.equal(response.headers["cache-control"], "no-store");
+    assertDenied(await app.inject({ method: "OPTIONS", url: "/api/mcp", headers: { host, origin: "https://evil.invalid" } }), 403);
+  }
+});
+
+const MCP_ROUTE = new URL("../apps/api/src/routes/mcp.ts", import.meta.url).href;
+
+function checkConfiguration(siteUrl: string, allowedHosts: string, cases: Array<{ headers: Record<string, string>; status: number }>) {
+  // A process of its own sets the configuration before the route loads (the module reads it once).
+  return promisify(execFile)(process.execPath, ["--input-type=module", "-e", `
+    import assert from "node:assert/strict";
+    import Fastify from "fastify";
+    import { registerMcp } from ${JSON.stringify(MCP_ROUTE)};
+    const app = Fastify();
+    registerMcp(app);
+    try {
+      for (const { headers, status } of JSON.parse(process.argv[1])) {
+        const response = await app.inject({ method: "POST", url: "/api/mcp", payload: ${JSON.stringify(initialize)},
+          headers: { accept: "application/json, text/event-stream", ...headers } });
+        assert.equal(response.statusCode, status, JSON.stringify(headers) + ": " + response.body);
+        assert.equal(response.headers["cache-control"], "no-store");
+      }
+    } finally { await app.close(); }
+  `, JSON.stringify(cases)], {
+    cwd: new URL("..", import.meta.url), encoding: "utf8", timeout: 10000,
+    env: { ...process.env, SITE_URL: siteUrl, MCP_ALLOWED_HOSTS: allowedHosts },
+  });
+}
+
+// Two configurations, each in its own process, checked side by side.
+test("MCP normalizes only explicitly configured site and extra host authorities, and keeps an IPv6 site's matching Origin", async () => {
+  await Promise.all([checkConfiguration("https://site.example:8443", "EXTRA.EXAMPLE:8080, [2001:0db8:0:0:0:0:0:1]:3000, 2130706433, evil@localhost, bad.example/path, broken.example:65536", [
+    { headers: { host: "site.example:3001", origin: "https://site.example:8443" }, status: 200 },
+    { headers: { host: "SITE.EXAMPLE:3001" }, status: 200 },
+    { headers: { host: "extra.example" }, status: 200 },
+    { headers: { host: "extra.example:9090" }, status: 200 },
+    { headers: { host: "[2001:db8::1]:3001" }, status: 200 },
+    { headers: { host: "[2001:DB8::1]" }, status: 200 },
+    { headers: { host: "[2001:db8::2]" }, status: 421 },
+    { headers: { host: "extra.example." }, status: 421 },
+    { headers: { host: "extra.example.evil.invalid" }, status: 421 },
+    { headers: { host: "bad.example" }, status: 421 },
+    { headers: { host: "broken.example" }, status: 421 },
+    { headers: { host: "2130706433:3001" }, status: 200 },
+    { headers: { host: "localhost", "x-forwarded-host": "2130706433" }, status: 200 },
+    ...["127.1", "0x7f000001", "0177.0.0.1"].map((host) => ({ headers: { host }, status: 421 })),
+    { headers: { host: "[::1]", origin: "http://[::1]:3000" }, status: 403 },
+    { headers: { host: "extra.example", origin: "https://extra.example" }, status: 403 },
+  ]), checkConfiguration("http://[::1]:3000", "", [
+    { headers: { host: "[::1]:3001", origin: "http://[::1]:3000" }, status: 200 },
+    { headers: { host: "[0:0:0:0:0:0:0:1]:3001", origin: "http://[0:0:0:0:0:0:0:1]:3000" }, status: 200 },
+    { headers: { host: "[::1]:3001", origin: "http://[::2]:3000" }, status: 403 },
+  ])]);
+});

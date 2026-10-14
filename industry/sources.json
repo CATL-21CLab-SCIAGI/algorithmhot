@@ -1,149 +1,78 @@
 {
-  "$comment": "AlgorithmHot 首版六条研究来源。全部默认禁用，由本地运行命令按需启用；模型准入和原始资料采集分别计数。",
+  "$comment": "AlgorithmHot 的示范信源：首次启动时导入（scripts/seed.ts），已存在的不会被覆盖。之后在后台“信源”里新建、修改和暂停。字段说明见 docs/customize.md。这里只放引擎能直接采集的来源；arXiv 与期刊（经 Crossref）由研究来源模块读取 industry/research-feeds.json。",
   "sources": [
     {
-      "tier": "T1_5",
-      "first_party": false,
-      "owner_entity_id": null,
-      "participation_mode": "editorial",
-      "interval_minutes": 360,
-      "tags": [
-        "研究"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false,
-      "enabled": false,
-      "id": "research-arxiv-ml-ai",
-      "name": "arXiv · AI 与机器学习",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://rss.arxiv.org/rss/cs.LG+cs.AI",
-        "summaryIsBody": true,
-        "fetchPublicContent": false,
-        "fixedInterval": true,
-        "researchSourceKind": "arxiv"
-      }
-    },
-    {
-      "tier": "T1_5",
-      "first_party": false,
-      "owner_entity_id": null,
-      "participation_mode": "editorial",
-      "interval_minutes": 360,
-      "tags": [
-        "研究"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false,
-      "enabled": false,
-      "id": "research-arxiv-physical-science",
-      "name": "arXiv · 计算物理与材料",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://rss.arxiv.org/rss/physics.comp-ph+cond-mat.mtrl-sci",
-        "summaryIsBody": true,
-        "fetchPublicContent": false,
-        "fixedInterval": true,
-        "researchSourceKind": "arxiv"
-      }
-    },
-    {
-      "tier": "T1_5",
-      "first_party": false,
-      "owner_entity_id": null,
-      "participation_mode": "editorial",
-      "interval_minutes": 360,
-      "tags": [
-        "研究"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false,
-      "enabled": false,
-      "id": "research-arxiv-molecular",
-      "name": "arXiv · 分子与定量生物学",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://rss.arxiv.org/rss/q-bio.BM+q-bio.QM",
-        "summaryIsBody": true,
-        "fetchPublicContent": false,
-        "fixedInterval": true,
-        "researchSourceKind": "arxiv"
-      }
-    },
-    {
-      "tier": "T1_5",
-      "first_party": false,
-      "owner_entity_id": null,
-      "participation_mode": "hot_signal",
-      "interval_minutes": 360,
-      "tags": [
-        "研究"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false,
-      "enabled": false,
-      "id": "research-hf-daily-papers",
-      "name": "Hugging Face Daily Papers · 社区信号",
-      "kind": "json_list",
-      "config": {
-        "url": "https://huggingface.co/api/daily_papers",
-        "mode": "json_api",
-        "titlePaths": [
-          "paper.title"
-        ],
-        "summaryPaths": [
-          "paper.summary"
-        ],
-        "summaryIsBody": true,
-        "fetchPublicContent": false,
-        "urlTemplate": "https://huggingface.co/papers/{paper.id}",
-        "publishedAtPath": "paper.submittedOnDailyAt",
-        "externalIdPath": "paper.id",
-        "fixedInterval": true,
-        "researchSourceKind": "huggingface"
-      }
-    },
-    {
-      "tier": "T1",
-      "first_party": true,
-      "owner_entity_id": "google",
-      "participation_mode": "editorial",
-      "interval_minutes": 360,
-      "tags": [
-        "研究"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false,
-      "enabled": false,
       "id": "rss-google-deepmind",
       "name": "Google DeepMind",
       "kind": "rss",
       "config": {
         "feedUrl": "https://deepmind.google/blog/rss.xml",
-        "fixedInterval": true,
-        "researchSourceKind": "institution"
-      }
-    },
-    {
+        "_aihot": {
+          "initialBackfillLimit": 8
+        }
+      },
       "tier": "T1",
-      "first_party": true,
-      "owner_entity_id": "bair",
+      "owner_entity_id": "google",
       "participation_mode": "editorial",
-      "interval_minutes": 360,
+      "interval_minutes": 180,
       "tags": [
-        "研究"
+        "机构"
       ],
       "site_fulltext": false,
-      "syndicate_fulltext": false,
-      "enabled": false,
+      "syndicate_fulltext": false
+    },
+    {
       "id": "rss-bair",
       "name": "Berkeley BAIR",
       "kind": "rss",
       "config": {
         "feedUrl": "https://bair.berkeley.edu/blog/feed.xml",
-        "fixedInterval": true,
-        "researchSourceKind": "institution"
-      }
+        "_aihot": {
+          "initialBackfillLimit": 8
+        }
+      },
+      "tier": "T1",
+      "owner_entity_id": "bair",
+      "participation_mode": "editorial",
+      "interval_minutes": 360,
+      "tags": [
+        "机构"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "json-hf-daily-papers",
+      "name": "Hugging Face Daily Papers",
+      "kind": "json_list",
+      "config": {
+        "url": "https://huggingface.co/api/daily_papers",
+        "mode": "json_api",
+        "titlePaths": [
+          "paper.title",
+          "title"
+        ],
+        "summaryPaths": [
+          "paper.summary",
+          "summary"
+        ],
+        "summaryIsBody": true,
+        "urlTemplate": "https://arxiv.org/abs/{paper.id}",
+        "publishedAtPath": "paper.submittedOnDailyAt",
+        "externalIdPath": "paper.id",
+        "_aihot": {
+          "initialBackfillLimit": 30
+        }
+      },
+      "tier": "T1_5",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "社区"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
     }
   ]
 }

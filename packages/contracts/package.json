@@ -3,10 +3,10 @@
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./src/index.ts",
     "./*": "./src/*.ts"
   },
   "dependencies": {
-    "@aihot/industry": "*"
+    "@aihot/industry": "*",
+    "@aihot/site": "*"
   }
 }

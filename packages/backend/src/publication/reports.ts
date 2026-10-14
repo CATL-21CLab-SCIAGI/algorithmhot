@@ -1,18 +1,17 @@
 // Reports through the public read layer: website DTOs and the v1 shapes. Only real reports are
 // listed; a missing date is a 404, never another day. Withdrawn citations are marked, not shown.
-import type { ResearchBrief, ResearchMetadata } from "@aihot/contracts/research";
-import { publicPaperFigure } from "@aihot/contracts/paper-figure";
-import { researchDate } from "../sources/research.ts";
 import type { ReportCitation, ReportDetail, ReportIndexEntry, ReportNavigationEntry, ReportKind } from "@aihot/contracts/site";
+import { REPORTS, SITE, withSubject } from "@aihot/site";
 import { sql } from "../db.ts";
-import { listedCondition } from "./scope.ts";
-import { publicReportCondition } from "./report-scope.ts";
+import { cached, type Cached } from "../lib/cache.ts";
 import { proxiedImage, proxiedImageSet } from "../media/imgproxy.ts";
-import { dailyUrl, itemUrl, siteUrl } from "./links.ts";
-import { SITE, withSubject } from "@aihot/industry/site";
+import { isoWeekRange, monthRange } from "@aihot/contracts/time";
+import { dailyUrl, itemUrl, periodUrl, siteUrl } from "./links.ts";
+import { itemFigure, itemNotes } from "./items.ts";
+import { publicSourceName } from "./rules.ts";
+import { listedCondition } from "./scope.ts";
 
 export type { ReportKind };
-const dailyShape = (kind: ReportKind) => kind === "daily" || kind === "pilot";
 
 interface ReportRow {
   kind: ReportKind;
@@ -21,45 +20,46 @@ interface ReportRow {
   window_end: Date;
   content: Record<string, any>;
   generated_at: Date;
-  revision: number;
 }
 
 interface Availability {
-  researchBrief: ResearchBrief | null;
-  research: ResearchMetadata | null;
   available: boolean;
+  /** The article's public summary, for issues saved before summaries were frozen into them. */
+  summary: string | null;
   firstParty: boolean;
   sourceId: string | null;
+  sourceName: string | null;
   sourceIcon: string | null;
-  storyPublicId: string | null;
   publishedAt: Date | null;
+  /** The article's figure now (raw.figure). */
+  figure: unknown;
 }
 
 async function availability(ids: string[]): Promise<Map<string, Availability>> {
   const out = new Map<string, Availability>();
   if (ids.length === 0) return out;
-  const rows = await sql<{ id: string; available: boolean; first_party: boolean; source_id: string; icon_url: string | null; story_public_id: string | null; at: Date | null; research: ResearchMetadata | null; research_brief: ResearchBrief | null }[]>`
-    SELECT p.article_id AS id, (${listedCondition(new Date())}) AS available, p.first_party, p.source_id, s.icon_url, st.public_id::text AS story_public_id,
-      p.published_at AS at, p.research, p.research_brief
-    FROM publications p LEFT JOIN sources s ON s.id = p.source_id LEFT JOIN stories st ON st.id = p.story_id
+  const rows = await sql<{ id: string; available: boolean; summary: string | null; first_party: boolean; source_id: string; source_name: string | null; icon_url: string | null; at: Date | null; figure: unknown }[]>`
+    SELECT p.article_id AS id, (${listedCondition(new Date())}) AS available, p.summary, (s.tier = 'T1') AS first_party, p.source_id, s.name AS source_name, s.icon_url,
+      coalesce(p.published_at, p.discovered_at) AS at, (SELECT a.raw->'figure' FROM articles a WHERE a.id = p.article_id) AS figure
+    FROM publications p LEFT JOIN sources s ON s.id = p.source_id
     WHERE p.article_id IN ${sql(ids)}`;
   for (const r of rows) {
     out.set(r.id, {
       available: r.available,
+      summary: r.summary,
       firstParty: r.first_party,
       sourceId: r.source_id,
+      sourceName: r.source_name,
       sourceIcon: r.icon_url,
-      storyPublicId: r.story_public_id,
       publishedAt: r.at,
-      research: r.research,
-      researchBrief: r.research_brief,
+      figure: r.figure,
     });
   }
   return out;
 }
 
 /** Ids among `ids` that are no longer public. Ids absent from this database stay cited as published. */
-export async function unavailableIds(ids: string[]): Promise<Set<string>> {
+async function unavailableIds(ids: string[]): Promise<Set<string>> {
   const unique = [...new Set(ids.filter(Boolean))];
   if (!unique.length) return new Set();
   const rows = await sql<{ id: string }[]>`
@@ -68,47 +68,124 @@ export async function unavailableIds(ids: string[]): Promise<Set<string>> {
   return new Set(rows.map((r) => r.id));
 }
 
-/** Directory/feed metadata only: citation summaries and full report prose stay in the detail read. */
+/**
+ * Directory/feed metadata only: citation summaries and full report prose stay in the detail read. Issue
+ * numbers count the whole series of the kind before the limit applies, so the 401st issue is numbered
+ * 401 although the index keeps 400; a back-filled or deleted issue renumbers the ones after it.
+ */
 export async function reportIndexRows(kind: ReportKind, limit: number) {
-  // 先按完整的同类公开刊物编号，再裁剪导航；历史补刊和撤下会改变后续期号。
   return sql<{ key: string; issue_number: number; content: Record<string, any>; generated_at: Date }[]>`
-    SELECT key, generated_at, (row_number() OVER (ORDER BY key ASC))::int AS issue_number, jsonb_build_object(
-      'lead', content->'lead', 'headline', content->'headline', 'title', content->'title', 'run', content->'run',
-      CASE WHEN kind IN ('daily', 'pilot') THEN 'sections' ELSE 'themes' END,
-      jsonb_build_array(jsonb_build_object(CASE WHEN kind IN ('daily', 'pilot') THEN 'items' ELSE 'storyRefs' END,
+    SELECT key, generated_at, (row_number() OVER (ORDER BY key))::int AS issue_number, jsonb_build_object(
+      'lead', content->'lead', 'headline', content->'headline', 'title', content->'title',
+      'leadItemId', content->'leadItemId', 'highlights', content->'highlights',
+      CASE WHEN kind = 'daily' THEN 'sections' ELSE 'themes' END,
+      jsonb_build_array(jsonb_build_object(CASE WHEN kind = 'daily' THEN 'items' ELSE 'storyRefs' END,
         (SELECT coalesce(jsonb_agg(jsonb_build_object('itemId', item->'itemId', 'title', item->'title') ORDER BY ord), '[]'::jsonb)
          FROM jsonb_array_elements(jsonb_path_query_array(content,
-           CASE WHEN kind IN ('daily', 'pilot') THEN '$.sections[*].items[*]'::jsonpath ELSE '$.themes[*].storyRefs[*]'::jsonpath END
+           CASE WHEN kind = 'daily' THEN '$.sections[*].items[*]'::jsonpath ELSE '$.themes[*].storyRefs[*]'::jsonpath END
          )) WITH ORDINALITY AS cited(item, ord))))) AS content
-    FROM reports WHERE kind = ${kind} AND ${publicReportCondition()} ORDER BY key DESC LIMIT ${limit}`;
+    FROM reports WHERE kind = ${kind} ORDER BY key DESC LIMIT ${limit}`;
+}
+
+/** The entries an issue cites in reading order: a daily's sections, a weekly's or monthly's themes. */
+function entriesOf(content: Record<string, any>, kind: "daily" | "periodic"): Array<Record<string, any>> {
+  return kind === "daily" ? (content.sections ?? []).flatMap((s: any) => s.items ?? []) : (content.themes ?? []).flatMap((t: any) => t.storyRefs ?? []);
 }
 
 /**
- * A report's headline for indexes and feeds: its lead, else the first cited item that is still public.
- * `gone` must cover withdrawn candidates before the first public title (see {@link unavailableHeadlineIds}).
+ * The entries an issue may lead with, in order. An issue that names its lead item (composed by rule)
+ * leads with that entry, then its highlights, then the rest; an issue without a written lead with its
+ * entries as cited. A written lead is matched to its citation just as its cover is, so its
+ * withdrawal can replace that lead too. An unmatched written lead has no individual citation.
  */
-export function reportHeadline(content: Record<string, any>, kind: "daily" | "periodic", gone: Set<string>): string | null {
-  if (kind === "daily" && content.run?.kind === "pilot" && content.title) return String(content.title);
-  if (kind === "daily" && content.lead?.title) return String(content.lead.title);
-  if (kind === "periodic" && periodicHeadline(content)) return periodicHeadline(content);
-  const items: Array<Record<string, any>> = kind === "daily" ? (content.sections ?? []).flatMap((s: any) => s.items ?? []) : (content.themes ?? []).flatMap((t: any) => t.storyRefs ?? []);
-  const first = items.find((i) => !i.itemId || !gone.has(i.itemId));
-  return first?.title ?? null;
+function leadCandidates(content: Record<string, any>, kind: "daily" | "periodic"): Array<Record<string, any>> {
+  const entries = entriesOf(content, kind);
+  const leadId = content.leadItemId ?? writtenLeadId(content, kind, entries);
+  if (!leadId) return (kind === "daily" ? content.lead?.title : periodicHeadline(content)) ? [] : entries;
+  const byId = new Map(entries.filter((e) => e.itemId).map((e) => [String(e.itemId), e]));
+  const order = new Set([leadId, ...(content.highlights ?? []), ...entries.map((e) => e.itemId)].filter(Boolean).map(String));
+  return [...order].map((id) => byId.get(id)).filter((e): e is Record<string, any> => !!e);
 }
 
-/** A weekly or monthly's own headline; the composer's "<site> 周报 · 2026-W38" names the issue, not its news. */
+export interface IssueLead { itemId: string | null; title: string; leadParagraph: string | null }
+
+/** A written lead's citation, using the same title match as a daily's front-page picture. */
+function writtenLeadId(content: Record<string, any>, kind: "daily" | "periodic", entries = entriesOf(content, kind)): string | null {
+  const title = kind === "daily" ? content.lead?.title : periodicHeadline(content);
+  if (!title) return null;
+  return leadItemOf(title, [], entries as ReportCitation[])?.itemId ?? null;
+}
+
+/**
+ * The lead an issue shows, everywhere it is shown (page, indexes, feeds, v1, MCP). An issue that
+ * names its lead item leads with that entry's own title and summary; once the item is withdrawn, the
+ * next candidate still public leads in its own words, so a withdrawn report is never set above the
+ * others. An earlier issue keeps its written lead, else its first cited item still public. A weekly's
+ * or monthly's lead has no paragraph of its own (see periodOverview). `gone` must cover the candidates
+ * before the first public one (see {@link unavailableHeadlineIds}); entries read without summaries lead
+ * without a paragraph.
+ */
+export function issueLead(content: Record<string, any>, kind: "daily" | "periodic", gone: Set<string>): IssueLead | null {
+  const candidates = leadCandidates(content, kind);
+  if (!candidates.length) {
+    const title = kind === "daily" ? content.lead?.title : periodicHeadline(content);
+    return title ? { itemId: null, title: String(title), leadParagraph: kind === "daily" ? content.lead?.leadParagraph ?? null : null } : null;
+  }
+  const first = candidates.find((e) => !e.itemId || !gone.has(String(e.itemId)));
+  if (!first) return null;
+  const lead = { itemId: first.itemId ? String(first.itemId) : null, title: String(first.title ?? "") };
+  const writtenId = content.leadItemId ? null : writtenLeadId(content, kind);
+  if (writtenId && first.itemId === writtenId) return { ...lead,
+    title: String(kind === "daily" ? content.lead.title : periodicHeadline(content)),
+    leadParagraph: kind === "daily" ? content.lead.leadParagraph ?? null : null };
+  if (kind === "periodic") return { ...lead, leadParagraph: null };
+  const own = first.itemId === content.leadItemId && typeof content.lead?.leadParagraph === "string";
+  return { ...lead, leadParagraph: own ? content.lead.leadParagraph : (content.leadItemId || writtenId) && typeof first.summary === "string" ? first.summary : null };
+}
+
+/**
+ * Projected indexes and feeds keep no citation prose. Fetch just a replacement lead's frozen
+ * paragraph after choosing it, in one batch; the 400-issue navigation stays free of full summaries.
+ */
+async function dailyLeads(rows: Array<{ key: string; content: Record<string, any> }>, gone: Set<string>): Promise<Map<string, IssueLead | null>> {
+  const leads = new Map(rows.map((r) => [r.key, issueLead(r.content, "daily", gone)]));
+  const replacements = rows.flatMap((r) => {
+    const lead = leads.get(r.key);
+    return lead?.itemId && lead.leadParagraph === null && (r.content.leadItemId || writtenLeadId(r.content, "daily"))
+      ? [{ key: r.key, item_id: lead.itemId }] : [];
+  });
+  if (!replacements.length) return leads;
+  const paragraphs = await sql<{ key: string; summary: string | null }[]>`
+    SELECT r.key, (SELECT i->>'summary' FROM jsonb_path_query(r.content, '$.sections[*].items[*]') i
+      WHERE i->>'itemId' = wanted.item_id LIMIT 1) AS summary
+    FROM reports r JOIN jsonb_to_recordset(${sql.json(replacements)}) AS wanted(key text, item_id text) ON wanted.key = r.key
+    WHERE r.kind = 'daily'`;
+  for (const p of paragraphs) leads.get(p.key)!.leadParagraph = p.summary;
+  return leads;
+}
+
+/**
+ * A weekly's or monthly's overview: the one written for it, else what it carries, naming the first three
+ * of its lead, highlights and entries still public. `gone` must cover every entry.
+ */
+function periodOverview(content: Record<string, any>, kind: "weekly" | "monthly", gone: Set<string>): string | null {
+  const changed = entriesOf(content, "periodic").some((e) => e.itemId && gone.has(e.itemId));
+  if (!changed && typeof content.overview === "string" && content.overview) return content.overview;
+  const shown = leadCandidates(content, "periodic").filter((e) => !e.itemId || !gone.has(String(e.itemId)));
+  if (!shown.length) return null;
+  return `${kind === "weekly" ? "本周" : "本月"} ${shown.length} ${REPORTS.entry.measure}${REPORTS.entry.noun}，最受关注的是：${shown.slice(0, 3).map((e) => e.title).join("；")}。`;
+}
+
+/** A weekly or monthly's own headline; the composer's "<site name> 周报 · 2026-W38" names the issue, not its news. */
 function periodicHeadline(content: Record<string, any>): string | null {
   const text = String(content.headline ?? content.title ?? "");
-  return text && !/^.+ [周月]报 · \d{4}-/.test(text) ? text : null;
+  const issueName = text.startsWith(`${SITE.name} `) && /^[周月]报 · /.test(text.slice(SITE.name.length + 1));
+  return text && !issueName ? text : null;
 }
 
-/** Check only the first possible headline of each report; advance reports whose candidate was withdrawn. */
+/** Check only the first possible lead of each report; advance reports whose candidate was withdrawn. */
 export async function unavailableHeadlineIds(rows: Array<{ content: Record<string, any> }>, kind: "daily" | "periodic"): Promise<Set<string>> {
-  const reports = rows
-    .filter((r) => (kind === "daily" ? !r.content.lead?.title : !periodicHeadline(r.content)))
-    .map((r): Array<{ itemId?: string | null }> => kind === "daily"
-      ? (r.content.sections ?? []).flatMap((s: any) => s.items ?? [])
-      : (r.content.themes ?? []).flatMap((t: any) => t.storyRefs ?? []));
+  const reports = rows.map((r) => leadCandidates(r.content, kind)).filter((items) => items.length > 0);
   const gone = new Set<string>();
   const checked = new Set<string>();
   while (true) {
@@ -120,37 +197,78 @@ export async function unavailableHeadlineIds(rows: Array<{ content: Record<strin
   }
 }
 
+/** Ids among the cited items that are no longer public, from an availability read. */
+const goneIn = (avail: Map<string, Availability>) => new Set([...avail].filter(([, a]) => !a.available).map(([id]) => id));
+
+/** Items absent from this database (older than the imported window) stay cited as they were published. */
+const stillPublic = (raw: Record<string, any>, avail: Map<string, Availability>) => !raw.itemId || (avail.get(raw.itemId)?.available ?? true);
+
+/** Frozen citation fields, with current source metadata and a public summary only if none was saved. */
+function citationMetadata(raw: Record<string, any>, a: Availability | undefined) {
+  return {
+    summary: raw.summary ?? a?.summary ?? null,
+    sourceName: String(a?.sourceName ?? raw.sourceName ?? raw.source?.name ?? ""),
+    sourceUrl: String(raw.sourceUrl ?? raw.links?.original ?? ""),
+    publishedAt: a?.publishedAt?.toISOString() ?? (raw.publishedAt ? new Date(raw.publishedAt).toISOString() : null),
+  };
+}
+
+/** An introduction cannot keep quoting an unavailable entry after that entry leaves its section. */
+function sectionSummary(section: Record<string, any>, avail: Map<string, Availability>): string | null {
+  if ((section.storyRefs ?? []).some((e: Record<string, any>) => !stillPublic(e, avail))) return null;
+  return typeof section.summary === "string" && section.summary ? section.summary : null;
+}
+
 function citationFrom(raw: Record<string, any>, avail: Map<string, Availability>): ReportCitation {
   const id = raw.itemId ?? null;
   const a = id ? avail.get(id) : undefined;
-  // Items absent from this database (older than the imported window) stay cited as they were published.
-  const available = id ? (a ? a.available : true) : true;
-  if (!available) {
+  if (!stillPublic(raw, avail)) {
     // Withdrawn since: the reader sees a marked title; the summary and links are not sent at all.
     return {
-      itemId: id, title: String(raw.title ?? ""), summary: null, sourceName: "", sourceUrl: "", sourceId: null, sourceIconUrl: null,
-      firstParty: false, role: raw.role ?? null, storyPublicId: null, publishedAt: null, research: null, researchBrief: null, researchRoadmap: null, available: false,
+      itemId: id, title: String(raw.title ?? ""), summary: null, sourceName: "", sourceUrl: "", sourceIconUrl: null,
+      firstParty: false, publishedAt: null, available: false,
     };
   }
+  const iconSrcSet = a?.sourceIcon ? proxiedImageSet(a.sourceIcon, "avatar") : null;
+  const metadata = citationMetadata(raw, a);
+  const notes = itemNotes(raw.notes);
+  const figure = itemFigure(a?.figure);
   return {
     itemId: id,
     title: String(raw.title ?? ""),
-    summary: raw.summary ?? null,
-    sourceName: String(raw.sourceName ?? raw.source?.name ?? ""),
-    sourceUrl: String(raw.sourceUrl ?? raw.links?.original ?? ""),
-    sourceId: raw.sourceId ?? a?.sourceId ?? null,
+    ...metadata,
+    sourceName: publicSourceName(metadata.sourceName),
     sourceIconUrl: a?.sourceIcon ? proxiedImage(a.sourceIcon, "avatar") : null,
-    ...(a?.sourceIcon && proxiedImageSet(a.sourceIcon, "avatar") ? { sourceIconSrcSet: proxiedImageSet(a.sourceIcon, "avatar")! } : {}),
-    firstParty: raw.firstParty ?? a?.firstParty ?? false,
-    role: raw.role ?? null,
-    storyPublicId: raw.storyPublicId ?? a?.storyPublicId ?? null,
-    publishedAt: researchDate(raw.publishedAt) ?? a?.publishedAt?.toISOString() ?? null,
-    research: raw.research ?? a?.research ?? null,
-    researchBrief: Object.hasOwn(raw, "researchBrief") ? raw.researchBrief : a?.researchBrief ?? null,
-    // Diagrams are frozen with the issue; a later source revision must not alter an older issue.
-    researchRoadmap: raw.researchRoadmap ?? null,
-    paperFigure: publicPaperFigure(raw.paperFigure, id, raw.researchBrief?.sourceRevision ?? null),
-    available,
+    ...(iconSrcSet ? { sourceIconSrcSet: iconSrcSet } : {}),
+    firstParty: a?.firstParty ?? false,
+    available: true,
+    ...(notes.length ? { notes } : {}),
+    ...(figure ? { figure } : {}),
+  };
+}
+
+/**
+ * How many sources an issue cites: those of its entries still public and of what is listed under them, as
+ * the database has them, else as the issue recorded them.
+ */
+function citedSources(content: Record<string, any>, kind: "daily" | "periodic", avail: Map<string, Availability>): number {
+  const cited = entriesOf(content, kind).filter((e) => stillPublic(e, avail)).flatMap((e) => [e, ...(e.related ?? [])]);
+  return new Set(cited.filter((e) => stillPublic(e, avail)).map((e) => (e.itemId ? avail.get(e.itemId)?.sourceId : undefined) ?? e.sourceId).filter(Boolean)).size;
+}
+
+/**
+ * A cited entry with what a daily entry composed by rule adds: how many other sources reported the
+ * event, the event's other developments listed under it (titles only), and the earlier daily it follows.
+ */
+function entryCitation(raw: Record<string, any>, avail: Map<string, Availability>): ReportCitation {
+  const citation = citationFrom(raw, avail);
+  if (!citation.available) return citation;
+  const related: ReportCitation[] = (raw.related ?? []).map((r: Record<string, any>) => ({ ...citationFrom(r, avail), summary: null }));
+  return {
+    ...citation,
+    ...(Number(raw.sources) > 1 ? { otherSources: Number(raw.sources) - 1 } : {}),
+    ...(related.length ? { related } : {}),
+    ...(typeof raw.followUp === "string" ? { followUp: raw.followUp } : {}),
   };
 }
 
@@ -166,7 +284,7 @@ const bigrams = (text: string) => {
  * that matches no item clearly has none.
  */
 export function leadItemOf(leadTitle: string | undefined, highlights: ReportCitation[], all: ReportCitation[]): ReportCitation | undefined {
-  if (!leadTitle) return highlights[0] ?? all[0];
+  if (!leadTitle) return highlights.find((c) => c.available) ?? all.find((c) => c.available);
   const want = bigrams(leadTitle);
   if (want.size === 0) return undefined;
   let best: { c: ReportCitation; share: number } | undefined;
@@ -197,7 +315,8 @@ async function leadCover(itemId: string): Promise<{ url: string; srcSet?: string
   if (!row) return null;
   const url = proxiedImage(row.m.url, "full");
   if (!url) return null;
-  return { url, ...(proxiedImageSet(row.m.url, "hero") ? { srcSet: proxiedImageSet(row.m.url, "hero")! } : {}), width: typeof row.m.width === "number" ? row.m.width : null, height: typeof row.m.height === "number" ? row.m.height : null };
+  const srcSet = proxiedImageSet(row.m.url, "hero");
+  return { url, ...(srcSet ? { srcSet } : {}), width: typeof row.m.width === "number" ? row.m.width : null, height: typeof row.m.height === "number" ? row.m.height : null };
 }
 
 function readingMinutes(text: string): number {
@@ -206,68 +325,72 @@ function readingMinutes(text: string): number {
 
 async function neighbors(kind: ReportKind, key: string): Promise<{ prev: string | null; next: string | null }> {
   const [row] = await sql<{ prev: string | null; next: string | null }[]>`
-    SELECT (SELECT key FROM reports WHERE kind = ${kind} AND key < ${key} AND ${publicReportCondition()} ORDER BY key DESC LIMIT 1) AS prev,
-      (SELECT key FROM reports WHERE kind = ${kind} AND key > ${key} AND ${publicReportCondition()} ORDER BY key ASC LIMIT 1) AS next`;
+    SELECT (SELECT key FROM reports WHERE kind = ${kind} AND key < ${key} ORDER BY key DESC LIMIT 1) AS prev,
+      (SELECT key FROM reports WHERE kind = ${kind} AND key > ${key} ORDER BY key ASC LIMIT 1) AS next`;
   return { prev: row?.prev ?? null, next: row?.next ?? null };
 }
 
 export async function loadReport(kind: ReportKind, key: string): Promise<ReportDetail | null> {
-  const [r] = await sql<(ReportRow & { issue_number: number })[]>`
-    SELECT r.kind, r.key, r.window_start, r.window_end, r.content, r.generated_at, r.revision,
-      (SELECT count(*)::int FROM reports earlier WHERE earlier.kind = r.kind AND earlier.key <= r.key AND ${publicReportCondition("earlier")}) AS issue_number
-    FROM reports r WHERE r.kind = ${kind} AND r.key = ${key} AND ${publicReportCondition("r")}`;
+  // Its number counts every issue of the kind up to it, as the index numbers them (reportIndexRows).
+  const [r] = await sql<(Pick<ReportRow, "content" | "generated_at"> & { issue_number: number })[]>`
+    SELECT r.content, r.generated_at, (SELECT count(*)::int FROM reports earlier WHERE earlier.kind = r.kind AND earlier.key <= r.key) AS issue_number
+    FROM reports r WHERE r.kind = ${kind} AND r.key = ${key}`;
   if (!r) return null;
   const c = r.content;
-  const rawItems: Array<Record<string, any>> = [
+  const entries: Array<Record<string, any>> = [
     ...(c.sections ?? []).flatMap((s: any) => s.items ?? []),
     ...(c.flashes ?? []),
     ...(c.themes ?? []).flatMap((t: any) => t.storyRefs ?? []),
   ];
+  const rawItems = [...entries, ...entries.flatMap((e) => e.related ?? [])];
   const avail = await availability([...new Set(rawItems.map((i) => i.itemId).filter(Boolean))]);
-  const cite = (raw: Record<string, any>) => citationFrom(raw, avail);
+  const cite = (raw: Record<string, any>) => entryCitation(raw, avail);
 
-  const sections = dailyShape(kind) || Array.isArray(c.sections)
+  const sections: ReportDetail["sections"] = kind === "daily"
     ? (c.sections ?? []).map((s: any) => ({ label: String(s.label), summary: null, items: (s.items ?? []).map(cite) }))
-    : (c.themes ?? []).map((t: any) => ({ label: String(t.heading), summary: t.summary ?? null, items: (t.storyRefs ?? []).map(cite) }));
-  const labelled: Array<ReportCitation & { label: string }> = sections.flatMap((s: { label: string; items: ReportCitation[] }) => s.items.map((i) => ({ ...i, label: s.label })));
-  // Weekly and monthly reports carry the editor's reading order across themes.
-  const order: string[] = Array.isArray(c.storyOrder) ? c.storyOrder : [];
-  const rank = new Map(order.map((id, i) => [id, i]));
-  const stories = order.length
-    ? [...labelled].sort((a, b) => (rank.get(a.itemId ?? "") ?? order.length) - (rank.get(b.itemId ?? "") ?? order.length))
-    : labelled;
-  const all: ReportCitation[] = labelled;
+    : (c.themes ?? []).map((t: any) => ({ label: String(t.heading), summary: sectionSummary(t, avail), items: (t.storyRefs ?? []).map(cite) }));
+  const all = sections.flatMap((s) => s.items);
   const highlightIds: string[] = c.highlights ?? [];
   const highlights = highlightIds.length
     ? highlightIds.map((id) => all.find((x: ReportCitation) => x.itemId === id)).filter((x): x is ReportCitation => !!x)
     : all.slice(0, 3);
-  const text = [c.lead?.leadParagraph ?? "", c.overview ?? "", ...all.map((i: ReportCitation) => `${i.title}${i.summary ?? ""}`)].join("");
-  // A weekly or monthly's picture comes from its first highlight and is captioned with that story.
-  const leadItem = dailyShape(kind) ? leadItemOf(c.lead?.title, highlights, all) : (highlights[0] ?? all[0]);
-  const figure = leadItem?.available ? leadItem.paperFigure : null;
-  const [{ prev, next }, picture] = await Promise.all([neighbors(kind, key), figure ? { url: figure.imageUrl, width: figure.width, height: figure.height } : leadItem?.itemId && leadItem.available && !c.illustrated ? leadCover(leadItem.itemId) : null]);
-  const cover = picture && leadItem ? { ...picture, caption: dailyShape(kind) ? null : leadItem.title } : null;
-  const headline = dailyShape(kind) ? null : periodicHeadline(c);
-  const title = dailyShape(kind) ? String(c.title ?? `${withSubject("日报")} · ${key}`) : String(c.title ?? (kind === "weekly" ? `${SITE.name} 周报 · ${key}` : `${SITE.name} 月报 · ${key}`));
+  const text = [c.lead?.leadParagraph ?? "", c.overview ?? "", ...all.flatMap((i: ReportCitation) => [`${i.title}${i.summary ?? ""}`, ...(i.related ?? []).map((r) => r.title)])].join("");
+  // An issue leads with the item it names (an issue composed by rule records it), or the one standing in
+  // for it once withdrawn (issueLead); an earlier daily's lead is matched by title. An earlier weekly or
+  // monthly's picture comes from its first highlight, captioned with it.
+  const gone = goneIn(avail);
+  const hasCitedLead = !!c.leadItemId || !!writtenLeadId(c, kind === "daily" ? "daily" : "periodic");
+  const named = hasCitedLead ? issueLead(c, kind === "daily" ? "daily" : "periodic", gone) : null;
+  const overview = kind === "daily" ? c.overview ?? null : periodOverview(c, kind, gone);
+  const leadItem = hasCitedLead
+    ? all.find((x) => x.itemId === named?.itemId)
+    : kind === "daily" ? leadItemOf(c.lead?.title, highlights, all) : (highlights.find((x) => x.available) ?? all.find((x) => x.available));
+  const [{ prev, next }, picture] = await Promise.all([neighbors(kind, key), leadItem?.itemId && leadItem.available ? leadCover(leadItem.itemId) : null]);
+  const cover = picture && leadItem ? { ...picture, caption: kind === "daily" || c.leadItemId ? null : leadItem.title } : null;
+  const headline = kind === "daily" ? null : periodicHeadline(c);
+  const title = kind === "daily" ? `${withSubject("日报")} · ${key}`
+    : String((hasCitedLead && c.title === headline ? named?.title : c.title) ?? (kind === "weekly" ? `${SITE.name} 周报 · ${key}` : `${SITE.name} 月报 · ${key}`));
   return {
     kind,
     key,
-    ...(c.illustrated === true ? { illustrated: true } : {}),
     issueNumber: r.issue_number,
     title,
-    windowStart: r.window_start.toISOString(),
-    windowEnd: r.window_end.toISOString(),
     generatedAt: r.generated_at.toISOString(),
-    revision: r.revision,
-    ...(c.run ? { run: c.run } : {}),
-    lead: c.lead ?? (headline ? { title: headline, leadParagraph: String(c.overview ?? "") } : null),
-    overview: c.overview ?? null,
+    lead: hasCitedLead
+      ? (named ? { title: named.title, leadParagraph: (kind === "daily" ? named.leadParagraph : overview) ?? "" } : null)
+      : kind === "daily" ? c.lead ?? null
+        : c.lead ? { ...c.lead, leadParagraph: overview ?? "" } : (headline ? { title: headline, leadParagraph: overview ?? "" } : null),
+    leadItemId: (kind === "daily" || c.leadItemId) && leadItem?.available ? leadItem.itemId : null,
+    overview,
     highlights,
     sections,
-    stories,
     flashes: (c.flashes ?? []).map(cite),
     cover,
-    metrics: c.metrics ?? {},
+    metrics: {
+      ...c.metrics,
+      ...(c.metrics?.firstPartyEvents !== undefined ? { firstPartyEvents: all.filter((i) => i.firstParty).length } : {}),
+      ...(c.metrics?.sourcesCount !== undefined ? { sourcesCount: citedSources(c, kind === "daily" ? "daily" : "periodic", avail) } : {}),
+    },
     readingMinutes: readingMinutes(text),
     prev,
     next,
@@ -276,52 +399,53 @@ export async function loadReport(kind: ReportKind, key: string): Promise<ReportD
 
 /**
  * The newest 400 issues of a kind with their withdrawn headline candidates. Every archive, navigation
- * and feed of that kind reads this. Read committed data on each call, as report details and neighbors
- * do: a producer in another process can add an issue immediately before a static export begins.
- * Serving an older in-process index would omit routes that the detail pages already link to.
+ * and feed of that kind reads this; after one minute readers wait for its replacement so an expired
+ * index cannot reintroduce a withdrawn headline into downstream caches.
  */
 const INDEX_LIMIT = 400;
-export async function reportIndex(kind: ReportKind) {
-  const rows = await reportIndexRows(kind, INDEX_LIMIT);
-  return { rows, gone: await unavailableHeadlineIds(rows, dailyShape(kind) ? "daily" : "periodic") };
+const indexes = new Map<ReportKind, Cached<{ rows: Awaited<ReturnType<typeof reportIndexRows>>; gone: Set<string> }>>();
+export function reportIndex(kind: ReportKind) {
+  let entry = indexes.get(kind);
+  if (!entry) {
+    entry = cached(async () => {
+      const rows = await reportIndexRows(kind, INDEX_LIMIT);
+      return { rows, gone: await unavailableHeadlineIds(rows, kind === "daily" ? "daily" : "periodic") };
+    }, { freshMs: 60_000, maxStaleMs: 60_000 });
+    indexes.set(kind, entry);
+  }
+  return entry.get();
 }
 
 export async function listReports(kind: ReportKind, limit = INDEX_LIMIT): Promise<ReportIndexEntry[]> {
   const index = await reportIndex(kind);
   const rows = index.rows.slice(0, limit);
-  const shape = dailyShape(kind) ? "daily" : "periodic";
+  const shape = kind === "daily" ? "daily" : "periodic";
   const gone = index.gone;
-  return rows.map((r) => {
-    const items = dailyShape(kind) ? (r.content.sections ?? []).flatMap((s: any) => s.items ?? []) : (r.content.themes ?? []).flatMap((t: any) => t.storyRefs ?? []);
-    return {
-      key: r.key,
-      issueNumber: r.issue_number,
-      title: reportHeadline(r.content, shape, gone),
-      generatedAt: r.generated_at.toISOString(),
-      count: items.length,
-    };
-  });
+  return rows.map((r) => ({
+    key: r.key,
+    issueNumber: r.issue_number,
+    title: issueLead(r.content, shape, gone)?.title ?? null,
+    count: entriesOf(r.content, shape).length,
+  }));
 }
 
-// ---------------------------------------------------------------------------
 // v1
-// ---------------------------------------------------------------------------
 
 const attribution = (url: string) => ({ name: SITE.name, url });
 
-export async function v1Dailies(limit: number, kind: "daily" | "pilot" = "daily") {
-  const index = await reportIndex(kind);
+export async function v1Dailies(limit: number) {
+  const index = await reportIndex("daily");
   const rows = index.rows.slice(0, limit);
   const gone = index.gone;
+  const leads = await dailyLeads(rows, gone);
   const items = rows.map((r) => {
-    const url = kind === "pilot" ? siteUrl(`/pilot/${r.key}`) : dailyUrl(r.key);
+    const url = dailyUrl(r.key);
+    const lead = leads.get(r.key);
     return {
       date: r.key,
-      ...(r.content.title ? { title: String(r.content.title) } : {}),
-      ...(r.content.run ? { run: r.content.run } : {}),
       generatedAt: r.generated_at.toISOString(),
-      leadTitle: reportHeadline(r.content, "daily", gone),
-      leadParagraph: r.content.lead?.leadParagraph ?? null,
+      leadTitle: lead?.title ?? null,
+      leadParagraph: lead?.leadParagraph ?? null,
       links: { aihot: url },
       attribution: attribution(url),
     };
@@ -329,128 +453,199 @@ export async function v1Dailies(limit: number, kind: "daily" | "pilot" = "daily"
   return { schemaVersion: 1 as const, count: items.length, items };
 }
 
-export async function v1Periods(kind: "weekly" | "monthly", limit: number) {
-  const index = await reportIndex(kind);
-  const rows = index.rows.slice(0, limit);
-  const gone = index.gone;
-  const items = rows.map((r) => {
-    const url = siteUrl(`/${kind}/${r.key}`);
-    return {
-      ...(kind === "weekly" ? { week: r.key } : { month: r.key }),
-      generatedAt: r.generated_at.toISOString(),
-      headline: reportHeadline(r.content, "periodic", gone),
-      overview: r.content.overview ?? null,
-      links: { aihot: url },
-      attribution: attribution(url),
-    };
-  });
-  return { schemaVersion: 1 as const, count: items.length, items };
+/**
+ * What a daily entry adds for readers of the Agent answer, keyed by the entry's link: other sources,
+ * the event's other developments (title and link on this site), and the earlier daily it follows.
+ */
+export interface DailyNote {
+  otherSources: number;
+  related: Array<{ title: string; link: string }>;
+  followUp: string | null;
 }
 
-export async function v1Period(kind: "weekly" | "monthly", key: string | "latest") {
-  const [r] = key === "latest"
-    ? await sql<ReportRow[]>`SELECT kind, key, window_start, window_end, content, generated_at, revision FROM reports WHERE kind = ${kind} AND ${publicReportCondition()} ORDER BY key DESC LIMIT 1`
-    : await sql<ReportRow[]>`SELECT kind, key, window_start, window_end, content, generated_at, revision FROM reports WHERE kind = ${kind} AND key = ${key} AND ${publicReportCondition()}`;
-  if (!r) return null;
-  const c = r.content;
-  const raw = (c.themes ?? []).flatMap((theme: any) => theme.storyRefs ?? []);
-  const avail = await availability([...new Set(raw.map((item: any) => item.itemId).filter(Boolean))] as string[]);
-  const ok = (item: any) => !item.itemId || (avail.get(item.itemId)?.available ?? true);
-  const links = (item: any) => ({ aihot: item.itemId ? itemUrl(item.itemId) : null, original: String(item.sourceUrl ?? "") });
-  const url = siteUrl(`/${kind}/${r.key}`);
-  return {
-    schemaVersion: 1 as const,
-    report: {
-      ...(kind === "weekly" ? { week: r.key } : { month: r.key }),
-      generatedAt: r.generated_at.toISOString(),
-      windowStart: r.window_start.toISOString(),
-      windowEnd: r.window_end.toISOString(),
-      links: { aihot: url },
-      attribution: attribution(url),
-      title: String(c.title ?? `${SITE.name} ${kind === "weekly" ? "周报" : "月报"} · ${r.key}`),
-      headline: reportHeadline(c, "periodic", new Set([...avail].filter(([, value]) => !value.available).map(([id]) => id))),
-      overview: c.overview ?? null,
-      themes: (c.themes ?? []).map((theme: any) => ({
-        heading: String(theme.heading ?? ""),
-        summary: String(theme.summary ?? ""),
-        items: (theme.storyRefs ?? []).filter(ok).map((item: any) => ({
-          title: String(item.title ?? ""),
-          summary: String(item.summary ?? ""),
-          source: { name: String(item.sourceName ?? "") },
-          publishedAt: researchDate(item.publishedAt) ?? avail.get(item.itemId)?.publishedAt?.toISOString() ?? null,
-          research: item.research ?? avail.get(item.itemId)?.research ?? null,
-          researchBrief: Object.hasOwn(item, "researchBrief") ? item.researchBrief : avail.get(item.itemId)?.researchBrief ?? null,
-          researchRoadmap: item.researchRoadmap ?? null,
-          links: links(item),
-          attribution: attribution(item.itemId ? itemUrl(item.itemId) : url),
-        })),
-      })).filter((theme: { items: unknown[] }) => theme.items.length > 0),
-    },
-  };
-}
-
-export async function v1Daily(date: string | "latest", kind: "daily" | "pilot" = "daily") {
+/** The v1 daily (its fields never change) and the notes the Agent answer adds to it. */
+export async function dailyWithNotes(date: string | "latest") {
   const [r] = date === "latest"
-    ? await sql<ReportRow[]>`SELECT kind, key, window_start, window_end, content, generated_at, revision FROM reports WHERE kind = ${kind} AND ${publicReportCondition()} ORDER BY key DESC LIMIT 1`
-    : await sql<ReportRow[]>`SELECT kind, key, window_start, window_end, content, generated_at, revision FROM reports WHERE kind = ${kind} AND key = ${date} AND ${publicReportCondition()}`;
+    ? await sql<ReportRow[]>`SELECT kind, key, window_start, window_end, content, generated_at FROM reports WHERE kind = 'daily' ORDER BY key DESC LIMIT 1`
+    : await sql<ReportRow[]>`SELECT kind, key, window_start, window_end, content, generated_at FROM reports WHERE kind = 'daily' AND key = ${date}`;
   if (!r) return null;
   const c = r.content;
   const raw = [...(c.sections ?? []).flatMap((s: any) => s.items ?? []), ...(c.flashes ?? [])];
-  const avail = await availability([...new Set(raw.map((i: any) => i.itemId).filter(Boolean))] as string[]);
+  const avail = await availability([...new Set([...raw, ...raw.flatMap((i: any) => i.related ?? [])].map((i: any) => i.itemId).filter(Boolean))] as string[]);
   const ok = (i: any) => !i.itemId || (avail.get(i.itemId)?.available ?? true);
-  const links = (i: any) => ({ aihot: i.itemId ? itemUrl(i.itemId) : null, original: String(i.sourceUrl ?? "") });
-  const url = kind === "pilot" ? siteUrl(`/pilot/${r.key}`) : dailyUrl(r.key);
-  return {
+  const metadata = (i: any) => citationMetadata(i, avail.get(i.itemId));
+  const links = (i: any) => ({ aihot: i.itemId ? itemUrl(i.itemId) : null, original: metadata(i).sourceUrl });
+  const url = dailyUrl(r.key);
+  const lead = c.lead || c.leadItemId ? issueLead(c, "daily", goneIn(avail)) : null;
+  const notes = new Map<string, DailyNote>();
+  for (const i of raw.filter(ok)) {
+    const related = (i.related ?? []).filter((x: any) => x.itemId && ok(x)).map((x: any) => ({ title: String(x.title), link: itemUrl(x.itemId) }));
+    const otherSources = Number(i.sources) > 1 ? Number(i.sources) - 1 : 0;
+    if (otherSources || related.length || i.followUp) notes.set(links(i).aihot ?? links(i).original, { otherSources, related, followUp: i.followUp ?? null });
+  }
+  const body = {
     schemaVersion: 1 as const,
     report: {
       date: r.key,
-      ...(c.title ? { title: String(c.title) } : {}),
-      ...(c.run ? { run: c.run } : {}),
       generatedAt: r.generated_at.toISOString(),
       windowStart: r.window_start.toISOString(),
       windowEnd: r.window_end.toISOString(),
       links: { aihot: url },
       attribution: attribution(url),
-      lead: c.lead ? { title: String(c.lead.title), leadParagraph: String(c.lead.leadParagraph) } : null,
+      lead: lead ? { title: lead.title, leadParagraph: lead.leadParagraph ?? "" } : null,
       sections: (c.sections ?? []).map((s: any) => ({
         label: String(s.label),
         items: (s.items ?? []).filter(ok).map((i: any) => ({
           title: String(i.title),
-          research: i.research ?? avail.get(i.itemId)?.research ?? null,
-          researchBrief: Object.hasOwn(i, "researchBrief") ? i.researchBrief : avail.get(i.itemId)?.researchBrief ?? null,
-          researchRoadmap: i.researchRoadmap ?? null,
-          publishedAt: researchDate(i.publishedAt) ?? avail.get(i.itemId)?.publishedAt?.toISOString() ?? null,
-          summary: String(i.summary ?? ""),
-          source: { name: String(i.sourceName ?? "") },
+          summary: String(metadata(i).summary ?? ""),
+          source: { name: metadata(i).sourceName },
           links: links(i),
           attribution: attribution(i.itemId ? itemUrl(i.itemId) : url),
         })),
       })),
       flashes: (c.flashes ?? []).filter(ok).map((i: any) => ({
         title: String(i.title),
-        source: { name: String(i.sourceName ?? "") },
+        source: { name: metadata(i).sourceName },
         links: links(i),
-        publishedAt: researchDate(i.publishedAt) ?? avail.get(i.itemId)?.publishedAt?.toISOString() ?? null,
-        research: i.research ?? avail.get(i.itemId)?.research ?? null,
-        researchBrief: Object.hasOwn(i, "researchBrief") ? i.researchBrief : avail.get(i.itemId)?.researchBrief ?? null,
-        researchRoadmap: i.researchRoadmap ?? null,
+        publishedAt: metadata(i).publishedAt ?? r.generated_at.toISOString(),
         attribution: attribution(i.itemId ? itemUrl(i.itemId) : url),
       })),
     },
   };
+  return { body, notes };
 }
 
-/** Pilots share citation semantics, but have their own report namespace and never enter dailies. */
-export async function v1Pilots(limit: number) {
-  const result = await v1Dailies(limit, "pilot");
-  return { ...result, items: result.items.map(({ date, ...item }) => ({ ...item, key: date, kind: "pilot" as const })) };
+export async function v1Daily(date: string | "latest") {
+  return (await dailyWithNotes(date))?.body ?? null;
 }
 
-export async function v1Pilot(key: string | "latest") {
-  const result = await v1Daily(key, "pilot");
-  if (!result) return null;
-  const { date, ...report } = result.report;
-  return { schemaVersion: 1 as const, report: { ...report, key: date, kind: "pilot" as const } };
+export interface FeedIssue {
+  key: string;
+  generatedAt: Date;
+  headline: string | null;
+  /** A daily's lead paragraph; a weekly's or monthly's overview. */
+  leadParagraph: string | null;
+  sections: Array<{ label: string; items: Array<{ title: string; link: string }> }>;
+}
+
+/**
+ * The newest issues of a kind for its RSS feed: headline, lead paragraph (a weekly's or monthly's
+ * overview) and each section's entry titles with their links on this site, withdrawn ones left out.
+ */
+export async function feedIssues(kind: ReportKind, limit: number): Promise<FeedIssue[]> {
+  const rows = kind === "daily"
+    ? await sql<{ key: string; generated_at: Date; content: Record<string, any> }[]>`
+      SELECT key, generated_at, jsonb_build_object(
+        'lead', content->'lead', 'leadItemId', content->'leadItemId', 'highlights', content->'highlights',
+        'sections', (SELECT coalesce(jsonb_agg(jsonb_build_object('label', s->'label', 'items',
+          (SELECT coalesce(jsonb_agg(jsonb_build_object('itemId', i->'itemId', 'title', i->'title') ORDER BY ord), '[]'::jsonb)
+           FROM jsonb_array_elements(coalesce(s->'items', '[]'::jsonb)) WITH ORDINALITY AS e(i, ord))) ORDER BY sord), '[]'::jsonb)
+          FROM jsonb_array_elements(coalesce(content->'sections', '[]'::jsonb)) WITH ORDINALITY AS x(s, sord))) AS content
+      FROM reports WHERE kind = 'daily' ORDER BY key DESC LIMIT ${limit}`
+    : await sql<{ key: string; generated_at: Date; content: Record<string, any> }[]>`
+      SELECT key, generated_at, jsonb_build_object(
+        'headline', content->'headline', 'title', content->'title', 'overview', content->'overview',
+        'leadItemId', content->'leadItemId', 'highlights', content->'highlights',
+        'themes', (SELECT coalesce(jsonb_agg(jsonb_build_object('heading', t->'heading', 'storyRefs',
+          (SELECT coalesce(jsonb_agg(jsonb_build_object('itemId', i->'itemId', 'title', i->'title') ORDER BY ord), '[]'::jsonb)
+           FROM jsonb_array_elements(coalesce(t->'storyRefs', '[]'::jsonb)) WITH ORDINALITY AS e(i, ord))) ORDER BY tord), '[]'::jsonb)
+          FROM jsonb_array_elements(coalesce(content->'themes', '[]'::jsonb)) WITH ORDINALITY AS x(t, tord))) AS content
+      FROM reports WHERE kind = ${kind} ORDER BY key DESC LIMIT ${limit}`;
+  const shape = kind === "daily" ? "daily" : "periodic";
+  const gone = await unavailableIds(rows.flatMap((r) => entriesOf(r.content, shape).map((i) => i.itemId)));
+  const leads = kind === "daily" ? await dailyLeads(rows, gone) : null;
+  return rows.map((r) => {
+    const lead = leads ? leads.get(r.key) : issueLead(r.content, shape, gone);
+    const groups: Array<{ label: unknown; items?: Array<Record<string, any>> }> = kind === "daily"
+      ? (r.content.sections ?? []).map((s: any) => ({ label: s.label, items: s.items }))
+      : (r.content.themes ?? []).map((t: any) => ({ label: t.heading, items: t.storyRefs }));
+    return {
+      key: r.key,
+      generatedAt: r.generated_at,
+      headline: lead?.title ?? null,
+      leadParagraph: kind === "daily" ? lead?.leadParagraph ?? null : periodOverview(r.content, kind, gone),
+      sections: groups.map((g) => ({
+        label: String(g.label),
+        items: (g.items ?? []).filter((i) => i.itemId && !gone.has(i.itemId)).map((i) => ({ title: String(i.title), link: itemUrl(i.itemId) })),
+      })).filter((s) => s.items.length > 0),
+    };
+  });
+}
+
+// v1 weeklies and monthlies
+
+export type PeriodKind = "weekly" | "monthly";
+
+/** A weekly's or monthly's own key and calendar days: { week, periodStart, periodEnd } or { month, … }. */
+function periodOf(kind: PeriodKind, key: string) {
+  const range = kind === "weekly" ? isoWeekRange(key) : monthRange(key);
+  return { ...(kind === "weekly" ? { week: key } : { month: key }), periodStart: range?.start ?? null, periodEnd: range?.end ?? null };
+}
+
+/** Whether a weekly or monthly key is a real ISO week (2026-W39) or calendar month (2026-09). */
+export function isPeriodKey(kind: PeriodKind, key: string): boolean {
+  return (kind === "weekly" ? isoWeekRange(key) : monthRange(key)) !== null;
+}
+
+/** The v1 index of weeklies or monthlies, newest first: key, days, headline and link. */
+export async function v1Periods(kind: PeriodKind, limit: number) {
+  const index = await reportIndex(kind);
+  const items = index.rows.slice(0, limit).map((r) => {
+    const url = periodUrl(kind, r.key);
+    return {
+      ...periodOf(kind, r.key),
+      generatedAt: r.generated_at.toISOString(),
+      headline: issueLead(r.content, "periodic", index.gone)?.title ?? null,
+      links: { aihot: url },
+      attribution: attribution(url),
+    };
+  });
+  return { schemaVersion: 1 as const, count: items.length, items };
+}
+
+/**
+ * A weekly or monthly in v1: its headline, overview and sections, each with its introduction and the
+ * items it carries in order. Withdrawn items are left out; source names are as stored, like the daily's.
+ */
+export async function v1Period(kind: PeriodKind, key: string | "latest") {
+  const [r] = key === "latest"
+    ? await sql<ReportRow[]>`SELECT kind, key, window_start, window_end, content, generated_at FROM reports WHERE kind = ${kind} ORDER BY key DESC LIMIT 1`
+    : await sql<ReportRow[]>`SELECT kind, key, window_start, window_end, content, generated_at FROM reports WHERE kind = ${kind} AND key = ${key}`;
+  if (!r) return null;
+  const c = r.content;
+  const raw: Array<Record<string, any>> = (c.themes ?? []).flatMap((t: any) => t.storyRefs ?? []);
+  const avail = await availability([...new Set(raw.map((i) => i.itemId).filter(Boolean))] as string[]);
+  const ok = (i: Record<string, any>) => !i.itemId || (avail.get(i.itemId)?.available ?? true);
+  const gone = goneIn(avail);
+  const url = periodUrl(kind, r.key);
+  return {
+    schemaVersion: 1 as const,
+    report: {
+      ...periodOf(kind, r.key),
+      generatedAt: r.generated_at.toISOString(),
+      windowStart: r.window_start.toISOString(),
+      windowEnd: r.window_end.toISOString(),
+      links: { aihot: url },
+      attribution: attribution(url),
+      headline: issueLead(c, "periodic", gone)?.title ?? null,
+      overview: periodOverview(c, kind, gone),
+      sections: (c.themes ?? []).map((t: any) => ({
+        label: String(t.heading),
+        summary: sectionSummary(t, avail),
+        items: (t.storyRefs ?? []).filter(ok).map((i: any) => {
+          const metadata = citationMetadata(i, avail.get(i.itemId));
+          return {
+            title: String(i.title),
+            summary: String(metadata.summary ?? ""),
+            source: { name: metadata.sourceName },
+            links: { aihot: i.itemId ? itemUrl(i.itemId) : null, original: metadata.sourceUrl },
+            publishedAt: metadata.publishedAt,
+            attribution: attribution(i.itemId ? itemUrl(i.itemId) : url),
+          };
+        }),
+      })).filter((s: { items: unknown[] }) => s.items.length > 0),
+    },
+  };
 }
 
 export { siteUrl };
@@ -458,7 +653,7 @@ export { siteUrl };
 export function reportNavigation(kind: ReportKind, index: ReportIndexEntry[], key: string): ReportNavigationEntry[] {
   const at = index.findIndex((e) => e.key === key);
   return index.map((entry, n) => ({ key: entry.key, issueNumber: entry.issueNumber,
-    ...(!dailyShape(kind) || entry.key.slice(0, 7) === key.slice(0, 7) || n < 3 || Math.abs(n - at) <= 1 ? { title: entry.title } : {}),
+    ...(kind !== "daily" || entry.key.slice(0, 7) === key.slice(0, 7) || n < 3 || Math.abs(n - at) <= 1 ? { title: entry.title } : {}),
   }));
 }
 
@@ -467,5 +662,5 @@ export async function loadReportNavigation(kind: ReportKind, key: string) {
 }
 
 export async function loadReportMonth(kind: ReportKind, month: string) {
-  return (await listReports(kind)).filter((e) => e.key.startsWith(month)).map(({ key, title, issueNumber }) => ({ key, title, issueNumber }));
+  return (await listReports(kind)).filter((e) => e.key.startsWith(month)).map(({ key, issueNumber, title }) => ({ key, issueNumber, title }));
 }

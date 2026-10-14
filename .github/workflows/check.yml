@@ -1,10 +1,12 @@
 # Checks on GitHub-hosted runners: install, typecheck, web build, the web and backend tests on a fresh
-# PostgreSQL, the built site's smoke check, and the Docker image brought up with docker compose.
+# PostgreSQL, the built site's smoke check on the empty database, and the Docker image brought up with docker compose.
 # Only GitHub-owned actions, pinned to a full commit SHA.
 name: Check
 
 on:
-  # Repository consolidation keeps cloud checks manual; local acceptance uses npm run check.
+  push:
+    branches: [main]
+  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -35,6 +37,8 @@ jobs:
       IMG_PROXY_SIGN_SECRET: ci-img-secret-0123456789abcdef
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: 24
@@ -42,6 +46,11 @@ jobs:
 
       - name: Install
         run: npm ci --no-audit --no-fund
+      - name: Online migration safety
+        # New migrations against the PR base: deployed ones unchanged, no whole-table rewrite or blocking index in a release.
+        env:
+          MIGRATION_BASE: ${{ github.event.pull_request.base.sha || github.sha }}
+        run: node scripts/check-migrations.ts --base "$MIGRATION_BASE"
       - name: PostgreSQL backup tools
         # 恢复测试需要与 PostgreSQL 17 服务匹配的客户端，不能依赖 runner 的默认版本。
         run: |
@@ -58,15 +67,17 @@ jobs:
         run: npm run typecheck
       - name: Build web
         run: npm run build -w @aihot/web
+      - name: Browser test engines
+        run: npx playwright install --with-deps chromium webkit
       - name: Web tests
         run: node --test apps/web/tests/*.test.ts
 
-      - name: Migrate and seed topics
-        run: |
-          node scripts/migrate.ts
-          node scripts/seed.ts --topics-only
+      # Each test file runs on its own copy of aihot_ci (tests/databases.ts), which the run migrates and
+      # leaves empty; the smoke check then reads that empty database.
+      - name: Backend tests
+        run: npm test
       - name: Smoke check of the built site
-        # The site itself runs with collection and model calls off (the tests below use local stubs).
+        # The site itself runs with collection and model calls off (the tests above use local stubs).
         env:
           COLLECT_ENABLED: "false"
           MODEL_CALLS_ENABLED: "false"
@@ -76,9 +87,6 @@ jobs:
           for i in $(seq 1 60); do curl -fsS -o /dev/null http://127.0.0.1:3000/api/health 2>/dev/null && break; sleep 1; done
           node scripts/smoke.ts --base http://127.0.0.1:3000
           node scripts/mcp-check.ts http://127.0.0.1:3000/api/mcp
-      # After the smoke check, which reads an empty database: these write their own rows.
-      - name: Backend tests
-        run: npm test
       - name: Server logs
         if: failure()
         run: tail -n 60 "$RUNNER_TEMP/api.log" "$RUNNER_TEMP/web.log" 2>/dev/null || true

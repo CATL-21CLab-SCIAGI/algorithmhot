@@ -1,7 +1,7 @@
-import { SITE } from "@aihot/industry/site";
+import { ADMIN, SITE } from "@aihot/site";
 import { useRef, useState } from "react";
-import type { AdminSettings } from "@aihot/contracts/admin";
 import type { Route } from "./+types/settings";
+import type { AdminSettings } from "@aihot/contracts/admin";
 import { adminGet } from "../../lib/admin.server";
 import { useAdminAction } from "../../features/admin/action";
 import { bj, num } from "../../features/admin/format";
@@ -68,7 +68,7 @@ function BudgetRow({ b }: { b: AdminSettings["budgets"][number] }) {
         <ReasonDialog
           open={open}
           title={`调整 ${b.service} 的请求上限`}
-          description="上限是付费请求的熔断：超过后请求暂停并按窗口重试。填 0 表示立即停用这个服务。"
+          description={`上限是付费请求的熔断：超过后请求暂停并按窗口重试。填 0 表示立即停用这个服务。${ADMIN.budgetNote ?? ""}`}
           confirmLabel="保存"
           busy={pending === "budget"}
           onClose={() => setOpen(false)}

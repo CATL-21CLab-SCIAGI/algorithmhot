@@ -1,20 +1,25 @@
-import { titled } from "./lib/seo";
-import { SITE } from "@aihot/industry/site";
 import {
   isRouteErrorResponse, Link, Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData, useLocation, useNavigation, useRouteError, useRouteLoaderData,
   type ShouldRevalidateFunction,
 } from "react-router";
-import type { ReactNode } from "react";
+import type { SiteMeta } from "@aihot/contracts/site";
+import { SITE } from "@aihot/site";
+import { RingMark } from "@aihot/site/brand/Logo.tsx";
+import { useEffect, useState, type ReactNode } from "react";
 import type { Route } from "./+types/root";
 import "./app.css";
 import { Sidebar } from "./components/shell/Sidebar";
-import { MobileTabBar } from "./components/shell/MobileTabBar";
+import { TabBar } from "./components/shell/TabBar";
+import { PullToRefresh } from "./components/shell/PullToRefresh";
+import { usePageTransition } from "./components/shell/transitions";
+import { SearchOverlay } from "./features/search/SearchOverlay";
 import { BackToTop, NavigationProgress } from "./components/shell/Chrome";
-import { RingMark } from "./components/Logo";
 import { buttonClass } from "./components/ui/Controls";
-import { THEME_BOOT_SCRIPT } from "./lib/local-state";
+import { rememberPage, APPEARANCE_BOOT_SCRIPT, useAppearanceSync } from "./lib/local-state";
 import { apiGet } from "./lib/api.server";
 import { useHydratedFlag } from "./lib/hydration";
+import { titled } from "./lib/seo";
+import { webModules } from "./site-modules";
 
 export const links: Route.LinksFunction = () => [
   { rel: "icon", href: "/favicon.ico", sizes: "any" },
@@ -24,29 +29,36 @@ export const links: Route.LinksFunction = () => [
   { rel: "alternate", type: "application/rss+xml", title: `${SITE.name} — 精选`, href: "/feed.xml" },
 ];
 
-interface SiteMeta {
-  changelogVersion: string | null;
-}
-
+/** The release rendering this document: once a newer one is deployed, a render error reloads the page (entry.client). */
 export async function loader({ request }: Route.LoaderArgs) {
+  const release = process.env.AIHOT_RELEASE ?? null;
   try {
-    return await apiGet<SiteMeta>("/api/site/meta", { signal: request.signal });
+    const meta = await apiGet<SiteMeta>("/api/site/meta", {
+      headers: Object.assign({}, ...webModules().map((m) => m.root?.documentHeaders?.(request) ?? {})),
+      signal: request.signal,
+    });
+    return { ...meta, release };
   } catch {
-    return { changelogVersion: null } satisfies SiteMeta;
+    return { changelogVersion: null, release };
   }
 }
 
 export const shouldRevalidate: ShouldRevalidateFunction = () => false;
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const site = useRouteLoaderData<typeof loader>("root");
+  const [documentRelease] = useState(site?.release ?? null);
   return (
     <html lang={SITE.locale} suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
+        {documentRelease && <meta name="aihot-release" content={documentRelease} />}
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="#faf9f6" />
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#13191c" />
-        <script dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT }} />
+        <meta name="apple-mobile-web-app-title" content={SITE.name} />
+        <script dangerouslySetInnerHTML={{ __html: APPEARANCE_BOOT_SCRIPT }} />
+        {webModules().map((m) => m.root?.bootScript && <script key={m.name} dangerouslySetInnerHTML={{ __html: m.root.bootScript }} />)}
         <Meta />
         <Links />
       </head>
@@ -69,6 +81,9 @@ export function meta({ error }: Route.MetaArgs) {
 /** Sidebar, main column and phone tab bar around a page (or an error). */
 function SiteShell({ changelogVersion, children }: { changelogVersion: string | null; children: ReactNode }) {
   const navigation = useNavigation();
+  // The phone search and pull-to-refresh are client-side, mounted once the page is interactive.
+  const [interactive, setInteractive] = useState(false);
+  useEffect(() => setInteractive(true), []);
   return (
     <div className="flex min-h-dvh">
       <NavigationProgress active={navigation.state === "loading"} />
@@ -76,12 +91,17 @@ function SiteShell({ changelogVersion, children }: { changelogVersion: string | 
         跳到正文
       </a>
       <Sidebar changelogVersion={changelogVersion} />
-      {/* Mobile shell (≤ 960px): one centred column, the tab bar below. Desktop: the page fills the main area
-          up to the list width (--page-max-wide), centred beyond it. */}
+      {/* Phone shell (≤ 960px): each page's top bar (PhoneBar), one centred column, the tab bar below.
+          Desktop: the page fills the main area up to the list width (--page-max-wide), centred beyond it. */}
       <main id="main" className="min-w-0 flex-1 pb-[calc(72px+env(safe-area-inset-bottom))] lg:px-7 lg:pb-[72px] lg:pt-6">
-        <div className="mx-auto w-full max-w-[640px] px-4 lg:max-w-[var(--page-max-wide)] lg:px-0">{children}</div>
+        <div className="mx-auto w-full max-w-[640px] pl-[var(--gutter-l)] pr-[var(--gutter-r)] lg:max-w-[var(--page-max-wide)] lg:px-0">
+          {webModules().map((m) => m.root?.Top && <m.root.Top key={m.name} />)}
+          {children}
+        </div>
       </main>
-      <MobileTabBar changelogVersion={changelogVersion} />
+      <TabBar changelogVersion={changelogVersion} />
+      {interactive && <SearchOverlay />}
+      {interactive && <PullToRefresh />}
       <BackToTop />
     </div>
   );
@@ -90,20 +110,33 @@ function SiteShell({ changelogVersion, children }: { changelogVersion: string | 
 export default function App() {
   const meta = useLoaderData<typeof loader>();
   useHydratedFlag();
-  const { pathname } = useLocation();
+  useAppearanceSync();
+  const { pathname, search } = useLocation();
+  useEffect(() => rememberPage(pathname + search), [pathname, search]);
+  usePageTransition();
+  // iOS Safari only shows :active (pressed) styles once the document listens for touches.
+  useEffect(() => {
+    const noop = () => {};
+    document.addEventListener("touchstart", noop, { passive: true });
+    return () => document.removeEventListener("touchstart", noop);
+  }, []);
   // The admin has its own chrome.
   if (pathname === "/admin" || pathname.startsWith("/admin/")) return <Outlet />;
   return (
-    <SiteShell changelogVersion={meta.changelogVersion}>
-      <Outlet />
-    </SiteShell>
+    <>
+      <SiteShell changelogVersion={meta.changelogVersion}>
+        <Outlet />
+      </SiteShell>
+      {webModules().map((m) => m.root?.Bottom && <m.root.Bottom key={m.name} />)}
+    </>
   );
 }
 
 export function ErrorBoundary() {
+  useAppearanceSync();
   const error = useRouteError();
   const site = useRouteLoaderData<typeof loader>("root");
-  const { pathname } = useLocation();
+  const { pathname, search, hash } = useLocation();
   const status = isRouteErrorResponse(error) ? error.status : 500;
   const notFound = status === 404;
   const body = (
@@ -113,13 +146,16 @@ export function ErrorBoundary() {
         <div className="mono text-[12px] text-ink-4">{status}</div>
         <h1 className="mt-1.5 text-[20px] font-bold text-ink">{notFound ? "这里没有内容" : "暂时无法加载"}</h1>
         <p className="mt-2 text-[13.5px] leading-relaxed text-ink-3">
-          {notFound ? "你访问的页面不存在，或内容已不再公开。" : "服务暂时繁忙，请稍后再试。已经加载过的内容不受影响。"}
+          {notFound ? "你访问的页面不存在，或内容已不再公开。" : "页面暂时无法显示，请重新加载后再试。"}
         </p>
-        <div className="mt-6 flex justify-center gap-2.5">
-          <Link to="/" className={buttonClass("primary")}>
+        <div className="mt-6 flex flex-wrap justify-center gap-2.5">
+          {!notFound && <Link reloadDocument to={pathname + search + hash} className={buttonClass("primary")}>
+            重新加载
+          </Link>}
+          <Link reloadDocument to="/" className={buttonClass(notFound ? "primary" : "secondary")}>
             回到精选
           </Link>
-          <Link to="/all" className={buttonClass("secondary")}>
+          <Link reloadDocument to="/all" className={buttonClass("secondary")}>
             浏览全部动态
           </Link>
         </div>

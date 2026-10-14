@@ -1,16 +1,20 @@
 // Feedback reaches the internal Feishu chat with its screenshot even when Feishu fails at first: a
 // failed upload or send is tried again, only the Feishu image key is kept, a screenshot that cannot be
-// uploaded for a day is dropped (the text still goes), and imported feedback is never forwarded again.
+// uploaded for a day, or that Feishu refuses outright, is dropped (the text still goes), screenshots left
+// behind are removed after a week, and imported feedback is never forwarded again. Without the chat a
+// screenshot is the only copy: it stays.
 import { tag } from "./setup.ts";
 import assert from "node:assert/strict";
-import { existsSync, mkdtempSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, utimesSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { after, test } from "node:test";
+import sharp from "sharp";
 import { config } from "@aihot/backend/config";
 import { closeDb, sql } from "@aihot/backend/db";
 import { forwardFeedbackToFeishu } from "@aihot/backend/notify/feishu";
 import { forwardPendingFeedback, submitFeedback } from "@aihot/backend/operations/feedback";
+import { dailyRetention } from "@aihot/backend/operations/retention";
 
 const T = tag();
 config.dataDir = mkdtempSync(path.join(tmpdir(), "aihot-feedback-"));
@@ -19,13 +23,17 @@ process.env.FEISHU_APP_SECRET = "test-secret";
 process.env.FEISHU_INTERNAL_CHAT_ID = "oc_test";
 
 // Feishu's message app, answered here: uploads and sends fail while the switches say so.
-const feishu = { uploadFails: false, sendFails: false, sent: [] as Array<{ title: string; content: unknown[][] }> };
+const feishu = { uploadFails: false, uploadRefused: false, uploads: 0, sendFails: false, sent: [] as Array<{ title: string; content: unknown[][] }> };
 const realFetch = globalThis.fetch;
 globalThis.fetch = (async (input: string | URL | Request, init?: RequestInit) => {
   const url = String(input instanceof Request ? input.url : input);
   if (!url.startsWith("https://open.feishu.cn/")) return realFetch(input, init);
   if (url.endsWith("/auth/v3/tenant_access_token/internal")) return Response.json({ code: 0, tenant_access_token: "t", expire: 7200 });
-  if (url.endsWith("/im/v1/images")) return Response.json(feishu.uploadFails ? { code: 99, msg: "upload broken" } : { code: 0, data: { image_key: `img_${T}` } });
+  if (url.endsWith("/im/v1/images")) {
+    feishu.uploads += 1;
+    if (feishu.uploadRefused) return Response.json({ code: 234011, msg: "Can't regonise the image format." }, { status: 400 });
+    return Response.json(feishu.uploadFails ? { code: 99, msg: "upload broken" } : { code: 0, data: { image_key: `img_${T}` } });
+  }
   if (url.includes("/im/v1/messages")) {
     if (feishu.sendFails) return Response.json({ code: 99, msg: "send broken" });
     const content = JSON.parse(JSON.parse(String(init?.body)).content).zh_cn;
@@ -40,13 +48,12 @@ after(async () => {
   await closeDb();
 });
 
-const PNG = Buffer.from("89504e470d0a1a0a0000000d4948445200000001000000010806000000", "hex");
 let n = 0;
 async function submit(): Promise<{ id: number; file: string }> {
   n += 1;
   // Submitted while forwarding is off, so the test drives every attempt itself.
   delete process.env.FEISHU_INTERNAL_ENABLED;
-  const { id } = await submitFeedback({ content: `反馈 ${T}-${n}`, screenshot: { mime: "image/png", data: Buffer.concat([PNG, Buffer.from(`${T}-${n}`)]) }, ip: `203.0.113.${n}`, userAgent: "test" });
+  const { id } = await submitFeedback({ content: `反馈 ${T}-${n}`, screenshot: { mime: "image/png", data: await sharp({ create: { width: 4, height: 4, channels: 3, background: { r: n, g: 80, b: 120 } } }).png().toBuffer() }, ip: `203.0.113.${n}`, userAgent: "test" });
   process.env.FEISHU_INTERNAL_ENABLED = "true";
   const [row] = await sql<{ screenshot_key: string }[]>`SELECT screenshot_key FROM feedback WHERE id = ${id}`;
   return { id, file: path.join(config.dataDir, "feedback-screenshots", row!.screenshot_key.slice("local:".length)) };
@@ -96,9 +103,39 @@ test("a screenshot that cannot be uploaded for a day is dropped, and the text st
   assert.ok(JSON.stringify(sentFor(id)?.content).includes("截图未能上传"), "the chat is told the screenshot is missing");
 });
 
+test("a picture Feishu refuses is dropped at once, and the text still goes", async () => {
+  const { id, file } = await submit();
+  feishu.uploadRefused = true;
+  const uploads = feishu.uploads;
+  assert.equal(await forwardFeedbackToFeishu(id), "sent");
+  feishu.uploadRefused = false;
+  assert.equal(feishu.uploads, uploads + 1, "offered once, not again on every sweep");
+  assert.deepEqual({ ...(await state(id)) }, { forwarded: true, forward_error: null, screenshot_key: "gone:upload" });
+  assert.ok(!existsSync(file));
+});
+
+test("screenshots left behind are removed after a week, whether or not forwarding ran; without the chat they stay", async () => {
+  const dir = path.join(config.dataDir, "feedback-screenshots");
+  mkdirSync(dir, { recursive: true });
+  const stale = path.join(dir, `stale-${T}.png`);
+  const recent = path.join(dir, `recent-${T}.png`);
+  writeFileSync(stale, "x");
+  writeFileSync(recent, "x");
+  const nineDaysAgo = new Date(Date.now() - 9 * 86400_000);
+  utimesSync(stale, nineDaysAgo, nineDaysAgo);
+  process.env.FEISHU_INTERNAL_ENABLED = "false";
+  assert.equal((await dailyRetention()).deletedScreenshots, 0);
+  assert.ok(existsSync(stale), "a screenshot nobody forwards is the only copy");
+  process.env.FEISHU_INTERNAL_ENABLED = "true";
+  const result = await dailyRetention();
+  assert.ok(result.deletedScreenshots >= 1);
+  assert.ok(!existsSync(stale));
+  assert.ok(existsSync(recent), "a screenshot still waiting for forwarding stays");
+});
+
 test("imported feedback that was never forwarded is not sent now", async () => {
   const [row] = await sql<{ id: number }[]>`
-    INSERT INTO feedback (content, source_hash, created_at) VALUES (${`旧反馈 ${T}`}, ${`legacy:${T}`}, now() - interval '10 minutes') RETURNING id`;
+    INSERT INTO feedback (content, source_hash, created_at) VALUES (${`旧反馈 ${T}`}, ${`imported:${T}`}, now() - interval '10 minutes') RETURNING id`;
   await forwardPendingFeedback();
   assert.equal((await state(row!.id)).forwarded, false);
   assert.equal(sentFor(row!.id), undefined);

@@ -1,20 +1,24 @@
-// Reader state kept only in this browser; nothing about a reader leaves it. Storage failures degrade
-// silently. Keep the keys and formats once readers have data under them.
-import { useSyncExternalStore } from "react";
+// Reader state kept only in this browser, and the site's one guarded way to browser storage. Keep the
+// keys and formats once readers have data under them: existing readers' data must stay readable as-is.
+// Storage failures degrade silently.
+import { useEffect, useSyncExternalStore } from "react";
 import { beijingDate } from "@aihot/contracts/time";
-import { originalLink } from "./original-link.ts";
 
 export const KEYS = {
   starred: "aihot-starred-items",
   read: "aihot-read-items",
   theme: "aihot-theme",
+  font: "aihot-font",
   changelogSeen: "aihot-changelog-seen-version",
   feedbackDraft: "aihot-feedback-draft-v1",
+  recentSearches: "aihot-recent-searches",
 } as const;
 
-export const STARRED_LIMIT = 500;
-export const READ_LIMIT = 5000;
-export const IMPORT_MAX_CHARS = 2_000_000;
+const STARRED_LIMIT = 500;
+const READ_LIMIT = 5000;
+const RECENT_SEARCH_LIMIT = 10;
+const RECENT_SEARCH_MAX_CHARS = 200;
+const IMPORT_MAX_CHARS = 2_000_000;
 const ID_PATTERN = /^[a-zA-Z0-9_-]{1,80}$/;
 
 export interface LocalStarredItem {
@@ -26,20 +30,21 @@ export interface LocalStarredItem {
   publishedAt: string | null;
   score: number | null;
   aiSelected: boolean;
-  /** Optional for backwards compatibility with earlier browser bookmarks. */
-  originalUrl?: string;
 }
 
-function storage(kind: "local" | "session"): Storage | null {
+type StorageKind = "local" | "session";
+
+// Reading the storage property itself throws where the browser blocks storage.
+function storage(kind: StorageKind): Storage | null {
   try {
-    const s = kind === "local" ? window.localStorage : window.sessionStorage;
-    return s;
+    return kind === "local" ? window.localStorage : window.sessionStorage;
   } catch {
     return null;
   }
 }
 
-function readRaw(key: string, kind: "local" | "session" = "local"): string | null {
+/** A stored string; null when it is missing or storage is unavailable. */
+export function readRaw(key: string, kind: StorageKind = "local"): string | null {
   try {
     return storage(kind)?.getItem(key) ?? null;
   } catch {
@@ -47,7 +52,19 @@ function readRaw(key: string, kind: "local" | "session" = "local"): string | nul
   }
 }
 
-function writeRaw(key: string, value: string | null, kind: "local" | "session" = "local"): boolean {
+/** A stored JSON value; null when it is missing, unreadable or not JSON. */
+export function readJson(key: string, kind: StorageKind = "local"): unknown {
+  const raw = readRaw(key, kind);
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
+/** Stores a string, or removes the key for null; false when nothing was saved (storage full or unavailable). */
+export function writeRaw(key: string, value: string | null, kind: StorageKind = "local"): boolean {
   try {
     const s = storage(kind);
     if (!s) return false;
@@ -59,7 +76,13 @@ function writeRaw(key: string, value: string | null, kind: "local" | "session" =
   }
 }
 
-// --- change notification (same tab via events, other tabs via the storage event) ---
+/** The keys in this browser's storage; none when it is unavailable. */
+export function storedKeys(kind: StorageKind): string[] {
+  const s = storage(kind);
+  return s ? Array.from({ length: s.length }, (_, i) => s.key(i)!) : [];
+}
+
+// change notification (same tab via events, other tabs via the storage event)
 const listeners = new Map<string, Set<() => void>>();
 let subscribers = 0;
 function emit(key?: string) {
@@ -69,6 +92,7 @@ function emit(key?: string) {
 }
 function onStorage(event: StorageEvent) {
   if (event.storageArea && event.storageArea !== storage("local")) return;
+  if (event.key === null || event.key === KEYS.font) unsavedFont = undefined;
   if (event.key === null) cache.clear();
   else cache.delete(event.key);
   // Clear the snapshot once, before notifying all cards. Each key is parsed at most once.
@@ -90,7 +114,9 @@ function subscribeKey(key: string) {
 const subscribeStarred = subscribeKey(KEYS.starred);
 const subscribeRead = subscribeKey(KEYS.read);
 const subscribeTheme = subscribeKey(KEYS.theme);
+const subscribeFont = subscribeKey(KEYS.font);
 const subscribeChangelog = subscribeKey(KEYS.changelogSeen);
+const subscribeRecentSearches = subscribeKey(KEYS.recentSearches);
 
 // Snapshot cache so useSyncExternalStore gets stable references between changes.
 const cache = new Map<string, unknown>();
@@ -103,27 +129,21 @@ function invalidate(key: string) {
   emit(key);
 }
 
-// A storage event can arrive after another tab starts editing. Lock the read/merge/write as one
-// operation, then read fresh values; browsers without Web Locks still avoid stale cached writes.
-async function editLocalData<T>(change: () => T): Promise<T> {
-  const run = () => { cache.clear(); return change(); };
-  const locks = typeof window !== "undefined" ? window.navigator?.locks : undefined;
-  if (!locks) return run();
-  let entered = false;
-  return locks.request("aihot:local-data", () => { entered = true; return run(); }).catch((error) => {
-    if (entered) throw error;
-    return run(); // Storage or locks may be blocked by browser privacy settings.
-  });
+// Another tab may have written since this tab cached its snapshots (its storage event can still be on
+// the way): every edit reads fresh values first.
+function editLocalData<T>(change: () => T): T {
+  cache.clear();
+  return change();
 }
 
-// --- starred ---
+// starred
 function isStarredItem(v: unknown): v is LocalStarredItem {
   if (!v || typeof v !== "object") return false;
   const o = v as Record<string, unknown>;
   return typeof o.id === "string" && ID_PATTERN.test(o.id) && typeof o.title === "string";
 }
 
-/** Imported and already stored dates must be representable in the page's display timezone. */
+// A parseable instant can still overflow when shifted into the page's display timezone.
 function isDisplayableDate(value: unknown): value is string {
   if (typeof value !== "string") return false;
   try {
@@ -144,26 +164,18 @@ function normalizeStarred(v: Record<string, unknown>): LocalStarredItem {
     publishedAt: isDisplayableDate(v.publishedAt) ? v.publishedAt : null,
     score: typeof v.score === "number" ? v.score : null,
     aiSelected: v.aiSelected === true,
-    ...(originalLink(v.originalUrl) ? { originalUrl: originalLink(v.originalUrl)! } : {}),
   };
 }
 
 export function getStarred(): LocalStarredItem[] {
   return cached(KEYS.starred, () => {
-    const raw = readRaw(KEYS.starred);
-    if (!raw) return [];
-    try {
-      const parsed = JSON.parse(raw);
-      if (!Array.isArray(parsed)) return [];
-      return parsed.filter(isStarredItem).map((v) => normalizeStarred(v as unknown as Record<string, unknown>)).slice(0, STARRED_LIMIT);
-    } catch {
-      return [];
-    }
+    const parsed = readJson(KEYS.starred);
+    return Array.isArray(parsed) ? parsed.filter(isStarredItem).map((v) => normalizeStarred(v as unknown as Record<string, unknown>)).slice(0, STARRED_LIMIT) : [];
   });
 }
 
 const starredSetCache = { items: null as LocalStarredItem[] | null, ids: new Set<string>() };
-export function isStarred(id: string): boolean {
+function isStarred(id: string): boolean {
   const items = getStarred();
   if (starredSetCache.items !== items) {
     starredSetCache.items = items;
@@ -172,7 +184,7 @@ export function isStarred(id: string): boolean {
   return starredSetCache.ids.has(id);
 }
 
-export function toggleStar(item: Omit<LocalStarredItem, "savedAt">): Promise<boolean> {
+export function toggleStar(item: Omit<LocalStarredItem, "savedAt">): boolean {
   return editLocalData(() => {
     if (starredUnreadable()) return false;
     const list = getStarred();
@@ -185,28 +197,23 @@ export function toggleStar(item: Omit<LocalStarredItem, "savedAt">): Promise<boo
 }
 
 export function removeStar(id: string) {
-  return editLocalData(() => {
+  editLocalData(() => {
     if (starredUnreadable()) return;
     writeRaw(KEYS.starred, JSON.stringify(getStarred().filter((s) => s.id !== id)));
     invalidate(KEYS.starred);
   });
 }
-// --- read items (LRU, newest first) ---
+
+// read items (LRU, newest first)
 export function getReadIds(): string[] {
   return cached(KEYS.read, () => {
-    const raw = readRaw(KEYS.read);
-    if (!raw) return [];
-    try {
-      const parsed = JSON.parse(raw);
-      return Array.isArray(parsed) ? parsed.filter((v): v is string => typeof v === "string" && ID_PATTERN.test(v)).slice(0, READ_LIMIT) : [];
-    } catch {
-      return [];
-    }
+    const parsed = readJson(KEYS.read);
+    return Array.isArray(parsed) ? parsed.filter((v): v is string => typeof v === "string" && ID_PATTERN.test(v)).slice(0, READ_LIMIT) : [];
   });
 }
 
 const readSetCache = { ids: null as string[] | null, set: new Set<string>() };
-export function getReadSet(): Set<string> {
+function getReadSet(): Set<string> {
   const ids = getReadIds();
   if (readSetCache.ids !== ids) {
     readSetCache.ids = ids;
@@ -216,7 +223,7 @@ export function getReadSet(): Set<string> {
 }
 
 export function markRead(id: string) {
-  return editLocalData(() => {
+  editLocalData(() => {
     if (!ID_PATTERN.test(id)) return;
     const ids = getReadIds();
     if (ids[0] === id) return;
@@ -225,15 +232,26 @@ export function markRead(id: string) {
     invalidate(KEYS.read);
   });
 }
-// --- theme ---
+
+// appearance
+export type FontPreference = "browser" | null;
+let unsavedFont: FontPreference | undefined;
+
+export function getFontPreference(): FontPreference {
+  return unsavedFont !== undefined ? unsavedFont : readRaw(KEYS.font) === "browser" ? "browser" : null;
+}
+
+export function setFontPreference(pref: FontPreference) {
+  // A denied write still leaves the choice usable in this tab, like an unsaved preference.
+  unsavedFont = writeRaw(KEYS.font, pref) ? undefined : pref;
+  emit(KEYS.font);
+}
+
 export type ThemePreference = "light" | "dark" | null;
 
 export function getThemePreference(): ThemePreference {
   const v = readRaw(KEYS.theme);
-  if (v === "light" || v === "dark") return v;
-  // Tolerate a JSON-quoted value written by other code paths.
-  if (v === '"light"' || v === '"dark"') return JSON.parse(v);
-  return null;
+  return v === "light" || v === "dark" ? v : null;
 }
 
 export function setThemePreference(pref: ThemePreference) {
@@ -250,11 +268,50 @@ export function resolvedTheme(pref: ThemePreference = getThemePreference()): "li
   }
 }
 
-/** Inline script run before paint so the first frame already has the reader's theme. */
-export const THEME_BOOT_SCRIPT = `(function(){try{var t=localStorage.getItem('${KEYS.theme}');if(t==='"light"'||t==='"dark"')t=JSON.parse(t);if(t!=='light'&&t!=='dark'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.setAttribute('data-theme',t)}catch(e){document.documentElement.setAttribute('data-theme','light')}})();`;
+const THEME_COLOR = { light: "#faf9f6", dark: "#13191c" } as const;
 
-// --- changelog red dot ---
-export function getChangelogSeen(): string | null {
+/** Puts a theme on the page: the document's data-theme and the browser's theme colour. */
+export function applyTheme(theme: "light" | "dark", followsSystem: boolean) {
+  document.documentElement.setAttribute("data-theme", theme);
+  // The two theme-color tags answer the system scheme; a chosen theme sets both to its own colour.
+  for (const meta of document.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]')) {
+    const scheme = meta.media.includes("dark") ? "dark" : "light";
+    meta.content = followsSystem ? THEME_COLOR[scheme] : THEME_COLOR[theme];
+  }
+}
+
+/**
+ * Keeps the page on the reader's theme after the first paint: a choice made in another tab or by an
+ * import, and the system switching between light and dark while the page follows it.
+ */
+export function useAppearanceSync() {
+  const pref = useThemePreference();
+  const font = useFontPreference();
+  useEffect(() => {
+    document.documentElement.setAttribute("data-font", getFontPreference() ?? "system");
+  }, [font]);
+  useEffect(() => {
+    // Read the stored choice itself: during hydration the hook still reports the server's "none".
+    const current = getThemePreference();
+    applyTheme(resolvedTheme(current), current === null);
+    if (current !== null) return;
+    let query: MediaQueryList;
+    try {
+      query = window.matchMedia("(prefers-color-scheme: dark)");
+    } catch {
+      return;
+    }
+    const onChange = () => applyTheme(query.matches ? "dark" : "light", true);
+    query.addEventListener("change", onChange);
+    return () => query.removeEventListener("change", onChange);
+  }, [pref]);
+}
+
+/** Inline script run before paint so the first frame already has the reader's appearance. */
+export const APPEARANCE_BOOT_SCRIPT = `(function(){var f='system';try{f=localStorage.getItem('${KEYS.font}')==='browser'?'browser':'system'}catch(e){}document.documentElement.setAttribute('data-font',f);try{var t=localStorage.getItem('${KEYS.theme}');if(t==='light'||t==='dark'){var c=t==='dark'?'${THEME_COLOR.dark}':'${THEME_COLOR.light}';document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.content=c})}else{t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.setAttribute('data-theme',t)}catch(e){document.documentElement.setAttribute('data-theme','light')}})();`;
+
+// changelog red dot
+function getChangelogSeen(): string | null {
   const v = readRaw(KEYS.changelogSeen);
   return v && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(v) ? v : null;
 }
@@ -264,17 +321,54 @@ export function setChangelogSeen(version: string) {
   invalidate(KEYS.changelogSeen);
 }
 
-// --- export / import (version 1) ---
+// recent searches (newest first, at most RECENT_SEARCH_LIMIT; this browser only)
+function getRecentSearches(): string[] {
+  return cached(KEYS.recentSearches, () => {
+    const parsed = readJson(KEYS.recentSearches);
+    return Array.isArray(parsed) ? parsed.filter((v): v is string => typeof v === "string" && v.trim() !== "").slice(0, RECENT_SEARCH_LIMIT) : [];
+  });
+}
+
+/** Puts a search first (the same words in another case replace the older entry). */
+export function addRecentSearch(query: string) {
+  const q = query.trim().slice(0, RECENT_SEARCH_MAX_CHARS);
+  if (!q) return;
+  const rest = getRecentSearches().filter((v) => v.toLowerCase() !== q.toLowerCase());
+  writeRaw(KEYS.recentSearches, JSON.stringify([q, ...rest].slice(0, RECENT_SEARCH_LIMIT)));
+  invalidate(KEYS.recentSearches);
+}
+
+export function clearRecentSearches() {
+  writeRaw(KEYS.recentSearches, null);
+  invalidate(KEYS.recentSearches);
+}
+
+// the page the reader was on (feedback records where a problem was seen)
+const LAST_PAGE_KEY = "aihot:last-page";
+const NOT_A_PLACE = /^\/(feedback|more)(\/|$)|^\/admin(\/|$)/;
+
+/** Called on every in-site navigation: remembers the latest real page, never feedback, "更多" or the admin. */
+export function rememberPage(path: string) {
+  if (!NOT_A_PLACE.test(path)) writeRaw(LAST_PAGE_KEY, path, "session");
+}
+
+export function lastPage(): string | null {
+  const v = readRaw(LAST_PAGE_KEY, "session");
+  return v && v.startsWith("/") && !v.startsWith("//") ? v : null;
+}
+
+// export / import (version 1)
 export interface ExportBundle {
   version: 1;
   starred: LocalStarredItem[];
   read: string[];
   theme: "light" | "dark" | "auto" | null;
+  font?: "system" | "browser";
 }
 
 export function exportBundle(): ExportBundle {
   const pref = getThemePreference();
-  return { version: 1, starred: getStarred(), read: getReadIds(), theme: pref ?? "auto" };
+  return { version: 1, starred: getStarred(), read: getReadIds(), theme: pref ?? "auto", font: getFontPreference() ?? "system" };
 }
 
 export interface ImportReport {
@@ -283,12 +377,13 @@ export interface ImportReport {
   readAdded: number;
   readSkipped: number;
   themeApplied: boolean;
+  fontApplied: boolean;
   /** The stars were saved but the read marks could not be (storage full or unavailable). */
   readFailed: boolean;
 }
 
-/** Merge: existing stars are not overwritten, read ids are unioned, theme only if unset. */
-export async function importBundle(text: string): Promise<ImportReport> {
+/** Merge: existing stars are not overwritten, read ids are unioned, appearance only if unset. */
+export function importBundle(text: string): ImportReport {
   if (text.length > IMPORT_MAX_CHARS) throw new Error("文件过大（上限 2,000,000 字符）");
   let data: unknown;
   try {
@@ -302,9 +397,11 @@ export async function importBundle(text: string): Promise<ImportReport> {
     starred: Array.isArray(d.starred) ? d.starred : [],
     read: Array.isArray(d.read) ? d.read : [],
     theme: d.theme ?? null,
+    font: d.font ?? null,
   });
 }
 
+/** Stored stars that cannot be read (not JSON, not a list): an import must not write over them. */
 function starredUnreadable(): boolean {
   const raw = readRaw(KEYS.starred);
   if (!raw) return false;
@@ -315,7 +412,7 @@ function starredUnreadable(): boolean {
   }
 }
 
-export function mergeLocalData(incoming: { starred: unknown[]; read: unknown[]; theme: unknown }): Promise<ImportReport> {
+function mergeLocalData(incoming: { starred: unknown[]; read: unknown[]; theme: unknown; font?: unknown }): ImportReport {
   return editLocalData(() => {
     // The reader's own data stays recoverable (export it, or fix it) rather than replaced by the import.
     if (starredUnreadable()) throw new Error("这台设备上已有的收藏数据无法读取，为避免覆盖，这次没有导入。");
@@ -354,13 +451,17 @@ export function mergeLocalData(incoming: { starred: unknown[]; read: unknown[]; 
     if (!getThemePreference() && (incoming.theme === "light" || incoming.theme === "dark")) {
       themeApplied = writeRaw(KEYS.theme, incoming.theme);
     }
+    const fontApplied = !getFontPreference() && incoming.font === "browser" && writeRaw(KEYS.font, "browser");
     cache.clear();
     emit();
-    return { starredAdded: accepted.length, starredSkipped, readAdded: readFailed ? 0 : Math.min(readAdditions.length, readRoom), readSkipped, themeApplied, readFailed };
+    return { starredAdded: accepted.length, starredSkipped, readAdded: readFailed ? 0 : Math.min(readAdditions.length, readRoom), readSkipped, themeApplied, fontApplied, readFailed };
   });
 }
 
-// --- React hooks ---
+/** Imports from elsewhere (the site's modules') merge through the same path. */
+export { mergeLocalData };
+
+// React hooks
 const EMPTY_STARRED: LocalStarredItem[] = [];
 const EMPTY_SET = new Set<string>();
 
@@ -380,6 +481,15 @@ export function useThemePreference(): ThemePreference {
   return useSyncExternalStore(subscribeTheme, getThemePreference, () => null);
 }
 
+export function useFontPreference(): FontPreference {
+  return useSyncExternalStore(subscribeFont, getFontPreference, () => null);
+}
+
 export function useChangelogSeen(): string | null {
   return useSyncExternalStore(subscribeChangelog, getChangelogSeen, () => null);
+}
+
+const NO_SEARCHES: string[] = [];
+export function useRecentSearches(): string[] {
+  return useSyncExternalStore(subscribeRecentSearches, getRecentSearches, () => NO_SEARCHES);
 }

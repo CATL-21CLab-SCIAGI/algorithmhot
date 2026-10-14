@@ -1,11 +1,12 @@
 // The single entrance for new material from every channel (collectors, external reports, imports).
 // It owns identity, revisions and the timeline rule, so no entrance can bypass them.
-import type { ResearchMetadata } from "@aihot/contracts/research";
-import { mergeResearchMetadata, parseArxivIdentity, researchAnnouncementDate, researchMetadataChanged } from "../sources/research.ts";
-import { sql, type Db } from "../db.ts";
+import { sql, type Db, type Tx } from "../db.ts";
 import { newArticleId, sha256 } from "../lib/ids.ts";
 import { identityKeyForUrl } from "../lib/url.ts";
 import { collapseWhitespace } from "../lib/text.ts";
+import { publishArticleTx } from "../publication/publish.ts";
+import { groupingReset, reconcileMaterialSource } from "./provenance.ts";
+import { emit } from "../modules.ts";
 
 export interface MediaItem {
   kind: "image" | "video";
@@ -36,6 +37,8 @@ export interface MaterialInput {
   author?: string | null;
   language?: string | null;
   publishedAt?: Date | null;
+  /** publishedAt names a day without a time (a journal's first online date): the timeline rule keeps it on that Beijing day. */
+  publishedAtDay?: boolean;
   sourceUpdatedAt?: Date | null;
   excerpt?: string | null;
   bodyHtml?: string | null;
@@ -44,8 +47,8 @@ export interface MaterialInput {
   media?: MediaItem[];
   xPost?: XPostData | null;
   raw?: unknown;
-  research?: ResearchMetadata | null;
-  via: "fetch" | "ingest" | "import";
+  /** How it arrived: the engine's collection, the ingest API or an import, or the module that brought it (its name). */
+  via: "fetch" | "ingest" | "import" | (string & {});
   discoveredAt?: Date;
   /** Explicit backfill: first import of a new source, or a report flagged as backfill. */
   backfill?: string | null;
@@ -57,8 +60,9 @@ export interface MaterialResult {
   articleId: string;
   created: boolean;
   revised: boolean;
-  metadataChanged?: boolean;
   backfill: boolean;
+  /** Provenance moved an unanalysed signal into editorial processing, without a material revision. */
+  processingNeeded?: boolean;
 }
 
 // Material first discovered more than this long after its source time is archived by source time,
@@ -74,27 +78,53 @@ export interface TimelineDecision {
   backfillReason: string | null;
 }
 
-/** Valid, already announced arXiv day within the same freshness allowance as other sources. */
-export function hasRecentArxivAnnouncement(research: ResearchMetadata | null | undefined, discoveredAt: Date): boolean {
-  const announcedOn = researchAnnouncementDate(research?.announcedOn);
-  if (!announcedOn || !parseArxivIdentity(research?.arxivId) || research?.signalOnly) return false;
-  const announcedAt = new Date(`${announcedOn}T00:00:00Z`);
-  return announcedAt <= discoveredAt && discoveredAt.getTime() - announcedAt.getTime() <= STALE_ON_DISCOVERY_MS;
+const DAY_MS = 86_400_000;
+const BEIJING_MS = 8 * 3600 * 1000;
+
+/** The instant a source put the material online: its own time, or for a date alone the last moment of that Beijing day. */
+function onlineUntil(publishedAt: Date, dateOnly: boolean): number {
+  if (!dateOnly) return publishedAt.getTime();
+  const beijingDay = Math.floor((publishedAt.getTime() + BEIJING_MS) / DAY_MS);
+  return (beijingDay + 1) * DAY_MS - BEIJING_MS - 1;
 }
 
-/** The one timeline rule shared by every entrance. */
-export function decideTimeline(claimed: Date | null | undefined, discoveredAt: Date, explicitBackfill?: string | null, research?: ResearchMetadata | null): TimelineDecision {
+/**
+ * The one timeline rule shared by every entrance: material sits on the timeline when its source put it
+ * online, never later than this site found it. A date alone (`dateOnly`: the source gives a day, no time)
+ * counts until the last moment of that Beijing day, so material found on its day keeps the time it was found and
+ * material found later stays on its day.
+ */
+export function decideTimeline(claimed: Date | null | undefined, discoveredAt: Date, explicitBackfill?: string | null, dateOnly = false): TimelineDecision {
   let publishedAt: Date | null = claimed && Number.isFinite(claimed.getTime()) ? claimed : null;
-  if (publishedAt && publishedAt.getTime() > discoveredAt.getTime() + FUTURE_TOLERANCE_MS) publishedAt = null;
-  // The source explicitly dates its public announcement. Use this only for freshness, without
-  // replacing submission time or turning a date-only heading into an exact publication timestamp.
-  const freshAnnouncement = hasRecentArxivAnnouncement(research, discoveredAt);
+  // A date alone is in the future only when its whole day is.
+  const earliest = publishedAt && (dateOnly ? onlineUntil(publishedAt, true) + 1 - DAY_MS : publishedAt.getTime());
+  if (publishedAt && earliest! > discoveredAt.getTime() + FUTURE_TOLERANCE_MS) publishedAt = null;
+  const online = publishedAt ? Math.min(onlineUntil(publishedAt, dateOnly), discoveredAt.getTime()) : null;
   let backfillReason: string | null = null;
   if (explicitBackfill) backfillReason = explicitBackfill;
-  else if (!freshAnnouncement && publishedAt && discoveredAt.getTime() - publishedAt.getTime() > STALE_ON_DISCOVERY_MS) backfillReason = "stale-on-discovery";
+  else if (online === null) backfillReason = "unknown-publication-time";
+  else if (discoveredAt.getTime() - online > STALE_ON_DISCOVERY_MS) backfillReason = "stale-on-discovery";
   const backfill = backfillReason !== null;
-  const timelineAt = backfill && publishedAt ? publishedAt : discoveredAt;
+  const timelineAt = online === null ? discoveredAt : new Date(online);
   return { publishedAt, timelineAt, backfill, backfillReason };
+}
+
+/**
+ * Fill a missing publication date from the original listing or page, against the first discovery
+ * time. Explicit imports stay backfills. The caller holds the article lock and revises the material
+ * with this change, so analysis and grouping cannot retain a decision made on an undated input.
+ */
+export async function fillPublicationTime(db: Db, articleId: string, claimed: Date | null | undefined): Promise<TimelineDecision | null> {
+  if (!claimed || !Number.isFinite(claimed.getTime())) return null;
+  const [a] = await db<{ published_at: Date | null; discovered_at: Date; backfill_reason: string | null }[]>`
+    SELECT published_at, discovered_at, backfill_reason FROM articles WHERE id = ${articleId}`;
+  if (!a || a.published_at) return null;
+  const explicit = a.backfill_reason === "unknown-publication-time" ? null : a.backfill_reason;
+  const next = decideTimeline(claimed, a.discovered_at, explicit);
+  if (!next.publishedAt) return null;
+  await db`UPDATE articles SET published_at = ${next.publishedAt}, published_at_claim = ${claimed},
+    timeline_at = ${next.timelineAt}, backfill = ${next.backfill}, backfill_reason = ${next.backfillReason} WHERE id = ${articleId}`;
+  return next;
 }
 
 /**
@@ -129,11 +159,32 @@ function sameBarringLoss(a: string | null | undefined, b: string | null | undefi
 export function identityKeyFor(m: MaterialInput): string {
   if (m.identityKey) return m.identityKey;
   if (m.xPost?.tweetId) return `x:${m.xPost.tweetId}`;
-  const arxiv = parseArxivIdentity(m.url);
-  if (arxiv) return arxiv.canonicalKey;
   const fromUrl = identityKeyForUrl(m.url);
   if (fromUrl) return fromUrl;
   return `src:${m.sourceId}:${sha256(m.url + "\u0001" + m.title).slice(0, 32)}`;
+}
+
+/**
+ * A publisher's stable entry ID survives a URL rename. Reuse the earliest material for that ID within
+ * its source; new entries still use URL identity, so another discovery of the same URL converges.
+ * Existing duplicate rows remain untouched. Only collectors declaring an external ID call this.
+ */
+export async function reuseExternalMaterialIdentities<C extends Pick<MaterialInput, "identityKey" | "raw">>(sourceId: string, candidates: C[], db: Db = sql): Promise<C[]> {
+  const externalId = (raw: unknown): string | null => {
+    const value = raw && typeof raw === "object" ? (raw as Record<string, unknown>).externalId : null;
+    return typeof value === "string" && value.length > 0 ? value : typeof value === "number" && Number.isFinite(value) ? String(value) : null;
+  };
+  const ids = [...new Set(candidates.map(c => externalId(c.raw)).filter((id): id is string => id !== null))];
+  if (ids.length === 0) return candidates;
+  const rows = await db<{ external_id: string; identity_key: string }[]>`
+    SELECT DISTINCT ON (raw->>'externalId') raw->>'externalId' AS external_id, identity_key
+    FROM articles WHERE source_id = ${sourceId} AND raw->>'externalId' = ANY(${ids}::text[])
+    ORDER BY raw->>'externalId', discovered_at, id`;
+  const known = new Map(rows.map(row => [row.external_id, row.identity_key]));
+  return candidates.map(candidate => {
+    const key = known.get(externalId(candidate.raw) ?? "");
+    return key ? { ...candidate, identityKey: key } : candidate;
+  });
 }
 
 /**
@@ -146,6 +197,13 @@ export async function upsertMaterial(m: MaterialInput, db: Db = sql): Promise<Ma
   return "begin" in db ? (db as typeof sql).begin(run) : run(db);
 }
 
+async function lockMaterial(db: Db, identityKey: string) {
+  const [existing] = await db<{ id: string; source_id: string; revision: number; content_hash: string | null; backfill: boolean; published_at: Date | null; title: string; body_text: string | null; excerpt: string | null; participation_mode: string }[]>`
+    SELECT a.id, a.source_id, a.revision, a.content_hash, a.backfill, a.published_at, a.title, a.body_text, a.excerpt, s.participation_mode
+    FROM articles a JOIN sources s ON s.id = a.source_id WHERE a.identity_key = ${identityKey} FOR UPDATE OF a`;
+  return existing;
+}
+
 async function upsertIn(db: Db, m: MaterialInput): Promise<MaterialResult> {
   m = { ...m,
     publishedAt: m.publishedAt && Number.isFinite(m.publishedAt.getTime()) ? m.publishedAt : null,
@@ -155,57 +213,61 @@ async function upsertIn(db: Db, m: MaterialInput): Promise<MaterialResult> {
   const discoveredAt = m.discoveredAt ?? new Date();
   const title = collapseWhitespace(m.title).slice(0, 1000) || m.url;
 
-  const t = decideTimeline(m.publishedAt, discoveredAt, m.backfill, m.research);
-  const newId = m.id ?? newArticleId();
-  const hash = contentHash({ title, bodyText: m.bodyText, excerpt: m.excerpt });
-  const [inserted] = await db<{ id: string }[]>`
-    INSERT INTO articles (id, source_id, identity_key, url, title, author, language, published_at, published_at_claim,
-      discovered_at, source_updated_at, timeline_at, backfill, backfill_reason, revision, content_hash, excerpt,
-      body_text, body_html, body_status, media, x_post, raw, research)
-    VALUES (${newId}, ${m.sourceId}, ${identityKey}, ${m.url}, ${title}, ${m.author ?? null}, ${m.language ?? null},
-      ${t.publishedAt}, ${m.publishedAt ?? null}, ${discoveredAt}, ${m.sourceUpdatedAt ?? null}, ${t.timelineAt},
-      ${t.backfill}, ${t.backfillReason}, 1, ${hash}, ${m.excerpt ?? null}, ${m.bodyText ?? null}, ${m.bodyHtml ?? null},
-      ${m.bodyStatus ?? (m.bodyText ? "ok" : "pending")}, ${db.json((m.media ?? []) as never)},
-      ${m.xPost ? db.json(m.xPost as never) : null}, ${m.raw === undefined ? null : db.json(m.raw as never)},
-      ${m.research ? db.json(m.research as never) : null})
-    ON CONFLICT (identity_key) DO NOTHING RETURNING id`;
-  if (inserted) {
-    await db`INSERT INTO article_revisions (article_id, revision, content_hash, title, body_text)
-             VALUES (${newId}, 1, ${hash}, ${title}, ${m.bodyText ?? null})`;
-    await db`INSERT INTO article_discoveries (article_id, source_id, via, discovered_at)
-             VALUES (${newId}, ${m.sourceId}, ${m.via}, ${discoveredAt}) ON CONFLICT DO NOTHING`;
-    return { articleId: newId, created: true, revised: false, backfill: t.backfill };
+  const t = decideTimeline(m.publishedAt, discoveredAt, m.backfill, m.publishedAtDay);
+  // Most listing entries are already stored. Lock and reuse those rows without attempting an
+  // insert of their body and raw payload on every collection. The unique key still arbitrates
+  // concurrent first discoveries; after losing that insert, read and lock its winner.
+  let existing = await lockMaterial(db, identityKey);
+  if (!existing) {
+    const newId = m.id ?? newArticleId();
+    const hash = contentHash({ title, bodyText: m.bodyText, excerpt: m.excerpt });
+    const [inserted] = await db<{ id: string }[]>`
+      INSERT INTO articles (id, source_id, identity_key, url, title, author, language, published_at, published_at_claim,
+        discovered_at, source_updated_at, timeline_at, backfill, backfill_reason, revision, content_hash, excerpt,
+        body_text, body_html, body_status, media, x_post, raw)
+      VALUES (${newId}, ${m.sourceId}, ${identityKey}, ${m.url}, ${title}, ${m.author ?? null}, ${m.language ?? null},
+        ${t.publishedAt}, ${m.publishedAt ?? null}, ${discoveredAt}, ${m.sourceUpdatedAt ?? null}, ${t.timelineAt},
+        ${t.backfill}, ${t.backfillReason}, 1, ${hash}, ${m.excerpt ?? null}, ${m.bodyText ?? null}, ${m.bodyHtml ?? null},
+        ${m.bodyStatus ?? (m.bodyText ? "ok" : "pending")}, ${db.json((m.media ?? []) as never)},
+        ${m.xPost ? db.json(m.xPost as never) : null}, ${m.raw === undefined ? null : db.json(m.raw as never)})
+      ON CONFLICT (identity_key) DO NOTHING RETURNING id`;
+    if (inserted) {
+      await db`INSERT INTO article_revisions (article_id, revision, content_hash, title, body_text)
+               VALUES (${newId}, 1, ${hash}, ${title}, ${m.bodyText ?? null})`;
+      await db`INSERT INTO article_discoveries (article_id, source_id, via, discovered_at)
+               VALUES (${newId}, ${m.sourceId}, ${m.via}, ${discoveredAt}) ON CONFLICT DO NOTHING`;
+      await reconcileMaterialSource(db, newId, { sourceId: m.sourceId, author: m.author });
+      return { articleId: newId, created: true, revised: false, backfill: t.backfill };
+    }
+    existing = await lockMaterial(db, identityKey);
   }
-
-  const [existing] = await db<{ id: string; source_id: string; revision: number; content_hash: string | null; backfill: boolean; backfill_reason: string | null; discovered_at: Date; title: string; body_text: string | null; excerpt: string | null; research: ResearchMetadata | null }[]>`
-    SELECT id, source_id, revision, content_hash, backfill, backfill_reason, discovered_at, title, body_text, excerpt, research FROM articles WHERE identity_key = ${identityKey} FOR UPDATE`;
   await db`INSERT INTO article_discoveries (article_id, source_id, via, discovered_at)
            VALUES (${existing!.id}, ${m.sourceId}, ${m.via}, ${discoveredAt}) ON CONFLICT DO NOTHING`;
-  const research = m.research ? mergeResearchMetadata(existing!.research, m.research) : existing!.research;
-  const metadataChanged = !!research && researchMetadataChanged(existing!.research, research);
-  if (metadataChanged) {
-    await db`UPDATE articles SET research = ${db.json(research as never)}, updated_at = now() WHERE id = ${existing!.id}`;
+  const unchanged: MaterialResult = { articleId: existing!.id, created: false, revised: false, backfill: existing!.backfill };
+  // Configuration may have gained a verified publisher since this same discovery channel last
+  // saw the URL. Reconcile before accepting any of that channel's material changes.
+  if (await reconcileMaterialSource(db, existing!.id, { sourceId: m.sourceId, author: m.author })) {
+    if (existing!.participation_mode !== "editorial") {
+      const [pending] = await db`SELECT 1 FROM articles a JOIN sources s ON s.id = a.source_id
+        WHERE a.id = ${existing!.id} AND s.participation_mode = 'editorial'
+          AND NOT EXISTS (SELECT 1 FROM analyses an WHERE an.article_id = a.id AND an.input_revision = a.revision AND an.relevance IS NOT NULL)`;
+      if (pending) unchanged.processingNeeded = true;
+    }
+    return unchanged;
   }
-  // A later official announcement can correct only the automatic stale classification. Explicit
-  // historical imports stay historical; neither the original submission nor first observation moves.
-  if (existing!.backfill_reason === "stale-on-discovery" && !t.backfill && hasRecentArxivAnnouncement(m.research, discoveredAt)) {
-    await db`UPDATE articles SET backfill=false,backfill_reason=NULL,timeline_at=discovered_at,updated_at=now() WHERE id=${existing!.id}`;
-    existing!.backfill = false;
-  }
-  if (m.raw !== undefined && existing!.source_id === m.sourceId) {
-    await db`UPDATE articles SET raw = ${db.json(m.raw as never)} WHERE id = ${existing!.id} AND raw IS DISTINCT FROM ${db.json(m.raw as never)}::jsonb`;
-  }
-  const unchanged: MaterialResult = { ...(metadataChanged ? { metadataChanged: true } : {}), articleId: existing!.id, created: false, revised: false, backfill: existing!.backfill };
   // Another source listing the same material (an aggregator, a translated mirror, a hot signal) is a
   // discovery only: its title and summary are its own rendering, and taking them made the article flip
   // between the two sources' versions on every fetch. Only the article's own source revises it.
-  if (existing!.source_id !== m.sourceId) return unchanged;
+  if (existing!.source_id !== m.sourceId) {
+    return unchanged;
+  }
+  const time = existing!.published_at ? null : await fillPublicationTime(db, existing!.id, m.publishedAt);
   // What the row will hold after this report: a listing without body keeps the stored (extracted) body.
   const bodyText = m.bodyText ?? existing!.body_text;
   const excerpt = m.excerpt ?? existing!.excerpt;
   const next = contentHash({ title, bodyText, excerpt });
-  if (existing!.content_hash === next) return unchanged;
-  if (existing!.content_hash === null) {
+  if (!time && existing!.content_hash === next) return unchanged;
+  if (!time && existing!.content_hash === null) {
     // Imported history carries no hash of this form (its collectors normalised differently): the
     // first report here records the baseline instead of a revision, so an import does not send
     // every article a source still lists back to paid analysis. The baseline joins the history, so
@@ -220,23 +282,40 @@ async function upsertIn(db: Db, m: MaterialInput): Promise<MaterialResult> {
   // already. Any earlier version counts, however long ago: a rotation with many variants would
   // otherwise start over, and a real edit reverted later is rare and loses nothing.
   const [seen] = await db`SELECT 1 FROM article_revisions WHERE article_id = ${existing!.id} AND content_hash = ${next} LIMIT 1`;
-  if (seen) return unchanged;
+  if (!time && seen) return unchanged;
   // Nor is the stored version with other characters lost in transit, or with them restored.
-  if (sameBarringLoss(existing!.title, title) && sameBarringLoss(existing!.body_text, bodyText) && sameBarringLoss(existing!.excerpt, excerpt)) return unchanged;
+  if (!time && sameBarringLoss(existing!.title, title) && sameBarringLoss(existing!.body_text, bodyText) && sameBarringLoss(existing!.excerpt, excerpt)) return unchanged;
 
-  const [row] = await db<{ revision: number }[]>`
-    UPDATE articles SET
-      title = ${title}, author = coalesce(${m.author ?? null}, author), language = coalesce(${m.language ?? null}, language),
+  const media = m.media ? sql.json(m.media as never) : null;
+  await reviseMaterial(db, existing!.id, {
+    set: sql`title = ${title}, author = coalesce(${m.author ?? null}, author), language = coalesce(${m.language ?? null}, language),
       source_updated_at = ${m.sourceUpdatedAt ?? null}, excerpt = coalesce(${m.excerpt ?? null}, excerpt),
       body_text = coalesce(${m.bodyText ?? null}, body_text), body_html = coalesce(${m.bodyHtml ?? null}, body_html),
       body_status = CASE WHEN ${m.bodyText ?? null}::text IS NULL THEN body_status ELSE ${m.bodyStatus ?? "ok"} END,
-      media = CASE WHEN ${m.media ? db.json(m.media as never) : null}::jsonb IS NULL THEN media ELSE ${m.media ? db.json(m.media as never) : null}::jsonb END,
-      x_post = coalesce(${m.xPost ? db.json(m.xPost as never) : null}, x_post),
-      revision = revision + 1, content_hash = ${next}, processing_state = 'new',
-      processing_attempts = 0, processing_retry_at = NULL, processing_error = NULL, processing_queued_at = NULL, updated_at = now()
-    WHERE id = ${existing!.id}
+      media = CASE WHEN ${media}::jsonb IS NULL THEN media ELSE ${media}::jsonb END,
+      x_post = coalesce(${m.xPost ? sql.json(m.xPost as never) : null}, x_post)`,
+    hash: next, title, bodyText,
+  });
+  return { articleId: existing!.id, created: false, revised: true, backfill: time?.backfill ?? existing!.backfill };
+}
+
+/**
+ * A new revision of stored material, from a report or from body extraction: `set` writes the new
+ * content, and everything decided on the old content starts over (analysis and its retry count,
+ * grouping, the "adds value" check). The caller holds the row lock and has found the content changed.
+ */
+export async function reviseMaterial(db: Db, articleId: string, revision: { set: ReturnType<typeof sql>; hash: string; title: string; bodyText: string | null }): Promise<void> {
+  const [row] = await db<{ revision: number }[]>`
+    UPDATE articles SET ${revision.set}, revision = revision + 1, content_hash = ${revision.hash}, ${groupingReset()},
+      processing_state = 'new', processing_attempts = 0, processing_retry_at = NULL, processing_error = NULL, processing_queued_at = NULL,
+      updated_at = now()
+    WHERE id = ${articleId}
     RETURNING revision`;
   await db`INSERT INTO article_revisions (article_id, revision, content_hash, title, body_text)
-           VALUES (${existing!.id}, ${row!.revision}, ${next}, ${title}, ${bodyText})`;
-  return { ...(metadataChanged ? { metadataChanged: true } : {}), articleId: existing!.id, created: false, revised: true, backfill: existing!.backfill };
+           VALUES (${articleId}, ${row!.revision}, ${revision.hash}, ${revision.title}, ${revision.bodyText})`;
+  // Only withdraw an existing projection; the first publication still belongs to completed analysis.
+  if ((await db`SELECT 1 FROM publications WHERE article_id = ${articleId}`).length) {
+    const published = await publishArticleTx(db as Tx, articleId);
+    await emit("articleChanged", { id: articleId, kind: "content", reduced: published?.reduced, reason: "material revision" }, db);
+  }
 }

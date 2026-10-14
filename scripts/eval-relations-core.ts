@@ -1,4 +1,4 @@
-import { RELATIONS, type Relation, type ReportView } from "@aihot/backend/events/relate";
+import { RELATIONS, STORY_REVIEW_MIN_CONFIDENCE, TIE_MIN_CONFIDENCE, type Relation, type ReportView } from "@aihot/backend/events/relate";
 
 export interface RelationGoldReport {
   title: string;
@@ -26,6 +26,9 @@ export interface RelationPrediction {
 }
 
 type RelationMatrix = Record<Relation, Record<Relation, number>>;
+
+/** Production thresholds worth reporting by default; explicit --thresholds still overrides them. */
+export const DEFAULT_RELATION_THRESHOLDS = [...new Set([STORY_REVIEW_MIN_CONFIDENCE, TIE_MIN_CONFIDENCE])];
 
 function record(value: unknown, line: number, field: string): Record<string, unknown> {
   if (!value || typeof value !== "object" || Array.isArray(value)) throw new Error(`line ${line}: ${field} must be an object`);
@@ -148,12 +151,6 @@ export function sampleRelationGold(
     .map(({ row }) => row);
 }
 
-/** A user-supplied split may contain path separators; report names must stay inside .data/eval. */
-export function safeReportNamePart(value: string): string {
-  const safe = value.trim().replace(/[^A-Za-z0-9_-]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 80);
-  return safe || "all";
-}
-
 function emptyMatrix(): RelationMatrix {
   return Object.fromEntries(
     RELATIONS.map((gold) => [gold, Object.fromEntries(RELATIONS.map((predicted) => [predicted, 0]))]),
@@ -181,11 +178,15 @@ export function relationMetrics(predictions: RelationPrediction[], totalCases = 
   ) as Record<Relation, { precision: number; recall: number; f1: number; support: number }>;
   const correct = RELATIONS.reduce((sum, relation) => sum + confusionMatrix[relation][relation], 0);
   const macroF1 = RELATIONS.reduce((sum, relation) => sum + perClass[relation].f1, 0) / RELATIONS.length;
+  const evaluated = predictions.length;
   return {
     sampleSize: totalCases,
-    evaluated: predictions.length,
-    errors: Math.max(0, totalCases - predictions.length),
-    accuracy: round(correct / Math.max(1, predictions.length)),
+    evaluated,
+    errors: Math.max(0, totalCases - evaluated),
+    coverage: round(evaluated / Math.max(1, totalCases)),
+    // accuracy and macroF1 describe the answers that parsed successfully; completeAccuracy also charges failures.
+    accuracy: round(correct / Math.max(1, evaluated)),
+    completeAccuracy: round(correct / Math.max(1, totalCases)),
     macroF1: round(macroF1),
     confusionMatrix,
     perClass,
@@ -194,7 +195,7 @@ export function relationMetrics(predictions: RelationPrediction[], totalCases = 
 
 const STORY_POSITIVE = new Set<Relation>(["SAME_OCCURRENCE", "SAME_STORY"]);
 
-export function storyTieMetrics(predictions: RelationPrediction[], threshold: number) {
+export function storyTieMetrics(predictions: RelationPrediction[], threshold: number, totalCases = predictions.length) {
   let tp = 0, fp = 0, fn = 0, tn = 0;
   for (const prediction of predictions) {
     const gold = STORY_POSITIVE.has(prediction.gold);
@@ -207,8 +208,14 @@ export function storyTieMetrics(predictions: RelationPrediction[], threshold: nu
   const precision = tp / Math.max(1, tp + fp);
   const recall = tp / Math.max(1, tp + fn);
   const f1 = (2 * precision * recall) / Math.max(1e-9, precision + recall);
+  const evaluated = tp + fp + fn + tn;
+  const correct = tp + tn;
   return {
     threshold,
+    sampleSize: totalCases,
+    evaluated,
+    errors: Math.max(0, totalCases - evaluated),
+    coverage: round(evaluated / Math.max(1, totalCases)),
     tp,
     fp,
     fn,
@@ -216,6 +223,7 @@ export function storyTieMetrics(predictions: RelationPrediction[], threshold: nu
     precision: round(precision),
     recall: round(recall),
     f1: round(f1),
-    accuracy: round((tp + tn) / Math.max(1, tp + fp + fn + tn)),
+    accuracy: round(correct / Math.max(1, evaluated)),
+    completeAccuracy: round(correct / Math.max(1, totalCases)),
   };
 }

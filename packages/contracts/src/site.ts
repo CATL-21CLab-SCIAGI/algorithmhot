@@ -1,17 +1,10 @@
 // First-party site API (/api/site/*). Not a public API: it may evolve with the website,
 // but it is served from the same public read layer as v1, RSS and MCP.
-import type { ResearchBrief, ResearchMetadata, ResearchRoadmap, ResearchPaperFigure } from "./research.ts";
 import type { CategoryKey, ChannelKey } from "./taxonomy.ts";
 
-export type SourceKind = "rss" | "web_list" | "json_list" | "x_search" | "mp_account" | "external";
-
 export interface SourceRef {
-  id: string;
+  /** The name readers see (publication/rules.ts publicSourceName), as is every source name here. */
   name: string;
-  kind: SourceKind;
-  firstParty: boolean;
-  iconUrl: string | null;
-  iconSrcSet?: string;
 }
 
 export interface MediaView {
@@ -43,18 +36,39 @@ export interface StoryRef {
   title: string;
 }
 
+/** What every site answer about an article carries; a card and a page each add the X post in their own form. */
+/**
+ * A short fact the material's entrance printed beside it (an arXiv identifier, the day it went online, a
+ * figure still to come): a label, optionally a value and an original link. At most ITEM_NOTES_MAX.
+ */
+export interface ItemNote {
+  label: string;
+  value?: string;
+  href?: string;
+}
+
+export const ITEM_NOTES_MAX = 6;
+
+/** A figure reused from the original under a licence that allows it, with its credit. */
+export interface ItemFigure {
+  url: string;
+  fullUrl: string;
+  srcSet?: string;
+  alt: string | null;
+  /** "arXiv:2610.01234 图 1 · CC BY 4.0": who made it and under which licence. */
+  credit: string;
+  /** Where the figure is published (the paper's page). */
+  href: string | null;
+}
+
 export interface ItemSummary {
-  research?: ResearchMetadata | null;
-  researchBrief?: ResearchBrief | null;
-  researchRoadmap?: ResearchRoadmap | null;
   id: string;
-  revision: number;
   title: string;
   originalTitle: string | null;
   summary: string | null;
   reason: string | null;
   source: SourceRef;
-  links: { aihot: string; original: string };
+  links: { original: string };
   publishedAt: string | null;
   discoveredAt: string;
   timelineAt: string;
@@ -64,30 +78,33 @@ export interface ItemSummary {
   selected: boolean;
   channel: "news" | "x";
   story: StoryRef | null;
-  x: XPostView | null;
+  notes: ItemNote[];
+  figure?: ItemFigure;
 }
 
 /** The fields rendered by a site feed card; full original text lives in the item detail. */
-export interface FeedItemSummary extends Pick<ItemSummary, "id" | "title" | "summary" | "reason" | "publishedAt" | "timelineAt" | "category" | "tags" | "score" | "selected" | "channel" | "research" | "researchBrief" | "researchRoadmap"> {
-  /** Direct source link; optional for older saved cards. */
-  originalUrl?: string;
-  source: Pick<SourceRef, "name">;
+export interface FeedItemSummary extends Pick<ItemSummary, "id" | "title" | "summary" | "reason" | "source" | "publishedAt" | "timelineAt" | "category" | "tags" | "score" | "selected" | "channel" | "notes" | "figure"> {
   x: (Pick<XPostView, "authorName" | "handle" | "avatarUrl" | "avatarSrcSet" | "media"> & {
     quoted: Omit<NonNullable<XPostView["quoted"]>, "url"> | null;
   }) | null;
+  /**
+   * A selected report whose fact is represented by another report (全部动态 and search): that report,
+   * so the card can say "同一新闻，精选展示《…》" instead of claiming a seat of its own.
+   */
+  sameEvent?: { id: string; title: string } | null;
 }
 
 export interface GroupInfo {
   factId: string;
-  story: StoryRef | null;
-  /** Other public sources of the fact the card represents (same set as the expandable reports). */
+  /** Other public sources reporting this same news fact, under the current filters. */
   additionalSourceCount: number;
-  /** Distinct public reports across the group's facts. */
+  /** Distinct public reports of this fact. */
   reportCount: number;
-  /** Facts of the group (the card's own included) with at least one selected item under the current filters. */
-  developmentCount: number;
-  /** The newest development when it is not the card's own fact: why the card sits where it does. */
-  latestDevelopment?: { factId: string; title: string; at: string } | null;
+  /**
+   * The selected reports of this fact under the current filters. The timeline's reader-side unread
+   * filter keeps a group while any of them is unread; the timeline fills it, other callers omit it.
+   */
+  memberIds?: string[];
 }
 
 export interface TimelineCard {
@@ -112,22 +129,17 @@ export interface TimelineFilters {
   channel: ChannelKey;
   category: CategoryKey | null;
   tag: string | null;
-  topic?: string | null;
 }
 
 export interface TimelineResponse {
   filters: TimelineFilters;
   cards: TimelineCard[];
   nextCursor: string | null;
-  /** Absolute time when a pending item in this scope becomes visible; the page re-checks then. */
-  refreshAt: string | null;
   hot: HotStripEntry[] | null;
   dayCounts: Record<string, number>;
-  generatedAt: string;
 }
 
 export interface PoolResponse {
-  researchCoverage?: import("./research-coverage.ts").ResearchDayCoverage[];
   filters: TimelineFilters & { q: string | null; tab: "time" | "relevance" };
   items: FeedItemSummary[];
   page: number;
@@ -135,7 +147,6 @@ export interface PoolResponse {
   total: number;
   todayCount: number;
   freshness: string;
-  generatedAt: string;
 }
 
 export interface OutlineEntry {
@@ -144,70 +155,54 @@ export interface OutlineEntry {
   level: number;
 }
 
-export interface ItemDetail extends ItemSummary {
+/**
+ * An article page (/api/site/items/:id) in one language: Chinese (the article itself or its translation)
+ * unless …/original asks for the original. Only the body shown is sent, with its outline.
+ */
+export interface SiteItemDetail extends ItemSummary {
+  /** The post with all its media; its text is the body. */
+  x: Omit<XPostView, "text" | "translation"> | null;
+  /** Selected, but its fact's seat is held by this report: marked 同新闻, without a reason of its own. */
+  sameEvent?: { id: string; title: string } | null;
   readingMode: "full" | "summary-only";
   author: string | null;
-  language: string | null;
-  /** Chinese body (translation or Chinese original) and original body, whitelisted HTML. */
+  /** Whitelisted HTML of the language shown; the other one is null. */
   body: { zh: string | null; original: string | null; zhKind: "translation" | "original" | null; complete: boolean } | null;
   outline: OutlineEntry[];
   relatedStories: StoryRef[];
+  /** The topics the report belongs to. */
+  topics: TopicLink[];
   indexable: boolean;
   markdownAvailable: boolean;
   group: GroupInfo | null;
+  hasTranslation: boolean;
+  bodyLanguage: "zh" | "original";
 }
 
+/** A fact's public reports under the list's filters: what "另有 N 家信源报道" opens. */
 export interface GroupReport {
   id: string;
   title: string;
-  summary: string | null;
   source: SourceRef;
   timelineAt: string;
   originalUrl: string;
-  selected: boolean;
 }
 
 export interface GroupReportsResponse {
   factId: string;
-  revision: string;
   reports: GroupReport[];
-  nextCursor: string | null;
 }
 
-export interface Development {
-  factId: string;
-  title: string;
-  occurredAt: string | null;
-  representative: ItemSummary;
-  reportCount: number;
-}
-
-export interface DevelopmentsResponse {
-  story: StoryRef;
-  revision: string;
-  developments: Development[];
-  nextCursor: string | null;
-}
-
-export interface ProblemBody {
-  type: string;
-  title: string;
-  status: number;
-  detail: string;
-  code: string;
-  requestId: string;
-  retryAfter?: number;
-}
-
-// ---------------------------------------------------------------------------
 // Hot ranking and stories
-// ---------------------------------------------------------------------------
+
+/** Home and hot-ranking faces show the same maximum number of editorial participants. */
+export const HOT_FACE_LIMIT = 6;
 
 export interface HotParticipant {
   name: string;
   kind: "editorial" | "signal";
-  /** The source's icon, or for an X account its latest collected avatar (proxied). */
-  iconUrl: string | null;
+  /** Only visible faces carry images: the source's icon or its latest collected X avatar (proxied). */
+  iconUrl?: string | null;
   iconSrcSet?: string;
 }
 
@@ -221,16 +216,11 @@ export interface HotEntryView {
   badges: Array<"surge" | "new" | "rising">;
   participantCount: number;
   sourceCount: number;
-  signalCount: number;
-  reportCount: number;
   sourceNames: string[];
-  latestAt: string;
-  firstReportAt: string;
-  representative: { id: string; url: string; sourceName: string } | null;
   participants: HotParticipant[];
   /** Hourly heat over the 24 hours up to the ranking, oldest first; null where no comparable snapshot exists. */
   spark: Array<number | null>;
-  /** The story's AI digest, else its fact statement. */
+  /** A card excerpt of the story's AI digest, else its fact statement; full text is on the event page. */
   summary: string | null;
   /** The latest development, one line. */
   latest: string | null;
@@ -239,9 +229,7 @@ export interface HotEntryView {
 }
 
 export interface HotResponse {
-  researchAttention?: import("./research-heat.ts").ResearchHeatRanking;
   computedAt: string | null;
-  ruleVersion: string | null;
   windowHours: number;
   entries: HotEntryView[];
 }
@@ -256,17 +244,14 @@ export interface StoryReportView {
   id: string;
   title: string;
   summary: string | null;
-  source: SourceRef;
+  source: SourceRef & { firstParty: boolean };
   publishedAt: string;
-  originalUrl: string;
   selected: boolean;
-  factId: string;
 }
 
 export interface StoryFactView {
   factId: string;
   title: string;
-  occurredAt: string | null;
   firstReportAt: string;
   reportCount: number;
   representative: StoryReportView;
@@ -287,76 +272,67 @@ export interface StoryDetail {
   /** Without a digest or summary: the summary of the report the story started from. */
   excerpt: { text: string; sourceName: string } | null;
   latest: string | null;
+  /** The current public report supplying latest; never inferred from an independently generated digest. */
+  latestReport: { id: string } | null;
   whyHot: {
     participants48h: number;
     newParticipants6h: number;
     recentReports24h: number;
     observationComplete: boolean;
     rank: number | null;
-    heat: number | null;
   };
   developments: StoryFactView[];
   officialReports: StoryReportView[];
   timeline: StoryReportView[];
   heat: HeatPoint[];
-  related: Array<StoryRef & { relation: "storyline" | "related"; latestAt: string | null }>;
+  related: Array<StoryRef & { relation: "storyline" | "related" }>;
+  /** The topics its reports belong to, most reports first. */
+  topics: TopicLink[];
 }
 
-// ---------------------------------------------------------------------------
 // Reports (daily / weekly / monthly)
-// ---------------------------------------------------------------------------
 
-export type ReportKind = "daily" | "weekly" | "monthly" | "pilot";
+export type ReportKind = "daily" | "weekly" | "monthly";
 
 export interface ReportCitation {
-  paperFigure?: ResearchPaperFigure | null;
-  research?: ResearchMetadata | null;
-  researchBrief?: ResearchBrief | null;
-  researchRoadmap?: ResearchRoadmap | null;
   itemId: string | null;
   title: string;
   summary: string | null;
   sourceName: string;
   sourceUrl: string;
-  sourceId: string | null;
   sourceIconUrl: string | null;
   sourceIconSrcSet?: string;
   firstParty: boolean;
-  role: string | null;
-  storyPublicId: string | null;
   /** When the cited report was published, if it is still in the database. */
   publishedAt: string | null;
   /** False once the item was withdrawn; the citation then shows as removed. */
   available: boolean;
-}
-
-export interface ReportRun {
-  id: string;
-  kind: "pilot" | "daily";
-  status: string;
-  metrics: Record<string, number>;
-  gaps: string[];
+  /** A daily entry: other sources that reported the event by the issue's cutoff. */
+  otherSources?: number;
+  /** A daily entry's other developments of the event, or reports of the launch merged into it (titles only). */
+  related?: ReportCitation[];
+  /** A daily entry whose event an earlier daily covered: that issue's date. */
+  followUp?: string;
+  /** The entry's notes as the issue recorded them (ItemNote). */
+  notes?: ItemNote[];
+  /** The figure the article has now (decoration: attaching one later does not rewrite the issue). */
+  figure?: ItemFigure;
 }
 
 export interface ReportDetail {
-  illustrated?: boolean;
-  run?: ReportRun;
   kind: ReportKind;
   key: string;
-  /** 同类现存刊物的时间顺序号；补入或删除更早刊物时会重算。 */
+  /** The issue's place among the existing issues of its kind, oldest first ("第 N 期"). */
   issueNumber: number;
   title: string;
-  windowStart: string;
-  windowEnd: string;
   generatedAt: string;
-  revision: number;
   lead: { title: string; leadParagraph: string } | null;
+  /** The still-public item the front page leads with (its headline links there). */
+  leadItemId: string | null;
   overview: string | null;
   highlights: ReportCitation[];
   /** As edited: daily categories, weekly and monthly themes. */
   sections: Array<{ label: string; summary: string | null; items: ReportCitation[] }>;
-  /** Reading order: every section item once, labelled with its section. */
-  stories: Array<ReportCitation & { label: string }>;
   flashes: ReportCitation[];
   /**
    * The front page's picture: from the lead item (a daily's lead, a weekly or monthly's first highlight),
@@ -373,8 +349,56 @@ export interface ReportIndexEntry {
   key: string;
   issueNumber: number;
   title: string | null;
-  generatedAt: string;
   count: number;
+}
+
+export interface ReportIndexResponse {
+  kind: ReportKind;
+  items: ReportIndexEntry[];
+}
+
+/** The latest report page: its archive selector and the report in one request. */
+export interface ReportLatestPage {
+  index: ReportNavigationEntry[];
+  report: ReportDetail | null;
+}
+
+/** A report's archive selector, or one month of the daily archive. */
+export interface ReportNavigationResponse {
+  items: ReportNavigationEntry[];
+}
+
+/** Site-wide facts for the web shell: the changelog red-dot anchor. */
+export interface SiteMeta {
+  changelogVersion: string;
+}
+
+/** One entry of the site's changelog (site/changelog.json), newest first. */
+export interface ChangelogRelease {
+  date: string;
+  time: string;
+  kind: "更新" | "优化" | "公告" | "下线";
+  title: string;
+  body: string[];
+  /** A notice readers must act on: drawn in the warning red so it cannot be skimmed past. */
+  urgent?: true;
+  /** A major release's long form, drawn by the site's own drawing when it ships one; its shape is the site's. */
+  feature?: unknown;
+}
+
+export interface ChangelogResponse {
+  latestVersion: string;
+  releases: ChangelogRelease[];
+}
+
+/**
+ * The about page's contact codes (uploaded in the admin or shipped with the site; null when there is
+ * none) and the maker's avatar through the image proxy.
+ */
+export interface SiteContact {
+  wechatQr: string | null;
+  feishuQr: string | null;
+  makerAvatar: string | null;
 }
 
 /** Figures and samples for the about page (site-only; not part of v1). */
@@ -383,8 +407,6 @@ export interface SiteStats {
   sources: number;
   /** Enabled sources by kind: x_search, rss, web_list, mp_account, json_list. */
   sourceKinds: Record<string, number>;
-  /** Of them, sources that only count toward heat (their items never reach 精选). */
-  heatOnlySources: number;
   /** Everything collected and not withdrawn, heat-only sources included. */
   items: number;
   selected: number;
@@ -397,18 +419,80 @@ export interface SiteStats {
   latest: Array<{ id: string; title: string; source: string }>;
 }
 
-/** A reading page transfers one language; the canonical item retains both for exports. */
-export interface SiteItemDetail extends Omit<ItemDetail, "x"> {
-  x: Omit<XPostView, "text" | "translation"> | null;
-  hasTranslation: boolean;
-  bodyLanguage: "zh" | "original";
-}
-
 export interface StoryFollowup {
   factId: string;
   representative: { id: string; title: string; source: { name: string }; timelineAt: string };
 }
 export interface StoryFollowupsResponse { items: StoryFollowup[]; more: boolean }
 
-/** 最近期刊导航携带完整序列中的期号；关闭的日报月份省略标题。 */
-export interface ReportNavigationEntry { key: string; issueNumber?: number; title?: string | null; count?: number }
+/**
+ * A starred item as the site can show it now (/api/site/items/availability, keyed by id). Stars keep the
+ * source name of the day they were saved; a public item also brings the name shown today.
+ */
+export interface ItemAvailability {
+  status: "public" | "summary-only" | "unavailable";
+  sourceName?: string;
+}
+
+/** An issue in the archive and the calendar, numbered in its whole series; closed daily months omit their titles. */
+export interface ReportNavigationEntry { key: string; issueNumber: number; title?: string | null; count?: number }
+
+// Topics
+
+export type TopicGroupKey = "company" | "field" | "genre";
+
+export interface TopicGroup {
+  key: TopicGroupKey;
+  name: string;
+  blurb: string;
+}
+
+export interface TopicLink {
+  slug: string;
+  name: string;
+}
+
+/** A mark drawn beside a name: its logo, or a monogram when there is none. */
+export interface Brand {
+  /** Site-relative logo path, or null when only a monogram is available. */
+  src: string | null;
+  monogram: string;
+  /** Raster marks get a light backing plate in dark mode. */
+  raster: boolean;
+}
+
+export interface TopicSummary extends TopicLink {
+  group: TopicGroupKey;
+  definition: string;
+  /** Companies: their logo mark where the site has one, else their initial. */
+  brand: Brand | null;
+  /** Selected reports, one per fact (as v1 and RSS count the selected set). */
+  total: number;
+  /** Of those, in the last 30 days. */
+  recent: number;
+  /** Enough content to be listed and indexed. */
+  indexable: boolean;
+  /** The newest selected report. */
+  latest: { title: string; at: string } | null;
+}
+
+export interface TopicsResponse {
+  groups: TopicGroup[];
+  topics: TopicSummary[];
+}
+
+/** Phone search only needs links, not the topic pages or full hot ranking. */
+export interface SearchSuggestions {
+  topics: Array<TopicLink & { group: TopicGroupKey }>;
+  hot: Array<{ rank: number; title: string; to: string }>;
+}
+
+export interface TopicPage {
+  topic: TopicSummary & { groupName: string; /** Every listed report, selected or not. */ poolTotal: number };
+  /** The site's modules' parts of the page, under their names; each module's web part draws its own. */
+  modules: Record<string, unknown>;
+  items: FeedItemSummary[];
+  page: number;
+  pageCount: number;
+  pageSize: number;
+}

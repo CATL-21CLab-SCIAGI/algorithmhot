@@ -1,10 +1,9 @@
 {
-  "exportedAt": "2026-10-03",
   "groups": [
     {
       "key": "field",
       "name": "研究方向",
-      "blurb": "算法、AI4AI、AI4S 与交叉方法主题"
+      "blurb": "算法、AI4AI、AI4S、电池与新能源材料及交叉方法主题"
     },
     {
       "key": "genre",
@@ -25,12 +24,7 @@
       "tags": [
         "算法"
       ],
-      "definition": "AI/机器学习的训练、推理、优化、模型方法与理论进展。",
-      "related": [
-        "data-training",
-        "reasoning",
-        "benchmarks"
-      ]
+      "definition": "AI/机器学习的训练、推理、优化、模型方法与理论进展。"
     },
     {
       "slug": "ai4ai",
@@ -39,12 +33,7 @@
       "tags": [
         "AI4AI"
       ],
-      "definition": "自动研究、数据生成、评测与 Agent 优化等 AI 研发方法。",
-      "related": [
-        "agent",
-        "synthetic-data",
-        "benchmarks"
-      ]
+      "definition": "自动研究、数据生成、评测与 Agent 优化等 AI 研发方法。"
     },
     {
       "slug": "ai4s",
@@ -53,12 +42,16 @@
       "tags": [
         "AI4S"
       ],
-      "definition": "用 AI 解决材料、计算物理、分子建模等科学问题，关注数据条件与科学证据。",
-      "related": [
-        "materials",
-        "computational-physics",
-        "molecular-modeling"
-      ]
+      "definition": "用 AI 解决材料、计算物理、分子建模等科学问题，关注数据条件与科学证据。"
+    },
+    {
+      "slug": "energy-materials",
+      "name": "电池与新能源材料",
+      "group": "field",
+      "tags": [
+        "电池与新能源材料"
+      ],
+      "definition": "电池、光伏与制氢的原创材料研究：方法、比较条件与验证证据分别记录，期刊声誉不等于结论已验证。"
     },
     {
       "slug": "data-training",
@@ -68,12 +61,7 @@
         "数据/训练",
         "训练方法"
       ],
-      "definition": "训练数据、优化与学习方法的增量及比较条件。",
-      "related": [
-        "algorithm",
-        "synthetic-data",
-        "reproducibility"
-      ]
+      "definition": "训练数据、优化与学习方法的增量及比较条件。"
     },
     {
       "slug": "reasoning",
@@ -83,12 +71,7 @@
         "推理",
         "推理优化"
       ],
-      "definition": "模型推理、计算效率与适用边界。",
-      "related": [
-        "algorithm",
-        "benchmarks",
-        "reproducibility"
-      ]
+      "definition": "模型推理、计算效率与适用边界。"
     },
     {
       "slug": "agent",
@@ -99,12 +82,7 @@
         "自动研究",
         "实验设计"
       ],
-      "definition": "研究规划、实验执行、评测及 AI 研发流程自动化。",
-      "related": [
-        "ai4ai",
-        "benchmarks",
-        "reproducibility"
-      ]
+      "definition": "研究规划、实验执行、评测及 AI 研发流程自动化。"
     },
     {
       "slug": "synthetic-data",
@@ -113,12 +91,7 @@
       "tags": [
         "合成数据"
       ],
-      "definition": "数据生成、筛选和数据质量评测方法。",
-      "related": [
-        "ai4ai",
-        "data-training",
-        "benchmarks"
-      ]
+      "definition": "数据生成、筛选和数据质量评测方法。"
     },
     {
       "slug": "materials",
@@ -127,12 +100,7 @@
       "tags": [
         "材料"
       ],
-      "definition": "材料性质预测、设计与发现方法，保留数据和验证条件。",
-      "related": [
-        "ai4s",
-        "computational-physics",
-        "molecular-modeling"
-      ]
+      "definition": "材料性质预测、设计与发现方法，保留数据和验证条件。"
     },
     {
       "slug": "computational-physics",
@@ -141,12 +109,7 @@
       "tags": [
         "计算物理"
       ],
-      "definition": "物理建模、数值求解、代理模型与科学机器学习。",
-      "related": [
-        "ai4s",
-        "materials",
-        "algorithm"
-      ]
+      "definition": "物理建模、数值求解、代理模型与科学机器学习。"
     },
     {
       "slug": "molecular-modeling",
@@ -155,12 +118,7 @@
       "tags": [
         "分子建模"
       ],
-      "definition": "分子、蛋白与定量生物学中的 AI 方法及任务边界。",
-      "related": [
-        "ai4s",
-        "materials",
-        "reproducibility"
-      ]
+      "definition": "分子、蛋白与定量生物学中的 AI 方法及任务边界。"
     },
     {
       "slug": "reproducibility",
@@ -169,12 +127,7 @@
       "tags": [
         "可复现性"
       ],
-      "definition": "公开数据、代码、权重与独立复现分别记录；公开入口不等于复现成功。",
-      "related": [
-        "papers",
-        "benchmarks",
-        "open-source"
-      ]
+      "definition": "公开数据、代码、权重与独立复现分别记录；公开入口不等于复现成功。"
     },
     {
       "slug": "papers",
@@ -183,12 +136,7 @@
       "tags": [
         "论文/研究"
       ],
-      "definition": "论文与技术报告，明确摘要依据、作者主张和证据限制。",
-      "related": [
-        "algorithm",
-        "ai4ai",
-        "ai4s"
-      ]
+      "definition": "论文与技术报告，明确摘要依据、作者主张和证据限制。"
     },
     {
       "slug": "benchmarks",
@@ -197,12 +145,7 @@
       "tags": [
         "评测/基准"
       ],
-      "definition": "评测任务、数据划分、比较设置和基准限制。",
-      "related": [
-        "papers",
-        "reproducibility",
-        "ai4ai"
-      ]
+      "definition": "评测任务、数据划分、比较设置和基准限制。"
     },
     {
       "slug": "open-source",
@@ -212,12 +155,7 @@
         "开源/仓库",
         "开源生态"
       ],
-      "definition": "代码、权重和数据入口；各自的可用性与许可分别判断。",
-      "related": [
-        "papers",
-        "reproducibility",
-        "data-training"
-      ]
+      "definition": "代码、权重和数据入口；各自的可用性与许可分别判断。"
     },
     {
       "slug": "tutorials",
@@ -226,61 +164,35 @@
       "tags": [
         "教程/实践"
       ],
-      "definition": "可迁移的方法解释和实践，保留前提条件。",
-      "related": [
-        "algorithm",
-        "ai4ai",
-        "reproducibility"
-      ]
+      "definition": "可迁移的方法解释和实践，保留前提条件。"
     },
     {
       "slug": "google",
       "name": "Google DeepMind",
       "group": "company",
-      "tags": [
-        "Google",
+      "entityId": "google",
+      "aliases": [
         "DeepMind",
-        "entity:google"
+        "Google DeepMind"
       ],
-      "definition": "机构发布的研究资料与论文解释，核心主张回到原始材料。",
-      "related": [
-        "ai4s",
-        "algorithm",
-        "papers"
-      ],
-      "entityId": "google"
+      "definition": "Google DeepMind 与 Google Research 发布的研究资料与论文解读，核心主张回到原始材料。"
     },
     {
       "slug": "bair",
       "name": "Berkeley BAIR",
       "group": "company",
-      "tags": [
-        "Berkeley BAIR",
-        "entity:bair"
+      "entityId": "bair",
+      "aliases": [
+        "BAIR"
       ],
-      "definition": "Berkeley BAIR 的研究解释与论文资料。",
-      "related": [
-        "algorithm",
-        "ai4ai",
-        "papers"
-      ],
-      "entityId": "bair"
+      "definition": "Berkeley BAIR 的研究解释与论文资料。"
     },
     {
       "slug": "hugging-face",
       "name": "Hugging Face",
       "group": "company",
-      "tags": [
-        "Hugging Face",
-        "entity:hugging-face"
-      ],
-      "definition": "社区论文精选与开放资料信号；热度不作为科学有效性的证明。",
-      "related": [
-        "papers",
-        "open-source",
-        "benchmarks"
-      ],
-      "entityId": "hugging-face"
+      "entityId": "hugging-face",
+      "definition": "社区论文精选与开放资料信号；热度不作为科学有效性的证明。"
     }
   ]
 }

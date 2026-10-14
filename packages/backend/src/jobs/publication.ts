@@ -3,6 +3,7 @@ import type { PgBoss } from "pg-boss";
 import { sql } from "../db.ts";
 import { republishSource } from "../publication/publish.ts";
 import { computeHotRanking } from "../events/hot.ts";
+import { emit } from "../modules.ts";
 import { QUEUES, work } from "./queue.ts";
 
 export const republishKey = (sourceId: string) => `republish.source:${sourceId}`;
@@ -21,8 +22,9 @@ export async function registerPublicationJobs(boss: PgBoss) {
       // The hot board may show one of the source's articles: re-rank now rather than within five minutes.
       await computeHotRanking();
     }
+    // Names and redistribution rights are also read live, without changing selected/body-mode.
+    if (result.total > 0) await emit("sourceRepublished", { sourceId });
     await progress(sourceId, { status: "done", ...result, startedAt, finishedAt: new Date().toISOString() });
     return result;
   });
-
 }

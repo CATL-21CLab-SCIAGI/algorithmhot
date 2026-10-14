@@ -4,7 +4,8 @@
 import type { SourceRow } from "./types.ts";
 
 // Rules applied in collect.ts to every kind read through collectSource.
-const COLLECTED = ["_aihot", "allowUrlPrefixes", "denyUrlPrefixes", "ingestNoiseFilter", "itemUrlPrefixRewrite", "sortByPublishedAt", "detail", "fetchPublicContent", "fixedInterval", "researchSourceKind"];
+const PUBLISHER = ["publisherRole", "publisherUrlPrefixes", "publisherRequiresDiscovery"];
+const COLLECTED = [...PUBLISHER, "_aihot", "allowUrlPrefixes", "denyUrlPrefixes", "ingestNoiseFilter", "itemUrlPrefixRewrite", "sortByPublishedAt", "detail", "fetchPublicContent", "publishedAfter"];
 
 const KEYS: Record<SourceRow["kind"], string[]> = {
   rss: [...COLLECTED, "feedUrl", "summaryIsBody", "preserveUrlFragment", "allowCategories", "denyCategories"],
@@ -14,13 +15,13 @@ const KEYS: Record<SourceRow["kind"], string[]> = {
   ],
   json_list: [
     ...COLLECTED, "url", "mode", "method", "headers", "bodyJson", "jsonKey", "windowVar", "itemsPath", "itemsObjectValues",
-    "titlePaths", "summaryPaths", "summaryIsBody", "authorPaths", "publishedAtPath", "publishedAtUnit", "externalIdPath",
+    "titlePaths", "summaryPaths", "summaryIsBody", "authorPaths", "publishedAtPath", "publishedAtUnit", "publishedAtUtcOffset", "externalIdPath",
     "urlTemplate", "urlTemplateFallback", "rawDropKeys", "requireBoolean", "minNumeric",
   ],
   // X accounts are mostly read in shards, which apply only these.
-  x_search: ["_aihot", "ingestNoiseFilter", "itemUrlPrefixRewrite", "query", "searchType"],
-  mp_account: ["wxid", "ghid", "nickname"],
-  external: [],
+  x_search: [...PUBLISHER, "_aihot", "ingestNoiseFilter", "itemUrlPrefixRewrite", "query", "searchType"],
+  mp_account: [...PUBLISHER, "wxid", "ghid", "nickname"],
+  external: [...PUBLISHER],
 };
 
 // Objects with fixed keys (headers and bodyJson are request data, free-form).
@@ -37,10 +38,16 @@ const NESTED: Record<string, string[]> = {
 };
 
 const VALUES: Record<string, string[]> = {
+  publisherRole: ["organization", "person"],
   adapter: ["mimo_home"],
-  researchSourceKind: ["arxiv", "huggingface", "institution"],
-  parseMode: ["html", "markdown", "docusaurus_changelog"],
+  parseMode: ["html", "markdown", "docusaurus_changelog", "intercom_changelog"],
 };
+
+function utcInstant(value: unknown): boolean {
+  if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{3})?Z$/.test(value)) return false;
+  const date = new Date(value);
+  return Number.isFinite(date.getTime()) && date.toISOString() === (value.includes(".") ? value : value.replace(/Z$/, ".000Z"));
+}
 
 /** The config entries a source of this kind would ignore or cannot run, e.g. ["adapter=site_cards", "detail.titleFoo"]. */
 export function unsupportedConfig(kind: SourceRow["kind"], config: Record<string, unknown>): string[] {
@@ -48,6 +55,13 @@ export function unsupportedConfig(kind: SourceRow["kind"], config: Record<string
   const out: string[] = [];
   for (const [key, value] of Object.entries(config ?? {})) {
     if (!allowed.has(key)) out.push(key);
+    else if (key === "publisherRequiresDiscovery" && (typeof value !== "boolean"
+      || value && (!Array.isArray(config.publisherUrlPrefixes) || config.publisherUrlPrefixes.length === 0))) out.push(key);
+    else if (key === "publishedAfter" && !utcInstant(value)) out.push(key);
+    else if (key === "publisherUrlPrefixes" && (!Array.isArray(value) || !value.every((v) => {
+      if (typeof v !== "string") return false;
+      try { const u = new URL(v); return /^https?:$/.test(u.protocol) && !u.username && !u.password && !u.search && !u.hash; } catch { return false; }
+    }))) out.push(key);
     else if (VALUES[key] && !VALUES[key]!.includes(String(value))) out.push(`${key}=${String(value)}`);
     else if (NESTED[key] && value && typeof value === "object") {
       for (const sub of Object.keys(value)) if (!NESTED[key]!.includes(sub)) out.push(`${key}.${sub}`);

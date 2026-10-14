@@ -28,7 +28,7 @@ const provider = await stub((_hit, req) => {
     const axis = 2 + (parseInt(T.slice(-4), 36) % 1000);
     return { data: body.input.map((text, index) => ({ index, embedding: Array.from({ length: 1024 }, (_v, i) => (i === (text.includes(TOPIC) ? axis : text.includes(ALONE) ? axis + 1 : 1) ? 1 : 0)) })) };
   }
-  const answer = { query: "收购", decisions: [{ id: "C1", relation: "SAME_OCCURRENCE", confidence: 0.95, note: "" }] };
+  const answer = { query: "收购", decisions: [{ id: "C1", relation: "SAME_OCCURRENCE", confidence: 0.95, note: "" }], selection: { addsValue: true, reason: "fixture news" } };
   return { id: "stub", choices: [{ message: { content: JSON.stringify(answer) } }], usage: { prompt_tokens: 10, completion_tokens: 10, total_tokens: 20 } };
 });
 for (const name of ["DASHSCOPE_BASE_URL", "DEEPSEEK_BASE_URL"]) process.env[name] = `${provider.url}/v1`;
@@ -46,7 +46,7 @@ async function report(suffix: string, opts: { title: string; backfill?: string; 
     publishedAt: opts.publishedAt ?? new Date(), backfill: opts.backfill ?? null,
   });
   await sql`INSERT INTO analyses (article_id, input_revision, origin, relevance, category, title_zh, summary_zh, score, selected, output)
-            VALUES (${articleId}, 1, 'rule', 'pass', 'algorithm', ${opts.title}, '摘要', 80, false, ${sql.json({ fact: { title: opts.title } })})`;
+            VALUES (${articleId}, 1, 'rule', 'pass', 'ai-models', ${opts.title}, '摘要', 80, false, ${sql.json({ fact: { title: opts.title } })})`;
   await publishArticle(articleId);
   return articleId;
 }
@@ -117,7 +117,7 @@ test("a discussion post that quotes a post not yet collected joins its story whe
     via: "fetch", publishedAt: new Date(), xPost: { tweetId, authorName: "Anthropic", handle: "AnthropicAI", text: `Introducing ${TOPIC} Sonnet` },
   });
   await sql`INSERT INTO analyses (article_id, input_revision, origin, relevance, category, title_zh, summary_zh, score, selected, output)
-            VALUES (${originalId}, 1, 'rule', 'pass', 'algorithm', ${`Anthropic 发布 ${TOPIC} Sonnet`}, '摘要', 80, false, ${sql.json({ fact: { title: "Sonnet" } })})`;
+            VALUES (${originalId}, 1, 'rule', 'pass', 'ai-models', ${`Anthropic 发布 ${TOPIC} Sonnet`}, '摘要', 80, false, ${sql.json({ fact: { title: "Sonnet" } })})`;
   const joined = await groupArticle(originalId);
   assert.equal(joined.verdict, "same-fact");
   assert.equal(joined.storyId, first.storyId);

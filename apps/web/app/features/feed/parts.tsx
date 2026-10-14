@@ -1,24 +1,65 @@
 // Small building blocks shared by feed items, detail pages and lists.
 import { useState } from "react";
-import type { FeedItemSummary, MediaView } from "@aihot/contracts/site";
+import type { FeedItemSummary, ItemFigure, ItemNote, MediaView } from "@aihot/contracts/site";
 import { IconBookmark } from "../../components/icons";
 import { SourceAvatar } from "../../components/ui/SourceAvatar";
 import { Lightbox } from "../../components/ui/Lightbox";
 import { toggleStar, useIsStarred } from "../../lib/local-state";
-import { originalLink } from "../../lib/original-link";
 
-/** "IT之家（RSS）" or, for X, avatar + display name + @handle. */
-export function SourceLine({ item, avatarSize = 16, className = "" }: { item: Pick<FeedItemSummary, "source" | "x" | "channel">; avatarSize?: number; className?: string }) {
+/** The source's name, or, for X, avatar + display name + @handle. */
+export function SourceLine({ item, className = "" }: { item: Pick<FeedItemSummary, "source" | "x" | "channel">; className?: string }) {
   if (item.channel === "x" && item.x) {
     return (
       <span className={`flex min-w-0 items-center gap-1.5 ${className}`}>
-        <SourceAvatar name={item.x.authorName} avatarUrl={item.x.avatarUrl} avatarSrcSet={item.x.avatarSrcSet} size={avatarSize} />
+        <SourceAvatar name={item.x.authorName} avatarUrl={item.x.avatarUrl} avatarSrcSet={item.x.avatarSrcSet} size={16} />
         <span className="truncate text-ink-3">{item.x.authorName}</span>
         <span className="hidden shrink-0 text-ink-4 min-[400px]:inline">@{item.x.handle}</span>
       </span>
     );
   }
   return <span className={`min-w-0 truncate ${className}`}>{item.source.name}</span>;
+}
+
+/** The material's short notes (an identifier, the day it went online, a figure still to come), in one line. */
+export function ItemNotes({ notes, className = "" }: { notes: ItemNote[] | undefined; className?: string }) {
+  if (!notes?.length) return null;
+  return (
+    <ul className={`relative z-10 flex flex-wrap gap-x-3 gap-y-1 text-[12px] leading-[18px] text-ink-4 ${className}`}>
+      {notes.map((n, i) => (
+        <li key={i} className="min-w-0 [overflow-wrap:anywhere]">
+          <span>{n.label}</span>
+          {n.value && (n.href
+            ? <a href={n.href} target="_blank" rel="noopener noreferrer" className="ml-1 mono text-ink-3 underline decoration-line underline-offset-2 hover:text-accent">{n.value}</a>
+            : <span className="ml-1 mono text-ink-3">{n.value}</span>)}
+          {!n.value && n.href && <a href={n.href} target="_blank" rel="noopener noreferrer" className="sr-only">{n.label}</a>}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/** A figure reused from the original, with its credit and licence under it. */
+export function FigureView({ figure, className = "", large = false }: { figure: ItemFigure | undefined; className?: string; large?: boolean }) {
+  if (!figure) return null;
+  return (
+    <figure className={`relative z-10 ${className}`}>
+      <img
+        src={large ? figure.fullUrl : figure.url}
+        srcSet={large ? undefined : figure.srcSet}
+        sizes={large ? undefined : "(min-width: 961px) 560px, 100vw"}
+        alt={figure.alt ?? ""}
+        loading="lazy"
+        decoding="async"
+        className={`w-full rounded-[10px] border border-line-soft bg-white object-contain ${large ? "max-h-[520px]" : "max-h-[240px]"}`}
+      />
+      <figcaption className="mt-1.5 text-[12px] leading-[18px] text-ink-4">
+        {figure.alt && <span className="line-clamp-2 text-ink-3">{figure.alt}</span>}
+        {figure.href
+          ? <a href={figure.href} target="_blank" rel="noopener noreferrer" className="hover:text-accent">{figure.credit}</a>
+          : <span>{figure.credit}</span>}
+      </figcaption>
+    </figure>
+  );
 }
 
 /** Up to four media thumbnails, kept small in lists (the detail page shows them larger). Videos are stills. */
@@ -52,32 +93,41 @@ export function MediaThumbs({ media, className = "" }: { media: MediaView[]; cla
   );
 }
 
-/** Bookmark toggle kept in this browser (收藏). */
-export function StarButton({ item, size = 26, className = "" }: { item: Pick<FeedItemSummary, "id" | "title" | "summary" | "source" | "publishedAt" | "score" | "selected"> & { originalUrl?: string; links?: { original: string } }; size?: number; className?: string }) {
-  const starred = useIsStarred(item.id);
+type Starrable = Pick<FeedItemSummary, "id" | "title" | "summary" | "source" | "publishedAt" | "score" | "selected">;
+
+/** Whether an item is in this browser's 收藏, a toggle, and a counter that bumps when it is added. */
+export function useStar(item: Starrable) {
+  const on = useIsStarred(item.id);
   const [pulse, setPulse] = useState(0);
-  const on = starred;
+  const toggle = () => {
+    const added = toggleStar({
+      id: item.id, title: item.title, summary: item.summary, sourceName: item.source.name,
+      publishedAt: item.publishedAt, score: item.score, aiSelected: item.selected,
+    });
+    if (added) setPulse((p) => p + 1);
+  };
+  return { on, toggle, pulse };
+}
+
+/** Bookmark toggle kept in this browser (收藏): 26px, or sized by `size` or by `className`. */
+export function StarButton({ item, size, className = "size-[26px]" }: { item: Starrable; size?: number; className?: string }) {
+  const { on, toggle, pulse } = useStar(item);
   return (
     <button
       type="button"
       aria-pressed={on}
       aria-label={on ? "取消收藏" : "收藏"}
       title={on ? "取消收藏" : "收藏"}
-      onClick={async (e) => {
+      onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();
-        const added = await toggleStar({
-          id: item.id, title: item.title, summary: item.summary, sourceName: item.source.name,
-          publishedAt: item.publishedAt, score: item.score, aiSelected: item.selected,
-          ...(originalLink(item.originalUrl ?? item.links?.original) ? { originalUrl: originalLink(item.originalUrl ?? item.links?.original)! } : {}),
-        });
-        if (added) setPulse((p) => p + 1);
+        toggle();
       }}
-      style={{ width: size, height: size }}
+      style={size ? { width: size, height: size } : undefined}
       className={`relative z-10 inline-flex shrink-0 items-center justify-center rounded-control transition-colors duration-150 ${on ? "text-accent" : "text-ink-4 hover:bg-bg-sunk hover:text-ink-2"} ${className}`}
     >
       <span key={pulse} className={`flex ${pulse ? "anim-bump" : ""}`}>
-        <IconBookmark size={Math.round(size * 0.6)} filled={on} />
+        <IconBookmark size={size ? Math.round(size * 0.6) : 16} filled={on} />
       </span>
     </button>
   );

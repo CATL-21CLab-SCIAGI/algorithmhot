@@ -1,0 +1,14 @@
+{
+  "name": "@aihot/pages-mirror",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./module": "./module.ts",
+    "./server": "./server.ts"
+  },
+  "dependencies": {
+    "@aihot/backend": "*",
+    "@aihot/contracts": "*",
+    "@aihot/site": "*"
+  }
+}

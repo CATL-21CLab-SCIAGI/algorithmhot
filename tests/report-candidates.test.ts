@@ -1,119 +1,96 @@
-import { gate, stub, tag } from "./setup.ts";
-// A selected item released across the 09:00 boundary must appear in the next issue exactly once.
+import { editionAt, gate, tag } from "./setup.ts";
+// A selected item belongs to the issue whose window (start, end] holds the time its source put it online,
+// the edition minute included, exactly once; a release after the cutoff does not move it to the next issue.
 import { after, before, test } from "node:test";
 import assert from "node:assert/strict";
 import { setTimeout as delay } from "node:timers/promises";
 import { closeDb, sql } from "@aihot/backend/db";
-import { config } from "@aihot/backend/config";
 import { upsertMaterial } from "@aihot/backend/content/materials";
 import { stopBoss } from "@aihot/backend/jobs/queue";
 import { publishArticle, publishArticleTx } from "@aihot/backend/publication/publish";
-import { candidates, composeDaily } from "@aihot/backend/reports/compose";
+import { composeDaily } from "@aihot/backend/reports/compose";
+import { candidates } from "@aihot/backend/reports/edition";
 
 const T = tag();
 const SOURCE = `test-report-boundary-${T}`;
-const provider = await stub((hit) => ({
-  id: `report-boundary-${T}-${hit}`,
-  choices: [{ message: { content: JSON.stringify({ title: "测试导语", leadParagraph: "测试摘要", highlights: [1] }) } }],
-  usage: { prompt_tokens: 10, completion_tokens: 10, total_tokens: 20 },
-}));
-const previousModelConfig = {
-  enabled: config.modelCallsEnabled,
-  transport: process.env.LLM_TRANSPORT,
-  baseUrl: process.env.LLM_BASE_URL,
-  apiKey: process.env.LLM_API_KEY,
-  model: process.env.LLM_MODEL,
-  reportModel: process.env.REPORT_MODEL,
-};
-config.modelCallsEnabled = true;
-Object.assign(process.env, {
-  LLM_TRANSPORT: "openai_compatible",
-  LLM_BASE_URL: `${provider.url}/v1`,
-  LLM_API_KEY: "test-key",
-  LLM_MODEL: "fixture-model",
-  REPORT_MODEL: "fixture-model",
-});
 
 before(async () => {
   await sql`INSERT INTO sources (id, name, kind, tier, participation_mode, next_fetch_at)
             VALUES (${SOURCE}, 'Report boundary test', 'rss', 'T1', 'editorial', '2100-01-01')`;
 });
 after(async () => {
-  await sql`DELETE FROM reports WHERE kind = 'daily' AND key IN ('2020-01-02', '2020-01-03', '2020-01-04', '2020-01-05')`;
-  await provider.close();
   await stopBoss();
   await closeDb();
-  config.modelCallsEnabled = previousModelConfig.enabled;
-  for (const [key, value] of Object.entries({ LLM_TRANSPORT: previousModelConfig.transport, LLM_BASE_URL: previousModelConfig.baseUrl,
-    LLM_API_KEY: previousModelConfig.apiKey, LLM_MODEL: previousModelConfig.model, REPORT_MODEL: previousModelConfig.reportModel })) {
-    if (value === undefined) delete process.env[key]; else process.env[key] = value;
-  }
 });
 
-async function analyzed(label: string, timelineAt: string): Promise<string> {
+async function analyzed(label: string, timelineAt: Date): Promise<string> {
   const { articleId, backfill } = await upsertMaterial({
     sourceId: SOURCE,
     url: `https://example.com/report-boundary-${T}-${label}`,
     title: `Report boundary ${label}`,
     bodyText: `Report boundary ${label} body`,
     bodyStatus: "ok",
-    publishedAt: new Date(timelineAt),
-    discoveredAt: new Date(timelineAt),
+    publishedAt: timelineAt,
+    discoveredAt: timelineAt,
     via: "fetch",
   });
   assert.equal(backfill, false);
   await sql`INSERT INTO analyses (article_id, input_revision, origin, relevance, category, title_zh, summary_zh, score, selected)
             VALUES (${articleId}, 1, 'rule', 'pass', 'algorithm', ${`标题 ${label}`}, ${`摘要 ${label}`}, 90, true)`;
+  await sql`UPDATE articles SET processing_state = 'analyzed' WHERE id = ${articleId}`;
   return articleId;
 }
 
-async function selected(label: string, timelineAt: string, releasedAt: string): Promise<string> {
+async function selected(label: string, timelineAt: Date, releasedAt: Date): Promise<string> {
   const articleId = await analyzed(label, timelineAt);
-  const published = await publishArticle(articleId, { now: new Date(releasedAt), releasedAt: new Date(releasedAt) });
+  const published = await publishArticle(articleId, { now: releasedAt, releasedAt });
   assert.equal(published?.selected, true);
   return articleId;
 }
 
-test("reports assign delayed and boundary releases to the period readers first see them", async () => {
-  const onTime = await selected("on-time", "2020-01-01T23:58:00Z", "2020-01-01T23:59:00Z");
-  const delayed = await selected("delayed", "2020-01-01T23:59:00Z", "2020-01-02T01:02:00Z");
-  const atBoundary = await selected("at-boundary", "2020-01-01T23:59:00Z", "2020-01-02T01:00:00Z");
-  const groupedBefore = await analyzed("grouped-before", "2020-01-01T23:58:00Z");
-  await publishArticle(groupedBefore, { now: new Date("2020-01-01T23:58:00Z") });
-  await sql`UPDATE articles SET grouped_at = ${new Date("2020-01-01T23:59:00Z")} WHERE id = ${groupedBefore}`;
-  await publishArticle(groupedBefore, { now: new Date("2020-01-01T23:59:10Z") });
-  const groupedLate = await analyzed("grouped-late", "2020-01-01T23:58:00Z");
-  await publishArticle(groupedLate, { now: new Date("2020-01-02T00:58:00Z") }); // gated until 09:01
-  await sql`UPDATE articles SET grouped_at = ${new Date("2020-01-02T00:59:50Z")} WHERE id = ${groupedLate}`;
-  const boundary = new Date("2020-01-02T01:00:00Z"); // 09:00 Beijing
-  const previous = new Set((await candidates(new Date("2020-01-01T01:00:00Z"), boundary)).map((c) => c.itemId));
-
-  assert.equal(previous.has(onTime), true);
-  assert.equal(previous.has(groupedBefore), true);
-  for (const id of [delayed, atBoundary, groupedLate]) assert.equal(previous.has(id), false);
+test("reports assign each item to the window it went online in, the edition minute included, whenever it was released", async () => {
+  const onTime = await selected("on-time", editionAt("daily", "2020-01-02", -120), editionAt("daily", "2020-01-02", -60));
+  const delayed = await selected("delayed", editionAt("daily", "2020-01-02", -60), editionAt("daily", "2020-01-02", 120));
+  // An arXiv announcement goes online at the edition minute itself: it closes that morning's issue.
+  const atBoundary = await selected("at-boundary", editionAt("daily", "2020-01-02"), editionAt("daily", "2020-01-02", 30));
+  const after = await selected("after", new Date(editionAt("daily", "2020-01-02").getTime() + 60_000), editionAt("daily", "2020-01-02", 2));
+  const groupedLate = await analyzed("grouped-late", editionAt("daily", "2020-01-02", -120));
+  await publishArticle(groupedLate, { now: editionAt("daily", "2020-01-02", -120) }); // waits for identity confirmation
+  await sql`UPDATE articles SET grouping_status = 'complete', grouped_at = ${editionAt("daily", "2020-01-02", 20)} WHERE id = ${groupedLate}`;
+  await publishArticle(groupedLate, { now: editionAt("daily", "2020-01-02", 20) });
+  const boundary = editionAt("daily", "2020-01-02");
+  const previous = new Set((await candidates(editionAt("daily", "2020-01-01"), boundary)).map((c) => c.itemId));
+  const next = new Set((await candidates(boundary, editionAt("daily", "2020-01-03"))).map((c) => c.itemId));
+  for (const id of [onTime, delayed, atBoundary, groupedLate]) assert.deepEqual([previous.has(id), next.has(id)], [true, false]);
+  assert.deepEqual([previous.has(after), next.has(after)], [false, true]);
 
   await composeDaily("2020-01-02");
-  await publishArticle(groupedLate, { now: new Date("2020-01-02T01:00:10Z") });
-  const [release] = await sql<{ visible_after: Date }[]>`SELECT visible_after FROM publications WHERE article_id = ${groupedLate}`;
-  assert.equal(release!.visible_after.toISOString(), "2020-01-02T01:00:10.000Z");
-  const next = new Set((await candidates(boundary, new Date("2020-01-03T01:00:00Z"))).map((c) => c.itemId));
-  assert.equal(next.has(onTime), false);
-  assert.equal(next.has(groupedBefore), false);
-  for (const id of [delayed, atBoundary, groupedLate]) assert.equal(next.has(id), true);
   await composeDaily("2020-01-03");
-  const reports = await sql<{ key: string; content: { sections: Array<{ items: Array<{ itemId: string }> }> } }[]>`
+  const reports = await sql<{ key: string; content: { sections: Array<{ items: Array<{ itemId: string }> }>; flashes: Array<{ itemId: string }> } }[]>`
     SELECT key, content FROM reports WHERE kind = 'daily' AND key IN ('2020-01-02', '2020-01-03')`;
-  const items = (key: string) => new Set(reports.find((r) => r.key === key)!.content.sections.flatMap((s) => s.items.map((i) => i.itemId)));
-  assert.equal(items("2020-01-02").has(onTime), true);
-  assert.equal(items("2020-01-02").has(groupedBefore), true);
-  assert.equal(items("2020-01-02").has(delayed), false);
-  assert.equal(items("2020-01-02").has(atBoundary), false);
-  assert.equal(items("2020-01-02").has(groupedLate), false);
-  assert.equal(items("2020-01-03").has(onTime), false);
-  assert.equal(items("2020-01-03").has(groupedBefore), false);
-  assert.equal(items("2020-01-03").has(delayed), true);
-  assert.equal(items("2020-01-03").has(atBoundary), true);
-  assert.equal(items("2020-01-03").has(groupedLate), true);
+  // An issue carries an item as an entry or as a flash (one source fills at most two entries).
+  const items = (key: string) => {
+    const content = reports.find((r) => r.key === key)!.content;
+    return new Set([...content.sections.flatMap((s) => s.items), ...content.flashes].map((i) => i.itemId));
+  };
+  for (const id of [onTime, delayed, atBoundary, groupedLate]) assert.deepEqual([items("2020-01-02").has(id), items("2020-01-03").has(id)], [true, false]);
+  assert.deepEqual([items("2020-01-02").has(after), items("2020-01-03").has(after)], [false, true]);
+});
+
+test("an item released only after its issue went out stays out of it, and out of the next", async (t) => {
+  const late = await analyzed("released-after-issue", editionAt("daily", "2020-01-06", -60));
+  await publishArticle(late, { now: editionAt("daily", "2020-01-06", -60) }); // waits for identity confirmation
+  const other = await selected("issue-filler", editionAt("daily", "2020-01-06", -90), editionAt("daily", "2020-01-06", -80));
+  t.mock.timers.enable({ apis: ["Date"], now: editionAt("daily", "2020-01-06", 5 * 3600) });
+  await composeDaily("2020-01-06");
+  t.mock.timers.reset();
+  await sql`UPDATE articles SET grouping_status = 'complete', grouped_at = ${editionAt("daily", "2020-01-06", 6 * 3600)} WHERE id = ${late}`;
+  await publishArticle(late, { now: editionAt("daily", "2020-01-06", 6 * 3600) });
+  const [issue] = await sql<{ content: { sections: Array<{ items: Array<{ itemId: string }> }>; flashes: Array<{ itemId: string }> } }[]>`
+    SELECT content FROM reports WHERE kind = 'daily' AND key = '2020-01-06'`;
+  const ids = new Set([...issue!.content.sections.flatMap((s) => s.items), ...issue!.content.flashes].map((i) => i.itemId));
+  assert.deepEqual([ids.has(other), ids.has(late)], [true, false]);
+  assert.equal((await candidates(editionAt("daily", "2020-01-06"), editionAt("daily", "2020-01-07"))).some((c) => c.itemId === late), false);
 });
 
 /** Observe an actual PostgreSQL lock wait before advancing the clock or releasing the transaction. */
@@ -125,15 +102,18 @@ async function waitForBlocked(blocker: number, operation: Promise<unknown>) {
   }
 }
 
-for (const lock of ["article", "report snapshot"] as const) {
-  test(`a release waiting for the ${lock} lock uses the time after the cutoff`, async (t) => {
-    const id = await analyzed(`waiting-${lock}`, "2020-01-01T23:58:00Z");
-    await publishArticle(id, { now: new Date("2020-01-02T00:58:00Z") });
-    await sql`UPDATE articles SET grouped_at = ${new Date("2020-01-02T00:59:00Z")} WHERE id = ${id}`;
+for (const lock of ["article", "fact seat", "report snapshot"] as const) {
+  test(`a release waiting for the ${lock} lock uses the time after the cutoff, and the item stays in the window it went online in`, async (t) => {
+    const id = await analyzed(`waiting-${lock}`, editionAt("daily", "2020-01-02", -120));
+    await publishArticle(id, { now: editionAt("daily", "2020-01-02", -120) });
+    await sql`UPDATE articles SET grouping_status = 'complete', grouped_at = ${editionAt("daily", "2020-01-02", -60)} WHERE id = ${id}`;
+    const [fact] = lock === "fact seat" ? await sql<{ id: number }[]>`INSERT INTO facts (public_id, title) VALUES (${`report-seat-${T}`}, 'fact') RETURNING id` : [];
+    if (fact) await sql`INSERT INTO fact_articles (fact_id, article_id, role) VALUES (${fact.id}, ${id}, 'report')`;
     const acquired = gate<number>();
     const release = gate();
     const holding = sql.begin(async (tx) => {
       if (lock === "article") await tx`SELECT 1 FROM articles WHERE id = ${id} FOR UPDATE`;
+      else if (fact) await tx`SELECT pg_advisory_xact_lock(hashtext(${`seat:${fact.id}`}))`;
       else await tx`SELECT pg_advisory_xact_lock(hashtext('report_candidates'))`;
       const [row] = await tx<{ pid: number }[]>`SELECT pg_backend_pid() AS pid`;
       acquired.open(row!.pid);
@@ -142,10 +122,10 @@ for (const lock of ["article", "report snapshot"] as const) {
     let publication: Promise<unknown> | undefined;
     try {
       const pid = await Promise.race([acquired.promise, holding.then(() => assert.fail("lock holder exited before acquiring its lock"))]);
-      t.mock.timers.enable({ apis: ["Date"], now: new Date("2020-01-02T00:59:59Z") });
+      t.mock.timers.enable({ apis: ["Date"], now: editionAt("daily", "2020-01-02", -1) });
       publication = publishArticle(id);
       await waitForBlocked(pid, publication);
-      t.mock.timers.setTime(new Date("2020-01-02T01:00:10Z").getTime());
+      t.mock.timers.setTime(editionAt("daily", "2020-01-02", 10).getTime());
       release.open();
       await holding;
       await publication;
@@ -153,11 +133,11 @@ for (const lock of ["article", "report snapshot"] as const) {
       const [published] = await sql<{ visible_after: Date; visible_at: Date }[]>`
         SELECT p.visible_after, l.visible_at FROM publications p JOIN selected_ledger l ON l.article_id = p.article_id
         WHERE p.article_id = ${id} ORDER BY l.seq DESC LIMIT 1`;
-      assert.equal(published!.visible_after.toISOString(), "2020-01-02T01:00:10.000Z");
+      assert.equal(published!.visible_after.toISOString(), editionAt("daily", "2020-01-02", 10).toISOString());
       assert.equal(published!.visible_at.toISOString(), published!.visible_after.toISOString());
-      const boundary = new Date("2020-01-02T01:00:00Z");
-      assert.equal((await candidates(new Date("2020-01-01T01:00:00Z"), boundary)).some((c) => c.itemId === id), false);
-      assert.equal((await candidates(boundary, new Date("2020-01-03T01:00:00Z"))).some((c) => c.itemId === id), true);
+      const boundary = editionAt("daily", "2020-01-02");
+      assert.equal((await candidates(editionAt("daily", "2020-01-01"), boundary)).some((c) => c.itemId === id), true);
+      assert.equal((await candidates(boundary, editionAt("daily", "2020-01-03"))).some((c) => c.itemId === id), false);
     } finally {
       release.open();
       await Promise.allSettled([holding, publication]);
@@ -166,10 +146,10 @@ for (const lock of ["article", "report snapshot"] as const) {
 }
 
 test("daily composition waits for a pre-cutoff release to commit instead of losing it between issues", async (t) => {
-  const id = await analyzed("commit-after-cutoff", "2020-01-03T23:58:00Z");
-  await publishArticle(id, { now: new Date("2020-01-03T23:58:00Z") });
-  await sql`UPDATE articles SET grouped_at = ${new Date("2020-01-03T23:59:00Z")} WHERE id = ${id}`;
-  t.mock.timers.enable({ apis: ["Date"], now: new Date("2020-01-03T23:59:59Z") });
+  const id = await analyzed("commit-after-cutoff", editionAt("daily", "2020-01-04", -120));
+  await publishArticle(id, { now: editionAt("daily", "2020-01-04", -120) });
+  await sql`UPDATE articles SET grouping_status = 'complete', grouped_at = ${editionAt("daily", "2020-01-04", -60)} WHERE id = ${id}`;
+  t.mock.timers.enable({ apis: ["Date"], now: editionAt("daily", "2020-01-04", -1) });
   const written = gate<number>();
   const commit = gate();
   const publication = sql.begin(async (tx) => {
@@ -181,20 +161,19 @@ test("daily composition waits for a pre-cutoff release to commit instead of losi
   let report: ReturnType<typeof composeDaily> | undefined;
   try {
     const pid = await Promise.race([written.promise, publication.then(() => assert.fail("publication exited before the commit gate"))]);
-    t.mock.timers.setTime(new Date("2020-01-04T00:00:10Z").getTime());
+    t.mock.timers.setTime(editionAt("daily", "2020-01-04", 10).getTime());
     report = composeDaily("2020-01-04");
     await waitForBlocked(pid, report);
     commit.open();
     await publication;
     await report;
-    // Keep the next issue non-empty while checking that the earlier release is not repeated.
-    await selected("next-period", "2020-01-04T01:01:00Z", "2020-01-04T01:02:00Z");
-    await composeDaily("2020-01-05");
+    await assert.rejects(composeDaily("2020-01-05"), /nothing judged/);
     const reports = await sql<{ key: string; content: { sections: Array<{ items: Array<{ itemId: string }> }> } }[]>`
       SELECT key, content FROM reports WHERE kind = 'daily' AND key IN ('2020-01-04', '2020-01-05')`;
     const hasItem = (key: string) => reports.find((r) => r.key === key)!.content.sections.some((s) => s.items.some((item) => item.itemId === id));
     assert.equal(hasItem("2020-01-04"), true);
-    assert.equal(hasItem("2020-01-05"), false);
+    assert.equal(reports.some((r) => r.key === "2020-01-05"), false);
+    assert.equal((await candidates(editionAt("daily", "2020-01-04"), editionAt("daily", "2020-01-05"))).some((c) => c.itemId === id), false);
   } finally {
     commit.open();
     await Promise.allSettled([publication, report]);

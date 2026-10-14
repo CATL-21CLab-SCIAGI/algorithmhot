@@ -3,15 +3,18 @@
 // them to the api directly.
 import { createReadStream } from "node:fs";
 import { stat } from "node:fs/promises";
-import { createServer, request as httpRequest } from "node:http";
+import { createServer } from "node:http";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { createRequestListener } from "@react-router/node";
+import type { ServerBuild } from "react-router";
 import { isApiOwned, resolveRedirect } from "@aihot/contracts/http-policy";
+import { BROWSER_MAX_SECONDS } from "./app/lib/api.server.ts";
+import { proxyToApi } from "./app/lib/api-proxy.server.ts";
+import { logError } from "./app/lib/errors.server.ts";
 
-const PORT = Number(process.env.WEB_PORT || process.env.PORT || 3000);
+const PORT = Number(process.env.WEB_PORT || 3000);
 const HOST = process.env.WEB_HOST || "127.0.0.1";
-const API = new URL(process.env.API_BASE_URL || "http://127.0.0.1:3001");
 /**
  * Whether a reverse proxy in front (Caddy, nginx) records the visitor in X-Forwarded-For. Without one
  * the header is never believed: a visitor could name any address and slip past the api's per-visitor
@@ -19,8 +22,6 @@ const API = new URL(process.env.API_BASE_URL || "http://127.0.0.1:3001");
  */
 const TRUST_PROXY = process.env.TRUST_PROXY === "true";
 const CLIENT_DIR = path.resolve(import.meta.dirname, "build/client");
-/** Browsers keep a page at most this long, so a withdrawal reaches them within minutes. */
-const BROWSER_MAX_SECONDS = 300;
 
 const TYPES: Record<string, string> = {
   ".js": "text/javascript; charset=utf-8",
@@ -37,8 +38,16 @@ const TYPES: Record<string, string> = {
 };
 
 // A file URL, not a path: on Windows import() reads "C:\..." as a URL with the scheme "c:".
-const build = await import(pathToFileURL(path.resolve(import.meta.dirname, "build/server/index.js")).href);
-const ssr = createRequestListener({ build, mode: "production" });
+const build: ServerBuild = await import(pathToFileURL(path.resolve(import.meta.dirname, "build/server/index.js")).href);
+// Keep an empty result for pages without a loader. A tab opened before a page lost its loader still asks
+// for that result, and its router rejects a missing one before React's release recovery can run; an empty
+// one reaches the component instead. The client manifest declares no loader, so current documents make no
+// such request. A tab updates only when its reader reloads it, so no date says when the last old one is
+// gone: remove this once such requests stop arriving.
+const routes = Object.fromEntries(Object.entries(build.routes).map(([id, route]) => [id,
+  route?.module.default && !route.module.loader ? { ...route, module: { ...route.module, loader: () => null } } : route,
+]));
+const ssr = createRequestListener({ build: { ...build, routes }, mode: "production" });
 
 class BadRequest extends Error {}
 
@@ -70,16 +79,21 @@ async function serveStatic(pathname: string, res: import("node:http").ServerResp
 const server = createServer((req, res) => {
   handle(req, res).catch((error: unknown) => {
     const bad = error instanceof BadRequest || error instanceof URIError;
-    if (!bad) console.error(JSON.stringify({ level: "error", msg: "web request failed", path: (req.url ?? "").split("?")[0]!.slice(0, 200), error: String(error).slice(0, 500) }));
+    if (!bad) logError(error, { msg: "web request failed", method: req.method, path: (req.url ?? "").split("?")[0]!.slice(0, 200) });
     if (res.headersSent) return res.destroy();
     res.writeHead(bad ? 400 : 500, { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store" });
     res.end(bad ? "Bad request" : "Internal error");
   });
 });
 
-/** Public navigation returns all matched loaders, so `_routes` never changes a cached answer. */
-function pageCache(req: import("node:http").IncomingMessage, res: import("node:http").ServerResponse) {
-  const url = new URL(req.url ?? "/", "http://web.local");
+/**
+ * The one writer of page response headers: a route only says how long shared caches may keep it (cachedPage, edgeTtl).
+ * Public navigation returns all matched loaders, so `_routes` never changes a cached answer.
+ */
+function pageResponse(req: import("node:http").IncomingMessage, res: import("node:http").ServerResponse) {
+  const target = req.url ?? "/";
+  // An origin-form target is a path even when it starts with //, not a new URL authority.
+  const url = new URL(target.startsWith("/") ? `http://web.local${target}` : target, "http://web.local");
   const pathname = decodeURIComponent(url.pathname).replace(/\.data$/, "");
   const publicRead = (req.method === "GET" || req.method === "HEAD") && !/^\/admin(?:\/|$)/i.test(pathname);
   if (publicRead && url.pathname.endsWith(".data")) {
@@ -93,6 +107,11 @@ function pageCache(req: import("node:http").IncomingMessage, res: import("node:h
   res.writeHead = ((status: number, messageOrHeaders?: string | import("node:http").OutgoingHttpHeaders, headers?: import("node:http").OutgoingHttpHeaders) => {
     const outgoing = typeof messageOrHeaders === "string" ? headers : messageOrHeaders;
     for (const [name, value] of Object.entries(outgoing ?? {})) if (value !== undefined) res.setHeader(name, value);
+    // Download managers can treat prefetched .data with the unknown text/x-script type as a file.
+    // Turbo-stream is text decoded from the response body; its client does not depend on the MIME.
+    if (url.pathname.endsWith(".data") && res.getHeader("Content-Type") === "text/x-script") {
+      res.setHeader("Content-Type", "text/plain; charset=utf-8");
+    }
     const cc = String(res.getHeader("Cache-Control") ?? "");
     if (!publicRead || status !== 200 || res.hasHeader("Set-Cookie") || !cc || /(?:private|no-store)/i.test(cc)) {
       res.removeHeader("Expires");
@@ -110,9 +129,8 @@ function pageCache(req: import("node:http").IncomingMessage, res: import("node:h
       res.setHeader("X-Accel-Expires", seconds > 0 ? expires : "0");
       // Reuse intent-prefetched data in the browser within the same shared-cache deadline (capped).
       // Never serve it beyond that deadline, including while revalidating or on an error.
-      const directives = cc.split(",").map((value) => value.trim()).filter((value) => !/^(?:max-age|s-maxage|stale-while-revalidate|stale-if-error|must-revalidate)(?:=|$)/i.test(value));
       res.setHeader("Cache-Control", seconds > 0
-        ? `${directives.join(", ")}, max-age=${Math.min(seconds, BROWSER_MAX_SECONDS)}, s-maxage=${seconds}, must-revalidate`
+        ? `public, max-age=${Math.min(seconds, BROWSER_MAX_SECONDS)}, s-maxage=${seconds}, must-revalidate`
         : "no-cache");
     }
     return typeof messageOrHeaders === "string" ? writeHead(status, messageOrHeaders) : writeHead(status);
@@ -138,25 +156,16 @@ async function handle(req: import("node:http").IncomingMessage, res: import("nod
     // entry), or this connection's own. Both headers carry only that.
     const forwarded = String(req.headers["x-forwarded-for"] ?? "").split(",").map((v) => v.trim()).filter(Boolean);
     const client = TRUST_PROXY && forwarded.length ? forwarded[forwarded.length - 1]! : (req.socket.remoteAddress ?? "");
-    const headers = { ...req.headers, "x-forwarded-for": client, "x-real-ip": client };
-    const upstream = httpRequest({ hostname: API.hostname, port: API.port, path: raw, method: req.method, headers }, (up) => {
-      res.writeHead(up.statusCode ?? 502, up.headers);
-      up.pipe(res);
-    });
-    upstream.on("error", () => {
-      res.statusCode = 502;
-      res.end("api unavailable");
-    });
-    return req.pipe(upstream);
+    return proxyToApi(req, res, { "x-forwarded-for": client, "x-real-ip": client });
   }
 
   if ((req.method === "GET" || req.method === "HEAD") && pathname.includes(".") && (await serveStatic(pathname, res))) return;
-  pageCache(req, res);
+  pageResponse(req, res);
   return ssr(req, res);
 }
 
 process.on("unhandledRejection", (reason) => {
-  console.error(JSON.stringify({ level: "error", msg: "unhandled rejection", error: String(reason).slice(0, 500) }));
+  logError(reason, { msg: "unhandled rejection" });
 });
 
 server.keepAliveTimeout = 65_000;

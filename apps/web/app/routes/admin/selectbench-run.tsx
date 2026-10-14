@@ -1,9 +1,9 @@
-import { SITE } from "@aihot/industry/site";
+import { SITE } from "@aihot/site";
 import { Fragment, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router";
 import { CATEGORY_LABELS } from "@aihot/contracts/taxonomy";
-import type { AdminSelectBenchCases, AdminSelectBenchDecision } from "@aihot/contracts/admin";
 import type { Route } from "./+types/selectbench-run";
+import type { AdminSelectBenchCases, AdminSelectBenchDecision } from "@aihot/contracts/admin";
 import { adminGet } from "../../lib/admin.server";
 import { bj, num, pct } from "../../features/admin/format";
 import { AdminPage, Badge, Card, Empty, FilterChips, Select } from "../../features/admin/ui";
@@ -51,9 +51,10 @@ export default function SelectBenchRun({ loaderData: d }: Route.ComponentProps) 
           return (
             <button key={m} onClick={() => set("model", m)} className={`rounded-panel p-4 text-left ring-1 transition-colors ${m === model ? "bg-accent-softer ring-accent/40" : "bg-surface ring-line hover:bg-bg-sunk/60"}`}>
               <div className="text-[13.5px] font-semibold text-ink">{m}</div>
-              <div className="num mt-1.5 text-[22px] font-semibold tracking-tight text-ink">F1 {pct(s.f1)}</div>
-              <div className="num mt-0.5 text-[12px] text-ink-3">准确 {pct(s.accuracy)} · 精确 {pct(s.precision)} · 召回 {pct(s.recall)}</div>
-              <div className="num mt-0.5 text-[12px] text-ink-4">误选 {s.fp ?? "—"} · 漏选 {s.fn ?? "—"} · 失败 {s.errors ?? 0}</div>
+              <div className="num mt-1.5 text-[22px] font-semibold tracking-tight text-ink">有效输出 F1 {pct(s.f1)}</div>
+              <div className="num mt-0.5 text-[12px] text-ink-3">有效输出准确 {pct(s.accuracy)} · 覆盖 {pct(s.coverage)} · 完整准确 {pct(s.completeAccuracy)}</div>
+              <div className="num mt-0.5 text-[12px] text-ink-3">精确 {pct(s.precision)} · 召回 {pct(s.recall)} · 金标入选 {pct(s.goldSelectRate)}</div>
+              <div className="num mt-0.5 text-[12px] text-ink-4">误选 {s.fp ?? "—"} · 漏选 {s.fn ?? "—"} · {s.decisiveErrors !== undefined ? <>决定失败 {s.decisiveErrors}{s.eitherErrors ? ` · 两可失败 ${s.eitherErrors}` : ""}</> : <>失败 {s.errors ?? 0}</>}</div>
             </button>
           );
         })}

@@ -1,3 +1,5 @@
+// Session binding keeps its established migration filename and can run again over an install that
+// already has its columns without touching their data. Shared migrations use full filenames as ids.
 import "./setup.ts";
 import assert from "node:assert/strict";
 import { readdirSync, readFileSync } from "node:fs";
@@ -12,15 +14,14 @@ const binding = files.find((file) => file.endsWith("_admin_session_binding.sql")
 const migration = readFileSync(path.join(dir, binding), "utf8");
 after(closeDb);
 
-test("session binding migration follows upstream migrations with a unique number", () => {
-  const numbers = files.map((file) => file.split("_")[0]);
-  assert.equal(new Set(numbers).size, numbers.length, "migration numbers must be unique");
+test("session binding migration keeps its established unique filename", () => {
+  assert.equal(files.filter((file) => file.endsWith("_admin_session_binding.sql")).length, 1);
   assert.equal(binding, "0041_admin_session_binding.sql");
 });
 
 test("session binding migration preserves an already-installed binding and legacy rows", async () => {
   await sql.begin(async (tx) => {
-    // 临时表遮住真实会话表，验证旧 PR 已装过这些列时再次迁移也不会破坏数据。
+    // A temporary table hides the real one: running the migration again keeps the columns' data.
     await tx`CREATE TEMP TABLE admin_sessions (id_hash text PRIMARY KEY) ON COMMIT DROP`;
     await tx`INSERT INTO admin_sessions VALUES ('legacy')`;
     await tx.unsafe(migration);

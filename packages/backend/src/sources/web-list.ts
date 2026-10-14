@@ -1,49 +1,24 @@
-// Web list pages: HTML with selectors, Markdown through Jina Reader, and Docusaurus changelogs.
+// Web list pages: HTML with selectors, Markdown through Jina Reader, and dated changelog sections.
 import * as cheerio from "cheerio";
-import { sql } from "../db.ts";
 import { guardedFetch } from "../lib/http-fetch.ts";
-import { normalizeUrl } from "../lib/url.ts";
+import { fetchListing } from "./listing-fetch.ts";
+import { identityKeyForUrl, normalizeUrl } from "../lib/url.ts";
 import { collapseWhitespace, stripTags } from "../lib/text.ts";
 import { readable, type ExtractedBody } from "../content/extract.ts";
 import { sanitizeBody } from "../content/sanitize.ts";
 import { jinaRead } from "../providers/jina.ts";
+import { articleUtcOffset, parseLooseDate } from "./dates.ts";
 import { FetchError, type Candidate, type SourceRow } from "./types.ts";
 
 const JINA_PREFIX = "https://r.jina.ai/";
 
-/** A time followed by its zone: "10:00Z", "10:00:00+08:00", "10:00:00 +0000", "10:00:00 GMT". */
-const EXPLICIT_ZONE = /\d{1,2}:\d{2}(?::\d{2}(?:\.\d+)?)?\s*(?:Z|[+-]\d{2}:?\d{2}|GMT|UTC)\b/i;
-
-function atOffset(y: string | number, mo: string | number, d: string | number, h: string | number, mi: string | number, s: string | number, utcOffset: string): Date | null {
-  const p = (n: string | number) => String(n).padStart(2, "0");
-  const t = Date.parse(`${y}-${p(mo)}-${p(d)}T${p(h)}:${p(mi)}:${p(s)}${utcOffset}`);
-  return Number.isFinite(t) ? new Date(t) : null;
-}
-
-/**
- * A published date as a list page or article prints it. Date.parse is kept only where it reads the same
- * on every host: a time with its zone, and an ISO date alone (UTC midnight). Anything else it would read
- * in the server's local zone (UTC in Docker), so "2026-09-26 10:00" is read in the source's offset instead.
- */
-export function parseLooseDate(value: string | null | undefined, utcOffset = "+08:00"): Date | null {
-  if (!value) return null;
-  const v = value.trim();
-  if (!v) return null;
-  if (EXPLICIT_ZONE.test(v) || /^\d{4}-\d{2}-\d{2}$/.test(v)) {
-    const direct = Date.parse(v);
-    if (Number.isFinite(direct) && /\d{4}/.test(v)) return new Date(direct);
+/** A date rule names one element; unrelated tooltips must not hide its visible publication date. */
+function elementDate(el: ReturnType<cheerio.CheerioAPI>, utcOffset?: string): Date | null {
+  for (const value of [el.attr("datetime"), el.attr("content"), el.attr("title"), el.text()]) {
+    const date = parseLooseDate(value, utcOffset);
+    if (date) return date;
   }
-  // 2026-09-26 / 2026/09/26 / 2026-09-26T10:00 / 2026年9月26日 (+ optional time), interpreted in the given offset.
-  const m = /(\d{4})[-/.年](\d{1,2})[-/.月](\d{1,2})日?(?:(?:T|\s*)(\d{1,2}):(\d{2})(?::(\d{2}))?)?/.exec(v);
-  if (m) {
-    const [, y, mo, d, h = "00", mi = "00", s = "00"] = m;
-    return atOffset(y!, mo!, d!, h, mi, s, utcOffset);
-  }
-  // "Sep 26, 2026": Date.parse reads it in the host's zone, so take its fields and place them in the offset.
-  const en = Date.parse(v.replace(/(\d)(st|nd|rd|th)/, "$1"));
-  if (!Number.isFinite(en)) return null;
-  const local = new Date(en);
-  return atOffset(local.getFullYear(), local.getMonth() + 1, local.getDate(), local.getHours(), local.getMinutes(), local.getSeconds(), utcOffset);
+  return null;
 }
 
 /** The datePublished of the page's structured data (JSON-LD, also inside @graph or embedded app state). */
@@ -121,30 +96,28 @@ function absolute(href: string | undefined, base: string): string | null {
   }
 }
 
-async function fetchListingText(source: SourceRow): Promise<{ text: string; viaJina: boolean; base: string; round?: string }> {
+async function fetchListingText(source: SourceRow): Promise<{ text: string; viaJina: boolean; base: string }> {
   const url = String(source.config.url ?? "");
   if (!url) throw new FetchError("url missing");
   if (url.startsWith(JINA_PREFIX)) {
     const target = url.slice(JINA_PREFIX.length);
-    // One paid read per round. The round is saved on the source before the request and cleared once the
-    // material is stored, so a fetch that ended with the outcome unknown (timeout after sending, a restart)
-    // comes back to the same receipt instead of paying again; ops.recover releases it once.
-    const pending = source.cursor?.jinaListingRound;
-    const round = typeof pending === "string" ? pending : new Date().toISOString();
-    if (round !== pending) await sql`UPDATE sources SET cursor = coalesce(cursor, '{}'::jsonb) || jsonb_build_object('jinaListingRound', ${round}::text) WHERE id = ${source.id}`;
     // A listing parsed with selectors asks Jina for the rendered HTML (a site our resolver cannot reach
     // still gets its dates and titles from the markup); otherwise Jina's Markdown.
     const format = source.config.parseMode === "html" ? "html" : undefined;
-    const page = await jinaRead(target, { purpose: "source_listing", subject: `source:${source.id}`, cacheToleranceSeconds: source.config.cacheToleranceSeconds, round, format });
-    return { text: page.markdown, viaJina: true, base: source.config.baseUrl ?? target, round };
+    const page = await jinaRead(target, { purpose: "source_listing", subject: `source:${source.id}`, cacheToleranceSeconds: source.config.cacheToleranceSeconds, format, perRead: true });
+    return { text: page.markdown, viaJina: true, base: source.config.baseUrl ?? target };
   }
-  const res = await guardedFetch(url, { headers: { accept: "text/html,application/xhtml+xml,application/json;q=0.9,*/*;q=0.8" }, timeoutMs: 25_000 });
+  const res = await fetchListing(url, { headers: { accept: "text/html,application/xhtml+xml,application/json;q=0.9,*/*;q=0.8" }, timeoutMs: 25_000 });
   if (res.status !== 200) throw new FetchError(`HTTP ${res.status}`, res.status);
-  return { text: res.text(), viaJina: false, base: source.config.baseUrl ?? url };
+  return { text: res.text(), viaJina: false, base: source.config.baseUrl ?? res.url };
 }
 
+/** A listing title that is no headline: a label that swallowed its summary, or a call to action. */
+export const isCallToActionTitle = (title: string) => /^(read more|read the blog|learn more|continue reading|more|阅读全文|阅读更多|查看详情|了解更多)$/i.test(title.trim());
+export const needsTitle = (title: string) => title.length > 100 || isCallToActionTitle(title);
+
 export function fromMarkdown(md: string, base: string, source: SourceRow): Candidate[] {
-  const seen = new Set<string>();
+  const seen = new Map<string, Candidate>();
   const out: Candidate[] = [];
   const listing = String(source.config.url ?? base).replace(JINA_PREFIX, "");
   // Card links wrap an image and the text, [![alt](img) ##### Title …](url "Title"): images go first so the
@@ -156,7 +129,7 @@ export function fromMarkdown(md: string, base: string, source: SourceRow): Candi
     /^[\s>#*+_|-]*(?:\d+[.)]\s*)?[\s*_]*$/.test(text.slice(text.lastIndexOf("\n", at - 1) + 1, at).replace(/\[\]\([^)]*\)/g, ""));
   for (const m of text.matchAll(/\[([^\]]{6,1000})\]\((https?:\/\/[^)\s]+|\/[^)\s]*)(?:\s+"([^"]*)")?\)/g)) {
     const url = absolute(m[2], base);
-    if (!url || seen.has(url) || !allowed(url, source)) continue;
+    if (!url || !allowed(url, source)) continue;
     const section = source.config.preserveUrlFragment === true && new URL(url).hash.length > 1 && listingItself(url, listing);
     if (!section && navigationLink(url, listing)) continue;
     if (source.config.linksStartLine === true && !startsLine(m.index!)) continue;
@@ -165,8 +138,14 @@ export function fromMarkdown(md: string, base: string, source: SourceRow): Candi
     const attr = collapseWhitespace(m[3] ?? "");
     const title = attr.length >= 6 && label.includes(attr) ? attr : label;
     if (title.length < 6) continue;
-    seen.add(url);
-    out.push({ url, title });
+    const previous = seen.get(url);
+    if (previous) {
+      if (needsTitle(previous.title) && !needsTitle(title)) previous.title = title;
+      continue;
+    }
+    const candidate = { url, title };
+    seen.set(url, candidate);
+    out.push(candidate);
   }
   return out;
 }
@@ -193,7 +172,7 @@ export function fromHtml(html: string, base: string, source: SourceRow): Candida
     let publishedAt: Date | null = null;
     if (c.publishedAtSelector) {
       const dateEl = el.find(c.publishedAtSelector).first();
-      publishedAt = parseLooseDate(dateEl.attr("datetime") ?? dateEl.attr("title") ?? dateEl.text(), c.publishedAtUtcOffset);
+      publishedAt = elementDate(dateEl, c.publishedAtUtcOffset);
     }
     if (!publishedAt && c.publishedAtRegex) {
       const m = new RegExp(c.publishedAtRegex).exec($.html(el));
@@ -212,20 +191,54 @@ const DATE_HEADING = /^(?:[^\d:：]{1,12}[:：])?\s*(\d{4})[-/.年](\d{1,2})[-/.
 function headingDate(title: string, utcOffset = "+08:00"): Date | null | undefined {
   const m = DATE_HEADING.exec(title);
   if (!m) return undefined;
-  const t = Date.parse(`${m[1]}-${m[2]!.padStart(2, "0")}-${m[3]!.padStart(2, "0")}T00:00:00${utcOffset}`);
-  return Number.isFinite(t) ? new Date(t) : null;
+  return parseLooseDate(`${m[1]}/${m[2]}/${m[3]}`, utcOffset);
+}
+
+/** Intercom renders each date heading and paragraph in sibling blocks, with persistent heading IDs. */
+function fromIntercomChangelog(html: string, base: string, source: SourceRow): Candidate[] {
+  const $ = cheerio.load(html);
+  const out: Candidate[] = [];
+  $("article .intercom-interblocks-subheading3:has(h3[id]), article .intercom-interblocks-subheading:has(h2[id])").each((_i, node) => {
+    const block = $(node);
+    const heading = block.find("h2[id], h3[id]").first();
+    const date = parseLooseDate(heading.text(), source.config.publishedAtUtcOffset ?? "+00:00");
+    if (!date) return;
+    const parts: string[] = [];
+    const titles: string[] = [];
+    let next = block.next();
+    while (next.length && !next.find("h2, h3").length) {
+      parts.push($.html(next));
+      const paragraph = next.find("p").first();
+      const text = collapseWhitespace(paragraph.text());
+      if (text && paragraph.children().length === 1 && paragraph.children().first().is("b, strong") && text === collapseWhitespace(paragraph.children().first().text())) titles.push(text);
+      next = next.next();
+    }
+    const bodyHtml = sanitizeBody(parts.join(""), base);
+    const bodyText = stripTags(bodyHtml);
+    if (!bodyText.trim()) return;
+    const url = new URL(base);
+    url.hash = heading.attr("id")!;
+    if (!allowed(url.toString(), source)) return;
+    out.push({
+      url: url.toString(), identityKey: identityKeyForUrl(url.toString(), { keepFragment: true })!,
+      title: titles.join(" · ") || collapseWhitespace(heading.text()), publishedAt: date,
+      bodyHtml, bodyText, bodyStatus: "ok",
+    });
+  });
+  return out;
 }
 
 function fromDocusaurusChangelog(html: string, base: string, source: SourceRow): Candidate[] {
   const $ = cheerio.load(html);
   const out: Candidate[] = [];
+  const offset = source.config.publishedAtUtcOffset;
   // A date heading is no update itself: it dates the updates under it, up to the next h2.
   let sectionDate: Date | null = null;
   $("article h2[id], article h3[id], .markdown h2[id], .markdown h3[id]").each((_i, h) => {
     const head = $(h);
     const id = head.attr("id")!;
     const title = collapseWhitespace(head.text().replace(/​/g, "").replace(/#$/, ""));
-    const date = headingDate(title, source.config.publishedAtUtcOffset);
+    const date = headingDate(title, offset);
     if (date !== undefined) {
       sectionDate = date;
       return;
@@ -244,7 +257,7 @@ function fromDocusaurusChangelog(html: string, base: string, source: SourceRow):
       url,
       identityKey: `url:${url}`,
       title,
-      publishedAt: parseLooseDate(title) ?? sectionDate ?? parseLooseDate(stripTags(bodyHtml).slice(0, 80)),
+      publishedAt: parseLooseDate(title, offset) ?? sectionDate ?? parseLooseDate(stripTags(bodyHtml).slice(0, 80), offset),
       bodyHtml,
       bodyText: stripTags(bodyHtml),
       bodyStatus: "ok",
@@ -323,26 +336,17 @@ async function fromMimoHome(html: string, base: string, source: SourceRow): Prom
   throw new FetchError("mimo_home: no Blog list in the homepage's chunks");
 }
 
-export async function fetchWebList(source: SourceRow, opts: { preview?: boolean } = {}): Promise<Candidate[]> {
-  const { text, viaJina, base, round } = await fetchListingText(source);
+export async function fetchWebList(source: SourceRow): Promise<Candidate[]> {
+  const { text, viaJina, base } = await fetchListingText(source);
   const mode = source.config.adapter === "mimo_home" ? "mimo_home" : source.config.parseMode ?? (viaJina ? "markdown" : "html");
-  try {
-    let out: Candidate[];
-    if (mode === "mimo_home") out = await fromMimoHome(text, base, source);
-    else if (mode === "markdown") out = fromMarkdown(text, base, source);
-    else if (mode === "docusaurus_changelog") out = fromDocusaurusChangelog(text, base, source);
-    else out = fromHtml(text, base, source);
-    if (out.length === 0) throw new FetchError(`no items matched (${mode})`);
-    // A preview has no material commit; a successfully parsed page finishes its round here.
-    if (round && opts.preview) await sql`UPDATE sources SET cursor = cursor - 'jinaListingRound'
-      WHERE id = ${source.id} AND cursor->>'jinaListingRound' = ${round}`;
-    return out;
-  } catch (error) {
-    // An unusable rendering needs a fresh read; a valid one stays reusable until collectSource commits.
-    if (round) await sql`UPDATE sources SET cursor = cursor - 'jinaListingRound'
-      WHERE id = ${source.id} AND cursor->>'jinaListingRound' = ${round}`;
-    throw error;
-  }
+  let out: Candidate[];
+  if (mode === "mimo_home") out = await fromMimoHome(text, base, source);
+  else if (mode === "markdown") out = fromMarkdown(text, base, source);
+  else if (mode === "docusaurus_changelog") out = fromDocusaurusChangelog(text, base, source);
+  else if (mode === "intercom_changelog") out = fromIntercomChangelog(text, base, source);
+  else out = fromHtml(text, base, source);
+  if (out.length === 0) throw new FetchError(`no items matched (${mode})`);
+  return out;
 }
 
 export interface DetailNeed {
@@ -361,6 +365,7 @@ export interface DetailNeed {
  */
 export async function fetchDetail(url: string, source: SourceRow, need: DetailNeed): Promise<{ publishedAt: Date | null; title: string | null; summary: string | null; body: ExtractedBody | null }> {
   const d = source.config.detail ?? {};
+  const offset = articleUtcOffset(source.config);
   const jinaListing = String(source.config.url ?? "").startsWith(JINA_PREFIX);
   const dateInJina = need.date && jinaListing && !!d.publishedAtRegex;
   const titleInJina = need.title && jinaListing && !!d.titleRegex;
@@ -369,12 +374,11 @@ export async function fetchDetail(url: string, source: SourceRow, need: DetailNe
   let body: ExtractedBody | null = null;
   if ((need.date && !dateInJina) || (need.title && !titleInJina) || need.summary) {
     const res = await guardedFetch(url, { timeoutMs: 20_000 });
-    if (res.status === 200) {
-      html = res.text();
-      if (need.body && /html/.test(res.headers.get("content-type") ?? "")) {
-        try { body = readable(html, res.url); }
-        catch { /* A failed extraction must not discard the detail metadata. */ }
-      }
+    if (res.status !== 200) throw new FetchError(`HTTP ${res.status} for detail`, res.status);
+    html = res.text();
+    if (need.body && /html/.test(res.headers.get("content-type") ?? "")) {
+      try { body = readable(html, res.url, offset); }
+      catch { /* A failed extraction must not discard the detail metadata. */ }
     }
   }
   const $ = html === null ? null : cheerio.load(html);
@@ -384,15 +388,16 @@ export async function fetchDetail(url: string, source: SourceRow, need: DetailNe
   if (need.date && dateText !== null) {
     if ($ && !dateInJina && d.publishedAtSelector) {
       const el = $(d.publishedAtSelector).first();
-      publishedAt = parseLooseDate(el.attr("datetime") ?? el.attr("title") ?? el.text(), d.publishedAtUtcOffset);
+      publishedAt = elementDate(el, offset);
     }
-    if (!publishedAt && d.publishedAtRegex) publishedAt = parseLooseDate(new RegExp(d.publishedAtRegex).exec(dateText)?.[1], d.publishedAtUtcOffset);
+    if (!publishedAt && d.publishedAtRegex) publishedAt = parseLooseDate(new RegExp(d.publishedAtRegex).exec(dateText)?.[1], offset);
     // An authoritative rule is the only source of the date: when its byline is missing, no other
     // timestamp on the page (an update time, a related post) stands in for it.
     const authoritative = d.publishedAtAuthoritative === true && !!(d.publishedAtSelector || d.publishedAtRegex);
     if (!publishedAt && $ && !dateInJina && !authoritative) {
       const meta = $('meta[property="article:published_time"], meta[name="pubdate"], meta[itemprop="datePublished"]').attr("content");
-      publishedAt = parseLooseDate(meta) ?? parseLooseDate(jsonLdPublished($, html!)) ?? parseLooseDate($("time[datetime]").first().attr("datetime"));
+      publishedAt = parseLooseDate(meta, offset) ?? parseLooseDate(jsonLdPublished($, html!), offset)
+        ?? parseLooseDate($("time[datetime]").first().attr("datetime"), offset);
     }
   }
 

@@ -1,0 +1,23 @@
+# AlgorithmHot on a cloud server (docs/deploy-aliyun.md): the docker compose stack (db, api, worker, web,
+# optionally caddy) started at boot and stopped cleanly. Docker's own restart policy (unless-stopped)
+# restarts a crashed container; this unit brings the whole stack back after a reboot or a Docker restart.
+# Install: sudo cp deploy/systemd/algorithmhot.service /etc/systemd/system/ && sudo systemctl enable --now algorithmhot
+[Unit]
+Description=AlgorithmHot (docker compose: db, api, worker, web)
+Requires=docker.service
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/opt/algorithmhot
+# Add "--profile https" to both lines when Caddy serves HTTPS (SITE_DOMAIN in .env).
+ExecStart=/usr/bin/docker compose up -d --remove-orphans
+# The worker lets a paid model call in flight finish (stop_grace_period 210 s in docker-compose.yml).
+ExecStop=/usr/bin/docker compose stop
+TimeoutStartSec=900
+TimeoutStopSec=300
+
+[Install]
+WantedBy=multi-user.target

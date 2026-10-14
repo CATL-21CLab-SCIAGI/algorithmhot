@@ -2,33 +2,31 @@
 // Every route goes through adminHandler (session + CSRF); manual changes are audited in the modules.
 import { readFile } from "node:fs/promises";
 import type { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
+import type { AdminSourceUpdate } from "@aihot/contracts/admin";
 import { actorOf } from "@aihot/backend/admin/auth";
-
-import { importSelectBenchRun, listSelectBenchRuns, selectBenchRun } from "@aihot/backend/admin/selectbench";
-import { modelsOverview, switchModel } from "@aihot/backend/admin/models";
-import { researchModelOverview, switchResearchModel } from "@aihot/backend/admin/research-model";
-
-import { contentChain, overrideFields, rerun, searchContent, setSeoIndexed, setVisibility } from "@aihot/backend/admin/content";
-import { banSource, eraseFeedback, feedbackScreenshot, listFeedback, unbanSource, updateFeedback } from "@aihot/backend/admin/feedback";
-import { listMonitorEvents, listMonitorPosts, relinkPost, resolveMonitorPost, reviewReceipt, setWithdrawn, updateMonitorEvent } from "@aihot/backend/admin/monitor";
-import { requeueFailedArticles, runsOverview } from "@aihot/backend/admin/runs";
-import { replaceContactQr, setTargetEnabled, settingsOverview, updateBudget } from "@aihot/backend/admin/settings";
-import { createSource, fetchNow, listSources, previewSource, previewStoredSource, sourceDetail, updateSource } from "@aihot/backend/admin/sources";
 import { navCounts } from "@aihot/backend/admin/navigation";
 import { listAudit } from "@aihot/backend/audit";
+import { importSelectBenchRun, listSelectBenchRuns, selectBenchRun } from "@aihot/backend/admin/selectbench";
+import { modelsOverview, switchModel } from "@aihot/backend/admin/models";
+import { contentChain, overrideFields, rerun, searchContent, setSeoIndexed, setVisibility } from "@aihot/backend/admin/content";
 import { detachFromFact, mergeStories } from "@aihot/backend/events/corrections";
-import { releaseReceipt } from "@aihot/backend/operations/recover";
+import { banSource, eraseFeedback, feedbackScreenshot, listFeedback, unbanSource, updateFeedback } from "@aihot/backend/admin/feedback";
+import { requeueFailedArticles, runsOverview } from "@aihot/backend/admin/runs";
 import { resolveDelivery } from "@aihot/backend/notify/deliver";
+import { releaseReceipt } from "@aihot/backend/operations/recover";
+import { replaceContactQr, setTargetEnabled, settingsOverview, updateBudget } from "@aihot/backend/admin/settings";
+import { createSource, fetchNow, listSources, previewSource, previewStoredSource, sourceDetail, updateSource } from "@aihot/backend/admin/sources";
 import { sendProblem } from "../http/respond.ts";
 import { adminHandler } from "./admin-auth.ts";
 
+// What every admin route reads its request with (the modules' admin routes too).
 type Q = Record<string, string | undefined>;
-const q = (req: FastifyRequest) => req.query as Q;
-const body = <T = Record<string, unknown>>(req: FastifyRequest) => (req.body ?? {}) as T;
-const param = (req: FastifyRequest, name: string) => (req.params as Record<string, string>)[name]!;
+export const q = (req: FastifyRequest) => req.query as Q;
+export const body = <T = Record<string, unknown>>(req: FastifyRequest) => (req.body ?? {}) as T;
+export const param = (req: FastifyRequest, name: string) => (req.params as Record<string, string>)[name]!;
 const notFound = (req: FastifyRequest, reply: FastifyReply) => sendProblem(req, reply, { status: 404, code: "not_found", detail: "Not found." });
-const orNotFound = <T>(req: FastifyRequest, reply: FastifyReply, value: T | null) => (value === null || value === undefined ? notFound(req, reply) : value);
-const page = (req: FastifyRequest) => Math.max(1, Number(q(req).page) || 1);
+export const orNotFound = <T>(req: FastifyRequest, reply: FastifyReply, value: T | null) => (value === null || value === undefined ? notFound(req, reply) : value);
+export const page = (req: FastifyRequest) => Math.max(1, Number(q(req).page) || 1);
 
 function decodeImage(dataUrl: unknown): Buffer {
   const m = /^data:image\/(png|jpeg|webp);base64,(.+)$/s.exec(String(dataUrl ?? ""));
@@ -37,7 +35,7 @@ function decodeImage(dataUrl: unknown): Buffer {
 }
 
 export function registerAdmin(app: FastifyInstance) {
-  // Sources (F18)
+  // Sources
   app.get("/api/admin/sources", adminHandler(async (req) => {
     const f = q(req);
     return listSources({ q: f.q, kind: f.kind, health: f.health, mode: f.mode, enabled: f.enabled as "true" | "false" | undefined, page: page(req) });
@@ -46,13 +44,13 @@ export function registerAdmin(app: FastifyInstance) {
   app.post("/api/admin/sources/preview", adminHandler(async (req) => previewSource(body(req) as never)));
   app.get("/api/admin/sources/:id", adminHandler(async (req, reply) => orNotFound(req, reply, await sourceDetail(param(req, "id")))));
   app.patch("/api/admin/sources/:id", adminHandler(async (req, reply, admin) => {
-    const b = body<{ patch: unknown; version: string; reason?: string }>(req);
+    const b = body<AdminSourceUpdate>(req);
     return orNotFound(req, reply, await updateSource(param(req, "id"), b, actorOf(admin)));
   }));
   app.post("/api/admin/sources/:id/preview", adminHandler(async (req, reply) => orNotFound(req, reply, await previewStoredSource(param(req, "id")))));
   app.post("/api/admin/sources/:id/fetch", adminHandler(async (req, reply, admin) => orNotFound(req, reply, await fetchNow(param(req, "id"), actorOf(admin)))));
 
-  // Content and events (F19)
+  // Content and events
   app.get("/api/admin/content", adminHandler(async (req) => ({ rows: await searchContent(q(req).q ?? "") })));
   app.get("/api/admin/content/:id", adminHandler(async (req, reply) => orNotFound(req, reply, await contentChain(param(req, "id")))));
   app.post("/api/admin/content/:id/visibility", adminHandler(async (req, _reply, admin) => setVisibility(param(req, "id"), body(req) as never, actorOf(admin))));
@@ -90,20 +88,11 @@ export function registerAdmin(app: FastifyInstance) {
     return reply.code(204).send();
   }));
 
-  // Runs (F20)
+  // Runs
   app.get("/api/admin/runs", adminHandler(async () => runsOverview()));
   app.post("/api/admin/receipts/:id/release", adminHandler(async (req, reply, admin) => orNotFound(req, reply, await releaseReceipt(Number(param(req, "id")), body(req) as never, actorOf(admin)))));
   app.post("/api/admin/deliveries/:id/resolve", adminHandler(async (req, reply, admin) => orNotFound(req, reply, await resolveDelivery(Number(param(req, "id")), body(req) as never, actorOf(admin)))));
   app.post("/api/admin/processing/requeue", adminHandler(async (req, _reply, admin) => requeueFailedArticles(body(req) as never, actorOf(admin))));
-
-  // Reset monitor corrections (F12)
-  app.get("/api/admin/monitor/events", adminHandler(async (req) => listMonitorEvents({ withdrawn: q(req).withdrawn === "1" })));
-  app.get("/api/admin/monitor/posts", adminHandler(async (req) => listMonitorPosts({ filter: q(req).filter as never, page: page(req) })));
-  app.patch("/api/admin/monitor/events/:id", adminHandler(async (req, reply, admin) => orNotFound(req, reply, await updateMonitorEvent(param(req, "id"), body(req) as never, actorOf(admin)))));
-  app.post("/api/admin/monitor/events/:id/receipt-review", adminHandler(async (req, reply, admin) => orNotFound(req, reply, await reviewReceipt(param(req, "id"), body(req) as never, actorOf(admin)))));
-  app.post("/api/admin/monitor/events/:id/withdrawn", adminHandler(async (req, reply, admin) => orNotFound(req, reply, await setWithdrawn(param(req, "id"), body(req) as never, actorOf(admin)))));
-  app.post("/api/admin/monitor/relink", adminHandler(async (req, _reply, admin) => relinkPost(body(req) as never, actorOf(admin))));
-  app.post("/api/admin/monitor/posts/:id/resolve", adminHandler(async (req, reply, admin) => orNotFound(req, reply, await resolveMonitorPost(param(req, "id"), body(req) as never, actorOf(admin)))));
 
   // Settings
   app.get("/api/admin/settings", adminHandler(async () => settingsOverview()));
@@ -118,9 +107,7 @@ export function registerAdmin(app: FastifyInstance) {
   app.put("/api/admin/budgets/:service", adminHandler(async (req, _reply, admin) => updateBudget(param(req, "service"), body(req) as never, actorOf(admin))));
 
 
-  // Models and evaluation (F20)
-  app.get("/api/admin/research-model", adminHandler(async () => researchModelOverview()));
-  app.put("/api/admin/research-model", adminHandler(async (req, _reply, admin) => switchResearchModel(body(req), actorOf(admin))));
+  // Models and evaluation
   app.get("/api/admin/models", adminHandler(async (req) => modelsOverview(Math.min(90, Number(q(req).days) || 7))));
   app.post("/api/admin/models/:capability", adminHandler(async (req, _reply, admin) => {
     const b = body<{ model: string | null; reason: string }>(req);
@@ -138,6 +125,7 @@ export function registerAdmin(app: FastifyInstance) {
     return importSelectBenchRun(b.report, String(b.label || "导入的对比运行"), actorOf(admin));
   }));
 
+  // Attention counts for the navigation, and the audit trail.
   app.get("/api/admin/nav-counts", adminHandler(async () => navCounts()));
   app.get("/api/admin/audit", adminHandler(async (req) => listAudit({ subject: q(req).subject, action: q(req).action, page: page(req) })));
 }

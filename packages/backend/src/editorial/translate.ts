@@ -12,11 +12,14 @@ import { z } from "zod";
 import { sql } from "../db.ts";
 import { sanitizeBody, textToHtml } from "../content/sanitize.ts";
 import { chatJson } from "../providers/llm.ts";
+import { completeReceipt } from "../providers/receipts.ts";
 import { collapseWhitespace } from "../lib/text.ts";
+import { isEmptyOrLinkOnly } from "../content/posts.ts";
 import { sha256 } from "../lib/ids.ts";
 import { modelFor } from "./models.ts";
 import { shutdownSignal } from "../jobs/queue.ts";
 import { promptText, promptVersion } from "./prompts.ts";
+import { emit } from "../modules.ts";
 
 export const TRANSLATE_PROMPT_VERSION = promptVersion("translate-body", "translate-post");
 const BATCH_CHARS = 3500;
@@ -67,7 +70,12 @@ function segmentsOf($: cheerio.CheerioAPI): Element[] {
   return out;
 }
 
-async function translateBatch(articleId: string, revision: number, index: number, parts: string[], system: string, attemptTag?: string): Promise<string[] | null> {
+interface BatchTranslation {
+  translated: string[] | null;
+  receiptId: number;
+}
+
+async function translateBatch(articleId: string, revision: number, index: number, parts: string[], system: string, attemptTag?: string): Promise<BatchTranslation> {
   if (shutdownSignal.signal.aborted) throw new TranslationInterruptedError("worker shutting down");
   const model = await modelFor("translate");
   if (shutdownSignal.signal.aborted) throw new TranslationInterruptedError("worker shutting down");
@@ -84,12 +92,15 @@ async function translateBatch(articleId: string, revision: number, index: number
     timeoutMs: 180_000,
     attemptTag,
   });
-  return res.data.t.length === parts.length ? res.data.t : null;
+  return { translated: res.data.t.length === parts.length ? res.data.t : null, receiptId: res.receiptId };
 }
 
-/** Translates batches, halving a batch once when the answer does not line up with the input. */
-async function translateAll(articleId: string, revision: number, parts: string[], system: string, attemptTag?: string): Promise<Array<string | null>> {
+/** Translates batches, retaining every paid receipt used before the final body is committed. */
+async function translateAll(
+  articleId: string, revision: number, parts: string[], system: string, attemptTag?: string,
+): Promise<{ translations: Array<string | null>; receiptIds: number[] }> {
   const out: Array<string | null> = new Array(parts.length).fill(null);
+  const receiptIds: number[] = [];
   let start = 0;
   let index = 0;
   while (start < parts.length) {
@@ -97,17 +108,20 @@ async function translateAll(articleId: string, revision: number, parts: string[]
     let chars = 0;
     while (end < parts.length && (end === start || chars + parts[end]!.length <= BATCH_CHARS)) chars += parts[end++]!.length;
     const batch = parts.slice(start, end);
-    let done = await translateBatch(articleId, revision, index++, batch, system, attemptTag);
+    const first = await translateBatch(articleId, revision, index++, batch, system, attemptTag);
+    receiptIds.push(first.receiptId);
+    let done = first.translated;
     if (!done && batch.length > 1) {
       const mid = Math.ceil(batch.length / 2);
       const left = await translateBatch(articleId, revision, index++, batch.slice(0, mid), system, attemptTag);
       const right = await translateBatch(articleId, revision, index++, batch.slice(mid), system, attemptTag);
-      done = left && right ? [...left, ...right] : null;
+      receiptIds.push(left.receiptId, right.receiptId);
+      done = left.translated && right.translated ? [...left.translated, ...right.translated] : null;
     }
     if (done) done.forEach((t, i) => (out[start + i] = t));
     start = end;
   }
-  return out;
+  return { translations: out, receiptIds };
 }
 
 /** A block as the model sees it: media and inline code as ⟦n⟧, links as <a id="Ln"> with their attributes kept here. */
@@ -164,12 +178,14 @@ export async function translateArticle(articleId: string): Promise<TranslateResu
 
   if (row.channel === "x") {
     const text = String(row.x_post?.text ?? row.body_text ?? "").trim();
+    if (isEmptyOrLinkOnly(text)) return result({ status: "skipped", reason: "no text to translate" });
     const meaningful = collapseWhitespace(text.replace(/https?:\/\/\S+/g, ""));
     if (isChinese(row.language, text)) return result({ status: "skipped", reason: "already Chinese" });
     if (meaningful.length < X_MIN_CHARS) return result({ status: "skipped", reason: "short post" });
-    const [t] = await translateAll(articleId, row.revision, [text], SYSTEM_POST);
+    const translated = await translateAll(articleId, row.revision, [text], SYSTEM_POST);
+    const [t] = translated.translations;
     if (!t) return result({ status: "skipped", reason: "translation did not line up" });
-    await store(articleId, row.revision, row.title, textToHtml(t), t, true);
+    await store(articleId, row.revision, row.title, textToHtml(t), t, true, translated.receiptIds);
     return result({ status: "translated", segments: 1 });
   }
 
@@ -188,12 +204,15 @@ export async function translateArticle(articleId: string): Promise<TranslateResu
   }
   const shielded = chosen.map((el) => shield($(el).html() ?? ""));
   const restore = (answers: Array<string | null>) => answers.map((t, i) => (t === null ? null : unshield(t, shielded[i]!)));
-  const translations = restore(await translateAll(articleId, row.revision, shielded.map((b) => b.html), SYSTEM_BODY));
+  const first = await translateAll(articleId, row.revision, shielded.map((b) => b.html), SYSTEM_BODY);
+  const receiptIds = [...first.receiptIds];
+  const translations = restore(first.translations);
   // Blocks whose answer dropped a link or an image are asked once more, on their own receipt.
   const missing = translations.flatMap((t, i) => (t === null ? [i] : []));
   if (missing.length) {
     const again = await translateAll(articleId, row.revision, missing.map((i) => shielded[i]!.html), SYSTEM_BODY, "retry");
-    missing.forEach((i, k) => (translations[i] = again[k] ? unshield(again[k]!, shielded[i]!) : null));
+    receiptIds.push(...again.receiptIds);
+    missing.forEach((i, k) => (translations[i] = again.translations[k] ? unshield(again.translations[k]!, shielded[i]!) : null));
   }
   let done = 0;
   chosen.forEach((el, i) => {
@@ -206,18 +225,25 @@ export async function translateArticle(articleId: string): Promise<TranslateResu
   if (!done) return result({ status: "skipped", reason: "no batch translated" });
   const complete = done === blocks.length;
   const html = sanitizeBody($.html());
-  await store(articleId, row.revision, row.title, html, cheerio.load(html, null, false).root().text().trim(), complete);
+  await store(articleId, row.revision, row.title, html, cheerio.load(html, null, false).root().text().trim(), complete, receiptIds);
   return result({ status: complete ? "translated" : "partial", segments: done });
 }
 
-async function store(articleId: string, revision: number, title: string, html: string, text: string, complete: boolean) {
+async function store(articleId: string, revision: number, title: string, html: string, text: string, complete: boolean, receiptIds: number[]) {
   // Never over a translation of a later revision (a slow run finishing after a newer one).
-  await sql`
-    INSERT INTO translations (article_id, lang, revision, title, body_html, body_text, complete, origin)
-    VALUES (${articleId}, 'zh', ${revision}, ${title}, ${html}, ${text}, ${complete}, 'model')
-    ON CONFLICT (article_id, lang) DO UPDATE SET revision = EXCLUDED.revision, title = EXCLUDED.title, body_html = EXCLUDED.body_html,
-      body_text = EXCLUDED.body_text, complete = EXCLUDED.complete, origin = 'model', created_at = now()
-    WHERE translations.origin <> 'source' AND translations.revision <= EXCLUDED.revision`;
+  await sql.begin(async (tx) => {
+    const changed = await tx`
+      INSERT INTO translations (article_id, lang, revision, title, body_html, body_text, complete, origin)
+      VALUES (${articleId}, 'zh', ${revision}, ${title}, ${html}, ${text}, ${complete}, 'model')
+      ON CONFLICT (article_id, lang) DO UPDATE SET revision = EXCLUDED.revision, title = EXCLUDED.title, body_html = EXCLUDED.body_html,
+        body_text = EXCLUDED.body_text, complete = EXCLUDED.complete, origin = 'model', created_at = now()
+      WHERE translations.origin <> 'source' AND translations.revision <= EXCLUDED.revision
+        AND (translations.revision, translations.title, translations.body_html, translations.body_text, translations.complete, translations.origin)
+          IS DISTINCT FROM (EXCLUDED.revision, EXCLUDED.title, EXCLUDED.body_html, EXCLUDED.body_text, EXCLUDED.complete, EXCLUDED.origin)
+      RETURNING article_id`;
+    if (changed.length) await emit("articleChanged", { id: articleId, kind: "body", reason: "body translation" }, tx);
+    for (const receiptId of new Set(receiptIds)) await completeReceipt(tx, receiptId);
+  });
 }
 
 /** A quoted post worth translating: at least a few letters beyond its links, and not already Chinese. */
@@ -251,6 +277,7 @@ export async function translateQuotes(opts: { days?: number; limit?: number; bud
     if (r.text_hash === hash || !quoteTranslatable(r.text)) continue;
     let zh = r.own_zh;
     let origin: "reused" | "model" = "reused";
+    let receiptId: number | null = null;
     if (!zh) {
       origin = "model";
       try {
@@ -259,6 +286,7 @@ export async function translateQuotes(opts: { days?: number; limit?: number; bud
           system: SYSTEM_POST, user: JSON.stringify({ segments: [r.text] }), schema: Output, temperature: 0.2,
           maxTokens: Math.min(4000, Math.ceil(r.text.length * 1.5) + 200), timeoutMs: 120_000,
         });
+        receiptId = res.receiptId;
         zh = res.data.t.length === 1 ? res.data.t[0]!.trim() : null;
       } catch (error) {
         // Switched-off calls or an exhausted budget stop the run; one unusable answer skips its post (its
@@ -268,10 +296,23 @@ export async function translateQuotes(opts: { days?: number; limit?: number; bud
       }
     }
     if (!zh) continue;
-    await sql`
-      INSERT INTO quote_translations (tweet_id, text_hash, text_zh, origin) VALUES (${r.tweet_id}, ${hash}, ${zh}, ${origin})
-      ON CONFLICT (tweet_id) DO UPDATE SET text_hash = EXCLUDED.text_hash, text_zh = EXCLUDED.text_zh, origin = EXCLUDED.origin, created_at = now()`;
-    stored += 1;
+    const changed = await sql.begin(async (tx) => {
+      const saved = await tx`
+        INSERT INTO quote_translations (tweet_id, text_hash, text_zh, origin) VALUES (${r.tweet_id}, ${hash}, ${zh}, ${origin})
+        ON CONFLICT (tweet_id) DO UPDATE SET text_hash = EXCLUDED.text_hash, text_zh = EXCLUDED.text_zh, origin = EXCLUDED.origin, created_at = now()
+        WHERE (quote_translations.text_hash, quote_translations.text_zh, quote_translations.origin)
+          IS DISTINCT FROM (EXCLUDED.text_hash, EXCLUDED.text_zh, EXCLUDED.origin)
+        RETURNING tweet_id`;
+      if (saved.length) {
+        const cited = await tx<{ id: string }[]>`
+          SELECT a.id FROM articles a JOIN publications p ON p.article_id = a.id
+          WHERE substring(a.x_post->'quoted'->>'url' from '/status/([0-9]+)') = ${r.tweet_id}`;
+        for (const { id } of cited) await emit("articleChanged", { id, kind: "body", reason: "quoted post translation" }, tx);
+      }
+      if (receiptId !== null) await completeReceipt(tx, receiptId);
+      return saved.length > 0;
+    });
+    if (changed) stored += 1;
   }
   return stored;
 }

@@ -1,25 +1,28 @@
-// Daily IndexNow submission of newly indexable URLs. INDEXNOW_SUBMIT_ENABLED is the safety valve: off
-// (the default) the list is computed and recorded but nothing is sent. Needs INDEXNOW_KEY.
+// IndexNow acknowledges at most 10,000 changed URLs per request. The saved identities describe only
+// accepted notifications, so a failed request, a dry run or a batch boundary cannot lose changes.
 import { config } from "../config.ts";
 import { sql } from "../db.ts";
+import { sha256, stableJson } from "../lib/ids.ts";
 import { siteUrl } from "../publication/links.ts";
-import { publicReportCondition } from "../publication/report-scope.ts";
+import { loadDiscoveryEntries } from "../publication/sitemap.ts";
 
 const MAX_URLS = 10_000;
+interface State { fingerprints: Record<string, string>; acceptedAt: string }
 
 export async function submitIndexNow(now = new Date()) {
-  const [state] = await sql<{ value: { since: string } }[]>`SELECT value FROM settings WHERE key = 'indexnow.watermark'`;
-  const since = state ? new Date(state.value.since) : new Date(now.getTime() - 86400_000);
-  const items = await sql<{ id: string }[]>`
-    SELECT article_id AS id FROM publications WHERE visibility = 'public' AND indexable AND updated_at > ${since} AND updated_at <= ${now}
-    ORDER BY updated_at LIMIT ${MAX_URLS}`;
-  const reports = await sql<{ kind: string; key: string }[]>`SELECT kind, key FROM reports WHERE generated_at > ${since} AND generated_at <= ${now} AND ${publicReportCondition()}`;
-  const stories = await sql<{ public_id: string }[]>`SELECT public_id::text FROM stories WHERE merged_into IS NULL AND created_at > ${since} AND created_at <= ${now} LIMIT 500`;
-  const urls = [
-    ...items.map((i) => siteUrl(`/items/${i.id}`)),
-    ...reports.map((r) => siteUrl(`/${r.kind}/${r.key}`)),
-    ...stories.map((s) => siteUrl(`/story/${s.public_id}`)),
-  ].slice(0, MAX_URLS);
+  const [state] = await sql<{ value: Partial<State> }[]>`SELECT value FROM settings WHERE key = 'indexnow.watermark'`;
+  // A time-only watermark cannot prove what was submitted. The first inventory establishes that
+  // baseline in bounded batches; no dual tracking or guessed historical state is kept.
+  const acknowledged = state?.value.fingerprints ?? {};
+  const current = Object.fromEntries((await loadDiscoveryEntries(now)).map((entry) => [
+    entry.loc, sha256(stableJson([entry.revision ?? null, entry.lastmod?.toISOString() ?? null])),
+  ]));
+  // Disappearing from discovery calls for another fetch (withdrawal, redirect or a changed indexing
+  // decision). It does not claim that the URL was deleted, or that the engine removed it from results.
+  const changes = [...new Set([...Object.keys(acknowledged), ...Object.keys(current)])]
+    .filter((loc) => acknowledged[loc] !== current[loc]).sort();
+  const sent = changes.slice(0, MAX_URLS);
+  const urls = sent.map(siteUrl);
   let status: "sent" | "disabled" | "empty" | "failed" = urls.length ? "disabled" : "empty";
   let httpStatus: number | null = null;
   const key = config.indexNowKey;
@@ -33,9 +36,15 @@ export async function submitIndexNow(now = new Date()) {
     httpStatus = res.status;
     status = res.ok ? "sent" : "failed";
   }
-  if (status !== "failed") {
-    await sql`INSERT INTO settings (key, value, updated_by) VALUES ('indexnow.watermark', ${sql.json({ since: now.toISOString() })}, 'worker')
-              ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value, updated_at = now()`;
+  if (status === "sent") {
+    const fingerprints = { ...acknowledged };
+    for (const loc of sent) {
+      if (current[loc] === undefined) delete fingerprints[loc];
+      else fingerprints[loc] = current[loc];
+    }
+    await sql`INSERT INTO settings (key, value, updated_by)
+      VALUES ('indexnow.watermark', ${sql.json({ fingerprints, acceptedAt: now.toISOString() })}, 'worker')
+      ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value, updated_at = now()`;
   }
-  return { status, httpStatus, urls: urls.length, sample: urls.slice(0, 3) };
+  return { status, httpStatus, urls: urls.length, more: changes.length > sent.length, sample: urls.slice(0, 3) };
 }

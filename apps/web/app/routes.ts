@@ -1,4 +1,16 @@
-import { type RouteConfig, index, layout, route } from "@react-router/dev/routes";
+import { type RouteConfig, type RouteConfigEntry, index, layout, route } from "@react-router/dev/routes";
+import type { ModulePage } from "@aihot/contracts/modules";
+import { MODULES } from "@aihot/site/modules";
+
+/** A module's route module, from the app directory. */
+const file = (module: string, path: string) => `../../../modules/${module}/${path}`;
+const page = (module: string, p: ModulePage) => route(p.path, file(module, p.file), p.id ? { id: p.id } : {});
+
+/** The site's modules' pages, after the engine's. */
+const modulePages: RouteConfigEntry[] = MODULES.flatMap((m) =>
+  (m.pages ?? []).map((p) => ("layout" in p ? layout(file(m.name, p.layout), p.id ? { id: p.id } : {}, p.pages.map((c) => page(m.name, c))) : page(m.name, p))),
+);
+const moduleAdminPages: RouteConfigEntry[] = MODULES.flatMap((m) => (m.adminPages ?? []).map((p) => page(m.name, p)));
 
 export default [
   index("routes/home.tsx"),
@@ -9,8 +21,6 @@ export default [
   route("items/:id/original", "routes/item-original.tsx", { id: "item-original" }),
   route("hot", "routes/hot.tsx"),
   route("story/:publicId", "routes/story.tsx"),
-  route("pilot", "routes/report-latest.tsx", { id: "pilot-latest" }),
-  route("pilot/:key", "routes/report-detail.tsx", { id: "pilot-detail" }),
   route("daily", "routes/report-latest.tsx", { id: "daily-latest" }),
   route("daily/archive", "routes/daily-archive.tsx"),
   route("daily/:key", "routes/report-detail.tsx", { id: "daily-detail" }),
@@ -29,16 +39,7 @@ export default [
   route("more", "routes/more.tsx"),
   route("starred", "routes/starred.tsx"),
   route("agent", "routes/agent.tsx"),
-  route("codex-reset", "routes/codex-reset.tsx"),
-  route("codex-reset/history/:date", "routes/codex-reset.tsx", { id: "codex-reset-day" }),
-  layout("routes/leaderboard-boards.tsx", [
-    route("leaderboard", "routes/leaderboard.tsx", { id: "leaderboard" }),
-    route("leaderboard/category/:key", "routes/leaderboard.tsx", { id: "leaderboard-category" }),
-  ]),
-  route("leaderboard/sources", "routes/leaderboard-sources.tsx"),
-  route("leaderboard/sources/:key", "routes/leaderboard-source.tsx"),
-  route("leaderboard/rules", "routes/leaderboard-rules.tsx"),
-  route("leaderboard/:slug", "routes/leaderboard-model.tsx"),
+  ...modulePages,
   route("admin/login", "routes/admin-login.tsx"),
   layout("routes/admin/layout.tsx", { id: "admin-layout" }, [
     route("admin", "routes/admin/index.tsx"),
@@ -47,7 +48,6 @@ export default [
     route("admin/sources", "routes/admin/sources.tsx"),
     route("admin/sources/new", "routes/admin/source-new.tsx"),
     route("admin/sources/:id", "routes/admin/source.tsx"),
-    route("admin/monitor", "routes/admin/monitor.tsx"),
     route("admin/feedback", "routes/admin/feedback.tsx"),
     route("admin/runs", "routes/admin/runs.tsx"),
     route("admin/models", "routes/admin/models.tsx"),
@@ -55,5 +55,6 @@ export default [
     route("admin/selectbench/:runId", "routes/admin/selectbench-run.tsx"),
     route("admin/settings", "routes/admin/settings.tsx"),
     route("admin/audit", "routes/admin/audit.tsx"),
+    ...moduleAdminPages,
   ]),
 ] satisfies RouteConfig;

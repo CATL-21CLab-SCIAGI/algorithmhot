@@ -2,9 +2,9 @@
 // straight to the API, which sets the session cookie and sends the browser on.
 import { useLoaderData } from "react-router";
 import type { Route } from "./+types/admin-login";
-import { SITE } from "@aihot/industry/site";
+import { SITE } from "@aihot/site";
 import { apiGet } from "../lib/api.server";
-import { Wordmark } from "../components/Logo";
+import { Wordmark } from "@aihot/site/brand/Logo.tsx";
 import { buttonClass } from "../components/ui/Controls";
 
 const ERRORS: Record<string, string> = {
@@ -17,7 +17,7 @@ export async function loader({ request }: Route.LoaderArgs) {
   const url = new URL(request.url);
   const returnTo = url.searchParams.get("return") ?? "/admin";
   const options = await apiGet<{ password: boolean; feishu: boolean }>("/api/auth/options", { signal: request.signal }).catch(() => ({ password: true, feishu: false }));
-  return { returnTo: returnTo === "/agent" || returnTo.startsWith("/admin") ? returnTo : "/admin", error: url.searchParams.get("error"), ...options };
+  return { returnTo: returnTo.startsWith("/admin") ? returnTo : "/admin", error: url.searchParams.get("error"), ...options };
 }
 
 export const meta: Route.MetaFunction = () => [{ title: `登录 · ${SITE.name} 后台` }, { name: "robots", content: "noindex, nofollow" }];
@@ -31,7 +31,7 @@ export default function AdminLogin() {
     <div className="flex min-h-dvh items-center justify-center bg-bg px-4">
       <div className="w-full max-w-[360px]">
         <div className="flex items-center justify-center gap-2">
-          <Wordmark size={26} className="text-ink" />
+          <Wordmark size={28} className="text-ink" />
           <span className="text-[15px] font-semibold text-ink-3">后台</span>
         </div>
         <form method="post" action="/api/auth/password" className="card mt-8 p-6">

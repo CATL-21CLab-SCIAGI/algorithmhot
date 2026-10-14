@@ -1,9 +1,9 @@
 // JSON sources: plain JSON APIs, JSON embedded in HTML (script tags, window variables).
 import { credential } from "../config.ts";
-import { guardedFetch } from "../lib/http-fetch.ts";
+import { fetchListing } from "./listing-fetch.ts";
 import { collapseWhitespace, stripTags } from "../lib/text.ts";
+import { parseLooseDate } from "./dates.ts";
 import { FetchError, type Candidate, type SourceRow } from "./types.ts";
-import { makeResearchMetadata, parseArxivIdentity, researchLinks } from "./research.ts";
 
 export function getPath(obj: unknown, path: string): unknown {
   if (!path) return obj;
@@ -40,23 +40,32 @@ export function renderTemplate(template: string, item: unknown): string | null {
   return missing ? null : out;
 }
 
-function toDate(v: unknown, unit: string | undefined): Date | null {
+/** "2026-09-30 17:43:58": a date and time without a zone, which Date.parse would read in the server's zone. */
+const ZONELESS_TIME = /^\d{4}-\d{1,2}-\d{1,2}[ T]\d{1,2}:\d{2}(?::\d{2}(?:\.\d+)?)?$/;
+
+function toDate(v: unknown, unit: string | undefined, utcOffset: string | undefined): Date | null {
   if (v === null || v === undefined || v === "") return null;
+  // JSON can hold a value nothing converts ({"toString": null}, or a list of one): it is no date, and the
+  // items after it are still read.
+  let text: string;
+  try {
+    text = String(v).trim();
+  } catch {
+    return null;
+  }
   if (unit === "epoch_ms" || unit === "epoch_s") {
-    try {
-      const date = new Date(Number(v) * (unit === "epoch_s" ? 1000 : 1));
-      return Number.isFinite(date.getTime()) ? date : null;
-    } catch {
-      return null;
-    }
+    const date = new Date(Number(text) * (unit === "epoch_s" ? 1000 : 1));
+    return Number.isFinite(date.getTime()) ? date : null;
   }
   // 20260922: a calendar day at UTC midnight (some list APIs give dates as yyyymmdd).
   if (unit === "yyyymmdd") {
-    const m = /^(\d{4})(\d{2})(\d{2})$/.exec(String(v).trim());
+    const m = /^(\d{4})(\d{2})(\d{2})$/.exec(text);
     const d = m ? new Date(`${m[1]}-${m[2]}-${m[3]}T00:00:00Z`) : null;
     return d && Number.isFinite(d.getTime()) && d.toISOString().startsWith(`${m![1]}-${m![2]}-${m![3]}`) ? d : null;
   }
-  const t = Date.parse(String(v));
+  // A time without a zone is in the source's offset, as list pages read it; any other text as Date.parse reads it.
+  if (ZONELESS_TIME.test(text)) return parseLooseDate(text, utcOffset);
+  const t = Date.parse(text);
   return Number.isFinite(t) ? new Date(t) : null;
 }
 
@@ -143,7 +152,7 @@ export async function fetchJsonList(source: SourceRow): Promise<Candidate[]> {
     const token = credential("collectors", "GITHUB_TOKEN");
     if (token) headers.authorization = `Bearer ${token}`;
   }
-  const res = await guardedFetch(url, {
+  const res = await fetchListing(url, {
     redirectPolicy: "same-origin",
     method: c.method ?? "GET",
     headers: c.bodyJson ? { ...headers, "content-type": "application/json" } : headers,
@@ -151,17 +160,11 @@ export async function fetchJsonList(source: SourceRow): Promise<Candidate[]> {
     timeoutMs: 25_000,
   });
   if (res.status !== 200) throw new FetchError(`HTTP ${res.status}`, res.status);
-  return parseJsonList(res.text(), source);
-}
-
-/** Parse a complete, saved response without a second request. */
-export function parseJsonList(body: string, source: SourceRow, observedAt = new Date()): Candidate[] {
-  const c = source.config;
   let data: unknown;
-  if (c.mode === "html_json_key" || c.mode === "html_window_var") data = embeddedJson(body, source);
+  if (c.mode === "html_json_key" || c.mode === "html_window_var") data = embeddedJson(res.text(), source);
   else {
     try {
-      data = JSON.parse(body);
+      data = JSON.parse(res.text());
     } catch {
       throw new FetchError("response is not JSON");
     }
@@ -179,37 +182,16 @@ export function parseJsonList(body: string, source: SourceRow, observedAt = new 
     if (!title || !url) continue;
     const externalId = c.externalIdPath ? getPath(item, c.externalIdPath) : null;
     const summary = firstString(item, c.summaryPaths);
-    const raw = item && typeof item === "object" ? { ...(item as Record<string, unknown>) } : { value: item };
-    for (const k of c.rawDropKeys ?? []) delete (raw as Record<string, unknown>)[k];
     const summaryIsBody = c.summaryIsBody === true && !!summary;
-    const hf = c.researchSourceKind === "huggingface" || /^https:\/\/(?:www\.)?huggingface\.co\/api\/daily_papers/.test(String(c.url));
-    const arxiv = parseArxivIdentity(url) ?? (hf ? parseArxivIdentity(getPath(item, "paper.id") ?? externalId) : null);
-    const research = arxiv || c.researchSourceKind ? makeResearchMetadata({
-      identity: arxiv, observedAt, signalOnly: hf && source.participation_mode === "hot_signal",
-      doi: getPath(item, "paper.doi") ?? getPath(item, "doi"),
-      originalPublishedAt: hf ? getPath(item, "paper.publishedAt") : toDate(getPath(item, c.publishedAtPath), c.publishedAtUnit),
-      revisedAt: hf ? getPath(item, "paper.updatedAt") : null,
-      communitySelectedAt: hf ? getPath(item, "paper.submittedOnDailyAt") : null,
-      evidenceBasis: arxiv && summary ? "abstract" : summary ? "source_summary" : "unknown",
-      links: researchLinks(hf && arxiv ? `https://huggingface.co/papers/${arxiv.id}` : url, [
-        ...(arxiv ? [{ kind: "paper" as const, url: arxiv.canonicalUrl }] : [{ kind: "project" as const, url }]),
-        { kind: "code", url: getPath(item, "paper.githubRepo") ?? getPath(item, "githubRepo") },
-        { kind: "project", url: getPath(item, "paper.projectPage") ?? getPath(item, "projectPage") },
-        { kind: "weights", url: getPath(item, "paper.modelUrl") ?? getPath(item, "modelUrl") },
-      ], summary ?? ""),
-    }) : undefined;
     out.push({
       url,
-      ...(arxiv ? { identityKey: research?.signalOnly ? `hf:${arxiv.id}` : arxiv.canonicalKey } : {}),
       title: collapseWhitespace(stripTags(title)),
       author: firstString(item, c.authorPaths),
-      // HF outer publishedAt is a paper date, not its Daily Papers selection date.
-      publishedAt: hf ? toDate(getPath(item, "paper.submittedOnDailyAt"), undefined) : toDate(getPath(item, c.publishedAtPath), c.publishedAtUnit),
+      publishedAt: toDate(getPath(item, c.publishedAtPath), c.publishedAtUnit, c.publishedAtUtcOffset),
       excerpt: summary ? collapseWhitespace(stripTags(summary)).slice(0, 2000) : null,
       bodyText: summaryIsBody ? stripTags(summary!) : null,
       bodyStatus: summaryIsBody ? "ok" : "pending",
-      research,
-      raw: { ...raw, externalId: externalId ?? null },
+      raw: { externalId: externalId ?? null },
     });
   }
   if (items.length > 0 && out.length === 0 && !c.requireBoolean && !c.minNumeric) throw new FetchError("no items mapped (check title/url paths)");

@@ -28,7 +28,7 @@ function runTranslation() {
     finally { await closeDb(); process.disconnect(); }
   `;
   const child = spawn(process.execPath, ['--input-type=module', '-e', script], {
-    cwd: process.cwd(), env: { ...process.env, MODEL_CALLS_ENABLED: 'true', TRANSLATE_MODEL: 'deepseek-flash', DEEPSEEK_BASE_URL: `${provider.url}/v1`, DEEPSEEK_API_KEY: 'test-key', AIHOT_CREDENTIALS_DIR: '/nonexistent-test-credentials' },
+    cwd: process.cwd(), env: { ...process.env, MODEL_CALLS_ENABLED: 'true', DEEPSEEK_BASE_URL: `${provider.url}/v1`, DEEPSEEK_API_KEY: 'test-key', AIHOT_CREDENTIALS_DIR: '/nonexistent-test-credentials' },
     stdio: ['ignore', 'pipe', 'pipe', 'ipc'],
   });
   let result: any;
@@ -55,7 +55,7 @@ for (const misaligned of [false, true]) test(`SIGTERM finishes the sent ${misali
   const second = misaligned ? `Second paragraph ${T}.` : `Second paragraph ${T}. ${'More English '.repeat(170)}`;
   const { articleId } = await upsertMaterial({ sourceId: SOURCE, url: `https://example.org/translation-shutdown-${T}/${misaligned}`, title: `Shutdown ${T}`, bodyHtml: `<p>${first}</p><p>${second}</p>`, bodyText: first + second, bodyStatus: 'ok', language: 'en', via: 'fetch', publishedAt: new Date(), discoveredAt: new Date(Date.now() + 86_400_000) });
   await sql`INSERT INTO analyses (article_id,input_revision,origin,relevance,category,title_zh,summary_zh,reason_zh,score,selected)
-    VALUES (${articleId},1,'rule','pass','algorithm',${`终止测试${T}`},'摘要','理由',90,true)`;
+    VALUES (${articleId},1,'rule','pass','ai-models',${`终止测试${T}`},'摘要','理由',90,true)`;
   await publishArticle(articleId, { releasedAt: new Date(Date.now() - 60_000) });
   const interrupted = runTranslation();
   await Promise.race([active.asked.promise, interrupted.done.then(() => assert.fail('translation ended before a request'))]);
@@ -75,4 +75,7 @@ for (const misaligned of [false, true]) test(`SIGTERM finishes the sent ${misali
   assert.equal(active.calls, misaligned ? 3 : 2, 'the first receipt is reused, only missing pieces are requested');
   const [translation] = await sql`SELECT complete,revision FROM translations WHERE article_id=${articleId}`;
   assert.deepEqual({ ...translation }, { complete: true, revision: 1 });
+  const finished = await sql<{ status: string }[]>`SELECT status FROM receipts WHERE purpose='translate_body' AND subject LIKE ${`article:${articleId}@1#%`}`;
+  assert.ok(finished.length >= (misaligned ? 3 : 2));
+  assert.ok(finished.every((receipt) => receipt.status === 'completed'), 'all batches covered by the committed translation complete after resume');
 });

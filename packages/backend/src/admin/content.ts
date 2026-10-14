@@ -1,19 +1,107 @@
-// Content diagnostics and corrections (F19). Find any item by id, URL or title and see its whole
+// Content diagnostics and corrections. Find any item by id, URL or title and see its whole
 // chain: source → discoveries → revisions → model receipts → decisions → publication and sync
 // ledger → grouping → deliveries. Visibility changes and manual corrections go through editorial
 // overrides with a version check, are re-projected to every public exit, and are audited.
 import { z } from "zod";
+import { correctReportClassification } from "../reports/correct.ts";
 import type { AdminContentChain, AdminContentRow, AdminPublication, BeforeJson } from "@aihot/contracts/admin";
 import { ARTICLE_ID_PATTERN, CATEGORY_KEYS } from "@aihot/contracts/taxonomy";
-import { RESEARCH_EVIDENCE_BASES, type ResearchEvidenceBasis } from "@aihot/contracts/research";
 import { sql, type Tx } from "../db.ts";
 import { enqueue, QUEUES } from "../jobs/queue.ts";
 import { queueProcessing } from "../jobs/content.ts";
 import { identityKeyForUrl, normalizeUrl } from "../lib/url.ts";
 import { publishArticleTx, setSeoDecision } from "../publication/publish.ts";
+import { emit } from "../modules.ts";
 import { requestRegroup } from "../events/corrections.ts";
 import { computeHotRanking, storedHotRanking } from "../events/hot.ts";
 import { audit, auditHistory, Conflict } from "../audit.ts";
+import { sha256, stableJson } from "../lib/ids.ts";
+
+interface PublicationDateMaterial {
+  id: string;
+  identity_key: string;
+  source_id: string;
+  url: string;
+  revision: number;
+  content_hash: string | null;
+  published_at: Date | null;
+  published_at_claim: Date | null;
+  discovered_at: Date;
+  timeline_at: Date;
+  backfill: boolean;
+  backfill_reason: string | null;
+  updated_at: Date;
+}
+
+/** A reviewed historical date correction; independent discovery order and editorial state are retained. */
+export function publicationDateCorrectionPlan(article: PublicationDateMaterial, publishedAt: string, now = Date.now()) {
+  const date = new Date(publishedAt);
+  if (!Number.isFinite(date.getTime()) || date.toISOString() !== publishedAt) throw new Error("发布时间必须是完整、有效的 UTC ISO 日期");
+  if (date.getTime() > now) throw new Error("发布时间不能是未来日期");
+  const recent = now - 7 * 86400_000;
+  if (!article.published_at || article.published_at.getTime() >= recent || date.getTime() >= recent) throw new Error("这里只校正新旧日期均早于七天窗口的历史内容");
+  const before = { publishedAt: article.published_at.toISOString(), publishedAtClaim: article.published_at_claim?.toISOString() ?? null,
+    timelineAt: article.timeline_at.toISOString() };
+  const timelineFollowsPublication = before.timelineAt === before.publishedAt;
+  const after = { publishedAt, publishedAtClaim: publishedAt, timelineAt: timelineFollowsPublication ? publishedAt : before.timelineAt };
+  const hash = sha256(stableJson({ id: article.id, identity: article.identity_key, source: article.source_id, url: article.url,
+    version: article.revision, contentHash: article.content_hash, updatedAt: article.updated_at,
+    discoveredAt: article.discovered_at, backfill: article.backfill, backfillReason: article.backfill_reason, before, requested: publishedAt }));
+  return { articleId: article.id, version: article.revision, hash, before, after, timelineFollowsPublication,
+    changed: before.publishedAt !== publishedAt };
+}
+
+/** Read-only plan for the operator's evidence and exact version/hash approval. */
+export async function previewPublicationDateCorrection(id: string, publishedAt: string) {
+  const [article] = await sql<PublicationDateMaterial[]>`SELECT * FROM articles WHERE id=${id}`;
+  return article ? publicationDateCorrectionPlan(article, publishedAt) : null;
+}
+
+interface PublicationDateCorrectionResult {
+  articleId: string;
+  revision: number;
+  status: "corrected" | "unchanged";
+  publishedAt: string;
+}
+
+/** Corrects verified historical metadata without revising material, buying analysis or changing selection. */
+export async function correctPublicationDate(id: string, input: { version: number; hash: string; publishedAt: string; requestId: string; reason: string }, actor: string): Promise<PublicationDateCorrectionResult> {
+  z.object({ version: z.number().int().positive(), hash: z.string().regex(/^[0-9a-f]{64}$/), publishedAt: z.string(),
+    requestId: z.string().regex(/^[\w-]{8,80}$/), reason: z.string().trim().min(1) }).parse(input);
+  return sql.begin(async tx => {
+    const [article] = await tx<PublicationDateMaterial[]>`SELECT * FROM articles WHERE id=${id} FOR UPDATE`;
+    if (!article) throw new Conflict("内容不存在");
+    const [prior] = await tx<{ after: { publishedAt: string; result: PublicationDateCorrectionResult } }[]>`
+      SELECT after FROM audit_log WHERE subject=${`content:${id}`} AND action='content.correct-publication-date'
+        AND actor=${actor} AND request_id=${input.requestId} ORDER BY id LIMIT 1`;
+    if (prior) {
+      if (prior.after.publishedAt !== input.publishedAt) throw new Conflict("同一个请求不能批准不同的发布时间");
+      return prior.after.result;
+    }
+    const plan = publicationDateCorrectionPlan(article, input.publishedAt);
+    if (article.revision !== input.version || plan.hash !== input.hash) throw new Conflict("材料或日期已被修改，请重新核对日期校正预览");
+    if (!plan.changed) return { articleId: id, revision: article.revision, status: "unchanged", publishedAt: input.publishedAt };
+    // Everything except date/order and freshness metadata must be identical after projection.
+    const [previous] = await tx<{ decision: unknown }[]>`SELECT to_jsonb(p)-ARRAY['published_at','timeline_at','sort_at','revision','updated_at'] AS decision FROM publications p WHERE article_id=${id}`;
+    await tx`UPDATE articles SET published_at=${new Date(plan.after.publishedAt)},published_at_claim=${new Date(plan.after.publishedAtClaim)},
+      timeline_at=${new Date(plan.after.timelineAt)},updated_at=now() WHERE id=${id}`;
+    if (previous) {
+      await publishArticleTx(tx, id);
+      const [next] = await tx<{ decision: unknown }[]>`SELECT to_jsonb(p)-ARRAY['published_at','timeline_at','sort_at','revision','updated_at'] AS decision FROM publications p WHERE article_id=${id}`;
+      if (stableJson(previous.decision) !== stableJson(next?.decision)) {
+        const old = previous.decision as Record<string, unknown>;
+        const fresh = (next?.decision ?? {}) as Record<string, unknown>;
+        const changed = Object.keys(old).filter(key => stableJson(old[key]) !== stableJson(fresh[key]));
+        throw new Conflict(`公开决定已变化，日期校正不能改变选稿、范围、内容或归组：${changed.join("、")}`);
+      }
+    }
+    await emit("articleChanged", { id, kind: "content", reason: "verified historical publication date corrected" }, tx);
+    const result: PublicationDateCorrectionResult = { articleId: id, revision: article.revision, status: "corrected", publishedAt: input.publishedAt };
+    await audit(actor, "content.correct-publication-date", `content:${id}`, input.reason, plan.before,
+      { ...plan.after, result }, { db: tx, requestId: input.requestId });
+    return result;
+  });
+}
 
 export async function searchContent(q: string): Promise<BeforeJson<AdminContentRow>[]> {
   const term = q.trim();
@@ -99,6 +187,7 @@ export async function setVisibility(id: string, input: { visibility: "public" | 
     let hot = false;
     if (published?.reduced || (before.visibility ?? "public") !== input.visibility) {
       hot = await inHotRanking(id, tx);
+      await emit("articleChanged", { id, kind: "content", reduced: published?.reduced, reason: `visibility ${input.visibility}` }, tx);
       const stories = await tx<{ story_id: number }[]>`
         SELECT DISTINCT f.story_id FROM fact_articles fa JOIN facts f ON f.id = fa.fact_id WHERE fa.article_id = ${id} AND f.story_id IS NOT NULL`;
       for (const s of stories) await enqueue(QUEUES.digest, { storyId: s.story_id }, { singletonKey: `story:${s.story_id}` }, tx);
@@ -124,17 +213,6 @@ export async function setSeoIndexed(id: string, input: { indexed: boolean; reaso
   });
 }
 
-const BriefCorrectionSchema = z.object({
-  sourceRevision: z.number().int().positive(),
-  fields: z.object({
-    methodChange: z.string().trim().min(1).max(3000),
-    applicableTasks: z.string().trim().min(1).max(3000),
-    comparisonConditions: z.string().trim().min(1).max(6000),
-    limitations: z.string().trim().min(1).max(4000),
-    evidenceBasis: z.enum(RESEARCH_EVIDENCE_BASES),
-  }).partial().strict().refine(fields => Object.values(fields).some(value => typeof value === "string"), "至少修订一项研究解读"),
-}).strict();
-
 const FieldsSchema = z
   .object({
     title: z.string().min(1).max(300),
@@ -142,9 +220,9 @@ const FieldsSchema = z
     reason: z.string().max(1000),
     category: z.enum(CATEGORY_KEYS as unknown as [string, ...string[]]),
     tags: z.array(z.string().max(60)).max(20),
+    score: z.number().min(0).max(100).nullable(),
     selected: z.boolean(),
     silent: z.boolean(),
-    researchBrief: BriefCorrectionSchema,
   })
   .partial()
   .strict();
@@ -158,31 +236,18 @@ export async function overrideFields(id: string, input: { fields: unknown; clear
     if (before.version !== input.version) throw new Conflict(STALE);
     const next: Record<string, unknown> = { ...before.fields, ...fields };
     for (const k of input.clear ?? []) delete next[k];
-    if (fields.researchBrief && next.researchBrief) {
-      const patch = fields.researchBrief;
-      const [article] = await tx<{ revision: number; evidence_basis: ResearchEvidenceBasis | null }[]>`SELECT revision,research->>'evidenceBasis' AS evidence_basis FROM articles WHERE id=${id}`;
-      if (article?.revision !== patch.sourceRevision) throw new Conflict("原始资料已修订，请重新核对当前版本后再保存研究解读");
-      const [original] = await tx`SELECT 1 FROM research_briefs WHERE article_id=${id} AND input_revision=${patch.sourceRevision} LIMIT 1`;
-      if (!original) throw new Conflict("当前资料版本尚无模型研究解读，不能以修订替代原始结果");
-      const previous = BriefCorrectionSchema.safeParse(before.fields.researchBrief && typeof before.fields.researchBrief === "object"
-        ? { sourceRevision: (before.fields.researchBrief as Record<string, unknown>).sourceRevision, fields: (before.fields.researchBrief as Record<string, unknown>).fields } : null);
-      const correctedFields = { ...(previous.success && previous.data.sourceRevision === patch.sourceRevision ? previous.data.fields : {}), ...patch.fields };
-      if (correctedFields.evidenceBasis !== undefined && correctedFields.evidenceBasis !== article.evidence_basis) {
-        throw new Conflict("研究解读的证据依据必须与当前原始资料已确认的依据一致");
-      }
-      next.researchBrief = {
-        sourceRevision: patch.sourceRevision,
-        fields: correctedFields,
-        reviewedAt: new Date().toISOString(), note: input.reason.trim(),
-      };
-    }
     await tx`
       INSERT INTO editorial_overrides (article_id, fields, reason, version, updated_by) VALUES (${id}, ${tx.json(next as never)}, ${input.reason}, 1, ${actor})
       ON CONFLICT (article_id) DO UPDATE SET fields = EXCLUDED.fields, reason = EXCLUDED.reason, version = editorial_overrides.version + 1, updated_by = EXCLUDED.updated_by, updated_at = now()`;
     const published = await publishArticleTx(tx, id);
     if (published?.changed) {
+      await emit("articleChanged", { id, kind: "content", reduced: published.reduced, reason: "manual correction" }, tx);
+      const changedFields = new Set([...Object.keys(fields), ...(input.clear ?? [])]);
+      if (changedFields.has("category") || changedFields.has("tags")) await correctReportClassification(tx, id, input.reason);
       const [st] = await tx<{ story_id: number | null }[]>`SELECT story_id FROM publications WHERE article_id = ${id}`;
-      if (st?.story_id) await enqueue(QUEUES.digest, { storyId: st.story_id, afterCorrection: true }, { singletonKey: `story:${st.story_id}:correction` }, tx);
+      if (st?.story_id && [...changedFields].some(k => k !== "category" && k !== "tags")) {
+        await enqueue(QUEUES.digest, { storyId: st.story_id }, { singletonKey: `story:${st.story_id}` }, tx);
+      }
     }
     await audit(actor, "content.override", `content:${id}`, input.reason, before.fields, next, { db: tx });
     return published;
