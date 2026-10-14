@@ -1,189 +1,224 @@
-> **AlgorithmHot · 科研热点**：本仓库是基于上游框架的科研论文站（算法、AI4AI、AI4S、电池与新能源材料）。这一版做了哪些改动、为什么改，见 [docs/algorithmhot.md](docs/algorithmhot.md)；部署到阿里云见 [docs/deploy-aliyun.md](docs/deploy-aliyun.md)。下面是上游框架的说明。
+# AlgorithmHot · 科研热点
 
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/assets/banner-dark.png">
-    <img src="docs/assets/banner-light.png" alt="AIHOT：每个行业，都可以有自己的 AIHOT。很多条信源流进中间的精选，再分给法律、人力资源、金融等各个行业" width="100%">
-  </picture>
-</p>
+面向研究人员的中文科研阅读站，追踪**算法、AI4AI、AI4S、电池与新能源材料**。从论文公告、期刊元数据、机构博客和社区推荐中收集资料，生成中文标题、摘要与推荐理由，按研究事件归组，并整理为日报、周报和月报。
 
-<p align="center">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-176b75?style=flat-square" alt="MIT License"></a>
-  <img src="https://img.shields.io/badge/Node.js-24-176b75?style=flat-square&logo=nodedotjs&logoColor=white" alt="Node.js 24">
-  <img src="https://img.shields.io/badge/PostgreSQL-17-176b75?style=flat-square&logo=postgresql&logoColor=white" alt="PostgreSQL 17">
-  <img src="https://img.shields.io/badge/Docker-Compose-176b75?style=flat-square&logo=docker&logoColor=white" alt="Docker Compose">
-  <a href="https://aihot.news"><img src="https://img.shields.io/badge/%E7%BA%BF%E4%B8%8A%E5%8E%9F%E7%AB%99-aihot.news-202a30?style=flat-square" alt="线上原站 aihot.news"></a>
-</p>
+阅读重点是：**方法有什么变化、适用于什么任务、比较条件是什么、证据有哪些限制**。站点保留原文及可获得的实现入口；模型摘要和作者报告的结果不等于独立复现。
 
-<p align="center">
-  <b>一个自己找热点、自己写日报的网站框架。</b><br>
-  把信源换成你的，把精选标准换成你的 KnowHow，它就是你的行业热点站。
-</p>
+[在线阅读镜像](https://catl-21clab-sciagi.github.io/algorithmhot/) · [部署与运行](#部署与运行) · [配置](#配置) · [文档](#文档) · [English](README.en.md)
 
-<p align="center">
-  <b>简体中文</b> · <a href="README.en.md">English</a>
-</p>
+`main` 保存源码，`gh-pages` 保存另行发布的静态阅读镜像。克隆源码不包含历史论文数据库、模型凭据或运行记录，推送源码也不会自动刷新阅读镜像。
 
-<p align="center">
-  <a href="#跑起来">跑起来</a> ·
-  <a href="docs/customize.md">改成你的行业</a> ·
-  <a href="#它是怎么工作的">它是怎么工作的</a> ·
-  <a href="#文档">文档</a> ·
-  <a href="https://github.com/KKKKhazix/AIHOT/discussions">社区交流</a>
-</p>
+## 研究范围
 
-<br>
+| 方向 | 关注内容 |
+| --- | --- |
+| 算法 | AI / 机器学习的训练、推理、优化、模型架构与理论方法 |
+| AI4AI | 自动研究、实验设计、训练数据与奖励构建、能力评测、Agent 框架及 AI 研发流程 |
+| AI4S | AI 直接服务材料、计算物理、分子建模、定量生物学等科学问题 |
+| 电池与新能源材料 | 电池材料与界面、退化与安全、光伏、制氢电催化等原创材料研究，不要求以 AI 为核心方法 |
 
-## 这是什么
+分类定义在 [industry/taxonomy.ts](industry/taxonomy.ts)。直接服务科学问题的 AI 工作优先归入 AI4S；没有以 AI 为核心方法的新能源材料研究归入材料方向。交叉主题通过标签表达。
 
-[AIHOT](https://aihot.news) 是我做的一个 AI 热点网站。它每天从一批信源里收资料，用大模型先筛一遍、再独立打两次分，挑出真正值得看的，写成中文标题和摘要；把不同来源说的同一件事聚成一个事件，按有多少人在说排出热点；每天早上出一份日报。
+## 当前提供的功能
 
-这个仓库是它的引擎和框架：网站、后台、精选流程、聚簇和热度算法，**所有提示词的原文和入选门槛**，都在这里。
+- **科研资料采集**：arXiv 公告、Crossref 期刊元数据，以及机构博客和社区论文推荐。
+- **中文阅读与筛选**：预筛、两次独立评分、内容理解、中文标题与摘要、推荐理由和分类标签。评分标准与提示词保存在仓库中。
+- **事件与热点**：将相关报道归到研究事件，保留来源；热点采用 7 天窗口和 48 小时半衰期，至少需要两个独立参与方。热度表达关注度，不代表科学可靠性。
+- **日报、周报、月报**：按来源上线时间组织资料，支持缺期补刊和显式修订。
+- **来源注记与配图**：展示可获得的论文标识、日期、PDF、许可和图片来源；没有合适图片时保留缺图提示。
+- **阅读与接入**：搜索、主题、收藏、未读筛选，以及 RSS、公开 API、MCP 和 Agent Markdown。
+- **管理与运行记录**：信源状态、人工更正、模型配置、请求回执、请求次数上限和任务运行记录。
 
-## 为什么开源
+## 默认信源
 
-这半年，很多做法律、做 HR、做金融、做贵金属的朋友问我，能不能也给他们的行业做一个。
+| 来源 | 当前配置 |
+| --- | --- |
+| arXiv · AI 与机器学习 | `cs.LG`、`cs.AI` |
+| arXiv · 计算物理与材料 | `physics.comp-ph`、`cond-mat.mtrl-sci` |
+| arXiv · 分子与定量生物学 | `q-bio.BM`、`q-bio.QM` |
+| Crossref 期刊 | Nature、Nature Energy、Nature Materials、Science、Angewandte Chemie International Edition、Journal of the American Chemical Society |
+| 机构博客 | Google DeepMind、Berkeley BAIR |
+| 社区论文推荐 | Hugging Face Daily Papers |
 
-我做不了。我不懂你们的行业，不知道哪些信源有用，也不知道什么样的消息，对你们来说才叫热点。
+论文来源在 [industry/research-feeds.json](industry/research-feeds.json)，博客和社区来源在 [industry/sources.json](industry/sources.json)。期刊按 DOI 模式、部分期刊按关键词过滤，再进入模型筛选；配置来源不代表已经成功采集或完整覆盖该领域。
 
-但你们懂。
-
-既然我没办法满足所有人，那就把火种交到大家自己手上。
-
-## 说在前面
-
-- **我不是专业的开发者。** 我是设计师出身，半年前还看不太懂代码。这套代码是我和 AI 一起重写的，比以前干净了很多，但一定还有写得不好的地方。发现问题欢迎提 Issue，我不一定能很快回复，先说声抱歉。
-- **这是 AIHOT 的引擎。** 它和 AIHOT 线上跑的是同一份引擎代码，同步时直接从线上导出，不是精心打磨的通用框架。以后 AIHOT 的更新，我会尽量同步过来，但没法保证每一次都同步。模型榜、Codex 重置监控、主题页的大事记这些只对 AI 行业有意义的功能，以及 AIHOT 自己的运营工具，只留在 AIHOT 上。
-- **里面没有 AIHOT 的信源名单和运营数据。** 仓库带了 18 个公开的海外 AI 资讯源做示范，够你跑起来看效果；真正的信源，要换成你自己行业的。
-- **请不要用 AIHOT 的名字和 Logo。** 换上你自己的名字，它就是你的站。
-
-## 它是怎么工作的
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/how-dark.png">
-  <img src="docs/assets/how-light.png" alt="六步：采集、预筛、两次评分、写作、聚簇、热点与成刊" width="100%">
-</picture>
-
-一条资料从信源进来，先判重，再预筛；可能重要的独立打两次分，写好中文标题和摘要，和别的报道聚成事件，算进热度。X 帖子没有正文或只有链接时，保留原帖的链接和图片，不调用写作或翻译模型。分数过了门槛、又不是精选里已有新闻的重复，才进精选；日报按规则编出当天要闻，周报、月报再从日报里汇编。每一步的提示词都在 [`industry/prompts/`](industry/prompts/)，改标准不用改代码。详见 [精选与校准](docs/selection.md)。
-
-### 聚簇与热点
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/cluster-dark.png">
-  <img src="docs/assets/cluster-light.png" alt="五个来源的报道聚成一个事件，事件进入当前热点榜" width="100%">
-</picture>
-
-同一件事，官网发一篇、媒体转十篇、X 上吵一天，读者只需要看到一次。AIHOT 把它们聚成一个**事件**：先用标题摘要的向量（没配向量服务时比文字重合度）在最近两周里找候选，再让模型判断是同一件事、后续进展，还是两件事；拿不准的合并，写入前再让模型复核一遍（复核可以单独换一家模型，设 `GROUP_REVIEW_MODEL`）。
-
-**热度**按事件算，不按文章算：48 小时内，每个独立来源只算一次，24 小时减半。重复抓取不会多算，一家媒体发十篇也只算一次，所以排在前面的，是真正有很多人在说的事。
-
-### 速度
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/perf-dark.png">
-  <img src="docs/assets/perf-light.png" alt="AIHOT 线上实测：页面中位数 10 毫秒，95% 在 50 毫秒内；接口中位数 6 毫秒，95% 在 12 毫秒内；文章页 95% 在 14 毫秒内" width="100%">
-</picture>
-
-## 你会得到什么
-
-| | |
-|---|---|
-| **六种信源** | RSS、网页列表、JSON 接口、X 账号、微信公众号，以及你自己脚本推送进来的内容。信源分三级（官方一手、官方账号与准官方、媒体与个人），各级入选门槛不同；抓取频率按产出自动调整 |
-| **精选** | 预筛，同一份评分标准独立打两次分，再按信源分级的门槛决定入选；同一条新闻只占一条，换个说法的重复不进。提示词和门槛全部公开，全部可以改；用你自己标注的样本在 SelectBench 里校准 |
-| **写作** | 中文标题、答案先行的摘要、推荐理由，外文全文翻译；分类、标签和新闻事实单独抽取；防止模型把原文没提到的公司写进标题 |
-| **聚簇** | 不同来源报道的同一件事聚成一个事件，后续进展挂在同一个事件下，事件页有综述；进展和报道时间线可一起切换“最新在前”或“最早在前”；人工改过的归属不会被覆盖 |
-| **热点** | 按事件算热度：独立来源越多越靠前，X 上的讨论也算进来；和 6 小时前比，涨得快的标上升，新出现的标“新” |
-| **日报、周报、月报** | 每天出日报（默认 08:00），按规则编出当天要闻：一件事一条，报过的事只在有新进展时跟进，不调模型。每周一出周报、每月 1 日出月报（默认 10:00、10:30），从日报里汇编，模型只写总述和栏目导读。几点出刊在 `site/site.ts` 的 `EDITION_TIMES` 里改 |
-| **主题与搜索** | 公司、方向、内容形态三类主题页；标题摘要搜索和全文相关搜索 |
-| **阅读设置** | 深浅色外观、网站默认字体或浏览器默认字体；收藏和阅读设置只保存在本机，可以导出、导入备份 |
-| **给 Agent 用** | RSS（精选、全部、全文、日报、周报、月报）、公开 API、MCP、Agent Markdown、`llms.txt`，同一份内容给人看也给 Agent 用 |
-| **后台** | 信源管理与试抓、内容诊断与人工评分更正、精选评测、每一步单独换模型、付费服务的预算熔断、运行记录与告警 |
-
-## 看一眼
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/shots-dark.png">
-  <img src="docs/assets/shots-light.png" alt="首页的每日精选，关于页的信源河" width="100%">
-</picture>
-
-<p align="center"><sub>截图来自用示范信源跑起来的本地站，站名是默认的 MyHOT。</sub></p>
-
-## 跑起来
-
-想创建自己的独立站点，可以先点 [Use this template](https://github.com/KKKKhazix/AIHOT/generate)，再克隆你生成的仓库。想持续合并上游更新或贡献代码，建议先 Fork。下面的命令适合直接试用。
-
-需要 [Docker](https://docs.docker.com/get-started/get-docker/)、[Node.js 24](https://nodejs.org/en/download)（运行 `init-env` 生成配置要用），和一个 OpenAI 兼容的模型 API Key（DeepSeek、千问、智谱都可以）。
-
-`init-env` 默认按 DeepSeek 配置。用千问、智谱等别家，照 `.env.example` 里的例子改 `.env` 的 `LLM_BASE_URL`、`LLM_MODEL` 和 `LLM_EXTRA_JSON`；用推理模型（先想再答）时，还要设 `LLM_REASONING_TOKENS` 给推理留出输出额度。
-
-```bash
-git clone https://github.com/KKKKhazix/AIHOT.git myhot
-cd myhot
-node scripts/init-env.ts --llm-key <你的模型 API Key>
-docker compose up -d --build
-```
-
-打开 <http://localhost:3000>。后台在 `/admin`，管理员密码在 `.env` 的 `ADMIN_PASSWORD` 里。一两分钟后开始有内容，第一次导入的资料大约半小时处理完。
-
-机器上没有 Node、服务器在中国大陆、要配域名和 HTTPS，或者不用 Docker、直接在 Linux、macOS 上跑（Windows 用 WSL2），见 [部署](docs/deploy.md)。
-
-站点跑起来后，打开 `/agent` 可以复制 MCP、RSS 或 API 的接入方式；只能读网页的 Agent 从 `/api/v1/agent` 开始；接口说明在 `/openapi-v1.json`。
-
-## 把它改成你的行业
-
-最省事的办法：打开你的 Agent（Claude Code、Codex 都可以），把这个仓库交给它，然后说：
+## 处理流程与日期
 
 ```text
-请读 AGENTS.md 和 docs/customize.md，把这个站改成「XX 行业」的热点站。
-我关心的是：……（写你想盯的信源、你觉得什么消息重要、什么不重要，越具体越好）。
-改完帮我跑 npm run typecheck、npm test 和 node scripts/smoke.ts，并告诉我还需要我自己决定哪些事。
+来源采集 → 去重与日期归属 → 预筛 → 两次评分 → 理解、摘要与分类
+                                                 ↓
+                                       事件归组 → 精选与热点
+                                                 ↓
+                                     日报 → 周报 / 月报
+                                                 ↓
+                                完整站点 → 可选 Pages 静态镜像
 ```
 
-要改的东西几乎都在 [`site/`](site/) 和 [`industry/`](industry/) 这两个文件夹里，代码基本不用动：
+后端通过常驻 worker 和 PostgreSQL 中的 pg-boss 队列调度，不依赖一个持续打开的 Codex 会话。读者打开页面不触发模型调用。资料分析和周/月报导读等模型任务由 worker 执行。
 
-| 文件 | 改什么 |
-|---|---|
-| `site/site.ts` | 站名、行业词、出刊时间、首页文案、关于页、条目与日报周报月报上的说法、公开接口的分类 |
-| `industry/taxonomy.ts`、`industry/topics.json` | 分类、标签、主题 |
-| `industry/sources.json` | 首次启动时导入的信源 |
-| `industry/prompts/` | 精选标准和写作要求。**你的行业 KnowHow，就写在这里** |
-| `industry/selection.ts` | 入选门槛 |
-| `site/models.ts` | 每一步默认用哪个模型（不改也行：都用 `.env` 里配的那一个） |
-| `site/brand/`、`site/pages/`、`site/public/`、`site/changelog.json` | 图标与 Logo，使用规则和隐私说明，`robots.txt` 这类发布在网站根目录的文件，更新日志 |
-| `modules/` | 框架里没有、只有你的站要的功能，做成模块放在这里，见 [架构](docs/architecture.md#模块) 的“模块” |
+**资料日期**：arXiv 读取分类公告页的新提交，以公告日期的北京时间 08:00 作为本站时间线归属时刻；这是站点规则。期刊优先使用 Crossref 的 `published-online`，缺失时用本站发现时间。其他资料使用可取得的来源发布时间；时间线不晚于本站发现时刻。只有日期、没有时分秒的资料按代码中的日期归属规则处理。
 
-最值得花时间的是评分标准（`industry/prompts/selection-score.md`）和门槛：拿一两百条你自己标注过的资料，用 `scripts/eval-selection.ts` 跑一遍，看它选得准不准，再回去改。怎么做写在 [精选与校准](docs/selection.md) 里。
+**日报**：D 日收录北京时间 `(D−1 日 08:00:00, D 日 08:00:00]` 的资料，按规则选文，成刊本身不调用模型。当前篇幅上限为 20 条正文、20 条快讯，同一信源最多占 8 条正文。12:00 前可以等待当日 arXiv 公告或窗口内资料判断完成；12:00 后解除这些等待条件，但没有已判断资料、任务失败等情况仍可能阻止成刊，不能保证每个日期都出刊。
+
+**周报与月报**：分别在周一 10:00、每月 1 日 10:30 起按北京时间调度，从日报汇编；模型负责总述和栏目导读。出刊时间、篇幅与热点窗口在 [site/site.ts](site/site.ts) 配置。
+
+定时任务默认补缺期，不覆盖已经生成的日报。需要补采后重编某一期时，使用显式的 `--replace`，旧版本保留为修订记录。
+
+## 部署与运行
+
+### Docker Compose
+
+需要 Git、Node.js **24.11 或更新版本**（生成初始配置），以及 Docker 和 Compose 插件。容器内使用 Node.js 24 和 PostgreSQL 17。
+
+```bash
+git clone https://github.com/CATL-21CLab-SCIAGI/algorithmhot.git
+cd algorithmhot
+node scripts/init-env.ts
+```
+
+初始化脚本生成 `.env`、随机签名密钥、数据库密码和管理员密码，拒绝覆盖已有 `.env`。随后编辑 `.env`。首次只检查页面时，先将以下三项设为：
+
+```dotenv
+COLLECT_ENABLED=false
+MODEL_CALLS_ENABLED=false
+PAGES_MIRROR_ENABLED=false
+```
+
+```bash
+docker compose up -d --build
+docker compose ps
+```
+
+打开 [http://localhost:3000](http://localhost:3000)，管理入口为 `/admin`，密码见本机 `.env` 中的 `ADMIN_PASSWORD`。Compose 会完成数据库迁移、导入初始信源，并启动 API、网页和 worker；关闭采集与模型调用时，新数据库不会自动产生科研内容。
+
+准备正式采集时，在 `.env` 中配置自己可用的 `LLM_BASE_URL`、`LLM_API_KEY`、`LLM_MODEL` 及请求上限，再将 `COLLECT_ENABLED`、`MODEL_CALLS_ENABLED` 设为 `true`，执行 `docker compose up -d` 使配置生效。启用后的 worker 会访问外部来源并发起模型请求，费用由配置的服务商收取。
+
+域名、HTTPS、持久卷、备份与升级见 [部署指南](docs/deploy.md)；ECS 和 systemd 示例见 [阿里云部署说明](docs/deploy-aliyun.md)。这些是部署路径，不代表仓库已经替你部署了云服务。
+
+### 本机常驻运行
+
+也可以让 API、网页和 worker 直接在本机运行。需要 Node.js 24.11+、npm，以及可访问的 PostgreSQL 17；[本机脚本](scripts/local-stack.ts) 也能在需要时启动本机 Docker 数据库容器。
+
+在已生成 `.env` 的仓库内：
+
+```bash
+npm ci
+npm run build -w @aihot/web
+```
+
+配置 `DATABASE_URL` 和本机端口；若使用脚本管理的默认数据库容器，连接为 `postgres://aihot:<POSTGRES_PASSWORD>@127.0.0.1:55434/aihot`，将占位符替换为 `.env` 中的实际数据库密码。使用 Colima 时还需按环境设置 `LOCAL_DOCKER_HOST`、`LOCAL_COLIMA_PROFILE`。随后运行：
+
+```bash
+npm run local:up       # 数据库就绪、迁移、导入信源，并启动缺失的服务
+npm run local:status   # 查看进程、日报、任务、来源健康与模型请求状态
+npm run local:daily    # 执行 up，默认等待 60 秒，再报告状态
+npm run local:down     # 停止本机 API、网页和 worker
+```
+
+`local:up` / `local:daily` 会写入运行状态、执行数据库迁移并启动 worker；采集、模型请求和镜像发布按 `.env` 开关运行。它们不是只读检查。默认日志位置为 `.data/local/logs/`。配置细节见 [本机运行说明](docs/local-daily.md)。
+
+## 配置
+
+| 位置 | 作用 |
+| --- | --- |
+| [.env.example](.env.example) | 地址、密钥、数据库、模型、请求上限和功能开关的配置模板 |
+| [site/site.ts](site/site.ts) | 站点文案、出刊时间、日报篇幅、热点窗口 |
+| [site/models.ts](site/models.ts) | 模型预设及各处理步骤的默认选择 |
+| [industry/taxonomy.ts](industry/taxonomy.ts)、[industry/topics.json](industry/topics.json) | 分类、标签与主题 |
+| [industry/sources.json](industry/sources.json)、[industry/research-feeds.json](industry/research-feeds.json) | 初始来源与论文来源配置 |
+| [industry/prompts/](industry/prompts/) | 预筛、评分、内容理解、摘要和报告的提示词 |
+| [industry/selection.ts](industry/selection.ts) | 按信源分级的入选门槛 |
+| [site/pages/](site/pages/) | 使用规则与隐私说明，公开部署前应补全运营主体 |
+
+模型使用 OpenAI 兼容接口。当前 `.env.example` 写有 AWS Bedrock 端点、`global.openai.gpt-6-astra` 和 `LLM_REASONING_API=true`；这是配置示例，账户权限、模型可用性和接口兼容性需在实际运行环境确认。切换服务商时同时核对推理参数、JSON 模式和输出额度。各步骤还可通过 `PREFILTER_MODEL`、`SCORE_MODEL` 等变量选择单独的模型。
+
+`LLM_BUDGET_PER_MINUTE`、`LLM_BUDGET_PER_HOUR`、`LLM_BUDGET_PER_DAY` 设置默认 `llm` 服务在滚动时间窗口内的**请求尝试次数上限，不是金额**。达到上限后任务等待；`report_*` 写作请求豁免每日次数限制，仍受分钟和小时限制，任一额度为 0 时也会停止。切换到具名模型服务后，应在后台核对对应服务的额度。请求次数不能替代实际费用预算。
+
+默认 Git 规则忽略 `.env`、`.env.*`（保留 `.env.example`）和 `.data/`。其他名称的凭据文件需自行排除，不要提交任何真实密钥。前端通过 HTTP 访问 API，数据库与模型密钥留在后端。
+
+## 补采与补刊
+
+在本机依赖和 `.env` 已就绪的环境中，以下命令会访问来源或写入数据库：
+
+```bash
+npm run research:backfill -- 2026-10-09 2026-10-12
+npm run reports:daily -- 2026-10-10 2026-10-11
+# 补采资料完成判断后，明确替换已有日报，并保留修订：
+npm run reports:daily -- --replace 2026-10-10
+```
+
+日期仅为示例。补采后的资料仍需由 worker 判断；补刊默认跳过已有日报。arXiv 补采依赖来源的近期 `pastweek` 列表，不能任意回溯；结束日期只约束 arXiv，期刊按起始日期查询且有返回数量上限。命令成功不等于该日期范围的文献已完整收录。
+
+## 完整站点与 Pages 镜像
+
+完整站点提供数据库查询、搜索、管理后台以及下列匿名只读接入：
+
+| 入口 | 用途 |
+| --- | --- |
+| `/agent` | 获取接入说明 |
+| `/feed.xml`、`/feed/daily.xml` | 精选与日报 RSS |
+| `/api/v1/agent`、`/llms.txt` | Agent 可读说明 |
+| `/api/v1/items`、`/openapi-v1.json` | 公开资料与接口定义 |
+| `/api/mcp` | MCP 接入，工具前缀为 `algorithmhot` |
+
+可选的 [modules/pages-mirror](modules/pages-mirror/) 默认关闭。启用后，worker 默认每小时第 40 分钟抓取公开页面、去除脚本，并推送到配置的 `gh-pages` 分支，默认最多抓取 400 页。
+
+镜像保留阅读页面和精选/全部的静态分类页；搜索、收藏、标签与未读等交互需要完整站点。API 和管理后台不镜像，镜像也不是数据库备份。查看后台运行记录中的页面数、跳过数、错误和推送提交，才能判断某次发布结果；源码提交成功与镜像发布成功是两件事。
+
+## 开发与检查
+
+```bash
+npm ci
+npm run typecheck
+npm run test:standalone
+npm run build -w @aihot/web
+npx playwright install chromium webkit
+node --test apps/web/tests/*.test.ts
+
+# 替换测试密码；使用专用测试库，账户需要建库权限。
+DATABASE_URL='postgres://postgres:replace-with-test-password@127.0.0.1:5432/algorithmhot_test' npm test
+
+# 站点已启动后，只读检查页面与公开接口；按实际端口调整。
+node scripts/smoke.ts --base http://localhost:3000
+```
+
+测试数据库名称必须以 `_test` 或 `_ci` 结尾。测试框架会迁移测试库，并为各测试文件创建独立副本。备份测试还需要与 PostgreSQL 17 匹配的 `pg_dump`、`pg_restore`；网页测试需要对应版本的 Playwright 浏览器。模型相关测试使用本机假服务。
+
+```text
+apps/web/              React Router 网页与阅读交互
+apps/api/              HTTP、公开接口与管理后台 API
+apps/worker/           pg-boss 任务与定时调度
+packages/backend/     采集、模型回执、事件、报告与统一公开读取层
+packages/contracts/   共享类型与协议
+modules/research/     arXiv、Crossref、补采与论文配图
+modules/pages-mirror/ 静态镜像抓取、改写与发布
+industry/             信源、分类、筛选标准与提示词
+site/                 站点身份、模型、品牌与页面配置
+database/migrations/  数据库迁移
+scripts/              初始化、迁移、本机运行与验收工具
+```
+
+## 当前边界
+
+- **覆盖有上限**：默认来源有限，Crossref 当前按每本期刊首个 ISSN 查询、单次限量且不分页；缺失元数据、来源故障和过滤规则都会影响收录。空页面或未成刊不能直接解释为“没有新研究”。
+- **摘要依赖材料**：多数论文从摘要和元数据进入流程，不能将生成内容称为全文审读或独立实验验证。筛选门槛仍需用标注样本校准，仓库不承诺筛选准确率。
+- **配图按许可字段筛选**：异步尝试提取可用图片并记录来源；不保证每篇有图，也不等于逐图完成权属核验。缺图不阻断成刊。
+- **运行能力与运行状态分开**：代码支持常驻服务、漏跑补偿和镜像发布；是否持续正常运行，以实际部署、请求回执和任务记录为准。
 
 ## 文档
 
 | 文档 | 内容 |
-|---|---|
-| [把它改成你的行业](docs/customize.md) | 站名、分类、主题、信源、提示词、门槛、模型、品牌，一步一步来 |
-| [信源](docs/sources.md) | 六种信源怎么配，分级和全文，抓取频率，旧文和存档，固定起点 `publishedAfter`，外部推送接口 |
-| [精选与校准](docs/selection.md) | 一条资料怎么变成精选、怎么编进日报周报月报，怎么用自己的样本校准 |
-| [事件归组与关系评测](docs/grouping.md) | 事件关系怎么判断，怎么用自己标注的成对样本评测 |
-| [综述评测](docs/story-digest-evaluation.md) | 改事件综述提示词前，怎么在同一批事件上并排比较 |
-| [部署](docs/deploy.md) | Docker、域名和 HTTPS、中国大陆、更新、备份、花多少钱，不用 Docker 时在 Linux、macOS（Windows 用 WSL2）上怎么跑 |
-| [架构](docs/architecture.md) | 三个进程、几条不变的规则、目录、模块、数据库迁移、对外出口、测试 |
+| --- | --- |
+| [AlgorithmHot 改造说明](docs/algorithmhot.md) | 从旧版到当前架构的背景与改动位置 |
+| [部署指南](docs/deploy.md) | Docker、本机、HTTPS、备份与升级 |
+| [本机运行](docs/local-daily.md) | 本机服务管理、状态检查与补刊 |
+| [阿里云部署示例](docs/deploy-aliyun.md) | ECS、systemd 与镜像配置 |
+| [架构](docs/architecture.md) | 模块划分、扩展点与迁移约定 |
+| [筛选与校准](docs/selection.md) | 评分、入选规则与样本评测 |
+| [站点配置](docs/customize.md) | `site/` 与 `industry/` 的配置方式 |
 
-技术栈：Node.js 24 · TypeScript · React Router（服务端渲染）· Fastify · PostgreSQL · pg-boss · Tailwind CSS · Docker Compose。
+## 上游与许可
 
-## 交流与贡献
+AlgorithmHot 基于 [KKKKhazix/AIHOT](https://github.com/KKKKhazix/AIHOT) 框架改造，当前重建版本以其 `652bd6b` 为基础，保留采集、评分、事件归组、公开读取层和管理能力，并加入本站科研配置与模块。内部 `@aihot/*` 包名保留。
 
-部署和使用问题到 [问答区](https://github.com/KKKKhazix/AIHOT/discussions/categories/q-a)，新想法到 [想法交流区](https://github.com/KKKKhazix/AIHOT/discussions/categories/ideas)，欢迎在 [作品展示区](https://github.com/KKKKhazix/AIHOT/discussions/categories/show-and-tell) 分享你做出的行业热点站。
-
-发现 Bug 或有明确的功能建议，可以 [提交 Issue](https://github.com/KKKKhazix/AIHOT/issues/new/choose)。准备改代码前，先看 [贡献说明](CONTRIBUTING.md)；安全漏洞请走 [私密报告入口](SECURITY.md)。
-
-## 最后
-
-AIHOT 曾经只是我无数个深夜里，一个很小、很小的念头。
-
-我不知道它会被改成什么样子，会走到多远的地方。但这可能就是开源最浪漫的地方。
-
-剩下的路，就交给你们了。
-
-<p align="right">—— 数字生命卡兹克</p>
-
-## 许可
-
-代码使用 [MIT 许可证](LICENSE)。AIHOT 的名字和 Logo 不在许可范围内。字体有自己的许可，见 [NOTICE](NOTICE)。
+代码采用 [MIT License](LICENSE)，原作者版权及第三方材料说明见 [NOTICE](NOTICE)。论文、图片和来源网站内容仍遵循各自许可。
