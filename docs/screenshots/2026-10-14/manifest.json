@@ -1,0 +1,105 @@
+{
+  "source": "Live public GitHub Pages site; unedited viewport screenshots",
+  "timezone": "Asia/Shanghai",
+  "browser": "155.0.8059.40",
+  "screenshots": [
+    {
+      "file": "home.png",
+      "label": "精选首页",
+      "url": "https://catl-21clab-sciagi.github.io/algorithmhot/",
+      "capturedAt": "2026-10-14T03:47:26.987Z",
+      "status": 200,
+      "title": "AlgorithmHot · 科研热点 — 算法、AI4AI、AI4S、电池与新能源材料",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "c50040233ff7c78f8bad9ac6af5ea22beb9e9c72ccd9c2c3b1eda1d1265eac3f",
+      "bytes": 261849
+    },
+    {
+      "file": "ai4s.png",
+      "label": "AI4S 分类",
+      "url": "https://catl-21clab-sciagi.github.io/algorithmhot/c/ai4s/",
+      "capturedAt": "2026-10-14T03:47:27.522Z",
+      "status": 200,
+      "title": "AlgorithmHot · 科研热点 — 算法、AI4AI、AI4S、电池与新能源材料",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "24f34ac6d1b7ea0a3649bff6f8f2027961c33a776ebaf052f133b70fd04511b7",
+      "bytes": 273889
+    },
+    {
+      "file": "paper-detail.png",
+      "label": "论文详情",
+      "url": "https://catl-21clab-sciagi.github.io/algorithmhot/items/d0bjbamidu90d2u8fwfet74az/",
+      "capturedAt": "2026-10-14T03:47:28.517Z",
+      "status": 200,
+      "title": "CLEAT：通过价值引导学习交互智能体的澄清策略 · AlgorithmHot · 科研热点",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "91b42d993563402185db95e4380a0dd0c2a8099741a595bb1754d0616237199b",
+      "bytes": 495551
+    },
+    {
+      "file": "daily.png",
+      "label": "科研日报",
+      "url": "https://catl-21clab-sciagi.github.io/algorithmhot/daily/",
+      "capturedAt": "2026-10-14T03:47:29.314Z",
+      "status": 200,
+      "title": "科研日报 · AlgorithmHot · 科研热点",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "f410da6ff91e6ada7f9ccbd87153b2a7f9df49e6606911e9e3fb7878d1ab219a",
+      "bytes": 215723
+    },
+    {
+      "file": "weekly.png",
+      "label": "科研周报",
+      "url": "https://catl-21clab-sciagi.github.io/algorithmhot/weekly/",
+      "capturedAt": "2026-10-14T03:47:29.956Z",
+      "status": 200,
+      "title": "科研周报 · AlgorithmHot · 科研热点",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "84ade30b835d2480a1e0e33fbc3f14f247a1cfc0adf319de37a5c2e9acaa800c",
+      "bytes": 220109
+    },
+    {
+      "file": "topics.png",
+      "label": "主题浏览",
+      "url": "https://catl-21clab-sciagi.github.io/algorithmhot/topics/",
+      "capturedAt": "2026-10-14T03:47:30.393Z",
+      "status": 200,
+      "title": "科研主题：研究方向、资料类型与机构的最新研究 · AlgorithmHot · 科研热点",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "6a22a5d95cd3d70ed2362f59183ebfe7fea0af7bcc334d27fafceb5b9b59c594",
+      "bytes": 256025
+    },
+    {
+      "file": "agent.png",
+      "label": "Agent 接入说明",
+      "url": "https://catl-21clab-sciagi.github.io/algorithmhot/agent/",
+      "capturedAt": "2026-10-14T03:47:30.780Z",
+      "status": 200,
+      "title": "Agent 接入 · AlgorithmHot · 科研热点",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "8a8917376129e6ab22fbe301f45a0701da8c8aef927f3517fea438d32f03f514",
+      "bytes": 167177
+    }
+  ]
+}

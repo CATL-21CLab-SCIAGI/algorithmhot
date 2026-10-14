@@ -1,5 +1,9 @@
 # AlgorithmHot · 科研热点
 
+**公网阅读：[https://catl-21clab-sciagi.github.io/algorithmhot/](https://catl-21clab-sciagi.github.io/algorithmhot/)**
+
+[科研日报](https://catl-21clab-sciagi.github.io/algorithmhot/daily/) · [科研周报](https://catl-21clab-sciagi.github.io/algorithmhot/weekly/) · [主题浏览](https://catl-21clab-sciagi.github.io/algorithmhot/topics/)
+
 面向研究人员的中文科研阅读站，追踪**算法、AI4AI、AI4S、电池与新能源材料**。从论文公告、期刊元数据、机构博客和社区推荐中收集资料，生成中文标题、摘要与推荐理由，按研究事件归组，并整理为日报、周报和月报。
 
 阅读重点是：**方法有什么变化、适用于什么任务、比较条件是什么、证据有哪些限制**。站点保留原文及可获得的实现入口；模型摘要和作者报告的结果不等于独立复现。
@@ -7,6 +11,12 @@
 [在线阅读镜像](https://catl-21clab-sciagi.github.io/algorithmhot/) · [部署与运行](#部署与运行) · [配置](#配置) · [文档](#文档) · [English](README.en.md)
 
 `main` 保存源码，`gh-pages` 保存另行发布的静态阅读镜像。克隆源码不包含历史论文数据库、模型凭据或运行记录，推送源码也不会自动刷新阅读镜像。
+
+界面截图采于 **2026-10-14（北京时间）**，均为当前公网镜像的真实页面。点击图片可打开对应页面；截图来源与时间见 [记录](docs/screenshots/2026-10-14/manifest.json)。
+
+[![精选首页：按日期浏览研究摘要、来源与推荐理由。](docs/screenshots/2026-10-14/home.png)](https://catl-21clab-sciagi.github.io/algorithmhot/)
+
+*精选首页：按日期浏览研究摘要、来源与推荐理由。*
 
 ## 研究范围
 
@@ -19,6 +29,11 @@
 
 分类定义在 [industry/taxonomy.ts](industry/taxonomy.ts)。直接服务科学问题的 AI 工作优先归入 AI4S；没有以 AI 为核心方法的新能源材料研究归入材料方向。交叉主题通过标签表达。
 
+
+[![AI4S 分类：按研究方向查看论文卡片和来源注记。](docs/screenshots/2026-10-14/ai4s.png)](https://catl-21clab-sciagi.github.io/algorithmhot/c/ai4s/)
+
+*AI4S 分类：按研究方向查看论文卡片和来源注记。*
+
 ## 当前提供的功能
 
 - **科研资料采集**：arXiv 公告、Crossref 期刊元数据，以及机构博客和社区论文推荐。
@@ -28,6 +43,12 @@
 - **来源注记与配图**：展示可获得的论文标识、日期、PDF、许可和图片来源；没有合适图片时保留缺图提示。
 - **阅读与接入**：搜索、主题、收藏、未读筛选，以及 RSS、公开 API、MCP 和 Agent Markdown。
 - **管理与运行记录**：信源状态、人工更正、模型配置、请求回执、请求次数上限和任务运行记录。
+
+### 论文详情
+
+[![论文详情：中文标题、原文入口、论文配图、来源注记与推荐理由。](docs/screenshots/2026-10-14/paper-detail.png)](https://catl-21clab-sciagi.github.io/algorithmhot/items/d0bjbamidu90d2u8fwfet74az/)
+
+*论文详情：中文标题、原文入口、论文配图、来源注记与推荐理由。*
 
 ## 默认信源
 
@@ -41,6 +62,12 @@
 | 社区论文推荐 | Hugging Face Daily Papers |
 
 论文来源在 [industry/research-feeds.json](industry/research-feeds.json)，博客和社区来源在 [industry/sources.json](industry/sources.json)。期刊按 DOI 模式、部分期刊按关键词过滤，再进入模型筛选；配置来源不代表已经成功采集或完整覆盖该领域。
+
+### 主题浏览
+
+[![主题入口：按研究方向、资料类型、机构与社区组织内容。](docs/screenshots/2026-10-14/topics.png)](https://catl-21clab-sciagi.github.io/algorithmhot/topics/)
+
+*主题入口：按研究方向、资料类型、机构与社区组织内容。*
 
 ## 处理流程与日期
 
@@ -63,6 +90,17 @@
 **周报与月报**：分别在周一 10:00、每月 1 日 10:30 起按北京时间调度，从日报汇编；模型负责总述和栏目导读。出刊时间、篇幅与热点窗口在 [site/site.ts](site/site.ts) 配置。
 
 定时任务默认补缺期，不覆盖已经生成的日报。需要补采后重编某一期时，使用显式的 `--replace`，旧版本保留为修订记录。
+
+### 日报与周报界面
+
+[![科研日报：截图展示 2026-10-13 期及历史期导航。](docs/screenshots/2026-10-14/daily.png)](https://catl-21clab-sciagi.github.io/algorithmhot/daily/)
+
+*科研日报：截图展示 2026-10-13 期及历史期导航。*
+
+
+[![科研周报：截图展示 2026 年第 41 周的导读、头条与栏目。](docs/screenshots/2026-10-14/weekly.png)](https://catl-21clab-sciagi.github.io/algorithmhot/weekly/)
+
+*科研周报：截图展示 2026 年第 41 周的导读、头条与栏目。*
 
 ## 部署与运行
 
@@ -160,6 +198,13 @@ npm run reports:daily -- --replace 2026-10-10
 | `/api/v1/agent`、`/llms.txt` | Agent 可读说明 |
 | `/api/v1/items`、`/openapi-v1.json` | 公开资料与接口定义 |
 | `/api/mcp` | MCP 接入，工具前缀为 `algorithmhot` |
+
+
+[![Agent 接入说明：MCP、RSS 与 REST API 的使用入口。](docs/screenshots/2026-10-14/agent.png)](https://catl-21clab-sciagi.github.io/algorithmhot/agent/)
+
+*Agent 接入说明：MCP、RSS 与 REST API 的使用入口。*
+
+截图中的 localhost 地址来自当前站点配置；实际调用 API / MCP 时，应使用自己部署的完整站点地址，GitHub Pages 不提供这些后端服务。
 
 可选的 [modules/pages-mirror](modules/pages-mirror/) 默认关闭。启用后，worker 默认每小时第 40 分钟抓取公开页面、去除脚本，并推送到配置的 `gh-pages` 分支，默认最多抓取 400 页。
 

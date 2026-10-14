@@ -1,5 +1,7 @@
 # AlgorithmHot · Research Radar
 
+**Public site: [https://catl-21clab-sciagi.github.io/algorithmhot/](https://catl-21clab-sciagi.github.io/algorithmhot/)**
+
 A Chinese research reading site covering **algorithms, AI4AI, AI for Science, and battery / new energy materials**. It collects paper announcements, journal metadata, research blogs and community recommendations; produces Chinese titles, summaries and reading notes; groups related reports; and compiles daily, weekly and monthly issues.
 
 The focus is on method changes, applicable tasks, comparison conditions and evidence limitations. Summaries and results reported by authors are not independent reproductions.
@@ -7,6 +9,12 @@ The focus is on method changes, applicable tasks, comparison conditions and evid
 [中文完整说明](README.md) · [Static reading mirror](https://catl-21clab-sciagi.github.io/algorithmhot/) · [Deployment](docs/deploy.md)
 
 `main` contains source code. `gh-pages` contains a separately published static mirror. A clone does not include the existing article database, credentials or run records, and a source push does not refresh the mirror.
+
+Screenshots were captured from the live public mirror on **2026-10-14 (Asia/Shanghai)**. Click an image to open its source page; see the [capture record](docs/screenshots/2026-10-14/manifest.json).
+
+[![Selected research, grouped by date.](docs/screenshots/2026-10-14/home.png)](https://catl-21clab-sciagi.github.io/algorithmhot/)
+
+*Selected research, grouped by date.*
 
 ## What is included
 
@@ -19,6 +27,21 @@ The focus is on method changes, applicable tasks, comparison conditions and evid
 - **Read-only access:** RSS, public HTTP API, MCP and Agent Markdown on the full application, plus an optional GitHub Pages mirror.
 
 Paper feeds are configured in [industry/research-feeds.json](industry/research-feeds.json), and blog/community sources in [industry/sources.json](industry/sources.json). The journals are Nature, Nature Energy, Nature Materials, Science, Angewandte Chemie International Edition and JACS. DOI patterns and, for some journals, keywords constrain collection before model selection.
+
+
+[![AI for Science category.](docs/screenshots/2026-10-14/ai4s.png)](https://catl-21clab-sciagi.github.io/algorithmhot/c/ai4s/)
+
+*AI for Science category.*
+
+
+[![Paper detail with source notes, figure and reading recommendation.](docs/screenshots/2026-10-14/paper-detail.png)](https://catl-21clab-sciagi.github.io/algorithmhot/items/d0bjbamidu90d2u8fwfet74az/)
+
+*Paper detail with source notes, figure and reading recommendation.*
+
+
+[![Browse research topics, material types and institutions.](docs/screenshots/2026-10-14/topics.png)](https://catl-21clab-sciagi.github.io/algorithmhot/topics/)
+
+*Browse research topics, material types and institutions.*
 
 ## Run with Docker Compose
 
@@ -64,11 +87,28 @@ The resident worker uses pg-boss and PostgreSQL. It does not require a live Code
 
 Times, report size and the attention window are in [site/site.ts](site/site.ts). Prompts, taxonomy and thresholds are under [industry/](industry/); model presets are in [site/models.ts](site/models.ts).
 
+
+[![Daily issue dated 2026-10-13.](docs/screenshots/2026-10-14/daily.png)](https://catl-21clab-sciagi.github.io/algorithmhot/daily/)
+
+*Daily issue dated 2026-10-13.*
+
+
+[![Weekly issue for week 41 of 2026.](docs/screenshots/2026-10-14/weekly.png)](https://catl-21clab-sciagi.github.io/algorithmhot/weekly/)
+
+*Weekly issue for week 41 of 2026.*
+
 ## Full application and mirror
 
 The full application exposes `/agent`, `/feed.xml`, `/feed/daily.xml`, `/api/v1/agent`, `/llms.txt`, `/api/v1/items`, `/openapi-v1.json` and `/api/mcp`. MCP tools use the `algorithmhot` prefix.
 
 The optional [Pages module](modules/pages-mirror/) is disabled by default. When enabled, its default schedule is minute 40 of each hour, with a 400-page limit. It strips scripts and publishes public reading pages and static category views. Search, bookmarks, tag/unread interactions, APIs and administration require the full application. The mirror is not a database backup; skipped pages and publication errors are recorded separately.
+
+
+[![Agent integration instructions: MCP, RSS and REST API.](docs/screenshots/2026-10-14/agent.png)](https://catl-21clab-sciagi.github.io/algorithmhot/agent/)
+
+*Agent integration instructions: MCP, RSS and REST API.*
+
+The localhost address in this screenshot reflects the current site configuration. Use your deployed full application for API / MCP requests; GitHub Pages does not host these backend services.
 
 ## Development checks
 
