@@ -9,6 +9,83 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[V-PaSS 提出物理感知虚拟合金表示，用于钙钛矿太阳能电池外推预测]]></title>
+      <link>http://localhost:3300/items/ywu3kegd01bz2bl0yjd6exs3l</link>
+      <description><![CDATA[<p>V-PaSS 研究提出面向钙钛矿太阳能电池的物理感知虚拟合金表示，作者报告其可改善未知合金与陌生器件架构的预测。根据当前材料，该方法利用 Vegard 定律和学习得到的带隙弯曲，对 23 种纯 ABX₃ 端点化合物的弛豫晶体图进行插值，并结合层序、n-i-p 或 p-i-n 极性、界面能带偏移及科学语言模型编码的化学描述。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.18949">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ywu3kegd01bz2bl0yjd6exs3l">http://localhost:3300/items/ywu3kegd01bz2bl0yjd6exs3l</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">ywu3kegd01bz2bl0yjd6exs3l</guid>
+      <author>noreply@localhost (arXiv · 计算物理与材料)</author>
+    </item>
+    <item>
+      <title><![CDATA[BINN 以保持对称性的神经网络计算多体薛定谔方程的玻色子基态]]></title>
+      <link>http://localhost:3300/items/xf171j2xe3as5w2in2e4qsgd3</link>
+      <description><![CDATA[<p>该研究提出保持对称性的 Boson-informed neural network（BINN），用于连续空间中相互作用玻色子基态的变分蒙特卡洛计算。根据当前材料，该方法用 cell Jastrow 因子处理微观近接触刚性，用感知势场的包络编码宏观外部束缚，让神经网络捕捉更平滑的多体残差。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.18875">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/xf171j2xe3as5w2in2e4qsgd3">http://localhost:3300/items/xf171j2xe3as5w2in2e4qsgd3</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">xf171j2xe3as5w2in2e4qsgd3</guid>
+      <author>noreply@localhost (arXiv · 计算物理与材料)</author>
+    </item>
+    <item>
+      <title><![CDATA[GeONet：用几何编码算子网络预测非均质多孔介质流动]]></title>
+      <link>http://localhost:3300/items/pou29qcc3zjhdihacrvo5wen8</link>
+      <description><![CDATA[<p>GeONet 研究提出几何编码算子网络，作者报告其提高了非均质多孔介质稳态压力场预测的精度与跨几何泛化能力。基于摘要，该网络在 Branch–Trunk 架构中加入编码固体与孔隙二值掩码的 Leaf Network，并通过门控 DeepMixer 融合材料属性、坐标和几何特征，使用 5,000 次 PFLOTRAN 模拟、近 30 TB 数据训练与评估。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.19493">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/pou29qcc3zjhdihacrvo5wen8">http://localhost:3300/items/pou29qcc3zjhdihacrvo5wen8</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">pou29qcc3zjhdihacrvo5wen8</guid>
+      <author>noreply@localhost (arXiv · 计算物理与材料)</author>
+    </item>
+    <item>
+      <title><![CDATA[从机器学习跳跃轨迹研究极化子的非绝热动力学]]></title>
+      <link>http://localhost:3300/items/pi89100ynq90lprr57rmr0v1o</link>
+      <description><![CDATA[<p>该研究提出结合机器学习辅助极化子动力学与非绝热分子动力学的模拟框架，研究不同跳跃机制如何影响激发态动力学。根据当前材料，作者通过扩展轨迹采样，将单次极化子跳跃与非绝热电子跃迁联系起来，并为基于静态 Marcus 理论的绝热与非绝热跳跃分类提供动力学计算证据。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.19842">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/pi89100ynq90lprr57rmr0v1o">http://localhost:3300/items/pi89100ynq90lprr57rmr0v1o</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">pi89100ynq90lprr57rmr0v1o</guid>
+      <author>noreply@localhost (arXiv · 计算物理与材料)</author>
+    </item>
+    <item>
+      <title><![CDATA[用卷积神经网络重建 Germano 差分滤波场，加速等离子体湍流大涡模拟]]></title>
+      <link>http://localhost:3300/items/o0m5lmtwlppc3uaynd6hi641q</link>
+      <description><![CDATA[<p>该研究提出结合卷积神经网络与 Germano 可逆差分滤波的方法，用于加速等离子体湍流大涡模拟（LES）。根据当前材料，网络学习从粗网格 LES 场到差分滤波后的直接数值模拟（DNS）场的映射，再通过逆滤波重建细尺度细节，以计算非线性项和亚网格尺度项。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.20204">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/o0m5lmtwlppc3uaynd6hi641q">http://localhost:3300/items/o0m5lmtwlppc3uaynd6hi641q</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">o0m5lmtwlppc3uaynd6hi641q</guid>
+      <author>noreply@localhost (arXiv · 计算物理与材料)</author>
+    </item>
+    <item>
+      <title><![CDATA[ActMOF 通过主动学习映射金属有机框架的合成条件]]></title>
+      <link>http://localhost:3300/items/hoo47494ruxwbxll57l32fa28</link>
+      <description><![CDATA[<p>ActMOF 研究提出基于实验的铝-羧酸盐金属有机框架（MOF）合成搜索基准，作者报告其可迁移至六种网状结构相关的铝基 MOF 合成。根据当前材料，该基准由实测微波合成数据构建仿真环境，以衍射峰强度和半高全宽计算各编码条件的结晶度指数。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.19404">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/hoo47494ruxwbxll57l32fa28">http://localhost:3300/items/hoo47494ruxwbxll57l32fa28</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">hoo47494ruxwbxll57l32fa28</guid>
+      <author>noreply@localhost (arXiv · 计算物理与材料)</author>
+    </item>
+    <item>
+      <title><![CDATA[基础势模型结合混合逆蒙特卡洛构建非晶固态电解质结构]]></title>
+      <link>http://localhost:3300/items/c218g7yp6ocgnygbc12nvqley</link>
+      <description><![CDATA[<p>该研究提出以基础势模型熔融淬火生成玻璃态结构，再用混合逆蒙特卡洛精修，以兼顾非晶固态电解质的局部化学与中程有序。根据当前材料，作者针对 Li₀.₉NbO₀.₉Cl₄.₁，在同一中子对分布函数和同一基础势模型下比较熔融淬火、纯逆蒙特卡洛及两种混合方案，后两者分别将能量纳入接受规则或在精修区块之间进行短程弛豫。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.19846">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/c218g7yp6ocgnygbc12nvqley">http://localhost:3300/items/c218g7yp6ocgnygbc12nvqley</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">c218g7yp6ocgnygbc12nvqley</guid>
+      <author>noreply@localhost (arXiv · 计算物理与材料)</author>
+    </item>
+    <item>
       <title><![CDATA[倾斜温度采样研究给出双重约束下的最优解码规则]]></title>
       <link>http://localhost:3300/items/zwcc5ab8v8h0u43dbfe0dkcqg</link>
       <description><![CDATA[<p>该研究提出倾斜温度采样，在熵下限与交叉熵上限约束下，为最大化 pass@k 推导出最优条件采样规则 q* ∝ (p e^{ηV})^{1/T}。根据当前材料，V 衡量部分生成最终通过验证的可能性；作者在多样性预算随样本数 k 按特定规则变化的条件下，证明最优温度随 k 增加。</p>
@@ -53,6 +130,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[实验物理中的智能体研究：协作原则、技术框架与六个案例]]></title>
+      <link>http://localhost:3300/items/xxcj40ykgfe0di2np51aq64wt</link>
+      <description><![CDATA[<p>该研究提出实验物理协作智能体的十项要求及配套框架，并以六个案例展示其在科研任务中的应用。基于摘要，框架通过定制支架改善现成大语言模型的行为，强调围绕明确目标开展闭环迭代，由人类研究者指导工作并对结果负责。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.17193">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/xxcj40ykgfe0di2np51aq64wt">http://localhost:3300/items/xxcj40ykgfe0di2np51aq64wt</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">xxcj40ykgfe0di2np51aq64wt</guid>
+      <author>noreply@localhost (arXiv · 计算物理与材料)</author>
+    </item>
+    <item>
       <title><![CDATA[基于 L-光滑性分析神经优化器的深度迁移]]></title>
       <link>http://localhost:3300/items/xl1ie8zex80fmur3iqbpx5fg0</link>
       <description><![CDATA[<p>该研究提出用损失函数的 Lipschitz 与 L-光滑性常数解释神经优化器的跨深度超参数迁移，并报告 Muon 和 MOGA 的学习率迁移实验。根据当前材料，理论表明在固定宽度、有界参数域及任意 p→q 几何下，残差分支缩放 α=Θ(1/K) 足以使两个常数不依赖深度 K，且不要求特定初始化或层间权重相关性假设。</p>
@@ -62,6 +150,17 @@
       <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">xl1ie8zex80fmur3iqbpx5fg0</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
+    </item>
+    <item>
+      <title><![CDATA[研究报告旋转耦合客体阴离子策略提升聚合物固态钠金属电池稳定性]]></title>
+      <link>http://localhost:3300/items/xi4iwx2vlzvj8he1l008yz9po</link>
+      <description><![CDATA[<p>该研究报告一种旋转耦合客体阴离子策略，通过调节钠离子配位与界面化学改善聚合物固态钠金属电池的迁移和循环稳定性。</p>
+<p>🔗 <a href="https://doi.org/10.1002/anie.9801142">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/xi4iwx2vlzvj8he1l008yz9po">http://localhost:3300/items/xi4iwx2vlzvj8he1l008yz9po</a></p>]]></description>
+      <category>电池与新能源材料</category>
+      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">xi4iwx2vlzvj8he1l008yz9po</guid>
+      <author>noreply@localhost (Angewandte Chemie International Edition)</author>
     </item>
     <item>
       <title><![CDATA[FunDM：从冻结语言模型构建低成本、无标签决策模型]]></title>
@@ -218,6 +317,17 @@
       <author>noreply@localhost (arXiv · 分子与定量生物学)</author>
     </item>
     <item>
+      <title><![CDATA[微外显子调控密码揭示与自闭症相关的遗传变异]]></title>
+      <link>http://localhost:3300/items/ny62g55d57gp6s02xiphzxfuc</link>
+      <description><![CDATA[<p>研究作者通过转录组分析和机器学习，刻画了神经元微外显子的序列调控密码，并识别出预测会影响其剪接的自闭症相关遗传变异。根据当前材料，作者检测到数百个新的微外显子，包括具有神经元亚型特异性剪接模式以及可激活无义介导的 mRNA 降解的微外显子。</p>
+<p>🔗 <a href="https://doi.org/10.1038/s41586-026-11119-w">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ny62g55d57gp6s02xiphzxfuc">http://localhost:3300/items/ny62g55d57gp6s02xiphzxfuc</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">ny62g55d57gp6s02xiphzxfuc</guid>
+      <author>noreply@localhost (Nature)</author>
+    </item>
+    <item>
       <title><![CDATA[ProAS 提出面向多轮智能体强化学习的进度感知优势塑形框架]]></title>
       <link>http://localhost:3300/items/n088v1yuakkm5455c1fxiifah</link>
       <description><![CDATA[<p>ProAS 研究提出进度感知优势塑形框架，旨在不增加评价器开销的情况下改善多轮智能体强化学习的动作级信用分配。基于摘要，该方法利用动态演化的智能体参考图（ARG），通过屏蔽不合理激励（MUI）和非对称惩罚再分配（APR），处理轨迹级优势均匀分配导致的无效动作强化及早期偏差影响被忽略的问题。</p>
@@ -350,6 +460,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[研究报告自由基介导 SnO₂ 纳米晶表面重构，提升钙钛矿太阳能电池及组件效率与耐久性]]></title>
+      <link>http://localhost:3300/items/iq139p2wi5nld536nd8q7wuoe</link>
+      <description><![CDATA[<p>研究提出无配体 SnO₂ 纳米晶的自由基介导表面重构策略，作者报告钙钛矿太阳能电池效率达到 26.47%（认证值 26.12%）。根据当前材料，声化学活化产生羟基自由基，选择性钝化缺氧 Sn 位点并形成静电稳定分散体系，使胶体储存超过 2 年仍无团聚或性能下降，同时改善电子传输层及埋底界面钙钛矿结晶。</p>
+<p>🔗 <a href="https://doi.org/10.1002/anie.4404754">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/iq139p2wi5nld536nd8q7wuoe">http://localhost:3300/items/iq139p2wi5nld536nd8q7wuoe</a></p>]]></description>
+      <category>电池与新能源材料</category>
+      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">iq139p2wi5nld536nd8q7wuoe</guid>
+      <author>noreply@localhost (Angewandte Chemie International Edition)</author>
+    </item>
+    <item>
       <title><![CDATA[Li₂O 研究报告极强非谐性决定反萤石结构中的超离子转变]]></title>
       <link>http://localhost:3300/items/ievjewz8wfy16nd3iqc9ybdhi</link>
       <description><![CDATA[<p>Li₂O 研究报告，极强晶格非谐性而非仅体积膨胀，对其超离子转变温度及微观机制起决定性作用。基于摘要，作者结合非微扰晶格动力学与具有第一性原理精度的机器学习原子间势，计算研究了反萤石结构 Li₂O 的相变。</p>
@@ -394,6 +515,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[锌金属负极的晶体取向影响沉积/剥离动力学与界面形貌]]></title>
+      <link>http://localhost:3300/items/gvv1e6yoqlh70v0grddb47wo3</link>
+      <description><![CDATA[<p>该研究报告锌金属负极存在晶面依赖的动力学与稳定性权衡，表观动力学较慢的 (002) 晶面反而表现出更长的循环寿命。根据当前材料，作者结合扫描电化学电池显微镜与快速扫描循环伏安法（FSCV），测得沉积和剥离的表观交换电流密度均满足 j₀(100) &gt; j₀(101) &gt; j₀(002)，该排序在独立制备的电极、不同扫描速率和水系电解液中保持一致。</p>
+<p>🔗 <a href="https://doi.org/10.1002/anie.1058773">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/gvv1e6yoqlh70v0grddb47wo3">http://localhost:3300/items/gvv1e6yoqlh70v0grddb47wo3</a></p>]]></description>
+      <category>电池与新能源材料</category>
+      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">gvv1e6yoqlh70v0grddb47wo3</guid>
+      <author>noreply@localhost (Angewandte Chemie International Edition)</author>
+    </item>
+    <item>
       <title><![CDATA[常数深度有理权重 GNN 与 Schanuel 猜想的联系]]></title>
       <link>http://localhost:3300/items/grg3kd3i25et31lk2f2caxfj2</link>
       <description><![CDATA[<p>该研究提出，在 Schanuel 猜想成立的前提下，常数深度、仅使用有理权重的 GNN 可达到一维 Weisfeiler-Leman（1-WL）测试的表达能力。</p>
@@ -405,6 +537,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[Wisevolve Potential Engine 研究报告单 GPU 机器学习分子动力学吞吐量达每秒逾1亿原子步]]></title>
+      <link>http://localhost:3300/items/g7yd3joptwj5gskx9s4prbl4g</link>
+      <description><![CDATA[<p>Wisevolve Potential Engine（WPE）研究报告，通过针对势模型和模拟阶段选择并复用 GPU 执行策略，可加速 GPUMD 分子动力学计算。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.17366">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/g7yd3joptwj5gskx9s4prbl4g">http://localhost:3300/items/g7yd3joptwj5gskx9s4prbl4g</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">g7yd3joptwj5gskx9s4prbl4g</guid>
+      <author>noreply@localhost (arXiv · 计算物理与材料)</author>
+    </item>
+    <item>
       <title><![CDATA[VSR 提出面向可验证奖励强化学习的方差最优状态重采样方法]]></title>
       <link>http://localhost:3300/items/g3xbmncsdf3taroehndg89c0g</link>
       <description><![CDATA[<p>VSR 研究提出方差驱动的状态重采样方法，作者报告其在多数所测基准上优于 GRPO 和 GiGPO，且每次更新生成的 token 更少。根据当前材料，研究在固定 rollout 预算下推导出最小化策略梯度估计方差的闭式 Neyman 分配 μ_var^π(s) ∝ d^π(s)σ_π(s)，并指出它可随策略改进自然形成逆向课程，无需外部设定调度。</p>
@@ -413,149 +556,6 @@
       <category>算法</category>
       <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">g3xbmncsdf3taroehndg89c0g</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[ZOIF：仅用前向传播估计影响函数，用于大语言模型数据选择]]></title>
-      <link>http://localhost:3300/items/etitnv720t6sw8d7aeki4umzi</link>
-      <description><![CDATA[<p>ZOIF 研究提出仅用前向传播估计影响函数的零阶框架，用于资源受限条件下的大语言模型数据选择。根据当前材料，该方法通过零阶估计近似平均代理梯度，将逆 Hessian 向量积转化为辅助零阶优化问题，再沿计算得到的参数更新方向用前向有限差分获得逐样本影响分数。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.15336">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/etitnv720t6sw8d7aeki4umzi">http://localhost:3300/items/etitnv720t6sw8d7aeki4umzi</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">etitnv720t6sw8d7aeki4umzi</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[如何测量习得等变性：基于信息论的表征检验方法]]></title>
-      <link>http://localhost:3300/items/e3y102m81iz86u9g65dxv2zur</link>
-      <description><![CDATA[<p>该研究提出从表征直接检验习得等变性的信息论方法，无需恢复关联原始与变换输入表征的隐藏变换规则。根据当前材料，作者在有限离散设定下推导出等变性要求两种表征能够精确地相互确定，并据此提出基于归一化互信息（NMI）的检验。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.17269">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/e3y102m81iz86u9g65dxv2zur">http://localhost:3300/items/e3y102m81iz86u9g65dxv2zur</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">e3y102m81iz86u9g65dxv2zur</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[DepBloom 提出依赖感知框架，加速时序图神经网络多 GPU 训练]]></title>
-      <link>http://localhost:3300/items/dk7eae6rrn9w4ewt3sparz12b</link>
-      <description><![CDATA[<p>DepBloom 研究提出依赖感知的多 GPU 训练框架，旨在减少时序图神经网络因事件依赖产生的同步开销并提高并行度。基于摘要，该框架采用时间受限的空间分区、批内记忆细化和关键路径优化，分别减少不必要的跨 GPU 同步、恢复大批次内遗漏的短程时间依赖，并优先处理紧急记忆更新。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.15730">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/dk7eae6rrn9w4ewt3sparz12b">http://localhost:3300/items/dk7eae6rrn9w4ewt3sparz12b</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">dk7eae6rrn9w4ewt3sparz12b</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[上下文可聚合赌博机研究给出近最优在线遗憾界]]></title>
-      <link>http://localhost:3300/items/czfnicxqi9ij1drxzgpswrv9y</link>
-      <description><![CDATA[<p>该研究针对具有未知上下文可聚合结构的随机上下文赌博机，提出期望遗憾为 $\widetilde{O}(\sqrt{r(S+K)T})$ 的算法。根据当前材料，在 $S$ 个上下文被划分为 $r$ 个块、同一臂在同块内具有相同平均奖励的条件下，其理论保证适用于任意上下文分布且无需分离假设，在对数因子范围内匹配 Lee 等人（2023）的下界，并将此前上界改善了 $r$ 倍。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.18258">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/czfnicxqi9ij1drxzgpswrv9y">http://localhost:3300/items/czfnicxqi9ij1drxzgpswrv9y</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">czfnicxqi9ij1drxzgpswrv9y</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[研究将深度学习哈密顿量方法推广至平面波密度泛函理论]]></title>
-      <link>http://localhost:3300/items/cqx1cxbbjry2d8s2mg151dcyt</link>
-      <description><![CDATA[<p>该研究提出由平面波（PW）本征态与本征值构造紧凑原子轨道（AO）哈密顿量的方法，将深度学习哈密顿量方法拓展至含杂化泛函的 PW DFT 计算。根据当前材料，该方法以可投影性为指导，保留高可投影性态并选择部分高能态补全非正交 AO 子空间，避免经验性位移，同时无需显式重构非局域算符的 AO 矩阵元即可纳入参考计算中的非局域贡献。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.18317">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/cqx1cxbbjry2d8s2mg151dcyt">http://localhost:3300/items/cqx1cxbbjry2d8s2mg151dcyt</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">cqx1cxbbjry2d8s2mg151dcyt</guid>
-      <author>noreply@localhost (arXiv · 计算物理与材料)</author>
-    </item>
-    <item>
-      <title><![CDATA[Interaction-as-a-Judge 通过直接交互评估并改进应用生成]]></title>
-      <link>http://localhost:3300/items/bp51ujvwpiayw27jmrka9un31</link>
-      <description><![CDATA[<p>Interaction-as-a-Judge 研究提出让计算机使用智能体直接操作应用，以改进交互式应用的评估与生成。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.17895">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/bp51ujvwpiayw27jmrka9un31">http://localhost:3300/items/bp51ujvwpiayw27jmrka9un31</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">bp51ujvwpiayw27jmrka9un31</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[平均奖励 Q-learning 与 Q-planning 研究提出混合策略正则化框架]]></title>
-      <link>http://localhost:3300/items/bixgavtb4rtivlc31ut7jzkzg</link>
-      <description><![CDATA[<p>该研究提出面向平均奖励 Q-learning 与 Q-planning 的正则化框架，通过向给定混合策略正则化来控制所学策略的收缩与探索性质。基于摘要，方法假设已知与奖励无关的 m 步混合策略，并给出针对正则化不动点的有限时间分析；作者报告，单步情形的速率匹配 Q-iteration 和同步 Q-learning 的已知最佳速率，且推导了 m 步混合情形的新速率。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.14988">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/bixgavtb4rtivlc31ut7jzkzg">http://localhost:3300/items/bixgavtb4rtivlc31ut7jzkzg</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">bixgavtb4rtivlc31ut7jzkzg</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[谁决定裁判投机的速度？比较裁判能力与策略模型—裁判差距]]></title>
-      <link>http://localhost:3300/items/bd1swbobhrgkm474s98905xuz</link>
-      <description><![CDATA[<p>该研究报告，GRPO 训练可提高冻结 LLM 裁判对策略模型答案的接受率，但未检测到留出集贪心解码准确率提升，裁判投机的深度与裁判能力相关。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.15778">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/bd1swbobhrgkm474s98905xuz">http://localhost:3300/items/bd1swbobhrgkm474s98905xuz</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">bd1swbobhrgkm474s98905xuz</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[MLAfication 提出兼容 QKNorm 的高保真 MLA 转换方法]]></title>
-      <link>http://localhost:3300/items/aqc8yjdx15ul1bhuekevmzyf5</link>
-      <description><![CDATA[<p>MLAfication 研究提出兼容 QKNorm、参数高效的 MHA2MLA 扩展，旨在将现代大语言模型转换为 MLA 并在压缩 KV 缓存时保留性能。基于摘要，该方法结合校准 KNorm、参数高效蒸馏、贡献感知 Partial-RoPE 和激活感知联合 KV 初始化。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.17202">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/aqc8yjdx15ul1bhuekevmzyf5">http://localhost:3300/items/aqc8yjdx15ul1bhuekevmzyf5</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">aqc8yjdx15ul1bhuekevmzyf5</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[GenPoly 利用多模态基础模型发现用于可控组织再生的可生物吸收缝线涂层]]></title>
-      <link>http://localhost:3300/items/amyzl96v4zg4z84h7wd3etohz</link>
-      <description><![CDATA[<p>该研究提出 GenPoly 多模态生成框架，发现用于可控组织再生的可生物吸收聚合物缝线涂层，并报告其改善载荷保留与持续释放。基于摘要，该框架通过对比对齐学习聚合物字符串序列与分子图的共享表征，结合性质预测、可合成性筛选及基于结构基序的候选聚类。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.13993">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/amyzl96v4zg4z84h7wd3etohz">http://localhost:3300/items/amyzl96v4zg4z84h7wd3etohz</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">amyzl96v4zg4z84h7wd3etohz</guid>
-      <author>noreply@localhost (arXiv · 分子与定量生物学)</author>
-    </item>
-    <item>
-      <title><![CDATA[Gemini 4 Argon 以多步推理应对复杂工程与科学任务]]></title>
-      <link>http://localhost:3300/items/u6ttyul11fbzr3az2o78nbcra</link>
-      <description><![CDATA[<p>Google 宣布 Gemini 4 Argon 今日面向全球开放，支持编码、金融、法律、网络安全和科学等领域的复杂多步任务。</p>
-<p>🔗 <a href="https://deepmind.google/blog/introducing-gemini-4-argon/">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/u6ttyul11fbzr3az2o78nbcra">http://localhost:3300/items/u6ttyul11fbzr3az2o78nbcra</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 13 Oct 2026 16:01:52 GMT</pubDate>
-      <guid isPermaLink="false">u6ttyul11fbzr3az2o78nbcra</guid>
-      <author>noreply@localhost (Google DeepMind)</author>
-    </item>
-    <item>
-      <title><![CDATA[水系铝离子电池研究以弱配位非对称电解液破解添加剂困境]]></title>
-      <link>http://localhost:3300/items/r7xzrmu0c8u3zkfmpvc08ca86</link>
-      <description><![CDATA[<p>该研究提出弱配位非对称电解液，通过耦合溶剂化结构调节与介电及界面补偿，改善水系铝离子电池的可逆性。根据当前材料，电解液由三氟甲磺酸铝（Al(OTF)3）、二甲基亚砜（DMSO）和氟代碳酸乙烯酯（FEC）组成，DMSO 置换配位水以抑制水活性，FEC 则通过高介电常数、弱氢键及还原分解形成固体电解质界面膜（SEI）提供补偿。</p>
-<p>🔗 <a href="https://doi.org/10.1002/anie.8801354">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/r7xzrmu0c8u3zkfmpvc08ca86">http://localhost:3300/items/r7xzrmu0c8u3zkfmpvc08ca86</a></p>]]></description>
-      <category>电池与新能源材料</category>
-      <pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">r7xzrmu0c8u3zkfmpvc08ca86</guid>
-      <author>noreply@localhost (Angewandte Chemie International Edition)</author>
-    </item>
-    <item>
-      <title><![CDATA[专才模型学得更快：预训练中的知识组织影响后续知识更新效率]]></title>
-      <link>http://localhost:3300/items/zsvpj21cdwmb4k2jp9n160h37</link>
-      <description><![CDATA[<p>该研究报告，预训练时按时间顺序学习知识的专才模型，比学习相同但随机打乱知识的通才模型需要更少的知识更新步骤。基于摘要，专才模型擅长最近接触的知识，通才模型则在所覆盖的各个时期均表现良好；作者从第一性原理推导了关联更新成本与优化动态的定律，并报告其预测与实证结果接近。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.13835">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/zsvpj21cdwmb4k2jp9n160h37">http://localhost:3300/items/zsvpj21cdwmb4k2jp9n160h37</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Mon, 12 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">zsvpj21cdwmb4k2jp9n160h37</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
