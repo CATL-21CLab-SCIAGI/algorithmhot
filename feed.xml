@@ -119,6 +119,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[Cortex 提出测量门控方法，演化与剪枝编码智能体的技能和规则]]></title>
+      <link>http://localhost:3300/items/w7yhynakn0ktg860ldoztgf4o</link>
+      <description><![CDATA[<p>Cortex 研究提出通过重复对照测试增删编码智能体的技能与规则，而非凭单次任务成功保留开发者修正。该工具将开发者会话中的修正保存为可重放任务，每次生成一条技能或规则，仅在有无该配置的重复运行显示净收益且没有任务明显变差时保留，删除既有文本也需测试，未被智能体使用的文本不作增删。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.14216">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/w7yhynakn0ktg860ldoztgf4o">http://localhost:3300/items/w7yhynakn0ktg860ldoztgf4o</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">w7yhynakn0ktg860ldoztgf4o</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[BigCell：生成十亿像素级病理全切片图像]]></title>
       <link>http://localhost:3300/items/vmu874b742zf69zsldyhkg15w</link>
       <description><![CDATA[<p>BigCell 提出十亿像素级病理全切片图像生成方法，作者报告可生成最高 32,768×32,768 像素的连贯图像。根据当前材料，该方法在超过 120,000 张、涵盖多个器官类型的公开可获取全切片图像上，以 2048×2048 像素训练流匹配 Transformer，结合病理基础模型嵌入与推理时滑动窗口流程，在图块级和切片级保真度指标上优于既有图块生成器。</p>
@@ -160,6 +171,17 @@
       <category>AI4AI</category>
       <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">uudpdl1kn4duzaj549qs32dn4</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[Next-Concept Modeling：由粗到细的快速并行文本生成]]></title>
+      <link>http://localhost:3300/items/u7tmabq16fk2c1mo95r597pc0</link>
+      <description><![CDATA[<p>Next-Concept Modeling（NCM）研究提出两阶段文本生成框架，用多尺度残差 VQ-VAE 将文本编码为分层离散码，再由 Transformer 逐层生成、在每层内并行预测所有编码。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.14162">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/u7tmabq16fk2c1mo95r597pc0">http://localhost:3300/items/u7tmabq16fk2c1mo95r597pc0</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">u7tmabq16fk2c1mo95r597pc0</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
@@ -216,6 +238,17 @@
       <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">tewjs35bcv5o0ahbuc87sgtw8</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[高熵工程稳定单原子 Ru 催化剂，实现高效持久水分解]]></title>
+      <link>http://localhost:3300/items/sgd81v6lkm2mnwcy0wjch95ou</link>
+      <description><![CDATA[<p>研究提出用高熵工程将单个 Ru 原子稳定在 FeCoNiCrMn 尖晶石氧化物上，以兼顾水分解催化活性与稳定性。根据当前材料，作者报告 OER 在 100 mA cm −2 下的过电位为 280 mV，HER 在 10 mA cm −2 下为 37 mV。</p>
+<p>🔗 <a href="https://doi.org/10.1002/anie.2676498">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/sgd81v6lkm2mnwcy0wjch95ou">http://localhost:3300/items/sgd81v6lkm2mnwcy0wjch95ou</a></p>]]></description>
+      <category>电池与新能源材料</category>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">sgd81v6lkm2mnwcy0wjch95ou</guid>
+      <author>noreply@localhost (Angewandte Chemie International Edition)</author>
     </item>
     <item>
       <title><![CDATA[RAESR 利用冻结 DINOv3-L 的潜空间实现图像超分辨率]]></title>
@@ -394,6 +427,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[Drive3R 提出面向自动驾驶的分块流式几何基础模型]]></title>
+      <link>http://localhost:3300/items/l96ovolric6lyzuaitupzfjyw</link>
+      <description><![CDATA[<p>Drive3R 研究提出面向自动驾驶的分块流式几何基础模型，用于连续长时序驾驶场景的密集多视角三维重建。根据当前材料，其分块因果注意力兼顾计算扩展性与局部未来上下文，置信度感知重锚定通过检测不可靠的流式状态、重新初始化 KV 缓存及 SE(3) 对齐拼接刷新后的片段，缓解长程漂移。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.15112">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/l96ovolric6lyzuaitupzfjyw">http://localhost:3300/items/l96ovolric6lyzuaitupzfjyw</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">l96ovolric6lyzuaitupzfjyw</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[NavGPT-3 利用上下文与分层导航运行时连接推理和机器人控制]]></title>
       <link>http://localhost:3300/items/kqtsl7k2m4exrunu2cvvzmavw</link>
       <description><![CDATA[<p>NavGPT-3 提出连接语言模型与动作策略的分层导航运行时，将推理、行动和监控组织为具有各自上下文、工具和权限的线程，通过中断和线程切换响应突发事件。</p>
@@ -512,50 +556,6 @@
       <category>算法</category>
       <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">fbg8q78j6kpp8gh8m1imjetrm</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[G^3VLA 为视觉语言动作模型引入相机几何归纳偏置]]></title>
-      <link>http://localhost:3300/items/e85w7kugpl838sh5kcwiumaa9</link>
-      <description><![CDATA[<p>G^3VLA 研究提出相机感知几何模块，在不改变预训练 VLA 动作空间和原有动作学习目标的情况下，改善多视角表示与视点鲁棒性。根据当前材料，该模块结合内参条件化射线嵌入、投影位置编码（PRoPE）和双向跨视角融合，以真值点图或置信度门控的 π^3X 教师预测提供几何监督，后者支持无需深度传感器或人工几何标注的训练。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2606.24472">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/e85w7kugpl838sh5kcwiumaa9">http://localhost:3300/items/e85w7kugpl838sh5kcwiumaa9</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">e85w7kugpl838sh5kcwiumaa9</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[Glance Forcing：通过轻量蒸馏将双向扩散模型转为自回归模型]]></title>
-      <link>http://localhost:3300/items/e54ypgui94asg7uedc2uxr7tj</link>
-      <description><![CDATA[<p>Glance Forcing 研究提出轻量蒸馏框架，将双向扩散模型转为因果少步模型，用于自回归视频生成。根据当前材料，作者将单样本监督下的质量崩塌归因于高、低噪声阶段不同的轨迹曲率与优化行为，因此采用慢、快两个专家和分阶段目标，同时保持预训练教师冻结。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.20220">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/e54ypgui94asg7uedc2uxr7tj">http://localhost:3300/items/e54ypgui94asg7uedc2uxr7tj</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">e54ypgui94asg7uedc2uxr7tj</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[RegisterWAM 通过可学习寄存器组织机器人动作条件信息]]></title>
-      <link>http://localhost:3300/items/djz8e2ad4ywa9117zabohh4tm</link>
-      <description><![CDATA[<p>RegisterWAM 在世界模型中加入可学习的非空间寄存器，并直接用其为机器人动作提供条件信息。根据当前材料，作者发现空间高范数异常点的动作相关性在归一化和 K/V 投影削弱其幅值后仍然存在；寄存器与观测流匹配（FM）损失监督结合，可抑制这些异常点并将高范数响应集中到寄存器。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.17638">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/djz8e2ad4ywa9117zabohh4tm">http://localhost:3300/items/djz8e2ad4ywa9117zabohh4tm</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">djz8e2ad4ywa9117zabohh4tm</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[自条件化使流匹配具备深度序列推理能力]]></title>
-      <link>http://localhost:3300/items/deens603wsgp5jzxqjacfkwze</link>
-      <description><![CDATA[<p>该研究提出，自条件化能解除普通流匹配的序列推理瓶颈，使增加采样步数转化为更深的视觉推理。根据当前材料，作者从电路复杂度角度论证，在模型输出满足一定温和正则条件、采用标准 Transformer 复杂度理论模型时，普通流匹配的采样轨迹可由常数轮并行模型求值模拟，因此更多采样步数不能提升常数深度骨干模型的表达能力。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.19628">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/deens603wsgp5jzxqjacfkwze">http://localhost:3300/items/deens603wsgp5jzxqjacfkwze</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">deens603wsgp5jzxqjacfkwze</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
