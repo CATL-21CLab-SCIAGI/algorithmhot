@@ -6,44 +6,69 @@
  * 日报、周报、月报什么时候出（北京时间，HH:mm）：日报收这个时间之前的 24 小时，周报在每个自然周之后的周一出，
  * 月报在每月 1 日出。排程、成刊时间窗口、缺期告警和所有提到时间的文案都读它（public/ 里的文件写占位
  * {{dailyTime}}、{{weeklyTime}}、{{monthlyTime}}）；排程每半小时检查一次，所以写整点或半点。
+ * 日报窗口截止 daily（含该分钟）；出刊等当天早上的 arXiv 公告采集并判断完，最迟 dailyDeadline 照常出刊。
  */
-export const EDITION_TIMES = { daily: "08:00", weekly: "10:00", monthly: "10:30" };
+export const EDITION_TIMES = { daily: "08:00", dailyDeadline: "12:00", weekly: "10:00", monthly: "10:30" };
 
-/** “每天 08:00”“每周一 10:00”“每月 1 日 10:30”：写进句子里的出刊时间。 */
+/**
+ * 日报的篇幅：完整条目数、之后的一行快讯数、同一信源最多占几个完整条目。
+ * 论文站的信源少而每个信源的论文多（arXiv AI 一天上百篇入选），所以同一信源的上限比新闻站宽。
+ */
+export const DAILY_SIZE = { main: 20, flashes: 20, perSource: 8 };
+
+/**
+ * 默认 llm 服务的额度分配：目标日报窗口内的资料总是先审；积压与辅助任务最多占近24小时总上限的这个比例。
+ * 本站设为 1（不另设比例）：积压可以用完剩余额度，避免一次大批公告之后积压好几天审不完。
+ */
+export const DAILY_WORK_BUDGET = { backgroundShare: 1 };
+
+/** 精选、全部上方的筛选：本站只看论文，“一手”（机构官方发布）对读者没有用，不显示。 */
+export const FEED_FILTERS = { firstParty: false };
+
+/**
+ * 热点榜的统计窗口：一篇论文要在窗口里有两个以上独立来源（arXiv 公告、Hugging Face 社区推荐……）才上榜。
+ * 社区一般在公告后几天才推荐，所以比新闻站的 48 小时宽；label 写进页面文案。
+ */
+export const HOT_WINDOW = { hours: 168, halfLifeHours: 48, label: "7 天" };
+
+/**
+ * 写进句子里的出刊时间（“每天上午”“每周一 10:00”“每月 1 日 10:30”）。日报不在窗口截止的 08:00 出，
+ * 而是等当天早上的 arXiv 公告处理完，所以这里只写“每天上午”；最迟时间和收录窗口写在关于页和页脚。
+ */
 export const EDITION_WHEN = {
-  daily: `每天 ${EDITION_TIMES.daily}`,
+  daily: "每天上午",
   weekly: `每周一 ${EDITION_TIMES.weekly}`,
   monthly: `每月 1 日 ${EDITION_TIMES.monthly}`,
 };
 
 export const SITE = {
   /** 站名：导航、页面标题、分享图、RSS、MCP、后台都用它。 */
-  name: "MyHOT",
+  name: "AlgorithmHot · 科研热点",
   /**
    * 行业词：拼进默认说法里，比如“AI 日报”“AI 动态”。
    * 改成“法律”“HR”“黄金”之类，页面上就会变成“法律日报”“法律动态”。
    */
-  subject: "AI",
+  subject: "科研",
   /** 首页的完整标题（浏览器标签、搜索结果）。 */
-  homeTitle: "MyHOT — AI 行业动态 · 每日精选与日报",
+  homeTitle: "AlgorithmHot · 科研热点 — 算法、AI4AI、AI4S、电池与新能源材料",
   /** 主题目录页（/topics）的标题。 */
-  topicsTitle: "AI 主题：公司与模型、技术方向、内容形态的最新动态",
+  topicsTitle: "科研主题：研究方向、资料类型与机构的最新研究",
   /** 反馈表单输入框里的示例。 */
-  feedbackExample: "例如：我在搜索某个关键词时遇到……我原本想……",
+  feedbackExample: "例如：某篇论文的中文摘要与原文不符……我原本想……",
   /** 反馈页标题下面的一句话。 */
-  feedbackLead: "发现 bug、想要的功能、看不顺眼的地方，都可以告诉我们。",
+  feedbackLead: "摘要与原文不符、分类不对、想要的功能或来源，都可以告诉我们。",
   /** 反馈表单邮箱框里的提示。 */
   feedbackEmailHint: "留下邮箱，我们可以回信联系你",
   /** 一句话介绍：搜索引擎、分享卡片、RSS、llms.txt 会用。 */
-  description: `从一批 AI 信源里挑出值得看的动态，把同一件事的多篇报道归到一起，${EDITION_WHEN.daily} 出一份日报。`,
+  description: "面向研究人员的算法、AI4AI、AI4S 与电池及新能源材料阅读索引：追踪方法增量、适用任务、比较条件和证据限制，保留论文与实现入口。",
   /** llms.txt 里一句话介绍下面的一段详细介绍（选填）。 */
-  llmsIntro: null as string | null,
+  llmsIntro: "本站持续采集 arXiv 每日公告、期刊新论文、研究机构博客与社区论文精选，用模型写中文标题、摘要和推荐理由；摘要只依据当前材料（多数是论文摘要），作者报告的结果不等于独立验证。条目日期按来源上线日：arXiv 用公告日，期刊用首次在线日期，其余用本站发现时间。日报收北京时间前一天 08:00 至当天 08:00，等当天早上的 arXiv 公告处理完后出刊，最迟 12:00。" as string | null,
   /** 一行小字：分享图、海报下方。 */
-  tagline: "值得关注的 AI 动态",
+  tagline: "读方法，也读证据与边界",
   /** 搜索引擎读到的关键词（首页结构化数据）。 */
-  keywords: ["AI 资讯", "AI 新闻", "AI 日报", "AI 行业动态"] as string[],
+  keywords: ["科研热点", "论文日报", "arXiv 论文", "机器学习算法", "AI4AI", "AI4S", "电池材料", "新能源材料"] as string[],
   /** 网站开始收录的年份（结构化数据的时间范围，选填）。 */
-  since: null as string | null,
+  since: "2026" as string | null,
   /** 界面语言（HTML lang、og:locale）。 */
   locale: "zh-CN",
   /** 默认域名，只在没设置 SITE_URL 时使用。 */
@@ -51,10 +76,10 @@ export const SITE = {
   /** 标准图标（favicon.ico、icon.png、icon-192.png、apple-icon.png、logo.svg）以外也放在网站根目录的图标，site/brand/ 里的文件名（选填）；manifest.webmanifest 或外站引用了它们时用。 */
   rootIcons: [] as string[],
   /**
-   * MCP 工具名的前缀（小写字母、数字、下划线），工具会叫 myhot_get_latest、myhot_search……
+   * MCP 工具名的前缀（小写字母、数字、下划线），工具会叫 algorithmhot_get_latest、algorithmhot_search……
    * 已经有人接入后就不要再改。
    */
-  mcpPrefix: "myhot",
+  mcpPrefix: "algorithmhot",
   /**
    * 公开接口（MCP、OpenAPI、llms.txt）的版本号，只升不降。
    * 改了接口里已有的字段或含义时升主版本，并在部署说明里写清。
@@ -63,19 +88,19 @@ export const SITE = {
   /** 对外联系邮箱（选填）：llms.txt 和给 Agent 的使用说明里会写。 */
   contactEmail: null as string | null,
   /** 关于页底部的一行小字（选填）。 */
-  footerNote: "由 AIHOT 开源框架驱动",
+  footerNote: "持续采集 · 日报每天上午出刊（最迟 12:00），收北京时间前一天 08:00 至当天 08:00" as string | null,
   /** 中国大陆网站的 ICP 备案号（选填），填了就显示在侧栏底部和“我的”页底部，并链接到工信部备案系统。 */
   icp: null as string | null,
   /** 源码的 GitHub 仓库地址（选填），填了就在侧栏底部和“我的”页底部显示“GitHub 开源”。 */
   github: null as string | null,
   /** 结构化数据里的网站运营者（搜索引擎用）。 */
   organization: {
-    name: "MyHOT",
+    name: "AlgorithmHot · 科研热点",
     /** 创始人（选填）。 */
     founder: null as null | { name: string; alternateName?: string; jobTitle?: string; description?: string; url?: string },
   },
   /** 抓取信源时报上的名字和版本（User-Agent 里用），不要冒用别的站。 */
-  crawlerName: "MyHOTBot/1.0",
+  crawlerName: "algorithmhot/1.0",
 } as const;
 
 /** 使用规则和隐私说明两页（正文在 pages/ 里）。 */
@@ -143,16 +168,16 @@ export const ABOUT = {
   /** 页面描述（搜索结果、分享卡片）。 */
   description: `关于 ${SITE.name}：${SITE.description}`,
   /** 大标题：第一行正常颜色，第二行强调色。 */
-  headline: ["AI 圈每天都有新动静，", "值得看的，只有几条。"] as [string, string],
+  headline: ["追踪研究方法的变化，", "保留证据与适用边界。"] as [string, string],
   /** 标题下面的一段话。{sources} 会换成实时的信源数（两边自动加空格，所以 {sources} 两边不写空格）；统计没取到时换成 sourcesFallback。 */
-  lead: `${SITE.name} 替你盯着{sources}个信源：抓取、归并、打分、精选，${EDITION_WHEN.daily} 出一份日报。免费，不用注册。`,
-  sourcesFallback: "十几",
+  lead: `${SITE.name} 盯着{sources}个公开研究来源，整理算法、AI4AI、AI4S 与电池及新能源材料的进展：中文解读、证据限制和原文入口放在一起，帮助研究人员判断哪些工作值得细读。免费，不用注册。`,
+  sourcesFallback: "一批",
   /** 信源河动画下面的四个环节。 */
   steps: {
-    collect: "官方博客、媒体和个人的订阅源都在看；更新越勤的源看得越勤，最快 15 分钟看一次。",
-    store: "抓到的都存下来，同一件事的报道归到一起，热点榜就是从这里算出来的。",
-    select: `模型先看是不是这个行业的事、有没有实际信息，再写中文标题、摘要和${ITEM_COPY.reasonLabel}；营销稿和重复转发进不来。`,
-    publish: `${EDITION_WHEN.daily} 出日报，${EDITION_WHEN.weekly} 出周报，${EDITION_WHEN.monthly} 出月报。`,
+    collect: "持续采集 arXiv 每日公告、期刊新论文、Hugging Face Daily Papers，以及 Google DeepMind、Berkeley BAIR 等研究机构的博客。",
+    store: "同一研究的论文条目、机构解读、社区讨论和后续修订归在一起。日期按来源上线日：arXiv 用公告日，期刊用首次在线日期，其余用本站发现时间。",
+    select: `模型先判断是否在本站范围内，再看方法增量、比较条件与证据强度，写中文标题、摘要和${ITEM_COPY.reasonLabel}；摘要只依据当前材料，作者报告的结果不写成独立验证。`,
+    publish: `日报收北京时间前一天 08:00 至当天 08:00，等当天早上的 arXiv 公告处理完后出刊，最迟 ${EDITION_TIMES.dailyDeadline}；${EDITION_WHEN.weekly} 出周报，${EDITION_WHEN.monthly} 出月报。`,
   },
   /**
    * 作者块（选填），null 就不显示。
@@ -185,32 +210,32 @@ export const ADMIN = {
 /** Agent 接入页的示例。 */
 export const AGENT = {
   /** MCP 工具表里“搜索”一行：能搜什么、可以怎么问。 */
-  search: { scope: "按公司、产品、人物或话题搜最近 7 天", ask: "这家公司最近发了什么？" },
+  search: { scope: "按方法、任务、机构或论文标题搜最近 7 天", ask: "最近有哪些电池固态电解质的研究？" },
 };
 
 /** 日报、周报、月报版面上的说法。 */
 export const REPORTS = {
   /** 报头下面的出版者一行。 */
-  imprint: SITE.name.toUpperCase(),
+  imprint: "ALGORITHMHOT",
   /** 报头旁边的一个词。 */
   motto: SITE.subject as string,
   /** 每种报告页面的描述（搜索结果、分享卡片），不带句号；llms.txt 介绍周报、月报时也用它。 */
   descriptions: {
-    daily: `${SITE.name} ${subjectAfter(`${EDITION_WHEN.daily}（北京时间）发布的`, "行业精编日报")}`,
-    weekly: subjectAfter("每周", "行业综合回顾"),
-    monthly: subjectAfter("每月", "行业盘点"),
+    daily: `${SITE.name} ${subjectAfter(`${EDITION_WHEN.daily}（北京时间）发布的`, "精编日报")}，收前一天 08:00 至当天 08:00 的研究`,
+    weekly: subjectAfter("每周", "回顾"),
+    monthly: subjectAfter("每月", "盘点"),
   },
   /**
    * 一期里的一条怎么称呼（“4 件大事”）：没有头条时的标题（“这一天的 4 件 AI 大事”）、报头和往期目录的条数、
    * 周报月报没有总述时的那句话，以及订阅说明里的“按栏目分好的大事”都用它。
    */
-  entry: { measure: "件", noun: "大事" },
+  entry: { measure: "项", noun: "研究" },
   /** 报头上其余几个数字后面的说法；精选数和日报期数在关于页、主题页也这样写。 */
-  metricUnits: { sourcesCount: "个来源", firstPartyEvents: "件一手发布", selectedCount: "条精选", reportsCovered: "期日报" },
+  metricUnits: { sourcesCount: "个来源", firstPartyEvents: "项机构一手发布", selectedCount: "条精选", reportsCovered: "期日报" },
   /** 报告分享图上“共几条”的说法。 */
-  shareUnit: "件大事",
+  shareUnit: "项研究",
   /** 日报时段内有资料经过评判、但没有新大事时的标题与导语。 */
-  quiet: { title: "今日安静，无大事发生", paragraph: `${subjectAfter("北京时间 {start} 至 {end}，没有新的", "大事")}。` },
+  quiet: { title: "本期没有新的入选研究", paragraph: "北京时间 {start} 至 {end} 收到的资料已经评判，没有达到入选标准的新研究。" },
 };
 
 /** 运维告警（只发给站长）里随部署而变的几处说法。 */
@@ -242,15 +267,15 @@ export const COMMUNITY_FEEDS: { dev: string[]; hn: string[] } = {
 export const CARDS: Record<string, { kicker: string; title: string; subtitle: string; accent?: "hot" | "amber" }> = {
   site: { kicker: subjectAfter("每日", "精选"), title: SITE.tagline, subtitle: SITE.description },
   all: { kicker: subjectAfter("全部", "动态"), title: "所有信源的最新动态，一站看完", subtitle: "按时间汇总各信源的最新动态，可按类别与标签筛选。" },
-  hot: { kicker: "热点榜", title: "过去 48 小时，大家在讨论什么", subtitle: "热度指数、趋势与组成热度的公开来源。", accent: "hot" },
-  daily: { kicker: withSubject("日报"), title: subjectAfter(`每天 ${spokenTime(EDITION_TIMES.daily)}，一份读得完的`, "日报"), subtitle: `${subjectAfter("前一天值得关注的", "动态")}。` },
-  weekly: { kicker: withSubject("周报"), title: `一周${REPORTS.entry.noun}，一次看清`, subtitle: "本周的主线、重要发布与值得回看的讨论。" },
-  monthly: { kicker: withSubject("月报"), title: "一个月的变化", subtitle: "月度主线与关键事件回顾。" },
+  hot: { kicker: "热点榜", title: "过去 7 天，大家在讨论哪些研究", subtitle: "热度指数、趋势与组成热度的公开来源；热度不等于科学验证。", accent: "hot" },
+  daily: { kicker: withSubject("日报"), title: subjectAfter("每天上午，一份读得完的", "日报"), subtitle: `收前一天 ${spokenTime(EDITION_TIMES.daily)}至当天 ${spokenTime(EDITION_TIMES.daily)}值得细读的研究，最迟 ${spokenTime(EDITION_TIMES.dailyDeadline)}出刊。` },
+  weekly: { kicker: withSubject("周报"), title: "一周研究，一次看清", subtitle: "本周的方法主线、重要论文与证据限制。" },
+  monthly: { kicker: withSubject("月报"), title: "一个月的研究变化", subtitle: "月度方法主线与关键工作回顾。" },
   about: { kicker: "关于", title: `关于 ${SITE.name}`, subtitle: SITE.description },
   terms: { kicker: "使用规则", title: `${SITE.name} 使用规则`, subtitle: "网页、API、RSS 与 MCP 的使用范围。" },
   privacy: { kicker: "隐私说明", title: `${SITE.name} 隐私说明`, subtitle: "访问日志、浏览器本地数据与反馈资料的处理方式。" },
   changelog: { kicker: "更新日志", title: `${SITE.name} 更新日志`, subtitle: "功能更新、优化、公告与下线记录。" },
-  feedback: { kicker: "反馈", title: "告诉我们哪里可以更好", subtitle: "内容、功能、接入，或来源方的更正与下架请求。" },
+  feedback: { kicker: "反馈", title: "告诉我们哪里可以更好", subtitle: "摘要更正、分类、功能、接入，或来源方的更正与下架请求。" },
   agent: { kicker: "Agent 接入", title: `把 ${SITE.name} 接进你的 Agent`, subtitle: "MCP、RSS、API 三种方式，匿名只读，无需 API Key。" },
 };
 

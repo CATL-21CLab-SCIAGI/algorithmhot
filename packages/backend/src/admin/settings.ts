@@ -10,6 +10,7 @@ import { sql } from "../db.ts";
 import { sha256 } from "../lib/ids.ts";
 import { loadContact, type ContactSettings } from "../site/contact.ts";
 import { audit } from "../audit.ts";
+import { listBudgetStatuses } from "../providers/budgets.ts";
 
 const MAX_QR_BYTES = 2 * 1024 * 1024;
 
@@ -58,11 +59,11 @@ export async function setTargetEnabled(key: string, enabled: boolean, reason: st
 }
 
 export async function listBudgets(): Promise<BeforeJson<AdminBudget>[]> {
-  return sql<BeforeJson<AdminBudget>[]>`
-    SELECT b.service, b.per_minute, b.per_hour, b.per_day, b.note, b.updated_at,
-           (SELECT count(*)::int FROM receipt_attempts a WHERE a.service = b.service AND a.origin = 'live' AND a.started_at > now() - interval '1 day') AS used_day,
-           (SELECT count(*)::int FROM receipt_attempts a WHERE a.service = b.service AND a.origin = 'live' AND a.started_at > now() - interval '1 hour') AS used_hour
-    FROM budgets b ORDER BY b.service`;
+  return (await listBudgetStatuses()).map((b) => ({
+    service: b.service, per_minute: b.per_minute, per_hour: b.per_hour, per_day: b.per_day,
+    note: b.note, updated_at: b.updated_at, used_day: b.usedDay, used_hour: b.usedHour,
+    used_24h: b.used24h, reset_at: b.resetAt,
+  }));
 }
 
 export async function updateBudget(service: string, input: { perMinute: number; perHour: number; perDay: number; reason: string }, actor: string) {

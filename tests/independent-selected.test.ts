@@ -36,7 +36,7 @@ test('independent selected sources retain identity and their own cards across pu
     const {articleId:id} = await upsertMaterial({ sourceId:source,url:`https://example.org/${T}/${++n}`,title:`${T} ${n}`,
       bodyText:'Original article',bodyStatus:'ok',via:'fetch',publishedAt:at,discoveredAt:at });
     await sql`INSERT INTO analyses(article_id,input_revision,origin,relevance,category,title_zh,summary_zh,reason_zh,score,selected,tags,subjects)
-      VALUES (${id},1,'rule','pass','industry',${`${T} title ${n}`},'summary','reason',81,${options.selected ?? true},${[T]},${['openai']})`;
+      VALUES (${id},1,'rule','pass','algorithm',${`${T} title ${n}`},'summary','reason',81,${options.selected ?? true},${[T]},${['google']})`;
     await sql`INSERT INTO fact_articles(fact_id,article_id,role) VALUES (${fact!.id},${id},'report')`;
     await sql`UPDATE articles SET grouping_status=${options.pending ? 'pending' : 'complete'},selection_adds_value=${options.adds ?? true} WHERE id=${id}`;
     await publishArticle(id,{now});
@@ -77,7 +77,7 @@ test('independent selected sources retain identity and their own cards across pu
   }
   assert.equal((await get(`/api/site/items/${other}`)).json().sameEvent.id,official);
   for (const id of [rejected,pending,lowValue]) assert.equal((await get(`/api/site/items/${id}`)).json().selected,false);
-  for (const url of ['/feed.xml','/api/v1/agent/latest?limit=30','/api/v1/selected/snapshot?limit=1000','/api/site/topics/openai']) {
+  for (const url of ['/feed.xml','/api/v1/agent/latest?limit=30','/api/v1/selected/snapshot?limit=1000','/api/site/topics/google']) {
     const body=(await get(url)).body;
     for (const id of [firstOwn,laterOwn,official]) assert.ok(body.includes(id),`${url}: ${id}`);
   }

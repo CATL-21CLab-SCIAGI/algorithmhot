@@ -16,6 +16,7 @@ import { GROUPING_WARN_AFTER_MS, waitingSelectedNews } from "./grouping.ts";
 import { upstreamFindings } from "../media/upstream.ts";
 import { responder, serverModules } from "../modules.ts";
 import { sourceHealth, sourceHealthList } from "../sources/health.ts";
+import { listBudgetStatuses } from "../providers/budgets.ts";
 
 const REPEAT_MS: Record<Exclude<Level, "later">, number> = { now: 3600_000, today: 24 * 3600_000 };
 
@@ -61,14 +62,13 @@ export async function collectFindings(now = Date.now()): Promise<Finding[]> {
     const waiting = (await waitingSelectedNews()).filter((item) => now - item.since.getTime() >= GROUPING_WARN_AFTER_MS);
     if (waiting.length) {
       const manual = waiting.filter((item) => item.recovery === "manual").length;
-      const receipt = waiting.some((item) => item.recovery === "receipt");
       out.push({
         key: "content.grouping",
         level: "now",
         title: "有精选新闻卡在去重确认，暂未发布",
         impact: `${waiting.length} 条已达到精选条件的新闻等待确认超过 10 分钟，还没进入精选，读者可能晚看到这些更新`,
         heals: manual ? `${manual} 条需要人工处理后才能恢复${manual < waiting.length ? "；其余仍在自动恢复" : ""}`
-          : receipt ? "仍在等待自动恢复；付费结果未知的请求会在 30 分钟后自动放行一次" : "还会自动重试，但等待已经超过正常范围",
+          : "还会自动重试，但等待已经超过正常范围",
         action: manual ? "转给 AI 处理；结果未知的付费请求需先核对计费与结果，再决定是否放行" : "转给 AI 检查等待原因，避免继续积压",
         detail: waiting.slice(0, 8).map((item) => `${item.articleId}（${duration(now - item.since.getTime())}）${item.receiptId ? ` 回执 #${item.receiptId}` : ""}${item.error ? `：${item.error.slice(0, 120)}` : ""}`).join("；"),
         since: waiting[0]!.since,
@@ -181,7 +181,7 @@ export async function collectFindings(now = Date.now()): Promise<Finding[]> {
            (SELECT string_agg(DISTINCT service || '/' || purpose, '、') FROM receipts WHERE status = 'unknown') AS services,
            (SELECT count(*)::int FROM deliveries WHERE status = 'unknown') AS deliveries`;
   if (r!.receipts > 0) {
-    out.push({ key: "receipts.unknown", level: "later", title: `${r!.receipts} 个付费请求的结果尚未确认`, detail: `${r!.services}；可能影响内容处理，后台“运行”页查看影响；自动恢复后仍未知的请求需核对后放行` });
+    out.push({ key: "receipts.unknown", level: "later", title: `${r!.receipts} 个付费请求的结果尚未确认`, detail: `${r!.services}；可能影响内容处理，后台“运行”页查看影响；不会自动重试，需核对计费与结果后决定是否放行` });
   }
   if (r!.deliveries > 0) out.push({ key: "deliveries.unknown", level: "later", title: `${r!.deliveries} 条飞书内容群推送不确定是否送达`, detail: "后台“运行”页核对群里有没有，再标记或重发" });
 
@@ -223,7 +223,7 @@ export const providerStops = async (service: string): Promise<string> => {
 };
 export const providerConsole = (service: string) => PROVIDERS[service]?.where ?? `${service} 后台`;
 
-/** Paid services that refuse us (no balance, a dead key), and daily budgets used up. */
+/** Paid services that refuse us (no balance, a dead key), and rolling budgets used up. */
 async function providerFindings(): Promise<Finding[]> {
   const out: Finding[] = [];
   const refused = await sql<{ service: string; n: number; last: string }[]>`
@@ -243,19 +243,16 @@ async function providerFindings(): Promise<Finding[]> {
       detail: `最近 1 小时被拒 ${p.n} 次：${p.last}`,
     });
   }
-  const capped = await sql<{ service: string; per_day: number; used: number }[]>`
-    SELECT b.service, b.per_day, count(a.id)::int AS used FROM budgets b
-    JOIN receipt_attempts a ON a.service = b.service AND a.origin = 'live' AND a.started_at > now() - interval '1 day'
-    WHERE b.per_day > 0 GROUP BY 1, 2 HAVING count(a.id) >= b.per_day`;
+  const capped = (await listBudgetStatuses()).filter((b) => b.per_day > 0 && b.usedDay >= b.per_day);
   for (const c of capped) {
     out.push({
       key: `budget.day.${c.service}`,
       level: "later",
-      title: `${providerName(c.service)} 过去 24 小时的调用额度用完了`,
+      title: `${providerName(c.service)} 近24小时的调用额度用完了`,
       impact: `${await providerStops(c.service)}，直到额度随时间腾出来`,
       heals: "会，额度按 24 小时滚动恢复",
-      action: "这次不用处理；如果经常出现，再决定要不要调高额度",
-      detail: `24 小时内 ${c.used} 次，上限 ${c.per_day}（budgets 表）`,
+      action: "等待旧请求移出近24小时窗口；若影响日报，检查候选处理进度和积压用量",
+      detail: `当前日额度计数 ${c.usedDay} 次，上限 ${c.per_day}；近24小时实际 ${c.used24h} 次${c.resetAt ? `；日额度重置于 ${beijingStamp(c.resetAt)}` : ""}（budgets 表）`,
     });
   }
   return out;
@@ -299,7 +296,8 @@ async function dailyReportFindings(now: number): Promise<Finding[]> {
   for (let date = from; date <= today; date = addDays(date, 1)) {
     if (date >= start) dates.add(date);
   }
-  const overdue = [...dates].filter(date => now >= beijingAt(date, EDITION_TIMES.daily).getTime() + 2 * 3600_000).sort();
+  // A daily may wait for its window until the deadline (reports/compose.ts dailyHold); it is overdue an hour after.
+  const overdue = [...dates].filter(date => now >= beijingAt(date, EDITION_TIMES.dailyDeadline).getTime() + 3600_000).sort();
   if (!overdue.length) return [];
   const published = new Set((await sql<{ key: string }[]>`SELECT key FROM reports WHERE kind = 'daily' AND key IN ${sql(overdue)}`).map(r => r.key));
   return overdue.filter(date => !published.has(date)).map(date => ({

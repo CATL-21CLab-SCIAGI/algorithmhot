@@ -5,7 +5,7 @@ import { SITE } from "@aihot/site";
 import { sql } from "../db.ts";
 import { cachedByKey, SHARED_ONLY } from "../lib/cache.ts";
 import { proxiedImage, proxiedImageSet } from "../media/imgproxy.ts";
-import { behindSources, currentSignals, heatSeries, sourceClocks, type HotRanking } from "../events/hot.ts";
+import { behindSources, currentSignals, heatSeries, HOT_WINDOW, sourceClocks, type HotRanking } from "../events/hot.ts";
 import { relatedEvidence, RELATED_MIN_REPORTS } from "../events/related.ts";
 import { pickRepresentative, REPRESENTATIVE_COLUMNS, type RepresentativeIdentity } from "./representative.ts";
 import { compositeCondition, evidenceCondition, listedCondition, storyReportCondition } from "./scope.ts";
@@ -146,7 +146,7 @@ export async function loadStoryDetail(storyId: number, now = new Date()): Promis
   const { s, reports, developments, latestReport, firstReportAt } = content;
   const [why] = await sql<{ p48: number; p6: number; r24: number }[]>`
     WITH cs AS (SELECT * FROM ${currentSignals()} c WHERE story_id = ${storyId} AND observed_at <= ${now})
-    SELECT count(DISTINCT participant_key) FILTER (WHERE observed_at > ${now}::timestamptz - interval '48 hours') AS p48,
+    SELECT count(DISTINCT participant_key) FILTER (WHERE observed_at > ${now}::timestamptz - make_interval(hours => ${HOT_WINDOW.hours})) AS p48,
            count(DISTINCT participant_key) FILTER (WHERE observed_at > ${now}::timestamptz - interval '6 hours'
              AND participant_key NOT IN (SELECT participant_key FROM cs x WHERE x.observed_at <= ${now}::timestamptz - interval '6 hours')) AS p6,
            count(*) FILTER (WHERE kind = 'editorial' AND observed_at > ${now}::timestamptz - interval '24 hours') AS r24
@@ -159,7 +159,7 @@ export async function loadStoryDetail(storyId: number, now = new Date()): Promis
   const behind = behindSources(await sourceClocks(), now.getTime(), true);
   const [partial] = behind.length
     ? await sql<{ n: number }[]>`SELECT count(*)::int AS n FROM ${currentSignals()} cs WHERE story_id = ${storyId} AND source_id = ANY(${behind}::text[])
-                                  AND observed_at > ${now}::timestamptz - interval '48 hours' AND observed_at <= ${now}`
+                                  AND observed_at > ${now}::timestamptz - make_interval(hours => ${HOT_WINDOW.hours}) AND observed_at <= ${now}`
     : [{ n: 0 }];
   const [related, topics, texts] = await Promise.all([relatedStories(storyId, now), topicsOfStory(storyId, now), storyTexts([storyId], now)]);
   const text = texts.get(storyId)!;
@@ -242,7 +242,7 @@ async function queryHotCovers({ entries }: HotRanking) {
 
 export async function loadHot(): Promise<HotResponse> {
   const ranking = await latestHotRanking();
-  if (!ranking) return { computedAt: null, windowHours: 48, entries: [] };
+  if (!ranking) return { computedAt: null, windowHours: HOT_WINDOW.hours, entries: [] };
   const at = new Date(ranking.computedAt);
   const [sparks, covers, extras] = await Promise.all([
     sparklines(
@@ -254,7 +254,7 @@ export async function loadHot(): Promise<HotResponse> {
   ]);
   return {
     computedAt: ranking.computedAt,
-    windowHours: 48,
+    windowHours: HOT_WINDOW.hours,
     entries: ranking.entries.map((e) => {
       const picture = covers.get(e.storyId);
       const coverUrl = picture ? proxiedImage(picture.url, "full") : null;

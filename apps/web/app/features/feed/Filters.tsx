@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Form, Link, useNavigation, useSearchParams } from "react-router";
 import { CATEGORY_KEYS, CATEGORY_LABELS, CHANNEL_LABELS, type CategoryKey, type ChannelKey } from "@aihot/contracts/taxonomy";
+import * as SITE_CONFIG from "@aihot/site";
 import { SITE } from "@aihot/site";
 import { IconCheck, IconClose, IconFilter, IconSearch } from "../../components/icons";
 import { PillTabs } from "../../components/ui/Tabs";
@@ -24,6 +25,9 @@ function hrefWith(base: string, params: URLSearchParams, patch: Record<string, s
   return s ? `${base}?${s}` : base;
 }
 
+/** The 一手 choice, unless the site turns it off (site/site.ts FEED_FILTERS.firstParty). */
+const FIRST_PARTY_FILTER = (SITE_CONFIG as { FEED_FILTERS?: { firstParty?: boolean } }).FEED_FILTERS?.firstParty !== false;
+
 /**
  * The feed's one filter (精选 and 全部动态 alike): none, 一手, or a category. One choice at a time: picking
  * 一手 clears the category and picking a category clears 一手. Older 资讯 / X links still filter; the
@@ -32,7 +36,7 @@ function hrefWith(base: string, params: URLSearchParams, patch: Record<string, s
 function filterOptions(base: string, params: URLSearchParams, noneLabel: string) {
   return [
     { key: "all", label: noneLabel, to: hrefWith(base, params, { category: null, channel: null }) },
-    { key: "firstParty", label: CHANNEL_LABELS.firstParty, to: hrefWith(base, params, { category: null, channel: "firstParty" }) },
+    ...(FIRST_PARTY_FILTER ? [{ key: "firstParty", label: CHANNEL_LABELS.firstParty, to: hrefWith(base, params, { category: null, channel: "firstParty" }) }] : []),
     ...CATEGORY_KEYS.map((k) => ({ key: k, label: CATEGORY_LABELS[k], to: hrefWith(base, params, { category: k, channel: null }) })),
   ];
 }

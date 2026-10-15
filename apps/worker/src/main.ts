@@ -13,10 +13,12 @@ import { registerPublicationJobs } from "@aihot/backend/jobs/publication";
 import { registerSchedules } from "./schedules.ts";
 import { ensureContentTargets } from "@aihot/backend/notify/deliver";
 import { startHeartbeat } from "@aihot/backend/operations/heartbeat";
+import { applyBudgetEnv } from "@aihot/backend/providers/receipts";
 
 installModules(SERVER_MODULES);
 assertProductionSecrets([["auth", "IMG_PROXY_SIGN_SECRET"]]);
 
+await applyBudgetEnv();
 await ensureContentTargets();
 const boss = await getBoss();
 await registerContentJobs(boss);

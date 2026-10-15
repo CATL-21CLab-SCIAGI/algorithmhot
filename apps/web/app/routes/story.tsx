@@ -19,6 +19,10 @@ import { IconArrowLeft, IconChevronRight, IconClock, IconDoc, IconUsers } from "
 import { PhoneBar } from "../components/shell/PhoneBar";
 import { inNav } from "../components/shell/nav";
 import type { Screen } from "../components/shell/screens";
+import * as SITE_CONFIG from "@aihot/site";
+
+/** The hot window as the copy names it (site/site.ts HOT_WINDOW). */
+const HOT_LABEL = (SITE_CONFIG as { HOT_WINDOW?: { label: string } }).HOT_WINDOW?.label ?? "48 小时";
 
 export const handle: Screen = { home: inNav("/hot") ? "hot" : "featured" };
 export { pageHeaders as headers } from "../lib/api.server";
@@ -418,7 +422,7 @@ export default function StoryPage() {
           {observed && (
             <RailCard title="为什么热">
               <p className="text-[12.5px] leading-[1.75] text-ink-3">
-                过去 48 小时，已观察到 <b className="num font-semibold text-ink">{story.whyHot.participants48h}</b> 个独立主体参与讨论或报道，最近 6 小时新增{" "}
+                过去 {HOT_LABEL}，已观察到 <b className="num font-semibold text-ink">{story.whyHot.participants48h}</b> 个独立主体参与讨论或报道，最近 6 小时新增{" "}
                 <b className="num font-semibold text-ink">{story.whyHot.newParticipants6h}</b> 个。
               </p>
               {!story.whyHot.observationComplete && <p className="mt-2 text-[12px] leading-relaxed text-ink-4">部分信源观测不完整，以上仅为已观察到的参与。</p>}

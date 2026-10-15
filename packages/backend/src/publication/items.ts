@@ -1,7 +1,7 @@
 // Public read layer, item level. Every exit (site API, v1, RSS, MCP, sitemap) reads
 // items through these columns and views; which rows are public is decided by scope.ts.
 import { CATEGORY_KEYS, toPublicApiCategory, type CategoryKey, type ChannelKey, type PublicApiCategoryKey } from "@aihot/contracts/taxonomy";
-import type { FeedItemSummary, ItemSummary, MediaView, XPostView } from "@aihot/contracts/site";
+import { ITEM_NOTES_MAX, type FeedItemSummary, type ItemFigure, type ItemNote, type ItemSummary, type MediaView, type XPostView } from "@aihot/contracts/site";
 import { POLICY } from "@aihot/site";
 import { sql, type Db } from "../db.ts";
 import { isEmptyOrLinkOnly } from "../content/posts.ts";
@@ -44,6 +44,10 @@ export interface ItemRow {
   zh_text: string | null;
   /** Chinese translation of the post an X post quotes. */
   quoted_zh: string | null;
+  /** The material's notes as its entrance stored them (raw.notes), checked by itemNotes. */
+  notes: unknown;
+  /** The figure its entrance attached (raw.figure), checked by itemFigure. */
+  figure: unknown;
 }
 
 /** Columns every item listing selects. Internal judgement details never leave this layer. */
@@ -54,7 +58,7 @@ export const ITEM_COLUMNS = sql`
   a.x_post, a.author, a.language,
   CASE WHEN s.kind = 'x_search' AND ${sourceOwnsPost(sql`s.name`, sql`a.x_post->>'handle'`)} THEN s.icon_url END AS author_avatar_url,
   st.public_id::text AS story_public_id, st.title AS story_title,
-  CASE WHEN p.channel = 'x' THEN tr.body_text END AS zh_text, qt.text_zh AS quoted_zh`;
+  CASE WHEN p.channel = 'x' THEN tr.body_text END AS zh_text, qt.text_zh AS quoted_zh, a.raw->'notes' AS notes, a.raw->'figure' AS figure`;
 
 /** Public API listings never render article bodies, X media or story metadata. */
 export type ApiItemRow = Pick<ItemRow, "id" | "title" | "original_title" | "summary" | "source_name" | "url" | "published_at" | "discovered_at" | "category" | "score" | "selected" | "reason">;
@@ -148,6 +152,47 @@ export function showsPost(row: { channel: string; body_mode: string }): boolean 
   return row.channel === "x" && (!POLICY.xPostIsFullText || row.body_mode === "full");
 }
 
+const NOTE_TEXT_MAX = 80;
+
+/**
+ * The notes an entrance stored with the material (raw.notes): only short text and http(s) links leave this
+ * layer, whatever the raw payload holds.
+ */
+export function itemNotes(value: unknown): ItemNote[] {
+  if (!Array.isArray(value)) return [];
+  const out: ItemNote[] = [];
+  for (const n of value) {
+    if (!n || typeof n !== "object" || typeof n.label !== "string" || !n.label.trim()) continue;
+    const note: ItemNote = { label: n.label.trim().slice(0, NOTE_TEXT_MAX) };
+    if (typeof n.value === "string" && n.value.trim()) note.value = n.value.trim().slice(0, NOTE_TEXT_MAX);
+    if (typeof n.href === "string" && /^https?:\/\//.test(n.href)) {
+      try { note.href = new URL(n.href).toString(); } catch { /* not a link */ }
+    }
+    out.push(note);
+    if (out.length >= ITEM_NOTES_MAX) break;
+  }
+  return out;
+}
+
+/**
+ * The figure an entrance attached (raw.figure, status "ok"): an http(s) image, its credit and the page it
+ * is from, shown through the image proxy. Anything else shows no figure.
+ */
+export function itemFigure(value: unknown): ItemFigure | null {
+  const f = value as { status?: unknown; url?: unknown; alt?: unknown; credit?: unknown; href?: unknown } | null;
+  if (!f || f.status !== "ok" || typeof f.url !== "string" || typeof f.credit !== "string" || !f.credit.trim()) return null;
+  const url = proxiedImage(f.url, "full");
+  const card = proxiedImage(f.url, "card");
+  if (!url || !card) return null;
+  const srcSet = proxiedImageSet(f.url, "card");
+  return {
+    url: card, fullUrl: url, ...(srcSet ? { srcSet } : {}),
+    alt: typeof f.alt === "string" && f.alt.trim() ? f.alt.trim().slice(0, 300) : null,
+    credit: f.credit.trim().slice(0, 200),
+    href: typeof f.href === "string" && /^https?:\/\//.test(f.href) ? f.href : null,
+  };
+}
+
 /** The shared public article; its X post is added as each answer shows it. */
 export function toItemSummary(row: ItemRow): ItemSummary {
   return {
@@ -167,8 +212,15 @@ export function toItemSummary(row: ItemRow): ItemSummary {
     selected: row.selected,
     channel: row.channel,
     story: row.story_public_id ? { publicId: row.story_public_id, title: row.story_title ?? "" } : null,
+    notes: itemNotes(row.notes),
+    ...withFigure(row.figure),
   };
 }
+
+const withFigure = (raw: unknown) => {
+  const figure = itemFigure(raw);
+  return figure ? { figure } : {};
+};
 
 /** Project the shared public article into the exact fields a site card renders. */
 export function toFeedItemSummary(row: ItemRow): FeedItemSummary {
@@ -177,7 +229,7 @@ export function toFeedItemSummary(row: ItemRow): FeedItemSummary {
   return {
     id: item.id, title: item.title, summary: item.summary ?? (x?.text || null), reason: item.reason,
     source: item.source, publishedAt: item.publishedAt, timelineAt: item.timelineAt,
-    category: item.category, tags: item.tags, score: item.score, selected: item.selected, channel: item.channel,
+    category: item.category, tags: item.tags, score: item.score, selected: item.selected, channel: item.channel, notes: item.notes, ...(item.figure ? { figure: item.figure } : {}),
     x: x ? {
       authorName: x.authorName, handle: x.handle, avatarUrl: x.avatarUrl,
       ...(x.avatarSrcSet ? { avatarSrcSet: x.avatarSrcSet } : {}), media: x.media,

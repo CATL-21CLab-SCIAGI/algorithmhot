@@ -1,0 +1,32 @@
+{
+  "$comment": "研究来源模块读取的 arXiv 分类订阅与 Crossref 期刊（引擎自身不读）。id 上线后不要改；categories 用 + 连成 arXiv RSS 地址；issn 写印刷版和/或电子版；doiPattern 是文章 DOI 必须匹配的正则，只留研究论文；keywords 是小写英文词，写了就只收标题或摘要含其中之一的文章（宽口径期刊用它留下电池/光伏/制氢材料与 AI4S 相关论文）；category 只是分类提示，最终由结构化一步判断。tier 对应 industry/selection.ts 的门槛（T1_5 = 65）。",
+  "arxiv": [
+    { "id": "arxiv-ai-ml", "name": "arXiv · AI 与机器学习", "categories": ["cs.LG", "cs.AI"], "tier": "T1_5", "tags": ["论文"], "category": "algorithm" },
+    { "id": "arxiv-physical-science", "name": "arXiv · 计算物理与材料", "categories": ["physics.comp-ph", "cond-mat.mtrl-sci"], "tier": "T1_5", "tags": ["论文"], "category": "ai4s" },
+    { "id": "arxiv-molecular", "name": "arXiv · 分子与定量生物学", "categories": ["q-bio.BM", "q-bio.QM"], "tier": "T1_5", "tags": ["论文"], "category": "ai4s" }
+  ],
+  "crossref": [
+    {
+      "id": "crossref-nature", "name": "Nature", "issn": ["0028-0836", "1476-4687"], "doiPattern": "^10\\.1038/s41586-",
+      "tier": "T1_5", "tags": ["期刊"], "category": "energy-materials",
+      "keywords": ["battery", "batteries", "electrolyte", "electrolytes", "cathode", "anode", "electrode", "lithium", "sodium-ion", "interphase", "photovoltaic", "photovoltaics", "perovskite", "solar", "hydrogen", "electrocatalyst", "electrocatalysis", "electrolysis", "electrolyser", "electrolyzer", "machine learning", "deep learning", "neural network", "artificial intelligence"]
+    },
+    { "id": "crossref-nature-energy", "name": "Nature Energy", "issn": ["2058-7546"], "doiPattern": "^10\\.1038/s41560-", "tier": "T1_5", "tags": ["期刊"], "category": "energy-materials" },
+    { "id": "crossref-nature-materials", "name": "Nature Materials", "issn": ["1476-1122", "1476-4660"], "doiPattern": "^10\\.1038/s41563-", "tier": "T1_5", "tags": ["期刊"], "category": "energy-materials" },
+    {
+      "id": "crossref-science", "name": "Science", "issn": ["0036-8075", "1095-9203"], "doiPattern": "^10\\.1126/science\\.",
+      "tier": "T1_5", "tags": ["期刊"], "category": "energy-materials",
+      "keywords": ["battery", "batteries", "electrolyte", "electrolytes", "cathode", "anode", "electrode", "lithium", "sodium-ion", "interphase", "photovoltaic", "photovoltaics", "perovskite", "solar", "hydrogen", "electrocatalyst", "electrocatalysis", "electrolysis", "electrolyser", "electrolyzer", "machine learning", "deep learning", "neural network", "artificial intelligence"]
+    },
+    {
+      "id": "crossref-angewandte", "name": "Angewandte Chemie International Edition", "issn": ["1433-7851", "1521-3773"], "doiPattern": "^10\\.1002/anie\\.",
+      "tier": "T1_5", "tags": ["期刊"], "category": "energy-materials",
+      "keywords": ["battery", "batteries", "electrolyte", "electrolytes", "cathode", "anode", "electrode", "lithium", "sodium-ion", "zinc-ion", "interphase", "photovoltaic", "perovskite", "solar", "hydrogen", "electrocatalyst", "electrocatalysis", "electrocatalytic", "electrolysis", "electrolyzer", "water splitting", "oxygen evolution", "machine learning"]
+    },
+    {
+      "id": "crossref-jacs", "name": "Journal of the American Chemical Society", "issn": ["0002-7863", "1520-5126"], "doiPattern": "^10\\.1021/jacs\\.",
+      "tier": "T1_5", "tags": ["期刊"], "category": "energy-materials",
+      "keywords": ["battery", "batteries", "electrolyte", "electrolytes", "cathode", "anode", "electrode", "lithium", "sodium-ion", "zinc-ion", "interphase", "photovoltaic", "perovskite", "solar", "hydrogen", "electrocatalyst", "electrocatalysis", "electrocatalytic", "electrolysis", "electrolyzer", "water splitting", "oxygen evolution", "machine learning"]
+    }
+  ]
+}

@@ -15,7 +15,7 @@ import { logError } from "../lib/log-error.ts";
 import { chatJson } from "../providers/llm.ts";
 import { completeReceipt } from "../providers/receipts.ts";
 import { shutdownSignal } from "../jobs/queue.ts";
-import { emit } from "../modules.ts";
+import { emit, serverModules } from "../modules.ts";
 import { arrangeDaily, candidates, dailyEdition, periodEntries, sectionOf, SECTION_ORDER, type Candidate, type EditionEntry } from "./edition.ts";
 
 export const REPORT_VERSION = promptVersion("report-period", "report-period-sections", "report-period-no-sections");
@@ -80,17 +80,45 @@ function windowPoint(at: Date): string {
   return `${Number(day.slice(5, 7))} 月 ${Number(day.slice(8, 10))} 日 ${beijingTime(at)}`;
 }
 
+/** A daily that is due but waits for its window's material to be judged (dailyHold); the next run tries again. */
+export class DailyNotReady extends Error {}
+
 /**
- * Daily report for Beijing date D covers the 24 hours up to the site's edition time on D (EDITION_TIMES).
- * Its most important entry leads, in its own words, and the next three are today's highlights. A window
- * the editors judged with nothing new in it still has its issue: no entries, and a lead that says so
- * (REPORTS.quiet).
+ * Why the daily closing at `end` should wait, or null to compose it now: material put online in its window
+ * that is still being judged, or what an installed module still expects for it (a morning announcement not
+ * collected yet). From the site's deadline on (EDITION_TIMES.dailyDeadline) it never waits: what is judged
+ * by then goes out, the rest stays on the timeline.
  */
-export async function composeDaily(date: string, reason?: string): Promise<{ key: string; entries: number }> {
+export async function dailyHold(date: string, start: Date, end: Date, now = new Date()): Promise<string | null> {
+  if (now.getTime() >= beijingAt(date, EDITION_TIMES.dailyDeadline).getTime()) return null;
+  const [{ pending }] = await sql<{ pending: number }[]>`
+    SELECT count(*)::int AS pending FROM articles a JOIN sources s ON s.id = a.source_id
+    WHERE s.participation_mode = 'editorial' AND NOT a.backfill
+      AND a.timeline_at > ${start} AND a.timeline_at <= ${end}
+      AND (a.processing_state = 'new' OR (a.processing_state = 'analyzed' AND a.grouping_status = 'pending'))`;
+  if (pending > 0) return `${pending} articles in its window are still being judged`;
+  for (const m of serverModules()) {
+    const hold = await m.reports?.dailyHold?.({ date, start, end, now });
+    if (hold) return `${m.name}: ${hold}`;
+  }
+  return null;
+}
+
+/**
+ * Daily report for Beijing date D covers the 24 hours up to the site's edition time on D (EDITION_TIMES),
+ * that minute included. Its most important entry leads, in its own words, and the next three are today's
+ * highlights. A window the editors judged with nothing new in it still has its issue: no entries, and a
+ * lead that says so (REPORTS.quiet).
+ */
+export async function composeDaily(date: string, reason?: string, now = new Date()): Promise<{ key: string; entries: number }> {
   const previous = await savedReport("daily", date);
   if (previous && reason === undefined) return { key: date, entries: previous.entries };
   const end = beijingAt(date, EDITION_TIMES.daily);
   const start = new Date(end.getTime() - 86400000);
+  if (reason === undefined) {
+    const hold = await dailyHold(date, start, end, now);
+    if (hold) throw new DailyNotReady(`daily ${date} waits: ${hold}`);
+  }
   const edition = await dailyEdition(date, start, end);
   // Nothing judged in the window is a failure upstream, not a quiet day: the run fails and is caught up later.
   if (edition.entries.length === 0 && edition.stats.judgedReports === 0) throw new Error(`daily ${date}: nothing judged in its window`);
@@ -290,13 +318,15 @@ const nextMonth = (label: string) => {
  * The scheduled run (every half hour): every issue due by `now` that does not exist yet, oldest first.
  * The newest one appears at the first run after it falls due (above); a long stop or an older gap is
  * filled too. A kind with no issue yet only gets its latest due one. An issue that fails does not hold
- * up the others; at most `limit` issues are written per run, the next run continues.
+ * up the others; at most `limit` issues are written per run, the next run continues. A daily still
+ * waiting for its window to be judged (dailyHold) is not a failure: it is tried again at the next run.
  */
-export async function composeDueReports(now = new Date(), limit = 8): Promise<{ generated: string[]; failed: string[] }> {
+export async function composeDueReports(now = new Date(), limit = 8): Promise<{ generated: string[]; failed: string[]; waiting: string[] }> {
   const generated: string[] = [];
   const failed: string[] = [];
+  const waiting: string[] = [];
   const kinds: Array<{ kind: ReportKind; due: string; next: (k: string) => string; end: (k: string) => string; compose: (k: string) => Promise<unknown> }> = [
-    { kind: "daily", due: dueDaily(now), next: (k) => addDays(k, 1), end: (k) => k, compose: composeDaily },
+    { kind: "daily", due: dueDaily(now), next: (k) => addDays(k, 1), end: (k) => k, compose: (k) => composeDaily(k, undefined, now) },
     { kind: "weekly", due: dueWeekly(now), next: nextWeek, end: (k) => isoWeekRange(k)!.end, compose: composeWeekly },
     { kind: "monthly", due: dueMonthly(now), next: nextMonth, end: (k) => monthRange(k)!.end, compose: composeMonthly },
   ];
@@ -314,11 +344,16 @@ export async function composeDueReports(now = new Date(), limit = 8): Promise<{ 
         await k.compose(key);
         generated.push(`${k.kind}:${key}`);
       } catch (error) {
+        if (error instanceof DailyNotReady) {
+          waiting.push(`${k.kind}:${key}`);
+          console.log(JSON.stringify({ level: "info", msg: "report waits", report: `${k.kind}:${key}`, reason: error.message }));
+          continue;
+        }
         failed.push(`${k.kind}:${key}`);
         console.error(JSON.stringify({ level: "error", msg: "report failed", report: `${k.kind}:${key}`, error: logError(error) }));
       }
     }
   }
   if (failed.length) throw new Error(`reports: ${failed.join(", ")} failed${generated.length ? `; ${generated.join(", ")} written` : ""}`);
-  return { generated, failed };
+  return { generated, failed, waiting };
 }

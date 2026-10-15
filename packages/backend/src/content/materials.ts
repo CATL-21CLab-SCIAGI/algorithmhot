@@ -37,6 +37,8 @@ export interface MaterialInput {
   author?: string | null;
   language?: string | null;
   publishedAt?: Date | null;
+  /** publishedAt names a day without a time (a journal's first online date): the timeline rule keeps it on that Beijing day. */
+  publishedAtDay?: boolean;
   sourceUpdatedAt?: Date | null;
   excerpt?: string | null;
   bodyHtml?: string | null;
@@ -76,16 +78,34 @@ export interface TimelineDecision {
   backfillReason: string | null;
 }
 
-/** The one timeline rule shared by every entrance. */
-export function decideTimeline(claimed: Date | null | undefined, discoveredAt: Date, explicitBackfill?: string | null): TimelineDecision {
+const DAY_MS = 86_400_000;
+const BEIJING_MS = 8 * 3600 * 1000;
+
+/** The instant a source put the material online: its own time, or for a date alone the last moment of that Beijing day. */
+function onlineUntil(publishedAt: Date, dateOnly: boolean): number {
+  if (!dateOnly) return publishedAt.getTime();
+  const beijingDay = Math.floor((publishedAt.getTime() + BEIJING_MS) / DAY_MS);
+  return (beijingDay + 1) * DAY_MS - BEIJING_MS - 1;
+}
+
+/**
+ * The one timeline rule shared by every entrance: material sits on the timeline when its source put it
+ * online, never later than this site found it. A date alone (`dateOnly`: the source gives a day, no time)
+ * counts until the last moment of that Beijing day, so material found on its day keeps the time it was found and
+ * material found later stays on its day.
+ */
+export function decideTimeline(claimed: Date | null | undefined, discoveredAt: Date, explicitBackfill?: string | null, dateOnly = false): TimelineDecision {
   let publishedAt: Date | null = claimed && Number.isFinite(claimed.getTime()) ? claimed : null;
-  if (publishedAt && publishedAt.getTime() > discoveredAt.getTime() + FUTURE_TOLERANCE_MS) publishedAt = null;
+  // A date alone is in the future only when its whole day is.
+  const earliest = publishedAt && (dateOnly ? onlineUntil(publishedAt, true) + 1 - DAY_MS : publishedAt.getTime());
+  if (publishedAt && earliest! > discoveredAt.getTime() + FUTURE_TOLERANCE_MS) publishedAt = null;
+  const online = publishedAt ? Math.min(onlineUntil(publishedAt, dateOnly), discoveredAt.getTime()) : null;
   let backfillReason: string | null = null;
   if (explicitBackfill) backfillReason = explicitBackfill;
-  else if (!publishedAt) backfillReason = "unknown-publication-time";
-  else if (publishedAt && discoveredAt.getTime() - publishedAt.getTime() > STALE_ON_DISCOVERY_MS) backfillReason = "stale-on-discovery";
+  else if (online === null) backfillReason = "unknown-publication-time";
+  else if (discoveredAt.getTime() - online > STALE_ON_DISCOVERY_MS) backfillReason = "stale-on-discovery";
   const backfill = backfillReason !== null;
-  const timelineAt = backfill && publishedAt ? publishedAt : discoveredAt;
+  const timelineAt = online === null ? discoveredAt : new Date(online);
   return { publishedAt, timelineAt, backfill, backfillReason };
 }
 
@@ -193,7 +213,7 @@ async function upsertIn(db: Db, m: MaterialInput): Promise<MaterialResult> {
   const discoveredAt = m.discoveredAt ?? new Date();
   const title = collapseWhitespace(m.title).slice(0, 1000) || m.url;
 
-  const t = decideTimeline(m.publishedAt, discoveredAt, m.backfill);
+  const t = decideTimeline(m.publishedAt, discoveredAt, m.backfill, m.publishedAtDay);
   // Most listing entries are already stored. Lock and reuse those rows without attempting an
   // insert of their body and raw payload on every collection. The unique key still arbitrates
   // concurrent first discoveries; after losing that insert, read and lock its winner.

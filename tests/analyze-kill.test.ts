@@ -11,7 +11,7 @@ import { sql, closeDb } from "@aihot/backend/db";
 import { stopBoss } from "@aihot/backend/jobs/queue";
 import { upsertMaterial } from "@aihot/backend/content/materials";
 import { markStalePendingReceipts } from "@aihot/backend/providers/receipts";
-import { autoReleaseUnknownReceipts } from "@aihot/backend/operations/recover";
+import { recoverStaleWork, releaseReceipt } from "@aihot/backend/operations/recover";
 
 const T = tag();
 const SOURCE = `test-analyze-kill-${T}`;
@@ -114,7 +114,7 @@ after(async () => {
   await closeDb();
 });
 
-test("SIGKILL after the provider accepted a request leaves an unknown outcome, released only once", async () => {
+test("SIGKILL after the provider accepted a request leaves an unknown outcome until an explicit operator release", async () => {
   calls = [];
   const articleId = await article("lost");
   const subject = `article:${articleId}@1`;
@@ -138,24 +138,32 @@ test("SIGKILL after the provider accepted a request leaves an unknown outcome, r
   assert.equal(await markStalePendingReceipts(), 0, "a recent pending receipt is still in flight");
   assert.deepEqual(calls, ["prefilter"], "restart does not immediately buy the lost answer again");
 
-  // Age only the dedicated fixture's ledger: the test checks the 10/30 minute decisions without
+  // Age only the dedicated fixture's ledger: the test checks stale detection and retained unknowns without
   // claiming that wall time, process scheduling, or a seed is a deterministic simulation.
   await sql`UPDATE receipts SET updated_at=now()-interval '11 minutes' WHERE subject=${subject}`;
   assert.equal(await markStalePendingReceipts(), 1);
   assert.equal(await status(), "unknown");
   assert.equal((await finish(articleId)).result?.state, "unknown-receipt");
-  assert.equal((await autoReleaseUnknownReceipts()).released, 0, "unknown waits another 30 minutes");
+  await recoverStaleWork();
   await sql`UPDATE receipts SET updated_at=now()-interval '31 minutes' WHERE subject=${subject}`;
-  assert.equal((await autoReleaseUnknownReceipts()).released, 1);
+  await recoverStaleWork();
+  assert.equal(await status(), "unknown", "an aged lost request is not automatically released");
+  assert.equal((await finish(articleId)).result?.state, "unknown-receipt");
+  assert.deepEqual(calls, ["prefilter"], "recovery and repeated processing do not send an unknown request again");
+  const [receipt] = await sql<{ id: number }[]>`SELECT id FROM receipts WHERE subject=${subject}`;
+  assert.equal((await sql`SELECT 1 FROM receipt_attempts WHERE receipt_id=${receipt!.id}`).length, 1);
+  assert.equal((await sql`SELECT 1 FROM audit_log WHERE action='receipt.release' AND subject=${`receipt:${receipt!.id}`}`).length, 0);
+  await releaseReceipt(receipt!.id, { billed: false, note: "Local fixture provider confirmed no billing; exercise explicit recovery" }, "test-kill-release");
   assert.equal(await status(), "failed");
 
   await loseAnswer();
   await sql`UPDATE receipts SET updated_at=now()-interval '11 minutes' WHERE subject=${subject}`;
   assert.equal(await markStalePendingReceipts(), 1);
   await sql`UPDATE receipts SET updated_at=now()-interval '31 minutes' WHERE subject=${subject}`;
-  assert.equal((await autoReleaseUnknownReceipts()).released, 0, "the second lost answer waits for an admin");
+  await recoverStaleWork();
+  assert.equal(await status(), "unknown", "the second lost answer also waits for an explicit operator decision");
   assert.equal((await finish(articleId)).result?.state, "unknown-receipt");
-  assert.deepEqual(calls, ["prefilter", "prefilter"], "only one automatic repeat was sent");
+  assert.deepEqual(calls, ["prefilter", "prefilter"], "only the explicitly authorized repeat was sent");
   const attempts = await sql`SELECT a.status FROM receipt_attempts a JOIN receipts r ON r.id=a.receipt_id WHERE r.subject=${subject} ORDER BY a.attempt`;
   assert.deepEqual(attempts.map((a) => a.status), ["failed", "unknown"]);
   assert.equal((await sql`SELECT 1 FROM analyses WHERE article_id=${articleId}`).length, 0);

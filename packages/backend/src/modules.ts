@@ -16,6 +16,7 @@ export interface Scheduled {
   name: string;
   cron: string;
   run: () => Promise<unknown>;
+  /** Slots missed while the worker was down run once when it is back (the default), or are skipped. */
   missed?: "skip" | "once";
   /** Read when the worker starts, after the modules are installed: false removes the schedule and its execution queue; run history remains. */
   when?: () => boolean;
@@ -228,6 +229,13 @@ export interface ServerModule {
   models?: Record<string, ModelStep>;
   /** Cron schedules (the worker). */
   schedules?: Scheduled[];
+  reports?: {
+    /**
+     * Why the daily closing at `end` should still wait before its deadline (reports/compose.ts dailyHold),
+     * e.g. a morning announcement its window includes is not collected yet; null when it need not.
+     */
+    dailyHold?: (window: { date: string; start: Date; end: Date; now: Date }) => Promise<string | null>;
+  };
   /** What is wrong now, for the owner's alerts (operations/alerts.ts), after the engine's problems. */
   alerts?: (now: number) => Promise<Finding[]>;
   /**

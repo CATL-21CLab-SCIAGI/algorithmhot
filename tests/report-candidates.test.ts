@@ -1,5 +1,6 @@
 import { editionAt, gate, tag } from "./setup.ts";
-// A selected item released across the daily edition time must appear in the next issue exactly once.
+// A selected item belongs to the issue whose window (start, end] holds the time its source put it online,
+// the edition minute included, exactly once; a release after the cutoff does not move it to the next issue.
 import { after, before, test } from "node:test";
 import assert from "node:assert/strict";
 import { setTimeout as delay } from "node:timers/promises";
@@ -35,7 +36,8 @@ async function analyzed(label: string, timelineAt: Date): Promise<string> {
   });
   assert.equal(backfill, false);
   await sql`INSERT INTO analyses (article_id, input_revision, origin, relevance, category, title_zh, summary_zh, score, selected)
-            VALUES (${articleId}, 1, 'rule', 'pass', 'ai-models', ${`标题 ${label}`}, ${`摘要 ${label}`}, 90, true)`;
+            VALUES (${articleId}, 1, 'rule', 'pass', 'algorithm', ${`标题 ${label}`}, ${`摘要 ${label}`}, 90, true)`;
+  await sql`UPDATE articles SET processing_state = 'analyzed' WHERE id = ${articleId}`;
   return articleId;
 }
 
@@ -46,32 +48,23 @@ async function selected(label: string, timelineAt: Date, releasedAt: Date): Prom
   return articleId;
 }
 
-test("reports assign delayed and boundary releases to the period readers first see them", async () => {
+test("reports assign each item to the window it went online in, the edition minute included, whenever it was released", async () => {
   const onTime = await selected("on-time", editionAt("daily", "2020-01-02", -120), editionAt("daily", "2020-01-02", -60));
   const delayed = await selected("delayed", editionAt("daily", "2020-01-02", -60), editionAt("daily", "2020-01-02", 120));
-  const atBoundary = await selected("at-boundary", editionAt("daily", "2020-01-02", -60), editionAt("daily", "2020-01-02"));
-  const groupedBefore = await analyzed("grouped-before", editionAt("daily", "2020-01-02", -120));
-  await publishArticle(groupedBefore, { now: editionAt("daily", "2020-01-02", -120) });
-  await sql`UPDATE articles SET grouping_status = 'complete', grouped_at = ${editionAt("daily", "2020-01-02", -60)} WHERE id = ${groupedBefore}`;
-  await publishArticle(groupedBefore, { now: editionAt("daily", "2020-01-02", -50) });
+  // An arXiv announcement goes online at the edition minute itself: it closes that morning's issue.
+  const atBoundary = await selected("at-boundary", editionAt("daily", "2020-01-02"), editionAt("daily", "2020-01-02", 30));
+  const after = await selected("after", new Date(editionAt("daily", "2020-01-02").getTime() + 60_000), editionAt("daily", "2020-01-02", 2));
   const groupedLate = await analyzed("grouped-late", editionAt("daily", "2020-01-02", -120));
   await publishArticle(groupedLate, { now: editionAt("daily", "2020-01-02", -120) }); // waits for identity confirmation
-  await sql`UPDATE articles SET grouping_status = 'complete', grouped_at = ${editionAt("daily", "2020-01-02", -10)} WHERE id = ${groupedLate}`;
+  await sql`UPDATE articles SET grouping_status = 'complete', grouped_at = ${editionAt("daily", "2020-01-02", 20)} WHERE id = ${groupedLate}`;
+  await publishArticle(groupedLate, { now: editionAt("daily", "2020-01-02", 20) });
   const boundary = editionAt("daily", "2020-01-02");
   const previous = new Set((await candidates(editionAt("daily", "2020-01-01"), boundary)).map((c) => c.itemId));
-
-  assert.equal(previous.has(onTime), true);
-  assert.equal(previous.has(groupedBefore), true);
-  for (const id of [delayed, atBoundary, groupedLate]) assert.equal(previous.has(id), false);
+  const next = new Set((await candidates(boundary, editionAt("daily", "2020-01-03"))).map((c) => c.itemId));
+  for (const id of [onTime, delayed, atBoundary, groupedLate]) assert.deepEqual([previous.has(id), next.has(id)], [true, false]);
+  assert.deepEqual([previous.has(after), next.has(after)], [false, true]);
 
   await composeDaily("2020-01-02");
-  await publishArticle(groupedLate, { now: editionAt("daily", "2020-01-02", 10) });
-  const [release] = await sql<{ visible_after: Date }[]>`SELECT visible_after FROM publications WHERE article_id = ${groupedLate}`;
-  assert.equal(release!.visible_after.toISOString(), editionAt("daily", "2020-01-02", 10).toISOString());
-  const next = new Set((await candidates(boundary, editionAt("daily", "2020-01-03"))).map((c) => c.itemId));
-  assert.equal(next.has(onTime), false);
-  assert.equal(next.has(groupedBefore), false);
-  for (const id of [delayed, atBoundary, groupedLate]) assert.equal(next.has(id), true);
   await composeDaily("2020-01-03");
   const reports = await sql<{ key: string; content: { sections: Array<{ items: Array<{ itemId: string }> }>; flashes: Array<{ itemId: string }> } }[]>`
     SELECT key, content FROM reports WHERE kind = 'daily' AND key IN ('2020-01-02', '2020-01-03')`;
@@ -80,16 +73,24 @@ test("reports assign delayed and boundary releases to the period readers first s
     const content = reports.find((r) => r.key === key)!.content;
     return new Set([...content.sections.flatMap((s) => s.items), ...content.flashes].map((i) => i.itemId));
   };
-  assert.equal(items("2020-01-02").has(onTime), true);
-  assert.equal(items("2020-01-02").has(groupedBefore), true);
-  assert.equal(items("2020-01-02").has(delayed), false);
-  assert.equal(items("2020-01-02").has(atBoundary), false);
-  assert.equal(items("2020-01-02").has(groupedLate), false);
-  assert.equal(items("2020-01-03").has(onTime), false);
-  assert.equal(items("2020-01-03").has(groupedBefore), false);
-  assert.equal(items("2020-01-03").has(delayed), true);
-  assert.equal(items("2020-01-03").has(atBoundary), true);
-  assert.equal(items("2020-01-03").has(groupedLate), true);
+  for (const id of [onTime, delayed, atBoundary, groupedLate]) assert.deepEqual([items("2020-01-02").has(id), items("2020-01-03").has(id)], [true, false]);
+  assert.deepEqual([items("2020-01-02").has(after), items("2020-01-03").has(after)], [false, true]);
+});
+
+test("an item released only after its issue went out stays out of it, and out of the next", async (t) => {
+  const late = await analyzed("released-after-issue", editionAt("daily", "2020-01-06", -60));
+  await publishArticle(late, { now: editionAt("daily", "2020-01-06", -60) }); // waits for identity confirmation
+  const other = await selected("issue-filler", editionAt("daily", "2020-01-06", -90), editionAt("daily", "2020-01-06", -80));
+  t.mock.timers.enable({ apis: ["Date"], now: editionAt("daily", "2020-01-06", 5 * 3600) });
+  await composeDaily("2020-01-06");
+  t.mock.timers.reset();
+  await sql`UPDATE articles SET grouping_status = 'complete', grouped_at = ${editionAt("daily", "2020-01-06", 6 * 3600)} WHERE id = ${late}`;
+  await publishArticle(late, { now: editionAt("daily", "2020-01-06", 6 * 3600) });
+  const [issue] = await sql<{ content: { sections: Array<{ items: Array<{ itemId: string }> }>; flashes: Array<{ itemId: string }> } }[]>`
+    SELECT content FROM reports WHERE kind = 'daily' AND key = '2020-01-06'`;
+  const ids = new Set([...issue!.content.sections.flatMap((s) => s.items), ...issue!.content.flashes].map((i) => i.itemId));
+  assert.deepEqual([ids.has(other), ids.has(late)], [true, false]);
+  assert.equal((await candidates(editionAt("daily", "2020-01-06"), editionAt("daily", "2020-01-07"))).some((c) => c.itemId === late), false);
 });
 
 /** Observe an actual PostgreSQL lock wait before advancing the clock or releasing the transaction. */
@@ -102,7 +103,7 @@ async function waitForBlocked(blocker: number, operation: Promise<unknown>) {
 }
 
 for (const lock of ["article", "fact seat", "report snapshot"] as const) {
-  test(`a release waiting for the ${lock} lock uses the time after the cutoff`, async (t) => {
+  test(`a release waiting for the ${lock} lock uses the time after the cutoff, and the item stays in the window it went online in`, async (t) => {
     const id = await analyzed(`waiting-${lock}`, editionAt("daily", "2020-01-02", -120));
     await publishArticle(id, { now: editionAt("daily", "2020-01-02", -120) });
     await sql`UPDATE articles SET grouping_status = 'complete', grouped_at = ${editionAt("daily", "2020-01-02", -60)} WHERE id = ${id}`;
@@ -135,8 +136,8 @@ for (const lock of ["article", "fact seat", "report snapshot"] as const) {
       assert.equal(published!.visible_after.toISOString(), editionAt("daily", "2020-01-02", 10).toISOString());
       assert.equal(published!.visible_at.toISOString(), published!.visible_after.toISOString());
       const boundary = editionAt("daily", "2020-01-02");
-      assert.equal((await candidates(editionAt("daily", "2020-01-01"), boundary)).some((c) => c.itemId === id), false);
-      assert.equal((await candidates(boundary, editionAt("daily", "2020-01-03"))).some((c) => c.itemId === id), true);
+      assert.equal((await candidates(editionAt("daily", "2020-01-01"), boundary)).some((c) => c.itemId === id), true);
+      assert.equal((await candidates(boundary, editionAt("daily", "2020-01-03"))).some((c) => c.itemId === id), false);
     } finally {
       release.open();
       await Promise.allSettled([holding, publication]);

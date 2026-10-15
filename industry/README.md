@@ -7,6 +7,7 @@
 | `taxonomy.ts` | 分类、标签、公司与机构、防止模型写错公司的词表，这个行业最受关注的那类发布（`RELEASE`） |
 | `topics.json` | 主题目录（`/topics`），站点启动时读取 |
 | `sources.json` | 首次启动时导入的示范信源 |
+| `research-feeds.json` | arXiv 分类订阅与 Crossref 期刊清单，由研究来源模块读取（引擎自身不读） |
 | `prompts/` | 每一步的提示词：预筛、评分、写作、结构化、归组、事件综述、周报月报、翻译 |
 | `selection.ts` | 入选门槛 |
 | `gold.example.jsonl` | 精选评测样本的格式示例 |

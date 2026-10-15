@@ -189,7 +189,7 @@ test("backup failures still escalate after fifty hours without a success", async
 
 // Failure cases: scoring succeeded but identity work failed outside processing_state; a short normal
 // wait creates noise; withdrawn/rejected/completed items stay counted; unknown paid work is called
-// harmless or automatically recoverable after its one automatic release has already been used;
+// harmless or automatically recoverable before an operator has resolved the unknown outcome;
 // a successful repair leaves an alert open; the runs page cannot identify the affected news;
 // a new material revision inherits the original candidate's old timestamp and immediately alerts.
 test("selected identity delays show reader impact, recovery state and the affected articles", async () => {
@@ -232,12 +232,15 @@ test("selected identity delays show reader impact, recovery state and the affect
       VALUES('group-alert-receipt','deepseek','event_identity','article:group-alert-failed','unknown') RETURNING id`;
     await sql`UPDATE articles SET grouping_receipt_id=${receipt!.id} WHERE id='group-alert-failed'`;
     warning = await finding();
-    assert.match(warning!.heals!, /自动/);
-    assert.match(warning!.heals!, /30 分钟/);
+    assert.match(warning!.heals!, /人工|处理后/);
+    assert.doesNotMatch(warning!.heals!, /30 分钟|自动放行/);
+    assert.ok((await runsOverview()).grouping.items.some((item) => item.articleId === "group-alert-failed" && item.recovery === "manual"));
+    // A historical automatic-release marker does not change the new requirement to ask an operator.
     await sql`INSERT INTO receipt_attempts(receipt_id,service,attempt,status,error)
       VALUES(${receipt!.id},'deepseek',1,'failed','自动放行：结果未知超过 30 分钟，未核对是否计费')`;
     warning = await finding();
     assert.match(warning!.heals!, /人工|处理后/);
+    assert.doesNotMatch(warning!.heals!, /30 分钟|自动放行/);
     assert.match(warning!.detail!, new RegExp(`#${receipt!.id}`));
 
     await sql`UPDATE articles SET grouping_status='complete',grouped_at=now(),grouping_receipt_id=NULL WHERE id='group-alert-failed'`;
@@ -265,7 +268,7 @@ test("the ops digest does not describe unknown paid work as harmless or already 
     await sendDigest();
     const message = lines.join("\n");
     assert.match(message, /结果.*未知|结果.*确认/);
-    assert.doesNotMatch(message, /以下事项不影响读者|自动重试过一次/);
+    assert.doesNotMatch(message, /以下事项不影响读者|自动重试过一次|自动恢复后仍未知|30 分钟后自动放行/);
   } finally {
     console.log = log;
     if (enabled === undefined) delete process.env.FEISHU_INTERNAL_ENABLED;

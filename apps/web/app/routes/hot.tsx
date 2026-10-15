@@ -15,6 +15,10 @@ import { Delta } from "../features/hot/Delta";
 import { PhoneBar } from "../components/shell/PhoneBar";
 import { inNav } from "../components/shell/nav";
 import type { Screen } from "../components/shell/screens";
+import * as SITE_CONFIG from "@aihot/site";
+
+/** The hot window as the copy names it (site/site.ts HOT_WINDOW). */
+const HOT_LABEL = (SITE_CONFIG as { HOT_WINDOW?: { label: string } }).HOT_WINDOW?.label ?? "48 小时";
 
 export const handle: Screen = { tab: inNav("/hot") ? "hot" : "featured", name: "热点" };
 export { pageHeaders as headers } from "../lib/api.server";
@@ -27,7 +31,7 @@ export async function loader({ request }: { request: Request }) {
 export function meta() {
   return pageMeta({
     title: withSubject("热点榜"),
-    description: `${subjectAfter("过去 48 小时", "圈")}讨论最多的 10 个事件：热度指数、趋势与组成热度的公开来源。`,
+    description: `${subjectAfter(`过去 ${HOT_LABEL}`, "圈")}讨论最多的 10 个事件：热度指数、趋势与组成热度的公开来源。`,
     path: "/hot",
     image: "/og/pages/hot.png",
   });
@@ -328,7 +332,7 @@ export default function HotPage() {
         </summary>
         <div className="max-w-[760px] space-y-2 pb-2 pl-[21px] pt-2 leading-[1.75] text-ink-3">
           <p>热度来自参与同一事件的独立账号与机构，重复采集只算一次，并按 24 小时半衰期衰减。它衡量讨论活跃程度，不是报道质量评分。</p>
-          <p>榜单统计过去 48 小时。趋势只比较持续覆盖的同一组信源；它反映我们的监测范围，不代表全网人数。缺少可比历史时，不展示趋势线。</p>
+          <p>榜单统计过去 {HOT_LABEL}。趋势只比较持续覆盖的同一组信源；它反映我们的监测范围，不代表全网人数。缺少可比历史时，不展示趋势线。</p>
           <p>
             信源名单只展示可公开阅读的报道来源；讨论参与者还包括只计入热度的账号与机构。同一机构的多个渠道可能合并计数，因此参与者不一定多于信源数。点击事件可查看各方报道与观点。
           </p>

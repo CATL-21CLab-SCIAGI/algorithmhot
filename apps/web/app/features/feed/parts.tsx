@@ -1,6 +1,6 @@
 // Small building blocks shared by feed items, detail pages and lists.
 import { useState } from "react";
-import type { FeedItemSummary, MediaView } from "@aihot/contracts/site";
+import type { FeedItemSummary, ItemFigure, ItemNote, MediaView } from "@aihot/contracts/site";
 import { IconBookmark } from "../../components/icons";
 import { SourceAvatar } from "../../components/ui/SourceAvatar";
 import { Lightbox } from "../../components/ui/Lightbox";
@@ -18,6 +18,48 @@ export function SourceLine({ item, className = "" }: { item: Pick<FeedItemSummar
     );
   }
   return <span className={`min-w-0 truncate ${className}`}>{item.source.name}</span>;
+}
+
+/** The material's short notes (an identifier, the day it went online, a figure still to come), in one line. */
+export function ItemNotes({ notes, className = "" }: { notes: ItemNote[] | undefined; className?: string }) {
+  if (!notes?.length) return null;
+  return (
+    <ul className={`relative z-10 flex flex-wrap gap-x-3 gap-y-1 text-[12px] leading-[18px] text-ink-4 ${className}`}>
+      {notes.map((n, i) => (
+        <li key={i} className="min-w-0 [overflow-wrap:anywhere]">
+          <span>{n.label}</span>
+          {n.value && (n.href
+            ? <a href={n.href} target="_blank" rel="noopener noreferrer" className="ml-1 mono text-ink-3 underline decoration-line underline-offset-2 hover:text-accent">{n.value}</a>
+            : <span className="ml-1 mono text-ink-3">{n.value}</span>)}
+          {!n.value && n.href && <a href={n.href} target="_blank" rel="noopener noreferrer" className="sr-only">{n.label}</a>}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/** A figure reused from the original, with its credit and licence under it. */
+export function FigureView({ figure, className = "", large = false }: { figure: ItemFigure | undefined; className?: string; large?: boolean }) {
+  if (!figure) return null;
+  return (
+    <figure className={`relative z-10 ${className}`}>
+      <img
+        src={large ? figure.fullUrl : figure.url}
+        srcSet={large ? undefined : figure.srcSet}
+        sizes={large ? undefined : "(min-width: 961px) 560px, 100vw"}
+        alt={figure.alt ?? ""}
+        loading="lazy"
+        decoding="async"
+        className={`w-full rounded-[10px] border border-line-soft bg-white object-contain ${large ? "max-h-[520px]" : "max-h-[240px]"}`}
+      />
+      <figcaption className="mt-1.5 text-[12px] leading-[18px] text-ink-4">
+        {figure.alt && <span className="line-clamp-2 text-ink-3">{figure.alt}</span>}
+        {figure.href
+          ? <a href={figure.href} target="_blank" rel="noopener noreferrer" className="hover:text-accent">{figure.credit}</a>
+          : <span>{figure.credit}</span>}
+      </figcaption>
+    </figure>
+  );
 }
 
 /** Up to four media thumbnails, kept small in lists (the detail page shows them larger). Videos are stills. */

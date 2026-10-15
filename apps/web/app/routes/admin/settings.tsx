@@ -1,4 +1,4 @@
-import { ADMIN, SITE } from "@aihot/site";
+import { ADMIN, DAILY_WORK_BUDGET, SITE } from "@aihot/site";
 import { useRef, useState } from "react";
 import type { Route } from "./+types/settings";
 import type { AdminSettings } from "@aihot/contracts/admin";
@@ -62,13 +62,17 @@ function BudgetRow({ b }: { b: AdminSettings["budgets"][number] }) {
           <Input type="number" min={0} className="!w-24 !py-1 text-right" value={v[k]} onChange={(e) => setV({ ...v, [k]: Number(e.target.value) })} />
         </td>
       ))}
-      <td className="num px-3 py-2 text-right text-ink-3">{num(b.used_hour)} / {num(b.used_day)}</td>
+      <td className="num px-3 py-2 text-right text-ink-3">
+        <div>{num(b.used_hour)} / {num(b.used_day)}</div>
+        <div className="mt-1 text-[11px]">近24小时实际 {num(b.used_24h)}</div>
+        {b.reset_at && <div className="mt-1 text-[11px]">日额度重置于 {bj(b.reset_at)}</div>}
+      </td>
       <td className="px-3 py-2 text-right">
         <Button size="sm" tone="primary" disabled={!changed} onClick={() => setOpen(true)}>保存</Button>
         <ReasonDialog
           open={open}
           title={`调整 ${b.service} 的请求上限`}
-          description={`上限是付费请求的熔断：超过后请求暂停并按窗口重试。填 0 表示立即停用这个服务。${ADMIN.budgetNote ?? ""}`}
+          description={`上限按近 1 分钟、近 1 小时和近 24 小时的滚动窗口计算，不在零点重置。单独授权的日额度重置只改变预算计数，保留实际调用与费用，分钟、小时限制不变。达到上限后请求暂停，待额度释放后继续处理。填 0 表示立即停用这个服务。${ADMIN.budgetNote ?? ""}`}
           confirmLabel="保存"
           busy={pending === "budget"}
           onClose={() => setOpen(false)}
@@ -122,15 +126,19 @@ export default function SettingsAdmin({ loaderData: s }: Route.ComponentProps) {
           />
         </Card>
       </div>
-      <Card className="mt-5" title="付费请求上限" right={<span>已用：近 1 小时 / 近 24 小时</span>} pad={false}>
+      <Card className="mt-5" title="付费请求上限" right={<span>预算已用：近 1 小时 / 日额度</span>} pad={false}>
+        <div className="space-y-1 border-b border-line px-3 py-3 text-[12.5px] leading-relaxed text-ink-3">
+          <p>各项上限均按滚动时间窗口计算。默认 llm 的积压与辅助任务最多占近 24 小时上限的 {Math.round(DAILY_WORK_BUDGET.backgroundShare * 100)}%，其余优先用于目标日报候选。</p>
+          <p>总上限不变；近 24 小时窗口随时间前移，已用次数不会因日报出刊或零点清零。单独授权重置日额度时，预算计数重新开始；实际调用记录、费用和 unknown 状态保留，分钟与小时额度不重置。</p>
+        </div>
         <div className="overflow-x-auto">
           <table className="w-full min-w-[640px] text-[13px]">
             <thead>
               <tr className="border-b border-line text-left text-[12px] text-ink-3">
                 <th className="px-3 py-2 font-medium">服务</th>
-                <th className="px-3 py-2 font-medium">每分钟</th>
-                <th className="px-3 py-2 font-medium">每小时</th>
-                <th className="px-3 py-2 font-medium">每天</th>
+                <th className="px-3 py-2 font-medium">近 1 分钟</th>
+                <th className="px-3 py-2 font-medium">近 1 小时</th>
+                <th className="px-3 py-2 font-medium">近 24 小时</th>
                 <th className="px-3 py-2 text-right font-medium">已用</th>
                 <th />
               </tr>

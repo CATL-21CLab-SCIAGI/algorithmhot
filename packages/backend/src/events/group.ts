@@ -571,9 +571,11 @@ async function groupSignal(a: ArticleRow, source: { id: string; signal_group_id:
       return manual ? { verdict: "manual", factId: manual.factId } : { verdict, ...(target ? { storyId: target.storyId } : {}) };
     });
   };
-  const { referenced } = await relatedPosts(a);
-  if (referenced.length) {
-    const target = referenced[0]!;
+  // A post that replies to or quotes a report, or is about the same address (a community page that names
+  // the paper's own URL), is evidence for that report's event: no recall needed.
+  const { sameUrl, referenced } = await relatedPosts(a);
+  if (referenced.length || sameUrl) {
+    const target = referenced[0] ?? sameUrl!;
     return write({ factId: target.fact_id, storyId: target.story_id }, "signal-native", [{ id: target.fact_id, score: 1, relation: "SAME_STORY", confidence: 1 }]);
   }
   if (!embeddingsAvailable()) return { verdict: "signal-unmatched" };

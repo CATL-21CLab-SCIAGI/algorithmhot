@@ -7,6 +7,7 @@ import { cached, type Cached } from "../lib/cache.ts";
 import { proxiedImage, proxiedImageSet } from "../media/imgproxy.ts";
 import { isoWeekRange, monthRange } from "@aihot/contracts/time";
 import { dailyUrl, itemUrl, periodUrl, siteUrl } from "./links.ts";
+import { itemFigure, itemNotes } from "./items.ts";
 import { publicSourceName } from "./rules.ts";
 import { listedCondition } from "./scope.ts";
 
@@ -30,14 +31,16 @@ interface Availability {
   sourceName: string | null;
   sourceIcon: string | null;
   publishedAt: Date | null;
+  /** The article's figure now (raw.figure). */
+  figure: unknown;
 }
 
 async function availability(ids: string[]): Promise<Map<string, Availability>> {
   const out = new Map<string, Availability>();
   if (ids.length === 0) return out;
-  const rows = await sql<{ id: string; available: boolean; summary: string | null; first_party: boolean; source_id: string; source_name: string | null; icon_url: string | null; at: Date | null }[]>`
+  const rows = await sql<{ id: string; available: boolean; summary: string | null; first_party: boolean; source_id: string; source_name: string | null; icon_url: string | null; at: Date | null; figure: unknown }[]>`
     SELECT p.article_id AS id, (${listedCondition(new Date())}) AS available, p.summary, (s.tier = 'T1') AS first_party, p.source_id, s.name AS source_name, s.icon_url,
-      coalesce(p.published_at, p.discovered_at) AS at
+      coalesce(p.published_at, p.discovered_at) AS at, (SELECT a.raw->'figure' FROM articles a WHERE a.id = p.article_id) AS figure
     FROM publications p LEFT JOIN sources s ON s.id = p.source_id
     WHERE p.article_id IN ${sql(ids)}`;
   for (const r of rows) {
@@ -49,6 +52,7 @@ async function availability(ids: string[]): Promise<Map<string, Availability>> {
       sourceName: r.source_name,
       sourceIcon: r.icon_url,
       publishedAt: r.at,
+      figure: r.figure,
     });
   }
   return out;
@@ -227,6 +231,8 @@ function citationFrom(raw: Record<string, any>, avail: Map<string, Availability>
   }
   const iconSrcSet = a?.sourceIcon ? proxiedImageSet(a.sourceIcon, "avatar") : null;
   const metadata = citationMetadata(raw, a);
+  const notes = itemNotes(raw.notes);
+  const figure = itemFigure(a?.figure);
   return {
     itemId: id,
     title: String(raw.title ?? ""),
@@ -236,6 +242,8 @@ function citationFrom(raw: Record<string, any>, avail: Map<string, Availability>
     ...(iconSrcSet ? { sourceIconSrcSet: iconSrcSet } : {}),
     firstParty: a?.firstParty ?? false,
     available: true,
+    ...(notes.length ? { notes } : {}),
+    ...(figure ? { figure } : {}),
   };
 }
 

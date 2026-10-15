@@ -13,13 +13,13 @@ test("topic directory and pool counts stop reusing a withdrawn entry after one m
   const id = `topic-cache-${tag()}`;
   await sql`INSERT INTO sources(id,name,kind,tier,participation_mode) VALUES(${id},'Topic cache','rss','T1','editorial')`;
   await sql`INSERT INTO articles(id,source_id,identity_key,url,title,timeline_at,discovered_at)
-    VALUES(${id},${id},${id},${`https://example.org/${id}`},'MiniMax',now(),now())`;
+    VALUES(${id},${id},${id},${`https://example.org/${id}`},'BAIR',now(),now())`;
   await sql`INSERT INTO publications(article_id,source_id,title,summary,url,timeline_at,discovered_at,sort_at,selected,eligible,visible_after,tags,channel,category)
-    VALUES(${id},${id},'MiniMax 更新','摘要',${`https://example.org/${id}`},now(),now(),now(),true,true,now()-interval '1 minute',ARRAY['entity:minimax'],'news','ai-models')`;
-  assert.equal((await loadTopicPage("minimax", 1))!.topic.poolTotal, 1);
+    VALUES(${id},${id},'BAIR 更新','摘要',${`https://example.org/${id}`},now(),now(),now(),true,true,now()-interval '1 minute',ARRAY['entity:bair'],'news','algorithm')`;
+  assert.equal((await loadTopicPage("bair", 1))!.topic.poolTotal, 1);
   await sql`UPDATE publications SET visibility='withdrawn' WHERE article_id=${id}`;
   t.mock.timers.tick(61_000);
-  const page = (await loadTopicPage("minimax", 1))!;
+  const page = (await loadTopicPage("bair", 1))!;
   assert.deepEqual(page.items, []);
   assert.equal(page.topic.poolTotal, 0, "an expired count cannot be returned during its background refresh");
   t.mock.timers.tick(61_000);

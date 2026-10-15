@@ -4,11 +4,13 @@
 // 2. Before calling, a placeholder row and an attempt row are persisted; budgets count attempts.
 // 3. The raw response is saved before any business write; recovery reuses a received response.
 // 4. A request whose outcome is unknown (timeout after sending, crash mid-flight) is not re-sent by the
-//    caller. ops.recover releases it once after 30 minutes (operations/recover.ts), so a lost answer
-//    costs at most one repeat; after that it waits for the admin.
+//    caller or scheduled recovery. It waits for an admin to check the provider's bill and result.
 import { sql, type Db } from "../db.ts";
 import { sha256, stableJson } from "../lib/ids.ts";
 import { shutdownSignal } from "../lib/shutdown.ts";
+import { DAILY_WORK_BUDGET } from "@aihot/site";
+import { dailyWorkArticleIds, dailyWorkWindow } from "../reports/daily-work.ts";
+import { getBudgetStatus } from "./budgets.ts";
 
 /** The text of a spent budget's error; with `%` for both parts it is the LIKE pattern that finds every saved one. */
 export const budgetMessage = (service: string, window: string) => `Budget for ${service} exhausted (${window})`;
@@ -94,25 +96,67 @@ interface ReceiptRow {
   updated_at: Date;
 }
 
-async function checkBudget(tx: Db, service: string): Promise<void> {
-  const [budget] = await tx<{ per_minute: number; per_hour: number; per_day: number }[]>`
-    SELECT per_minute, per_hour, per_day FROM budgets WHERE service = ${service}`;
-  if (!budget) return; // default rows come with the migrations; a service an operator removed is unlimited
-  // Every request sent counts, retries of the same logical request included.
-  const [counts] = await tx<{ minute: number; hour: number; day: number }[]>`
-    SELECT
-      count(*) FILTER (WHERE started_at > now() - interval '1 minute') AS minute,
-      count(*) FILTER (WHERE started_at > now() - interval '1 hour') AS hour,
-      count(*) AS day
-    FROM receipt_attempts
-    WHERE service = ${service} AND origin = 'live' AND started_at > now() - interval '1 day'`;
-  const c = counts!;
+// Only steps needed to publish a daily candidate may use the protected capacity. Optional body
+// translation, story digests/consolidation and period-report writing share the background allowance.
+const DAILY_PURPOSES = ["prefilter_article", "score_article", "structure_article", "understand_article",
+  "summarize_article", "mend_wording", "group_article", "group_review"];
+const ARTICLE_SUBJECT = "^article:([a-zA-Z0-9_-]{1,80})(?:$|@|:)";
+
+/**
+ * The default model's limits from the environment (LLM_BUDGET_PER_MINUTE / _PER_HOUR / _PER_DAY), written
+ * into the budgets table when the worker starts, so a deployment sets its own soft limits without a code
+ * change; unset values keep what the table (and the admin's settings page) has. Reaching a limit pauses
+ * paid requests until the window moves on. No purpose is exempt from the total limit.
+ */
+export async function applyBudgetEnv(env: NodeJS.ProcessEnv = process.env): Promise<void> {
+  const read = (name: string) => {
+    const value = env[name];
+    if (value === undefined || value === "") return null;
+    if (!/^\d+$/.test(value)) throw new Error(`${name} must be a non-negative integer, e.g. 3000`);
+    return Number(value);
+  };
+  const limits = { per_minute: read("LLM_BUDGET_PER_MINUTE"), per_hour: read("LLM_BUDGET_PER_HOUR"), per_day: read("LLM_BUDGET_PER_DAY") };
+  if (Object.values(limits).every((v) => v === null)) return;
+  await sql`INSERT INTO budgets (service, per_minute, per_hour, per_day)
+    VALUES ('llm', ${limits.per_minute ?? 300}, ${limits.per_hour ?? 6000}, ${limits.per_day ?? 40000})
+    ON CONFLICT (service) DO UPDATE SET
+      per_minute = coalesce(${limits.per_minute}::int, budgets.per_minute),
+      per_hour = coalesce(${limits.per_hour}::int, budgets.per_hour),
+      per_day = coalesce(${limits.per_day}::int, budgets.per_day)`;
+}
+
+async function checkBudget(tx: Db, req: ReceiptRequest): Promise<Date> {
+  const { service } = req;
+  const budget = await getBudgetStatus(service, tx);
+  if (!budget) {
+    // Default rows come with migrations; a service an operator removed is unlimited.
+    return (await tx<{ at: Date }[]>`SELECT clock_timestamp() AS at`)[0]!.at;
+  }
   if (budget.per_minute <= 0 || budget.per_hour <= 0 || budget.per_day <= 0) {
     throw new BudgetExceededError(service, "stopped", 3600);
   }
-  if (c.minute >= budget.per_minute) throw new BudgetExceededError(service, "minute", 60);
-  if (c.hour >= budget.per_hour) throw new BudgetExceededError(service, "hour", 600);
-  if (c.day >= budget.per_day) throw new BudgetExceededError(service, "day", 3600);
+  if (budget.usedMinute >= budget.per_minute) throw new BudgetExceededError(service, "minute", 60);
+  if (budget.usedHour >= budget.per_hour) throw new BudgetExceededError(service, "hour", 600);
+  if (budget.usedDay >= budget.per_day) throw new BudgetExceededError(service, "day", 3600);
+  if (service !== "llm") return budget.asOf; // Named providers retain their own existing total limits.
+
+  const window = await dailyWorkWindow(tx, budget.asOf);
+  const articleIds = await dailyWorkArticleIds(tx, window);
+  const articleId = new RegExp(ARTICLE_SUBJECT).exec(req.subject ?? "")?.[1];
+  if (DAILY_PURPOSES.includes(req.purpose) && articleId && articleIds.includes(articleId)) return budget.asOf;
+
+  // Reclassify earlier attempts against the same target as this request. When an edition closes,
+  // its spent calls remain in the 24h total and conservatively occupy the background allowance;
+  // switching dates never resets usage or frees unknown/failed attempts. An explicitly authorized
+  // day reset uses the same attempt watermark for the total and background allowance.
+  const [background] = await tx<{ used: number }[]>`
+    SELECT count(*)::int AS used FROM receipt_attempts a JOIN receipts r ON r.id = a.receipt_id
+    WHERE a.service = ${service} AND a.origin = 'live' AND a.started_at > ${budget.dayStart} AND a.id > ${budget.resetAttemptId}
+      AND NOT coalesce(r.purpose = ANY(${DAILY_PURPOSES}::text[])
+        AND substring(r.subject from ${ARTICLE_SUBJECT}) = ANY(${articleIds}::text[]), false)`;
+  const limit = Math.floor(budget.per_day * DAILY_WORK_BUDGET.backgroundShare);
+  if (background!.used >= limit) throw new BudgetExceededError(service, "background", 3600);
+  return budget.asOf;
 }
 
 /**
@@ -139,26 +183,26 @@ export async function paidRequest(req: ReceiptRequest, call: () => Promise<CallO
       }
       if (existing.status === "unknown") return { kind: "unknown" as const, row: existing };
       // failed: the provider did not take the request, or its answer was unusable; a new attempt is allowed.
-      await checkBudget(tx, req.service);
+      const admittedAt = await checkBudget(tx, req);
       const [r] = await tx<{ attempts: number }[]>`
         UPDATE receipts SET status = 'pending', attempts = attempts + 1, error = NULL, updated_at = now() WHERE id = ${existing.id} RETURNING attempts`;
-      const attemptId = await startAttempt(tx, existing.id, r!.attempts, req);
+      const attemptId = await startAttempt(tx, existing.id, r!.attempts, req, admittedAt);
       return { kind: "call" as const, id: existing.id, attemptId };
     }
-    await checkBudget(tx, req.service);
+    const admittedAt = await checkBudget(tx, req);
     const [row] = await tx<{ id: number }[]>`
       INSERT INTO receipts (logical_key, service, model, purpose, subject, status, request, attempts)
       VALUES (${logicalKey}, ${req.service}, ${req.model ?? null}, ${req.purpose}, ${req.subject ?? null}, 'pending',
               ${tx.json((req.requestSummary ?? {}) as never)}, 1)
       RETURNING id`;
-    const attemptId = await startAttempt(tx, row!.id, 1, req);
+    const attemptId = await startAttempt(tx, row!.id, 1, req, admittedAt);
     return { kind: "call" as const, id: row!.id, attemptId };
   });
 
   if (claimed.kind === "reuse") return { receiptId: claimed.row.id, response: claimed.row.response, reused: true };
   if (claimed.kind === "busy") throw new ReceiptBusyError(`Receipt ${claimed.row.id} is in flight`);
   if (claimed.kind === "unknown") {
-    throw new ReceiptUnknownError(claimed.row.id, `Receipt ${claimed.row.id} has an unknown outcome; it is released once automatically, then from the admin`);
+    throw new ReceiptUnknownError(claimed.row.id, `Receipt ${claimed.row.id} has an unknown outcome; an admin must check the provider's bill and result before releasing it`);
   }
 
   const { id: receiptId, attemptId } = claimed;
@@ -202,9 +246,10 @@ export async function paidRequest(req: ReceiptRequest, call: () => Promise<CallO
   return { receiptId, response: outcome.response, reused: false };
 }
 
-async function startAttempt(tx: Db, receiptId: number, attempt: number, req: ReceiptRequest): Promise<number> {
+async function startAttempt(tx: Db, receiptId: number, attempt: number, req: ReceiptRequest, admittedAt: Date): Promise<number> {
   const [row] = await tx<{ id: number }[]>`
-    INSERT INTO receipt_attempts (receipt_id, attempt, service, model, status) VALUES (${receiptId}, ${attempt}, ${req.service}, ${req.model ?? null}, 'pending')
+    INSERT INTO receipt_attempts (receipt_id, attempt, service, model, status, started_at)
+    VALUES (${receiptId}, ${attempt}, ${req.service}, ${req.model ?? null}, 'pending', ${admittedAt})
     RETURNING id`;
   return row!.id;
 }
@@ -216,7 +261,7 @@ async function markUnknown(tx: Db, receiptId: number, reason: string) {
 
 /**
  * Placeholders left behind by a process that stopped mid-request (crash, kill) become "unknown", so
- * they are released like any other unknown outcome even when nothing retries them.
+ * they remain visible for manual review even when nothing retries them.
  */
 export async function markStalePendingReceipts(): Promise<number> {
   const reason = "placeholder went stale without a recorded result";

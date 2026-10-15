@@ -1,5 +1,5 @@
 // A listing read through Jina is a paid request of its own on every fetch, with its own receipt: a read
-// whose outcome is unknown is never sent again and is left to ops.recover, the next fetch reads the
+// whose outcome is unknown is never sent again and waits for an operator, the next fetch reads the
 // listing afresh, and a page received before a storage failure stays on its receipt.
 import { tag } from "./setup.ts";
 import assert from "node:assert/strict";
@@ -7,7 +7,7 @@ import http from "node:http";
 import { after, before, test } from "node:test";
 import { config } from "@aihot/backend/config";
 import { closeDb, sql } from "@aihot/backend/db";
-import { autoReleaseUnknownReceipts } from "@aihot/backend/operations/recover";
+import { recoverStaleWork } from "@aihot/backend/operations/recover";
 import { stopBoss } from "@aihot/backend/jobs/queue";
 import { collectSource } from "@aihot/backend/sources/collect";
 import { previewStoredSource } from "@aihot/backend/admin/sources";
@@ -63,16 +63,19 @@ test("a listing read whose outcome is unknown is not sent again; each later fetc
   assert.equal(next.status, "ok", next.error ?? "");
   assert.equal(next.created, 1);
   assert.equal(hits, 2);
-  assert.deepEqual((await receipts()).map((r) => r.status), ["unknown", "received"], "the unknown receipt is left to ops.recover");
+  assert.deepEqual((await receipts()).map((r) => r.status), ["unknown", "received"], "the unknown receipt remains unresolved");
 
-  // ops.recover releases it once and nothing sends it again; the fetch after a received page reads the
-  // listing afresh instead of that page.
-  await autoReleaseUnknownReceipts(Date.now() + 31 * 60_000);
+  // Recovery preserves the old unknown even after half an hour. A new scheduled fetch reads a fresh
+  // listing under a different identity; it is not a retry of the unresolved receipt.
+  await sql`UPDATE receipts SET updated_at=now()-interval '31 minutes' WHERE subject=${`source:${SOURCE}`} AND status='unknown'`;
+  await recoverStaleWork();
+  assert.equal(hits, 2, "recovery sent no paid listing request");
+  assert.deepEqual((await receipts()).map((r) => [r.status, r.attempts]), [["unknown", 1], ["received", 1]]);
   const again = await collectSource(SOURCE, { force: true });
   assert.equal(again.status, "ok", again.error ?? "");
   assert.equal(again.created, 1);
   assert.equal(hits, 3);
-  assert.deepEqual((await receipts()).map((r) => [r.status, r.attempts]), [["failed", 1], ["received", 1], ["received", 1]]);
+  assert.deepEqual((await receipts()).map((r) => [r.status, r.attempts]), [["unknown", 1], ["received", 1], ["received", 1]]);
 });
 
 test("a listing parsed with selectors is read from Jina as rendered HTML, dates included", async () => {

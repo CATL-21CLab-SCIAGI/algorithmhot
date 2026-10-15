@@ -1,5 +1,5 @@
 // Paid requests: an answer already received is reused, every request actually sent counts against the
-// budget (retries of one logical request included), a lost answer is bought again at most once, an
+// budget (retries of one logical request included), a lost answer waits for an explicit release, an
 // answer cut off at the output limit says so, and the valve stops calls before they are sent.
 import { gate, stub, tag } from "./setup.ts";
 import assert from "node:assert/strict";
@@ -10,7 +10,8 @@ import { closeDb, sql } from "@aihot/backend/db";
 import { chatJson, ModelOutputError } from "@aihot/backend/providers/llm";
 import { embeddingsAvailable } from "@aihot/backend/providers/embeddings";
 import { BudgetExceededError, logicalKeyFor, markStalePendingReceipts, paidRequest, ReceiptUnknownError } from "@aihot/backend/providers/receipts";
-import { autoReleaseUnknownReceipts } from "@aihot/backend/operations/recover";
+import { recoverStaleWork, releaseReceipt } from "@aihot/backend/operations/recover";
+import { stopBoss } from "@aihot/backend/jobs/queue";
 
 const usage = { prompt_tokens: 80, completion_tokens: 20, total_tokens: 100 };
 let answer: (hit: number) => string = () => '{"ok":true}';
@@ -23,6 +24,7 @@ const ask = (subject: string) =>
 
 after(async () => {
   await provider.close();
+  await stopBoss();
   await closeDb();
 });
 
@@ -250,7 +252,7 @@ test("with the valve off nothing is sent", async () => {
   }
 });
 
-test("an unknown outcome is released automatically once, so a lost answer costs at most one repeat", async () => {
+test("unknown outcomes remain blocked after recovery until an operator explicitly releases them", async () => {
   // A service without a budget row: the budget tests above may have used up deepseek's.
   const req = { service: "invariant-unbudgeted", purpose: "invariant_test", subject: `lost-${tag()}`, identity: { lost: tag() } };
   let sent = 0;
@@ -263,18 +265,31 @@ test("an unknown outcome is released automatically once, so a lost answer costs 
 
   await assert.rejects(paidRequest(req, lost));
   assert.equal(await status(), "unknown");
-  await autoReleaseUnknownReceipts();
-  assert.equal(await status(), "unknown", "not within half an hour");
+  const [receipt] = await sql<{ id: number }[]>`SELECT id FROM receipts WHERE subject = ${req.subject}`;
+  await recoverStaleWork();
+  assert.equal(await status(), "unknown");
 
   await age();
-  await autoReleaseUnknownReceipts();
+  await recoverStaleWork();
+  await recoverStaleWork();
+  assert.equal(await status(), "unknown", "age and repeated recovery never authorize another paid attempt");
+  await assert.rejects(paidRequest(req, lost), ReceiptUnknownError);
+  assert.equal(sent, 1);
+  assert.equal((await sql`SELECT 1 FROM receipt_attempts WHERE receipt_id = ${receipt!.id}`).length, 1);
+  assert.equal((await sql`SELECT 1 FROM audit_log WHERE action = 'receipt.release' AND subject = ${`receipt:${receipt!.id}`}`).length, 0);
+
+  await releaseReceipt(receipt!.id, { billed: false, note: "Local fixture provider confirmed no billing; allow one retry" }, "test-receipt-release");
   assert.equal(await status(), "failed");
   await assert.rejects(paidRequest(req, lost));
-  assert.equal(sent, 2, "one repeat after the release");
+  assert.equal(sent, 2, "only the explicit operator release permits the repeat");
 
   await age();
-  await autoReleaseUnknownReceipts();
-  assert.equal(await status(), "unknown", "a second loss waits for the admin");
+  await recoverStaleWork();
+  assert.equal(await status(), "unknown", "a second loss also needs a new explicit decision");
   await assert.rejects(paidRequest(req, lost), ReceiptUnknownError);
   assert.equal(sent, 2);
+  assert.equal((await sql`SELECT 1 FROM receipt_attempts WHERE receipt_id = ${receipt!.id}`).length, 2);
+  const releases = await sql`SELECT actor, "after"->>'billed' AS billed FROM audit_log
+    WHERE action = 'receipt.release' AND subject = ${`receipt:${receipt!.id}`}`;
+  assert.deepEqual(releases.map((r) => ({ ...r })), [{ actor: "test-receipt-release", billed: "false" }]);
 });

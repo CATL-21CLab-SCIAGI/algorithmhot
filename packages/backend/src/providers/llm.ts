@@ -20,6 +20,11 @@ export interface ModelSpec {
   reasoningTokens?: number;
   jsonMode: boolean;
   vision?: boolean;
+  /**
+   * The request shape of OpenAI's reasoning models (GPT-5 and later, also behind Bedrock's OpenAI-compatible
+   * endpoint): the output limit as max_completion_tokens, and no temperature, which they refuse.
+   */
+  reasoningApi?: boolean;
 }
 
 function extraFromEnv(value: string | undefined): Record<string, unknown> | undefined {
@@ -46,6 +51,7 @@ export const MODELS: Record<string, ModelSpec> = {
     get reasoningTokens() { return reasoningTokensFromEnv(process.env.LLM_REASONING_TOKENS); },
     get jsonMode() { return process.env.LLM_JSON_MODE !== "false"; },
     get vision() { return process.env.LLM_VISION === "true"; },
+    get reasoningApi() { return process.env.LLM_REASONING_API === "true"; },
   },
   // The pack's named presets, each with its own address and key.
   ...Object.fromEntries(Object.entries(PRESETS).map(([key, preset]) => [key, { key, ...preset }])),
@@ -145,8 +151,7 @@ export async function chatJson<S extends z.ZodType>(opts: ChatJsonOptions<S>): P
       // Multimodal parts go through as parts; plain objects are sent as JSON text.
       { role: "user", content: typeof opts.user === "string" || Array.isArray(opts.user) ? opts.user : userText },
     ],
-    temperature,
-    max_tokens: maxTokens,
+    ...(spec.reasoningApi ? { max_completion_tokens: maxTokens } : { temperature, max_tokens: maxTokens }),
     ...(spec.jsonMode && opts.json !== false ? { response_format: { type: "json_object" } } : {}),
     ...(spec.extra ?? {}),
   };

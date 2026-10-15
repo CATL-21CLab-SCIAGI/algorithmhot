@@ -37,6 +37,30 @@ export interface StoryRef {
 }
 
 /** What every site answer about an article carries; a card and a page each add the X post in their own form. */
+/**
+ * A short fact the material's entrance printed beside it (an arXiv identifier, the day it went online, a
+ * figure still to come): a label, optionally a value and an original link. At most ITEM_NOTES_MAX.
+ */
+export interface ItemNote {
+  label: string;
+  value?: string;
+  href?: string;
+}
+
+export const ITEM_NOTES_MAX = 6;
+
+/** A figure reused from the original under a licence that allows it, with its credit. */
+export interface ItemFigure {
+  url: string;
+  fullUrl: string;
+  srcSet?: string;
+  alt: string | null;
+  /** "arXiv:2610.01234 图 1 · CC BY 4.0": who made it and under which licence. */
+  credit: string;
+  /** Where the figure is published (the paper's page). */
+  href: string | null;
+}
+
 export interface ItemSummary {
   id: string;
   title: string;
@@ -54,10 +78,12 @@ export interface ItemSummary {
   selected: boolean;
   channel: "news" | "x";
   story: StoryRef | null;
+  notes: ItemNote[];
+  figure?: ItemFigure;
 }
 
 /** The fields rendered by a site feed card; full original text lives in the item detail. */
-export interface FeedItemSummary extends Pick<ItemSummary, "id" | "title" | "summary" | "reason" | "source" | "publishedAt" | "timelineAt" | "category" | "tags" | "score" | "selected" | "channel"> {
+export interface FeedItemSummary extends Pick<ItemSummary, "id" | "title" | "summary" | "reason" | "source" | "publishedAt" | "timelineAt" | "category" | "tags" | "score" | "selected" | "channel" | "notes" | "figure"> {
   x: (Pick<XPostView, "authorName" | "handle" | "avatarUrl" | "avatarSrcSet" | "media"> & {
     quoted: Omit<NonNullable<XPostView["quoted"]>, "url"> | null;
   }) | null;
@@ -287,6 +313,10 @@ export interface ReportCitation {
   related?: ReportCitation[];
   /** A daily entry whose event an earlier daily covered: that issue's date. */
   followUp?: string;
+  /** The entry's notes as the issue recorded them (ItemNote). */
+  notes?: ItemNote[];
+  /** The figure the article has now (decoration: attaching one later does not rewrite the issue). */
+  figure?: ItemFigure;
 }
 
 export interface ReportDetail {

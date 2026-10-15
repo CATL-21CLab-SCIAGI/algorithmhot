@@ -7,16 +7,17 @@
  * section 是日报里的分节标题（几个类别可以共用一节，按这里的顺序排）；guide 告诉结构抽取模型这一类收什么、
  * 和相邻类别的边界在哪（总的归类原则写在 prompts/structure.md 里）。
  * commentary 标出评论类（教程、观点）：日报写过的事又有评论类的后续报道，只占一行快讯（报道它的信源够多时除外）。
- * 没归上类的资料在日报里放进第一个 key 为 industry 的类别所在的节（没有就放最后一节）。
+ * 没归上类的资料在日报里放进 UNCATEGORIZED_CATEGORY 所在的节（不写就放进 key 为 industry 的类别所在的节，再没有就放最后一节）。
  * feedLabel 是分类 RSS 标题里的名字（不写就用 label）。公开接口、RSS 和 MCP 里要把一类并进另一类发布，写在站点设置里（site/site.ts 的 PUBLIC_CATEGORIES）。
  */
+/** 没归上类的资料在日报里放进这一类所在的节：算法是最宽的一类。 */
+export const UNCATEGORIZED_CATEGORY = "algorithm";
+
 export const CATEGORIES = [
-  { key: "ai-models", label: "模型", feedLabel: "AI 模型", section: "模型发布/更新", guide: "模型本身的发布、版本、权重开放、能力或价格变化，以及既有榜单上的模型成绩。公布一次跑分不是发布新基准，也不是教程。" },
-  { key: "ai-products", label: "产品", feedLabel: "AI 产品", section: "产品发布/更新", guide: "可使用的 AI 产品、功能、应用、工具、API、平台和工程组件的发布更新。模型厂商发布的推理框架、算子库、硬件适配组件仍是产品，不能因为厂商名归成模型。" },
-  { key: "industry", label: "行业", feedLabel: "行业动态", section: "行业动态", guide: "已发生的公司经营、融资并购、人事、合作、诉讼、政策、真实安全事故及调查进展。新闻由当事人发帖、带有态度，也不因此变成观点。" },
-  { key: "paper", label: "论文", feedLabel: "论文", section: "论文研究", guide: "以新研究方法、实验设计与发现为核心的论文、技术报告、新基准或研究数据集。系统性红队实验属于研究；既有榜单成绩归模型，真实事故的新闻调查归行业。" },
-  { key: "tip", label: "教程", section: "技巧与观点", guide: "读者可以照着使用的方法、提示词、工具用法、工程实践复盘与技术讲解。重点是可复用的做法；单纯发布工具归产品，只有态度和预测而无做法归观点。", commentary: true },
-  { key: "opinion", label: "观点", section: "技巧与观点", guide: "重点是作者的解释、判断、主张、预测、评论或访谈观点。讨论市场不自动归行业，作者是名人不自动归观点。", commentary: true },
+  { key: "algorithm", label: "算法", section: "算法", guide: "AI/机器学习的训练、推理、优化、模型架构与理论方法；没有直接服务的科学任务、也不以改进 AI 研发环节为核心贡献时归本类。一般模型方法只用已有基准报告实验，仍归本类。" },
+  { key: "ai4ai", label: "AI4AI", section: "AI4AI", guide: "改进 AI 研发环节本身：自动研究、实验设计、训练数据或可验证奖励构建、能力评测与诊断基准、Agent 执行框架与研发流程优化，不要求声称完整的自动研究。直接服务科学问题的工作优先归 ai4s。" },
+  { key: "ai4s", label: "AI4S", section: "AI4S", guide: "AI 直接服务材料、计算物理、分子建模、定量生物学及相关科学任务，包括用现有 AI 方法取得科学发现。电池、光伏、制氢材料研究里 AI 是核心研究方法时归本类；AI 只辅助表征或计算时归 energy-materials。" },
+  { key: "energy-materials", label: "电池与新能源材料", section: "电池与新能源材料", guide: "电池材料、界面、退化、安全与回收，光伏材料、稳定性与制造，制氢电催化、膜与电解槽的原创材料研究；不以 AI 为核心方法，辅助使用 AI 或不用 AI 都归本类。综述、社论、新闻、观点、勘误不算原创研究。" },
 ] as const satisfies ReadonlyArray<{ key: string; label: string; feedLabel?: string; section: string; guide: string; commentary?: true }>;
 
 /**
@@ -24,10 +25,10 @@ export const CATEGORIES = [
  * category 是类别，tag 是标签，两者都对上才算；unit 接在数字后面。
  * 没有这样一类的行业设成 null，报头就不显示这个数。
  */
-export const RELEASE: { category: string; tag: string; unit: string } | null = { category: "ai-models", tag: "模型发布", unit: "个新模型" };
+export const RELEASE: { category: string; tag: string; unit: string } | null = null;
 
 /** 周报月报的总述可以直接写、不必在报道里找到出处的行业通用词（小写）。站名会自动算进去。 */
-export const PLAIN_TERMS: readonly string[] = ["ai", "api", "llm", "gpu", "agi", "ceo", "ipo"];
+export const PLAIN_TERMS: readonly string[] = ["ai", "ai4ai", "ai4s", "api", "llm", "gpu", "agent", "arxiv", "dft", "sota"];
 
 /**
  * 内容理解一步给每篇资料判的“内容类型”（写在 prompts/content-understanding.md 里，改了类型要同步改那份提示词）。
@@ -45,14 +46,19 @@ export const CATEGORY_TAGS = [
 
 /** 可选的主题标签。 */
 export const TOPIC_TAGS = [
+  "算法", "AI4AI", "AI4S", "电池与新能源材料", "电池材料", "光伏材料", "制氢材料", "训练方法", "推理优化", "自动研究", "合成数据", "实验设计",
+  "材料", "计算物理", "分子建模", "可复现性",
   "Agent", "编码", "推理", "多模态", "语音", "视频", "图像生成", "RAG", "端侧", "数据/训练", "搜索", "部署/工程", "开源生态", "具身智能", "MCP/工具调用",
 ] as const;
 
 /** 可选的实体标签（公司、机构、平台）。 */
-export const ENTITY_TAGS = ["OpenAI", "Anthropic", "DeepSeek", "DeepMind", "Google", "Meta", "Microsoft", "xAI", "Hugging Face", "GitHub", "arXiv"] as const;
+export const ENTITY_TAGS = ["OpenAI", "Anthropic", "DeepSeek", "DeepMind", "Google", "Meta", "Microsoft", "xAI", "Hugging Face", "GitHub", "arXiv", "Berkeley BAIR"] as const;
 
 /** 模型常写的近义词，统一成词表里的写法。 */
 export const TAG_SYNONYMS: Readonly<Record<string, string>> = {
+  algorithm: "算法", ai4ai: "AI4AI", ai4s: "AI4S", "ai for science": "AI4S", "AI for Science": "AI4S", "ai for ai": "AI4AI", "AI for AI": "AI4AI",
+  "energy-materials": "电池与新能源材料", 新能源材料: "电池与新能源材料", 能源材料: "电池与新能源材料", 电池: "电池材料", 锂电池: "电池材料",
+  光伏: "光伏材料", 钙钛矿: "光伏材料", 制氢: "制氢材料", 电催化: "制氢材料", 材料科学: "材料", 分子模拟: "分子建模", 复现: "可复现性", 可复现: "可复现性",
   "教程/玩法": "教程/实践", "技巧/最佳实践": "教程/实践", "合作/生态": "行业动态", "融资/收购": "行业动态", "公司动态": "行业动态",
   合作: "行业动态", 生态: "行业动态", 融资: "行业动态", 收购: "行业动态", 投资: "行业动态", 并购: "行业动态",
   政策: "政策/监管", 监管: "政策/监管", 法规: "政策/监管", 安全: "安全/对齐", 对齐: "安全/对齐",
@@ -72,6 +78,7 @@ export const TAG_SYNONYMS: Readonly<Record<string, string>> = {
  * 把事实的主体对到发布方时也认它们。
  */
 export const ENTITIES: Record<string, { name: string; displayTag: string | null; aliases: string[]; otherNames?: string[] }> = {
+  bair: { name: "Berkeley BAIR", displayTag: "Berkeley BAIR", aliases: ["Berkeley BAIR", "BAIR", "Berkeley AI Research", "伯克利人工智能研究实验室"], otherNames: ["Berkeley Artificial Intelligence Research"] },
   "world-labs": { name: "World Labs", displayTag: null, aliases: ["World Labs"] },
   "thinking-machines": { name: "Thinking Machines Lab", displayTag: null, aliases: ["Thinking Machines"] },
   amd: { name: "AMD", displayTag: null, aliases: ["AMD", "Advanced Micro Devices"] },
@@ -107,6 +114,7 @@ export const IDENTITY_LEXICON: ReadonlyArray<{ id: string; name: string; pattern
   { id: "nvidia", name: "NVIDIA", patterns: [/nvidia|英伟达|\bnemotron\b|\bnemo\b|\bblackwell\b|\brubin(?:\s+ultra)?\b|\bcuda\b/i] },
   { id: "qwen", name: "千问 Qwen", patterns: [/\bqwen|通义|千问/i] },
   { id: "hugging-face", name: "Hugging Face", patterns: [/hugging\s?face/i] },
+  { id: "bair", name: "Berkeley BAIR", patterns: [/\bBAIR\b|berkeley\s+(?:artificial intelligence|ai)\s+research/i] },
   { id: "cursor", name: "Cursor", patterns: [/\bCursor\b/] },
   { id: "kimi", name: "Kimi / 月之暗面", patterns: [/\bkimi\b|月之暗面|\bmoonshot\s?ai\b/i] },
   { id: "openrouter", name: "OpenRouter", patterns: [/openrouter/i] },
@@ -133,6 +141,7 @@ export const IDENTITY_LEXICON: ReadonlyArray<{ id: string; name: string; pattern
 
 /** 这些域名上的文章，发布方就是对应的公司（托管平台如 GitHub、arXiv 不算）。 */
 export const PUBLISHER_DOMAINS: ReadonlyArray<{ entityId: string; domains: readonly string[] }> = [
+  { entityId: "bair", domains: ["bair.berkeley.edu"] },
   { entityId: "openai", domains: ["openai.com"] },
   { entityId: "anthropic", domains: ["anthropic.com", "claude.com"] },
   { entityId: "google", domains: ["deepmind.google", "ai.google", "blog.google"] },

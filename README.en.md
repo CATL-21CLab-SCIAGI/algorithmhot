@@ -1,191 +1,155 @@
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/assets/banner-dark.png">
-    <img src="docs/assets/banner-light.png" alt="AIHOT: every field can have its own AIHOT. Many sources flow into the selection in the middle, which then branches out to law, HR, finance and other fields" width="100%">
-  </picture>
-</p>
+# AlgorithmHot · Research Radar
 
-<p align="center">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-176b75?style=flat-square" alt="MIT License"></a>
-  <img src="https://img.shields.io/badge/Node.js-24-176b75?style=flat-square&logo=nodedotjs&logoColor=white" alt="Node.js 24">
-  <img src="https://img.shields.io/badge/PostgreSQL-17-176b75?style=flat-square&logo=postgresql&logoColor=white" alt="PostgreSQL 17">
-  <img src="https://img.shields.io/badge/Docker-Compose-176b75?style=flat-square&logo=docker&logoColor=white" alt="Docker Compose">
-  <a href="https://aihot.news"><img src="https://img.shields.io/badge/live%20site-aihot.news-202a30?style=flat-square" alt="Live site aihot.news"></a>
-</p>
+**Public site: [https://catl-21clab-sciagi.github.io/algorithmhot/](https://catl-21clab-sciagi.github.io/algorithmhot/)**
 
-<p align="center">
-  <b>A website framework that finds the news and writes the daily briefing by itself.</b><br>
-  Swap in your own sources and your own know-how for what matters, and it becomes the news site for your field.
-</p>
+A Chinese research reading site covering **algorithms, AI4AI, AI for Science, and battery / new energy materials**. It collects paper announcements, journal metadata, research blogs and community recommendations; produces Chinese titles, summaries and reading notes; groups related reports; and compiles daily, weekly and monthly issues.
 
-<p align="center">
-  <a href="README.md">简体中文</a> · <b>English</b>
-</p>
+The focus is on method changes, applicable tasks, comparison conditions and evidence limitations. Summaries and results reported by authors are not independent reproductions.
 
-<p align="center">
-  <a href="#run-it">Run it</a> ·
-  <a href="#make-it-your-field">Make it your field</a> ·
-  <a href="#how-it-works">How it works</a> ·
-  <a href="#documentation">Documentation</a> ·
-  <a href="https://github.com/KKKKhazix/AIHOT/discussions">Discussions</a>
-</p>
+[中文完整说明](README.md) · [Static reading mirror](https://catl-21clab-sciagi.github.io/algorithmhot/) · [Deployment](docs/deploy.md)
 
-<br>
+`main` contains source code. `gh-pages` contains a separately published static mirror. A clone does not include the existing article database, credentials or run records, and a source push does not refresh the mirror.
 
-## What this is
+Screenshots were captured from the live public mirror on **2026-10-14 (Asia/Shanghai)**. Click an image to open its source page; see the [capture record](docs/screenshots/2026-10-14/manifest.json).
 
-[AIHOT](https://aihot.news) is an AI news site I built. Every day it collects material from a set of sources. A language model screens every item, then scores the promising ones twice, independently, to pick what is really worth reading, and writes a headline and a summary for each. Reports of the same story from different sources are clustered into one event, and events are ranked by how many sources are talking about them. Every morning it publishes a daily briefing.
+[![Selected research, grouped by date.](docs/screenshots/2026-10-14/home.png)](https://catl-21clab-sciagi.github.io/algorithmhot/)
 
-This repository is its engine and framework: the website, the admin, the selection pipeline, the clustering and heat algorithms, and **the full text of every prompt and every selection threshold**.
+*Selected research, grouped by date.*
 
-## Why open source
+## What is included
 
-Over the past half year, many friends working in law, HR, finance and precious metals have asked me whether I could build one for their field.
+- **Sources:** three arXiv feed groups covering six categories; six journals through Crossref; Google DeepMind, Berkeley BAIR and Hugging Face Daily Papers.
+- **Selection and reading:** prefiltering, two independent scores, Chinese summaries, reading recommendations, categories, topics, search, bookmarks and unread filtering.
+- **Events and attention:** related reports grouped into events; a seven-day attention window with a 48-hour half-life and at least two independent participants. Attention is not scientific validation.
+- **Reports:** rule-based daily selection; weekly and monthly compilations from daily issues, with model-written introductions.
+- **Evidence notes and figures:** available paper identifiers, dates, source links, PDF links, license metadata and image provenance. Missing figures do not block publication.
+- **Operations:** source health, model settings, request receipts, request-count limits and task records.
+- **Read-only access:** RSS, public HTTP API, MCP and Agent Markdown on the full application, plus an optional GitHub Pages mirror.
 
-I can't. I don't know your field. I don't know which sources are useful, or what kind of news counts as news to you.
+Paper feeds are configured in [industry/research-feeds.json](industry/research-feeds.json), and blog/community sources in [industry/sources.json](industry/sources.json). The journals are Nature, Nature Energy, Nature Materials, Science, Angewandte Chemie International Edition and JACS. DOI patterns and, for some journals, keywords constrain collection before model selection.
 
-But you do.
 
-Since I can't do it for everyone, I'm handing the spark to all of you.
+[![AI for Science category.](docs/screenshots/2026-10-14/ai4s.png)](https://catl-21clab-sciagi.github.io/algorithmhot/c/ai4s/)
 
-## Before you start
+*AI for Science category.*
 
-- **The interface and everything the site writes are in Chinese.** The prompts in [`industry/prompts/`](industry/prompts/) set the output language; the interface text is in [`site/site.ts`](site/site.ts) and in the code. To run it in another language, ask your agent to translate those (see [Make it your field](#make-it-your-field)). The other documents in this repository are in Chinese too; coding agents read them without trouble.
-- **I'm not a professional developer.** I started out as a designer, and half a year ago I could barely read code. I rewrote this codebase together with AI. It is much cleaner than before, but there are surely parts that aren't written well. Issues are welcome. I may not reply quickly, and I apologise in advance.
-- **This is AIHOT's engine.** It is the same engine code that runs AIHOT in production, exported directly from it, not a carefully polished general-purpose framework. I'll try to bring AIHOT's updates over, but I can't promise every one. Features that only make sense for AI, such as the model leaderboard, the Codex reset monitor and the milestone timelines on topic pages, stay on AIHOT, along with AIHOT's own operations tools.
-- **AIHOT's source list and operating data are not included.** The repository ships 18 public AI news sources as a demo, enough to run it and see what it does. The real sources should be your own field's.
-- **Please don't use AIHOT's name or logo.** Put your own name on it, and it's your site.
 
-## How it works
+[![Paper detail with source notes, figure and reading recommendation.](docs/screenshots/2026-10-14/paper-detail.png)](https://catl-21clab-sciagi.github.io/algorithmhot/items/d0bjbamidu90d2u8fwfet74az/)
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/how-dark.png">
-  <img src="docs/assets/how-light.png" alt="Six stages: collect, pre-screen, score twice, write, cluster, heat and publish" width="100%">
-</picture>
+*Paper detail with source notes, figure and reading recommendation.*
 
-An item comes in from a source, is checked for duplicates, and pre-screened. Items that might matter are scored twice, independently, get a headline and a summary, are clustered with other reports into an event, and count toward its heat. X posts with no text or only links keep their original links and media without a writing or translation model call. An item enters the selection only if its score clears the threshold and it doesn't repeat news already selected. The daily briefing is compiled from the day's top stories by rule; weekly and monthly reports are compiled from the dailies. Every step's prompt is in [`industry/prompts/`](industry/prompts/), so changing the standard doesn't mean changing code. See [Selection and calibration](docs/selection.md).
 
-### Clustering and heat
+[![Browse research topics, material types and institutions.](docs/screenshots/2026-10-14/topics.png)](https://catl-21clab-sciagi.github.io/algorithmhot/topics/)
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/cluster-dark.png">
-  <img src="docs/assets/cluster-light.png" alt="Reports from five sources cluster into one event, and the event enters the current trending list" width="100%">
-</picture>
+*Browse research topics, material types and institutions.*
 
-The same thing happens once: the official site posts it, ten outlets repeat it, X argues about it all day. Readers only need to see it once. AIHOT clusters these into one **event**. It looks for candidates from the past two weeks by embedding the headline and summary (or, without an embedding service, by text overlap), then asks a model whether they are the same story, a follow-up, or two different stories. When in doubt it merges, and before writing, a model reviews the merge again (the review can use a different provider; set `GROUP_REVIEW_MODEL`).
+## Run with Docker Compose
 
-**Heat** is computed per event, not per article: within 48 hours, each independent source counts once, halving every 24 hours. Repeated fetches don't add up, and one outlet posting ten articles still counts once, so what ranks at the top is what many people are really talking about.
-
-### Speed
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/perf-dark.png">
-  <img src="docs/assets/perf-light.png" alt="Measured on AIHOT in production: pages 10 ms median, 95% within 50 ms; API 6 ms median, 95% within 12 ms; article pages 95% within 14 ms" width="100%">
-</picture>
-
-## What you get
-
-| | |
-|---|---|
-| **Six kinds of sources** | RSS, web listing pages, JSON APIs, X accounts, WeChat Official Accounts, and content your own scripts push in. Sources come in three tiers (official first-hand; official and semi-official accounts; media and individuals), each with its own selection threshold. Fetch frequency adjusts to how often a source publishes |
-| **Selection** | A pre-screen, then two independent scores on the same rubric, then a threshold set by the source's tier. One piece of news takes one slot; the same news reworded doesn't get in. All prompts and thresholds are public and editable; calibrate them in SelectBench with samples you labelled yourself |
-| **Writing** | Headlines, answer-first summaries, reasons to read, full translation of foreign-language text; categories, tags and news facts extracted separately; guards against the model putting companies the original never mentioned into a headline |
-| **Clustering** | Reports of the same story from different sources become one event, with follow-ups under the same event and an overview on the event page. Follow-ups and the report timeline switch together between newest first and oldest first. Manual corrections to clustering are never overwritten |
-| **Trending** | Heat per event: the more independent sources, the higher, and discussion on X counts too. Compared with six hours earlier, fast risers are marked rising and newcomers are marked new |
-| **Daily, weekly and monthly reports** | A daily briefing every day (08:00 by default), compiled from the day's top stories by rule: one entry per story, a story already covered returns only when it has news, and no model is called. A weekly report every Monday and a monthly report on the 1st (10:00 and 10:30 by default), compiled from the dailies; the model writes only the overview and section introductions. Change the times in `EDITION_TIMES` in `site/site.ts` |
-| **Topics and search** | Topic pages of three kinds: companies, directions and content formats; search over headlines and summaries, and full-text relevance search |
-| **Reading preferences** | Light and dark appearance, with the site's default font or the browser's default font. Saved items and reading preferences stay on the device and can be exported and imported as a backup |
-| **For agents** | RSS (selection, everything, full text, daily, weekly, monthly), a public API, MCP, Agent Markdown and `llms.txt`: the same content for people and for agents |
-| **Admin** | Source management and trial fetches, content diagnostics and manual score corrections, selection evaluation, a separate model for each step, budget breakers for paid services, run history and alerts |
-
-## A quick look
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/shots-dark.png">
-  <img src="docs/assets/shots-light.png" alt="The daily selection on the home page, and the river of sources on the about page" width="100%">
-</picture>
-
-<p align="center"><sub>Screenshots from a local site running on the demo sources, under the default name MyHOT.</sub></p>
-
-## Run it
-
-To create your own independent site, click [Use this template](https://github.com/KKKKhazix/AIHOT/generate) and clone the repository it creates. To keep merging upstream updates or to contribute, fork it instead. The commands below are for trying it out directly.
-
-You need [Docker](https://docs.docker.com/get-started/get-docker/), [Node.js 24](https://nodejs.org/en/download) (to run `init-env`, which generates the configuration), and an API key for any OpenAI-compatible model API (DeepSeek, Qwen, Zhipu GLM and so on).
-
-`init-env` configures DeepSeek by default. For another provider, change `LLM_BASE_URL`, `LLM_MODEL` and `LLM_EXTRA_JSON` in `.env`, following the examples in `.env.example`. With a reasoning model (one that thinks before answering), also set `LLM_REASONING_TOKENS` to leave output room for the reasoning.
+You need Git, Node.js **24.11+** to generate configuration, and Docker with Compose. The containers use Node.js 24 and PostgreSQL 17.
 
 ```bash
-git clone https://github.com/KKKKhazix/AIHOT.git myhot
-cd myhot
-node scripts/init-env.ts --llm-key <your model API key>
+git clone https://github.com/CATL-21CLab-SCIAGI/algorithmhot.git
+cd algorithmhot
+node scripts/init-env.ts
+```
+
+The initializer generates `.env`, random secrets and an administrator password. It refuses to overwrite an existing `.env`. Edit the file before starting; for an initial interface check, set:
+
+```dotenv
+COLLECT_ENABLED=false
+MODEL_CALLS_ENABLED=false
+PAGES_MIRROR_ENABLED=false
+```
+
+```bash
 docker compose up -d --build
+docker compose ps
 ```
 
-Open <http://localhost:3000>. The admin is at `/admin`, and the admin password is `ADMIN_PASSWORD` in `.env`. Content starts to appear after a minute or two, and the first import takes about half an hour to process.
+Open [http://localhost:3000](http://localhost:3000). The admin area is `/admin`; use `ADMIN_PASSWORD` from your local `.env`. Compose migrates the database, seeds configured sources and starts the API, web server and worker. With collection and model calls disabled, a fresh database will not generate research content.
 
-For machines without Node, servers in mainland China, domains and HTTPS, or running directly on Linux or macOS without Docker (WSL2 on Windows), see [Deployment](docs/deploy.md).
+To collect and process material, configure your own `LLM_BASE_URL`, `LLM_API_KEY`, `LLM_MODEL` and request limits, enable `COLLECT_ENABLED` and `MODEL_CALLS_ENABLED`, then run `docker compose up -d` again. The worker will make external requests and incur charges from the configured providers.
 
-Once the site is up, `/agent` lets you copy how to connect over MCP, RSS or the API; agents that can only read web pages start from `/api/v1/agent`; the API description is at `/openapi-v1.json`.
+[.env.example](.env.example) currently includes an AWS Bedrock endpoint and a model identifier as an example. Verify access and compatibility in your own environment. Match reasoning parameters, JSON mode and output limits to your provider. Git ignores `.env`, `.env.*` (except `.env.example`) and `.data/`; exclude any separately named credential files yourself and do not commit real secrets.
 
-## Make it your field
+For native local processes, install dependencies with `npm ci`, build with `npm run build -w @aihot/web`, and configure a PostgreSQL connection in `.env`. The `local:up`, `local:status`, `local:daily` and `local:down` scripts manage the stack; see [the local operation guide](docs/local-daily.md). `local:up` and `local:daily` perform migrations, write state and start the worker; they are not read-only checks.
 
-The easiest way: open your coding agent (Claude Code or Codex both work), give it this repository, and say:
+## Scheduling and limits
 
-```text
-Please read AGENTS.md and docs/customize.md, and turn this site into a news site for the "XX" field.
-What I care about: … (the sources you want to watch, what news you think matters and what doesn't; the more specific the better).
-If the site should be in English (or another language), also translate the interface text and rewrite the prompts in industry/prompts/ to write in that language.
-When you're done, run npm run typecheck, npm test and node scripts/smoke.ts, and tell me which decisions are still mine to make.
+The resident worker uses pg-boss and PostgreSQL. It does not require a live Codex session. Reading a page does not call a model.
+
+- **Dates:** arXiv announcements are assigned to 08:00 Beijing time on their announcement date as a site convention. Journal entries use Crossref `published-online` where available, otherwise discovery time. Other material uses available source timestamps; timeline placement is capped at discovery time.
+- **Daily issues:** the exact window is `(previous day 08:00:00, issue day 08:00:00]`, Beijing time. Selection is rule-based and daily composition itself does not call a model. Current limits are 20 main entries, 20 short entries and 8 main entries per source.
+- **Waiting:** before 12:00, a daily issue may wait for arXiv collection or material assessment. At 12:00 those holds are lifted; missing assessed material or task errors can still prevent publication.
+- **Weekly/monthly:** scheduled from Monday 10:00 and the first day of each month at 10:30, Beijing time. Models write introductions, with a plain-text fallback on writing failure.
+- **History:** scheduled runs fill missing issues without replacing published dailies. Explicit `reports:daily -- --replace YYYY-MM-DD` preserves the replaced issue as a revision.
+- **Budgets:** `LLM_BUDGET_PER_MINUTE`, `_PER_HOUR` and `_PER_DAY` set request-attempt limits for the default `llm` service, not monetary limits. By default, they use rolling windows of one minute, one hour and 24 hours; they do not reset at midnight. Every purpose, including `report_*`, respects the total limit; failed, unknown and retried attempts also count. Any zero limit stops new requests; saved successful responses remain reusable. Check the corresponding service budget when selecting a named model preset.
+- **Daily priority:** background and optional work may use at most 20% of the default `llm` service's rolling 24-hour limit (`DAILY_WORK_BUDGET` in `site/site.ts`). The remaining capacity is protected for required processing of editorial, non-backfill articles in the target daily window: today's issue until saved, then the next issue. Optional translation, story digests/consolidation and period-report writing remain background work. Queued priorities and admission checks follow the same window. Switching editions does not reset usage: unless manually reset, earlier calls remain in the total and, once outside the target window, count against background use. This can temporarily pause background work and does not guarantee publication or grant a fresh daily allowance.
+
+For a one-time daily allowance reset, use `scripts/reset-budget.ts` as described in [the local operation guide](docs/local-daily.md#一次性重置日额度). It stores an attempt-ID boundary in `settings` and appends a `budget.day.reset` audit entry. Only the daily budget and its 20% background usage restart, counting attempts after that boundary that are still within the last 24 hours. Minute/hour usage and all configured limits remain unchanged. Repeating the same `operation-id` for the same service does not grant another allowance. All actual attempts, costs and unknown outcomes are retained; successful receipts remain reusable. A reset grants additional usable calls, not a refund or a promise of publication. For example, a configured daily total of 1,000 remains 1,000 after reset, with new calls still subject to minute/hour limits and the background share.
+
+The admin view distinguishes `used_day` (current daily-budget usage) from `used_24h` (actual attempts over the last 24 hours). These can differ after a reset. A one-time reset does not change the long-term rolling window into a calendar-day or scheduled reset policy.
+
+Times, report size and the attention window are in [site/site.ts](site/site.ts). Prompts, taxonomy and thresholds are under [industry/](industry/); model presets are in [site/models.ts](site/models.ts).
+
+
+[![Daily issue dated 2026-10-13.](docs/screenshots/2026-10-14/daily.png)](https://catl-21clab-sciagi.github.io/algorithmhot/daily/)
+
+*Daily issue dated 2026-10-13.*
+
+
+[![Weekly issue for week 41 of 2026.](docs/screenshots/2026-10-14/weekly.png)](https://catl-21clab-sciagi.github.io/algorithmhot/weekly/)
+
+*Weekly issue for week 41 of 2026.*
+
+## Full application and mirror
+
+The full application exposes `/agent`, `/feed.xml`, `/feed/daily.xml`, `/api/v1/agent`, `/llms.txt`, `/api/v1/items`, `/openapi-v1.json` and `/api/mcp`. MCP tools use the `algorithmhot` prefix.
+
+The optional [Pages module](modules/pages-mirror/) is disabled by default. When enabled, its default schedule is minute 40 of each hour, with a 400-page limit. It strips scripts and publishes public reading pages and static category views. Search, bookmarks, tag/unread interactions, APIs and administration require the full application. The mirror is not a database backup; skipped pages and publication errors are recorded separately.
+
+
+[![Agent integration instructions: MCP, RSS and REST API.](docs/screenshots/2026-10-14/agent.png)](https://catl-21clab-sciagi.github.io/algorithmhot/agent/)
+
+*Agent integration instructions: MCP, RSS and REST API.*
+
+The localhost address in this screenshot reflects the current site configuration. Use your deployed full application for API / MCP requests; GitHub Pages does not host these backend services.
+
+## Development checks
+
+```bash
+npm ci
+npm run typecheck
+npm run test:standalone
+npm run build -w @aihot/web
+npx playwright install chromium webkit
+node --test apps/web/tests/*.test.ts
+
+# Replace the password; use a disposable test database and a role that can create databases.
+DATABASE_URL='postgres://postgres:replace-with-test-password@127.0.0.1:5432/algorithmhot_test' npm test
+
+# Against an already running site:
+node scripts/smoke.ts --base http://localhost:3000
 ```
 
-Nearly everything to change is in the [`site/`](site/) and [`industry/`](industry/) folders; the code itself mostly stays as it is:
+Test database names must end in `_test` or `_ci`. Backup tests also require PostgreSQL 17-compatible `pg_dump` and `pg_restore`. Web tests require the matching Playwright browsers. Model tests use local stubs.
 
-| File | What to change |
-|---|---|
-| `site/site.ts` | Site name, field terms, publishing times, home page copy, about page, the wording on items and reports, the categories of the public interfaces |
-| `industry/taxonomy.ts`, `industry/topics.json` | Categories, tags, topics |
-| `industry/sources.json` | The sources imported on first start |
-| `industry/prompts/` | The selection standard and the writing requirements. **Your field's know-how goes here** |
-| `industry/selection.ts` | Selection thresholds |
-| `site/models.ts` | Which model each step uses by default (optional: otherwise every step uses the one in `.env`) |
-| `site/brand/`, `site/pages/`, `site/public/`, `site/changelog.json` | Icons and logo, terms of use and privacy notice, files served from the site root such as `robots.txt`, the changelog |
-| `modules/` | Features the framework doesn't have and only your site needs, as modules; see “模块” in [Architecture](docs/architecture.md#模块) |
+## Boundaries
 
-What is most worth your time is the scoring rubric (`industry/prompts/selection-score.md`) and the thresholds: take one or two hundred items you labelled yourself, run them through `scripts/eval-selection.ts`, see how accurately it selects, and go back and adjust. How to do it is in [Selection and calibration](docs/selection.md).
+Source coverage is finite. Crossref currently queries the first configured ISSN per journal, with a result cap and no pagination. arXiv backfill depends on its recent `pastweek` listing; the `TO` argument of `research:backfill FROM TO` applies only to arXiv, while journal backfill queries from `FROM` with its own result cap. These are not exhaustive historical searches.
 
-## Documentation
+Many inputs contain only abstracts and metadata. Generated summaries are not full-paper reviews; selection accuracy still needs calibration on labeled examples. Figure retrieval filters license metadata and records provenance, but does not guarantee per-image rights verification or image availability. Missing content or a missing issue does not establish that no new research exists.
 
-The documents below are in Chinese.
+Implementation support for scheduling and deployment does not prove a live deployment is healthy. Check its actual task records, receipts and published output.
 
-| Document | Contents |
-|---|---|
-| [Make it your field](docs/customize.md) | Site name, categories, topics, sources, prompts, thresholds, models, brand, step by step |
-| [Sources](docs/sources.md) | How to configure the six kinds of sources, tiers and full text, fetch frequency, older articles and archives, a fixed starting point with `publishedAfter`, the external push interface |
-| [Selection and calibration](docs/selection.md) | How an item becomes a selection and goes into the daily, weekly and monthly reports, and how to calibrate with your own samples |
-| [Event grouping and relation evaluation](docs/grouping.md) | How relations between events are judged, and how to evaluate with your own labelled pairs |
-| [Overview evaluation](docs/story-digest-evaluation.md) | Before changing the event overview prompt, how to compare versions side by side on the same events |
-| [Deployment](docs/deploy.md) | Docker, domains and HTTPS, mainland China, updates, backups, what it costs, and running on Linux or macOS (WSL2 on Windows) without Docker |
-| [Architecture](docs/architecture.md) | Three processes, the rules that don't change, directories, modules, database migrations, public outputs, tests |
+## Structure and documentation
 
-Stack: Node.js 24 · TypeScript · React Router (server-side rendering) · Fastify · PostgreSQL · pg-boss · Tailwind CSS · Docker Compose.
+The code is split into `apps/web`, `apps/api`, `apps/worker`, shared backend/contracts packages, `modules/research`, `modules/pages-mirror`, and the `industry` / `site` configuration workspaces.
 
-## Community and contributing
+See [the Chinese README](README.md) for the configuration map and operating commands, [deployment](docs/deploy.md), [architecture](docs/architecture.md), [selection and calibration](docs/selection.md), and [AlgorithmHot's rebuild notes](docs/algorithmhot.md).
 
-Questions about deploying and using it go to [Q&A](https://github.com/KKKKhazix/AIHOT/discussions/categories/q-a), new ideas to [Ideas](https://github.com/KKKKhazix/AIHOT/discussions/categories/ideas), and you're welcome to share the news site you built for your field in [Show and tell](https://github.com/KKKKhazix/AIHOT/discussions/categories/show-and-tell). Writing in English is fine.
+## Upstream and license
 
-For a bug or a concrete feature request, [open an issue](https://github.com/KKKKhazix/AIHOT/issues/new/choose). Before changing code, read the [contributing guide](CONTRIBUTING.md); report security vulnerabilities through the [private reporting channel](SECURITY.md).
+AlgorithmHot is built on [KKKKhazix/AIHOT](https://github.com/KKKKhazix/AIHOT), with the current rebuild based on `652bd6b`. It retains the framework's collection, scoring, event grouping, publication layer and administration, and adds research-specific configuration and modules. Internal `@aihot/*` package names are retained.
 
-## Finally
-
-AIHOT was once just a tiny, tiny thought on one of countless late nights.
-
-I don't know what it will be turned into, or how far it will go. But that may be the most romantic thing about open source.
-
-The rest of the road is yours.
-
-<p align="right">— 数字生命卡兹克 (Khazix)</p>
-
-## License
-
-The code is under the [MIT License](LICENSE). The AIHOT name and logo are not covered by the license. The fonts have their own licenses; see [NOTICE](NOTICE).
+Code is licensed under the [MIT License](LICENSE). Original copyright and third-party notices are in [NOTICE](NOTICE). Papers, images and publisher content remain subject to their own terms.

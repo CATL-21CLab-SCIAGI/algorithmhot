@@ -1,10 +1,10 @@
 # docker compose up -d --build     → http://localhost:3000   (the admin is at /admin)
 # docker compose --profile https up -d --build   → HTTPS for SITE_DOMAIN through Caddy
-name: aihot
+name: algorithmhot
 
 x-app: &app
   build: .
-  image: aihot-app
+  image: algorithmhot-app
   restart: unless-stopped
 
 x-backend: &backend

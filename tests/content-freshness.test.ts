@@ -83,7 +83,8 @@ test('an original source can supply a missing date without changing the text; di
     assert.equal(a.published_at.getTime(),publishedAt.getTime());
     assert.equal(a.discovered_at.getTime(),discoveredAt.getTime());
     assert.equal(a.backfill,mode!=='fresh');
-    assert.equal(a.timeline_at.getTime(),mode==='fresh'?discoveredAt.getTime():publishedAt.getTime());
+    // The timeline is when the source put it online, fresh or not (content/materials.ts decideTimeline).
+    assert.equal(a.timeline_at.getTime(),publishedAt.getTime());
     assert.equal((await upsertMaterial({...material,publishedAt})).revised,false);
     await highScore(created.articleId);
     assert.equal((await selectedContent(created.articleId)).status,mode==='fresh'?'ready':'skipped');

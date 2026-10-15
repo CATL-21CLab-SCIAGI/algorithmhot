@@ -1,5 +1,5 @@
 // What an issue carries. A period carries its selected reports: public, not backfill, attributed by
-// the later of arrival and release, and not released long after they happened. The daily is computed
+// the instant their source put them online (start, end]. The daily is computed
 // by rule, without a model judging anything: one entry per event, its most authoritative report with
 // the event's other developments listed under it; an event an earlier issue covered comes back only
 // with a new fact; an event with an official post and three or more independent participants is
@@ -7,25 +7,33 @@
 // independent participants, first-hand), and the first one leads. Sections are the industry pack's
 // (industry/taxonomy.ts CATEGORIES).
 import { addDays } from "@aihot/contracts/time";
+import * as TAXONOMY from "@aihot/industry/taxonomy";
+import * as SITE_CONFIG from "@aihot/site";
 import { CATEGORIES } from "@aihot/industry/taxonomy";
 import { sql } from "../db.ts";
 import { currentSignals } from "../events/hot.ts";
 import { pickRepresentative, representativePriority, REPRESENTATIVE_COLUMNS, type RepresentativeIdentity } from "../publication/representative.ts";
 import { factSources } from "../publication/coverage.ts";
+import { itemNotes } from "../publication/items.ts";
+import type { ItemNote } from "@aihot/contracts/site";
 import { evidenceCondition, listedCondition, ownFactEvidenceCondition } from "../publication/scope.ts";
 
 /** Each category's section; several categories may share one, in the order the pack lists them. */
 export const SECTION_OF: Record<string, string> = Object.fromEntries(CATEGORIES.map((c) => [c.key, c.section]));
 export const SECTION_ORDER: readonly string[] = [...new Set(CATEGORIES.map((c) => c.section))];
-/** An item without a category goes into the section of the industry category, else into the last one. */
-const DEFAULT_SECTION = SECTION_OF.industry ?? SECTION_ORDER.at(-1)!;
+/** An item without a category goes into the section of the pack's UNCATEGORIZED_CATEGORY (else of `industry`, else the last one). */
+const UNCATEGORIZED = (TAXONOMY as { UNCATEGORIZED_CATEGORY?: string }).UNCATEGORIZED_CATEGORY ?? "industry";
+const DEFAULT_SECTION = SECTION_OF[UNCATEGORIZED] ?? SECTION_ORDER.at(-1)!;
 export const sectionOf = (category: string | null) => SECTION_OF[category ?? ""] ?? DEFAULT_SECTION;
 
-/** A daily's size: the entries readers get in full, and the one-line flashes after them. */
-export const MAIN_ENTRIES = 12;
-export const FLASH_ENTRIES = 10;
-/** No source fills a daily: at most this many main entries lead with the same source. */
-const PER_SOURCE = 2;
+/**
+ * A daily's size (site/site.ts DAILY_SIZE): the entries readers get in full, the one-line flashes after
+ * them, and how many main entries may lead with the same source (no source fills a daily).
+ */
+const SIZE = { main: 12, flashes: 10, perSource: 2, ...((SITE_CONFIG as { DAILY_SIZE?: Partial<{ main: number; flashes: number; perSource: number }> }).DAILY_SIZE ?? {}) };
+export const MAIN_ENTRIES = SIZE.main;
+export const FLASH_ENTRIES = SIZE.flashes;
+const PER_SOURCE = SIZE.perSource;
 /** A follow-up of a covered event takes a full entry when this many sources carry its new facts. */
 const FOLLOW_UP_SOURCES = 4;
 /** The pack's `commentary` categories (how-tos, opinions): a follow-up of theirs is a flash, whoever wrote it. */
@@ -46,6 +54,8 @@ export interface ReportEntry {
   role: string;
   score: number | null;
   publishedAt: string;
+  /** The material's notes when the issue was written (publication/items.ts itemNotes). */
+  notes?: ItemNote[];
 }
 
 export interface Candidate extends ReportEntry {
@@ -88,17 +98,19 @@ type ReportRow = RepresentativeIdentity & {
   first_party: boolean; body_mode: "full" | "summary"; timeline_at: Date;
   source_id: string; source_name: string; source_kind: string;
   fact_id: number | null; fact_public_id: string | null; story_id: number | null; story_public_id: string | null;
+  notes: unknown;
 };
 
 const REPORT_FIELDS = sql`p.article_id AS id, p.title, p.summary, p.url, p.category, p.tags, p.score, (s.tier = 'T1') AS first_party, p.body_mode, p.timeline_at,
   ${REPRESENTATIVE_COLUMNS}, s.id AS source_id, s.name AS source_name, s.kind AS source_kind,
-  f.id AS fact_id, f.public_id AS fact_public_id, st.id AS story_id, st.public_id::text AS story_public_id`;
+  f.id AS fact_id, f.public_id AS fact_public_id, st.id AS story_id, st.public_id::text AS story_public_id,
+  (SELECT a.raw->'notes' FROM articles a WHERE a.id = p.article_id) AS notes`;
 
 /**
- * The selected reports a period [start, end) carries. Each counts once, in the period readers first saw
- * it: by arrival, or by release when that came later (a release after the cutoff belongs to the next
- * issue, never to one already out). A report that arrived more than a day before the period began and
- * was released only within it is old news there.
+ * The selected reports a period (start, end] carries. Each counts once, in the period its source put it
+ * online (the timeline rule, content/materials.ts): the edition time itself belongs to the issue it
+ * closes, so what goes online at that minute (an arXiv announcement) is in that morning's issue. An issue
+ * already out is never rewritten; what is judged after it went out stays out of it.
  */
 export async function periodReports(start: Date, end: Date): Promise<ReportRow[]> {
   return sql.begin("isolation level read committed", async (tx) => {
@@ -110,13 +122,9 @@ export async function periodReports(start: Date, end: Date): Promise<ReportRow[]
       FROM publications p JOIN sources s ON s.id = p.source_id
       LEFT JOIN facts f ON f.id = p.fact_id AND ${ownFactEvidenceCondition()}
       LEFT JOIN stories st ON st.id = f.story_id
-      -- Attribute each item by the later of arrival and release; either range can use its index.
       WHERE p.visibility = 'public' AND p.selected AND NOT p.backfill
-        AND (
-          (p.visible_after <= p.timeline_at AND p.timeline_at >= ${start} AND p.timeline_at < ${end})
-          OR (p.visible_after > p.timeline_at AND p.visible_after >= ${start} AND p.visible_after < ${end})
-        )
-        AND p.timeline_at >= ${start}::timestamptz - interval '24 hours'`;
+        AND p.visible_after <= now()
+        AND p.timeline_at > ${start} AND p.timeline_at <= ${end}`;
   });
 }
 
@@ -128,10 +136,12 @@ function roleOf(kind: string, official: boolean): string {
 }
 
 function reportEntry(r: ReportRow): ReportEntry {
+  const notes = itemNotes(r.notes);
   return {
     itemId: r.id, factId: r.fact_public_id, storyPublicId: r.story_public_id, title: r.title, summary: r.summary ?? "",
     sourceName: r.source_name, sourceUrl: r.url, sourceId: r.source_id, firstParty: r.first_party,
     role: roleOf(r.source_kind, representativePriority(r) < 3), score: r.score, publishedAt: r.timeline_at.toISOString(),
+    ...(notes.length ? { notes } : {}),
   };
 }
 
@@ -249,7 +259,7 @@ async function missedFacts(start: Date, end: Date): Promise<Array<{ key: string;
       SELECT DISTINCT fa.fact_id FROM fact_articles fa
       JOIN publications p ON p.article_id = fa.article_id JOIN sources s ON s.id = p.source_id
       WHERE ${evidenceCondition()} AND ${listedCondition(end)} AND s.participation_mode = 'editorial' AND NOT p.backfill
-        AND p.timeline_at >= ${start} AND p.timeline_at < ${end}
+        AND p.timeline_at > ${start} AND p.timeline_at <= ${end}
     )
     SELECT fa.fact_id
     FROM active JOIN fact_articles fa ON fa.fact_id = active.fact_id
@@ -276,7 +286,7 @@ async function missedFacts(start: Date, end: Date): Promise<Array<{ key: string;
 async function judgedReports(start: Date, end: Date): Promise<number> {
   const [row] = await sql<{ n: number }[]>`
     SELECT count(*)::int AS n FROM publications p
-    WHERE ${listedCondition(end)} AND p.score IS NOT NULL AND NOT p.backfill AND p.timeline_at >= ${start} AND p.timeline_at < ${end}`;
+    WHERE ${listedCondition(end)} AND p.score IS NOT NULL AND NOT p.backfill AND p.timeline_at > ${start} AND p.timeline_at <= ${end}`;
   return row!.n;
 }
 
@@ -293,7 +303,7 @@ function importance(e: { score: number | null; participants: number; official: b
 interface Fact { key: string; rows: ReportRow[]; selected: boolean; sources: string[]; at: number }
 
 /**
- * The daily's events for the window [start, end), most important first, before the editors' pass:
+ * The daily's events for the window (start, end], most important first, before the editors' pass:
  * selected reports and missed facts, minus what the week's issues already carried, one entry per event.
  */
 export async function dailyEdition(date: string, start: Date, end: Date): Promise<{ entries: EditionEntry[]; stats: Record<string, number> }> {
@@ -323,7 +333,7 @@ export async function dailyEdition(date: string, start: Date, end: Date): Promis
     storyIds.length
       ? sql<{ story_id: number; participants: number }[]>`
         SELECT cs.story_id, count(DISTINCT cs.participant_key)::int AS participants FROM ${currentSignals()} cs
-        WHERE cs.story_id = ANY(${storyIds}::bigint[]) AND cs.observed_at >= ${start} AND cs.observed_at < ${end}
+        WHERE cs.story_id = ANY(${storyIds}::bigint[]) AND cs.observed_at > ${start} AND cs.observed_at <= ${end}
         GROUP BY cs.story_id`
       : [],
     // A report without an event of its own is a roundup when the event graph linked it to the facts it mentions.

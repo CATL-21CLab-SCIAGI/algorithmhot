@@ -18,7 +18,7 @@ before(async () => {
     VALUES(${id},${id},${id},${`https://example.org/${id}`},${id},now(),now())`;
   await sql`INSERT INTO publications(article_id,source_id,url,title,summary,search_text,tags,category,channel,
     discovered_at,timeline_at,sort_at,eligible,selected,visible_after)
-    VALUES(${id},${id},${`https://example.org/${id}`},${id},'search example',${id},${[id]},'ai-models','news',
+    VALUES(${id},${id},${`https://example.org/${id}`},${id},'search example',${id},${[id]},'algorithm','news',
       now(),now(),now(),true,false,now())`;
   await sql`INSERT INTO pool_search(article_id,direct,body) VALUES(${id},${id},'')`;
 });
@@ -47,10 +47,10 @@ test('a burst of identical searches completes without consuming the distinct-sea
 });
 
 test('overlapping searches keep their category and explicit clock, and retain overload protection', async () => {
-  const [models, other] = await blocked(() => Promise.all([
-    loadPool({ ...query, category: 'ai-models' }), loadPool({ ...query, category: 'ai-products' }),
+  const [matching, other] = await blocked(() => Promise.all([
+    loadPool({ ...query, category: 'algorithm' }), loadPool({ ...query, category: 'ai4ai' }),
   ]));
-  assert.deepEqual(models.items.map(i => i.id), [id]);
+  assert.deepEqual(matching.items.map(i => i.id), [id]);
   assert.deepEqual(other.items, []);
   await sql`UPDATE publications SET selected=true,visible_after=now()+interval '1 day' WHERE article_id=${id}`;
   const [beforeRelease, afterRelease] = await blocked(() => Promise.all([

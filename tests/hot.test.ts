@@ -1,13 +1,13 @@
 // Heat is counted from the evidence as it stands: a withdrawn report no longer counts and a source
 // counts in its current role; participants are independent actors (one company's channels are one,
-// every Hacker News author is one); the change compares with the earlier time's full 48-hour window,
+// every Hacker News author is one); the change compares with the earlier time's full window (HOT_WINDOW),
 // and a source added since then is left out of the comparison.
 import { tag } from "./setup.ts";
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 import { after, test } from "node:test";
 import { closeDb, sql } from "@aihot/backend/db";
-import { heatRows, snapshotHeat } from "@aihot/backend/events/hot";
+import { heatRows, HOT_WINDOW, snapshotHeat } from "@aihot/backend/events/hot";
 
 const T = `hot-${tag()}`;
 const AT = new Date("2099-03-01T12:00:00Z");
@@ -105,12 +105,12 @@ test("publisher attribution repairs participant identity without rewriting store
   assert.equal((await sql`SELECT source_id FROM story_signals WHERE article_id=${corrected}`)[0]!.source_id,discovery,'the original evidence remains auditable');
 });
 
-test("the change compares with the earlier time's full 48-hour window, without sources added since", async () => {
+test("the change compares with the earlier time's full window, without sources added since", async () => {
   const s = await story();
   await signal(s, await source("now-1"), 1);
   await signal(s, await source("now-2"), 1);
-  // Seen 50 hours ago only: outside the current window, inside the one six hours earlier.
-  await signal(s, await source("old"), 50);
+  // Seen two hours before the window only: outside the current window, inside the one six hours earlier.
+  await signal(s, await source("old"), HOT_WINDOW.hours + 2);
   const r = await rowOf(s);
   assert.equal(Number(r?.participants), 2);
   assert.ok(Number(r?.heat_prev) > 0, "the earlier window keeps its first six hours");

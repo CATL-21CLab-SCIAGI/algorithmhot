@@ -11,5 +11,9 @@
     "./modules/web": "./modules/web.ts",
     "./pages/*": "./pages/*",
     "./brand/*": "./brand/*"
+  },
+  "dependencies": {
+    "@aihot/pages-mirror": "*",
+    "@aihot/research": "*"
   }
 }

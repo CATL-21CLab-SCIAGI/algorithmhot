@@ -1,13 +1,12 @@
 // Selected candidates waiting for a news identity: one reader-impact view for alerts and the admin.
 import type { AdminRuns, BeforeJson } from "@aihot/contracts/admin";
 import { sql } from "../db.ts";
-import { AUTO_RELEASE_NOTE } from "./recover.ts";
 
 export const GROUPING_WARN_AFTER_MS = 10 * 60_000;
 type WaitingNews = Omit<BeforeJson<AdminRuns>["grouping"]["items"][number], "since"> & { since: Date };
 
 export async function waitingSelectedNews(): Promise<WaitingNews[]> {
-  const rows = await sql<Array<Omit<WaitingNews, "recovery"> & { running: boolean; receipt_status: string | null; released: boolean }>>`
+  const rows = await sql<Array<Omit<WaitingNews, "recovery"> & { running: boolean; receipt_status: string | null }>>`
     SELECT p.article_id AS "articleId", p.title,
            -- Waiting since it became a candidate, its last revision or an admin's regroup request (requestRegroup's job).
            greatest(coalesce(p.selected_ready_at, p.discovered_at), revision.created_at,
@@ -16,16 +15,14 @@ export async function waitingSelectedNews(): Promise<WaitingNews[]> {
            a.grouping_status = 'failed' AS failed, a.grouping_receipt_id AS "receiptId", a.grouping_error AS error,
            r.status AS receipt_status,
            EXISTS (SELECT 1 FROM pgboss.job j WHERE j.name = 'events.group' AND j.state IN ('created', 'retry', 'active')
-                   AND j.data->>'articleId' = a.id) AS running,
-           EXISTS (SELECT 1 FROM receipt_attempts attempt WHERE attempt.receipt_id = r.id
-                   AND attempt.error LIKE ${AUTO_RELEASE_NOTE + "%"}) AS released
+                   AND j.data->>'articleId' = a.id) AS running
     FROM publications p JOIN articles a ON a.id = p.article_id LEFT JOIN receipts r ON r.id = a.grouping_receipt_id
     LEFT JOIN article_revisions revision ON revision.article_id = a.id AND revision.revision = a.revision
     WHERE p.selection_candidate AND p.eligible AND p.visibility = 'public' AND a.grouping_status <> 'complete'
     ORDER BY since, p.article_id`;
-  return rows.map(({ running, receipt_status, released, ...row }) => ({
+  return rows.map(({ running, receipt_status, ...row }) => ({
     ...row,
-    recovery: receipt_status === "unknown" ? (released ? "manual" : "receipt")
+    recovery: receipt_status === "unknown" ? "manual"
       : !row.failed || running || receipt_status === "pending" ? "automatic" : "manual",
   }));
 }

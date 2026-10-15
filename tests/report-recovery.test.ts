@@ -28,8 +28,8 @@ after(async () => { await provider.close(); await stopBoss(); await closeDb(); }
 async function item(date: string) {
   const id = `recovery-${tag()}`;
   const at = editionAt("daily", date, -12 * 3600);
-  await sql`INSERT INTO articles (id, source_id, identity_key, url, title, discovered_at, timeline_at)
-    VALUES (${id}, ${SOURCE}, ${id}, 'https://example.com/report', ${id}, ${at}, ${at})`;
+  await sql`INSERT INTO articles (id, source_id, identity_key, url, title, discovered_at, timeline_at, processing_state, grouping_status)
+    VALUES (${id}, ${SOURCE}, ${id}, 'https://example.com/report', ${id}, ${at}, ${at}, 'analyzed', 'complete')`;
   await sql`INSERT INTO publications (article_id, title, source_id, channel, url, discovered_at, timeline_at, sort_at, eligible, selected, visible_after, visibility, score)
     VALUES (${id}, ${id}, ${SOURCE}, 'news', 'https://example.com/report', ${at}, ${at}, ${at}, true, true, ${at}, 'public', 90)`;
   return id;
@@ -96,4 +96,19 @@ test("a week or month that ended before the first daily is not due, so a site st
   assert.deepEqual([generated, failed], [[], []]);
   assert.equal(await report("weekly", "2024-W05"), undefined);
   assert.equal(await report("monthly", "2024-01"), undefined);
+});
+
+test("a due daily waits while its window is still being judged, until the deadline; waiting is not a failure", async () => {
+  await item("2024-03-04");
+  const judging = `recovery-${tag()}`;
+  const at = editionAt("daily", "2024-03-04", -3600);
+  await sql`INSERT INTO articles (id, source_id, identity_key, url, title, discovered_at, timeline_at)
+    VALUES (${judging}, ${SOURCE}, ${judging}, 'https://example.com/judging', ${judging}, ${at}, ${at})`;
+  const early = await composeDueReports(editionAt("daily", "2024-03-04", 3600));
+  assert.deepEqual([early.generated, early.failed, early.waiting], [[], [], ["daily:2024-03-04"]]);
+  assert.equal(await report("daily", "2024-03-04"), undefined);
+  // From the deadline on it goes out with what was judged.
+  const late = await composeDueReports(new Date(Date.parse("2024-03-04T12:00:00+08:00")));
+  assert.deepEqual([late.generated, late.waiting], [["daily:2024-03-04"], []]);
+  assert.ok(await report("daily", "2024-03-04"));
 });

@@ -1,6 +1,7 @@
 // Hot ranking: attention over the last 48 hours from independent participants.
 // Each participant counts once per window (repeat collection does not add heat), decays with a
 // 24-hour half-life, and the source time (not collection time) places evidence in the window.
+import * as SITE_CONFIG from "@aihot/site";
 import { COMMUNITY_FEEDS } from "@aihot/site";
 import { sql, type Db } from "../db.ts";
 import { pickRepresentative, REPRESENTATIVE_COLUMNS, type RepresentativeIdentity } from "../publication/representative.ts";
@@ -54,9 +55,12 @@ export async function storedHotRanking(db: Db = sql): Promise<HotRanking | null>
   return { id: row.id, computedAt: row.computed_at.toISOString(), ruleVersion: row.rule_version, entries: row.entries, coverage: row.evidence };
 }
 
-export const HOT_RULE_VERSION = "heat-v1-48h-halflife24h";
-const WINDOW_HOURS = 48;
-const HALF_LIFE_HOURS = 24;
+/** The window and half-life (site/site.ts HOT_WINDOW; a news site's 48 h and 24 h by default). */
+export const HOT_WINDOW: { hours: number; halfLifeHours: number; label: string } =
+  (SITE_CONFIG as { HOT_WINDOW?: { hours: number; halfLifeHours: number; label: string } }).HOT_WINDOW ?? { hours: 48, halfLifeHours: 24, label: "48 小时" };
+const WINDOW_HOURS = HOT_WINDOW.hours;
+const HALF_LIFE_HOURS = HOT_WINDOW.halfLifeHours;
+export const HOT_RULE_VERSION = `heat-v1-${WINDOW_HOURS}h-halflife${HALF_LIFE_HOURS}h`;
 const MIN_PARTICIPANTS = 2;
 
 interface HeatRow {
