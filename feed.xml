@@ -97,6 +97,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[PreciseCoder：超越单元测试奖励的忠实、可泛化调试方法]]></title>
+      <link>http://localhost:3300/items/xila3y825j6v0ikt6i8256voi</link>
+      <description><![CDATA[<p>PreciseCoder 研究提出在单元测试奖励中加入经语义验证的局部编辑信号，以减少代码调试中的过度修改和对正确代码的错误诊断。根据当前材料，作者报告在 4B、9B 和 27B 模型上，平均编辑行数从 7-15 行降至 3 行，通过率与仅使用单元测试奖励的训练相当。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.18755">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/xila3y825j6v0ikt6i8256voi">http://localhost:3300/items/xila3y825j6v0ikt6i8256voi</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">xila3y825j6v0ikt6i8256voi</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[BINN 以保持对称性的神经网络计算多体薛定谔方程的玻色子基态]]></title>
       <link>http://localhost:3300/items/xf171j2xe3as5w2in2e4qsgd3</link>
       <description><![CDATA[<p>该研究提出保持对称性的 Boson-informed neural network（BINN），用于连续空间中相互作用玻色子基态的变分蒙特卡洛计算。根据当前材料，该方法用 cell Jastrow 因子处理微观近接触刚性，用感知势场的包络编码宏观外部束缚，让神经网络捕捉更平滑的多体残差。</p>
@@ -545,17 +556,6 @@
       <category>算法</category>
       <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">fdwd5zxg5et86lf3bue7054dt</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[TFP 将物理时间纳入机器人策略记忆动力学]]></title>
-      <link>http://localhost:3300/items/fbg8q78j6kpp8gh8m1imjetrm</link>
-      <description><![CDATA[<p>该研究提出 Temporal Flow Policy（TFP），让机器人策略记忆保留历史事件并随实测时间间隔演化。观察与既有记忆决定状态转移的内容和时间尺度，经过的时间决定状态推进程度；该记忆用于条件化扩散与流匹配策略，并采用其原生模仿学习目标训练。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.20524">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/fbg8q78j6kpp8gh8m1imjetrm">http://localhost:3300/items/fbg8q78j6kpp8gh8m1imjetrm</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">fbg8q78j6kpp8gh8m1imjetrm</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
