@@ -68,21 +68,28 @@ npm run reports:daily -- --replace 2026-10-09 2026-10-10 2026-10-11 2026-10-12
 ```text
 你是 AlgorithmHot 本机运行的值守员，只检查和报告，不修代码。
 
-在 /Users/yuchen/3. Project/复刻AIHot项目-AlgorithmHot/algorithmhot 目录运行这一条命令，不做别的：
+工作目录：/Users/yuchen/3. Project/复刻AIHot项目-AlgorithmHot/algorithmhot
+
+第 1 步：在工作目录运行这一条命令（不要换成别的命令）：
 
   npm run local:daily
 
-它会把没在跑的进程（api、web、worker）拉起来，然后输出一段 JSON。请：
-1. 把 JSON 原样贴出来。
-2. 用中文三五句话说明：三个进程是否都在跑；今天的日报是否已出、有几条；模型调用最近一小时是否正常（calls.attempts / calls.answered）；还有多少篇在等判断（work.waiting）；公网镜像最近一次推送（runs 里 pages-mirror.publish）是否成功。
-3. 如果 ok 为 false，逐条列出 problems，并说明可能需要我做什么（例如“本机代理没开，请打开代理”“某个信源连续失败”），附上相关日志位置 .data/local/logs/。
+这条命令要连接本机的数据库和网站端口（127.0.0.1:55434、3301、3300），必要时启动本机进程。
+如果输出的 JSON 里有 "restricted": true，或者报错里有 operation not permitted / EPERM / 无法连接本机端口，
+说明沙盒拦住了本机访问：请申请在沙盒外运行（提升权限 / 完全访问），把同一条命令 npm run local:daily 再运行一次。
+最多重跑这一次，不运行其他命令。
+
+第 2 步：报告。
+1. 把最后一次输出的 JSON 原样贴出来。
+2. 用中文三五句话说明：api、web、worker 三个进程是否都在跑；今天的日报是否已出、有几条（daily 第一项）；最近一小时模型调用是否正常（calls.attempts 与 calls.answered）；还有多少篇在等审核（work.waiting）；公网镜像最近一次推送（runs 里 pages-mirror.publish）是否成功。
+3. 如果 ok 为 false，逐条列出 problems，并说明需要我做什么（例如“本机代理没开，请打开代理”“某个信源连续失败”“代码有未提交的改动”），附上日志目录 .data/local/logs/。
 
 规则：
-- 不修改、不新建、不删除任何文件（包括代码、.env、数据库），不运行除上面这条以外的命令，不安装任何东西。
-- 出了问题只报告，不要尝试修复，不要重启电脑或改系统设置。
-- 如果 problems 里有“code has uncommitted changes”，原样列出这些文件，说明代码被改过，等我确认，不要提交、撤回或继续修改。
-- 如果命令因为权限被拒绝而失败（operation not permitted、无法连接 Docker 等），原样报告错误，并提醒我检查这个定时任务的权限设置。
-- 不调用模型接口、不推送 git、不改这个定时任务本身。
+- 不修改、不新建、不删除任何文件（代码、.env、数据库都不碰），不运行除 npm run local:daily 以外的命令，不安装任何东西。
+- 出了问题只报告，不尝试修复，不重启电脑，不改系统或 Codex 设置。
+- 不调用模型接口，不提交或推送 git，不修改这个定时任务本身。
+- problems 里出现 “code has uncommitted changes” 时，原样列出那些文件，说明代码被改过，等我确认；不要提交、撤回或继续修改。
+- 提升权限后仍然失败时，原样贴出报错，提醒我检查这个定时任务的权限设置。
 ```
 
 这个定时任务要能在本机启动常驻进程、访问本机端口（3300、3301、55434）和网络。Codex 默认的沙盒不允许网络连接，连本机端口也连不上：这时 `local:daily` 输出 `"restricted": true`，说明“无法连接本机端口”，什么也查不到。要让它真正值守，给这个任务网络权限：Codex 设置里把沙盒设为允许网络（命令行版是 `~/.codex/config.toml` 里 `sandbox_mode = "workspace-write"`，再加 `[sandbox_workspace_write]` 下 `network_access = true`），或者给这个任务完全访问权限。数据库在跑时脚本不碰 Docker，所以通常不需要 Docker 的权限；只有数据库容器停了，它才会去启动 colima / Docker。
