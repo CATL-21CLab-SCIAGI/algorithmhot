@@ -85,7 +85,7 @@ npm run reports:daily -- --replace 2026-10-09 2026-10-10 2026-10-11 2026-10-12
 - 不调用模型接口、不推送 git、不改这个定时任务本身。
 ```
 
-这个定时任务要能在本机启动常驻进程、访问本机端口（3300、3301、55434）和网络。Codex 的沙盒如果不允许，就在这个定时任务的设置里给它完全访问权限。数据库在跑时脚本不碰 Docker，所以通常不需要 Docker 的权限；只有数据库容器停了，它才会去启动 colima / Docker。
+这个定时任务要能在本机启动常驻进程、访问本机端口（3300、3301、55434）和网络。Codex 默认的沙盒不允许网络连接，连本机端口也连不上：这时 `local:daily` 输出 `"restricted": true`，说明“无法连接本机端口”，什么也查不到。要让它真正值守，给这个任务网络权限：Codex 设置里把沙盒设为允许网络（命令行版是 `~/.codex/config.toml` 里 `sandbox_mode = "workspace-write"`，再加 `[sandbox_workspace_write]` 下 `network_access = true`），或者给这个任务完全访问权限。数据库在跑时脚本不碰 Docker，所以通常不需要 Docker 的权限；只有数据库容器停了，它才会去启动 colima / Docker。
 
 Mac 睡眠时进程会暂停，醒来后 worker 把错过的定时任务各补一次；重启电脑后，下一次定时任务会把进程拉起来。要更早恢复，手动跑一次 `npm run local:up`。
 

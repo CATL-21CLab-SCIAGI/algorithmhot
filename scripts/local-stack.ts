@@ -179,10 +179,38 @@ async function proxyReachable(): Promise<boolean | null> {
   });
 }
 
-async function status(): Promise<boolean> {
+/** Whether a TCP connection to this machine's port can be opened from here. */
+async function canConnect(port: string): Promise<boolean> {
+  const net = await import("node:net");
+  return new Promise((resolve) => {
+    const socket = net.connect({ host: "127.0.0.1", port: Number(port), timeout: 3000 });
+    socket.once("connect", () => { socket.destroy(); resolve(true); });
+    socket.once("error", () => resolve(false));
+    socket.once("timeout", () => { socket.destroy(); resolve(false); });
+  });
+}
+
+/**
+ * Without the database nothing else can be read: the report says what can be seen from here (recorded
+ * processes, whether this machine's ports open at all) and why, instead of failing without one.
+ */
+async function blindStatus(problems: string[]): Promise<boolean> {
+  const processes: Record<string, unknown> = {};
+  for (const p of PROCS) processes[p.name] = { pid: running(p) };
+  const ports = { database: await canConnect(DB.port), api: await canConnect(API_PORT), web: await canConnect(WEB_PORT) };
+  const restricted = !ports.database && !ports.api && !ports.web;
+  problems.push(restricted
+    ? "this environment cannot open connections to this machine's ports (database, api, web): a sandbox without network access? Give the scheduled task network access, or run the command in a terminal"
+    : `the database at 127.0.0.1:${DB.port} does not answer`);
+  console.log(JSON.stringify({ ok: false, problems, restricted, ports, processes, logs: LOGS }, null, 2));
+  return false;
+}
+
+async function status(earlier: string[] = []): Promise<boolean> {
+  if (!(await databaseAnswers())) return blindStatus([...earlier]);
   const { default: postgres } = await import("postgres");
   const db = postgres(env.DATABASE_URL!, { max: 1, onnotice: () => {} });
-  const problems: string[] = [];
+  const problems: string[] = [...earlier];
   try {
     const processes: Record<string, unknown> = {};
     for (const p of PROCS) {
@@ -232,10 +260,16 @@ if (command === "up") await up();
 else if (command === "down") await down();
 else if (command === "status") process.exitCode = (await status()) ? 0 : 1;
 else if (command === "daily") {
-  await up();
+  // A failed start is reported with the status, never instead of it.
+  let failure: string | null = null;
+  try {
+    await up();
+  } catch (error) {
+    failure = `could not bring the site up: ${String((error as Error).message ?? error).split("\n")[0]!.slice(0, 300)}`;
+  }
   // Give a freshly started worker a minute to run what it missed before reporting.
-  await sleep(Number(env.LOCAL_DAILY_SETTLE_SECONDS ?? 60) * 1000);
-  process.exitCode = (await status()) ? 0 : 1;
+  if (!failure) await sleep(Number(env.LOCAL_DAILY_SETTLE_SECONDS ?? 60) * 1000);
+  process.exitCode = (await status(failure ? [failure] : [])) ? 0 : 1;
 } else {
   console.error("usage: node scripts/local-stack.ts up | status | daily | down");
   process.exitCode = 2;
