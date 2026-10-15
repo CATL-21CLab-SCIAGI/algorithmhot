@@ -31,6 +31,39 @@
       <author>noreply@localhost (arXiv · 计算物理与材料)</author>
     </item>
     <item>
+      <title><![CDATA[RAR：面向时间一致交互式世界模型的速率自适应推演]]></title>
+      <link>http://localhost:3300/items/u0ofql9wpmm570q6u98jkugr9</link>
+      <description><![CDATA[<p>RAR 研究提出速率自适应推演框架，使交互式世界模型能够以可控时间速率生成，缓解运行吞吐变化导致的世界演化速度失真。基于摘要，其核心 Stride-RoPE 将不同采样速率的潜在帧对齐到共享物理时间坐标，支持未见速率泛化及保留历史的在线速率切换，并通过多步幅视频采样联合学习精细动态与长时演化。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.16302">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/u0ofql9wpmm570q6u98jkugr9">http://localhost:3300/items/u0ofql9wpmm570q6u98jkugr9</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">u0ofql9wpmm570q6u98jkugr9</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[GroundGUI 提出以高质量数据和蒸馏到强化学习提升 GUI 定位]]></title>
+      <link>http://localhost:3300/items/tewjs35bcv5o0ahbuc87sgtw8</link>
+      <description><![CDATA[<p>GroundGUI 研究提出 ScreenRef 数据集和蒸馏到强化学习方法 D2RL，用于提升自然语言指令到 GUI 屏幕组件的精准定位能力。根据当前材料，ScreenRef 包含 586K 张截图和超过 633K 个指代表达实例，配有框或点标注，覆盖桌面、网页、移动端的文本识别、视觉匹配、空间理解及拒绝场景。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.19100">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/tewjs35bcv5o0ahbuc87sgtw8">http://localhost:3300/items/tewjs35bcv5o0ahbuc87sgtw8</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">tewjs35bcv5o0ahbuc87sgtw8</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[Player-1：通过合成经验学习游戏控制]]></title>
+      <link>http://localhost:3300/items/s37hzi99qs31ksbnqngznuy9a</link>
+      <description><![CDATA[<p>Player-1 研究提出利用合成经验学习游戏控制的后训练框架，作者报告其收益可迁移至强化学习训练集之外的游戏环境。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.20584">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/s37hzi99qs31ksbnqngznuy9a">http://localhost:3300/items/s37hzi99qs31ksbnqngznuy9a</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">s37hzi99qs31ksbnqngznuy9a</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[GeONet：用几何编码算子网络预测非均质多孔介质流动]]></title>
       <link>http://localhost:3300/items/pou29qcc3zjhdihacrvo5wen8</link>
       <description><![CDATA[<p>GeONet 研究提出几何编码算子网络，作者报告其提高了非均质多孔介质稳态压力场预测的精度与跨几何泛化能力。基于摘要，该网络在 Branch–Trunk 架构中加入编码固体与孔隙二值掩码的 Leaf Network，并通过门控 DeepMixer 融合材料属性、坐标和几何特征，使用 5,000 次 PFLOTRAN 模拟、近 30 TB 数据训练与评估。</p>
@@ -53,6 +86,17 @@
       <author>noreply@localhost (arXiv · 计算物理与材料)</author>
     </item>
     <item>
+      <title><![CDATA[具身操作研究探索技能组合泛化的极限，定位子任务交接的起始状态差距]]></title>
+      <link>http://localhost:3300/items/oh14iytr175pbtoug2hhzj3if</link>
+      <description><![CDATA[<p>该研究报告，具身操作中的原子技能熟练度不足以保障有序组合执行，失败集中在子任务交接状态与常规起始状态之间的差距。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.15425">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/oh14iytr175pbtoug2hhzj3if">http://localhost:3300/items/oh14iytr175pbtoug2hhzj3if</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">oh14iytr175pbtoug2hhzj3if</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[用卷积神经网络重建 Germano 差分滤波场，加速等离子体湍流大涡模拟]]></title>
       <link>http://localhost:3300/items/o0m5lmtwlppc3uaynd6hi641q</link>
       <description><![CDATA[<p>该研究提出结合卷积神经网络与 Germano 可逆差分滤波的方法，用于加速等离子体湍流大涡模拟（LES）。根据当前材料，网络学习从粗网格 LES 场到差分滤波后的直接数值模拟（DNS）场的映射，再通过逆滤波重建细尺度细节，以计算非线性项和亚网格尺度项。</p>
@@ -62,6 +106,39 @@
       <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">o0m5lmtwlppc3uaynd6hi641q</guid>
       <author>noreply@localhost (arXiv · 计算物理与材料)</author>
+    </item>
+    <item>
+      <title><![CDATA[LatentLoop 通过非对称计算分配扩展循环 MoE 模型]]></title>
+      <link>http://localhost:3300/items/nl8kwvuk04bjcg23v37vj01u2</link>
+      <description><![CDATA[<p>LatentLoop 研究提出非对称计算分配方法，通过压缩循环 MoE 首次访问的序列，将节省的计算用于增大隐藏维度。根据当前材料，作者观察到降低首次访问的残差系数可保持或改善性能，而同样降低第二次访问的系数会损害性能；该方法保留第二次访问的完整序列分辨率，两次访问共享 MoE 权重但使用独立注意力参数。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.19975">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/nl8kwvuk04bjcg23v37vj01u2">http://localhost:3300/items/nl8kwvuk04bjcg23v37vj01u2</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">nl8kwvuk04bjcg23v37vj01u2</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[DecisionRobust：评测 JEV 类决策模型在文本与视觉输入下的鲁棒性]]></title>
+      <link>http://localhost:3300/items/lwm4xojlma1wg8whew6nvk3tu</link>
+      <description><![CDATA[<p>DecisionRobust 研究提出面向 JEV 类决策模型的文本与视觉鲁棒性基准，评测保留语义的文本扰动、图像扰动及两种模态中的提示注入。根据当前材料，作者通过外部有效性检查与跨模型候选筛选构建评测集，在文本和视觉任务上分别评测 30 和 17 种模型配置，其中分别包含 24 和 12 个未参与候选筛选的留出模型。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.19118">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/lwm4xojlma1wg8whew6nvk3tu">http://localhost:3300/items/lwm4xojlma1wg8whew6nvk3tu</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">lwm4xojlma1wg8whew6nvk3tu</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[KV4-RL 提出混合精度 KV 缓存量化，加速 RLVR 异步采样]]></title>
+      <link>http://localhost:3300/items/iynpcndtxg3yr3ck7jh1hfq2v</link>
+      <description><![CDATA[<p>KV4-RL 提出免校准 INT4 KV 缓存量化，结合选择性 INT8 保护，加速可验证奖励强化学习（RLVR）的异步采样并缓解采样器失配。根据当前材料，该方法仅对有限数量的注意力汇聚位置和近期上下文位置采用 INT8，作者在匹配工作负载的比较中发现，KV 缓存量化比仅权重量化及权重与激活量化带来更大加速。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.14448">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/iynpcndtxg3yr3ck7jh1hfq2v">http://localhost:3300/items/iynpcndtxg3yr3ck7jh1hfq2v</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">iynpcndtxg3yr3ck7jh1hfq2v</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
       <title><![CDATA[ActMOF 通过主动学习映射金属有机框架的合成条件]]></title>
@@ -75,14 +152,36 @@
       <author>noreply@localhost (arXiv · 计算物理与材料)</author>
     </item>
     <item>
-      <title><![CDATA[CoSIR 用可验证的信息奖励训练 LLM 多智能体协作]]></title>
-      <link>http://localhost:3300/items/hbyft3c42hxxdi9a7j7o3kq5o</link>
-      <description><![CDATA[<p>CoSIR 研究提出基于信息奖励的协作后训练方法，作者报告其在七项未见自然语言协作任务上获得最高综合得分。该方法以贝叶斯评估器衡量共享信息带来的团队惊异度下降，团队惊异度定义为各智能体依据自身证据赋予正确选项的负对数概率之和；信息请求按如实获得所请求信息后的潜在下降量评分，另设奖励鼓励智能体在私有选择和计算中利用收到的信息。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.17893">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/hbyft3c42hxxdi9a7j7o3kq5o">http://localhost:3300/items/hbyft3c42hxxdi9a7j7o3kq5o</a></p>]]></description>
-      <category>AI4AI</category>
+      <title><![CDATA[Diff Diffusion：用扩散模型预测编辑路径，提高代码编辑效率]]></title>
+      <link>http://localhost:3300/items/h83mpag1l7ta7ws9ojhkgo2x5</link>
+      <description><![CDATA[<p>Diff Diffusion 提出受扩散模型启发的代码编辑框架，通过预测原始代码到修订代码的编辑路径，将计算集中于发生变化的区域。该框架把去噪表示为结构化编辑操作，结合多阶段训练与高效并行解码，支持多位置并行修改。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.17831">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/h83mpag1l7ta7ws9ojhkgo2x5">http://localhost:3300/items/h83mpag1l7ta7ws9ojhkgo2x5</a></p>]]></description>
+      <category>算法</category>
       <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">hbyft3c42hxxdi9a7j7o3kq5o</guid>
+      <guid isPermaLink="false">h83mpag1l7ta7ws9ojhkgo2x5</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[TFP 将物理时间纳入机器人策略记忆动力学]]></title>
+      <link>http://localhost:3300/items/fbg8q78j6kpp8gh8m1imjetrm</link>
+      <description><![CDATA[<p>该研究提出 Temporal Flow Policy（TFP），让机器人策略记忆保留历史事件并随实测时间间隔演化。观察与既有记忆决定状态转移的内容和时间尺度，经过的时间决定状态推进程度；该记忆用于条件化扩散与流匹配策略，并采用其原生模仿学习目标训练。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.20524">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/fbg8q78j6kpp8gh8m1imjetrm">http://localhost:3300/items/fbg8q78j6kpp8gh8m1imjetrm</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">fbg8q78j6kpp8gh8m1imjetrm</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[G^3VLA 为视觉语言动作模型引入相机几何归纳偏置]]></title>
+      <link>http://localhost:3300/items/e85w7kugpl838sh5kcwiumaa9</link>
+      <description><![CDATA[<p>G^3VLA 研究提出相机感知几何模块，在不改变预训练 VLA 动作空间和原有动作学习目标的情况下，改善多视角表示与视点鲁棒性。根据当前材料，该模块结合内参条件化射线嵌入、投影位置编码（PRoPE）和双向跨视角融合，以真值点图或置信度门控的 π^3X 教师预测提供几何监督，后者支持无需深度传感器或人工几何标注的训练。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2606.24472">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/e85w7kugpl838sh5kcwiumaa9">http://localhost:3300/items/e85w7kugpl838sh5kcwiumaa9</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">e85w7kugpl838sh5kcwiumaa9</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
@@ -94,6 +193,17 @@
       <category>算法</category>
       <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">d54e4db88p9q70f8x2djq1m8a</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[CALIF 研究：诊断与纠正可验证指令遵循中的奖励投机]]></title>
+      <link>http://localhost:3300/items/cjat5116ac3bufkx9vk9gnecj</link>
+      <description><![CDATA[<p>CALIF 研究指出，可验证指令遵循中的约束满足奖励可能诱发奖励投机，并提出用校准的似然奖励保留回答质量。根据当前材料，作者发现前沿模型缺少实质回答内容也能获得满分，公开检查点在采用可验证奖励强化学习后出现约束满足率提高、回答质量下降的现象。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.19525">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/cjat5116ac3bufkx9vk9gnecj">http://localhost:3300/items/cjat5116ac3bufkx9vk9gnecj</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">cjat5116ac3bufkx9vk9gnecj</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
@@ -141,6 +251,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[Echo提出误差补偿4-bit张量并行通信，用于LLM训练与推理]]></title>
+      <link>http://localhost:3300/items/zm5zggp2p4t73as9ozsaa5vwf</link>
+      <description><![CDATA[<p>Echo研究提出用于LLM训练与推理的4-bit all-reduce，通过误差反馈控制跨层累积误差。根据当前材料，该方法以4-bit传输、高精度求和，无论GPU数量多少，每个值每次调用最多量化两次，并将误差反馈至后续调用；作者给出累积误差上界不随深度增长的理论证明，且方法无需FP8或FP4硬件。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.14277">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/zm5zggp2p4t73as9ozsaa5vwf">http://localhost:3300/items/zm5zggp2p4t73as9ozsaa5vwf</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">zm5zggp2p4t73as9ozsaa5vwf</guid>
+      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
+    </item>
+    <item>
       <title><![CDATA[预训练分类器的对抗检测：通过 Lipschitz 裕量分析提供认证保证]]></title>
       <link>http://localhost:3300/items/z9l30a57wfd8e0ilxt85lgb42</link>
       <description><![CDATA[<p>该研究提出基于 Lipschitz 裕量分析的对抗检测方法，无需重训预训练分类器，将认证目标从扰动内预测不变转为检测出对抗输入。</p>
@@ -149,6 +270,17 @@
       <category>算法</category>
       <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">z9l30a57wfd8e0ilxt85lgb42</guid>
+      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
+    </item>
+    <item>
+      <title><![CDATA[耗散拉格朗日神经网络 dLNN 提出可解释的无源机械系统建模方法]]></title>
+      <link>http://localhost:3300/items/yze133hyis59i69jz724tp9kb</link>
+      <description><![CDATA[<p>研究提出耗散拉格朗日神经网络（dLNN），从数据中分别学习机械系统的保守动力学与耗散动力学，实现连续时间系统辨识。根据当前材料，其耗散力参数化通过结构约束保证模型无源性，防止耗散项吸收保守力学成分，同时能够表示多种状态相关阻尼和正则化摩擦力。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.15996">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/yze133hyis59i69jz724tp9kb">http://localhost:3300/items/yze133hyis59i69jz724tp9kb</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">yze133hyis59i69jz724tp9kb</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
@@ -182,6 +314,17 @@
       <category>AI4S</category>
       <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">ygtofe1pizrn3et7hi2vm111m</guid>
+      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
+    </item>
+    <item>
+      <title><![CDATA[GuidanceNFT 提出面向引导扩散模型的 NFT 奖励微调方法]]></title>
+      <link>http://localhost:3300/items/y246h1d5kmfe5t87rstv1fktj</link>
+      <description><![CDATA[<p>GuidanceNFT 提出对引导扩散模型进行奖励微调的方法，作者报告其可持续提升奖励，并改善整体提示词一致性。基于摘要，研究将直接对引导样本应用标准 DiffusionNFT（NFT）的失败归因于参考速度与引导采样分布的分数函数不匹配，通过在线流匹配估计匹配的参考速度并修正两个回归项；在参考速度精确的条件下，修正目标可恢复 NFT 预期的更新。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.15856">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/y246h1d5kmfe5t87rstv1fktj">http://localhost:3300/items/y246h1d5kmfe5t87rstv1fktj</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">y246h1d5kmfe5t87rstv1fktj</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
@@ -240,6 +383,28 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[DeltaNet-PC 提出无需时间反向传播的测试时记忆方法]]></title>
+      <link>http://localhost:3300/items/x9gshrcgk93dlrg5vq7q8oas1</link>
+      <description><![CDATA[<p>DeltaNet-PC 提出基于预测编码（PC）的测试时序列记忆方法，无需通过时间反向传播（BPTT）训练。根据当前材料，作者将每步记忆更新 ΔS_t 视为潜变量而非待学习的慢权重，从 PC 概率模型的对数概率推导更新规则，并将其与 DeltaNet 等线性注意力方法联系起来。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.15185">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/x9gshrcgk93dlrg5vq7q8oas1">http://localhost:3300/items/x9gshrcgk93dlrg5vq7q8oas1</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">x9gshrcgk93dlrg5vq7q8oas1</guid>
+      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
+    </item>
+    <item>
+      <title><![CDATA[TSRL 提出面向智能体持续训练的触发式监督强化学习框架]]></title>
+      <link>http://localhost:3300/items/ww1zg6b705uwj0hxo3tup63jd</link>
+      <description><![CDATA[<p>TSRL 研究提出以 RL 为优化骨干、仅在策略失败的困难状态触发 SFT，以缓解智能体持续学习中的灾难性遗忘。基于摘要，作者从理论上推导了将监督限制在失败状态时的累积参数更新上界，并据此解释相较完整 SFT 减少遗忘的机制。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.17726">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ww1zg6b705uwj0hxo3tup63jd">http://localhost:3300/items/ww1zg6b705uwj0hxo3tup63jd</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">ww1zg6b705uwj0hxo3tup63jd</guid>
+      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
+    </item>
+    <item>
       <title><![CDATA[PACS：面向扩散语言模型的可预测性感知 SFT，不只匹配答案，也匹配生成空间]]></title>
       <link>http://localhost:3300/items/wv6cd1awn0p4xznmz1vlc8bl7</link>
       <description><![CDATA[<p>PACS 研究提出面向扩散语言模型的 SFT 方法，通过可预测性感知的生成空间选择与监督，缓解训练与推理错配。基于摘要，该方法利用模型自身的可预测性选择各样本的注意力可见输入长度，并在参考 token 按置信度引导显露之前对其施加监督。</p>
@@ -270,6 +435,39 @@
       <category>AI4AI</category>
       <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">wdy84iyoa6z090wznu6d31hzu</guid>
+      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
+    </item>
+    <item>
+      <title><![CDATA[语言模型的本体感觉：通过训练感知自身内部状态]]></title>
+      <link>http://localhost:3300/items/wcoh3lwyna28z3a79s3sf4jpp</link>
+      <description><![CDATA[<p>该研究提出语言模型的数字本体感觉，作者报告可通过训练让模型感知自身内部状态，且不影响模型能力。根据当前材料，研究采用 SFT 和 on-policy 训练，将内部信息构造成可验证信号，涵盖路由决策感知、token 熵、决策深度及 logit lens 信息。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.17495">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/wcoh3lwyna28z3a79s3sf4jpp">http://localhost:3300/items/wcoh3lwyna28z3a79s3sf4jpp</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">wcoh3lwyna28z3a79s3sf4jpp</guid>
+      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
+    </item>
+    <item>
+      <title><![CDATA[PivotRL 通过动态资源调配提升生成式奖励 RL 后训练效率]]></title>
+      <link>http://localhost:3300/items/wcfjjlpchnf2o54sbecml5r8r</link>
+      <description><![CDATA[<p>PivotRL 研究提出在策略采样、生成式奖励模型（GenRM）评估和策略训练之间动态调配 GPU 资源，以提升 RL 后训练吞吐量。根据当前材料，该系统基于全局参数存储构建可切换资源的运行时，统一切换各角色的上下文，并结合序列迁移调度及权衡吞吐收益与切换开销的规划器决定切换时机和方式。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.16866">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/wcfjjlpchnf2o54sbecml5r8r">http://localhost:3300/items/wcfjjlpchnf2o54sbecml5r8r</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">wcfjjlpchnf2o54sbecml5r8r</guid>
+      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
+    </item>
+    <item>
+      <title><![CDATA[MissPath-FM：用结构化先验对部分观测时间序列进行流匹配]]></title>
+      <link>http://localhost:3300/items/w16lykzzc7n54tf6hm96kmvqw</link>
+      <description><![CDATA[<p>MissPath-FM 研究提出面向部分观测时间序列的流匹配框架，通过重设计源先验与概率路径，减少对已观测区域的不必要传输。根据当前材料，该方法采用插值先验或高斯过程后验先验，使流的初始化接近已观测信号，并用缺失感知平滑路径区别分配已观测与缺失区域的传输。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.17715">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/w16lykzzc7n54tf6hm96kmvqw">http://localhost:3300/items/w16lykzzc7n54tf6hm96kmvqw</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">w16lykzzc7n54tf6hm96kmvqw</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
@@ -306,6 +504,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[AutoConvexRelax：学习为非凸优化问题设计凸松弛]]></title>
+      <link>http://localhost:3300/items/v9rdm63gdro7dondoep4nobey</link>
+      <description><![CDATA[<p>AutoConvexRelax 提出学习式凸松弛设计方法，通过组合符号改写，为非凸优化问题生成适应其结构的松弛方案。根据当前材料，该方法用三部图连接变量、符号项及其在目标或约束中的位置，再学习随问题表述演变的改写策略。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.16948">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/v9rdm63gdro7dondoep4nobey">http://localhost:3300/items/v9rdm63gdro7dondoep4nobey</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">v9rdm63gdro7dondoep4nobey</guid>
+      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
+    </item>
+    <item>
       <title><![CDATA[读出缩放影响稀疏特征恢复，RC-DS 的收益取决于数据分布]]></title>
       <link>http://localhost:3300/items/v6u3rcnyxvknsvz3usqch2xe8</link>
       <description><![CDATA[<p>该研究报告，读出缩放会改变稀疏自编码器（SAE）学到的特征，但移除缩放的收益取决于数据分布及训练坐标是否匹配特征生成空间。</p>
@@ -314,6 +523,17 @@
       <category>算法</category>
       <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">v6u3rcnyxvknsvz3usqch2xe8</guid>
+      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
+    </item>
+    <item>
+      <title><![CDATA[神经 PDE 代理模型研究通过多保真度训练优化数据生成算力与误差的权衡]]></title>
+      <link>http://localhost:3300/items/uzyae2lh3tmvsgkcl5lsj19xo</link>
+      <description><![CDATA[<p>该研究报告，多保真度训练可使神经 PDE 代理模型达到仅用高保真度数据训练的精度，并在作者测试设置中将数据生成算力需求最多降低至原来的 1/6.3。根据当前材料，方法在固定数据生成算力预算下联合考虑样本数量与保真度，将保真度视为细粒度离散谱，利用低保真度模拟提供额外训练信号，并主张最优混合配比可实现误差随数据生成算力增长的帕累托最优缩放。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.17221">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/uzyae2lh3tmvsgkcl5lsj19xo">http://localhost:3300/items/uzyae2lh3tmvsgkcl5lsj19xo</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">uzyae2lh3tmvsgkcl5lsj19xo</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
@@ -328,234 +548,14 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
-      <title><![CDATA[院内死亡预测联邦学习研究报告：评估协议选择比聚合算法更影响性能]]></title>
-      <link>http://localhost:3300/items/ucndcmmnhukdnl28wnh4sj9in</link>
-      <description><![CDATA[<p>该研究报告，在院内死亡预测联邦学习中，院内科室联邦的三项评估协议选择对判别性能的影响大于聚合策略差异。根据当前材料，作者用统一流程比较七种策略，覆盖 MIMIC-IV 中一家医院的 12 个科室和 eICU-CRD 中的 49 家医院，采用相同验证集调参与选择规则，并在 10 个随机种子下进行 Friedman 检验及 Holm 校正。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.17265">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ucndcmmnhukdnl28wnh4sj9in">http://localhost:3300/items/ucndcmmnhukdnl28wnh4sj9in</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">ucndcmmnhukdnl28wnh4sj9in</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[OctMole 提出基于分层空间流的多尺度三维分子生成框架]]></title>
-      <link>http://localhost:3300/items/u8i1c5xhecocnd545woxcnnnt</link>
-      <description><![CDATA[<p>OctMole 提出多尺度八叉树流框架，通过分层空间建模兼顾三维分子的全局结构、局部几何精度与生成效率。其占据流由粗到细确定稀疏分子占据区域，联合原子流为占据叶节点分配原子类型和单元内连续偏移，并通过单元扰动增强对生成占据区域的鲁棒性。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.16586">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/u8i1c5xhecocnd545woxcnnnt">http://localhost:3300/items/u8i1c5xhecocnd545woxcnnnt</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">u8i1c5xhecocnd545woxcnnnt</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[HarnessTTT 通过测试时学习优化科学发现的执行框架]]></title>
-      <link>http://localhost:3300/items/tv073gk6i2ogjsvbsf2vem2fe</link>
-      <description><![CDATA[<p>HarnessTTT 提出测试时学习框架，在冻结执行模型的同时训练执行框架生成器，以改善有限计算预算下的科学发现搜索。生成器组合系统提示、可复用技能、工具、中间件与执行控制，利用搜索反馈及结合差距归一化奖励、留一法优势（RLOO）和 max-sharpening 的策略梯度目标更新，并在执行前验证生成组件。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.17370">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/tv073gk6i2ogjsvbsf2vem2fe">http://localhost:3300/items/tv073gk6i2ogjsvbsf2vem2fe</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">tv073gk6i2ogjsvbsf2vem2fe</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[偏好模型可靠吗？用 Stackelberg 博弈搜索对齐评估中的潜在错误]]></title>
-      <link>http://localhost:3300/items/trp1wazwtt5xche4ag2foghlp</link>
-      <description><![CDATA[<p>该研究提出用零和 Stackelberg 博弈搜索偏好评估器可能颠倒真实偏好的比较样本，为追加监督提供候选。根据当前材料，训练期间无法获取人类偏好，因此以偏好模型集成的分歧代理预测错误，由 Leader 策略最小化分歧、Follower 策略最大化分歧。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.15008">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/trp1wazwtt5xche4ag2foghlp">http://localhost:3300/items/trp1wazwtt5xche4ag2foghlp</a></p>]]></description>
+      <title><![CDATA[HACE 提出专用基础模型与 LLM 智能体的异构协同进化框架]]></title>
+      <link>http://localhost:3300/items/upvibyldmhmn1oq2byktd7aeq</link>
+      <description><![CDATA[<p>HACE 研究提出通过互惠学习联合改进专用基础模型与 LLM 智能体，并报告在三个领域的主要任务指标上优于所评估的自改进方法。基于摘要，框架以监督学习改进专用模型，以当前专用模型经验证的性能增益指导智能体的同策略强化自训练，再用智能体探索结果指导后续专用模型训练。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.16078">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/upvibyldmhmn1oq2byktd7aeq">http://localhost:3300/items/upvibyldmhmn1oq2byktd7aeq</a></p>]]></description>
       <category>AI4AI</category>
       <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">trp1wazwtt5xche4ag2foghlp</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[Heusler 合金热电筛选研究结合机器学习态密度与第一性原理输运计算]]></title>
-      <link>http://localhost:3300/items/tm392tmcfnq5tamg6w7jrplo7</link>
-      <description><![CDATA[<p>该研究报告，结合态密度筛选与第一性原理输运计算，获得了 80 个 Heusler 合金热电计算候选，其中 61 个尚无已报告的测量结果。根据当前材料，作者覆盖 DXMag 数据库全部 106,235 个结构，对其中 51,257 个使用密度泛函光谱筛选、54,978 个使用神经网络预测光谱筛选，并以 3,625 次能带结构与输运计算检验两类筛选。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.18179">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/tm392tmcfnq5tamg6w7jrplo7">http://localhost:3300/items/tm392tmcfnq5tamg6w7jrplo7</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">tm392tmcfnq5tamg6w7jrplo7</guid>
-      <author>noreply@localhost (arXiv · 计算物理与材料)</author>
-    </item>
-    <item>
-      <title><![CDATA[混合优化器训练如何逐层选择更新几何？G-Scion 研究符号与谱更新的测量式分配]]></title>
-      <link>http://localhost:3300/items/thezt76584aitoger6btx6e52</link>
-      <description><![CDATA[<p>G-Scion 研究提出将符号与谱更新的分配转化为可测量的逐层决策，而非按网络层类型固定指定优化器几何。根据当前材料，作者针对理想无记忆更新推导有限批次下的保守下降下界比值，并在正信号与光滑性假设下给出含噪声阈值的比较界，再利用梯度对齐和 Hessian 向量积构造局部方向二次评分以控制路由。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.17285">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/thezt76584aitoger6btx6e52">http://localhost:3300/items/thezt76584aitoger6btx6e52</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">thezt76584aitoger6btx6e52</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[MIRRA 以化学知识增强离散流匹配，实现快速高保真分子生成]]></title>
-      <link>http://localhost:3300/items/sxa1p0yq3895p84abblfxx9o3</link>
-      <description><![CDATA[<p>基于摘要，MIRRA 研究提出融入化学知识的离散流匹配分子生成器，在保留完整化学词表的同时提高生成保真度与采样效率。该方法用化学特征共享相关构建块的信息，以学习到的身份修正区分分子上下文中的构建块，并先决定刷新位置再计算身份概率，避免无用预测而保持各采样转移不变。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.17244">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/sxa1p0yq3895p84abblfxx9o3">http://localhost:3300/items/sxa1p0yq3895p84abblfxx9o3</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">sxa1p0yq3895p84abblfxx9o3</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[Robustly Reliable Learning for Regression 提出对抗环境下的可靠回归预测区间算法]]></title>
-      <link>http://localhost:3300/items/shg5fqolf89jun5l5m07tzc94</link>
-      <description><![CDATA[<p>Avrim Blum 与 Anh Tuan Nguyen 提出回归场景下的鲁棒可靠学习问题，计算覆盖所有符合污染预算的 L-Lipschitz 预测器输出的最紧预测区间。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.17381">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/shg5fqolf89jun5l5m07tzc94">http://localhost:3300/items/shg5fqolf89jun5l5m07tzc94</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">shg5fqolf89jun5l5m07tzc94</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[通用机器学习原子间势能否捕捉小极化子？过渡金属氧化物中的几何基准评测]]></title>
-      <link>http://localhost:3300/items/rd7dexjf12mfz8c2u78at6d5b</link>
-      <description><![CDATA[<p>该研究报告，通用机器学习原子间势（uMLIPs）对小极化子的描述能力不一，且均未能稳定空间分离的极化子与施主构型。根据当前材料，作者研究了多种过渡金属氧化物中由 H 诱导的电子局域化，以基于 TM-O 键长膨胀的几何描述符（Z-score）识别极化子畸变。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.17352">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/rd7dexjf12mfz8c2u78at6d5b">http://localhost:3300/items/rd7dexjf12mfz8c2u78at6d5b</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">rd7dexjf12mfz8c2u78at6d5b</guid>
-      <author>noreply@localhost (arXiv · 计算物理与材料)</author>
-    </item>
-    <item>
-      <title><![CDATA[NoteBank 通过稀疏记忆与历史重放拓展线性注意力的长上下文能力]]></title>
-      <link>http://localhost:3300/items/ra46ljz362zy62seh4ohlv124</link>
-      <description><![CDATA[<p>NoteBank 研究提出用稀疏情景记忆与原生前向重放，免训练扩展预训练线性注意力模型的长上下文能力。基于摘要，该方法在未来查询未知时归档选定文本，利用骨干模型原生特征写入和寻址，再重放检索证据，无需外部嵌入模型、单独训练的检索器或独立神经读取器。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.15715">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ra46ljz362zy62seh4ohlv124">http://localhost:3300/items/ra46ljz362zy62seh4ohlv124</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">ra46ljz362zy62seh4ohlv124</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[Huber 污染下分割保形预测的区间长度分析]]></title>
-      <link>http://localhost:3300/items/ra0bavy343cmtwrff9nlm0p8d</link>
-      <description><![CDATA[<p>该研究给出 Huber 污染下分割保形预测区间长度相对干净总体 oracle 的有限样本上界，并在特定子模型上建立匹配的极小极大下界。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.15458">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ra0bavy343cmtwrff9nlm0p8d">http://localhost:3300/items/ra0bavy343cmtwrff9nlm0p8d</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">ra0bavy343cmtwrff9nlm0p8d</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[无标签引导：通过耦合高斯混合改进流匹配]]></title>
-      <link>http://localhost:3300/items/r934mvv6wl1e7ae4a9lxfivs9</link>
-      <description><![CDATA[<p>该研究提出以耦合高斯混合替代流匹配的高斯源分布，作者报告该方法可复用预训练速度场并改善生成质量。方法通过熵正则化最优传输将数据点与混合分量耦合，并将所得传输归约为标准高斯源问题加上类似引导的修正，修正由闭式项和小型网络学习项组成。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.16654">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/r934mvv6wl1e7ae4a9lxfivs9">http://localhost:3300/items/r934mvv6wl1e7ae4a9lxfivs9</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">r934mvv6wl1e7ae4a9lxfivs9</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[Grokking 现象的统计分析：延迟泛化的发生条件与平台期]]></title>
-      <link>http://localhost:3300/items/qux8u5dr3n5gaqzdggp7xjwfa</link>
-      <description><![CDATA[<p>该研究在简单、可解析的设定中刻画 Grokking 的发生条件，并推导泛化平台期长度的渐近解析表达式。根据当前材料，作者分析初始化、信号强度、权重衰减、样本量及输入维度的作用，区分干扰特征驱动的早期拟合、核心特征学习与延迟泛化，同时刻画早期泛化和无法达到指定测试准确率的情形。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.18811">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/qux8u5dr3n5gaqzdggp7xjwfa">http://localhost:3300/items/qux8u5dr3n5gaqzdggp7xjwfa</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">qux8u5dr3n5gaqzdggp7xjwfa</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[ProbabilityBench：基于精确真实概率的模型评估与校准]]></title>
-      <link>http://localhost:3300/items/qu02pr0vgonf1bytklstt7p55</link>
-      <description><![CDATA[<p>ProbabilityBench 提出在三个模拟文本领域提供逐实例精确类别概率的基准，用于评估模型不确定性与校准质量。根据当前材料，研究完整定义同行评审、隐蔽信息传递和信用风险环境的数据生成过程，解析计算类别概率与贝叶斯误差，并给出将案例转写为自然语言备忘录仍严格保留生成概率的理论保证。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.17016">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/qu02pr0vgonf1bytklstt7p55">http://localhost:3300/items/qu02pr0vgonf1bytklstt7p55</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">qu02pr0vgonf1bytklstt7p55</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[脉冲语言模型研究报告计算最优缩放定律]]></title>
-      <link>http://localhost:3300/items/qbji34vtg3wo0aaud1p5nylui</link>
-      <description><![CDATA[<p>该研究报告脉冲语言模型的计算最优缩放关系，并量化其相对非脉冲模型的损失差距。根据当前材料，作者在 FineWeb-EDU 上开展 Chinchilla 风格的 IsoFLOP 实验，测试采用 RWKV 骨干的 SpikeGPT 系列模型，宽度从 384 到 1536，计算预算从 3×10^17 到 10^19 FLOPs。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.15146">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/qbji34vtg3wo0aaud1p5nylui">http://localhost:3300/items/qbji34vtg3wo0aaud1p5nylui</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">qbji34vtg3wo0aaud1p5nylui</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[LoopQuant：面向循环 Transformer 的高精度、高效率训练后量化]]></title>
-      <link>http://localhost:3300/items/q6hir03tvj9i57otya30xg09e</link>
-      <description><![CDATA[<p>LoopQuant 提出面向循环语言模型的训练后量化框架，针对跨循环激活变化、循环敏感性差异与递归误差传播改善低比特推理。根据当前材料，其方法在保留参数共享的同时学习跨循环量化友好表示，在固定比特预算下按循环分配激活精度，并通过轻量任务空间校准对齐低比特递归轨迹。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.16368">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/q6hir03tvj9i57otya30xg09e">http://localhost:3300/items/q6hir03tvj9i57otya30xg09e</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">q6hir03tvj9i57otya30xg09e</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[PRIME：通过频率感知的统一剪枝与合并压缩 MoE 模型]]></title>
-      <link>http://localhost:3300/items/q5g32jufw0tmrdahr2dzws4n6</link>
-      <description><![CDATA[<p>PRIME 研究提出频率感知的 MoE 压缩框架，将专家剪枝与合并决策统一为全局整数线性规划。基于摘要，该方法优化频率加权的代理目标，倾向于选择高频专家作为聚类中心以促进路由稳定性，并在固定代表分配的条件下给出误差界分析。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.13982">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/q5g32jufw0tmrdahr2dzws4n6">http://localhost:3300/items/q5g32jufw0tmrdahr2dzws4n6</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">q5g32jufw0tmrdahr2dzws4n6</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[SLDBench v2：评测智能体的主动缩放定律发现能力]]></title>
-      <link>http://localhost:3300/items/q4ufno1x3vlan32tnqxg7ioeu</link>
-      <description><![CDATA[<p>SLDBench v2 引入主动缩放定律发现评测，作者报告智能体自行选择实验时的外推表现低于预先获得全部实验结果的被动设置。根据当前材料，研究将场景从 8 个扩展至 127 个，覆盖语言模型预训练、下游表现和视觉语言迁移，并选出参考幂律拟合 R² ≤ 0.8 的 30 个挑战场景，其来源报告的训练计算量合计至少为 1.09 × 10²³ FLOPs。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.16297">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/q4ufno1x3vlan32tnqxg7ioeu">http://localhost:3300/items/q4ufno1x3vlan32tnqxg7ioeu</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">q4ufno1x3vlan32tnqxg7ioeu</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[MapFlow 通过复用注意力图加速跨模型 LLM 推理]]></title>
-      <link>http://localhost:3300/items/pswpqr043v6h5t96n9yveoqaz</link>
-      <description><![CDATA[<p>MapFlow 提出跨模型复用注意力图，以降低异构 LLM 在共享上下文工作流中的预填充开销。根据当前材料，该系统不复用模型架构耦合较强的 KV 状态，而是结合部分重计算、跨层与注意力头的轻量线性转换，并采用块级稀疏压缩和融合检索内核支持长上下文。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.14688">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/pswpqr043v6h5t96n9yveoqaz">http://localhost:3300/items/pswpqr043v6h5t96n9yveoqaz</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">pswpqr043v6h5t96n9yveoqaz</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[结肠癌治疗规划研究提出部分可验证环境中的强化学习方法]]></title>
-      <link>http://localhost:3300/items/pnqnorbhfbako649rp31ouc1g</link>
-      <description><![CDATA[<p>该研究将结肠癌治疗规划建模为部分可观测的交互式强化学习任务，并从真实临床记录中的决策过程构造患者特异性、过程感知的奖励。基于摘要，作者使用 GRPO 和 GDPO 优化 Llama-3.1-8B-Instruct，让智能体先从结构化患者表示中逐步获取信息，再给出一线治疗建议，并评估信息收集、治疗选择和推理一致性。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.17426">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/pnqnorbhfbako649rp31ouc1g">http://localhost:3300/items/pnqnorbhfbako649rp31ouc1g</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">pnqnorbhfbako649rp31ouc1g</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[CodeWalk：通过遍历问题图生成编程基准]]></title>
-      <link>http://localhost:3300/items/oukuvi8uab7h05pmgmf3jb5v2</link>
-      <description><![CDATA[<p>CodeWalk 研究提出通过组合已有编程问题生成新任务，整个构建过程以程序化方式完成，无需语言模型生成或验证。根据当前材料，已验证的原子问题被组合为 level-$N$ 任务，仅当每个原子问题仍未解决、且联合参考解通过评测时使用的同一检查时，任务才会保留。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.15345">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/oukuvi8uab7h05pmgmf3jb5v2">http://localhost:3300/items/oukuvi8uab7h05pmgmf3jb5v2</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Wed, 14 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">oukuvi8uab7h05pmgmf3jb5v2</guid>
+      <guid isPermaLink="false">upvibyldmhmn1oq2byktd7aeq</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
