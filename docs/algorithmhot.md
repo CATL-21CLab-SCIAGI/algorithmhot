@@ -17,7 +17,7 @@ AlgorithmHot（科研热点：算法、AI4AI、AI4S、电池与新能源材料�
 
 **运行时**：恢复上游的常驻进程方案。`docker compose` 跑 `db`、`api`、`worker`、`web`（可选 `caddy`）；所有定时任务由 worker 里的 pg-boss 调度，**漏跑补一次**（`missed: "once"`）是全部定时任务的默认值（`apps/worker/src/schedules.ts`）：服务器重启或停机后回来，每个错过的定时任务补跑一次。云服务器上用 Docker 的 `restart: unless-stopped` 加 systemd 单元（`deploy/systemd/algorithmhot.service`）保活。没有 Codex、桌面会话或本机脚本参与生产。
 
-**模型**：走 OpenAI 兼容接口（上游的 `default` 模型），指向 AWS Bedrock 的 OpenAI 兼容端点 `https://bedrock-runtime.us-east-1.amazonaws.com/openai/v1`，模型 `global.openai.gpt-6-astra`，密钥是 Bedrock API key。文献初筛、评分、解读这些审核步骤（以及其余写作步骤）默认都用它，单步可用 `*_MODEL` 改。2026-10-12 用本机凭据做过一次极小的真实调用（HTTP 200，29 tokens）。`LLM_REASONING_API=true` 让请求用推理模型的格式（`max_completion_tokens`、不带 `temperature`），和那次成功的调用一致。
+**模型**：走 OpenAI 兼容接口（上游的 `default` 模型），指向 AWS Bedrock 的 OpenAI 兼容端点 `https://bedrock-runtime.us-east-1.amazonaws.com/openai/v1`，模型 `global.openai.gpt-6.1-sol`（2026-10-15 起；此前用 `global.openai.gpt-6-astra`），密钥是 Bedrock API key。文献初筛、评分、解读这些审核步骤（以及其余写作步骤）默认都用它，单步可用 `*_MODEL` 改。2026-10-12 用本机凭据做过一次极小的真实调用（HTTP 200，29 tokens）。`LLM_REASONING_API=true` 让请求用推理模型的格式（`max_completion_tokens`、不带 `temperature`），和那次成功的调用一致。
 
 **预算**：`LLM_BUDGET_PER_MINUTE/_PER_HOUR/_PER_DAY` 在 worker 启动时写进 `budgets` 表（不填就用后台“设置”里的值），分别是近1分钟、近1小时、近24小时的请求尝试次数上限，不在零点重置，所有用途均受总上限约束。目标日报窗口内的资料先审；积压与辅助任务最多占近24小时上限的 `site/site.ts` `DAILY_WORK_BUDGET.backgroundShare`（本站为 1，即不另设比例，积压可用完剩余额度）。当日日报未生成时保护当天窗口，生成后保护下一期。旧请求继续占用滚动额度，不会因窗口切换清零；失败和 unknown 也计入，unknown 不由预算逻辑释放。此策略不能保证信源完整或每期必然生成。
 
