@@ -157,6 +157,15 @@ async function down(): Promise<void> {
   }
 }
 
+/** Files changed since the last commit (git status), or none when this is not a git checkout. */
+function codeChanges(): string[] {
+  try {
+    return execFileSync("git", ["status", "--porcelain"], { cwd: ROOT, encoding: "utf8" }).split("\n").map((l) => l.slice(3).trim()).filter(Boolean);
+  } catch {
+    return [];
+  }
+}
+
 /** Whether the HTTP(S) proxy .env names accepts connections; null when none is named. */
 async function proxyReachable(): Promise<boolean | null> {
   if (!env.HTTPS_PROXY) return null;
@@ -206,6 +215,9 @@ async function status(): Promise<boolean> {
              max(left(error, 160)) FILTER (WHERE status = 'failed') AS last_error
       FROM receipt_attempts WHERE service = 'llm' AND started_at > now() - interval '1 hour'`;
     if (calls!.attempts >= 10 && calls!.answered === 0) problems.push(`model calls are failing: ${calls!.last_error ?? "no answer"}`);
+    // The running code is the committed code: any edit since the last commit is reported, with its files.
+    const changed = codeChanges();
+    if (changed.length) problems.push(`the code has uncommitted changes (git diff to review, git checkout -- <file> to undo): ${changed.slice(0, 20).join(", ")}`);
     const proxy = await proxyReachable();
     if (proxy === false) problems.push(`the proxy in .env (HTTPS_PROXY ${env.HTTPS_PROXY}) is not reachable: model calls through it fail`);
     console.log(JSON.stringify({ ok: problems.length === 0, problems, now: `${today} ${now_time}`, processes, daily, runs, sources, model, calls, work }, null, 2));

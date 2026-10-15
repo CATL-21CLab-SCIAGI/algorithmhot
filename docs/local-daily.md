@@ -13,7 +13,7 @@ npm run local:down      # 停下（worker 有 210 秒收尾正在进行的付费
 
 脚本是 `scripts/local-stack.ts`，只读 `.env`，不改代码和配置。日志在 `.data/local/logs/`，进程号在 `.data/local/*.pid`。网站在 `SITE_URL`（本机默认 http://localhost:3300）。
 
-`status` 认为有问题的情况：某个进程没在跑；北京时间 13:00 以后还没有今天的日报；有信源连续失败（`failing`）；最近一小时模型调用都没有得到回答；`.env` 里的 `HTTPS_PROXY` 连不上（模型请求走它）。
+`status` 认为有问题的情况：某个进程没在跑；北京时间 13:00 以后还没有今天的日报；有信源连续失败（`failing`）；最近一小时模型调用都没有得到回答；`.env` 里的 `HTTPS_PROXY` 连不上（模型请求走它）；代码有还没提交到 git 的改动（列出文件，用 `git diff` 查看、`git checkout -- <文件>` 撤回）。
 
 ## 一次性重置日额度
 
@@ -80,6 +80,7 @@ npm run reports:daily -- --replace 2026-10-09 2026-10-10 2026-10-11 2026-10-12
 规则：
 - 不修改、不新建、不删除任何文件（包括代码、.env、数据库），不运行除上面这条以外的命令，不安装任何东西。
 - 出了问题只报告，不要尝试修复，不要重启电脑或改系统设置。
+- 如果 problems 里有“code has uncommitted changes”，原样列出这些文件，说明代码被改过，等我确认，不要提交、撤回或继续修改。
 - 如果命令因为权限被拒绝而失败（operation not permitted、无法连接 Docker 等），原样报告错误，并提醒我检查这个定时任务的权限设置。
 - 不调用模型接口、不推送 git、不改这个定时任务本身。
 ```
