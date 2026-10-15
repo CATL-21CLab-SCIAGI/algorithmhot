@@ -306,6 +306,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[LayerTrim 通过保留注意力的 MLP 裁剪实现推理语言模型结构化剪枝]]></title>
+      <link>http://localhost:3300/items/qgi0g1qrgbfxd2fyxw2zl3g5f</link>
+      <description><![CDATA[<p>LayerTrim 提出无需训练的结构化剪枝方法，通过保留注意力与解码器深度、选择性裁剪 MLP 特征来降低推理成本并保留长篇推理能力。该方法识别冗余解码器层，不需要梯度或恢复训练；作者报告，在三个推理语言模型和五个基准上，它在多数评测设置中优于现有结构化剪枝方法，平均准确率较 RESP 最多提高 21.4 个百分点。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.19121">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/qgi0g1qrgbfxd2fyxw2zl3g5f">http://localhost:3300/items/qgi0g1qrgbfxd2fyxw2zl3g5f</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">qgi0g1qrgbfxd2fyxw2zl3g5f</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[TextVerifier：超越文字识别，验证中文字符渲染是否正确]]></title>
       <link>http://localhost:3300/items/pzmkyqjbwp42qu3tei5pkz0wh</link>
       <description><![CDATA[<p>TextVerifier 研究提出面向目标字符的中文渲染验证方法，用于检测缺笔、多笔及部件变形等局部错误。根据当前材料，该方法将字符的表意文字描述序列（IDS）输入文本编码器，使用 12.7M 个裁剪图像与 IDS 配对样本，以及从文字区域修复模型训练轨迹中采样的无标签同字不同质量难样本对进行训练。</p>
@@ -545,17 +556,6 @@
       <category>算法</category>
       <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">fhpeddhw8sfxidnswk8lerfm9</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[VITAL：从视觉运动到精准驾驶动作]]></title>
-      <link>http://localhost:3300/items/fdwd5zxg5et86lf3bue7054dt</link>
-      <description><![CDATA[<p>VITAL 研究提出由视觉运动骨架与紧凑轨迹残差组成的动作 tokenizer，将视觉动态与驾驶动作学习关联起来。根据当前材料，动作专家通过 flow matching，从当前图像、自车状态和导航指令联合预测两部分，推理时不生成未来图像；有界强化后训练则固定预测的视觉骨架，仅细化残差。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.20604">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/fdwd5zxg5et86lf3bue7054dt">http://localhost:3300/items/fdwd5zxg5et86lf3bue7054dt</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">fdwd5zxg5et86lf3bue7054dt</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
