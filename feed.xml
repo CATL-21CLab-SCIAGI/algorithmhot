@@ -207,6 +207,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[Cowork-Gym 提出大规模合成交互式工作环境的框架]]></title>
+      <link>http://localhost:3300/items/vo5owtflafmtlhnesp1z43jqg</link>
+      <description><![CDATA[<p>Cowork-Gym 研究提出通过构建、执行、修订循环合成交互式工作环境，并报告利用这些环境训练智能体后的基准表现提升。根据当前材料，该框架利用执行证据和审查反馈验证、修复环境，有状态用户模拟器通过对话和直接编辑共享工作空间回应智能体行动。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.17670">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/vo5owtflafmtlhnesp1z43jqg">http://localhost:3300/items/vo5owtflafmtlhnesp1z43jqg</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">vo5owtflafmtlhnesp1z43jqg</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[LOADBench：面向集成电路设计机器学习的大规模开放模拟电路数据集与基准]]></title>
       <link>http://localhost:3300/items/vjh4l3r6zgo7wyak8pkwq4sop</link>
       <description><![CDATA[<p>LOADBench 研究提出面向模拟集成电路设计机器学习的开放数据集及六类标准化基准，以改善不同方法之间的评测可比性。</p>
@@ -361,6 +372,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[Data World：从零构建并扩展数据智能体训练环境]]></title>
+      <link>http://localhost:3300/items/rqbb0rz04vhp8dtg72lq2wiw5</link>
+      <description><![CDATA[<p>Data World 研究提出从显式机制合成数据环境、任务与评分规则，以支持数据智能体评测和强化学习训练。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.21656">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/rqbb0rz04vhp8dtg72lq2wiw5">http://localhost:3300/items/rqbb0rz04vhp8dtg72lq2wiw5</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">rqbb0rz04vhp8dtg72lq2wiw5</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[研究分析激活函数相邻的层归一化对网络逼近能力的影响]]></title>
       <link>http://localhost:3300/items/rltoqkuihlw50oey6di7b4rre</link>
       <description><![CDATA[<p>该研究分析在激活函数前后加入 LN 或 RMSNorm 时，浅层网络逼近给定宽度 N 的单隐层 MLP 所需的额外宽度。</p>
@@ -425,6 +447,17 @@
       <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">ookks1kqrr03wfgxp18z2xyua</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
+    </item>
+    <item>
+      <title><![CDATA[OmniVerifier-C1：面向规则约束生成式世界建模的分解式分级验证器]]></title>
+      <link>http://localhost:3300/items/oeh1cahn390qvlw8ypeprwjxn</link>
+      <description><![CDATA[<p>OmniVerifier-C1 提出将复杂提示或环境规则自动拆解为细粒度组件的视觉验证器，以逐项评分提供比二元判断更丰富的连续反馈。根据当前材料，其 Decoupled RL 训练策略联合优化子问题级二元判断与全局对齐评分，作者报告该方法改善了域外多模态评判任务的泛化，并在传统文生图场景中显著优于二元验证器。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.22355">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/oeh1cahn390qvlw8ypeprwjxn">http://localhost:3300/items/oeh1cahn390qvlw8ypeprwjxn</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">oeh1cahn390qvlw8ypeprwjxn</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
       <title><![CDATA[CodeLMs 的因果语法回路研究：组件预算与探测方式决定行为是否显得局部化]]></title>
@@ -524,39 +557,6 @@
       <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">k5t322lar6g9n9m0tbze4wnrn</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[稀疏自编码器的数据收益递减：功能表现不保证特征可复现性]]></title>
-      <link>http://localhost:3300/items/jv8c0buayksa649k00b2dc5id</link>
-      <description><![CDATA[<p>该研究报告，稀疏自编码器（SAE）的重建表现可在较小数据预算下接近全数据参考，但功能表现趋于稳定不保证学得的特征可一一复现。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.20680">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/jv8c0buayksa649k00b2dc5id">http://localhost:3300/items/jv8c0buayksa649k00b2dc5id</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">jv8c0buayksa649k00b2dc5id</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[Speculative Forcing 通过提前接受 token 提升自回归视频生成效率]]></title>
-      <link>http://localhost:3300/items/j61vj295zupavzlx97legkbl3</link>
-      <description><![CDATA[<p>Speculative Forcing 提出按 token 提前结束去噪的框架，作者报告其在保持完整步数采样质量的同时减少视频生成计算量。根据当前材料，该方法将中间干净估计视为草稿，接受后冻结 token，但保留其缓存的键和值供其他 token 使用；验证器可采用无需训练的内容相似度与跨步骤稳定性判断，或利用冻结生成器的中间特征学习预测剩余误差。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.22347">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/j61vj295zupavzlx97legkbl3">http://localhost:3300/items/j61vj295zupavzlx97legkbl3</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">j61vj295zupavzlx97legkbl3</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[SCOPE：基于语义片段的文生图提示词强化学习优化方法]]></title>
-      <link>http://localhost:3300/items/j1obloupev6iv28p3h15hoir6</link>
-      <description><![CDATA[<p>SCOPE 研究提出基于 GRPO 的优化目标，按语义片段分配更新权重，用于改写冻结图像生成器的输入提示词。根据当前材料，改写模型联合生成增强提示词及其语义划分，汇聚片段内策略对数概率的变化，为片段内 token 损失计算共享系数，同时保留每个生成结果的单一优势值，无需单独的片段奖励或额外图像生成。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.22264">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/j1obloupev6iv28p3h15hoir6">http://localhost:3300/items/j1obloupev6iv28p3h15hoir6</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">j1obloupev6iv28p3h15hoir6</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
 </rss>
