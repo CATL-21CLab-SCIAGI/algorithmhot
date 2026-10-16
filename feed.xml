@@ -460,6 +460,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[高镍正极研究提出三维离子渗流网络与层状/岩盐纳米域交织结构]]></title>
+      <link>http://localhost:3300/items/moaytharaqjyo1puk2hb8j0ba</link>
+      <description><![CDATA[<p>该研究报告通过高能中子辐照重构高镍单晶正极，在LiNi0.92Co0.06Mn0.02O2颗粒内形成丰富晶界及交织的层状/岩盐纳米域。根据当前材料，辐照诱导长程Li/Ni反位无序和短程金属–氧八面体畸变，作者提出晶界可能构成促进Li+传输的三维渗流网络，交织纳米域可能帮助抑制不可逆相变和界面副反应传播。</p>
+<p>🔗 <a href="https://doi.org/10.1021/jacs.6c14375">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/moaytharaqjyo1puk2hb8j0ba">http://localhost:3300/items/moaytharaqjyo1puk2hb8j0ba</a></p>]]></description>
+      <category>电池与新能源材料</category>
+      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">moaytharaqjyo1puk2hb8j0ba</guid>
+      <author>noreply@localhost (Journal of the American Chemical Society)</author>
+    </item>
+    <item>
       <title><![CDATA[PIKANs 从含噪红外测量中重建沸腾热流]]></title>
       <link>http://localhost:3300/items/m5shu08mw0ecx17ngfiu81rgp</link>
       <description><![CDATA[<p>该研究报告，物理信息 Kolmogorov-Arnold 网络（PIKANs）可从含噪红外表面温度中重建局部、时间分辨的核态沸腾热流，同时保留高频气泡特征。根据当前材料，方法联合采用 Chebyshev PIKAN 骨干、准二阶 SOAP 优化器和温度退火的残差重采样，将配点集中于高残差界面区域，求解非稳态三维热传导逆问题。</p>
@@ -546,17 +557,6 @@
       <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">itmju59wigkyuyr1dim5tfedc</guid>
       <author>noreply@localhost (arXiv · 计算物理与材料)</author>
-    </item>
-    <item>
-      <title><![CDATA[AlphaDiana 提出面向可验证推理任务的智能体测量系统]]></title>
-      <link>http://localhost:3300/items/hnhlkn0mankahnw3cavx1io94</link>
-      <description><![CDATA[<p>AlphaDiana 研究提出智能体测量系统，将执行条件与答案正确性、行为及资源消耗关联，用于比较完整智能体并诊断组件失效。根据当前材料，系统保留智能体框架的原生控制循环，分别控制文件复用与记忆保留；作者在五个基于答案的基准上测试了三个开源模型和三个开源框架，其中两个模型还接受了两个交互式基准的测试。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.20675">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/hnhlkn0mankahnw3cavx1io94">http://localhost:3300/items/hnhlkn0mankahnw3cavx1io94</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">hnhlkn0mankahnw3cavx1io94</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
 </rss>
