@@ -438,6 +438,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[H-DDCM：利用 Hadamard 码本加速生成式图像与视频压缩]]></title>
+      <link>http://localhost:3300/items/njip6i130xj2vpmnnkn2qales</link>
+      <description><![CDATA[<p>H-DDCM 提出免训练生成式图像与视频压缩框架，用隐式随机化 Hadamard 字典替代稠密高斯码本。根据当前材料，该方法通过快速 Walsh-Hadamard 变换，将投影与重建的计算复杂度控制为 O(d log d)、内存复杂度控制为 O(d)，并引入无表字典序编码以降低高维组合编码开销。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.18125">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/njip6i130xj2vpmnnkn2qales">http://localhost:3300/items/njip6i130xj2vpmnnkn2qales</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">njip6i130xj2vpmnnkn2qales</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[TC-MLNO 结合条件扩散采样与热化学约束多尺度 Laplace 神经算子学习刚性化学动力学]]></title>
       <link>http://localhost:3300/items/n4rk1zuakpfc23jfebjrw2rwc</link>
       <description><![CDATA[<p>该研究提出将条件扩散采样与热化学约束多尺度 Laplace 神经算子 TC-MLNO 结合，用于刚性化学 ODE 积分。根据当前材料，扩散模型学习以当量比为条件的温度与组分联合分布，TC-MLNO 则通过多分支处理快、中、慢组分，并以损失项约束质量守恒、元素守恒和热释放率。</p>
@@ -546,17 +557,6 @@
       <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">j1obloupev6iv28p3h15hoir6</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[面向 EUV 光刻曝光后烘烤模拟的全时间域谱 Duhamel-Picard 方法与物理信息神经算子]]></title>
-      <link>http://localhost:3300/items/itmju59wigkyuyr1dim5tfedc</link>
-      <description><![CDATA[<p>该研究提出全时间域谱 Duhamel-Picard 方法及物理信息神经算子扩展，用于无需逐步时间推进的曝光后烘烤（PEB）浓度场预测。根据当前材料，方法通过 Duhamel 原理将酸与淬灭剂耦合反应扩散方程改写为非线性 Volterra 积分方程，以有限多项式展开表示完整轨迹，并用 Anderson 加速的 Picard 迭代求解时间系数场。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.20655">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/itmju59wigkyuyr1dim5tfedc">http://localhost:3300/items/itmju59wigkyuyr1dim5tfedc</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">itmju59wigkyuyr1dim5tfedc</guid>
-      <author>noreply@localhost (arXiv · 计算物理与材料)</author>
     </item>
   </channel>
 </rss>
