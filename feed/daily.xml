@@ -9,6 +9,23 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-10-16 — 答案相同，格式不同：RLVR 的域外增益有多少来自答案格式？]]></title>
+      <link>http://localhost:3300/daily/2026-10-16</link>
+      <description><![CDATA[<p>该研究报告，四组已发布的 7B SimpleRL 基础模型与 RL 模型中，原提取器报告的域外多项选择题增益有 82% 来自答案格式变化。根据当前材料，作者对同一批输出分别使用公共代码中的提取器，以及能读取 \boxed{} 内外明确答案的自建提取器评分，发现 RL 将基础模型已写在正文中的答案移入了原提取器优先读取的框内。</p>
+<p><strong>算法</strong></p>
+<ul><li><a href="http://localhost:3300/items/kptwu1oxza9iwqabddveanoj6">数据剪枝研究给出仅用最难样本训练的理论优势</a></li><li><a href="http://localhost:3300/items/dxlziyh8846byhqfy1rix62cd">共享残差蒸馏让语言模型从未经验证的同伴解答中学习</a></li><li><a href="http://localhost:3300/items/orsnkdoen3s4wfm64v7wjksrr">Prism-1 为 System One 模型提供与位置及竞争选项无关的评分</a></li><li><a href="http://localhost:3300/items/u9sxl4qhaqgorkw45k23om2qs">研究报告自供能 Se/ZnMgO 视觉突触的波长选择性双向可塑性</a></li><li><a href="http://localhost:3300/items/dzgv5owotlmjilra1a5585n9g">Terminal-RSI 研究提出通过递归自重写与策略细化训练自改进终端智能体</a></li><li><a href="http://localhost:3300/items/eapf7730rtg7vklxe6rddgvrg">Intern Lumina U2：用于全视觉理解与图像生成的多码本扩散大语言模型</a></li></ul>
+<p><strong>AI4AI</strong></p>
+<ul><li><a href="http://localhost:3300/items/wnqgtbey5d1s9zhv9w47yp493">答案相同，格式不同：RLVR 的域外增益有多少来自答案格式？</a></li><li><a href="http://localhost:3300/items/nyvtnxjetl5ccxi6uo6hb313b">CodeLMs 的因果语法回路研究：组件预算与探测方式决定行为是否显得局部化</a></li><li><a href="http://localhost:3300/items/zjm6ad6rnf0wokkfteqjbt1ud">当推理轨迹与证据冲突时，回答配置如何影响证据遵循</a></li><li><a href="http://localhost:3300/items/ydcvrji8ktfv2m3qcu189piea">JevAgentHarness：评测、部署与训练和 LLM 共享控制权的决策模型</a></li><li><a href="http://localhost:3300/items/scjbyjbpbv9q1disvgtf5bbfo">Orbia：生成视频能否构成一致的三维世界？</a></li></ul>
+<p><strong>AI4S</strong></p>
+<ul><li><a href="http://localhost:3300/items/n4rk1zuakpfc23jfebjrw2rwc">TC-MLNO 结合条件扩散采样与热化学约束多尺度 Laplace 神经算子学习刚性化学动力学</a></li><li><a href="http://localhost:3300/items/wbrundyp3bj1oxk7hws2dd12b">SALTO：用于非线性事件推断的求解器锚定提升转移算子</a></li><li><a href="http://localhost:3300/items/ei7kr70qdmwr9ulb4mr5sou6w">RFdiffusion3 在生物聚合物中构建原子级功能位点支架</a></li><li><a href="http://localhost:3300/items/l29rx5knajeocy4y0dhe37u1d">研究报告蛋白质设计系统在预训练与检索阶段的数据投毒风险</a></li><li><a href="http://localhost:3300/items/ya4co6gfv03pxt6ij6lf4dk8o">研究提出欠阻尼 Langevin 动力学中 committor 函数的迭代神经变分求解器</a></li><li><a href="http://localhost:3300/items/ze0idg35gdu2g7t8w0jn10gdc">AI-Donkey 结合专家知识与确定性执行，支持智能体完成高保真多体微扰理论计算</a></li><li><a href="http://localhost:3300/items/bmksuzzem5tzj5odw6y76oau5">MECx 利用键计数信息引导多主元合金有序构型搜索</a></li></ul>
+<p><strong>电池与新能源材料</strong></p>
+<ul><li><a href="http://localhost:3300/items/sgd81v6lkm2mnwcy0wjch95ou">高熵工程稳定单原子 Ru 催化剂，实现高效持久水分解</a></li><li><a href="http://localhost:3300/items/v271kvxives2iv6t5s8s9v35b">高分辨率 6Li 固态核磁共振揭示全固态正极中隐蔽的锂动态</a></li></ul>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/daily/2026-10-16">http://localhost:3300/daily/2026-10-16</a></p>]]></description>
+      <pubDate>Fri, 16 Oct 2026 04:00:19 GMT</pubDate>
+      <guid isPermaLink="false">daily-2026-10-16</guid>
+      <author>noreply@localhost (AlgorithmHot · 科研热点)</author>
+    </item>
+    <item>
       <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-10-15 — 从机器学习跳跃轨迹研究极化子的非绝热动力学]]></title>
       <link>http://localhost:3300/daily/2026-10-15</link>
       <description><![CDATA[<p>该研究提出结合机器学习辅助极化子动力学与非绝热分子动力学的模拟框架，研究不同跳跃机制如何影响激发态动力学。根据当前材料，作者通过扩展轨迹采样，将单次极化子跳跃与非绝热电子跃迁联系起来，并为基于静态 Marcus 理论的绝热与非绝热跳跃分类提供动力学计算证据。</p>
