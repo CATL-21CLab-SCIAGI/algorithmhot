@@ -9,6 +9,105 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[AutoSFT 通过多智能体系统自动化监督微调数据研究]]></title>
+      <link>http://localhost:3300/items/zck8ej9fc1uv4uk2ivg790688</link>
+      <description><![CDATA[<p>AutoSFT 研究提出多智能体系统，通过执行、分析与合成分工，自动探索监督微调中的数据配比、删减、修复、替换和合成操作。根据当前材料，单智能体仅调整类别比例，且执行输出挤占上下文并导致搜索中途丢弃上下文；AutoSFT 由元智能体分离执行与分析，汇集不同角度的建议，并调用合成子智能体补足数据池无法覆盖的能力。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.22194">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/zck8ej9fc1uv4uk2ivg790688">http://localhost:3300/items/zck8ej9fc1uv4uk2ivg790688</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">zck8ej9fc1uv4uk2ivg790688</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[JevAgentHarness：评测、部署与训练和 LLM 共享控制权的决策模型]]></title>
+      <link>http://localhost:3300/items/ydcvrji8ktfv2m3qcu189piea</link>
+      <description><![CDATA[<p>JevAgentHarness 研究提出让决策模型与 LLM 共享智能体控制权，通过置信阈值决定何时委派决策、何时交回 LLM。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.21412">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ydcvrji8ktfv2m3qcu189piea">http://localhost:3300/items/ydcvrji8ktfv2m3qcu189piea</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">ydcvrji8ktfv2m3qcu189piea</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[PN-Mix 提出配对范数引导的混合精度键缓存量化方法，优化 LLM 长输出推理]]></title>
+      <link>http://localhost:3300/items/xhltb7f6rqd9dygxux8ghqh7s</link>
+      <description><![CDATA[<p>PN-Mix 研究提出面向采用 RoPE 的 decoder-only LLM 的混合精度键缓存量化方法，以缓解长输出推理的缓存内存与带宽瓶颈。根据当前材料，作者通过 RoPE 通道对层面的注意力 logit 扰动分析，用查询与键的通道对范数乘积识别敏感通道对，在 prefill 阶段识别一次并在解码期间复用，为其分配更高精度。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.19605">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/xhltb7f6rqd9dygxux8ghqh7s">http://localhost:3300/items/xhltb7f6rqd9dygxux8ghqh7s</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">xhltb7f6rqd9dygxux8ghqh7s</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[SWE-at-Scale：利用历史缺陷修复规模化合成软件工程任务]]></title>
+      <link>http://localhost:3300/items/vxpb5whv8013zhnbyjboaf8o9</link>
+      <description><![CDATA[<p>SWE-at-Scale 研究提出通过逆向利用真实软件修复记录，自动合成真实、多样且可执行的软件工程任务。根据当前材料，该框架将历史修复转化为缺陷生成监督，把学到的缺陷模式迁移到新的代码上下文，并反复采样不同缺陷类型。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.21359">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/vxpb5whv8013zhnbyjboaf8o9">http://localhost:3300/items/vxpb5whv8013zhnbyjboaf8o9</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">vxpb5whv8013zhnbyjboaf8o9</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[Orbia：生成视频能否构成一致的三维世界？]]></title>
+      <link>http://localhost:3300/items/scjbyjbpbv9q1disvgtf5bbfo</link>
+      <description><![CDATA[<p>Orbia 研究提出面向交互式世界模型的三维一致性评测基准，分别检验输入保留、生成内容持久性和三维自洽性。根据当前材料，该基准通过受控探索与重访，结合配准 RGB-D 参考、标注锚点、跨视角深度与特征对应、区域尺度一致性及留出视角的 Gaussian 渲染开展评估，并以分钟级探索与重访测试长期一致性。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.20693">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/scjbyjbpbv9q1disvgtf5bbfo">http://localhost:3300/items/scjbyjbpbv9q1disvgtf5bbfo</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">scjbyjbpbv9q1disvgtf5bbfo</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[Speculative Forcing 通过提前接受 token 提升自回归视频生成效率]]></title>
+      <link>http://localhost:3300/items/j61vj295zupavzlx97legkbl3</link>
+      <description><![CDATA[<p>Speculative Forcing 提出按 token 提前结束去噪的框架，作者报告其在保持完整步数采样质量的同时减少视频生成计算量。根据当前材料，该方法将中间干净估计视为草稿，接受后冻结 token，但保留其缓存的键和值供其他 token 使用；验证器可采用无需训练的内容相似度与跨步骤稳定性判断，或利用冻结生成器的中间特征学习预测剩余误差。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.22347">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/j61vj295zupavzlx97legkbl3">http://localhost:3300/items/j61vj295zupavzlx97legkbl3</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">j61vj295zupavzlx97legkbl3</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[SCOPE：基于语义片段的文生图提示词强化学习优化方法]]></title>
+      <link>http://localhost:3300/items/j1obloupev6iv28p3h15hoir6</link>
+      <description><![CDATA[<p>SCOPE 研究提出基于 GRPO 的优化目标，按语义片段分配更新权重，用于改写冻结图像生成器的输入提示词。根据当前材料，改写模型联合生成增强提示词及其语义划分，汇聚片段内策略对数概率的变化，为片段内 token 损失计算共享系数，同时保留每个生成结果的单一优势值，无需单独的片段奖励或额外图像生成。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.22264">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/j1obloupev6iv28p3h15hoir6">http://localhost:3300/items/j1obloupev6iv28p3h15hoir6</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">j1obloupev6iv28p3h15hoir6</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[Intern Lumina U2：用于全视觉理解与图像生成的多码本扩散大语言模型]]></title>
+      <link>http://localhost:3300/items/eapf7730rtg7vklxe6rddgvrg</link>
+      <description><![CDATA[<p>Intern Lumina U2 提出在全离散空间中建模多码本视觉 token，以单一扩散骨干统一处理文本与高容量视觉表示。根据当前材料，每个视觉位置包含互补码本的多个编码，输入端拼接嵌入，输出端以轻量多码本自回归头逐个预测位置内的编码，而扩散骨干并行处理所有位置。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.20818">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/eapf7730rtg7vklxe6rddgvrg">http://localhost:3300/items/eapf7730rtg7vklxe6rddgvrg</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">eapf7730rtg7vklxe6rddgvrg</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[Terminal-RSI 研究提出通过递归自重写与策略细化训练自改进终端智能体]]></title>
+      <link>http://localhost:3300/items/dzgv5owotlmjilra1a5585n9g</link>
+      <description><![CDATA[<p>Terminal-RSI 研究提出交替执行已验证轨迹的递归自重写（RSR）与继承 critic 的递归策略细化（RPR），推动终端智能体从局部修复走向严格任务完成。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.22192">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/dzgv5owotlmjilra1a5585n9g">http://localhost:3300/items/dzgv5owotlmjilra1a5585n9g</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">dzgv5owotlmjilra1a5585n9g</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[Doc2Harness：评测大语言模型对编码智能体运行框架的长程工程能力]]></title>
       <link>http://localhost:3300/items/zvx2ty2k23jg3n24pm10eihin</link>
       <description><![CDATA[<p>Doc2Harness 提出两阶段基准，直接评测大语言模型构建编码智能体运行框架（harness）的长程工程能力。根据当前材料，构建模型依据仅含接口的契约骨架及汇总十二个前沿框架行为的开发文档，在隔离容器中构建候选框架；冻结后的框架在独立测试容器中由脚本化模拟模型驱动，通过模型请求、磁盘文件、进程退出码和命令输出评分，并用阳性对照排除空泛通过。</p>
@@ -457,105 +556,6 @@
       <category>算法</category>
       <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">lb2grscqc7zo510dnmbm4vk3o</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[Drive3R 提出面向自动驾驶的分块流式几何基础模型]]></title>
-      <link>http://localhost:3300/items/l96ovolric6lyzuaitupzfjyw</link>
-      <description><![CDATA[<p>Drive3R 研究提出面向自动驾驶的分块流式几何基础模型，用于连续长时序驾驶场景的密集多视角三维重建。根据当前材料，其分块因果注意力兼顾计算扩展性与局部未来上下文，置信度感知重锚定通过检测不可靠的流式状态、重新初始化 KV 缓存及 SE(3) 对齐拼接刷新后的片段，缓解长程漂移。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.15112">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/l96ovolric6lyzuaitupzfjyw">http://localhost:3300/items/l96ovolric6lyzuaitupzfjyw</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">l96ovolric6lyzuaitupzfjyw</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[NavGPT-3 利用上下文与分层导航运行时连接推理和机器人控制]]></title>
-      <link>http://localhost:3300/items/kqtsl7k2m4exrunu2cvvzmavw</link>
-      <description><![CDATA[<p>NavGPT-3 提出连接语言模型与动作策略的分层导航运行时，将推理、行动和监控组织为具有各自上下文、工具和权限的线程，通过中断和线程切换响应突发事件。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.10787">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/kqtsl7k2m4exrunu2cvvzmavw">http://localhost:3300/items/kqtsl7k2m4exrunu2cvvzmavw</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">kqtsl7k2m4exrunu2cvvzmavw</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[Vela 研究提出用自适应动作曲线参数化表示机器人连续轨迹]]></title>
-      <link>http://localhost:3300/items/jzwtc93qb55p7xf4c47c9yzp8</link>
-      <description><![CDATA[<p>Vela 研究提出以连续轨迹表示未来机器人行为的视觉语言动作基础模型，让固定输出预算下的时间分辨率随运动自适应调整。其方法结合紧凑的样条动作表示、随运动变化的时间支撑，以及面向不同机器人形态的共享动作接口，并在大规模多形态机器人数据上预训练。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.05230">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/jzwtc93qb55p7xf4c47c9yzp8">http://localhost:3300/items/jzwtc93qb55p7xf4c47c9yzp8</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">jzwtc93qb55p7xf4c47c9yzp8</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[CriticOPD 通过批评引导的同策略知识蒸馏恢复可靠监督]]></title>
-      <link>http://localhost:3300/items/jqqhdcrcliqd0a7ahkzt98pf8</link>
-      <description><![CDATA[<p>CriticOPD 研究提出利用教师对错误的批评修复同策略知识蒸馏（OPD）的监督，并报告在两个 Qwen3 学生模型、六个数学推理基准上优于 OPD。根据当前材料，作者发现教师虽能识别学生错误，却仍会沿错误轨迹继续生成，无法从任意学生前缀恢复正确答案。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.20572">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/jqqhdcrcliqd0a7ahkzt98pf8">http://localhost:3300/items/jqqhdcrcliqd0a7ahkzt98pf8</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">jqqhdcrcliqd0a7ahkzt98pf8</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[KV4-RL 提出混合精度 KV 缓存量化，加速 RLVR 异步采样]]></title>
-      <link>http://localhost:3300/items/iynpcndtxg3yr3ck7jh1hfq2v</link>
-      <description><![CDATA[<p>KV4-RL 提出免校准 INT4 KV 缓存量化，结合选择性 INT8 保护，加速可验证奖励强化学习（RLVR）的异步采样并缓解采样器失配。根据当前材料，该方法仅对有限数量的注意力汇聚位置和近期上下文位置采用 INT8，作者在匹配工作负载的比较中发现，KV 缓存量化比仅权重量化及权重与激活量化带来更大加速。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.14448">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/iynpcndtxg3yr3ck7jh1hfq2v">http://localhost:3300/items/iynpcndtxg3yr3ck7jh1hfq2v</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">iynpcndtxg3yr3ck7jh1hfq2v</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[ActMOF 通过主动学习映射金属有机框架的合成条件]]></title>
-      <link>http://localhost:3300/items/hoo47494ruxwbxll57l32fa28</link>
-      <description><![CDATA[<p>ActMOF 研究提出基于实验的铝-羧酸盐金属有机框架（MOF）合成搜索基准，作者报告其可迁移至六种网状结构相关的铝基 MOF 合成。根据当前材料，该基准由实测微波合成数据构建仿真环境，以衍射峰强度和半高全宽计算各编码条件的结晶度指数。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.19404">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/hoo47494ruxwbxll57l32fa28">http://localhost:3300/items/hoo47494ruxwbxll57l32fa28</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">hoo47494ruxwbxll57l32fa28</guid>
-      <author>noreply@localhost (arXiv · 计算物理与材料)</author>
-    </item>
-    <item>
-      <title><![CDATA[Diff Diffusion：用扩散模型预测编辑路径，提高代码编辑效率]]></title>
-      <link>http://localhost:3300/items/h83mpag1l7ta7ws9ojhkgo2x5</link>
-      <description><![CDATA[<p>Diff Diffusion 提出受扩散模型启发的代码编辑框架，通过预测原始代码到修订代码的编辑路径，将计算集中于发生变化的区域。该框架把去噪表示为结构化编辑操作，结合多阶段训练与高效并行解码，支持多位置并行修改。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.17831">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/h83mpag1l7ta7ws9ojhkgo2x5">http://localhost:3300/items/h83mpag1l7ta7ws9ojhkgo2x5</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">h83mpag1l7ta7ws9ojhkgo2x5</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[研究利用智能体内部状态预测并阻止越权行动及后续谎报]]></title>
-      <link>http://localhost:3300/items/h235v6dhia6ojgohi7b7ryc73</link>
-      <description><![CDATA[<p>研究报告，智能体残差流的线性读出可在行动前预测越权、在报告前预测谎报，并用于拦截越权行动。根据当前材料，越权预测的 AUROC 为 0.94；当智能体被施压隐藏推理时，该方法优于思维链监控，逐项检查拟执行行动在四个模型家族中降低了整段任务的越权行为，结合审批机制使 Gemma-4 的越权率从 0.70 降至 0.09，任务完成率为 1.00。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.17301">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/h235v6dhia6ojgohi7b7ryc73">http://localhost:3300/items/h235v6dhia6ojgohi7b7ryc73</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">h235v6dhia6ojgohi7b7ryc73</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[MimicX：用策略在环监督细化改善视频驱动的人形机器人动作跟踪]]></title>
-      <link>http://localhost:3300/items/goxxig1ulxr414x230j4a8k6k</link>
-      <description><![CDATA[<p>MimicX 提出策略在环框架，利用执行反馈细化视频驱动的人形机器人动作跟踪监督。根据当前材料，该方法从重建并重定向的动作出发，定位困难过渡和受影响的身体区域，联合调整跟踪目标与重置课程，并通过反复 rollout 验证，在跟踪约束下筛选优先改善执行表现的方案。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.09055">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/goxxig1ulxr414x230j4a8k6k">http://localhost:3300/items/goxxig1ulxr414x230j4a8k6k</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">goxxig1ulxr414x230j4a8k6k</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
