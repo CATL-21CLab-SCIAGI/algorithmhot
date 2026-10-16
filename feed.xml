@@ -526,6 +526,17 @@
       <author>noreply@localhost (arXiv · 计算物理与材料)</author>
     </item>
     <item>
+      <title><![CDATA[稀疏自编码器表征的行为可组合性研究]]></title>
+      <link>http://localhost:3300/items/lzv8u9gkqua9arskcfayac77k</link>
+      <description><![CDATA[<p>该研究提出 SAE Additivity Residuals（SAR），用于衡量稀疏自编码器特征在指定交互阶数以上尚未解释的行为变化。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.21261">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/lzv8u9gkqua9arskcfayac77k">http://localhost:3300/items/lzv8u9gkqua9arskcfayac77k</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">lzv8u9gkqua9arskcfayac77k</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[研究报告蛋白质设计系统在预训练与检索阶段的数据投毒风险]]></title>
       <link>http://localhost:3300/items/l29rx5knajeocy4y0dhe37u1d</link>
       <description><![CDATA[<p>该研究报告，两类仅修改数据的投毒攻击可在预训练阶段植入触发式生成行为，或在检索阶段引导蛋白质生成结果。根据当前材料，作者预训练了 3 亿参数的 ProtGPT2 和 ProGen2 变体，投毒序列包含两种触发器之一及三种载荷之一；所有投毒运行均出现高度可靠的触发依赖生成，在递增投毒与均匀投毒安排下，最早达到多数触发的污染样本量分别为 200 条和约 5000 条。</p>
@@ -545,17 +556,6 @@
       <category>算法</category>
       <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">kptwu1oxza9iwqabddveanoj6</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[同一目标、不同起点：ALR 对齐潜在滚动预测以提升 PDE 模拟一致性]]></title>
-      <link>http://localhost:3300/items/k5t322lar6g9n9m0tbze4wnrn</link>
-      <description><![CDATA[<p>该研究提出 Align Latent Rollout（ALR），通过内部表征正则化，提高神经 PDE 求解器从不同时间起点预测同一目标状态的一致性。根据当前材料，潜在差异传播的二阶 Taylor 分析引出两项目标，即对齐共享目标时刻的潜在状态，以及对齐共享扰动下的局部演化响应。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.21370">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/k5t322lar6g9n9m0tbze4wnrn">http://localhost:3300/items/k5t322lar6g9n9m0tbze4wnrn</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">k5t322lar6g9n9m0tbze4wnrn</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
