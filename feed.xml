@@ -240,6 +240,17 @@
       <author>noreply@localhost (arXiv · 计算物理与材料)</author>
     </item>
     <item>
+      <title><![CDATA[Mosaic 提出多会话智能体强化学习的分层优化方法]]></title>
+      <link>http://localhost:3300/items/uk3xethd5d0wy8vpth21mimbk</link>
+      <description><![CDATA[<p>Mosaic 研究提出无需 critic 的多会话智能体强化学习方法，作者报告其在两类场景中优于优势广播方法，且平均使用更少会话。根据当前材料，该方法支持单条轨迹包含任意数量的会话，在轨迹层将会话使用信号纳入优势估计，在会话层按估计的边际贡献调整各会话的优势。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.22174">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/uk3xethd5d0wy8vpth21mimbk">http://localhost:3300/items/uk3xethd5d0wy8vpth21mimbk</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">uk3xethd5d0wy8vpth21mimbk</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[TPMS 超材料研究提出面向力学任务的拓扑感知表征学习框架]]></title>
       <link>http://localhost:3300/items/uk134fs5wyikdstl5qq92otxc</link>
       <description><![CDATA[<p>该研究提出面向三周期极小曲面（TPMS）力学超材料的拓扑感知表征学习框架，将持久同调融入 DMAE 骨干以编码整体结构连通性。根据当前材料，方法采用持久性引导的掩码策略，优先选择与持久拓扑特征相关的局部块，并通过辅助持久同调解码器保留连通分量、隧道和空腔的拓扑特征数量信息。</p>
@@ -381,6 +392,17 @@
       <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">qgy4npip2bk4ed4vwntdsmqxo</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
+    </item>
+    <item>
+      <title><![CDATA[PAIR：连接视觉语言动作模型中的感知与动作表征]]></title>
+      <link>http://localhost:3300/items/q5gww0bg62kqiltt0flk541qh</link>
+      <description><![CDATA[<p>PAIR 研究提出共享感知与动作表征的框架，为连续动作视觉语言动作模型提供面向动作生成的中间表征。训练时，Masked Action Autoencoder 将专家动作片段编码为与预测时域对齐的 Action Latent Tokens。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.09016">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/q5gww0bg62kqiltt0flk541qh">http://localhost:3300/items/q5gww0bg62kqiltt0flk541qh</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">q5gww0bg62kqiltt0flk541qh</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
       <title><![CDATA[Prism-1 为 System One 模型提供与位置及竞争选项无关的评分]]></title>
@@ -535,28 +557,6 @@
       <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">hnhlkn0mankahnw3cavx1io94</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[自改进智能体通过无答案标签的算子归纳扩展 DSL，实现精确问答]]></title>
-      <link>http://localhost:3300/items/h6d2r766yjq4zv8qmd6lcqibq</link>
-      <description><![CDATA[<p>该研究提出让冻结模型自行扩展领域专用语言（DSL）的智能体，在无需奖励、评判模型或答案标签的条件下扩展精确问答能力。根据当前材料，内循环仅在两个独立编写的表达式逐条记录一致时回答问题；外循环发现缺失能力并编写算子，只有独立第二实现一致且满足守恒定律才准入。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.20809">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/h6d2r766yjq4zv8qmd6lcqibq">http://localhost:3300/items/h6d2r766yjq4zv8qmd6lcqibq</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">h6d2r766yjq4zv8qmd6lcqibq</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[定向脉冲分子动力学揭示 TATB 键断裂的能量传递路径]]></title>
-      <link>http://localhost:3300/items/h4svobjo0rxyev0hr5gy0rzbq</link>
-      <description><![CDATA[<p>该研究提出定向脉冲分子动力学，并报告 TATB 的初始断键强烈依赖最初激发的振动模式，而非仅由断键能垒决定。根据当前材料，作者仅用 4,630 个构型构建忠实表征振动特性的机器学习势，通过统计受控的方案，反复沿选定振动模式注入等量动能并追踪非平衡演化。作者的模拟发现，易触发反应的模式能有效将能量导向断键坐标，而较难诱发断键的模式会将能量转移至类软模，或困在能量传递效率低的模式中。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.21637">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/h4svobjo0rxyev0hr5gy0rzbq">http://localhost:3300/items/h4svobjo0rxyev0hr5gy0rzbq</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">h4svobjo0rxyev0hr5gy0rzbq</guid>
-      <author>noreply@localhost (arXiv · 计算物理与材料)</author>
     </item>
   </channel>
 </rss>
