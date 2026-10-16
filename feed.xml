@@ -251,6 +251,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[Speculative Sampling 在交互式视频生成中结合大窗口建模与低延迟交互]]></title>
+      <link>http://localhost:3300/items/tdpkzoar51bbogoki9jxp774u</link>
+      <description><![CDATA[<p>该研究提出 Speculative Sampling，将大双向窗口的建模能力与小窗口的低延迟交互结合，用于交互式视频生成。根据当前材料，作者的初步实验显示，较大片段可改善视频质量并更充分利用 GPU 并行性，在采样时间仅适度增加时采样更多潜变量。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.20556">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/tdpkzoar51bbogoki9jxp774u">http://localhost:3300/items/tdpkzoar51bbogoki9jxp774u</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">tdpkzoar51bbogoki9jxp774u</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[高熵工程稳定单原子 Ru 催化剂，实现高效持久水分解]]></title>
       <link>http://localhost:3300/items/sgd81v6lkm2mnwcy0wjch95ou</link>
       <description><![CDATA[<p>研究提出用高熵工程将单个 Ru 原子稳定在 FeCoNiCrMn 尖晶石氧化物上，以兼顾水分解催化活性与稳定性。根据当前材料，作者报告 OER 在 100 mA cm −2 下的过电位为 280 mV，HER 在 10 mA cm −2 下为 37 mV。</p>
@@ -545,17 +556,6 @@
       <category>AI4AI</category>
       <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">goxxig1ulxr414x230j4a8k6k</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[ActionOPD 提出动作级在线策略蒸馏，蒸馏决策而非 token]]></title>
-      <link>http://localhost:3300/items/fhpeddhw8sfxidnswk8lerfm9</link>
-      <description><![CDATA[<p>ActionOPD 提出动作级在线策略蒸馏方法，在学生遇到的状态上对齐师生决策，无需教师 token 概率或兼容的分词器。根据当前材料，该方法从学生与黑盒教师分别采样动作，以语义一致性奖励学生动作，再通过策略优化训练，无需复现教师撰写的推理。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.19820">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/fhpeddhw8sfxidnswk8lerfm9">http://localhost:3300/items/fhpeddhw8sfxidnswk8lerfm9</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">fhpeddhw8sfxidnswk8lerfm9</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
