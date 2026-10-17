@@ -9,6 +9,17 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[硬碳研究通过拓扑衍生闭孔提升储钠性能]]></title>
+      <link>http://localhost:3300/items/t9zl69fpx9f59o6h9yye9rvwn</link>
+      <description><![CDATA[<p>该研究提出分子空腔工程策略，通过低温交联保留环状分子前驱体的空腔，并在碳化过程中构建硬碳内禀闭孔。根据当前材料，以 β-cyclodextrin 为前驱体制得的 β-ICHC，作者报告其可逆容量为 410.2 mAh g⁻¹、初始库仑效率为 94.7%，300 次循环后容量保持率为 99.7%，但材料未给出这些指标的测试倍率与温度。</p>
+<p>🔗 <a href="https://doi.org/10.1002/anie.6016795">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/t9zl69fpx9f59o6h9yye9rvwn">http://localhost:3300/items/t9zl69fpx9f59o6h9yye9rvwn</a></p>]]></description>
+      <category>电池与新能源材料</category>
+      <pubDate>Sat, 17 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">t9zl69fpx9f59o6h9yye9rvwn</guid>
+      <author>noreply@localhost (Angewandte Chemie International Edition)</author>
+    </item>
+    <item>
       <title><![CDATA[SIEVE：克服等变自监督学习中的拓扑障碍]]></title>
       <link>http://localhost:3300/items/zst3f92to60qzv4ztt3mvik3p</link>
       <description><![CDATA[<p>SIEVE 提出 SE(3) 等变点云自监督框架，通过球面投影掩码规避标准掩码引发的拓扑坍缩。根据当前材料，作者从理论上指出，3D 点云掩码自编码与 SE(3) 等变网络存在不兼容性，会迫使模型在缺少参考系时臆测方向；SIEVE 保留全局姿态、遮蔽局部语义，将点云几何压缩为不变标量嵌入。</p>
@@ -546,17 +557,6 @@
       <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">u420luwljjo4yse17pjobycah</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[富锂正极中，过渡金属—氧共价性控制配体空穴稳定性]]></title>
-      <link>http://localhost:3300/items/tzx88bf42fxc6axj6fz1oigy5</link>
-      <description><![CDATA[<p>该研究报告，富锂正极中配体空穴的稳定性取决于过渡金属—氧电子结构，共价性是控制高价态氧化还原可逆性的关键因素。根据当前材料，作者通过模拟芯能级光谱，比较 Li2MO3（M = Mn, Ru, Ir）正极的电荷补偿机制。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.20837">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/tzx88bf42fxc6axj6fz1oigy5">http://localhost:3300/items/tzx88bf42fxc6axj6fz1oigy5</a></p>]]></description>
-      <category>电池与新能源材料</category>
-      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">tzx88bf42fxc6axj6fz1oigy5</guid>
-      <author>noreply@localhost (arXiv · 计算物理与材料)</author>
     </item>
   </channel>
 </rss>
