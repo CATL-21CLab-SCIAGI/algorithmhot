@@ -9,6 +9,17 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-10-17 — 高镍正极研究提出三维离子渗流网络与层状/岩盐纳米域交织结构]]></title>
+      <link>http://localhost:3300/daily/2026-10-17</link>
+      <description><![CDATA[<p>该研究报告通过高能中子辐照重构高镍单晶正极，在LiNi0.92Co0.06Mn0.02O2颗粒内形成丰富晶界及交织的层状/岩盐纳米域。根据当前材料，辐照诱导长程Li/Ni反位无序和短程金属–氧八面体畸变，作者提出晶界可能构成促进Li+传输的三维渗流网络，交织纳米域可能帮助抑制不可逆相变和界面副反应传播。</p>
+<p><strong>电池与新能源材料</strong></p>
+<ul><li><a href="http://localhost:3300/items/moaytharaqjyo1puk2hb8j0ba">高镍正极研究提出三维离子渗流网络与层状/岩盐纳米域交织结构</a></li></ul>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/daily/2026-10-17">http://localhost:3300/daily/2026-10-17</a></p>]]></description>
+      <pubDate>Sat, 17 Oct 2026 01:00:23 GMT</pubDate>
+      <guid isPermaLink="false">daily-2026-10-17</guid>
+      <author>noreply@localhost (AlgorithmHot · 科研热点)</author>
+    </item>
+    <item>
       <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-10-16 — 答案相同，格式不同：RLVR 的域外增益有多少来自答案格式？]]></title>
       <link>http://localhost:3300/daily/2026-10-16</link>
       <description><![CDATA[<p>该研究报告，四组已发布的 7B SimpleRL 基础模型与 RL 模型中，原提取器报告的域外多项选择题增益有 82% 来自答案格式变化。根据当前材料，作者对同一批输出分别使用公共代码中的提取器，以及能读取 \boxed{} 内外明确答案的自建提取器评分，发现 RL 将基础模型已写在正文中的答案移入了原提取器优先读取的框内。</p>
