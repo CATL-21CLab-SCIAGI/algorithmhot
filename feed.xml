@@ -31,17 +31,6 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
-      <title><![CDATA[CoWorld Reasoner 提出由演化视频世界模型驱动框架支持的智能体多模态推理方法]]></title>
-      <link>http://localhost:3300/items/zrge6d0h3qt8a82u5b2b09s27</link>
-      <description><![CDATA[<p>CoWorld Reasoner 将视频世界模型作为统一视觉推理引擎，作者报告其在七个基准上优于同一 VLM 的直接推理。基于摘要，该框架通过工具提供多种视觉操作，以技能引导 VLM 判断是否需要视觉想象、选择操作、构建生成请求并解释生成的视觉证据。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.21910">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/zrge6d0h3qt8a82u5b2b09s27">http://localhost:3300/items/zrge6d0h3qt8a82u5b2b09s27</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">zrge6d0h3qt8a82u5b2b09s27</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
       <title><![CDATA[ICPSL：从有限离线数据进行上下文偏好条件化 Pareto 集学习]]></title>
       <link>http://localhost:3300/items/zrdcvgidj0hhf0d5augx8ehkk</link>
       <description><![CDATA[<p>ICPSL 提出上下文偏好条件化 Pareto 集学习框架，面向有限离线数据下的多目标优化，减少逐偏好搜索与逐问题训练。根据当前材料，该框架在大量多样化合成先验数据上预训练超网络，再根据未见问题的离线观测，通过一次前向传播生成问题专属的偏好条件化 Pareto 解模型；生成的模型可复用于任意偏好的解预测，无需针对该问题训练或逐偏好搜索。</p>
@@ -372,6 +361,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[SUPRA-TEX 提出与参考图像高度对齐的三维材质生成方法]]></title>
+      <link>http://localhost:3300/items/vt0ek7295690yma026jo4ljr8</link>
+      <description><![CDATA[<p>SUPRA-Tex 提出单图三维材质生成方法，旨在保留参考图像的可见细节，同时连贯补全未观测表面。根据当前材料，该方法用基于 MLLM 的图像编辑模型预测参考视角下分离光照的 PBR 贴图，将其投影到可见表面并用预训练材质 VAE 编码为观测潜变量，再由交错式 flow transformer 将其作为固定只读锚点，交替更新未观测区域与完整表面。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.22352">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/vt0ek7295690yma026jo4ljr8">http://localhost:3300/items/vt0ek7295690yma026jo4ljr8</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">vt0ek7295690yma026jo4ljr8</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[Cowork-Gym 提出大规模合成交互式工作环境的框架]]></title>
       <link>http://localhost:3300/items/vo5owtflafmtlhnesp1z43jqg</link>
       <description><![CDATA[<p>Cowork-Gym 研究提出通过构建、执行、修订循环合成交互式工作环境，并报告利用这些环境训练智能体后的基准表现提升。根据当前材料，该框架利用执行证据和审查反馈验证、修复环境，有状态用户模拟器通过对话和直接编辑共享工作空间回应智能体行动。</p>
@@ -482,6 +482,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[FlashMask-3 提出高效且表达灵活的掩码感知分布式注意力]]></title>
+      <link>http://localhost:3300/items/umj8ddzyl5y50o0rhttw7bewk</link>
+      <description><![CDATA[<p>FlashMask-3 研究提出面向长上下文训练的掩码感知分布式注意力，结合 Hopper 内核优化与分布式扩展降低掩码处理开销。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.17901">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/umj8ddzyl5y50o0rhttw7bewk">http://localhost:3300/items/umj8ddzyl5y50o0rhttw7bewk</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">umj8ddzyl5y50o0rhttw7bewk</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[Mosaic 提出多会话智能体强化学习的分层优化方法]]></title>
       <link>http://localhost:3300/items/uk3xethd5d0wy8vpth21mimbk</link>
       <description><![CDATA[<p>Mosaic 研究提出无需 critic 的多会话智能体强化学习方法，作者报告其在两类场景中优于优势广播方法，且平均使用更少会话。根据当前材料，该方法支持单条轨迹包含任意数量的会话，在轨迹层将会话使用信号纳入优势估计，在会话层按估计的边际贡献调整各会话的优势。</p>
@@ -546,17 +557,6 @@
       <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">u9sxl4qhaqgorkw45k23om2qs</guid>
       <author>noreply@localhost (arXiv · 计算物理与材料)</author>
-    </item>
-    <item>
-      <title><![CDATA[EdgeWise：通过选择性云端委托将长流程智能体带到端侧]]></title>
-      <link>http://localhost:3300/items/u420luwljjo4yse17pjobycah</link>
-      <description><![CDATA[<p>EdgeWise 研究提出端云协作框架，以本地小语言模型作为主要求解器，仅将需要更强模型能力的关键步骤委托给云端 LLM。根据当前材料，该框架采用步骤级强化学习联合优化任务求解与委托决策，对单次委托进行细粒度信用分配，推理时无需额外模型；研究还使用外部评判器策略考察委托时机、决策方式、共享上下文和调用频率。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.17560">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/u420luwljjo4yse17pjobycah">http://localhost:3300/items/u420luwljjo4yse17pjobycah</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">u420luwljjo4yse17pjobycah</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
 </rss>
