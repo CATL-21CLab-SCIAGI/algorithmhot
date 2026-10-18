@@ -471,6 +471,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[RoTA-Bench：通过交互式投影对齐评估三维空间推理]]></title>
+      <link>http://localhost:3300/items/v0i2bvq6bdo5rew1x8pjp4jpv</link>
+      <description><![CDATA[<p>RoTA-Bench 研究提出交互式三维到二维投影对齐基准，评估视觉语言模型能否依据视觉反馈执行精确的三维旋转。根据当前材料，模型须在有限动作预算内旋转物体以匹配目标轮廓；自动化流程从二维图标构造保持轮廓的三维物体，并通过可逆初始化保证任务可解，共生成 674 个任务及分层选取的 100 任务测试集。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.17665">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/v0i2bvq6bdo5rew1x8pjp4jpv">http://localhost:3300/items/v0i2bvq6bdo5rew1x8pjp4jpv</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">v0i2bvq6bdo5rew1x8pjp4jpv</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[Control-TS 研究提出分位数引导的扩散概率时间序列预测方法]]></title>
       <link>http://localhost:3300/items/unhabazye1v62hio6v1tnfo0m</link>
       <description><![CDATA[<p>Control-TS 研究提出用预测分位数引导预训练扩散预测器，将显式不确定性估计用于未来轨迹生成。根据当前材料，该方法冻结预训练骨干、学习分位数控制通路，作者报告贯穿去噪网络的残差控制带来最一致的改进。</p>
@@ -546,17 +557,6 @@
       <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">uc8n8uukfh1rk1wzgvs62o6mr</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[研究报告自供能 Se/ZnMgO 视觉突触的波长选择性双向可塑性]]></title>
-      <link>http://localhost:3300/items/u9sxl4qhaqgorkw45k23om2qs</link>
-      <description><![CDATA[<p>研究报告 Se/ZnMgO 薄膜光电二极管可在零偏压下用光电流写入和读取突触权重，并由光子能量控制权重增减。相同光子通量下，365 nm 脉冲使光电流增加 38 %，455 nm 脉冲使其下降，后者在更高通量下的下降幅度达到 30 %；每个分支最多有 19 个可区分状态，且不消耗电能。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.21618">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/u9sxl4qhaqgorkw45k23om2qs">http://localhost:3300/items/u9sxl4qhaqgorkw45k23om2qs</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">u9sxl4qhaqgorkw45k23om2qs</guid>
-      <author>noreply@localhost (arXiv · 计算物理与材料)</author>
     </item>
   </channel>
 </rss>
