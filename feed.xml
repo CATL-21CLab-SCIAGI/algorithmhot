@@ -108,6 +108,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[GeoState 提出用于三维世界建模的视角解耦几何状态]]></title>
+      <link>http://localhost:3300/items/ww3nmeiwts5bd1uscg9e9ar07</link>
+      <description><![CDATA[<p>GeoState 提出视角解耦的几何表示，将三维世界模型中的场景状态演化与相机相关观测分离。根据当前材料，场景 tokenizer 聚合多视角几何基础模型（GFM）特征，几何解码器通过相机射线查询状态，自回归世界模型预测未来场景状态并单独建模相机运动。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.22343">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ww3nmeiwts5bd1uscg9e9ar07">http://localhost:3300/items/ww3nmeiwts5bd1uscg9e9ar07</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Mon, 19 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">ww3nmeiwts5bd1uscg9e9ar07</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[RIVET 提出响应信息辅助的价值估计，用于成本感知的多轮 LLM 路由]]></title>
       <link>http://localhost:3300/items/vz6uyc8vuhqgpwip9cv01wzrg</link>
       <description><![CDATA[<p>RIVET 利用训练时可见的模型响应辅助价值估计，在部署时仍仅凭调用前信息进行多轮 LLM 路由。根据当前材料，该方法在共享状态与模型表示上联合训练两个价值估计器，其中只有训练专用估计器观察实际响应；作者的理论分析表明，这可降低共享表示渐近估计误差的主导项。</p>
@@ -262,6 +273,28 @@
       <author>noreply@localhost (arXiv · 计算物理与材料)</author>
     </item>
     <item>
+      <title><![CDATA[ReaDy 利用循环状态为混合线性注意力大语言模型的推测草拟提供动态上下文]]></title>
+      <link>http://localhost:3300/items/o8i3yyur8db9c0sp0vqvhe6sd</link>
+      <description><![CDATA[<p>ReaDy 提出利用混合线性注意力模型的循环状态，为各草拟位置检索动态上下文，以加速推测解码。根据当前材料，该方法通过学习查询和轻量状态读取器，以残差更新补充草拟表示，并以低秩状态读取和融合算子控制额外开销；其基于 DSpark 的并行骨干与顺序预测头，采用两阶段适配，并通过消融考察读取器容量、状态来源和残差位置。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.20503">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/o8i3yyur8db9c0sp0vqvhe6sd">http://localhost:3300/items/o8i3yyur8db9c0sp0vqvhe6sd</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Mon, 19 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">o8i3yyur8db9c0sp0vqvhe6sd</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[DuoDiscover 提出联合搜索机制，突破自主发现的评估瓶颈]]></title>
+      <link>http://localhost:3300/items/nusoezuemrsyesvq0bifaofje</link>
+      <description><![CDATA[<p>DuoDiscover 提出联合发现优化目标与快速代理评估器的搜索系统，以降低软件和芯片架构自主优化中的真实评估成本。编码智能体围绕定制代理评估器 yardstick 进行爬山搜索，持续的保真度测试复查其排序并淘汰偏离真实目标的评估器，轻量编排器则协调无需中央任务分解的智能体群体。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.17184">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/nusoezuemrsyesvq0bifaofje">http://localhost:3300/items/nusoezuemrsyesvq0bifaofje</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Mon, 19 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">nusoezuemrsyesvq0bifaofje</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[机器学习原子间势的线性响应方法：在原胞中计算任意波矢的声子]]></title>
       <link>http://localhost:3300/items/mt5r3lsz7eeoa87naf9ro7vh7</link>
       <description><![CDATA[<p>该研究提出机器学习原子间势的线性响应方法，在原胞中精确计算消息传递势在任意波矢处的动力学矩阵。根据当前材料，方法仅在汇集邻近原子特征时引入 Bloch 相位，无需修改训练好的模型，进一步求导可解析获得群速度和模式 Grüneisen 参数。</p>
@@ -350,6 +383,17 @@
       <author>noreply@localhost (arXiv · 计算物理与材料)</author>
     </item>
     <item>
+      <title><![CDATA[稀疏自编码器为符号匹配提供共享坐标系]]></title>
+      <link>http://localhost:3300/items/ijqyznmcr1kg1j0ix7l8w4qcc</link>
+      <description><![CDATA[<p>研究提出 SAE-IDF，用稀疏自编码器建立共享坐标系，以匹配异构符号系统中的单元。基于摘要，该方法将符号及其原生上下文编码为稀疏表示，按各维度的稀有度重新加权，再进行跨系统匹配。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.19636">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ijqyznmcr1kg1j0ix7l8w4qcc">http://localhost:3300/items/ijqyznmcr1kg1j0ix7l8w4qcc</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Mon, 19 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">ijqyznmcr1kg1j0ix7l8w4qcc</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[TreeOPSD 提出面向长程智能体强化学习的树感知后验蒸馏框架]]></title>
       <link>http://localhost:3300/items/ijmra0fpsvamwxhqzwkvctg4c</link>
       <description><![CDATA[<p>TreeOPSD 提出无需价值网络的树感知后验自蒸馏框架，用于缓解长程智能体强化学习中的稀疏信用分配与策略陈旧问题。根据当前材料，该方法从共享前缀分支生成后续交互，将终局奖励递归回传为轮次级信用，再依据相对冻结行为策略的似然比构造闭式、有界的教师分布。</p>
@@ -358,6 +402,28 @@
       <category>算法</category>
       <pubDate>Mon, 19 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">ijmra0fpsvamwxhqzwkvctg4c</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[OpenMobile-2：用可扩展环境与应用原生工具构建通用移动智能体]]></title>
+      <link>http://localhost:3300/items/ifmqn04agk7ubcu1nbewt2fwh</link>
+      <description><![CDATA[<p>OpenMobile-2 研究提出结合图形界面操作与应用原生工具调用的移动智能体，并提供开放的训练环境与训练方案。根据当前材料，MobileGym++ 包含 35 个支持跨应用流程、重置与验证的商业风格模拟应用，与 Android 模拟器中的应用共同覆盖超过 110 个应用；训练数据包括近 12K 条监督微调交互轨迹，以及超过 2K 个带自动奖励的可执行 RL 任务。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.14157">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ifmqn04agk7ubcu1nbewt2fwh">http://localhost:3300/items/ifmqn04agk7ubcu1nbewt2fwh</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Mon, 19 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">ifmqn04agk7ubcu1nbewt2fwh</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[PhysClosureBench：通过证据支持的物理研究评估智能体的科研闭环能力]]></title>
+      <link>http://localhost:3300/items/hth7ccgdxlih50v524h1dkhad</link>
+      <description><![CDATA[<p>PhysClosureBench 研究提出物理科研智能体评测基准，作者报告局部科学成果与完整科研闭环之间存在持续差距。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.21767">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/hth7ccgdxlih50v524h1dkhad">http://localhost:3300/items/hth7ccgdxlih50v524h1dkhad</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Mon, 19 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">hth7ccgdxlih50v524h1dkhad</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
@@ -438,6 +504,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[GPT-6-Astra 是否已实现具身智能？]]></title>
+      <link>http://localhost:3300/items/eivcs41kamucg9xy368716qdx</link>
+      <description><![CDATA[<p>该报告认为，GPT-6-Astra 已大体跨过具身任务能力的门槛，但尚未达到实用具身智能的门槛。作者在涵盖桌面操作、人形机器人、移动平台和灵巧手的 12 个代表性基准上评测，统一协议允许利用训练集示范进行上下文学习（ICL），并显著增加执行步数；报告还发现，GPT-6-Astra 作为高层推理器与 π0.5 等低层控制器闭环协作有效，但成本较高。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.22471">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/eivcs41kamucg9xy368716qdx">http://localhost:3300/items/eivcs41kamucg9xy368716qdx</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Mon, 19 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">eivcs41kamucg9xy368716qdx</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[无遗憾语言生成研究给出生成复杂度的理论刻画]]></title>
       <link>http://localhost:3300/items/e20srz6279kefph2xe4amy9iq</link>
       <description><![CDATA[<p>该研究提出无遗憾语言生成，要求生成器对所有示范序列及兼容的目标语言统一满足次线性错误次数。根据当前材料，作者还研究允许任意、不必兼容任何语言的示范序列的不可知设定，并以树结构的强制错误维度精确刻画有限时域极小极大复杂度，给出无遗憾生成的充要条件。</p>
@@ -480,83 +557,6 @@
       <pubDate>Mon, 19 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">cop3m82c2a8683j1i70zslmfb</guid>
       <author>noreply@localhost (arXiv · 计算物理与材料)</author>
-    </item>
-    <item>
-      <title><![CDATA[BizBench 揭示长程智能体在真实业务部署中的执行挑战]]></title>
-      <link>http://localhost:3300/items/c2qxe9n1c3zi69fi1791j8ckd</link>
-      <description><![CDATA[<p>BizBench 研究提出基于一家头部支付公司真实流程的多轮基准，同时评估长程智能体的目标达成与执行有效性。根据当前材料，其可执行环境整合 789 份知识文档和 601 个可发现的业务工具，包含 50 项涉及资源约束、时间依赖、既有承诺及冲突或过时指引的任务，通过参考执行验证任务，并以确定性检查评估结果与执行过程，不限定单一解法。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.20424">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/c2qxe9n1c3zi69fi1791j8ckd">http://localhost:3300/items/c2qxe9n1c3zi69fi1791j8ckd</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Mon, 19 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">c2qxe9n1c3zi69fi1791j8ckd</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[硬碳研究通过拓扑衍生闭孔提升储钠性能]]></title>
-      <link>http://localhost:3300/items/t9zl69fpx9f59o6h9yye9rvwn</link>
-      <description><![CDATA[<p>该研究提出分子空腔工程策略，通过低温交联保留环状分子前驱体的空腔，并在碳化过程中构建硬碳内禀闭孔。根据当前材料，以 β-cyclodextrin 为前驱体制得的 β-ICHC，作者报告其可逆容量为 410.2 mAh g⁻¹、初始库仑效率为 94.7%，300 次循环后容量保持率为 99.7%，但材料未给出这些指标的测试倍率与温度。</p>
-<p>🔗 <a href="https://doi.org/10.1002/anie.6016795">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/t9zl69fpx9f59o6h9yye9rvwn">http://localhost:3300/items/t9zl69fpx9f59o6h9yye9rvwn</a></p>]]></description>
-      <category>电池与新能源材料</category>
-      <pubDate>Sat, 17 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">t9zl69fpx9f59o6h9yye9rvwn</guid>
-      <author>noreply@localhost (Angewandte Chemie International Edition)</author>
-    </item>
-    <item>
-      <title><![CDATA[SIEVE：克服等变自监督学习中的拓扑障碍]]></title>
-      <link>http://localhost:3300/items/zst3f92to60qzv4ztt3mvik3p</link>
-      <description><![CDATA[<p>SIEVE 提出 SE(3) 等变点云自监督框架，通过球面投影掩码规避标准掩码引发的拓扑坍缩。根据当前材料，作者从理论上指出，3D 点云掩码自编码与 SE(3) 等变网络存在不兼容性，会迫使模型在缺少参考系时臆测方向；SIEVE 保留全局姿态、遮蔽局部语义，将点云几何压缩为不变标量嵌入。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.21087">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/zst3f92to60qzv4ztt3mvik3p">http://localhost:3300/items/zst3f92to60qzv4ztt3mvik3p</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">zst3f92to60qzv4ztt3mvik3p</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[ICPSL：从有限离线数据进行上下文偏好条件化 Pareto 集学习]]></title>
-      <link>http://localhost:3300/items/zrdcvgidj0hhf0d5augx8ehkk</link>
-      <description><![CDATA[<p>ICPSL 提出上下文偏好条件化 Pareto 集学习框架，面向有限离线数据下的多目标优化，减少逐偏好搜索与逐问题训练。根据当前材料，该框架在大量多样化合成先验数据上预训练超网络，再根据未见问题的离线观测，通过一次前向传播生成问题专属的偏好条件化 Pareto 解模型；生成的模型可复用于任意偏好的解预测，无需针对该问题训练或逐偏好搜索。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.21736">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/zrdcvgidj0hhf0d5augx8ehkk">http://localhost:3300/items/zrdcvgidj0hhf0d5augx8ehkk</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">zrdcvgidj0hhf0d5augx8ehkk</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[OmicsBench：面向研究规模生物信息学分析的长程多轮智能体评测基准]]></title>
-      <link>http://localhost:3300/items/zquddwacqw1cw1l3qbd8qkk0k</link>
-      <description><![CDATA[<p>OmicsBench 研究提出面向研究规模生物信息学分析的长程多轮智能体基准，作者报告各模型与运行框架组合均远未达到满分。根据当前材料，基准将 97 个任务组织为包含依赖关系的有向无环图，共有 662 个子任务，每个子任务对应一轮用户交互，并按标准答案确定性评分。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.21074">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/zquddwacqw1cw1l3qbd8qkk0k">http://localhost:3300/items/zquddwacqw1cw1l3qbd8qkk0k</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">zquddwacqw1cw1l3qbd8qkk0k</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[视觉语言模型的在策略蒸馏会继承教师行为与失败模式]]></title>
-      <link>http://localhost:3300/items/zpnhe4d1cvr3r2eaaaltl4a8w</link>
-      <description><![CDATA[<p>该研究报告，视觉语言模型的在策略蒸馏（OPD）不仅传递教师知识，也可能继承教师在学生访问状态上的持续失败模式。根据当前材料，作者在不同数据预算和教师可靠性条件下，对照 OPD 与经过筛选的监督微调（SFT），分析学生准确率和回答完成情况。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.20989">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/zpnhe4d1cvr3r2eaaaltl4a8w">http://localhost:3300/items/zpnhe4d1cvr3r2eaaaltl4a8w</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">zpnhe4d1cvr3r2eaaaltl4a8w</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[当推理轨迹与证据冲突时，回答配置如何影响证据遵循]]></title>
-      <link>http://localhost:3300/items/zjm6ad6rnf0wokkfteqjbt1ud</link>
-      <description><![CDATA[<p>该研究报告，推理轨迹与当前证据冲突时，单独调用模型回答比延续模型自身思考更能遵循当前证据。根据当前材料，作者交叉配对经核验的证据版本及其生成的轨迹，在 HotpotQA 和 MuSiQue 上测试 gpt-oss、Gemma4、Qwen3，单独回答调用的证据遵循指标比延续思考高 29.9 至 60.6 点。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.20805">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/zjm6ad6rnf0wokkfteqjbt1ud">http://localhost:3300/items/zjm6ad6rnf0wokkfteqjbt1ud</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">zjm6ad6rnf0wokkfteqjbt1ud</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
 </rss>
