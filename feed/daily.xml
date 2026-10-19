@@ -9,6 +9,23 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-10-19 — Littlestone 类的差分隐私学习研究提出近线性样本复杂度上界]]></title>
+      <link>http://localhost:3300/daily/2026-10-19</link>
+      <description><![CDATA[<p>Shay Moran 与 Chao Yan 的研究报告，将 Littlestone 维数为 d 的类的差分隐私学习样本复杂度上界从此前的 Õ(d⁵) 改进至 O(d log d)。</p>
+<p><strong>算法</strong></p>
+<ul><li><a href="http://localhost:3300/items/os4mj2wkzez979l8fu7fktxf6">Littlestone 类的差分隐私学习研究提出近线性样本复杂度上界</a></li><li><a href="http://localhost:3300/items/fw19wvzgpajgcjjw0i26f0mi0">OS-Helix 研究提出统一 GUI 交互与代码执行的原生计算机操作智能体</a></li><li><a href="http://localhost:3300/items/kjcc2vxr6sl1lxlskp70bwj5f">GCA 为多轮搜索智能体强化学习提出基于证据的信用分配方法</a></li><li><a href="http://localhost:3300/items/s1o08eb3vdmnj5wjp4x5thfqe">SPOT 通过提交顺序预测增强扩散语言模型的推测解码</a></li><li><a href="http://localhost:3300/items/rcx0y5j08tr493delzr9jnx6o">ΣΔ-Sampler 通过噪声整形采样与退火支持二值和三值模型的可扩展端侧训练</a></li><li><a href="http://localhost:3300/items/szrl97zpsgifstlz5t03ohgf2">CoTA++ 从信息流视角解析 dMLLMs 的重复问题</a></li></ul>
+<p><strong>AI4AI</strong></p>
+<ul><li><a href="http://localhost:3300/items/g14ekcrvlq04i0k9v4ytun1d1">Into the Unknown：评测 AI 智能体解决开放科学研究问题的能力</a></li><li><a href="http://localhost:3300/items/nusoezuemrsyesvq0bifaofje">DuoDiscover 提出联合搜索机制，突破自主发现的评估瓶颈</a></li><li><a href="http://localhost:3300/items/ifmqn04agk7ubcu1nbewt2fwh">OpenMobile-2：用可扩展环境与应用原生工具构建通用移动智能体</a></li><li><a href="http://localhost:3300/items/hth7ccgdxlih50v524h1dkhad">PhysClosureBench：通过证据支持的物理研究评估智能体的科研闭环能力</a></li><li><a href="http://localhost:3300/items/tttou7u1ihk1g6x2ba3wdq9ns">HexaShell：用轻量执行框架探索 VLM 机器人编码智能体的能力边界</a></li><li><a href="http://localhost:3300/items/uwnjvq78rsulchkr0yhyl9jdm">Game2Real-Bench：简化游戏能否反映真实世界视觉推理能力并支持迁移？</a></li></ul>
+<p><strong>AI4S</strong></p>
+<ul><li><a href="http://localhost:3300/items/mt5r3lsz7eeoa87naf9ro7vh7">机器学习原子间势的线性响应方法：在原胞中计算任意波矢的声子</a></li><li><a href="http://localhost:3300/items/v521lkbprv58omspbkm97lrpa">基础模型监督蒸馏势，用于百万原子分子动力学的检查与修复</a></li><li><a href="http://localhost:3300/items/k6y49ro8ujzxrvxdgiw78ms26">DPA4C-LR 提出可扩展的长程机器学习原子间势，支持材料电响应建模</a></li><li><a href="http://localhost:3300/items/sf6rj0eqpxsyf4ad0kckozz4o">L-SplineFNO 提出面向非结构化网格神经算子的可学习样条方法</a></li><li><a href="http://localhost:3300/items/b9x1t1b9zr6o7lys1gl6mty2s">自构建实验室 SBL 根据科学目标设计、配置并运行实验系统</a></li><li><a href="http://localhost:3300/items/cop3m82c2a8683j1i70zslmfb">利用等变神经网络学习电子自能</a></li><li><a href="http://localhost:3300/items/jgodqjjw2z13uzvtmi2i8hz0p">GRAFT-EEG：用于跨数据集运动想象 EEG 的规范感知物理场传输</a></li></ul>
+<p><strong>电池与新能源材料</strong></p>
+<ul><li><a href="http://localhost:3300/items/zi9nxrylhvgsdfk4yi9u84zmc">硫化物固态电解质研究可视化表面反应驱动的氯离子迁移与级联失效</a></li></ul>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/daily/2026-10-19">http://localhost:3300/daily/2026-10-19</a></p>]]></description>
+      <pubDate>Mon, 19 Oct 2026 04:00:20 GMT</pubDate>
+      <guid isPermaLink="false">daily-2026-10-19</guid>
+      <author>noreply@localhost (AlgorithmHot · 科研热点)</author>
+    </item>
+    <item>
       <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-10-18 — 硬碳研究通过拓扑衍生闭孔提升储钠性能]]></title>
       <link>http://localhost:3300/daily/2026-10-18</link>
       <description><![CDATA[<p>该研究提出分子空腔工程策略，通过低温交联保留环状分子前驱体的空腔，并在碳化过程中构建硬碳内禀闭孔。根据当前材料，以 β-cyclodextrin 为前驱体制得的 β-ICHC，作者报告其可逆容量为 410.2 mAh g⁻¹、初始库仑效率为 94.7%，300 次循环后容量保持率为 99.7%，但材料未给出这些指标的测试倍率与温度。</p>
