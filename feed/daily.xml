@@ -9,6 +9,32 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-10-21 — Agent S4 研究提出从任务经验中演化智能体接口]]></title>
+      <link>http://localhost:3300/daily/2026-10-21</link>
+      <description><![CDATA[<p>Agent S4 研究提出让计算机操作智能体自主构建和改进接口，作者报告其在两个基准上提升了任务表现。根据当前材料，元智能体分析无成功标签的合成训练任务轨迹，在仓库中修订接口及使用知识，再通过种群演化按元智能体未见过的验证任务表现筛选仓库。</p>
+<p><strong>算法</strong></p>
+<ul><li><a href="http://localhost:3300/items/nmu8b1mqekv6dc7otv6fkiul0">Projected Distillation：通过接近学生输出的正确目标学习解决难题</a></li><li><a href="http://localhost:3300/items/la0oi19xytj4tvxw52e80g2lh">文本嵌入模型的 PTQ 校准何时有益或有害：更新剂量驱动的崩溃与验证门控弃权</a></li><li><a href="http://localhost:3300/items/vj8dsvogvdyr62sxo41wwdj20">Binary Discrete Diffusion：面向逻辑与规划任务的候选集扩散方法</a></li><li><a href="http://localhost:3300/items/v1tt5cwlsd5rdd001x2d3vdpy">通过提示演化实现多模态预测的免训练持续学习</a></li><li><a href="http://localhost:3300/items/ejf6iiho4dzifk9h3jb4q70e1">SFG 研究提出包含自身模型的新鲜度加权聚合，改善客户端离线后的去中心化学习</a></li><li><a href="http://localhost:3300/items/fye1104gd6qofyz45okmg9jf3">OmniCam：通过几何驱动的姿态 token 学习生成相机轨迹</a></li><li><a href="http://localhost:3300/items/pwyji2z7gu4dkvwi5rknbqa71">SpecKCast：用频谱卡尔曼预测加速扩散模型</a></li><li><a href="http://localhost:3300/items/u1rp1c1f3kkst8lvige5locj6">研究主张多模态重排序是一种 System One 决策</a></li><li><a href="http://localhost:3300/items/b33amhgfx0if25gc5phhqx92y">通用编码计算的学习理论基础：对抗场景下的鲁棒恢复</a></li><li><a href="http://localhost:3300/items/m8le298jaf4fe1gbbzcefmmpl">Specter 通过量化支持的多步推测卸载加速 MoE 推理</a></li></ul>
+<p><strong>AI4AI</strong></p>
+<ul><li><a href="http://localhost:3300/items/f92iqp9l9iaccpks25eyjuvwx">Agent S4 研究提出从任务经验中演化智能体接口</a></li><li><a href="http://localhost:3300/items/jyupk8z8csu5itmcd3fejb07f">Épi 研究提出跨会话持续探索、自我改进的自主研究智能体</a></li><li><a href="http://localhost:3300/items/gl7oqvc47brtz3ffaea9qlf2i">λ_0 研究利用开放世界第一视角人体数据扩展人形机器人移动操作训练</a></li></ul>
+<p><strong>AI4S</strong></p>
+<ul><li><a href="http://localhost:3300/items/t0hz4w5gq4g2i5utpqze34ajc">研究提出 Clinical System One 通用临床记录决策模型</a></li><li><a href="http://localhost:3300/items/jj56rkml1ky5d0fjnfoqede5d">PaPi：以并行 Picard-Duhamel 积分加速神经谱架构</a></li></ul>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/daily/2026-10-21">http://localhost:3300/daily/2026-10-21</a></p>]]></description>
+      <pubDate>Wed, 21 Oct 2026 08:00:21 GMT</pubDate>
+      <guid isPermaLink="false">daily-2026-10-21</guid>
+      <author>noreply@localhost (AlgorithmHot · 科研热点)</author>
+    </item>
+    <item>
+      <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-10-20 — 大语言模型逻辑推理的能力导向评估]]></title>
+      <link>http://localhost:3300/daily/2026-10-20</link>
+      <description><![CDATA[<p>该研究提出能力导向评估（CBE），检验大语言模型能否在一组问题中稳定运用同一种推理能力，而非仅报告单一准确率。基于摘要，研究用参数化生成器在固定所需能力的同时提高复杂度，并以答案不变的不同表述进行测试，在基础排序任务上评估了六个 GPT 和 Qwen 模型。</p>
+<p><strong>AI4AI</strong></p>
+<ul><li><a href="http://localhost:3300/items/zjh4xx2fbojlueyvjaq81u9b0">大语言模型逻辑推理的能力导向评估</a></li></ul>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/daily/2026-10-20">http://localhost:3300/daily/2026-10-20</a></p>]]></description>
+      <pubDate>Wed, 21 Oct 2026 08:30:21 GMT</pubDate>
+      <guid isPermaLink="false">daily-2026-10-20</guid>
+      <author>noreply@localhost (AlgorithmHot · 科研热点)</author>
+    </item>
+    <item>
       <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-10-19 — Littlestone 类的差分隐私学习研究提出近线性样本复杂度上界]]></title>
       <link>http://localhost:3300/daily/2026-10-19</link>
       <description><![CDATA[<p>Shay Moran 与 Chao Yan 的研究报告，将 Littlestone 维数为 d 的类的差分隐私学习样本复杂度上界从此前的 Õ(d⁵) 改进至 O(d log d)。</p>
