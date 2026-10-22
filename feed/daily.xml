@@ -9,6 +9,23 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-10-22 — 事件而非像素：世界模型在哪里错估了回报]]></title>
+      <link>http://localhost:3300/daily/2026-10-22</link>
+      <description><![CDATA[<p>该研究提出转移级诊断方法，通过用真实转移替换世界模型想象的转移，定位规划回报估计的误差来源。根据当前材料，作者报告获得奖励或回合结束的事件转移，其像素误差中位数比值为 0.85，但修复这些转移可消除中位数为 70% 的回报误差；按 MSE、SSIM 或 LPIPS 最大误差选择转移，效果反而低于随机选择。</p>
+<p><strong>算法</strong></p>
+<ul><li><a href="http://localhost:3300/items/tf1jb3bxncbamzufh838g7hib">不对称无似然假设检验研究刻画样本预算可行边界</a></li><li><a href="http://localhost:3300/items/elcxx0a46u49lfvq3pvpprdeq">循环 Transformer 的截断反向传播会损失多少梯度？</a></li><li><a href="http://localhost:3300/items/ak08axd6bfjm53ohu3yev1sol">查询反馈与教学如何支持稳定且可认证的语言生成</a></li><li><a href="http://localhost:3300/items/be8qjc66l034x97zg5jtrkiim">研究提出基于不相似度的马尔可夫决策过程，用于稳定状态分布</a></li><li><a href="http://localhost:3300/items/pihoqvs2pjkmjloo43bnjbwca">游戏中的规模扩展：多样虚拟世界中具身智能体的持续预训练研究</a></li></ul>
+<p><strong>AI4AI</strong></p>
+<ul><li><a href="http://localhost:3300/items/woositw52ow4i52o1xkpqhsm6">事件而非像素：世界模型在哪里错估了回报</a></li><li><a href="http://localhost:3300/items/cv52c4ccj8d0vd8pei7semc6m">Agent4Sci 研究：前沿智能体能否在真实科学机器学习任务中持续改进模型？</a></li><li><a href="http://localhost:3300/items/uhqc6oew0rx4i50uh9wlvhn39">真实 PMID 却引用错论文：生物医学主张核验智能体的运行框架设计</a></li><li><a href="http://localhost:3300/items/o136dg4qs7kfz5o9unnbm8za1">CAP 校准适配偏好对用于后训练，让模型按用户的语言变体回答</a></li></ul>
+<p><strong>AI4S</strong></p>
+<ul><li><a href="http://localhost:3300/items/v6yo658fzr0rywi3j2qz3ooal">Orbitol 提出基于 Wyckoff 轨道的晶体生成方法</a></li></ul>
+<p><strong>电池与新能源材料</strong></p>
+<ul><li><a href="http://localhost:3300/items/uot43x3fyawxtkkhckekxdxvg">晶格限域 Ru 单原子保护 Co3O4 载体，提升阴离子交换膜水电解槽效率与稳定性</a></li><li><a href="http://localhost:3300/items/eu6422h04zd2awbbrw2mn40jp">单晶面高熵钙钛矿电极研究将晶格溶解与水氧化贡献定量分离</a></li></ul>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/daily/2026-10-22">http://localhost:3300/daily/2026-10-22</a></p>]]></description>
+      <pubDate>Thu, 22 Oct 2026 08:00:06 GMT</pubDate>
+      <guid isPermaLink="false">daily-2026-10-22</guid>
+      <author>noreply@localhost (AlgorithmHot · 科研热点)</author>
+    </item>
+    <item>
       <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-10-21 — Agent S4 研究提出从任务经验中演化智能体接口]]></title>
       <link>http://localhost:3300/daily/2026-10-21</link>
       <description><![CDATA[<p>Agent S4 研究提出让计算机操作智能体自主构建和改进接口，作者报告其在两个基准上提升了任务表现。根据当前材料，元智能体分析无成功标签的合成训练任务轨迹，在仓库中修订接口及使用知识，再通过种群演化按元智能体未见过的验证任务表现筛选仓库。</p>
