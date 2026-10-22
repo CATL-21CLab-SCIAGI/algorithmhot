@@ -361,6 +361,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[SST 通过知识重构缓解持续领域适应中的灾难性遗忘]]></title>
+      <link>http://localhost:3300/items/pgpkgk6js025bi9yyuoco0s4r</link>
+      <description><![CDATA[<p>研究提出 Skill Schema Transport（SST）后训练框架，将新领域知识映射到模型已有技能空间，以缓解持续领域适应中的灾难性遗忘。根据当前材料，SST 将每类样例抽象为技能模式，保留核心操作、依赖关系和验证步骤，移除领域特定的表面形式，使知识更新从轨迹记忆转向程序复用。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.28892">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/pgpkgk6js025bi9yyuoco0s4r">http://localhost:3300/items/pgpkgk6js025bi9yyuoco0s4r</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Thu, 22 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">pgpkgk6js025bi9yyuoco0s4r</guid>
+      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
+    </item>
+    <item>
       <title><![CDATA[AutoFraming 利用 LLM 从 C 代码合成动态框架规格]]></title>
       <link>http://localhost:3300/items/pf78pxo9qw2riopf3zekv5q2n</link>
       <description><![CDATA[<p>AutoFraming 提出利用 LLM 从 C 代码合成 ACSL 框架规格及功能契约，描述执行期间允许或不允许修改的内存位置。基于摘要，该方法分析代码属性图（CPG），提取框架相关信息以引导生成，所得规格涵盖区域分离约束和影响变量修改的数据依赖。</p>
@@ -482,6 +493,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[RealMe 从少量采集构建高分辨率沉浸式体积视频]]></title>
+      <link>http://localhost:3300/items/mnpah1p9kne53auls2wix2i8u</link>
+      <description><![CDATA[<p>RealMe 研究提出基于高分辨率视频扩散模型的统一框架，将稀疏、低分辨率采集增强为 2K、4D 一致的视频，用于体积视频重建。根据当前材料，该方法将辅助数据与布局感知位置嵌入编码到潜空间，调整分解式时空注意力以适配多视角采集布局，并跨视角和时间去噪。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.30023">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/mnpah1p9kne53auls2wix2i8u">http://localhost:3300/items/mnpah1p9kne53auls2wix2i8u</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Thu, 22 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">mnpah1p9kne53auls2wix2i8u</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[WaferHDC 提出基于超维计算的在线开放世界晶圆缺陷发现框架]]></title>
       <link>http://localhost:3300/items/mfoyp44vtf0qgl7y0nvj6vetk</link>
       <description><![CDATA[<p>WaferHDC 研究提出基于超维计算（HDC）的在线开放世界晶圆缺陷发现框架，用于识别持续制造中出现的未知缺陷。根据当前材料，该方法先建模正常空间分布，再将反复出现的异常聚合为持久的超向量缺陷记忆，无需标签、预设类别数、重新训练静态分类器或保存全部原始晶圆历史。</p>
@@ -534,28 +556,6 @@
       <category>AI4AI</category>
       <pubDate>Thu, 22 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">lrviz48nsoymak2ft524lxwj8</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[Spectral-Spatial Interpretation 提出光谱与空间联合归因方法]]></title>
-      <link>http://localhost:3300/items/lgi4ddlf3ufp0no0rnrwwon6g</link>
-      <description><![CDATA[<p>Spectral-Spatial Interpretation（SSI）提出位置与通道联合归因方法，生成完整的光谱空间归因矩阵，而非单一热图或全局通道排名。根据当前材料，SSI 固定各位置周围的观测上下文，对该位置的通道构建条件博弈并应用 Shapley 值；通道归因之和可精确恢复用基线替换该位置得到的上下文对比量。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.21114">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/lgi4ddlf3ufp0no0rnrwwon6g">http://localhost:3300/items/lgi4ddlf3ufp0no0rnrwwon6g</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Thu, 22 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">lgi4ddlf3ufp0no0rnrwwon6g</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[卷积神经网络中局部性与权重共享如何影响学习]]></title>
-      <link>http://localhost:3300/items/levbha35miyb3hjnc1rmwha7b</link>
-      <description><![CDATA[<p>Francesco Mori 与 Melanie Weber 的研究提出理论分析，说明局部性、权重共享与输入空间相关性如何共同影响卷积神经网络的学习。根据当前材料，作者在具有 P 个输入位置、位置间相关性为 c 的卷积教师模型中，比较在线随机梯度下降训练的卷积学生与局部连接学生，并推导出在特征维度 D 趋于无穷时精确描述学习动态的常微分方程。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.30118">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/levbha35miyb3hjnc1rmwha7b">http://localhost:3300/items/levbha35miyb3hjnc1rmwha7b</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Thu, 22 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">levbha35miyb3hjnc1rmwha7b</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
