@@ -9,6 +9,19 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-10-23 — LaLa-World：以自然语言动作扩展潜在世界模型]]></title>
+      <link>http://localhost:3300/daily/2026-10-23</link>
+      <description><![CDATA[<p>LaLa-World 研究提出语言条件化的潜在世界模型，将仿真、机器人轨迹及更广泛的图像和视频数据用于联合训练与规划。根据当前材料，该方法用语言描述数值动作和视觉变化，并以语言模型构建未来潜在状态预测器；作者报告其平均 MPC 规划表现优于按领域或任务分别训练的现有潜在世界模型，加入图像和视频数据还改善了平均规划表现及对动作措辞的鲁棒性。</p>
+<p><strong>算法</strong></p>
+<ul><li><a href="http://localhost:3300/items/kx0zeb8yokex82u26yuj7ochf">LaLa-World：以自然语言动作扩展潜在世界模型</a></li><li><a href="http://localhost:3300/items/as0h05wtt77m0568kbc8fc0d7">Foundation4D 研究提出面向自动驾驶的统一感知与重建模型</a></li><li><a href="http://localhost:3300/items/o21xs0dwb74uacfid9zyvhziy">FAPL 以因素感知预测学习强化 MLLM 潜在表示在电影式视频生成中的作用</a></li><li><a href="http://localhost:3300/items/tq9jiuyqt0pxnlaqjklmm6ksc">Meta Expert 通过跨层专家共享提升 MoE 存储与检索效率</a></li></ul>
+<p><strong>电池与新能源材料</strong></p>
+<ul><li><a href="http://localhost:3300/items/aq9msi4wzzbzwxj9egrwse8tq">双多面体畸变提升低成本非晶卤化物钠电解质的离子电导率</a></li><li><a href="http://localhost:3300/items/yflyuphu17rls3ey8gyq87o2t">研究通过死钾再活化与稳定界面重构改善无负极钾金属电池循环稳定性</a></li></ul>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/daily/2026-10-23">http://localhost:3300/daily/2026-10-23</a></p>]]></description>
+      <pubDate>Fri, 23 Oct 2026 08:00:30 GMT</pubDate>
+      <guid isPermaLink="false">daily-2026-10-23</guid>
+      <author>noreply@localhost (AlgorithmHot · 科研热点)</author>
+    </item>
+    <item>
       <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-10-22 — 事件而非像素：世界模型在哪里错估了回报]]></title>
       <link>http://localhost:3300/daily/2026-10-22</link>
       <description><![CDATA[<p>该研究提出转移级诊断方法，通过用真实转移替换世界模型想象的转移，定位规划回报估计的误差来源。根据当前材料，作者报告获得奖励或回合结束的事件转移，其像素误差中位数比值为 0.85，但修复这些转移可消除中位数为 70% 的回报误差；按 MSE、SSIM 或 LPIPS 最大误差选择转移，效果反而低于随机选择。</p>
