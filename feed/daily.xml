@@ -9,6 +9,17 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-10-24 — 研究报告无氟电解液支持微米级硅负极长循环]]></title>
+      <link>http://localhost:3300/daily/2026-10-24</link>
+      <description><![CDATA[<p>该研究提出以 LiI/LiBr 与四氢呋喃、己基甲基醚组成无氟电解液，通过形成不含 LiF 的 SEI 缓解微米级硅负极的容量快速衰减。根据当前材料，该电解液在硅表面形成具有黏结剂功能的高分子聚合物，作者报告其可维持颗粒完整性及粉化后的电连接。</p>
+<p><strong>电池与新能源材料</strong></p>
+<ul><li><a href="http://localhost:3300/items/obf88jcwa3l6vnmew0le6kb59">研究报告无氟电解液支持微米级硅负极长循环</a></li><li><a href="http://localhost:3300/items/sxqjbrhfgd0e4wsf0px8dqg5e">原位时间分辨光谱电化学显微技术揭示电催化中不同的电子耗减路径</a></li><li><a href="http://localhost:3300/items/bst3rjpai1f7lvroras5s16m3">高熵普鲁士蓝类似物正极中 Jahn–Teller 效应的抑制机制解析</a></li><li><a href="http://localhost:3300/items/pt35on4hjuzyfvgdtoqlbe4kb">部分合金化 PdNi 电催化剂通过界面氢溢流促进析氢</a></li></ul>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/daily/2026-10-24">http://localhost:3300/daily/2026-10-24</a></p>]]></description>
+      <pubDate>Sat, 24 Oct 2026 09:00:39 GMT</pubDate>
+      <guid isPermaLink="false">daily-2026-10-24</guid>
+      <author>noreply@localhost (AlgorithmHot · 科研热点)</author>
+    </item>
+    <item>
       <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-10-23 — LaLa-World：以自然语言动作扩展潜在世界模型]]></title>
       <link>http://localhost:3300/daily/2026-10-23</link>
       <description><![CDATA[<p>LaLa-World 研究提出语言条件化的潜在世界模型，将仿真、机器人轨迹及更广泛的图像和视频数据用于联合训练与规划。根据当前材料，该方法用语言描述数值动作和视觉变化，并以语言模型构建未来潜在状态预测器；作者报告其平均 MPC 规划表现优于按领域或任务分别训练的现有潜在世界模型，加入图像和视频数据还改善了平均规划表现及对动作措辞的鲁棒性。</p>
