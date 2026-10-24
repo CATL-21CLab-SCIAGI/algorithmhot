@@ -218,6 +218,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[OpenAttention 用尾部代理实现 1% 读取比例的稀疏注意力]]></title>
+      <link>http://localhost:3300/items/vnk8e84bpg8m0ak5t0uku2g0o</link>
+      <description><![CDATA[<p>OpenAttention 提出用尾部代理补偿未读取 KV 缓存的稀疏注意力方法。根据当前材料，该方法结合无需训练的 Query-Geometry Clustering（QGC）、Query-Geometry Selector（QGS）、按估计权重误差分配精确读取额度的 ErrorGate、top-k 选择，以及考虑 token 数量的均值代理。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.30951">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/vnk8e84bpg8m0ak5t0uku2g0o">http://localhost:3300/items/vnk8e84bpg8m0ak5t0uku2g0o</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">vnk8e84bpg8m0ak5t0uku2g0o</guid>
+      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
+    </item>
+    <item>
       <title><![CDATA[真实性与准确性：从生成建模视角研究事件序列预测]]></title>
       <link>http://localhost:3300/items/ux80vohorprzczaima40f3n9z</link>
       <description><![CDATA[<p>该研究将多时间跨度事件序列预测视为条件生成建模问题，报告预测准确性与分布真实性之间存在权衡。基于摘要，作者构建了包含两类质量指标、强统计基线、从相邻领域适配的近期模型及整理后的真实世界数据集的基准，评估中没有方法同时在两方面表现突出。</p>
@@ -271,6 +282,17 @@
       <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">tnf0ebs2ej17g00rzp1bdnumz</guid>
       <author>noreply@localhost (arXiv · 计算物理与材料)</author>
+    </item>
+    <item>
+      <title><![CDATA[DConstrain 用上下文参数化转移实现扩散语言模型约束解码]]></title>
+      <link>http://localhost:3300/items/th1h28jptpxwwbrt0ldpa91xs</link>
+      <description><![CDATA[<p>DConstrain 提出将模式编译为上下文参数化转移程序，在支持任意属性顺序的同时加速扩散语言模型的精确约束解码。基于摘要，该方法在冷编译阶段保留上下文相关操作，将字段历史作为运行时值，并在运行时绑定配置、构造精确后继，使图构建可与模型前向计算重叠。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.30920">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/th1h28jptpxwwbrt0ldpa91xs">http://localhost:3300/items/th1h28jptpxwwbrt0ldpa91xs</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">th1h28jptpxwwbrt0ldpa91xs</guid>
+      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
       <title><![CDATA[何时跟随教师：AOPD 基于优势的在线策略蒸馏]]></title>
@@ -534,28 +556,6 @@
       <category>AI4AI</category>
       <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">o4nin0soddc8c5zf3p7r3jwzx</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[BELT 为 LLM 推理早停学习可复用表征，支持不同成本策略]]></title>
-      <link>http://localhost:3300/items/o48qxgyzjk85nn6hdtkpjum0c</link>
-      <description><![CDATA[<p>研究提出 BELT，将答案预测与停止控制分离，使同一探针支持不同准确率与成本权衡。基于摘要，该方法从冻结 LLM 的隐藏状态学习对当前及未来答案的预测，再在冻结特征上拟合线性停止策略，可通过 CPU 策略重拟合或阈值调整适配不同 token 成本。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.30450">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/o48qxgyzjk85nn6hdtkpjum0c">http://localhost:3300/items/o48qxgyzjk85nn6hdtkpjum0c</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">o48qxgyzjk85nn6hdtkpjum0c</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[FAPL 以因素感知预测学习强化 MLLM 潜在表示在电影式视频生成中的作用]]></title>
-      <link>http://localhost:3300/items/o21xs0dwb74uacfid9zyvhziy</link>
-      <description><![CDATA[<p>基于摘要，研究提出因素感知预测学习 FAPL，强化视频 DiT 对 MLLM 潜在表示的利用，并支持角色、场景、动作和镜头控制及有限输入下的时序预测。方法先冻结 MLLM 与连接器，仅以潜在表示训练生成器，再利用配对视频和因素片段替换，训练目标因素变化与非目标因素保持。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.30926">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/o21xs0dwb74uacfid9zyvhziy">http://localhost:3300/items/o21xs0dwb74uacfid9zyvhziy</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">o21xs0dwb74uacfid9zyvhziy</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
