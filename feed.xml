@@ -218,6 +218,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[同一分子，不同知识：研究揭示大语言模型的化学跨标识符绑定失败]]></title>
+      <link>http://localhost:3300/items/xl1er8vjwjv9r5ts3naej4unm</link>
+      <description><![CDATA[<p>研究报告，同一分子的俗名、IUPAC 名称与 SMILES 无法互换地访问大语言模型已有知识，并提出 Binding Self-Distillation 缓解这一问题。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.30903">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/xl1er8vjwjv9r5ts3naej4unm">http://localhost:3300/items/xl1er8vjwjv9r5ts3naej4unm</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">xl1er8vjwjv9r5ts3naej4unm</guid>
+      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
+    </item>
+    <item>
       <title><![CDATA[Llama-3.1-8B-Instruct 安全相关行为的探测与引导研究]]></title>
       <link>http://localhost:3300/items/xckxorcvmud59mpr68gyfet9i</link>
       <description><![CDATA[<p>该研究在 Llama-3.1-8B-Instruct 上比较激活探针的设计，报告行为检测与引导的最佳选择并不一致。根据当前材料，作者将均值差和逻辑回归两种估计器与末尾 token、均值和学习式注意力三种池化方式交叉组合，在欺骗、高风险情境意识和迎合三类行为上分别评估检测与引导效果。</p>
@@ -545,17 +556,6 @@
       <category>算法</category>
       <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">pr7rwkm2osvvozii34pegvp9r</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[SetCommit：面向扩散语言模型少步解码的协同 token 提交方法]]></title>
-      <link>http://localhost:3300/items/pe4xoi6bpbe2p8gd96rsnk01n</link>
-      <description><![CDATA[<p>SetCommit 提出无需训练的协同 token 提交方法，在扩散语言模型少步解码中平衡可靠性与局部联合提交风险。根据当前材料，该方法为后续去噪保留条件信息利用机会，并通过不增加预算的局部交换替换脆弱的早期提交，无需重新训练或修改架构，可兼容现有扩散解码策略。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.31120">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/pe4xoi6bpbe2p8gd96rsnk01n">http://localhost:3300/items/pe4xoi6bpbe2p8gd96rsnk01n</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">pe4xoi6bpbe2p8gd96rsnk01n</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
