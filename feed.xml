@@ -163,6 +163,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[为何又来打扰我？MemPABench 评测个人智能体对交互偏好的记忆]]></title>
+      <link>http://localhost:3300/items/yx9fis3od9fkjuwxq9ne3jlqi</link>
+      <description><![CDATA[<p>MemPABench 研究提出个人智能体交互偏好记忆评测环境，作者报告现有记忆系统的收益有限，且难以适应偏好变化。根据当前材料，该环境采用 on-policy 评估，通过长程任务考察智能体何时澄清、确认或自主行动；4 名模拟用户在工作与个人场景中持有 14 项偏好，反馈覆盖四个月的 99 次会话，每名用户经历 5 次事件驱动的偏好变化。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.30485">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/yx9fis3od9fkjuwxq9ne3jlqi">http://localhost:3300/items/yx9fis3od9fkjuwxq9ne3jlqi</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">yx9fis3od9fkjuwxq9ne3jlqi</guid>
+      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
+    </item>
+    <item>
       <title><![CDATA[扩散语言模型的生成速度随任务和语言变化]]></title>
       <link>http://localhost:3300/items/yvic6eyrw070vum9ta5ywim7o</link>
       <description><![CDATA[<p>该研究报告，扩散语言模型每个 token 所需的前向传播次数随任务和语言变化，解码速度还可用于改进候选答案选择。</p>
@@ -229,6 +240,17 @@
       <author>noreply@localhost (arXiv · 计算物理与材料)</author>
     </item>
     <item>
+      <title><![CDATA[通过算法稳定性细粒度分析持续学习中的灾难性遗忘]]></title>
+      <link>http://localhost:3300/items/xsxx487m3nmcozvzf1ak8ys2e</link>
+      <description><![CDATA[<p>该研究提出算法稳定性框架，分析 SGD 下持续学习的期望总体遗忘，不预设特定模型架构。基于摘要，作者将遗忘分解为任务内与跨任务泛化差距及经验遗忘，通过追踪样本扰动在任务内和后续任务中的传播，比较恒定、任务内衰减和连续衰减三种学习率安排。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.31551">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/xsxx487m3nmcozvzf1ak8ys2e">http://localhost:3300/items/xsxx487m3nmcozvzf1ak8ys2e</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">xsxx487m3nmcozvzf1ak8ys2e</guid>
+      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
+    </item>
+    <item>
       <title><![CDATA[Heartbeat Thinking：实时语音智能体在聆听中进行推测推理与工具执行]]></title>
       <link>http://localhost:3300/items/xozerdbi0fxjbmldknh087ph1</link>
       <description><![CDATA[<p>Heartbeat Thinking 研究提出在聆听期间持续进行推理与工具执行的方法，让语音更新不再截断正在进行的计算。根据当前材料，该方法周期性启动新的 Thinker 调用，读取最新的部分转录及共享的已完成推理和工具结果，同时允许已有调用与已派发工具完成，以补全缺失参数并发起依赖调用。</p>
@@ -262,6 +284,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[LLM 多智能体系统易受从众行为与失控级联影响]]></title>
+      <link>http://localhost:3300/items/xj2atcskxsrgqxr9j48pd87m8</link>
+      <description><![CDATA[<p>该研究报告，LLM 多智能体群体在接触累计推荐次数后，会出现失控级联，使集体推荐极端化且难以预测。作者沿用经典 Music Lab 实验设计，让大规模 LLM 智能体群体推荐不熟悉的歌曲，并比较是否接触累计推荐次数的情形，发现接触这些信息后，推荐越来越偏离歌曲本身的吸引力。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.30769">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/xj2atcskxsrgqxr9j48pd87m8">http://localhost:3300/items/xj2atcskxsrgqxr9j48pd87m8</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">xj2atcskxsrgqxr9j48pd87m8</guid>
+      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
+    </item>
+    <item>
       <title><![CDATA[Llama-3.1-8B-Instruct 安全相关行为的探测与引导研究]]></title>
       <link>http://localhost:3300/items/xckxorcvmud59mpr68gyfet9i</link>
       <description><![CDATA[<p>该研究在 Llama-3.1-8B-Instruct 上比较激活探针的设计，报告行为检测与引导的最佳选择并不一致。根据当前材料，作者将均值差和逻辑回归两种估计器与末尾 token、均值和学习式注意力三种池化方式交叉组合，在欺骗、高风险情境意识和迎合三类行为上分别评估检测与引导效果。</p>
@@ -292,6 +325,17 @@
       <category>算法</category>
       <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">x4khqn4wbehubjmhh7mjck0bc</guid>
+      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
+    </item>
+    <item>
+      <title><![CDATA[从单参与者环境到多参与者事件世界：LLM 能否成为事件世界模型？]]></title>
+      <link>http://localhost:3300/items/x1i7ya7dud9g4f31hrhe7s6mu</link>
+      <description><![CDATA[<p>该研究提出多参与者事件世界的形式化框架，并报告 LLM 在缺少其他参与者行动信息时，难以可靠预测未来观测。根据当前材料，作者基于人类 Diplomacy 对局和真实 Polymarket 交易构建互补基准，对比是否提供其他参与者行动，并评估多步预测、未实际执行行动的结果预测及对智能体的帮助。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.30488">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/x1i7ya7dud9g4f31hrhe7s6mu">http://localhost:3300/items/x1i7ya7dud9g4f31hrhe7s6mu</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">x1i7ya7dud9g4f31hrhe7s6mu</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
@@ -391,6 +435,17 @@
       <category>算法</category>
       <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">us1xmvbknuctvum3ef8t06d23</guid>
+      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
+    </item>
+    <item>
+      <title><![CDATA[研究报告忠实潜在危害监测器在相同误报率下不优于模型自身行为]]></title>
+      <link>http://localhost:3300/items/u2uq151xt8tkrv5m3am8hq0us</link>
+      <description><![CDATA[<p>该研究报告，内部激活中的危害信号要么在分布偏移下退化，要么跟随模型拒绝决策，未显示出独立于模型自身行为的稳健优势。根据当前材料，作者通过表面改写、说服性表述和越狱式包装构造分布外请求，在15个指令微调LLM和38个基于激活的读取器上，与TF-IDF、句子嵌入分类器、独立训练的安全分类器及模型拒绝行为比较。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.30727">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/u2uq151xt8tkrv5m3am8hq0us">http://localhost:3300/items/u2uq151xt8tkrv5m3am8hq0us</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">u2uq151xt8tkrv5m3am8hq0us</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
@@ -502,61 +557,6 @@
       <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">s7kr949540purijoep6h097k2</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[以决策质量评估1型糖尿病数字孪生]]></title>
-      <link>http://localhost:3300/items/s3d6xx78rv5bq4zyiyl34xtcj</link>
-      <description><![CDATA[<p>该研究报告，1型糖尿病数字孪生的血糖预测准确性与治疗排序质量并不一致，仅按预测误差选模型可能选出排序接近随机的方法。根据当前材料，作者使用获 FDA 接受的 UVA/Padova 模型模拟30名虚拟患者，每人接受21种基础胰岛素与餐时胰岛素治疗方案，数字孪生在其中一种方案下拟合，再预测其余20种方案的血糖轨迹。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.30577">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/s3d6xx78rv5bq4zyiyl34xtcj">http://localhost:3300/items/s3d6xx78rv5bq4zyiyl34xtcj</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">s3d6xx78rv5bq4zyiyl34xtcj</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[诊断 LLM 显式与应用心智理论能力的差距]]></title>
-      <link>http://localhost:3300/items/s0fnn79sesdlc7omd7nubck8e</link>
-      <description><![CDATA[<p>该研究报告，LLM 识别他人信念与据此预测行为的能力存在差距，汇总心智理论（ToM）得分可能高估其应用能力。根据当前材料，作者在四个结构不同的基准上比较结构化提示、匹配的上下文学习与所提出的 Belief-State Test-Time Training（BSTTT），后者通过动作重建，利用已回答的支持问题调整轻量参数。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.31060">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/s0fnn79sesdlc7omd7nubck8e">http://localhost:3300/items/s0fnn79sesdlc7omd7nubck8e</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">s0fnn79sesdlc7omd7nubck8e</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[从二次问题分析 Muon 的极分解更新：收益、局限与 Newton-Schulz 的作用]]></title>
-      <link>http://localhost:3300/items/rzkhmmyu0wz2b1lcod8qi405h</link>
-      <description><![CDATA[<p>该研究分析 Muon 核心的正交化更新 PolarGD，指出正交化既可能加速优化，也可能因当前迭代矩阵的微小奇异值而显著变慢。作者在可作闭式分析的矩阵二次问题上，通过线搜索比较更新方向以排除学习率调参的影响，发现梯度远非低秩且其最大奇异值对应方向具有高曲率时，正交化更有利。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.30280">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/rzkhmmyu0wz2b1lcod8qi405h">http://localhost:3300/items/rzkhmmyu0wz2b1lcod8qi405h</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">rzkhmmyu0wz2b1lcod8qi405h</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[通用 MLIP 对合金有多准确？基准可信度取决于对照]]></title>
-      <link>http://localhost:3300/items/rq2ouu8n0djebj6pxnq0qgfbp</link>
-      <description><![CDATA[<p>该研究评测了十四个通用机器学习原子间势（uMLIP），报告独立 DFT 数据库间的分歧构成模型可测误差的下限。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.30641">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/rq2ouu8n0djebj6pxnq0qgfbp">http://localhost:3300/items/rq2ouu8n0djebj6pxnq0qgfbp</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">rq2ouu8n0djebj6pxnq0qgfbp</guid>
-      <author>noreply@localhost (arXiv · 计算物理与材料)</author>
-    </item>
-    <item>
-      <title><![CDATA[TTR-Compressor 研究以测试时回归重新审视序列压缩]]></title>
-      <link>http://localhost:3300/items/rlsihf3odlp2w1ou1bjnda4yw</link>
-      <description><![CDATA[<p>TTR-Compressor 研究提出以测试时回归进行序列压缩，作为传统池化和投影压缩的替代方案。根据当前材料，输入 token 定义回归问题，问题通过反向传播端到端学习，拟合系数在前向传播中以闭式解高效计算，并构成压缩表示。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.31574">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/rlsihf3odlp2w1ou1bjnda4yw">http://localhost:3300/items/rlsihf3odlp2w1ou1bjnda4yw</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">rlsihf3odlp2w1ou1bjnda4yw</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
 </rss>
