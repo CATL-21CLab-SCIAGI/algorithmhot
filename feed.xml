@@ -163,6 +163,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[LLM2Cert 用大语言模型合成证书，并通过 SMT/Lean 验证]]></title>
+      <link>http://localhost:3300/items/wjg8l85vda6wk8inqzo3sefj2</link>
+      <description><![CDATA[<p>LLM2Cert 研究提出大语言模型驱动的证书合成与验证框架，作者报告其在 DynaCertBench 上验证了 105 个实例中的 81 个（77.1%）。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.30524">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/wjg8l85vda6wk8inqzo3sefj2">http://localhost:3300/items/wjg8l85vda6wk8inqzo3sefj2</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">wjg8l85vda6wk8inqzo3sefj2</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[LGMT：用于测试大语言模型逻辑推理可靠性的工具]]></title>
       <link>http://localhost:3300/items/wj3pd1sp6iszhdm909o0qa8m2</link>
       <description><![CDATA[<p>LGMT 研究提出基于一阶逻辑蜕变关系的开源测试工具，无需真值标签即可检测大语言模型的推理不一致。工具将前提—结论形式的测试用例改写为逻辑等价用例，比较模型的蕴含预测，内置 20 种蜕变关系，并支持经 Z3 定理证明器验证的自定义关系。</p>
@@ -545,17 +556,6 @@
       <category>算法</category>
       <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">pva4i6c7tu1dx9zoptyrn7j01</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[循环语言模型研究：训练与运行循环的一致性，而非归一化，维持深度复用]]></title>
-      <link>http://localhost:3300/items/pu56axk5r0m3z5u2urbm5seja</link>
-      <description><![CDATA[<p>该研究提出，循环语言模型能否复用超出训练预算的深度，关键在于训练与运行时循环的一致性，而非循环边界归一化本身。基于摘要，作者报告移除已发布 Ouro-1.4B 和 Ouro-2.6B 的循环边界归一化后，模型在平衡二分类任务中到达训练深度预算时准确率降至零（随机水平为 0.500），但状态范数变化不超过 2.021 倍，并非预期的范数增长失控。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.31943">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/pu56axk5r0m3z5u2urbm5seja">http://localhost:3300/items/pu56axk5r0m3z5u2urbm5seja</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">pu56axk5r0m3z5u2urbm5seja</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
