@@ -405,6 +405,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[ReGE 通过经验合成提升智能体任务完成能力]]></title>
+      <link>http://localhost:3300/items/etxxz1ng25pqtema500o2cjpt</link>
+      <description><![CDATA[<p>ReGE 研究提出将智能体已有执行经验合成为新尝试的指导，作者报告在四个基准上，GPT 和 Claude 相比无指导执行的准确率平均提高 9.9 和 8.8 个百分点。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.33861">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/etxxz1ng25pqtema500o2cjpt">http://localhost:3300/items/etxxz1ng25pqtema500o2cjpt</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">etxxz1ng25pqtema500o2cjpt</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[将局部语境拼接为全局意义：Transformer 表征的层论分解]]></title>
       <link>http://localhost:3300/items/eq0yig9mdo0875hs1m4vda0mr</link>
       <description><![CDATA[<p>该研究提出在释义图上构建胞腔层，用层拉普拉斯算子 L_F 在无需训练的冻结模型上分析改写措辞时表征是否保持相同内容。根据当前材料，作者报告其核 H^0 构成内容子空间，在 20 维设置下，八种架构的留出 CounterFact 事实检索表现比概念擦除方法 LEACE 的保留子空间平均高 17.1 个百分点，联合约束同一事实的全部释义再提高 6.5 个百分点。</p>
@@ -545,17 +556,6 @@
       <category>算法</category>
       <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">zi82qx6gbp5o7hwpkekpgrrgx</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[通过逐层误差模型搜索改进基于 SVD 的大语言模型压缩]]></title>
-      <link>http://localhost:3300/items/ze0lyc9dxi4t2z149hqtmg0vv</link>
-      <description><![CDATA[<p>该研究提出 LEMS 与 KFAC-SVD，分别改进大语言模型低秩 SVD 压缩中的全局秩分配与分解质量。基于摘要，LEMS 将局部和全局层重要性及传播偏差纳入逐层误差代理，通过 ILP 进行全局秩分配；KFAC-SVD 利用逐 token 统计缓解既有 Fisher 类 SVD 方法的秩亏问题。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.32878">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ze0lyc9dxi4t2z149hqtmg0vv">http://localhost:3300/items/ze0lyc9dxi4t2z149hqtmg0vv</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">ze0lyc9dxi4t2z149hqtmg0vv</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
