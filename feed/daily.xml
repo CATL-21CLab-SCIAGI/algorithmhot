@@ -9,6 +9,21 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-10-27 — OPTIC 通过跨层潜在向量量化实现逐层嵌入的极端压缩]]></title>
+      <link>http://localhost:3300/daily/2026-10-27</link>
+      <description><![CDATA[<p>该研究提出 OPTIC，通过跨层共享量化编码压缩 Gemma 4 E4B 的逐层嵌入（PLE），作者报告在约 100 倍 PLE 压缩下保留较高性能。根据当前材料，PLE 占该模型参数的 35.2%；OPTIC 为每个 token 存储一个量化编码元组，由各层专属仿射解码器解码，并针对 PLE 输出路径而非存储向量拟合编码与解码器。</p>
+<p><strong>算法</strong></p>
+<ul><li><a href="http://localhost:3300/items/fu3ljrp67aavllt09e4welrft">OPTIC 通过跨层潜在向量量化实现逐层嵌入的极端压缩</a></li><li><a href="http://localhost:3300/items/oue7grf82vlj1zrl6pavgb1x9">World-in-Context 通过上下文条件化实现交互式视频世界建模</a></li><li><a href="http://localhost:3300/items/gag2y3aov28ccxua6iqqccm10">PAWM 世界模型通过预判陷阱引导黑箱大语言模型智能体</a></li></ul>
+<p><strong>AI4AI</strong></p>
+<ul><li><a href="http://localhost:3300/items/pbbcrtln44d206m7qoz2tcz5d">Trajectory2Gym 提出面向工具调用智能体的决策依据约束与组合交互合成方法</a></li><li><a href="http://localhost:3300/items/xhb53z26fxk0qdobg5mdt2kbe">TraceTrial-Bench：评测 AI 智能体运行框架的可靠性与故障归因</a></li><li><a href="http://localhost:3300/items/bkmdfphzqqrdxa0rui3lkvggm">Continual Learning Exam：评测 LLM 智能体的长周期 RSI 与经验学习</a></li><li><a href="http://localhost:3300/items/kvpoc3w5uovhm5qed2fbo1y2k">InteractiveWorld 提出面向交互式多模态助手的可验证人本环境</a></li></ul>
+<p><strong>电池与新能源材料</strong></p>
+<ul><li><a href="http://localhost:3300/items/xmr4u5bap77higtgq0v54wod0">非晶卤化物正极实现约 75C 全固态锂电池</a></li></ul>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/daily/2026-10-27">http://localhost:3300/daily/2026-10-27</a></p>]]></description>
+      <pubDate>Tue, 27 Oct 2026 04:06:50 GMT</pubDate>
+      <guid isPermaLink="false">daily-2026-10-27</guid>
+      <author>noreply@localhost (AlgorithmHot · 科研热点)</author>
+    </item>
+    <item>
       <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-10-26 — 共享克隆使混合扰动筛选中随机拆分的细胞两半呈现虚高可重复性]]></title>
       <link>http://localhost:3300/daily/2026-10-26</link>
       <description><![CDATA[<p>该研究报告，Perturb-seq 等混合扰动筛选中的共享克隆会使随机拆分的细胞两半产生伪重复，抬高可重复性估计和模型评测上限。</p>
