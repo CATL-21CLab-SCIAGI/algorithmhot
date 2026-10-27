@@ -75,6 +75,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[iPrefBench 提出面向个性化移动端智能体的用户中心评测基准]]></title>
+      <link>http://localhost:3300/items/wa72zr73s3kopane93d83rxzv</link>
+      <description><![CDATA[<p>iPrefBench 研究提出个性化移动端智能体评测基准，作者报告其评测揭示了动作完成与个性化任务成功之间的差距。根据当前材料，该基准在可执行的 iOS 环境中配备交互式模拟用户，以包含 3,051 条历史活动记录的一致用户画像为基础，覆盖 26 个应用中的 130 项信息不完整的任务。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.34735">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/wa72zr73s3kopane93d83rxzv">http://localhost:3300/items/wa72zr73s3kopane93d83rxzv</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">wa72zr73s3kopane93d83rxzv</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[ProtAgent：通过交互级信用分配后训练紧凑型蛋白质工具智能体]]></title>
       <link>http://localhost:3300/items/vjjbua7l69qgiryeawpykbpf5</link>
       <description><![CDATA[<p>ProtAgent 研究提出两阶段后训练流程，以 SFT 学习工具接口，再用标准 on-policy REINFORCE 和逐步回报分配优化蛋白质注释工具交互策略。</p>
@@ -95,6 +106,17 @@
       <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">usd7sqd0u4ew5pwlkvn5hbz5f</guid>
       <author>noreply@localhost (arXiv · 分子与定量生物学)</author>
+    </item>
+    <item>
+      <title><![CDATA[C^3L 通过语义概念引导打破持续学习中的解释漂移循环]]></title>
+      <link>http://localhost:3300/items/uj35562tau6alk9fgg1z9uybj</link>
+      <description><![CDATA[<p>C^3L 研究提出以类别一致的语义概念约束持续学习，打破像素级显著性正则化依赖模型自身冻结显著图的解释漂移循环。根据当前材料，该方法自动完成离线概念发现与空间定位，无需人工标注概念集，并使监督目标独立于模型状态。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.33877">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/uj35562tau6alk9fgg1z9uybj">http://localhost:3300/items/uj35562tau6alk9fgg1z9uybj</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">uj35562tau6alk9fgg1z9uybj</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
       <title><![CDATA[水系锌–碘电池研究提出以 HOMO 能级匹配指导供体–受体 COF 设计]]></title>
@@ -127,6 +149,17 @@
       <category>电池与新能源材料</category>
       <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">seqdphaoteup91zdwylo7f2j9</guid>
+      <author>noreply@localhost (Angewandte Chemie International Edition)</author>
+    </item>
+    <item>
+      <title><![CDATA[界面卤离子富集策略降低四电子锌碘电池对高卤离子浓度的依赖]]></title>
+      <link>http://localhost:3300/items/rychp7ty7qetc2b4xmadkmb0n</link>
+      <description><![CDATA[<p>该研究提出界面卤离子富集策略，使四电子锌碘电池无需依赖体相高浓度卤离子环境即可实现可逆碘转化。根据当前材料，电解液中仅加入 0.1 M 溴化吡咯烷鎓盐，即可在正极界面形成局部富卤离子微环境；光谱分析与理论计算支持吡咯烷鎓阳离子界面锚定、促进 Br⁻ 富集并稳定亚稳态 IBr₂⁻ 中间体的机制。</p>
+<p>🔗 <a href="https://doi.org/10.1002/anie.6325809">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/rychp7ty7qetc2b4xmadkmb0n">http://localhost:3300/items/rychp7ty7qetc2b4xmadkmb0n</a></p>]]></description>
+      <category>电池与新能源材料</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">rychp7ty7qetc2b4xmadkmb0n</guid>
       <author>noreply@localhost (Angewandte Chemie International Edition)</author>
     </item>
     <item>
@@ -524,39 +557,6 @@
       <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">yhe8rvhiuarmw19diqlxndlq9</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[非晶卤化物正极实现约 75C 全固态锂电池]]></title>
-      <link>http://localhost:3300/items/xmr4u5bap77higtgq0v54wod0</link>
-      <description><![CDATA[<p>该研究报告，LiVCl4 非晶化可降低晶界离子传输阻力，与非晶 LiTaOCl4 配合实现约 75C 的全固态锂电池。根据当前材料，非晶化保留短程 V–Cl 配位并降低长程离子传输曲折度；尽管体相 Li+ 电导率更低，无正极电解质的正极（活性材料含量 90 wt %）在 5 mA cm–2 下达到 74.3 mAh g–1，晶态对照为 10.2 mAh g–1。</p>
-<p>🔗 <a href="https://doi.org/10.1021/jacs.6c16957">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/xmr4u5bap77higtgq0v54wod0">http://localhost:3300/items/xmr4u5bap77higtgq0v54wod0</a></p>]]></description>
-      <category>电池与新能源材料</category>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">xmr4u5bap77higtgq0v54wod0</guid>
-      <author>noreply@localhost (Journal of the American Chemical Society)</author>
-    </item>
-    <item>
-      <title><![CDATA[研究报告智能体基准对上下文压缩的容忍度出乎意料]]></title>
-      <link>http://localhost:3300/items/xcyqygp3sj3juualeqaaiqmh9</link>
-      <description><![CDATA[<p>该研究报告，现有长程智能体基准对上下文压缩较为宽容，但任务表现可能掩盖压缩造成的约束丢失。根据当前材料，作者在固定的 OpenCode 框架中实现五种压缩策略。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.31778">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/xcyqygp3sj3juualeqaaiqmh9">http://localhost:3300/items/xcyqygp3sj3juualeqaaiqmh9</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">xcyqygp3sj3juualeqaaiqmh9</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[钙钛矿研究提出统一解释低频拉曼与红外光谱特征的框架]]></title>
-      <link>http://localhost:3300/items/xae8vo566kio4azjx55bpbuh6</link>
-      <description><![CDATA[<p>该研究提出连接钙钛矿低频红外与拉曼光谱的统一框架，将光谱特征关联到非谐晶格不稳定性的对称性、耦合与动力学。基于摘要，作者使用机器学习分子动力学模拟 SrTiO₃、BaTiO₃、CsPbBr₃、CsSnBr₃、CsGeBr₃、Cs₂AgAlBr₆ 和 Cs₂AgBiBr₆，比较极性、倾斜驱动及混合不稳定性。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.31830">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/xae8vo566kio4azjx55bpbuh6">http://localhost:3300/items/xae8vo566kio4azjx55bpbuh6</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">xae8vo566kio4azjx55bpbuh6</guid>
-      <author>noreply@localhost (arXiv · 计算物理与材料)</author>
     </item>
   </channel>
 </rss>
