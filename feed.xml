@@ -9,6 +9,61 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[TraceTrial-Bench：评测 AI 智能体运行框架的可靠性与故障归因]]></title>
+      <link>http://localhost:3300/items/xhb53z26fxk0qdobg5mdt2kbe</link>
+      <description><![CDATA[<p>TraceTrial-Bench 提出针对 AI 智能体运行框架的基准，将智能体任务表现与框架可靠性分开评估。根据当前材料，该基准覆盖上下文、执行、治理、生命周期、可观测性、工具和验证七个组成部分，构建了 95 个专家级、面向机制的任务，以可执行或基于状态的标准答案支持语义等价比较，同时保留各框架的原生行为。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.32285">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/xhb53z26fxk0qdobg5mdt2kbe">http://localhost:3300/items/xhb53z26fxk0qdobg5mdt2kbe</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">xhb53z26fxk0qdobg5mdt2kbe</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[Trajectory2Gym 提出面向工具调用智能体的决策依据约束与组合交互合成方法]]></title>
+      <link>http://localhost:3300/items/pbbcrtln44d206m7qoz2tcz5d</link>
+      <description><![CDATA[<p>Trajectory2Gym 提出围绕组合依赖构建可执行交互，并仅从具有决策依据的执行步骤中提取训练监督。根据当前材料，该方法针对覆盖不足的组合结构生成交互，通过结构支持度选择分配训练经验，并采用按父级归一化的监督微调，使语义交互保持为训练权重的单位。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.33568">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/pbbcrtln44d206m7qoz2tcz5d">http://localhost:3300/items/pbbcrtln44d206m7qoz2tcz5d</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">pbbcrtln44d206m7qoz2tcz5d</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[World-in-Context 通过上下文条件化实现交互式视频世界建模]]></title>
+      <link>http://localhost:3300/items/oue7grf82vlj1zrl6pavgb1x9</link>
+      <description><![CDATA[<p>World-in-Context 研究提出以 In-Context Conditioning（ICC）统一视角、动作和相机控制的交互式视频世界建模框架。基于摘要，该方法将控制信号表示为共享自注意力空间中的显式 token，并引入 Interaction-Transport RoPE（IT-RoPE），以累积控制转换参数化时间注意力，维持跨执行区间的时间连续性。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.33169">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/oue7grf82vlj1zrl6pavgb1x9">http://localhost:3300/items/oue7grf82vlj1zrl6pavgb1x9</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">oue7grf82vlj1zrl6pavgb1x9</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[InteractiveWorld 提出面向交互式多模态助手的可验证人本环境]]></title>
+      <link>http://localhost:3300/items/kvpoc3w5uovhm5qed2fbo1y2k</link>
+      <description><![CDATA[<p>InteractiveWorld 研究提出人类与 AI 助手闭环交互的可验证环境，用于评估多模态大语言模型指导物理任务的能力。根据当前材料，环境由助手发出指令、模拟人类智能体自主行动并更新场景，配套的 InteractiveBench 包含六类共 120 个多轮任务，以可验证的环境状态奖励评分。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.33966">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/kvpoc3w5uovhm5qed2fbo1y2k">http://localhost:3300/items/kvpoc3w5uovhm5qed2fbo1y2k</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">kvpoc3w5uovhm5qed2fbo1y2k</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[Continual Learning Exam：评测 LLM 智能体的长周期 RSI 与经验学习]]></title>
+      <link>http://localhost:3300/items/bkmdfphzqqrdxa0rui3lkvggm</link>
+      <description><![CDATA[<p>研究提出 Continual Learning Exam（CLE）基准，用于衡量 LLM 智能体在真实职业工作流程中通过积累经验实现改进的能力。该基准由 50+ 位领域专家开发，包含 120 项人工编写的任务，每项设五级阶梯，共 600 个级别，覆盖 12 个职业领域的 89 种职业角色；智能体须通过当前级别才能解锁下一级，评估智能体依据人工编写的评分标准判定提交结果。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.33956">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/bkmdfphzqqrdxa0rui3lkvggm">http://localhost:3300/items/bkmdfphzqqrdxa0rui3lkvggm</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">bkmdfphzqqrdxa0rui3lkvggm</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[带反向耦合的 Neural LoFi：跨层特征学习的谱理论]]></title>
       <link>http://localhost:3300/items/zpwnomessc6u6hinv7qmt9i3j</link>
       <description><![CDATA[<p>该研究扩展 Neural LoFi，以反向耦合刻画联合训练中后层对前层表征的反馈，并建立跨层特征学习的谱理论。根据当前材料，作者从精确反向传播梯度推导局部耦合，在小初始化、光滑激活及固定周边条件下分析跨层相关算子的奇异模态，并利用上层敏感度生成样本相关的有效标签。</p>
@@ -501,61 +556,6 @@
       <category>算法</category>
       <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">qs1nf6vwhioo8bdr0gy54re55</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[任意标签空间下多分类在线学习的最优遗憾界]]></title>
-      <link>http://localhost:3300/items/qr9j499fhd7m0o72bcu4x3zu5</link>
-      <description><![CDATA[<p>该研究给出任意、可能无限标签空间下不可知多分类在线学习的最优遗憾界。对多分类 Littlestone 维数为 $d&lt;\infty$ 的任意假设类，作者证明 $T$ 轮内的遗憾上界为 $O(\min\{T,\sqrt{dT}\})$，与已知下界匹配。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.32339">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/qr9j499fhd7m0o72bcu4x3zu5">http://localhost:3300/items/qr9j499fhd7m0o72bcu4x3zu5</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">qr9j499fhd7m0o72bcu4x3zu5</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[稀疏历史下的跨任务神经架构搜索：结合不完整搜索日志与零成本代理]]></title>
-      <link>http://localhost:3300/items/qj6p7699qzskgtf1341648qd4</link>
-      <description><![CDATA[<p>该研究提出风险稳健的跨任务神经架构搜索策略，结合稀疏历史日志与零成本代理，降低迁移中的最坏情况风险。根据当前材料，方法采用基于优胜架构的初始化与成对排序器联合预训练；作者报告，在 TransNAS-Bench-101 上，Micro 自动编码任务的最差 10% 排名从 290 降至 43，Macro 房间布局任务从 465 降至 45。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.32179">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/qj6p7699qzskgtf1341648qd4">http://localhost:3300/items/qj6p7699qzskgtf1341648qd4</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">qj6p7699qzskgtf1341648qd4</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[谁来验证工具？失真的输出格式如何误导智能体及其验证器]]></title>
-      <link>http://localhost:3300/items/qgcdntr30xbqwdfcdzldwxqta</link>
-      <description><![CDATA[<p>该研究报告，即使工具计算正确，输出格式遗漏关键信息仍会误导智能体及其验证器。根据当前材料，作者对比遗漏与补全搜索限制、结果上限或标识符命名空间等信息的两版输出，报告四类故障中三类的无依据声明显著减少；一项测试中，验证器从90次全部接受错误答案变为90次全部拒绝，对照测试显示补充缺失事实后验证器能够识别错误。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.32110">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/qgcdntr30xbqwdfcdzldwxqta">http://localhost:3300/items/qgcdntr30xbqwdfcdzldwxqta</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">qgcdntr30xbqwdfcdzldwxqta</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[超越数据调度：通过损失重加权加速数据混合上的 LLM 预训练]]></title>
-      <link>http://localhost:3300/items/q1ntq99rdivy8nwhwzrsvwdvw</link>
-      <description><![CDATA[<p>该研究提出 LARE，在固定各领域数据暴露量的条件下自适应调整损失权重，以改善 LLM 的联合能力。根据当前材料，作者在受控的知识与数学实验中发现，损失重加权可使单个检查点超过两条阶段训练轨迹各自达到的最佳知识与推理分数。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.32141">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/q1ntq99rdivy8nwhwzrsvwdvw">http://localhost:3300/items/q1ntq99rdivy8nwhwzrsvwdvw</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">q1ntq99rdivy8nwhwzrsvwdvw</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[PILOT 提出超越事后奖励的特权推理探索框架，改进多模态嵌入]]></title>
-      <link>http://localhost:3300/items/pva4i6c7tu1dx9zoptyrn7j01</link>
-      <description><![CDATA[<p>PILOT 将推理建模为潜变量，利用训练期关系证据引导推理探索，以改进推理增强的多模态嵌入。根据当前材料，共享 MLLM 的先验模式仅以输入为条件，后验模式额外使用关系证据；研究推导重要性加权变分目标，通过先验与后验共同演化，按轨迹效用和先验可达性选择性迁移后验推理。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.32474">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/pva4i6c7tu1dx9zoptyrn7j01">http://localhost:3300/items/pva4i6c7tu1dx9zoptyrn7j01</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">pva4i6c7tu1dx9zoptyrn7j01</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
