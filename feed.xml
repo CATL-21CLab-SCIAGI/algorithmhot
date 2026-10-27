@@ -273,6 +273,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[重新思考智能体运行框架中的验证机制]]></title>
+      <link>http://localhost:3300/items/kn6qcnku63axmj5vr2tnzt42i</link>
+      <description><![CDATA[<p>该研究报告，独立评审可改善编码智能体的准确率与成本权衡，是一种实用的测试时扩展方式。根据当前材料，作者比较了初始指令、执行中提醒、完成门控和独立评审四个层级的17种设计，在七个前沿编码模型上使用 Terminal-Bench（TB）和 SWE-bench Verified（SWE）评测，并引入 VisualBench 供专家评价视觉与交互产物。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.34577">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/kn6qcnku63axmj5vr2tnzt42i">http://localhost:3300/items/kn6qcnku63axmj5vr2tnzt42i</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">kn6qcnku63axmj5vr2tnzt42i</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[mdRNAcat 研究提出涵盖 48 个 RNA 系统的 REST2 构象系综数据集]]></title>
       <link>http://localhost:3300/items/k5huh9zwxbp5l819ig1x95wuz</link>
       <description><![CDATA[<p>mdRNAcat 研究提出一个涵盖 48 个 RNA 系统的全原子分子动力学数据集，用于开发和评估数据驱动的 RNA 模型，包括粗粒化力场。根据当前材料，系统选择注重序列多样性，每个系统采用溶质缩放副本交换（REST2），包含 32 个哈密顿量状态，每个状态的生产模拟长度为 200-300 ns。</p>
@@ -546,17 +557,6 @@
       <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">znmj08b4d92633r2e8a9hrauq</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[Ariadne 从参数重对齐转向异构 Transformer 间的功能迁移]]></title>
-      <link>http://localhost:3300/items/zi82qx6gbp5o7hwpkekpgrrgx</link>
-      <description><![CDATA[<p>基于摘要，研究提出 Ariadne，以免训练方式在异构 Transformer 间迁移任务特定行为，无需调整源模型尺寸或搬运其参数。该方法用匹配模块的激活变化描述微调效果，通过局部 Procrustes 映射对齐到目标基础模型，再以闭式岭回归构造目标模型原生的参数更新。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.32581">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/zi82qx6gbp5o7hwpkekpgrrgx">http://localhost:3300/items/zi82qx6gbp5o7hwpkekpgrrgx</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">zi82qx6gbp5o7hwpkekpgrrgx</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
 </rss>
