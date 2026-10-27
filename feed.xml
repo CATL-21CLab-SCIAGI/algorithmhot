@@ -97,6 +97,17 @@
       <author>noreply@localhost (arXiv · 分子与定量生物学)</author>
     </item>
     <item>
+      <title><![CDATA[模型用到外部信息了吗？反事实训练提升语言模型的自归因能力]]></title>
+      <link>http://localhost:3300/items/v52gf9kr42wm16oznl1l6d8ul</link>
+      <description><![CDATA[<p>该研究提出 CREDIT，通过反事实训练提升语言模型在最终答案中说明是否受外部信息影响的自归因能力。根据当前材料，作者评估了 11 个前沿模型，发现多数很少归因于实际影响回答的信息，其余则会归因于未产生影响的信息；在推理过程中训练模型承认信息影响，也未能使这种承认传递到最终答案。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.35295">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/v52gf9kr42wm16oznl1l6d8ul">http://localhost:3300/items/v52gf9kr42wm16oznl1l6d8ul</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">v52gf9kr42wm16oznl1l6d8ul</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[智能体引导的表位裁剪支持低成本从头结合蛋白设计]]></title>
       <link>http://localhost:3300/items/usd7sqd0u4ew5pwlkvn5hbz5f</link>
       <description><![CDATA[<p>该研究提出智能体引导的表位裁剪方法，通过将靶标截短为局部界面窗口，加速骨架扩散与结构预测，降低从头结合蛋白设计的计算成本。</p>
@@ -106,6 +117,17 @@
       <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">usd7sqd0u4ew5pwlkvn5hbz5f</guid>
       <author>noreply@localhost (arXiv · 分子与定量生物学)</author>
+    </item>
+    <item>
+      <title><![CDATA[TTME 测试时记忆演化能否在科学发现中优于测试时训练？]]></title>
+      <link>http://localhost:3300/items/ur8k7xlfyc0jc9cwcfgca5kmr</link>
+      <description><![CDATA[<p>TTME 研究报告，该方法在全部五项数学任务上优于测试时训练（TTT），且计算成本更低。根据当前材料，TTME 通过蒸馏经验持续更新外部记忆，以指导后续发现，不更新模型权重。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.32046">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ur8k7xlfyc0jc9cwcfgca5kmr">http://localhost:3300/items/ur8k7xlfyc0jc9cwcfgca5kmr</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">ur8k7xlfyc0jc9cwcfgca5kmr</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
       <title><![CDATA[C^3L 通过语义概念引导打破持续学习中的解释漂移循环]]></title>
@@ -416,6 +438,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[研究发现硬碳负极表面欠电位沉积的晶态钠金属纳米颗粒]]></title>
+      <link>http://localhost:3300/items/f4lg5v4uckeahxcnal3fn1ykj</link>
+      <description><![CDATA[<p>该研究报告，钠化硬碳中的晶态钠金属团簇主要位于颗粒表面或近表面，挑战其位于体相封闭纳米孔内的既有解释。根据当前材料，作者结合低温电子断层成像（cryo-ET）映射纳米尺度三维分布，并用低温电子显微镜（cryo-EM）解析局部结构与化学信息。</p>
+<p>🔗 <a href="https://doi.org/10.1021/jacs.6c11841">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/f4lg5v4uckeahxcnal3fn1ykj">http://localhost:3300/items/f4lg5v4uckeahxcnal3fn1ykj</a></p>]]></description>
+      <category>电池与新能源材料</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">f4lg5v4uckeahxcnal3fn1ykj</guid>
+      <author>noreply@localhost (Journal of the American Chemical Society)</author>
+    </item>
+    <item>
       <title><![CDATA[ReGE 通过经验合成提升智能体任务完成能力]]></title>
       <link>http://localhost:3300/items/etxxz1ng25pqtema500o2cjpt</link>
       <description><![CDATA[<p>ReGE 研究提出将智能体已有执行经验合成为新尝试的指导，作者报告在四个基准上，GPT 和 Claude 相比无指导执行的准确率平均提高 9.9 和 8.8 个百分点。</p>
@@ -524,39 +557,6 @@
       <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">ak0s8wf7aic9usd26xad1zd33</guid>
       <author>noreply@localhost (arXiv · 分子与定量生物学)</author>
-    </item>
-    <item>
-      <title><![CDATA[INTRA 提出面向 GPU 的交错非连续 token 稀疏注意力]]></title>
-      <link>http://localhost:3300/items/a4hkgzxyba2r4cih7n42kpuyg</link>
-      <description><![CDATA[<p>INTRA 提出硬件感知的静态稀疏注意力，通过跨层中继通信保留长程信息传递，并降低注意力计算成本。根据当前材料，Scatter 与 Gather 构造互补稀疏组，在分区模型下形成满足 Computational Query Set（CQS）约束且全局可达的通信路径；配套的 FlashAttention 风格内核运行时计算结构化索引，加载非连续 token 并密集打包计算。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.34056">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/a4hkgzxyba2r4cih7n42kpuyg">http://localhost:3300/items/a4hkgzxyba2r4cih7n42kpuyg</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">a4hkgzxyba2r4cih7n42kpuyg</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[带反向耦合的 Neural LoFi：跨层特征学习的谱理论]]></title>
-      <link>http://localhost:3300/items/zpwnomessc6u6hinv7qmt9i3j</link>
-      <description><![CDATA[<p>该研究扩展 Neural LoFi，以反向耦合刻画联合训练中后层对前层表征的反馈，并建立跨层特征学习的谱理论。根据当前材料，作者从精确反向传播梯度推导局部耦合，在小初始化、光滑激活及固定周边条件下分析跨层相关算子的奇异模态，并利用上层敏感度生成样本相关的有效标签。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.32849">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/zpwnomessc6u6hinv7qmt9i3j">http://localhost:3300/items/zpwnomessc6u6hinv7qmt9i3j</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">zpwnomessc6u6hinv7qmt9i3j</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[DuoLM：基于语言模型的快速高效个性化推荐框架]]></title>
-      <link>http://localhost:3300/items/znmj08b4d92633r2e8a9hrauq</link>
-      <description><![CDATA[<p>DuoLM 研究提出结合紧凑推荐模型与高效服务运行时的框架，作者报告其推荐质量与专家教师模型相当。编码器 LLM 学习可离线复用的紧凑物品表示，个性化排序 LLM 结合用户历史与反馈进行推荐，两者通过推荐监督和教师知识蒸馏端到端训练。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.24481">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/znmj08b4d92633r2e8a9hrauq">http://localhost:3300/items/znmj08b4d92633r2e8a9hrauq</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">znmj08b4d92633r2e8a9hrauq</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
 </rss>
