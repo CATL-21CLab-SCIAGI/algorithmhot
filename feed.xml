@@ -53,6 +53,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[稀疏自编码器中的表征再分配：识别重复变化并量化读出贡献]]></title>
+      <link>http://localhost:3300/items/yf4eb2tt8vrtzum6iauu3bi3d</link>
+      <description><![CDATA[<p>该研究提出再分配敏感度分数（RSS），识别稀疏自编码器中方向一致、重复出现的大幅特征响应，并区分表征变化与下游失败。根据当前材料，作者在覆盖八个语言模型的27个预训练SAE上，用未参与筛选的提示变体检验再分配模式，并针对固定线性读出给出精确分解，分析响应幅度、读出系数、方向对齐及干净输入上的分类间隔如何影响下游结果。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.21240">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/yf4eb2tt8vrtzum6iauu3bi3d">http://localhost:3300/items/yf4eb2tt8vrtzum6iauu3bi3d</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">yf4eb2tt8vrtzum6iauu3bi3d</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[TraceTrial-Bench：评测 AI 智能体运行框架的可靠性与故障归因]]></title>
       <link>http://localhost:3300/items/xhb53z26fxk0qdobg5mdt2kbe</link>
       <description><![CDATA[<p>TraceTrial-Bench 提出针对 AI 智能体运行框架的基准，将智能体任务表现与框架可靠性分开评估。根据当前材料，该基准覆盖上下文、执行、治理、生命周期、可观测性、工具和验证七个组成部分，构建了 95 个专家级、面向机制的任务，以可执行或基于状态的标准答案支持语义等价比较，同时保留各框架的原生行为。</p>
@@ -546,17 +557,6 @@
       <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">bi5cjckbkbfzfdpmf3lil28jq</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[辩论而非投票：以智能体仲裁整合弱光学化学结构识别模型]]></title>
-      <link>http://localhost:3300/items/ak0s8wf7aic9usd26xad1zd33</link>
-      <description><![CDATA[<p>该研究报告，多智能体辩论在 MolParser 的 1000 个分子样本上取得 61.9% 的结构完全匹配率，比最佳单模型和相对多数投票分别高 15.9 和 9.2 个百分点，两项比较均为 p&lt;10⁻⁹，且经全部 27 项检验的多重校正后仍显著。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.33002">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ak0s8wf7aic9usd26xad1zd33">http://localhost:3300/items/ak0s8wf7aic9usd26xad1zd33</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">ak0s8wf7aic9usd26xad1zd33</guid>
-      <author>noreply@localhost (arXiv · 分子与定量生物学)</author>
     </item>
   </channel>
 </rss>
