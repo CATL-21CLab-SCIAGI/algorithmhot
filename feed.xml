@@ -9,6 +9,17 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[FORK 奖励通过精确率目标缓解基于评分细则的 RL 奖励投机]]></title>
+      <link>http://localhost:3300/items/yixxmxcaoblh0k29q7zn9t2cl</link>
+      <description><![CDATA[<p>FORK 研究提出联合优化召回率与精确率的奖励，以缓解基于评分细则的 RL 中回答冗长、夹带不必要或事实错误内容的问题。根据当前材料，其精确率目标通过评分细则驱动的必要性计分和事实正确性评判器，要求每个回答单元既必要又正确。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.33512">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/yixxmxcaoblh0k29q7zn9t2cl">http://localhost:3300/items/yixxmxcaoblh0k29q7zn9t2cl</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">yixxmxcaoblh0k29q7zn9t2cl</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[TraceTrial-Bench：评测 AI 智能体运行框架的可靠性与故障归因]]></title>
       <link>http://localhost:3300/items/xhb53z26fxk0qdobg5mdt2kbe</link>
       <description><![CDATA[<p>TraceTrial-Bench 提出针对 AI 智能体运行框架的基准，将智能体任务表现与框架可靠性分开评估。根据当前材料，该基准覆盖上下文、执行、治理、生命周期、可观测性、工具和验证七个组成部分，构建了 95 个专家级、面向机制的任务，以可执行或基于状态的标准答案支持语义等价比较，同时保留各框架的原生行为。</p>
@@ -545,17 +556,6 @@
       <category>算法</category>
       <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">qtdwc7ytp3ezaikkn715wq5yk</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[HyScale：扩展可学习稀疏注意力的长上下文训练]]></title>
-      <link>http://localhost:3300/items/qs1nf6vwhioo8bdr0gy54re55</link>
-      <description><![CDATA[<p>HyScale 研究提出面向可学习稀疏注意力的长上下文训练系统，作者报告其在百万 token 序列上带来训练加速。基于摘要，HyTopK 无需完整分数表即可即时求出每个查询的精确 top-k，selection replay 则在重计算时复用前向传播的选择结果，并结合端到端系统优化。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.32057">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/qs1nf6vwhioo8bdr0gy54re55">http://localhost:3300/items/qs1nf6vwhioo8bdr0gy54re55</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">qs1nf6vwhioo8bdr0gy54re55</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
