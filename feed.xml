@@ -240,6 +240,17 @@
       <author>noreply@localhost (arXiv · 分子与定量生物学)</author>
     </item>
     <item>
+      <title><![CDATA[ThinkBit 提出面向推理的量化框架：搜索码字、重校准尺度并按推理表现选择检查点]]></title>
+      <link>http://localhost:3300/items/l1ikh1i89lu41jieeo55hxy12</link>
+      <description><![CDATA[<p>ThinkBit 研究提出面向推理能力保留的标量两比特量化框架，作者报告其在 MATH-500 上优于同等模型大小的 EfficientQAT。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.34886">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/l1ikh1i89lu41jieeo55hxy12">http://localhost:3300/items/l1ikh1i89lu41jieeo55hxy12</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">l1ikh1i89lu41jieeo55hxy12</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[InteractiveWorld 提出面向交互式多模态助手的可验证人本环境]]></title>
       <link>http://localhost:3300/items/kvpoc3w5uovhm5qed2fbo1y2k</link>
       <description><![CDATA[<p>InteractiveWorld 研究提出人类与 AI 助手闭环交互的可验证环境，用于评估多模态大语言模型指导物理任务的能力。根据当前材料，环境由助手发出指令、模拟人类智能体自主行动并更新场景，配套的 InteractiveBench 包含六类共 120 个多轮任务，以可验证的环境状态奖励评分。</p>
@@ -381,6 +392,17 @@
       <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">gpou5rfdt0rsvngbzpnao9yb0</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
+    </item>
+    <item>
+      <title><![CDATA[将局部语境拼接为全局意义：Transformer 表征的层论分解]]></title>
+      <link>http://localhost:3300/items/eq0yig9mdo0875hs1m4vda0mr</link>
+      <description><![CDATA[<p>该研究提出在释义图上构建胞腔层，用层拉普拉斯算子 L_F 在无需训练的冻结模型上分析改写措辞时表征是否保持相同内容。根据当前材料，作者报告其核 H^0 构成内容子空间，在 20 维设置下，八种架构的留出 CounterFact 事实检索表现比概念擦除方法 LEACE 的保留子空间平均高 17.1 个百分点，联合约束同一事实的全部释义再提高 6.5 个百分点。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.17117">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/eq0yig9mdo0875hs1m4vda0mr">http://localhost:3300/items/eq0yig9mdo0875hs1m4vda0mr</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">eq0yig9mdo0875hs1m4vda0mr</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
       <title><![CDATA[智能体 harness 自演化研究提出技能适配，使指导匹配模型能力]]></title>
@@ -534,28 +556,6 @@
       <category>算法</category>
       <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">z9zzxrona3ohq497imt93r58m</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[Echo 提出面向视觉语言动作模型的动作与任务状态信号联合去噪框架]]></title>
-      <link>http://localhost:3300/items/ywyyxbupp6lwpfarc84xtvtdy</link>
-      <description><![CDATA[<p>Echo 提出在单个视觉语言动作模型（VLA）内联合学习任务状态与动作生成，无需逐帧进度标注。根据当前材料，该框架将停止和失败信号作为每个动作块的两个附加维度，与机器人动作共同去噪，以区分执行中、成功完成和失败，并通过成功、失败及恢复轨迹构建互补监督。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.31569">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ywyyxbupp6lwpfarc84xtvtdy">http://localhost:3300/items/ywyyxbupp6lwpfarc84xtvtdy</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">ywyyxbupp6lwpfarc84xtvtdy</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[IGG：可见性约束下的交互式 GUI 目标定位基准]]></title>
-      <link>http://localhost:3300/items/yhe8rvhiuarmw19diqlxndlq9</link>
-      <description><![CDATA[<p>IGG 研究提出要求智能体先通过交互使目标可见、再点击目标的 GUI 定位基准，包含 16 个可控 GUI 环境中的 601 项任务及七类可见性约束。根据当前材料，动作包括滚动、移动、拖动、等待和点击；作者报告的人类研究中，参与者准确率为 94.6%，GPT-5.5 为 79.4%，受测开源 VLM 中表现最强者为 31.6%。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.32536">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/yhe8rvhiuarmw19diqlxndlq9">http://localhost:3300/items/yhe8rvhiuarmw19diqlxndlq9</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">yhe8rvhiuarmw19diqlxndlq9</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
