@@ -9,6 +9,28 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[研究报告逃逸细胞对不同细胞类型的 CRISPR 筛选响应造成不等程度稀释]]></title>
+      <link>http://localhost:3300/items/zzq6b0avh3j7oohvf66c3gwgf</link>
+      <description><![CDATA[<p>该研究报告，未被有效敲低靶基因的逃逸细胞会不等程度地稀释不同细胞类型的单细胞 CRISPR 筛选响应，影响跨类型比较、效应迁移模型训练与评测。根据当前材料，作者用各细胞的靶基因计数构建两组混合模型来估计逃逸比例，并在模拟混合数据中恢复已知比例；多数细胞类型中，该比例随基因必需性增加，在同一细胞的较晚筛选中更高，在人胚胎干细胞（hESCs）中达到约一半。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.35508">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/zzq6b0avh3j7oohvf66c3gwgf">http://localhost:3300/items/zzq6b0avh3j7oohvf66c3gwgf</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">zzq6b0avh3j7oohvf66c3gwgf</guid>
+      <author>noreply@localhost (arXiv · 分子与定量生物学)</author>
+    </item>
+    <item>
+      <title><![CDATA[时长感知世界模型结合停留时间约束进行睡眠分期]]></title>
+      <link>http://localhost:3300/items/zxaowj9dptl2z4qjh982p7qpz</link>
+      <description><![CDATA[<p>该研究提出时长感知世界模型，从 EEG 学习睡眠阶段的停留结构，并以轨迹级解码硬约束保证最短停留时间。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.33033">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/zxaowj9dptl2z4qjh982p7qpz">http://localhost:3300/items/zxaowj9dptl2z4qjh982p7qpz</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">zxaowj9dptl2z4qjh982p7qpz</guid>
+      <author>noreply@localhost (arXiv · 分子与定量生物学)</author>
+    </item>
+    <item>
       <title><![CDATA[FORK 奖励通过精确率目标缓解基于评分细则的 RL 奖励投机]]></title>
       <link>http://localhost:3300/items/yixxmxcaoblh0k29q7zn9t2cl</link>
       <description><![CDATA[<p>FORK 研究提出联合优化召回率与精确率的奖励，以缓解基于评分细则的 RL 中回答冗长、夹带不必要或事实错误内容的问题。根据当前材料，其精确率目标通过评分细则驱动的必要性计分和事实正确性评判器，要求每个回答单元既必要又正确。</p>
@@ -29,6 +51,39 @@
       <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">xhb53z26fxk0qdobg5mdt2kbe</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[ProtAgent：通过交互级信用分配后训练紧凑型蛋白质工具智能体]]></title>
+      <link>http://localhost:3300/items/vjjbua7l69qgiryeawpykbpf5</link>
+      <description><![CDATA[<p>ProtAgent 研究提出两阶段后训练流程，以 SFT 学习工具接口，再用标准 on-policy REINFORCE 和逐步回报分配优化蛋白质注释工具交互策略。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.33746">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/vjjbua7l69qgiryeawpykbpf5">http://localhost:3300/items/vjjbua7l69qgiryeawpykbpf5</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">vjjbua7l69qgiryeawpykbpf5</guid>
+      <author>noreply@localhost (arXiv · 分子与定量生物学)</author>
+    </item>
+    <item>
+      <title><![CDATA[智能体引导的表位裁剪支持低成本从头结合蛋白设计]]></title>
+      <link>http://localhost:3300/items/usd7sqd0u4ew5pwlkvn5hbz5f</link>
+      <description><![CDATA[<p>该研究提出智能体引导的表位裁剪方法，通过将靶标截短为局部界面窗口，加速骨架扩散与结构预测，降低从头结合蛋白设计的计算成本。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.33195">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/usd7sqd0u4ew5pwlkvn5hbz5f">http://localhost:3300/items/usd7sqd0u4ew5pwlkvn5hbz5f</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">usd7sqd0u4ew5pwlkvn5hbz5f</guid>
+      <author>noreply@localhost (arXiv · 分子与定量生物学)</author>
+    </item>
+    <item>
+      <title><![CDATA[公共免疫治疗队列由队列效应而非疗效主导：来自微生物组与肿瘤基因组数据的证据]]></title>
+      <link>http://localhost:3300/items/pty19y2ytmogaxpllp5kfjx95</link>
+      <description><![CDATA[<p>该研究报告，公共免疫治疗数据中的队列效应远大于治疗响应效应，合并微生物组队列未得到显著的疗效信号。根据当前材料，作者用统一流程处理四个接受免疫检查点阻断治疗的公共鸟枪法宏基因组队列。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.33010">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/pty19y2ytmogaxpllp5kfjx95">http://localhost:3300/items/pty19y2ytmogaxpllp5kfjx95</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">pty19y2ytmogaxpllp5kfjx95</guid>
+      <author>noreply@localhost (arXiv · 分子与定量生物学)</author>
     </item>
     <item>
       <title><![CDATA[Trajectory2Gym 提出面向工具调用智能体的决策依据约束与组合交互合成方法]]></title>
@@ -53,6 +108,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[PhysioCircuit 将生理关系表示为可干预器官图，用于患者纵向轨迹预测]]></title>
+      <link>http://localhost:3300/items/m3k6xajptq7ojfol9c3k5hhm6</link>
+      <description><![CDATA[<p>PhysioCircuit 研究提出用于患者纵向轨迹预测的多智能体系统，将器官建模为智能体，将生理关系表示为包含方向、时滞和证据的可编辑机制卡片。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.33022">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/m3k6xajptq7ojfol9c3k5hhm6">http://localhost:3300/items/m3k6xajptq7ojfol9c3k5hhm6</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">m3k6xajptq7ojfol9c3k5hhm6</guid>
+      <author>noreply@localhost (arXiv · 分子与定量生物学)</author>
+    </item>
+    <item>
       <title><![CDATA[InteractiveWorld 提出面向交互式多模态助手的可验证人本环境]]></title>
       <link>http://localhost:3300/items/kvpoc3w5uovhm5qed2fbo1y2k</link>
       <description><![CDATA[<p>InteractiveWorld 研究提出人类与 AI 助手闭环交互的可验证环境，用于评估多模态大语言模型指导物理任务的能力。根据当前材料，环境由助手发出指令、模拟人类智能体自主行动并更新场景，配套的 InteractiveBench 包含六类共 120 个多轮任务，以可验证的环境状态奖励评分。</p>
@@ -64,6 +130,28 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[mdRNAcat 研究提出涵盖 48 个 RNA 系统的 REST2 构象系综数据集]]></title>
+      <link>http://localhost:3300/items/k5huh9zwxbp5l819ig1x95wuz</link>
+      <description><![CDATA[<p>mdRNAcat 研究提出一个涵盖 48 个 RNA 系统的全原子分子动力学数据集，用于开发和评估数据驱动的 RNA 模型，包括粗粒化力场。根据当前材料，系统选择注重序列多样性，每个系统采用溶质缩放副本交换（REST2），包含 32 个哈密顿量状态，每个状态的生产模拟长度为 200-300 ns。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.35204">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/k5huh9zwxbp5l819ig1x95wuz">http://localhost:3300/items/k5huh9zwxbp5l819ig1x95wuz</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">k5huh9zwxbp5l819ig1x95wuz</guid>
+      <author>noreply@localhost (arXiv · 分子与定量生物学)</author>
+    </item>
+    <item>
+      <title><![CDATA[GoCo 提出结构引导的保形校准，控制 Gene Ontology 注释发布错误]]></title>
+      <link>http://localhost:3300/items/iumd83c4p7c5vhq5bbtv6m674</link>
+      <description><![CDATA[<p>GoCo 研究提出结构引导的保形校准框架，在不重训预测器的情况下，按基因级错误目标发布更多参考证据支持的 Gene Ontology（GO）注释。基于摘要，该方法为考虑 GO 层级结构的基因级错误发现比例（FDP）确定全局阈值，并在同一渐近风险控制保证下构建嵌套发布路径。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.32990">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/iumd83c4p7c5vhq5bbtv6m674">http://localhost:3300/items/iumd83c4p7c5vhq5bbtv6m674</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">iumd83c4p7c5vhq5bbtv6m674</guid>
+      <author>noreply@localhost (arXiv · 分子与定量生物学)</author>
+    </item>
+    <item>
       <title><![CDATA[Continual Learning Exam：评测 LLM 智能体的长周期 RSI 与经验学习]]></title>
       <link>http://localhost:3300/items/bkmdfphzqqrdxa0rui3lkvggm</link>
       <description><![CDATA[<p>研究提出 Continual Learning Exam（CLE）基准，用于衡量 LLM 智能体在真实职业工作流程中通过积累经验实现改进的能力。该基准由 50+ 位领域专家开发，包含 120 项人工编写的任务，每项设五级阶梯，共 600 个级别，覆盖 12 个职业领域的 89 种职业角色；智能体须通过当前级别才能解锁下一级，评估智能体依据人工编写的评分标准判定提交结果。</p>
@@ -73,6 +161,17 @@
       <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">bkmdfphzqqrdxa0rui3lkvggm</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[辩论而非投票：以智能体仲裁整合弱光学化学结构识别模型]]></title>
+      <link>http://localhost:3300/items/ak0s8wf7aic9usd26xad1zd33</link>
+      <description><![CDATA[<p>该研究报告，多智能体辩论在 MolParser 的 1000 个分子样本上取得 61.9% 的结构完全匹配率，比最佳单模型和相对多数投票分别高 15.9 和 9.2 个百分点，两项比较均为 p&lt;10⁻⁹，且经全部 27 项检验的多重校正后仍显著。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.33002">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ak0s8wf7aic9usd26xad1zd33">http://localhost:3300/items/ak0s8wf7aic9usd26xad1zd33</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">ak0s8wf7aic9usd26xad1zd33</guid>
+      <author>noreply@localhost (arXiv · 分子与定量生物学)</author>
     </item>
     <item>
       <title><![CDATA[带反向耦合的 Neural LoFi：跨层特征学习的谱理论]]></title>
@@ -457,105 +556,6 @@
       <category>AI4AI</category>
       <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">s08scfnbtwm4j8vozxt1svpi7</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[研究报告地球嵌入可分解为地表生态特征记录]]></title>
-      <link>http://localhost:3300/items/rw45s31a00uhj3bbh9rjtsus7</link>
-      <description><![CDATA[<p>Robin Young 与 Srinivasan Keshav 的研究报告，两种广泛使用的地球嵌入产品可分解出火灾、森林清除和作物类型等生态特征。根据当前材料，这些嵌入将地球上每个十米像素一年的卫星观测压缩为向量，作者以六大洲事件的独立参考数据验证恢复出的特征。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.32617">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/rw45s31a00uhj3bbh9rjtsus7">http://localhost:3300/items/rw45s31a00uhj3bbh9rjtsus7</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">rw45s31a00uhj3bbh9rjtsus7</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[Principia 提出测试时从假设构建并迭代科学原理的框架]]></title>
-      <link>http://localhost:3300/items/ruslt2tpneu17y7tb5kiy2suj</link>
-      <description><![CDATA[<p>Principia 研究提出基于 LLM 的框架，在测试时构建并持续修订科学原理，以支持科学发现。基于摘要，该框架从相关输入及观测结果形成比较性因果假设，将反复出现的关系归纳为原理，再利用新观测修订假设并重建原理。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.32195">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ruslt2tpneu17y7tb5kiy2suj">http://localhost:3300/items/ruslt2tpneu17y7tb5kiy2suj</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">ruslt2tpneu17y7tb5kiy2suj</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[混合深度生成模型的可辨识性研究：以元学习构建可辨识模型]]></title>
-      <link>http://localhost:3300/items/rdhp1bsupqydhb1pis5muboxb</link>
-      <description><![CDATA[<p>该研究分析混合深度生成模型的可辨识性，并提出以元学习构建具有理论可辨识性的模型。基于摘要，这类模型将已知物理数学表达式融入神经生成模型，需要联合推断物理组件的参数与神经网络组件。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.32748">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/rdhp1bsupqydhb1pis5muboxb">http://localhost:3300/items/rdhp1bsupqydhb1pis5muboxb</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">rdhp1bsupqydhb1pis5muboxb</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[Accordion：通过固定前缀层循环实现弹性深度推理]]></title>
-      <link>http://localhost:3300/items/rbfhfc5yrnib3lkhvk9uijyzx</link>
-      <description><![CDATA[<p>Accordion 研究提出基于混合专家的固定前缀层循环方法，使单个模型支持五档推理预算，最低预算保留不循环的模型路径。基于摘要，联合预训练在每个微批次采样一档预算，仅优化下一 token 预测损失；监督微调与强化学习通过参数组融合及预算匹配的多教师同策略知识蒸馏，将三个领域专家整合为一个模型。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.32492">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/rbfhfc5yrnib3lkhvk9uijyzx">http://localhost:3300/items/rbfhfc5yrnib3lkhvk9uijyzx</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">rbfhfc5yrnib3lkhvk9uijyzx</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[Omni-Woodpecker：通过证据与先验再平衡纠正全模态大语言模型幻觉]]></title>
-      <link>http://localhost:3300/items/rb6cuywicckolupp7ppfrxuq4</link>
-      <description><![CDATA[<p>基于摘要，Omni-Woodpecker（OWP）提出无需训练的全模态大语言模型幻觉纠正框架，在解码前按跨模态冲突调整融合表示。该方法从互补的模态专属视角识别冲突，通过正交分解分离隐藏状态中的依据证据与竞争先验，再抑制误导性先验、恢复被忽略的证据。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.27103">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/rb6cuywicckolupp7ppfrxuq4">http://localhost:3300/items/rb6cuywicckolupp7ppfrxuq4</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">rb6cuywicckolupp7ppfrxuq4</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[Curate-DTI 研究提出区分蛋白实验构建体的多终点药物活性数据集]]></title>
-      <link>http://localhost:3300/items/r9m7gd5ttb8yagqkjcuuyv4pi</link>
-      <description><![CDATA[<p>Curate-DTI 研究提出按实验序列区分蛋白构建体的药物活性数据集，避免仅按 UniProt 编号处理时合并不同实验靶点。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.32490">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/r9m7gd5ttb8yagqkjcuuyv4pi">http://localhost:3300/items/r9m7gd5ttb8yagqkjcuuyv4pi</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">r9m7gd5ttb8yagqkjcuuyv4pi</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[Muon 何时及如何发挥预条件作用？结构化梯度噪声的影响]]></title>
-      <link>http://localhost:3300/items/r3ajg03l3wz2j967z8cgf2av8</link>
-      <description><![CDATA[<p>Muon 研究提出，结构化梯度噪声决定其预条件收益，而在经典各向同性噪声假设下，其加速效果不超出学习率重缩放。基于摘要，作者分析了任务频率不均的关联记忆中的小批量采样噪声，给出双任务的精确平衡阈值并扩展至多任务，指出 Muon 可将学习对任务频率的依赖从线性缓和为平方根。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.31728">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/r3ajg03l3wz2j967z8cgf2av8">http://localhost:3300/items/r3ajg03l3wz2j967z8cgf2av8</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">r3ajg03l3wz2j967z8cgf2av8</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[ActionRAG 提出证据细化图扩散架构，改善 LLM 智能体长期记忆检索]]></title>
-      <link>http://localhost:3300/items/qvtp6fmu0929dpa19t0jvv8rs</link>
-      <description><![CDATA[<p>ActionRAG 研究提出结合谨慎索引与查询时图证据重评估的长期记忆架构，作者报告其在 MemoryAgentBench（MAB）上优于检索式记忆基线。根据当前材料，该方法通过类型标签协调和分层实体消歧减少索引错误，再以实体与三元组双通道检索构建有界局部图，利用查询条件化、接收端归一化的图扩散细化三元组得分。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.32752">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/qvtp6fmu0929dpa19t0jvv8rs">http://localhost:3300/items/qvtp6fmu0929dpa19t0jvv8rs</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">qvtp6fmu0929dpa19t0jvv8rs</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[按查询选择模态，实现全模态大语言模型的高效推理]]></title>
-      <link>http://localhost:3300/items/qtdwc7ytp3ezaikkn715wq5yk</link>
-      <description><![CDATA[<p>该研究提出按查询选择输入模态，在保持全模态大语言模型不变的条件下改善准确率与推理成本的权衡。根据当前材料，作者将模态选择建模为准确率与成本的优化问题，采用成本敏感学习，并在 WorldSense 上使用 Qwen2.5-Omni 和 Qwen3-Omni，按输入 token、延迟和货币成本三种口径进行评估。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.31768">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/qtdwc7ytp3ezaikkn715wq5yk">http://localhost:3300/items/qtdwc7ytp3ezaikkn715wq5yk</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">qtdwc7ytp3ezaikkn715wq5yk</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
