@@ -141,6 +141,17 @@
       <author>noreply@localhost (arXiv · 分子与定量生物学)</author>
     </item>
     <item>
+      <title><![CDATA[Humans in Space：MLLM 能否通过主动外部视角探索构建以人为中心的空间理解？]]></title>
+      <link>http://localhost:3300/items/izxde3h2qodrtnsb2r9a05266</link>
+      <description><![CDATA[<p>Humans in Space 研究提出 SATE-Bench，用于评估多模态大语言模型的视觉自我认知与主动外部视角探索能力。根据当前材料，该基准包含 316 个真实场景和 2,525 组多轮问答，设置被动多视角对照与主动探索任务，后者要求模型从严重遮挡的视角出发查询相邻视角，并采用带步数惩罚的效率奖励。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.34149">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/izxde3h2qodrtnsb2r9a05266">http://localhost:3300/items/izxde3h2qodrtnsb2r9a05266</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">izxde3h2qodrtnsb2r9a05266</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[GoCo 提出结构引导的保形校准，控制 Gene Ontology 注释发布错误]]></title>
       <link>http://localhost:3300/items/iumd83c4p7c5vhq5bbtv6m674</link>
       <description><![CDATA[<p>GoCo 研究提出结构引导的保形校准框架，在不重训预测器的情况下，按基因级错误目标发布更多参考证据支持的 Gene Ontology（GO）注释。基于摘要，该方法为考虑 GO 层级结构的基因级错误发现比例（FDP）确定全局阈值，并在同一渐近风险控制保证下构建嵌套发布路径。</p>
@@ -545,17 +556,6 @@
       <category>算法</category>
       <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">s8qjtw9we5t5oyreixp54n78b</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[BARC-Bench 提出评估良性请求下潜在风险的智能体安全基准]]></title>
-      <link>http://localhost:3300/items/s08scfnbtwm4j8vozxt1svpi7</link>
-      <description><![CDATA[<p>BARC-Bench 研究提出包含九个模拟工作环境、110 项任务的基准，评估智能体执行良性请求时是否越过隐含安全边界。根据当前材料，安全边界来自工作环境记录、隐含环境上下文和未明说的社会规范，例如安排离职讨论时不能通过共享日历邀请提前泄露员工辞职信息。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.32024">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/s08scfnbtwm4j8vozxt1svpi7">http://localhost:3300/items/s08scfnbtwm4j8vozxt1svpi7</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">s08scfnbtwm4j8vozxt1svpi7</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
