@@ -361,6 +361,28 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[自主智能体的内在目标：分层探索刻画果蝇未来自主行动]]></title>
+      <link>http://localhost:3300/items/dqeen49xqa233uiods6ac9l2u</link>
+      <description><![CDATA[<p>研究报告，分层内在动机智能体可刻画果蝇的自主探索行为，其中 DIAYN 在行为与未来动作神经编码的联合比较中表现最好。根据当前材料，研究结合果蝇全脑记录与神经力学数字孪生，前者揭示了提前超过 10 秒出现的自发探索决策神经表征；智能体通过分层策略选择离散低层运动基元，并以涵盖好奇心、熵和能力导向方法的 20 种内在动机算法训练，不使用外部奖励。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.34638">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/dqeen49xqa233uiods6ac9l2u">http://localhost:3300/items/dqeen49xqa233uiods6ac9l2u</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">dqeen49xqa233uiods6ac9l2u</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[从自动 3D Gaussian Splatting 编辑中学习在线贝叶斯场景变化检测]]></title>
+      <link>http://localhost:3300/items/dhz5sb7a97okb3ldzdy64wv00</link>
+      <description><![CDATA[<p>该研究提出利用参考 3D Gaussian Splatting（3DGS）模型的自动编辑，学习在线贝叶斯场景变化检测所需的证据模型与统计量。根据当前材料，自动编辑生成无需人工标注的训练视图，与未变化的参考观测共同用于离线学习；在线阶段融合当前证据与历史支持，通过闭式局部贝叶斯因子更新累积的三维高斯场，再以对象引导细化生成变化掩码。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.28490">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/dhz5sb7a97okb3ldzdy64wv00">http://localhost:3300/items/dhz5sb7a97okb3ldzdy64wv00</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">dhz5sb7a97okb3ldzdy64wv00</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[研究报告较低的 Fisher 期望秩对应更好的 PAC 泛化误差界]]></title>
       <link>http://localhost:3300/items/ddeynnoiwigsdb5g1eyl14dnr</link>
       <description><![CDATA[<p>该研究提出 Fisher 对齐的参数分布，推导出随 Fisher 信息矩阵期望秩变化的高概率泛化误差界。基于摘要，理论分析以独立同分布（i.i.d.）数据为假设，在 PAC-Bayes 框架下利用 Fisher 度量刻画参数变化对应的函数变化。</p>
@@ -535,28 +557,6 @@
       <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">xae8vo566kio4azjx55bpbuh6</guid>
       <author>noreply@localhost (arXiv · 计算物理与材料)</author>
-    </item>
-    <item>
-      <title><![CDATA[空位增强型锂固溶体负极研究：计算筛选预测固态电池临界电流密度提升]]></title>
-      <link>http://localhost:3300/items/xa841r0w7g5quq125xjnrmi0h</link>
-      <description><![CDATA[<p>该研究通过计算筛选预测，Ag、Ge、Cd 锂固溶体可在各自溶解度限度内达到 1 mA cm⁻² 的临界电流密度（CCD）。根据当前材料，作者利用 DFT 筛选 50 种替位溶质，结合自动相图构建、固溶能、溶质与空位结合能及实验溶解度限度，并采用适配稀释极限的 Lomer 模型估算 CCD。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.32938">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/xa841r0w7g5quq125xjnrmi0h">http://localhost:3300/items/xa841r0w7g5quq125xjnrmi0h</a></p>]]></description>
-      <category>电池与新能源材料</category>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">xa841r0w7g5quq125xjnrmi0h</guid>
-      <author>noreply@localhost (arXiv · 计算物理与材料)</author>
-    </item>
-    <item>
-      <title><![CDATA[延后解码、聚合后相乘：重新设计量化权重的点积计算]]></title>
-      <link>http://localhost:3300/items/x61v2hrzwp7rdiww4qs9dm3bp</link>
-      <description><![CDATA[<p>该研究提出按权重编码聚合激活，将长度为 n、权重编码为 k-bit 的点积改写为 n+2^k 次加法及至多 2^k 次解码和 2^k 次乘法。根据当前材料，方法以编码直接选择累加器，最后融合解码与乘法，不形成解码后的权重向量；整数运算保持精确等价，并支持浮点操作数、任意非线性解码器及分组缩放。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.31913">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/x61v2hrzwp7rdiww4qs9dm3bp">http://localhost:3300/items/x61v2hrzwp7rdiww4qs9dm3bp</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">x61v2hrzwp7rdiww4qs9dm3bp</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
 </rss>
