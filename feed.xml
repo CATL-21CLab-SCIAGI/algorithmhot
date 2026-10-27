@@ -218,6 +218,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[CRM-Agent-Bench：评测有状态企业环境中的工具使用智能体]]></title>
+      <link>http://localhost:3300/items/nj31jbv0fps3w07vc61ndj01p</link>
+      <description><![CDATA[<p>CRM-Agent-Bench 提出面向有状态企业环境的智能体评测基准，联合评估任务结果、执行轨迹、运营可行性与规则遵循。根据当前材料，基准包含覆盖九个业务领域、36 个能力标签的 555 个有状态多轮任务，以任务级可执行契约检查动作、参数、顺序、回复、目标状态及受保护状态，严格成功要求通过该任务声明的全部检查。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.32004">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/nj31jbv0fps3w07vc61ndj01p">http://localhost:3300/items/nj31jbv0fps3w07vc61ndj01p</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">nj31jbv0fps3w07vc61ndj01p</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[超越基准测试：小型开放权重模型能完成真实编码工作吗？]]></title>
       <link>http://localhost:3300/items/majpnhhoritb6qdjpqlvybbx5</link>
       <description><![CDATA[<p>这项实证系统经验报告考察小型开放权重模型完成真实编码工作的能力，指出模型服务可用、生成连贯文本、执行工具调用与代码通过独立行为检查是不同进展层级。根据当前材料，作者汇总了自身会话中的 4,165 次编码智能体网关交互、623 个调试任务，以及固定 Claude Opus 5.5 为父智能体、使用隐藏行为检查的三项独立委派研究。</p>
@@ -545,17 +556,6 @@
       <category>算法</category>
       <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">ze0lyc9dxi4t2z149hqtmg0vv</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[GS-MoE 通过分组子空间共享与剪枝实现免训练 MoE 压缩]]></title>
-      <link>http://localhost:3300/items/z9zzxrona3ohq497imt93r58m</link>
-      <description><![CDATA[<p>GS-MoE 提出免训练 MoE 压缩框架，通过共享子空间秩与专家中间层宽度两个维度减少专家参数冗余。根据当前材料，该方法用分组低秩表示保留共享结构和专家特有投影，并通过基于 Nyström 的神经元压缩缩减中间层宽度。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.32009">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/z9zzxrona3ohq497imt93r58m">http://localhost:3300/items/z9zzxrona3ohq497imt93r58m</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">z9zzxrona3ohq497imt93r58m</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
