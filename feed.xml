@@ -119,6 +119,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[研究报告可在 −50 °C 运行的高性能盐湖水锌电池]]></title>
+      <link>http://localhost:3300/items/umq7j3y5alwv4hgflepox2hjm</link>
+      <description><![CDATA[<p>研究报告以盐湖水替代去离子水作为电解液溶剂，结合人工三元合金层包覆锌负极，实现可在 −50 °C 运行的水系锌离子电池。根据当前材料，该方案通过高盐度抑制结冰、降低水活性并改变 Zn2+ 的水配位，同时利用合金层增强阳离子吸附与静电屏蔽。</p>
+<p>🔗 <a href="https://doi.org/10.1021/jacs.6c16008">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/umq7j3y5alwv4hgflepox2hjm">http://localhost:3300/items/umq7j3y5alwv4hgflepox2hjm</a></p>]]></description>
+      <category>电池与新能源材料</category>
+      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">umq7j3y5alwv4hgflepox2hjm</guid>
+      <author>noreply@localhost (Journal of the American Chemical Society)</author>
+    </item>
+    <item>
       <title><![CDATA[WorkFactory 将职业任务意图转化为可执行任务，用于规模化智能体训练]]></title>
       <link>http://localhost:3300/items/uev7f8zb7tcgghigi1nnswhlj</link>
       <description><![CDATA[<p>基于摘要，研究提出 WorkFactory，将职业任务意图转化为信息完整、可执行的任务，以支持工作型智能体的规模化监督训练。该框架通过信息支持图表示目标输出所需信息的依赖关系与位置，再用探测性执行识别支持缺陷，并在保留任务意图的前提下修复。</p>
@@ -546,17 +557,6 @@
       <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">e434tj3yo73o4lghogst1duf8</guid>
       <author>noreply@localhost (Angewandte Chemie International Edition)</author>
-    </item>
-    <item>
-      <title><![CDATA[研究用 UCE 追踪预训练数据的词汇印记与零样本表现]]></title>
-      <link>http://localhost:3300/items/d0f0o8zmi3sz67ghp5d0beolk</link>
-      <description><![CDATA[<p>该研究提出用词级一元交叉熵（UCE）衡量语料与基准的词汇对齐程度，并报告较低 UCE 持续对应较高零样本准确率。根据当前材料，作者固定训练方案、改变语料开展从零预训练实验，覆盖 10 个零样本基准、4 个预训练语料和 3 种模型规模；UCE 不依赖特定分词器，也无需模型。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2602.10657">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/d0f0o8zmi3sz67ghp5d0beolk">http://localhost:3300/items/d0f0o8zmi3sz67ghp5d0beolk</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">d0f0o8zmi3sz67ghp5d0beolk</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
 </rss>
