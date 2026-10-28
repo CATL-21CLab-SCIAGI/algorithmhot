@@ -504,6 +504,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[研究用 UCE 追踪预训练数据的词汇印记与零样本表现]]></title>
+      <link>http://localhost:3300/items/d0f0o8zmi3sz67ghp5d0beolk</link>
+      <description><![CDATA[<p>该研究提出用词级一元交叉熵（UCE）衡量语料与基准的词汇对齐程度，并报告较低 UCE 持续对应较高零样本准确率。根据当前材料，作者固定训练方案、改变语料开展从零预训练实验，覆盖 10 个零样本基准、4 个预训练语料和 3 种模型规模；UCE 不依赖特定分词器，也无需模型。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2602.10657">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/d0f0o8zmi3sz67ghp5d0beolk">http://localhost:3300/items/d0f0o8zmi3sz67ghp5d0beolk</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">d0f0o8zmi3sz67ghp5d0beolk</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[自回归线性阈值函数的 VC 维度分析]]></title>
       <link>http://localhost:3300/items/cgakxu226ik634srl5umye7r6</link>
       <description><![CDATA[<p>该研究证明，当 T≥d² 时，确定性自回归线性阈值函数的 VC 维度为 Θ(d²)，弥合了此前的二次量级差距。在这一设置中，同一线性阈值函数读取最近 d 个比特并生成下一比特，最终返回第 T 步产生的比特；单步预测类的 VC 维度为 d，一般 T 下的计数上界为 O(d²)。</p>
@@ -546,17 +557,6 @@
       <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">arwvp0a1hnacwtrbu91y6txiy</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[研究报告逃逸细胞对不同细胞类型的 CRISPR 筛选响应造成不等程度稀释]]></title>
-      <link>http://localhost:3300/items/zzq6b0avh3j7oohvf66c3gwgf</link>
-      <description><![CDATA[<p>该研究报告，未被有效敲低靶基因的逃逸细胞会不等程度地稀释不同细胞类型的单细胞 CRISPR 筛选响应，影响跨类型比较、效应迁移模型训练与评测。根据当前材料，作者用各细胞的靶基因计数构建两组混合模型来估计逃逸比例，并在模拟混合数据中恢复已知比例；多数细胞类型中，该比例随基因必需性增加，在同一细胞的较晚筛选中更高，在人胚胎干细胞（hESCs）中达到约一半。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.35508">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/zzq6b0avh3j7oohvf66c3gwgf">http://localhost:3300/items/zzq6b0avh3j7oohvf66c3gwgf</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">zzq6b0avh3j7oohvf66c3gwgf</guid>
-      <author>noreply@localhost (arXiv · 分子与定量生物学)</author>
     </item>
   </channel>
 </rss>
