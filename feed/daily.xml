@@ -9,6 +9,23 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-10-28 — 智能体接口的决策几何：训练策略暗含运行框架偏好]]></title>
+      <link>http://localhost:3300/daily/2026-10-28</link>
+      <description><![CDATA[<p>该研究提出，训练后的智能体策略携带运行框架的偏好，用固定模型比较框架会混淆框架本身的收益上限与策略失配。根据当前材料，作者在 KL 正则化控制下推导出最优策略的对数优势比可恢复框架对动作的相对偏好，并将部署收益分解为框架上限减去策略失配，训练只改变后者，更换框架则改变两者。</p>
+<p><strong>算法</strong></p>
+<ul><li><a href="http://localhost:3300/items/jvjmoq7rfwuxkplhuw7de74gw">SPOT 通过提交顺序预测增强扩散语言模型的推测解码</a></li><li><a href="http://localhost:3300/items/w1mkt3bpg64sq6ceo9hhw4nls">GateRQ 用门控决定 LLM 条件记忆每次查表的量化精度</a></li><li><a href="http://localhost:3300/items/m2kptgohp6e6zrt5j1p12dxvc">Mamba-2 状态压缩研究提出平衡状态子空间方法</a></li><li><a href="http://localhost:3300/items/ifrqg5z8yg3eyi5oozjz4a6ys">AHEAD：面向大规模线性规划的自适应神经加速方法</a></li><li><a href="http://localhost:3300/items/gfodp7deemucy5nb7switk96w">Rollback：通过世界模型中的经验回溯改进机器人策略</a></li><li><a href="http://localhost:3300/items/gx1h1zu8jemwx2wsesk027p7t">ChronoReplay 研究指出流式空间智能不能只依赖一种答案接口</a></li></ul>
+<p><strong>AI4AI</strong></p>
+<ul><li><a href="http://localhost:3300/items/ho03oxhubqyioye49t4do0n14">智能体接口的决策几何：训练策略暗含运行框架偏好</a></li><li><a href="http://localhost:3300/items/fp9xj4bb8jwabhbz7iqn43lag">RSI Arena 研究探索以人类反馈引导智能体递归自我改进</a></li><li><a href="http://localhost:3300/items/c1wug0znjomwmmihn94hr87uq">通用技能优化器真的有益于智能体任务吗？BiPA 以二部图归因重审技能优化</a></li><li><a href="http://localhost:3300/items/hhnv254w2ldpbfwhmbi1bfpyt">M4Bench 评估临床电子健康记录推导智能体的操作规范作用</a></li><li><a href="http://localhost:3300/items/bh609iw4xnjrdsc27pp89ta4e">Evolving Agent Teams 通过团队重组突破代码优化的局部最优</a></li><li><a href="http://localhost:3300/items/arwvp0a1hnacwtrbu91y6txiy">h1：自动定理证明中的苦涩教训初探</a></li><li><a href="http://localhost:3300/items/oerdcjkzwvh3dfni6ct3nggb5">SearchHorizonBench 提出评估 AI 智能体搜索价值的基准</a></li><li><a href="http://localhost:3300/items/mwh0imv5n55mxpifoxugki0o6">LLM 智能体应选择何种推理强度？推理投入的经济性分析</a></li></ul>
+<p><strong>AI4S</strong></p>
+<ul><li><a href="http://localhost:3300/items/th5umhhr6tj9vx0f5z3i0z7hq">UniTB 以物理结构为组织原则构建通用哈密顿量学习框架</a></li><li><a href="http://localhost:3300/items/z499p4ds4m06rk05z3mis9r6n">PIE 机器学习框架结合现实约束设计可持续合金</a></li></ul>
+<p><strong>电池与新能源材料</strong></p>
+<ul><li><a href="http://localhost:3300/items/rychp7ty7qetc2b4xmadkmb0n">界面卤离子富集策略降低四电子锌碘电池对高卤离子浓度的依赖</a></li><li><a href="http://localhost:3300/items/f4lg5v4uckeahxcnal3fn1ykj">研究发现硬碳负极表面欠电位沉积的晶态钠金属纳米颗粒</a></li><li><a href="http://localhost:3300/items/zo40j7e8nysi0i41nurt2fi90">富锂正极的阴离子氧化还原空穴位于何处？开壳层投影嵌入从 DFT 环境到量子求解器的可靠性研究</a></li><li><a href="http://localhost:3300/items/yuhs2rt3mhxlgxgduhhfyznsa">多波长光致发光无损探测钙钛矿半导体不同深度的紫外损伤</a></li></ul>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/daily/2026-10-28">http://localhost:3300/daily/2026-10-28</a></p>]]></description>
+      <pubDate>Wed, 28 Oct 2026 04:30:33 GMT</pubDate>
+      <guid isPermaLink="false">daily-2026-10-28</guid>
+      <author>noreply@localhost (AlgorithmHot · 科研热点)</author>
+    </item>
+    <item>
       <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-10-27 — OPTIC 通过跨层潜在向量量化实现逐层嵌入的极端压缩]]></title>
       <link>http://localhost:3300/daily/2026-10-27</link>
       <description><![CDATA[<p>该研究提出 OPTIC，通过跨层共享量化编码压缩 Gemma 4 E4B 的逐层嵌入（PLE），作者报告在约 100 倍 PLE 压缩下保留较高性能。根据当前材料，PLE 占该模型参数的 35.2%；OPTIC 为每个 token 存储一个量化编码元组，由各层专属仿射解码器解码，并针对 PLE 输出路径而非存储向量拟合编码与解码器。</p>
