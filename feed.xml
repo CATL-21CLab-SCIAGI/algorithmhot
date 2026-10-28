@@ -42,6 +42,17 @@
       <author>noreply@localhost (arXiv · 计算物理与材料)</author>
     </item>
     <item>
+      <title><![CDATA[提示内容有多重要？Fin-SD 在金融推理中的事后自蒸馏适用条件]]></title>
+      <link>http://localhost:3300/items/z3o6aj64v5kj3saexeve45zpx</link>
+      <description><![CDATA[<p>Fin-SD 研究报告，在金融多步推理自蒸馏中，收益可能来自监督施加的位置，而非提示的具体内容。根据当前材料，该方法让学生模型定位自身推理的首个错误并生成简短批评，在错误前截断轨迹，再将以此前缀和提示为条件的冻结学生副本，通过短轨迹上的反向 KL 蒸馏到学生模型；没有外部模型贡献梯度。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.36082">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/z3o6aj64v5kj3saexeve45zpx">http://localhost:3300/items/z3o6aj64v5kj3saexeve45zpx</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">z3o6aj64v5kj3saexeve45zpx</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[多波长光致发光无损探测钙钛矿半导体不同深度的紫外损伤]]></title>
       <link>http://localhost:3300/items/yuhs2rt3mhxlgxgduhhfyznsa</link>
       <description><![CDATA[<p>该研究提出多波长光致发光无损表征方法，作者报告可快速探测钙钛矿器件在工作条件下随深度变化的退化行为。根据当前材料，研究利用钙钛矿吸收对波长的依赖，以不同氧化铟锡（ITO）修饰剂下的紫外光照为测试案例，结合不同激发波长的宽场光致发光（PL）成像、时间分辨光致发光（trPL）和理想因子测量开展实验。</p>
@@ -504,6 +515,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[PNA-PyBr 水凝胶电解质实现溴离子活化的四电子碘化学]]></title>
+      <link>http://localhost:3300/items/e434tj3yo73o4lghogst1duf8</link>
+      <description><![CDATA[<p>该研究提出 PNA-PyBr 水凝胶电解质，通过 Br⁻ 稳定碘中间体，改善水系四电子锌碘电池的高电压反应可逆性。根据当前材料，作者结合实验与计算报告，相比 F⁻ 和 Cl⁻，Br⁻ 形成的 IBr₂⁻ 键极化更弱、抗水解能力更强；电解质中的吡啶鎓阳离子将其固定为不溶于水的复合物，磺酸根基团则调节氢键网络并建立 Zn²⁺ 选择性传输通道。</p>
+<p>🔗 <a href="https://doi.org/10.1002/anie.3951000">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/e434tj3yo73o4lghogst1duf8">http://localhost:3300/items/e434tj3yo73o4lghogst1duf8</a></p>]]></description>
+      <category>电池与新能源材料</category>
+      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">e434tj3yo73o4lghogst1duf8</guid>
+      <author>noreply@localhost (Angewandte Chemie International Edition)</author>
+    </item>
+    <item>
       <title><![CDATA[研究用 UCE 追踪预训练数据的词汇印记与零样本表现]]></title>
       <link>http://localhost:3300/items/d0f0o8zmi3sz67ghp5d0beolk</link>
       <description><![CDATA[<p>该研究提出用词级一元交叉熵（UCE）衡量语料与基准的词汇对齐程度，并报告较低 UCE 持续对应较高零样本准确率。根据当前材料，作者固定训练方案、改变语料开展从零预训练实验，覆盖 10 个零样本基准、4 个预训练语料和 3 种模型规模；UCE 不依赖特定分词器，也无需模型。</p>
@@ -534,28 +556,6 @@
       <category>AI4AI</category>
       <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">c1wug0znjomwmmihn94hr87uq</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[Evolving Agent Teams 通过团队重组突破代码优化的局部最优]]></title>
-      <link>http://localhost:3300/items/bh609iw4xnjrdsc27pp89ta4e</link>
-      <description><![CDATA[<p>Evolving Agent Teams 提出多智能体框架，作者报告其能突破现有编码智能体在专家编写的 GPU 内核上遇到的局部最优。基于摘要，该框架由中央监督者诊断局部最优并重组团队，通过包含学习文档、演化历史和团队产物的持久化文件系统积累经验。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.36848">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/bh609iw4xnjrdsc27pp89ta4e">http://localhost:3300/items/bh609iw4xnjrdsc27pp89ta4e</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">bh609iw4xnjrdsc27pp89ta4e</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[h1：自动定理证明中的苦涩教训初探]]></title>
-      <link>http://localhost:3300/items/arwvp0a1hnacwtrbu91y6txiy</link>
-      <description><![CDATA[<p>h1 研究报告，简单智能体循环在自动定理证明中可匹敌专门设计的工作流，并解决 FormalConjectures 中的八个开放问题。根据当前材料，h1 为模型提供高效的 Lean 4 接口，通过验证器反馈与自我反思持续推进证明，不预设分解或搜索结构。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.35962">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/arwvp0a1hnacwtrbu91y6txiy">http://localhost:3300/items/arwvp0a1hnacwtrbu91y6txiy</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">arwvp0a1hnacwtrbu91y6txiy</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
