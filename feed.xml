@@ -86,6 +86,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[FVQ 研究探讨离散 token 能否成为视觉信号的语义无损表示]]></title>
+      <link>http://localhost:3300/items/vwh3a53udaupsx29ue1qs71fm</link>
+      <description><![CDATA[<p>该研究提出 Factorized Vector Quantization（FVQ），作者报告其离散视觉表示在多模态理解任务上达到连续视觉表示的水平。根据当前材料，研究发现量化误差不能可靠衡量语义保真度，有效比特预算更为关键；FVQ 用对称并行码本量化视觉特征的互补、固定维度视图，以缓解增加码本时语义信息增益趋于饱和的问题。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.37662">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/vwh3a53udaupsx29ue1qs71fm">http://localhost:3300/items/vwh3a53udaupsx29ue1qs71fm</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">vwh3a53udaupsx29ue1qs71fm</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[OriTTA 从分类器几何构建目标，实现批大小为 1 的测试时适应]]></title>
       <link>http://localhost:3300/items/uyaacefmzwyqdlzt0khd4ezbj</link>
       <description><![CDATA[<p>OriTTA 研究提出利用源模型的分类器几何构建固定目标，在批大小为 1 时对无标签测试流进行模型适应。根据当前材料，该方法重新选择特征空间原点，为各类别预设轴与理想点，将选中特征向预测类别轴对齐并惩罚过大半径，同时为每个预测类别保留一个输入，以限制缺席类别的特征变化，并在重新分类这些输入发现模型坍塌时重置模型。</p>
@@ -546,17 +557,6 @@
       <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">zxaowj9dptl2z4qjh982p7qpz</guid>
       <author>noreply@localhost (arXiv · 分子与定量生物学)</author>
-    </item>
-    <item>
-      <title><![CDATA[AV-FABLE：面向长视频音视频篡改取证的双时间线基准]]></title>
-      <link>http://localhost:3300/items/zkqrikfc2b2ud2s7ujuta9juu</link>
-      <description><![CDATA[<p>AV-FABLE 研究提出面向开放场景长视频稀疏篡改的双时间线基准，并提出分别定位音频与视觉篡改的方法 NFSR。基于摘要，该基准包含 16,650 对原始与篡改视频配对，总计 998 小时，采用 27 种编辑配置构建，独立的音频与视觉时间线可揭示联合时间线评估掩盖的错误。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.33413">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/zkqrikfc2b2ud2s7ujuta9juu">http://localhost:3300/items/zkqrikfc2b2ud2s7ujuta9juu</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">zkqrikfc2b2ud2s7ujuta9juu</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
 </rss>
