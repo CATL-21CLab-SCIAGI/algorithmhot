@@ -273,6 +273,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[OSMA-Bench 评测家庭机器人导航对障碍物类型的安全适应]]></title>
+      <link>http://localhost:3300/items/lbs86yernqcbup642l4m63ln6</link>
+      <description><![CDATA[<p>研究提出 OSMA-Bench，作者评测发现，VLM 与视觉语言动作（VLA）策略均未能稳定地根据障碍物的安全相关性调整运动，即使加入显式安全提示也如此。该基准使用空间布局匹配、仅障碍物类型不同的场景，并提出语义敏感性指数（SSI），衡量避障间距及随距离变化的速度、平滑性是否符合障碍物的谨慎程度排序。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.34674">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/lbs86yernqcbup642l4m63ln6">http://localhost:3300/items/lbs86yernqcbup642l4m63ln6</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">lbs86yernqcbup642l4m63ln6</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[SPOT 通过提交顺序预测增强扩散语言模型的推测解码]]></title>
       <link>http://localhost:3300/items/jvjmoq7rfwuxkplhuw7de74gw</link>
       <description><![CDATA[<p>SPOT 研究提出通过预测位置提交顺序加速扩散语言模型的推测解码，作者报告其在 SDAR-8B 上最多将目标模型调用次数降低 6.8 倍、吞吐量提升至标准解码的 3.4 倍。</p>
@@ -545,17 +556,6 @@
       <category>AI4AI</category>
       <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">zkqrikfc2b2ud2s7ujuta9juu</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[FORK 奖励通过精确率目标缓解基于评分细则的 RL 奖励投机]]></title>
-      <link>http://localhost:3300/items/yixxmxcaoblh0k29q7zn9t2cl</link>
-      <description><![CDATA[<p>FORK 研究提出联合优化召回率与精确率的奖励，以缓解基于评分细则的 RL 中回答冗长、夹带不必要或事实错误内容的问题。根据当前材料，其精确率目标通过评分细则驱动的必要性计分和事实正确性评判器，要求每个回答单元既必要又正确。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.33512">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/yixxmxcaoblh0k29q7zn9t2cl">http://localhost:3300/items/yixxmxcaoblh0k29q7zn9t2cl</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">yixxmxcaoblh0k29q7zn9t2cl</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
