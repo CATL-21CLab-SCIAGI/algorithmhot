@@ -328,6 +328,17 @@
       <author>noreply@localhost (arXiv · 分子与定量生物学)</author>
     </item>
     <item>
+      <title><![CDATA[OpenESM 研究提出具备规模扩展潜力的能量引导语言模型]]></title>
+      <link>http://localhost:3300/items/jc4dorbq3a7qx7pvi8pfdmrfe</link>
+      <description><![CDATA[<p>OpenESM 研究提出能量引导模型（ESMs），作者报告其随模型规模和训练数据增长展现出扩展潜力，并在多数下游任务上优于 GPTs。该架构将能量引导与 token 生成整合，先沿能量景观优化潜在状态，再利用优化后的状态生成 token。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.33005">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/jc4dorbq3a7qx7pvi8pfdmrfe">http://localhost:3300/items/jc4dorbq3a7qx7pvi8pfdmrfe</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">jc4dorbq3a7qx7pvi8pfdmrfe</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[Thinking-in-Bets 在测试时减少 LLM 智能体的迎合性修改]]></title>
       <link>http://localhost:3300/items/jb53l1z8o9z2hrt6342esod1k</link>
       <description><![CDATA[<p>Thinking-in-Bets 研究提出无需训练的测试时方法，作者报告该方法能减少 LLM 智能体因用户质疑而推翻正确结果的行为。智能体在读取反馈前，私下记录主要主张、支持检查与置信度，受到质疑后依据这份 Claim Checklist 保留已验证内容并检查不确定部分。</p>
@@ -546,17 +557,6 @@
       <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">bkmdfphzqqrdxa0rui3lkvggm</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[语言模型能边思考边学习吗？跨架构测试梯度适应]]></title>
-      <link>http://localhost:3300/items/bi5cjckbkbfzfdpmf3lil28jq</link>
-      <description><![CDATA[<p>该研究报告，语言模型阅读时进行梯度更新可降低预测损失，但不能恢复上下文截断造成的检索准确率损失。根据当前材料，作者每读入128-token块，对最后四分之一模型块的MLP输出投影执行一次SGD更新。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.33025">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/bi5cjckbkbfzfdpmf3lil28jq">http://localhost:3300/items/bi5cjckbkbfzfdpmf3lil28jq</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">bi5cjckbkbfzfdpmf3lil28jq</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
 </rss>
