@@ -295,6 +295,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[面向高能量锂金属电池的非氟化醚溶剂化团簇工程]]></title>
+      <link>http://localhost:3300/items/kp9ps1j0h9s9h18veiqp0y9ke</link>
+      <description><![CDATA[<p>该研究提出主客体协同电解液 HGSE，通过调节非氟化醚溶剂的分子间作用，优化高能量锂金属电池的溶剂化结构与电极界面。根据当前材料，长链多齿醚与单齿醚之间的弱 Hδ+–Oδ− 相互作用调节配位能力和团簇尺寸，形成接触离子对主导的结构；作者报告其提升离子电导率、促进阴离子分解并抑制电极副反应，形成富含 LiF 的界面层并减少正极开裂。</p>
+<p>🔗 <a href="https://doi.org/10.1021/jacs.6c16390">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/kp9ps1j0h9s9h18veiqp0y9ke">http://localhost:3300/items/kp9ps1j0h9s9h18veiqp0y9ke</a></p>]]></description>
+      <category>电池与新能源材料</category>
+      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">kp9ps1j0h9s9h18veiqp0y9ke</guid>
+      <author>noreply@localhost (Journal of the American Chemical Society)</author>
+    </item>
+    <item>
       <title><![CDATA[SPOT 通过提交顺序预测增强扩散语言模型的推测解码]]></title>
       <link>http://localhost:3300/items/jvjmoq7rfwuxkplhuw7de74gw</link>
       <description><![CDATA[<p>SPOT 研究提出通过预测位置提交顺序加速扩散语言模型的推测解码，作者报告其在 SDAR-8B 上最多将目标模型调用次数降低 6.8 倍、吞吐量提升至标准解码的 3.4 倍。</p>
@@ -545,17 +556,6 @@
       <category>AI4S</category>
       <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">zzq6b0avh3j7oohvf66c3gwgf</guid>
-      <author>noreply@localhost (arXiv · 分子与定量生物学)</author>
-    </item>
-    <item>
-      <title><![CDATA[时长感知世界模型结合停留时间约束进行睡眠分期]]></title>
-      <link>http://localhost:3300/items/zxaowj9dptl2z4qjh982p7qpz</link>
-      <description><![CDATA[<p>该研究提出时长感知世界模型，从 EEG 学习睡眠阶段的停留结构，并以轨迹级解码硬约束保证最短停留时间。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.33033">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/zxaowj9dptl2z4qjh982p7qpz">http://localhost:3300/items/zxaowj9dptl2z4qjh982p7qpz</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">zxaowj9dptl2z4qjh982p7qpz</guid>
       <author>noreply@localhost (arXiv · 分子与定量生物学)</author>
     </item>
   </channel>
