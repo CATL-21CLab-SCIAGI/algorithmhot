@@ -152,6 +152,17 @@
       <author>noreply@localhost (arXiv · 计算物理与材料)</author>
     </item>
     <item>
+      <title><![CDATA[结果奖励强化学习带来什么：完成率、可靠性，以及有限的解题范围拓展]]></title>
+      <link>http://localhost:3300/items/sedpakbl9f1yl609ojmly8io2</link>
+      <description><![CDATA[<p>该研究报告，结果奖励强化学习在物理与数学任务上的 pass@1 收益主要来自完成率和可靠性提升，较少拓展解题范围。根据当前材料，作者在固定 token 预算下比较了 20 个已发布的 RL 模型（1.5B 至 32B）及其初始思考模型，并将收益拆为预算内完成作答、完成后的正确率，以及双方各采样八次均答错所界定的净新增解题范围。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.34894">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/sedpakbl9f1yl609ojmly8io2">http://localhost:3300/items/sedpakbl9f1yl609ojmly8io2</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">sedpakbl9f1yl609ojmly8io2</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[探索 delta-learning 假说的局限：DPO 中单对生成模型的偏置]]></title>
       <link>http://localhost:3300/items/sd5wbyqq0u2aocpokixezzy7v</link>
       <description><![CDATA[<p>该研究报告，单对模型生成的偏好数据存在与回答质量无关的系统性偏置，限制了 delta-learning 假说在 DPO 中的效果。基于摘要，作者通过跨模型家族与规模的理论分析和实验指出，将较大模型的回答视为偏好回答时，固定模型对的生成器偏置可预测偏好标签。</p>
@@ -238,6 +249,17 @@
       <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">oerdcjkzwvh3dfni6ct3nggb5</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[硫化铋准直接带隙研究报告电子–空穴复合延迟]]></title>
+      <link>http://localhost:3300/items/nw8nv7uc3qutxei025kajya09</link>
+      <description><![CDATA[<p>研究作者报告，硫化铋的准直接带隙使其相较经典直接带隙半导体具有更慢的双分子电子–空穴复合，同时保持高吸收系数。根据当前材料，这种能带结构包含较低能量的间接跃迁，以及能量高出几个 k B T 的直接跃迁。</p>
+<p>🔗 <a href="https://doi.org/10.1038/s41586-026-11223-x">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/nw8nv7uc3qutxei025kajya09">http://localhost:3300/items/nw8nv7uc3qutxei025kajya09</a></p>]]></description>
+      <category>电池与新能源材料</category>
+      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">nw8nv7uc3qutxei025kajya09</guid>
+      <author>noreply@localhost (Nature)</author>
     </item>
     <item>
       <title><![CDATA[显式高斯点过程滤波器在事件恢复时出现指数级过冲]]></title>
@@ -535,28 +557,6 @@
       <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">d0f0o8zmi3sz67ghp5d0beolk</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[自回归线性阈值函数的 VC 维度分析]]></title>
-      <link>http://localhost:3300/items/cgakxu226ik634srl5umye7r6</link>
-      <description><![CDATA[<p>该研究证明，当 T≥d² 时，确定性自回归线性阈值函数的 VC 维度为 Θ(d²)，弥合了此前的二次量级差距。在这一设置中，同一线性阈值函数读取最近 d 个比特并生成下一比特，最终返回第 T 步产生的比特；单步预测类的 VC 维度为 d，一般 T 下的计数上界为 O(d²)。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.36970">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/cgakxu226ik634srl5umye7r6">http://localhost:3300/items/cgakxu226ik634srl5umye7r6</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">cgakxu226ik634srl5umye7r6</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[通用技能优化器真的有益于智能体任务吗？BiPA 以二部图归因重审技能优化]]></title>
-      <link>http://localhost:3300/items/c1wug0znjomwmmihn94hr87uq</link>
-      <description><![CDATA[<p>BiPA 研究报告，技能优化后的智能体成功表现与手写初始技能接近，平均仅高 0.1 分，却读取约多 16% 的输入 token。根据当前材料，BiPA 对与初始技能完全相同的候选重放优化器的接受规则，以测量筛选本身产生的表观收益，并用轮次与所读取文本构成的二部图追踪额外输入成本。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.37201">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/c1wug0znjomwmmihn94hr87uq">http://localhost:3300/items/c1wug0znjomwmmihn94hr87uq</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">c1wug0znjomwmmihn94hr87uq</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
 </rss>
