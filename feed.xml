@@ -20,6 +20,28 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[CoP 析氢研究揭示工作状态下表面动态如何主导全 pH 活性与稳定性]]></title>
+      <link>http://localhost:3300/items/uysnfbcsg2g6v0lpjxenx8ng0</link>
+      <description><![CDATA[<p>该研究报告，磷化钴（CoP）在工作状态下的电位依赖性表面吸附物主导其跨 pH 析氢活性，并通过抑制元素浸出维持稳定性。根据当前材料，作者结合 2,282 条实验观测的数据挖掘、表面 Pourbaix 图、从头算分子动力学（AIMD）和微观动力学建模分析表面构型。</p>
+<p>🔗 <a href="https://doi.org/10.1021/jacs.6c17411">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/uysnfbcsg2g6v0lpjxenx8ng0">http://localhost:3300/items/uysnfbcsg2g6v0lpjxenx8ng0</a></p>]]></description>
+      <category>电池与新能源材料</category>
+      <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">uysnfbcsg2g6v0lpjxenx8ng0</guid>
+      <author>noreply@localhost (Journal of the American Chemical Society)</author>
+    </item>
+    <item>
+      <title><![CDATA[OmniSpectra：面向通用光谱表征学习的统一基础模型]]></title>
+      <link>http://localhost:3300/items/stcbs3t763k6hi0bjqwc8uw9h</link>
+      <description><![CDATA[<p>OmniSpectra 研究提出以波长为原生坐标的光谱基础模型，旨在缓解跨仪器表征学习中的坐标失配与破坏性重采样问题。根据当前材料，该模型采用连续坐标掩码自编码器，将物理坐标映射到对数基底，使宇宙学红移造成的乘性缩放变为加性平移，并在连续旋转位置嵌入的相对 token 距离中抵消。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2601.15351">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/stcbs3t763k6hi0bjqwc8uw9h">http://localhost:3300/items/stcbs3t763k6hi0bjqwc8uw9h</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">stcbs3t763k6hi0bjqwc8uw9h</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[Falcon：面向真实声学场景的高效流式视听目标说话人提取方法]]></title>
       <link>http://localhost:3300/items/q0wmih09q5obg7snh6v5l3487</link>
       <description><![CDATA[<p>研究提出因果视听目标说话人提取方法 Falcon，并提供面向真实声学场景的评测基准 RealSSA。根据当前材料，Falcon 在单次编码器—解码器处理中完成多尺度时频分离，训练时采用编码器空间的说话人对比损失，作者称其可抑制近场泄漏、跨骨干迁移且不增加推理成本。</p>
@@ -534,28 +556,6 @@
       <category>算法</category>
       <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">fj7ecls861f9smcpybcjic3hj</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[双边匹配市场中的低成本公平性编辑何时安全？研究提出部署前筛查方法]]></title>
-      <link>http://localhost:3300/items/fbuafmt708f0clw4b0l0ptr1w</link>
-      <description><![CDATA[<p>该研究提出双边匹配市场中的推理时公平性编辑及部署前筛查方法，无需重新训练编码器即可降低受保护属性的影响。根据当前材料，方法采用闭式线性投影，在编辑前后均保持纵向排序的条件下推导平均福利变化界，并将纵向排序检验与福利变化扫描结合，返回 PASS、KILL 或 OUT-OF-SCOPE；精确层级要求所有机会均按申请者吸引力排序，分级层级允许近似纵向排序。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.36649">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/fbuafmt708f0clw4b0l0ptr1w">http://localhost:3300/items/fbuafmt708f0clw4b0l0ptr1w</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">fbuafmt708f0clw4b0l0ptr1w</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[ResCom：面向大语言模型量化的激活残差补偿]]></title>
-      <link>http://localhost:3300/items/eyerhruha6gwfr3ihpekgxlgh</link>
-      <description><![CDATA[<p>ResCom 研究提出利用激活舍入残差进行低秩补偿，以缓解大语言模型低比特权重与激活量化造成的层输出误差。基于摘要，该方法通过输出感知校准选择有助于输出重建的残差方向，并以闭式解计算补偿，无需梯度训练或修改已校准权重。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.35955">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/eyerhruha6gwfr3ihpekgxlgh">http://localhost:3300/items/eyerhruha6gwfr3ihpekgxlgh</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">eyerhruha6gwfr3ihpekgxlgh</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
