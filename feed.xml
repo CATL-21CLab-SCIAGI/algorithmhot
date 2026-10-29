@@ -42,6 +42,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[CausGround：以因果交互知识支持自适应具身规划]]></title>
+      <link>http://localhost:3300/items/rt5u9skov22vxwatn506k95tr</link>
+      <description><![CDATA[<p>CausGround 提出非参数化因果交互落地框架，将交互经验转化为可复用的动作因果知识，支持无需参数更新的具身规划。根据当前材料，该方法以对象属性和对象间关系表示世界状态，将动作前提与效果关联到当前观测，通过前提的反向推理和效果的正向推理选择动作并规划多步任务。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.29702">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/rt5u9skov22vxwatn506k95tr">http://localhost:3300/items/rt5u9skov22vxwatn506k95tr</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">rt5u9skov22vxwatn506k95tr</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[Falcon：面向真实声学场景的高效流式视听目标说话人提取方法]]></title>
       <link>http://localhost:3300/items/q0wmih09q5obg7snh6v5l3487</link>
       <description><![CDATA[<p>研究提出因果视听目标说话人提取方法 Falcon，并提供面向真实声学场景的评测基准 RealSSA。根据当前材料，Falcon 在单次编码器—解码器处理中完成多尺度时频分离，训练时采用编码器空间的说话人对比损失，作者称其可抑制近场泄漏、跨骨干迁移且不增加推理成本。</p>
@@ -546,17 +557,6 @@
       <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">fp9xj4bb8jwabhbz7iqn43lag</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[GNN 引导路网缩减，用于集中式城市交通路径规划]]></title>
-      <link>http://localhost:3300/items/fj7ecls861f9smcpybcjic3hj</link>
-      <description><![CDATA[<p>该研究提出 GNN 引导的城市路网缩减方法，以降低集中式交通路径规划中混合整数线性规划（MILP）的计算负担。根据当前材料，GNN 利用路网和车辆流信息为各起讫点（OD）流的路段评分，将高排名路段纳入完整 OD 路径，再由求解器在缩减路网上保证可行性并确定路径。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.36981">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/fj7ecls861f9smcpybcjic3hj">http://localhost:3300/items/fj7ecls861f9smcpybcjic3hj</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">fj7ecls861f9smcpybcjic3hj</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
 </rss>
