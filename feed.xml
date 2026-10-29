@@ -9,6 +9,39 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[OmniShowcase 提出基于多视图图像的全方位主体一致视频生成方法]]></title>
+      <link>http://localhost:3300/items/zifenxzpbiam8h0u34r1six0d</link>
+      <description><![CDATA[<p>OmniShowcase 提出基于多视图参考图像的视频生成方法，作者报告其主体身份与三维一致性达到当前最佳水平，同时保持有竞争力的视频质量与运动表现。根据当前材料，该方法自动合成由主体几何驱动视角变化的训练视频，支持完整 360 度环绕，并以参考视图重建的表面法线图转台序列提供几何条件，无需与生成帧进行时间对齐。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.35684">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/zifenxzpbiam8h0u34r1six0d">http://localhost:3300/items/zifenxzpbiam8h0u34r1six0d</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">zifenxzpbiam8h0u34r1six0d</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[Falcon：面向真实声学场景的高效流式视听目标说话人提取方法]]></title>
+      <link>http://localhost:3300/items/q0wmih09q5obg7snh6v5l3487</link>
+      <description><![CDATA[<p>研究提出因果视听目标说话人提取方法 Falcon，并提供面向真实声学场景的评测基准 RealSSA。根据当前材料，Falcon 在单次编码器—解码器处理中完成多尺度时频分离，训练时采用编码器空间的说话人对比损失，作者称其可抑制近场泄漏、跨骨干迁移且不增加推理成本。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.32749">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/q0wmih09q5obg7snh6v5l3487">http://localhost:3300/items/q0wmih09q5obg7snh6v5l3487</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">q0wmih09q5obg7snh6v5l3487</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[DTCA 提出面向扩散语言模型强化学习的去噪 token 信用分配方法]]></title>
+      <link>http://localhost:3300/items/koo6bjnno5x6ewgqm3xh97gk9</link>
+      <description><![CDATA[<p>DTCA 提出面向扩散语言模型强化学习的 token 级信用分配框架，作者报告其可提升数学推理表现。根据当前材料，该方法以 token 确定后剩余掩码位置预测置信度的提升估计贡献，按词性分组，用于选择信息量较高的去噪时间步并分配学习信号，再依据策略更新引起的 token 级熵变化校准信号。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.35201">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/koo6bjnno5x6ewgqm3xh97gk9">http://localhost:3300/items/koo6bjnno5x6ewgqm3xh97gk9</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">koo6bjnno5x6ewgqm3xh97gk9</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[Prospector 研究提出面向科学推理的紧凑图遍历策略]]></title>
       <link>http://localhost:3300/items/zr5ow00oyiu0s58yu0givpnna</link>
       <description><![CDATA[<p>Prospector 研究提出训练紧凑模型逐步遍历领域知识图谱，根据已发现的信息继续寻找证据，并生成可逐边核验的答案证据链。根据当前材料，作者报告其在半导体制造文献图谱上接近使用相同图谱与工具的最强现成模型，明显优于闭卷作答或仅使用预选图谱片段的现成模型。</p>
@@ -524,39 +557,6 @@
       <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">eyerhruha6gwfr3ihpekgxlgh</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[Graph-informed Kriging 模型提升风电场布局贝叶斯优化的样本效率]]></title>
-      <link>http://localhost:3300/items/et7lr8o4d1dle1sqye5c3nol7</link>
-      <description><![CDATA[<p>该研究提出 Graph-informed Kriging，作者报告其通过嵌入风机间气动相互作用，提高风电场布局贝叶斯优化的样本效率。根据当前材料，该方法将风电场表示为有向气动图，把低维相对坐标空间中的成对相互作用组合为全场均值，使高斯过程仅建模残差结构与不确定性。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.35975">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/et7lr8o4d1dle1sqye5c3nol7">http://localhost:3300/items/et7lr8o4d1dle1sqye5c3nol7</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">et7lr8o4d1dle1sqye5c3nol7</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[注意力的格点规范理论解释：关系仅通过 Wilson 环相互作用]]></title>
-      <link>http://localhost:3300/items/e5mgyc2xf66zs1bb5azl7ig6f</link>
-      <description><![CDATA[<p>该研究提出，在每个实体的坐标系可独立旋转的假设下，Wilson 环决定了关系图边注意力所允许的形式。根据当前材料，作者理论推导出纯规范扇区中不共享环的关系不能相互作用，三角形的规范不变评分只能是完整回路变换 H = T_{ij} T_{jk} T_{ki} 的类函数，边的等变更新则须具有 U = Ψ(H) T_{ij} 的形式，其中 Ψ 满足共轭等变性。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.37656">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/e5mgyc2xf66zs1bb5azl7ig6f">http://localhost:3300/items/e5mgyc2xf66zs1bb5azl7ig6f</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">e5mgyc2xf66zs1bb5azl7ig6f</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[PNA-PyBr 水凝胶电解质实现溴离子活化的四电子碘化学]]></title>
-      <link>http://localhost:3300/items/e434tj3yo73o4lghogst1duf8</link>
-      <description><![CDATA[<p>该研究提出 PNA-PyBr 水凝胶电解质，通过 Br⁻ 稳定碘中间体，改善水系四电子锌碘电池的高电压反应可逆性。根据当前材料，作者结合实验与计算报告，相比 F⁻ 和 Cl⁻，Br⁻ 形成的 IBr₂⁻ 键极化更弱、抗水解能力更强；电解质中的吡啶鎓阳离子将其固定为不溶于水的复合物，磺酸根基团则调节氢键网络并建立 Zn²⁺ 选择性传输通道。</p>
-<p>🔗 <a href="https://doi.org/10.1002/anie.3951000">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/e434tj3yo73o4lghogst1duf8">http://localhost:3300/items/e434tj3yo73o4lghogst1duf8</a></p>]]></description>
-      <category>电池与新能源材料</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">e434tj3yo73o4lghogst1duf8</guid>
-      <author>noreply@localhost (Angewandte Chemie International Edition)</author>
     </item>
   </channel>
 </rss>
