@@ -86,6 +86,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[Know, then Draw 提出先获取语义知识、再渲染图像的学习范式]]></title>
+      <link>http://localhost:3300/items/nxtkh5r3njfxijply6ic5rysa</link>
+      <description><![CDATA[<p>Know, then Draw 提出以自回归预训练获取语义知识、以扩散后训练实现高保真渲染的视觉生成范式。基于摘要，作者报告受控比较显示，自回归预训练改善下游渲染的学习效率和最终生成质量，而纯自回归生成质量未必与最终表现相关，语义质量更重要，因此提出仅用语言监督、无需图像解码器或重建损失的语义 tokenizer。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.37626">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/nxtkh5r3njfxijply6ic5rysa">http://localhost:3300/items/nxtkh5r3njfxijply6ic5rysa</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">nxtkh5r3njfxijply6ic5rysa</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[DTCA 提出面向扩散语言模型强化学习的去噪 token 信用分配方法]]></title>
       <link>http://localhost:3300/items/koo6bjnno5x6ewgqm3xh97gk9</link>
       <description><![CDATA[<p>DTCA 提出面向扩散语言模型强化学习的 token 级信用分配框架，作者报告其可提升数学推理表现。根据当前材料，该方法以 token 确定后剩余掩码位置预测置信度的提升估计贡献，按词性分组，用于选择信息量较高的去噪时间步并分配学习信号，再依据策略更新引起的 token 级熵变化校准信号。</p>
@@ -545,17 +556,6 @@
       <category>AI4AI</category>
       <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">ho03oxhubqyioye49t4do0n14</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[M4Bench 评估临床电子健康记录推导智能体的操作规范作用]]></title>
-      <link>http://localhost:3300/items/hhnv254w2ldpbfwhmbi1bfpyt</link>
-      <description><![CDATA[<p>M4Bench 提出覆盖 MIMIC-IV 和 eICU 的 15 类、28 项临床数据推导任务，评估编码智能体能否复现推导规则及临床人员审阅的 skills 的作用。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.37459">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/hhnv254w2ldpbfwhmbi1bfpyt">http://localhost:3300/items/hhnv254w2ldpbfwhmbi1bfpyt</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">hhnv254w2ldpbfwhmbi1bfpyt</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
