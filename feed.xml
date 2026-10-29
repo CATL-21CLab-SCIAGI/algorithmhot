@@ -75,6 +75,28 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[LongZero 提出零外部数据的 LLM 长上下文推理增强方法]]></title>
+      <link>http://localhost:3300/items/kci1yvq1djf63rf3zpolut4u4</link>
+      <description><![CDATA[<p>LongZero 提出让 LLM 自行生成任务并通过强化学习增强长上下文推理的方法，无需外部数据。根据当前材料，该方法先生成紧凑的结构化问题、答案及支持证据，再将证据扩展为长篇多文档上下文，结合自生成的多跳推理与多轮检索任务，使用 GRPO 训练。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.30132">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/kci1yvq1djf63rf3zpolut4u4">http://localhost:3300/items/kci1yvq1djf63rf3zpolut4u4</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">kci1yvq1djf63rf3zpolut4u4</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[RealCLI：面向 CLI 智能体的人机协作统一评测]]></title>
+      <link>http://localhost:3300/items/fo277a3ua29joq12o55u60fa1</link>
+      <description><![CDATA[<p>RealCLI 研究提出配对基准，将真实 CLI 任务的执行效果与人机协作质量纳入统一评测。根据当前材料，其协作框架包含 5 个维度、22 个子维度和 51 个交互场景模板；REALCLI-EXEC 预先提供完整任务要求，REALCLI-COLLAB 则由脚本化用户逐步提供信息、纠正、约束修订和授权决策。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.22507">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/fo277a3ua29joq12o55u60fa1">http://localhost:3300/items/fo277a3ua29joq12o55u60fa1</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">fo277a3ua29joq12o55u60fa1</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[Prospector 研究提出面向科学推理的紧凑图遍历策略]]></title>
       <link>http://localhost:3300/items/zr5ow00oyiu0s58yu0givpnna</link>
       <description><![CDATA[<p>Prospector 研究提出训练紧凑模型逐步遍历领域知识图谱，根据已发现的信息继续寻找证据，并生成可逐边核验的答案证据链。根据当前材料，作者报告其在半导体制造文献图谱上接近使用相同图谱与工具的最强现成模型，明显优于闭卷作答或仅使用预选图谱片段的现成模型。</p>
@@ -534,28 +556,6 @@
       <category>算法</category>
       <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">gx1h1zu8jemwx2wsesk027p7t</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[Rollback：通过世界模型中的经验回溯改进机器人策略]]></title>
-      <link>http://localhost:3300/items/gfodp7deemucy5nb7switk96w</link>
-      <description><![CDATA[<p>Rollback研究提出在世界模型中回溯关键决策点、探索替代动作并比较结果，以改进机器人策略。根据当前材料，该方法将反事实结果转化为细粒度的动作级监督，无需单独学习价值模型，并结合分布式世界模型搜索与异步真实机器人执行，通过轻量LoRA流程用真实状态转移修正模型动力学。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.36068">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/gfodp7deemucy5nb7switk96w">http://localhost:3300/items/gfodp7deemucy5nb7switk96w</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">gfodp7deemucy5nb7switk96w</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[RSI Arena 研究探索以人类反馈引导智能体递归自我改进]]></title>
-      <link>http://localhost:3300/items/fp9xj4bb8jwabhbz7iqn43lag</link>
-      <description><![CDATA[<p>RSI Arena 研究报告，十个前沿模型作为训练智能体均训练出了可用助手，第二阶段有八个模型的风格校正相对评分提升。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.33624">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/fp9xj4bb8jwabhbz7iqn43lag">http://localhost:3300/items/fp9xj4bb8jwabhbz7iqn43lag</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">fp9xj4bb8jwabhbz7iqn43lag</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
