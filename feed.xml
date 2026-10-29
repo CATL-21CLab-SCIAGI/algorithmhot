@@ -9,6 +9,17 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[MXenes 研究通过数据驱动发现材料并实现快速直接合成]]></title>
+      <link>http://localhost:3300/items/uhd9y8vnpf7bq0kg5ax88ck3e</link>
+      <description><![CDATA[<p>该研究通过机器学习辅助数据库挖掘发现 MXene 候选材料，并报告快速直接合成多层 MXenes 的实验结果。根据当前材料，筛选识别出 33 种此前已合成但未被认定为 MXene 的候选材料，作者据此采用无需持续外部加热、数分钟内完成的自蔓延高温方法，合成了七种多层 MXenes，并称该方法可规模化。</p>
+<p>🔗 <a href="https://doi.org/10.1126/science.aeh5957">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/uhd9y8vnpf7bq0kg5ax88ck3e">http://localhost:3300/items/uhd9y8vnpf7bq0kg5ax88ck3e</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Thu, 29 Oct 2026 19:25:34 GMT</pubDate>
+      <guid isPermaLink="false">uhd9y8vnpf7bq0kg5ax88ck3e</guid>
+      <author>noreply@localhost (Science)</author>
+    </item>
+    <item>
       <title><![CDATA[OmniShowcase 提出基于多视图图像的全方位主体一致视频生成方法]]></title>
       <link>http://localhost:3300/items/zifenxzpbiam8h0u34r1six0d</link>
       <description><![CDATA[<p>OmniShowcase 提出基于多视图参考图像的视频生成方法，作者报告其主体身份与三维一致性达到当前最佳水平，同时保持有竞争力的视频质量与运动表现。根据当前材料，该方法自动合成由主体几何驱动视角变化的训练视频，支持完整 360 度环绕，并以参考视图重建的表面法线图转台序列提供几何条件，无需与生成帧进行时间对齐。</p>
@@ -546,17 +557,6 @@
       <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">hh9vq9y31bbc82w2a3au24ax4</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[ChronoReplay 研究指出流式空间智能不能只依赖一种答案接口]]></title>
-      <link>http://localhost:3300/items/gx1h1zu8jemwx2wsesk027p7t</link>
-      <description><![CDATA[<p>ChronoReplay 研究提出按时间顺序重放异构空间监督，以缓解空间 VLM 在单一答案接口上提升、向其他接口迁移不足甚至退化的接口锁定现象。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.34283">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/gx1h1zu8jemwx2wsesk027p7t">http://localhost:3300/items/gx1h1zu8jemwx2wsesk027p7t</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">gx1h1zu8jemwx2wsesk027p7t</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
 </rss>
