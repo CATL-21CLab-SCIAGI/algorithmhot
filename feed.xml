@@ -75,6 +75,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[指令容量：语言模型在可控负载下的行为与退化]]></title>
+      <link>http://localhost:3300/items/opycyb8d5v3k3qujcc7rxnlku</link>
+      <description><![CDATA[<p>研究提出带不确定性的指令容量指标，用模型达到给定正确替换比例时可承载的规则数衡量指令遵循能力。根据当前材料，方法在无语义文本中设置相互独立的单 token 词语替换规则，以可计算参考答案判定每次替换，并统计文本长度、词语位置、替换密度、规则数量和规则编号的影响。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.36095">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/opycyb8d5v3k3qujcc7rxnlku">http://localhost:3300/items/opycyb8d5v3k3qujcc7rxnlku</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">opycyb8d5v3k3qujcc7rxnlku</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[DTCA 提出面向扩散语言模型强化学习的去噪 token 信用分配方法]]></title>
       <link>http://localhost:3300/items/koo6bjnno5x6ewgqm3xh97gk9</link>
       <description><![CDATA[<p>DTCA 提出面向扩散语言模型强化学习的 token 级信用分配框架，作者报告其可提升数学推理表现。根据当前材料，该方法以 token 确定后剩余掩码位置预测置信度的提升估计贡献，按词性分组，用于选择信息量较高的去噪时间步并分配学习信号，再依据策略更新引起的 token 级熵变化校准信号。</p>
@@ -545,17 +556,6 @@
       <category>AI4AI</category>
       <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">hhnv254w2ldpbfwhmbi1bfpyt</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[清点绷带：如何衡量 AI 节省的时间]]></title>
-      <link>http://localhost:3300/items/hh9vq9y31bbc82w2a3au24ax4</link>
-      <description><![CDATA[<p>Solomon Shalom Lijo 的研究提出，衡量 AI 节省的时间应同时计入额外遗漏缺陷，而不能只看计时结果。根据当前材料，作者定义了节省时间、额外遗漏缺陷及盈亏平衡缺陷成本，并用检查模型分析检查投入与过度信任的代价。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.35942">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/hh9vq9y31bbc82w2a3au24ax4">http://localhost:3300/items/hh9vq9y31bbc82w2a3au24ax4</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">hh9vq9y31bbc82w2a3au24ax4</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
