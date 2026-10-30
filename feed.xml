@@ -75,6 +75,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[WISD 提出通过弱化模型增强大型推理模型的同策略自蒸馏方法]]></title>
+      <link>http://localhost:3300/items/vahewirjnsrs8h8hbratsgkwj</link>
+      <description><![CDATA[<p>WISD 提出利用原模型与弱化模型之间的对比信号进行同策略自蒸馏，无需特权信息或外部教师。基于摘要，作者通过低比特量化或幅值剪枝构造弱模型，在多种架构和规模的数学与代码推理任务上评测，报告两种方案相对原模型的平均准确率分别提升 4.0 和 5.5 个百分点。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.38681">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/vahewirjnsrs8h8hbratsgkwj">http://localhost:3300/items/vahewirjnsrs8h8hbratsgkwj</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">vahewirjnsrs8h8hbratsgkwj</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[Soft-MTP 通过 KL 梯度恢复改进多 token 预测训练]]></title>
       <link>http://localhost:3300/items/ut1gzrsbaj67r6vvyo3fviayt</link>
       <description><![CDATA[<p>Soft-MTP 研究提出移除多 token 预测训练中的噪声梯度残差，仅保留 KL 自蒸馏信号，以改善模型学习与推测解码。根据当前材料，作者将 MTP 交叉熵梯度精确分解为 KL 自蒸馏项与低信噪比残差，并在两个分布共享线性输出头的条件下，通过直通梯度路由组合交叉熵梯度，精确恢复 KL 梯度，无需词表大小的 logit 矩阵且兼容标准融合交叉熵内核。</p>
@@ -545,17 +556,6 @@
       <category>AI4AI</category>
       <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">ls9lv90h4v6p3q1dr4ed39b10</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[DTCA 提出面向扩散语言模型强化学习的去噪 token 信用分配方法]]></title>
-      <link>http://localhost:3300/items/koo6bjnno5x6ewgqm3xh97gk9</link>
-      <description><![CDATA[<p>DTCA 提出面向扩散语言模型强化学习的 token 级信用分配框架，作者报告其可提升数学推理表现。根据当前材料，该方法以 token 确定后剩余掩码位置预测置信度的提升估计贡献，按词性分组，用于选择信息量较高的去噪时间步并分配学习信号，再依据策略更新引起的 token 级熵变化校准信号。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.35201">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/koo6bjnno5x6ewgqm3xh97gk9">http://localhost:3300/items/koo6bjnno5x6ewgqm3xh97gk9</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">koo6bjnno5x6ewgqm3xh97gk9</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
