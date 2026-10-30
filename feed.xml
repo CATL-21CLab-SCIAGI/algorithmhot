@@ -306,6 +306,17 @@
       <author>noreply@localhost (arXiv · 计算物理与材料)</author>
     </item>
     <item>
+      <title><![CDATA[研究提出将预训练自回归图像模型适配为任意顺序生成器的方法]]></title>
+      <link>http://localhost:3300/items/fk6xixxl5oawu0zvuhbpdzh4b</link>
+      <description><![CDATA[<p>该研究提出将预训练光栅扫描自回归图像模型适配为任意顺序生成器，支持图像补全、向外扩展与编辑。根据当前材料，方法结合未来感知位置嵌入与生成顺序课程，分别解决目标位置可辨识性问题和适配过程的优化稳定性问题。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.39293">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/fk6xixxl5oawu0zvuhbpdzh4b">http://localhost:3300/items/fk6xixxl5oawu0zvuhbpdzh4b</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">fk6xixxl5oawu0zvuhbpdzh4b</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[富锂氧氟化物从 QUBO 到 HUBO：第一性原理识别高阶构型能量项及其磁性状态依赖]]></title>
       <link>http://localhost:3300/items/eus37d1nkllsmlhqh4n2pxl6i</link>
       <description><![CDATA[<p>该研究报告，富锂氧氟化物存在 QUBO 无法表示的三阶非加和构型能量贡献，三次 HUBO 可降低拟合误差。根据当前材料，作者使用自旋极化 DFT，在无序岩盐正极材料 Li2MnO2F（LMOF）和 Li2Mn0.5Ti0.5O2F（LMTiOF）中构建保持组成不变、固定几何结构的能量映射，并通过直接 DFT 能量差检验三阶非加和性。</p>
@@ -545,17 +556,6 @@
       <category>算法</category>
       <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">koo6bjnno5x6ewgqm3xh97gk9</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[LongZero 提出零外部数据的 LLM 长上下文推理增强方法]]></title>
-      <link>http://localhost:3300/items/kci1yvq1djf63rf3zpolut4u4</link>
-      <description><![CDATA[<p>LongZero 提出让 LLM 自行生成任务并通过强化学习增强长上下文推理的方法，无需外部数据。根据当前材料，该方法先生成紧凑的结构化问题、答案及支持证据，再将证据扩展为长篇多文档上下文，结合自生成的多跳推理与多轮检索任务，使用 GRPO 训练。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.30132">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/kci1yvq1djf63rf3zpolut4u4">http://localhost:3300/items/kci1yvq1djf63rf3zpolut4u4</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">kci1yvq1djf63rf3zpolut4u4</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
