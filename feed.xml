@@ -185,6 +185,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[EasyProver 扩展 Lean 定理证明，面向真实代码验证]]></title>
+      <link>http://localhost:3300/items/ngfneh3gt62gpg3mo3zyqv2qn</link>
+      <description><![CDATA[<p>研究提出 Lean 证明系统 EasyProver，以及将竞争性编程问题转化为真实实现验证任务的 Aegis 流程。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.38174">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ngfneh3gt62gpg3mo3zyqv2qn">http://localhost:3300/items/ngfneh3gt62gpg3mo3zyqv2qn</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">ngfneh3gt62gpg3mo3zyqv2qn</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[Glance 提出由生成模型兼任重排序器的方法]]></title>
       <link>http://localhost:3300/items/ndlxzls5l8ei9hapegxxi17eb</link>
       <description><![CDATA[<p>Glance 提出让生成模型兼任重排序器，通过共享预填充和轻量决策适配器减少重复模型驻留与段落处理。根据当前材料，该方法从缓存上下文分支出简短相关性探测，并用指针头为候选段落评分；单个常驻 9B 骨干支持生成、通用决策和重排序，每项决策技能约增加 0.1 GiB 内存。</p>
@@ -293,6 +304,17 @@
       <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">emv4ajr6hj1y6iapurq19xjdw</guid>
       <author>noreply@localhost (arXiv · 计算物理与材料)</author>
+    </item>
+    <item>
+      <title><![CDATA[利用 JEPA 论证并改进柏拉图表征假说]]></title>
+      <link>http://localhost:3300/items/eeoskezwz7ldrzi42vdsfwr2m</link>
+      <description><![CDATA[<p>该研究提出柏拉图表征定理，主张 JEPA 的正样本视图构造是促进跨模态表征对齐的关键，而不只是扩大模型规模。根据当前材料，作者理论推导指出，当正样本对是同一场景的两个观测时，分别训练的各模态 JEPA 可学到仅相差一个旋转变换的表征，其他情况下的错位也有界；作者进一步将下一 token 预测解释为使用不良视图的 JEPA。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.39302">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/eeoskezwz7ldrzi42vdsfwr2m">http://localhost:3300/items/eeoskezwz7ldrzi42vdsfwr2m</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">eeoskezwz7ldrzi42vdsfwr2m</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
       <title><![CDATA[硫氰酸铵通过准二维钙钛矿支架促进 MAPbI3 原位结构模板化生长]]></title>
@@ -534,28 +556,6 @@
       <category>AI4S</category>
       <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">z499p4ds4m06rk05z3mis9r6n</guid>
-      <author>noreply@localhost (arXiv · 计算物理与材料)</author>
-    </item>
-    <item>
-      <title><![CDATA[提示内容有多重要？Fin-SD 在金融推理中的事后自蒸馏适用条件]]></title>
-      <link>http://localhost:3300/items/z3o6aj64v5kj3saexeve45zpx</link>
-      <description><![CDATA[<p>Fin-SD 研究报告，在金融多步推理自蒸馏中，收益可能来自监督施加的位置，而非提示的具体内容。根据当前材料，该方法让学生模型定位自身推理的首个错误并生成简短批评，在错误前截断轨迹，再将以此前缀和提示为条件的冻结学生副本，通过短轨迹上的反向 KL 蒸馏到学生模型；没有外部模型贡献梯度。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.36082">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/z3o6aj64v5kj3saexeve45zpx">http://localhost:3300/items/z3o6aj64v5kj3saexeve45zpx</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">z3o6aj64v5kj3saexeve45zpx</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[多波长光致发光无损探测钙钛矿半导体不同深度的紫外损伤]]></title>
-      <link>http://localhost:3300/items/yuhs2rt3mhxlgxgduhhfyznsa</link>
-      <description><![CDATA[<p>该研究提出多波长光致发光无损表征方法，作者报告可快速探测钙钛矿器件在工作条件下随深度变化的退化行为。根据当前材料，研究利用钙钛矿吸收对波长的依赖，以不同氧化铟锡（ITO）修饰剂下的紫外光照为测试案例，结合不同激发波长的宽场光致发光（PL）成像、时间分辨光致发光（trPL）和理想因子测量开展实验。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.36305">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/yuhs2rt3mhxlgxgduhhfyznsa">http://localhost:3300/items/yuhs2rt3mhxlgxgduhhfyznsa</a></p>]]></description>
-      <category>电池与新能源材料</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">yuhs2rt3mhxlgxgduhhfyznsa</guid>
       <author>noreply@localhost (arXiv · 计算物理与材料)</author>
     </item>
   </channel>
