@@ -9,6 +9,39 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[CoSTA：通过压缩语音 token 适配提升语音对话模型效率]]></title>
+      <link>http://localhost:3300/items/ypp0i996fupfpkjovn5v54rsr</link>
+      <description><![CDATA[<p>CoSTA 提出兼容原有组件的后置适配框架，通过解耦生成与合成的 token 空间，提高语音对话模型的推理效率。根据当前材料，该方法保留原有语音分词器与解码器，通过均值初始化的词表扩展、发音适配和对话适配引入压缩表示，并在合成前确定性地展开回原始语音 token 空间。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.21143">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ypp0i996fupfpkjovn5v54rsr">http://localhost:3300/items/ypp0i996fupfpkjovn5v54rsr</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">ypp0i996fupfpkjovn5v54rsr</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[HairDeck：从单张图像生成可动画化的风格化发片]]></title>
+      <link>http://localhost:3300/items/xlwrutoyqy0zap00w56gcnnsl</link>
+      <description><![CDATA[<p>HairDeck 研究提出从单张图像生成风格化发片及其驱动弹簧骨骼链，得到可导出至下游格式的动画资产。方法将每张发片表示为一个 token，用集合扩散 Transformer 联合去噪所有发片，而非自回归生成长控制点序列。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.40599">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/xlwrutoyqy0zap00w56gcnnsl">http://localhost:3300/items/xlwrutoyqy0zap00w56gcnnsl</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">xlwrutoyqy0zap00w56gcnnsl</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[Intrinsic Distribution Matching 提出以显式矩约束改进文生图蒸馏]]></title>
+      <link>http://localhost:3300/items/ulfemc09ze45t69nje8w572cd</link>
+      <description><![CDATA[<p>Intrinsic Distribution Matching（IDM）研究提出在分布匹配蒸馏中加入显式矩约束，以改善单步和少步文生图的提示细节还原。根据当前材料，该方法将反向 KL 场分解为高斯矩分量与非高斯残差，保留完整 DMD 修正，并使用生成器的指数移动平均（EMA）副本匹配特征均值和逐坐标标准差，无需外部特征编码器。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.39633">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ulfemc09ze45t69nje8w572cd">http://localhost:3300/items/ulfemc09ze45t69nje8w572cd</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">ulfemc09ze45t69nje8w572cd</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[WebAnything：从真实网页构建可扩展的智能体环境]]></title>
       <link>http://localhost:3300/items/u1898kdovjydbqbrtiiflkf7r</link>
       <description><![CDATA[<p>WebAnything 研究提出从真实 URL 自动重建可复用 Web 环境的框架，在初始设置与授权后无需逐站人工实现或修复。</p>
@@ -17,6 +50,39 @@
       <category>AI4AI</category>
       <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">u1898kdovjydbqbrtiiflkf7r</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[LOWN 提出基于一致性认证的视觉路由，让扩散视觉语言模型按需处理图像]]></title>
+      <link>http://localhost:3300/items/twwavn6w3qt07juimzs4wiwdr</link>
+      <description><![CDATA[<p>LOWN 研究提出按需处理图像的解码方法，作者报告其在十个基准上保留 LLaDA-V 99.6% 的得分，平均仅使用 35.3% 的解码 FLOPs。该方法先在不输入图像时预测被掩码的 token，仅在预测与上一次图像条件预测不一致时处理图像，并根据通过一致性认证的 token 数量决定当前步骤解除多少掩码，无需训练或调节阈值。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.36671">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/twwavn6w3qt07juimzs4wiwdr">http://localhost:3300/items/twwavn6w3qt07juimzs4wiwdr</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">twwavn6w3qt07juimzs4wiwdr</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[A-RSI 提出自适应任务刷新方法，用于零数据多模态自我改进]]></title>
+      <link>http://localhost:3300/items/pk3nq797dfkxoahyr4crhw1co</link>
+      <description><![CDATA[<p>A-RSI 研究提出零数据多模态自我改进方法，根据训练信号衰减刷新任务池，并使新任务答案可独立核查。根据当前材料，该方法监测训练日志中的奖励变化与准确率，不参考验证集或测试集分数；由模型编写的静态程序库生成多模态问题及参考答案，训练不使用外部样例或人工编写的答案标签。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.38568">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/pk3nq797dfkxoahyr4crhw1co">http://localhost:3300/items/pk3nq797dfkxoahyr4crhw1co</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">pk3nq797dfkxoahyr4crhw1co</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[多模态大语言模型检索头研究：跨模态共享机制与定向优化]]></title>
+      <link>http://localhost:3300/items/o7sjhxos79n79edef27n4x3p0</link>
+      <description><![CDATA[<p>该研究报告，多模态大语言模型的检索头在音视频输入中仍保持稀疏且跨模态共享，并可作为提升文档检索的优化目标。根据当前材料，作者构造答案分别通过语音或屏幕呈现的配对输入，在固定证据内容的条件下比较18个语言、视觉语言及全模态模型检查点，发现全模态模型大体保留骨干模型的检索头。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.32411">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/o7sjhxos79n79edef27n4x3p0">http://localhost:3300/items/o7sjhxos79n79edef27n4x3p0</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">o7sjhxos79n79edef27n4x3p0</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
@@ -31,6 +97,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[Glance 提出由生成模型兼任重排序器的方法]]></title>
+      <link>http://localhost:3300/items/ndlxzls5l8ei9hapegxxi17eb</link>
+      <description><![CDATA[<p>Glance 提出让生成模型兼任重排序器，通过共享预填充和轻量决策适配器减少重复模型驻留与段落处理。根据当前材料，该方法从缓存上下文分支出简短相关性探测，并用指针头为候选段落评分；单个常驻 9B 骨干支持生成、通用决策和重排序，每项决策技能约增加 0.1 GiB 内存。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.40454">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ndlxzls5l8ei9hapegxxi17eb">http://localhost:3300/items/ndlxzls5l8ei9hapegxxi17eb</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">ndlxzls5l8ei9hapegxxi17eb</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[IntReal 提出面向多模态交错生成的真实世界数据集与评测基准]]></title>
       <link>http://localhost:3300/items/kv0y6iaq57bak87hnxb20enp0</link>
       <description><![CDATA[<p>IntReal 研究提出真实世界数据集与评测套件，用于训练和细粒度诊断文本与图像交错生成能力。根据当前材料，IntReal-100K 覆盖四大类别，IntReal Evaluation Suite 使用专门的专家模型评估七个互补维度。</p>
@@ -39,6 +116,39 @@
       <category>AI4AI</category>
       <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">kv0y6iaq57bak87hnxb20enp0</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[学习率调度可能缺乏原则：权重归一化训练中的有效学习率调度]]></title>
+      <link>http://localhost:3300/items/jnzjnk04xqaokxhvzenrblo75</link>
+      <description><![CDATA[<p>该研究提出有效学习率（ELR）应成为调度目标，并报告权重归一化（WN）训练的收益主要来自 ELR 轨迹，而非归一化本身。根据当前材料，匹配 ELR 轨迹后，WN 与权重衰减（WD）的训练损失动态大体趋于一致；据此提出的 AIR（Affine Inverse-square-Root decay）结合理论推导的 1/t 衰减与仿射调整，在有限训练周期内满足指定的峰值和终点学习率。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.40362">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/jnzjnk04xqaokxhvzenrblo75">http://localhost:3300/items/jnzjnk04xqaokxhvzenrblo75</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">jnzjnk04xqaokxhvzenrblo75</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[Co-Design Bench 提出面向智能体模型的多模态协作编码评测]]></title>
+      <link>http://localhost:3300/items/j0c3rlqjd22qf4xutit269mrn</link>
+      <description><![CDATA[<p>Co-Design Bench 提出无需标准参考答案的协作编码基准，用于评估智能体将真实用户多模态需求转化为可运行应用修改的能力。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.35138">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/j0c3rlqjd22qf4xutit269mrn">http://localhost:3300/items/j0c3rlqjd22qf4xutit269mrn</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">j0c3rlqjd22qf4xutit269mrn</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[研究将基准视为难度上的经验测度，并提出 BenchFill 修补覆盖缺口]]></title>
+      <link>http://localhost:3300/items/i4qc6wwt1a7mn15solciucjk4</link>
+      <description><![CDATA[<p>该研究将基准视为难度上的经验测度，提出诊断指标与 BenchFill 算法，用于识别并缓解评测中的难度覆盖问题。根据当前材料，研究形式化了基准与目标难度分布不匹配、难度轴上存在覆盖缺口两类失效模式，并为两个诊断指标提供严格的理论保证。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.29927">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/i4qc6wwt1a7mn15solciucjk4">http://localhost:3300/items/i4qc6wwt1a7mn15solciucjk4</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">i4qc6wwt1a7mn15solciucjk4</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
@@ -447,116 +557,6 @@
       <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">nw8nv7uc3qutxei025kajya09</guid>
       <author>noreply@localhost (Nature)</author>
-    </item>
-    <item>
-      <title><![CDATA[显式高斯点过程滤波器在事件恢复时出现指数级过冲]]></title>
-      <link>http://localhost:3300/items/n1nhwr2u3fz9la5m83evrt06o</link>
-      <description><![CDATA[<p>该研究报告，长时间无事件后恢复事件时，显式高斯点过程滤波器的首次更新会随静默时长指数级放大。基于摘要，作者给出该更新的精确分布与可计算的过冲判别指标，区分放大指数达到 1 的分箱宽度与预测超过恢复后真实速率的更大分箱宽度，并推导显式单步评分滤波器及隐式后验众数滤波器的状态方差二阶静默展开，其对数修正符号相反。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.35958">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/n1nhwr2u3fz9la5m83evrt06o">http://localhost:3300/items/n1nhwr2u3fz9la5m83evrt06o</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">n1nhwr2u3fz9la5m83evrt06o</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[LLM 智能体应选择何种推理强度？推理投入的经济性分析]]></title>
-      <link>http://localhost:3300/items/mwh0imv5n55mxpifoxugki0o6</link>
-      <description><![CDATA[<p>一项关于 LLM 智能体推理投入的研究报告，提高推理强度虽可能提升总体准确率，却不保证单任务表现更好。根据当前材料，作者在覆盖单次调用推理与长程智能体任务的四个基准上，比较了专有模型和开放权重模型的不同推理强度，发现高强度经常在低强度已解决的任务上失败。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.34491">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/mwh0imv5n55mxpifoxugki0o6">http://localhost:3300/items/mwh0imv5n55mxpifoxugki0o6</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">mwh0imv5n55mxpifoxugki0o6</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[DPO 的稀疏性研究：NTK 区域中的权重解耦]]></title>
-      <link>http://localhost:3300/items/m8c73z96de9t1prpm83r9xnmd</link>
-      <description><![CDATA[<p>Sasaki 与 Sato 的研究提出，DPO 在神经正切核（NTK）线性化条件下具有隐式最大间隔偏置，可解释其参数更新的双重稀疏性。根据当前材料，理论将更新方向表述为稀疏梯度特征向量的稀疏线性组合，分别来自偏好与非偏好回答的梯度抵消及支持向量，并给出支持样本对数量的界限及其与有利于模型合并的权重解耦之间的联系。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.37085">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/m8c73z96de9t1prpm83r9xnmd">http://localhost:3300/items/m8c73z96de9t1prpm83r9xnmd</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">m8c73z96de9t1prpm83r9xnmd</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[Mamba-2 状态压缩研究提出平衡状态子空间方法]]></title>
-      <link>http://localhost:3300/items/m2kptgohp6e6zrt5j1p12dxvc</link>
-      <description><![CDATA[<p>该研究提出面向 Mamba-2 的训练后状态压缩方法，将压缩目标从单个状态坐标转向写入与读取相关的子空间。根据当前材料，方法利用完整的可控性与可观测性 Gramian 实现平衡截断，并通过 Mamba-2 的标量恒等转移精确应用旋转；HARP 根据 Hankel 谱为各层分配秩，同时保护检索敏感层。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.36617">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/m2kptgohp6e6zrt5j1p12dxvc">http://localhost:3300/items/m2kptgohp6e6zrt5j1p12dxvc</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">m2kptgohp6e6zrt5j1p12dxvc</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[物理引导流匹配框架用于全球总电子含量提前一天预测]]></title>
-      <link>http://localhost:3300/items/lqhqs5ynlzvra0gwr8whtn9in</link>
-      <description><![CDATA[<p>该研究提出物理引导的流匹配生成式 AI 框架，用于全球总电子含量（TEC）的提前一天预测。模型将偏微分方程（PDE）描述的电离层动力学引入样本变换过程，并按位置自适应调整物理动力学与数据统计规律的相对贡献。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.37159">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/lqhqs5ynlzvra0gwr8whtn9in">http://localhost:3300/items/lqhqs5ynlzvra0gwr8whtn9in</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">lqhqs5ynlzvra0gwr8whtn9in</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[OSMA-Bench 评测家庭机器人导航对障碍物类型的安全适应]]></title>
-      <link>http://localhost:3300/items/lbs86yernqcbup642l4m63ln6</link>
-      <description><![CDATA[<p>研究提出 OSMA-Bench，作者评测发现，VLM 与视觉语言动作（VLA）策略均未能稳定地根据障碍物的安全相关性调整运动，即使加入显式安全提示也如此。该基准使用空间布局匹配、仅障碍物类型不同的场景，并提出语义敏感性指数（SSI），衡量避障间距及随距离变化的速度、平滑性是否符合障碍物的谨慎程度排序。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.34674">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/lbs86yernqcbup642l4m63ln6">http://localhost:3300/items/lbs86yernqcbup642l4m63ln6</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">lbs86yernqcbup642l4m63ln6</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[面向高能量锂金属电池的非氟化醚溶剂化团簇工程]]></title>
-      <link>http://localhost:3300/items/kp9ps1j0h9s9h18veiqp0y9ke</link>
-      <description><![CDATA[<p>该研究提出主客体协同电解液 HGSE，通过调节非氟化醚溶剂的分子间作用，优化高能量锂金属电池的溶剂化结构与电极界面。根据当前材料，长链多齿醚与单齿醚之间的弱 Hδ+–Oδ− 相互作用调节配位能力和团簇尺寸，形成接触离子对主导的结构；作者报告其提升离子电导率、促进阴离子分解并抑制电极副反应，形成富含 LiF 的界面层并减少正极开裂。</p>
-<p>🔗 <a href="https://doi.org/10.1021/jacs.6c16390">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/kp9ps1j0h9s9h18veiqp0y9ke">http://localhost:3300/items/kp9ps1j0h9s9h18veiqp0y9ke</a></p>]]></description>
-      <category>电池与新能源材料</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">kp9ps1j0h9s9h18veiqp0y9ke</guid>
-      <author>noreply@localhost (Journal of the American Chemical Society)</author>
-    </item>
-    <item>
-      <title><![CDATA[SPOT 通过提交顺序预测增强扩散语言模型的推测解码]]></title>
-      <link>http://localhost:3300/items/jvjmoq7rfwuxkplhuw7de74gw</link>
-      <description><![CDATA[<p>SPOT 研究提出通过预测位置提交顺序加速扩散语言模型的推测解码，作者报告其在 SDAR-8B 上最多将目标模型调用次数降低 6.8 倍、吞吐量提升至标准解码的 3.4 倍。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.22543">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/jvjmoq7rfwuxkplhuw7de74gw">http://localhost:3300/items/jvjmoq7rfwuxkplhuw7de74gw</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">jvjmoq7rfwuxkplhuw7de74gw</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[HiLo-RD：面向掩码扩散语言模型的跨预算自蒸馏]]></title>
-      <link>http://localhost:3300/items/jsm2tm4z6p6p34i6clzzvrtvh</link>
-      <description><![CDATA[<p>HiLo-RD 提出跨预算自蒸馏方法，作者报告其可提升掩码扩散语言模型在有限生成预算下的准确率并缩短回答。根据当前材料，该方法将大窗口教师状态与裁剪的小窗口视图配对，在已提交位置匹配隐藏表示，无需外部教师即可指导 token 预测与提交顺序。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.36901">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/jsm2tm4z6p6p34i6clzzvrtvh">http://localhost:3300/items/jsm2tm4z6p6p34i6clzzvrtvh</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">jsm2tm4z6p6p34i6clzzvrtvh</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[LongChang 探索 LLM 能否通过自由探索发现隐藏物理规律]]></title>
-      <link>http://localhost:3300/items/jnhktpemp2yz8wpdsat8wf59p</link>
-      <description><![CDATA[<p>研究提出 LongChang 自动化框架，用物理规律被改变的模拟世界评估 LLM 能否在没有研究任务或规律提示时自主发现规律。模型通过操纵物体、构建工具探索自己的问题，其他 LLM 智能体生成和审查场景、审查工具设计，并依据改变后的规律及探索记录评估报告的正确性和实验支持；探索记录还用于推动场景演化，使整个循环无需人工干预。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.37649">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/jnhktpemp2yz8wpdsat8wf59p">http://localhost:3300/items/jnhktpemp2yz8wpdsat8wf59p</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">jnhktpemp2yz8wpdsat8wf59p</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
 </rss>
