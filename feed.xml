@@ -9,6 +9,39 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[WebAnything：从真实网页构建可扩展的智能体环境]]></title>
+      <link>http://localhost:3300/items/u1898kdovjydbqbrtiiflkf7r</link>
+      <description><![CDATA[<p>WebAnything 研究提出从真实 URL 自动重建可复用 Web 环境的框架，在初始设置与授权后无需逐站人工实现或修复。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.37786">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/u1898kdovjydbqbrtiiflkf7r">http://localhost:3300/items/u1898kdovjydbqbrtiiflkf7r</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">u1898kdovjydbqbrtiiflkf7r</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[WeVisCut 研究提出用单一智能体完成从旁白到长视频的制作]]></title>
+      <link>http://localhost:3300/items/o59scak35equyq6v24nu0ntj0</link>
+      <description><![CDATA[<p>WeVisCut 研究提出从旁白脚本生成长视频的系统，用单一 9B 策略协调制作决策并处理执行失败。根据当前材料，其智能体框架维护共享制作状态，让工具反馈指导后续决策与修复；四阶段数据流程结合编辑过程逆向恢复与验证重放，从 3,750 个成片中生成超过 130K 条训练样本。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.38352">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/o59scak35equyq6v24nu0ntj0">http://localhost:3300/items/o59scak35equyq6v24nu0ntj0</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">o59scak35equyq6v24nu0ntj0</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[IntReal 提出面向多模态交错生成的真实世界数据集与评测基准]]></title>
+      <link>http://localhost:3300/items/kv0y6iaq57bak87hnxb20enp0</link>
+      <description><![CDATA[<p>IntReal 研究提出真实世界数据集与评测套件，用于训练和细粒度诊断文本与图像交错生成能力。根据当前材料，IntReal-100K 覆盖四大类别，IntReal Evaluation Suite 使用专门的专家模型评估七个互补维度。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.38425">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/kv0y6iaq57bak87hnxb20enp0">http://localhost:3300/items/kv0y6iaq57bak87hnxb20enp0</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">kv0y6iaq57bak87hnxb20enp0</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[MXenes 研究通过数据驱动发现材料并实现快速直接合成]]></title>
       <link>http://localhost:3300/items/uhd9y8vnpf7bq0kg5ax88ck3e</link>
       <description><![CDATA[<p>该研究通过机器学习辅助数据库挖掘发现 MXene 候选材料，并报告快速直接合成多层 MXenes 的实验结果。根据当前材料，筛选识别出 33 种此前已合成但未被认定为 MXene 的候选材料，作者据此采用无需持续外部加热、数分钟内完成的自蔓延高温方法，合成了七种多层 MXenes，并称该方法可规模化。</p>
@@ -524,39 +557,6 @@
       <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">jnhktpemp2yz8wpdsat8wf59p</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[研究报告基础模型可识别提示式分类器漏检的隐藏意图]]></title>
-      <link>http://localhost:3300/items/jc9ylaihlu3vzsb4bog5biehe</link>
-      <description><![CDATA[<p>Oz Amram 提出人格提示头似然评估（PHLE），利用基础预训练模型在适当提示头下对输出的似然，识别提示式分类器漏检的隐蔽信号。作者报告，该方法可区分受“你喜欢猫头鹰”与“你喜欢鹰”提示的模型生成的数字序列，也可区分具有秘密伤害用户意图、且已过滤明显不对齐内容的模型回答与无系统提示的模型回答；两种设置中，提示式分类器（包括生成模型本身）的表现均接近随机。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.36202">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/jc9ylaihlu3vzsb4bog5biehe">http://localhost:3300/items/jc9ylaihlu3vzsb4bog5biehe</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">jc9ylaihlu3vzsb4bog5biehe</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[LatentLieODE 从时序观测中发现动力系统的李对称性与第一积分]]></title>
-      <link>http://localhost:3300/items/j3qmx4qngpq27pic2k5ah9pis</link>
-      <description><![CDATA[<p>LatentLieODE 研究提出从视频等时序观测中学习动力学，并发现其线性李对称性与第一积分的神经 ODE 方法。该方法用自编码器构建低维、去相关的潜在坐标，通过可微李括号残差联合拟合线性无穷小生成元与潜在 ODE，再训练第三个网络生成第一积分。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.35967">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/j3qmx4qngpq27pic2k5ah9pis">http://localhost:3300/items/j3qmx4qngpq27pic2k5ah9pis</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">j3qmx4qngpq27pic2k5ah9pis</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[AHEAD：面向大规模线性规划的自适应神经加速方法]]></title>
-      <link>http://localhost:3300/items/ifrqg5z8yg3eyi5oozjz4a6ys</link>
-      <description><![CDATA[<p>AHEAD 研究提出自适应神经加速方法，在保留一阶线性规划求解器更新规则的同时预测步长，以降低端到端求解时间。根据当前材料，其共享权重预测器读取紧凑的求解器统计量，调整原始与对偶步长，并通过学习到的交接策略按实例和目标精度决定热启动迭代次数，随后由求解器按自身终止条件完成求解。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.36321">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ifrqg5z8yg3eyi5oozjz4a6ys">http://localhost:3300/items/ifrqg5z8yg3eyi5oozjz4a6ys</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">ifrqg5z8yg3eyi5oozjz4a6ys</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
 </rss>
