@@ -185,6 +185,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[公共模型仓库中的失效量化 LLM 文件及其检测方法]]></title>
+      <link>http://localhost:3300/items/nnm24ijfm7q3vqhm68t4k0r5u</link>
+      <description><![CDATA[<p>该研究报告，官方 Ollama 库中受测的 305 个代码能力 GGUF 标签里，7 个标签（2.3%）在 164 道 HumanEval+ 任务中最多完成 6 道。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2609.05881">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/nnm24ijfm7q3vqhm68t4k0r5u">http://localhost:3300/items/nnm24ijfm7q3vqhm68t4k0r5u</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">nnm24ijfm7q3vqhm68t4k0r5u</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[EasyProver 扩展 Lean 定理证明，面向真实代码验证]]></title>
       <link>http://localhost:3300/items/ngfneh3gt62gpg3mo3zyqv2qn</link>
       <description><![CDATA[<p>研究提出 Lean 证明系统 EasyProver，以及将竞争性编程问题转化为真实实现验证任务的 Aegis 流程。</p>
@@ -218,6 +229,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[ABF-Bench：面向智能体区块链取证的可验证基准]]></title>
+      <link>http://localhost:3300/items/kz6eae9oort9ufxv6c8a176gz</link>
+      <description><![CDATA[<p>ABF-Bench 提出可验证的智能体区块链取证基准，要求每条资金流动判断引用智能体已检索的账本记录。根据当前材料，任务源于真实洗钱活动，覆盖多跳转账、DeFi 兑换和跨链等场景，并以保守规则在记录无法确定后续流向时停止追踪，生成参考图。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.23656">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/kz6eae9oort9ufxv6c8a176gz">http://localhost:3300/items/kz6eae9oort9ufxv6c8a176gz</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">kz6eae9oort9ufxv6c8a176gz</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[IntReal 提出面向多模态交错生成的真实世界数据集与评测基准]]></title>
       <link>http://localhost:3300/items/kv0y6iaq57bak87hnxb20enp0</link>
       <description><![CDATA[<p>IntReal 研究提出真实世界数据集与评测套件，用于训练和细粒度诊断文本与图像交错生成能力。根据当前材料，IntReal-100K 覆盖四大类别，IntReal Evaluation Suite 使用专门的专家模型评估七个互补维度。</p>
@@ -227,6 +249,17 @@
       <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">kv0y6iaq57bak87hnxb20enp0</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[分层机器学习揭示纳米颗粒催化中的动态位点异质性]]></title>
+      <link>http://localhost:3300/items/kjev5y1vvsl7wgkopip4j9o7d</link>
+      <description><![CDATA[<p>该研究提出分层机器学习方法，以相近计算成本预测能量与反应能垒，并通过模拟研究纳米颗粒催化位点的动态异质性。作者将方法用于973 K下、尺寸最大为5 nm的Pt纳米颗粒上的丙烷脱氢，报告丙烷C–H断裂能垒分布为0.5–1.3 eV，并存在少量高活性或低活性位点。</p>
+<p>🔗 <a href="https://doi.org/10.1021/jacs.6c12929">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/kjev5y1vvsl7wgkopip4j9o7d">http://localhost:3300/items/kjev5y1vvsl7wgkopip4j9o7d</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">kjev5y1vvsl7wgkopip4j9o7d</guid>
+      <author>noreply@localhost (Journal of the American Chemical Society)</author>
     </item>
     <item>
       <title><![CDATA[学习率调度可能缺乏原则：权重归一化训练中的有效学习率调度]]></title>
@@ -524,39 +557,6 @@
       <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">fo277a3ua29joq12o55u60fa1</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[Prospector 研究提出面向科学推理的紧凑图遍历策略]]></title>
-      <link>http://localhost:3300/items/zr5ow00oyiu0s58yu0givpnna</link>
-      <description><![CDATA[<p>Prospector 研究提出训练紧凑模型逐步遍历领域知识图谱，根据已发现的信息继续寻找证据，并生成可逐边核验的答案证据链。根据当前材料，作者报告其在半导体制造文献图谱上接近使用相同图谱与工具的最强现成模型，明显优于闭卷作答或仅使用预选图谱片段的现成模型。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.37121">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/zr5ow00oyiu0s58yu0givpnna">http://localhost:3300/items/zr5ow00oyiu0s58yu0givpnna</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">zr5ow00oyiu0s58yu0givpnna</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[富锂正极的阴离子氧化还原空穴位于何处？开壳层投影嵌入从 DFT 环境到量子求解器的可靠性研究]]></title>
-      <link>http://localhost:3300/items/zo40j7e8nysi0i41nurt2fi90</link>
-      <description><![CDATA[<p>该研究报告，富锂正极嵌入计算中空穴分布的不确定性主要来自电子态控制与几何一致性，而非求解器选择。根据当前材料，作者开发了自旋非限制投影嵌入方法，并对脱锂 Li(2-x)MnO3 点电荷团簇开展 DMRG-in-DFT 计算，改变环境泛函的精确交换比例（0-100%）、几何、活性区域及磁性参考等设置。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.36659">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/zo40j7e8nysi0i41nurt2fi90">http://localhost:3300/items/zo40j7e8nysi0i41nurt2fi90</a></p>]]></description>
-      <category>电池与新能源材料</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">zo40j7e8nysi0i41nurt2fi90</guid>
-      <author>noreply@localhost (arXiv · 计算物理与材料)</author>
-    </item>
-    <item>
-      <title><![CDATA[PIE 机器学习框架结合现实约束设计可持续合金]]></title>
-      <link>http://localhost:3300/items/z499p4ds4m06rk05z3mis9r6n</link>
-      <description><![CDATA[<p>研究提出物理信息集成学习框架 PIE，将结构与性能关系、加工路线和可持续性标准结合，用于现实约束下的合金设计。根据当前材料，作者在 Mg 合金上验证该方法，使用基准数据集训练模型，并探索成分与微结构，构建包含数百万种候选合金的数字库。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.35946">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/z499p4ds4m06rk05z3mis9r6n">http://localhost:3300/items/z499p4ds4m06rk05z3mis9r6n</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">z499p4ds4m06rk05z3mis9r6n</guid>
-      <author>noreply@localhost (arXiv · 计算物理与材料)</author>
     </item>
   </channel>
 </rss>
