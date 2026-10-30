@@ -42,6 +42,17 @@
       <author>noreply@localhost (Journal of the American Chemical Society)</author>
     </item>
     <item>
+      <title><![CDATA[LOB-Impact Benchmark：生成式限价订单簿模型中的市场冲击涌现]]></title>
+      <link>http://localhost:3300/items/uswcyzwkrj41ls74d6sctxjah</link>
+      <description><![CDATA[<p>LOB-Impact Benchmark 研究报告，仅以 next-token 预测训练的神经限价订单簿（LOB）生成模型也会涌现市场冲击。根据当前材料，作者向覆盖五只 NASDAQ 股票的五个自回归模型注入执行式大额拆分订单，在自由生成、订单注入和执行后窗口三个阶段评估响应，并用盲对照区分模型学到的响应与订单簿自身机制。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.27100">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/uswcyzwkrj41ls74d6sctxjah">http://localhost:3300/items/uswcyzwkrj41ls74d6sctxjah</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">uswcyzwkrj41ls74d6sctxjah</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[OmniSpectra：面向通用光谱表征学习的统一基础模型]]></title>
       <link>http://localhost:3300/items/stcbs3t763k6hi0bjqwc8uw9h</link>
       <description><![CDATA[<p>OmniSpectra 研究提出以波长为原生坐标的光谱基础模型，旨在缓解跨仪器表征学习中的坐标失配与破坏性重采样问题。根据当前材料，该模型采用连续坐标掩码自编码器，将物理坐标映射到对数基底，使宇宙学红移造成的乘性缩放变为加性平移，并在连续旋转位置嵌入的相对 token 距离中抵消。</p>
@@ -94,6 +105,17 @@
       <category>算法</category>
       <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">nxtkh5r3njfxijply6ic5rysa</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[PersonaCUABench：评测计算机操作智能体服务不同用户画像的能力]]></title>
+      <link>http://localhost:3300/items/ls9lv90h4v6p3q1dr4ed39b10</link>
+      <description><![CDATA[<p>PersonaCUABench 研究提出固定任务、仅改变提问者的评测基准，用于考察计算机操作智能体是否满足不同用户的要求与约束。根据当前材料，基准包含 11 个领域的 74 项任务，由扮演四组共 44 种用户画像的智能体改写指令并回答问题，被评测智能体只能看到对话，无法看到用户画像或原始指令。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.22990">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ls9lv90h4v6p3q1dr4ed39b10">http://localhost:3300/items/ls9lv90h4v6p3q1dr4ed39b10</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">ls9lv90h4v6p3q1dr4ed39b10</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
@@ -534,28 +556,6 @@
       <category>算法</category>
       <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">ifrqg5z8yg3eyi5oozjz4a6ys</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[MuonGS 研究提出放宽权重范数控制的 LLM 预训练优化器]]></title>
-      <link>http://localhost:3300/items/idljmxgopxggf98xhnxvvqp5y</link>
-      <description><![CDATA[<p>MuonGS 研究提出通过 Gram–Schmidt（GS）投影移除 Muon 更新的径向分量，无需固定权重范数，并报告长训练下验证困惑度低于 MuonH。根据当前材料，研究以累积有效学习率 C_T=∑_{t&lt;T}η_t/‖W_t‖_F 分析训练轨迹，指出原始 Muon 的累积可能仅呈对数增长，而 MuonW 和 MuonH 在所述条件下保证至少线性增长。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.37647">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/idljmxgopxggf98xhnxvvqp5y">http://localhost:3300/items/idljmxgopxggf98xhnxvvqp5y</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">idljmxgopxggf98xhnxvvqp5y</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[智能体接口的决策几何：训练策略暗含运行框架偏好]]></title>
-      <link>http://localhost:3300/items/ho03oxhubqyioye49t4do0n14</link>
-      <description><![CDATA[<p>该研究提出，训练后的智能体策略携带运行框架的偏好，用固定模型比较框架会混淆框架本身的收益上限与策略失配。根据当前材料，作者在 KL 正则化控制下推导出最优策略的对数优势比可恢复框架对动作的相对偏好，并将部署收益分解为框架上限减去策略失配，训练只改变后者，更换框架则改变两者。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.37255">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ho03oxhubqyioye49t4do0n14">http://localhost:3300/items/ho03oxhubqyioye49t4do0n14</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">ho03oxhubqyioye49t4do0n14</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
