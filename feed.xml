@@ -405,6 +405,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[能力相同、行为不同：语言智能体 MCP 与 CLI 接口的受控研究]]></title>
+      <link>http://localhost:3300/items/c2rzt6m7f66htmqc9pqwiq409</link>
+      <description><![CDATA[<p>该研究报告，在可执行能力匹配时，MCP 与 CLI 的接口表示仍会改变语言智能体的任务表现、交互成本和错误恢复行为。根据当前材料，作者提出 MICA，从共享语义动作契约生成两种接口，并通过同一运行时执行解码后的动作，在六个模型和三个交互环境中开展比较。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.34298">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/c2rzt6m7f66htmqc9pqwiq409">http://localhost:3300/items/c2rzt6m7f66htmqc9pqwiq409</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">c2rzt6m7f66htmqc9pqwiq409</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[ML-COHP 利用通用原子间势的潜在空间预测键描述符]]></title>
       <link>http://localhost:3300/items/b49ry01e7yoip4t81lt5rqesf</link>
       <description><![CDATA[<p>ML-COHP 研究提出利用冻结的 MACE 基础模型描述符预测积分晶体轨道哈密顿布居（ICOHP），以减少键强度分析所需的 DFT 与 LOBSTER 计算。</p>
@@ -545,17 +556,6 @@
       <category>AI4AI</category>
       <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">kci1yvq1djf63rf3zpolut4u4</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[RealCLI：面向 CLI 智能体的人机协作统一评测]]></title>
-      <link>http://localhost:3300/items/fo277a3ua29joq12o55u60fa1</link>
-      <description><![CDATA[<p>RealCLI 研究提出配对基准，将真实 CLI 任务的执行效果与人机协作质量纳入统一评测。根据当前材料，其协作框架包含 5 个维度、22 个子维度和 51 个交互场景模板；REALCLI-EXEC 预先提供完整任务要求，REALCLI-COLLAB 则由脚本化用户逐步提供信息、纠正、约束修订和授权决策。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.22507">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/fo277a3ua29joq12o55u60fa1">http://localhost:3300/items/fo277a3ua29joq12o55u60fa1</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">fo277a3ua29joq12o55u60fa1</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
