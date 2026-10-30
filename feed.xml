@@ -262,6 +262,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[机器学习引导电解液设计，实现−40 °C下超过350 Wh/kg的稳定锂金属软包电池]]></title>
+      <link>http://localhost:3300/items/kurvz81rns8rq9zdhu4uebvrn</link>
+      <description><![CDATA[<p>该研究报告，机器学习引导的电解液设计使5.8 Ah锂金属软包电池在−40 °C下达到365.5 Wh kg–1，循环50次的容量保持率为99.8%。</p>
+<p>🔗 <a href="https://doi.org/10.1021/jacs.6c16293">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/kurvz81rns8rq9zdhu4uebvrn">http://localhost:3300/items/kurvz81rns8rq9zdhu4uebvrn</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">kurvz81rns8rq9zdhu4uebvrn</guid>
+      <author>noreply@localhost (Journal of the American Chemical Society)</author>
+    </item>
+    <item>
       <title><![CDATA[分层机器学习揭示纳米颗粒催化中的动态位点异质性]]></title>
       <link>http://localhost:3300/items/kjev5y1vvsl7wgkopip4j9o7d</link>
       <description><![CDATA[<p>该研究提出分层机器学习方法，以相近计算成本预测能量与反应能垒，并通过模拟研究纳米颗粒催化位点的动态异质性。作者将方法用于973 K下、尺寸最大为5 nm的Pt纳米颗粒上的丙烷脱氢，报告丙烷C–H断裂能垒分布为0.5–1.3 eV，并存在少量高活性或低活性位点。</p>
@@ -545,17 +556,6 @@
       <category>算法</category>
       <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">nxtkh5r3njfxijply6ic5rysa</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[PersonaCUABench：评测计算机操作智能体服务不同用户画像的能力]]></title>
-      <link>http://localhost:3300/items/ls9lv90h4v6p3q1dr4ed39b10</link>
-      <description><![CDATA[<p>PersonaCUABench 研究提出固定任务、仅改变提问者的评测基准，用于考察计算机操作智能体是否满足不同用户的要求与约束。根据当前材料，基准包含 11 个领域的 74 项任务，由扮演四组共 44 种用户画像的智能体改写指令并回答问题，被评测智能体只能看到对话，无法看到用户画像或原始指令。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.22990">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ls9lv90h4v6p3q1dr4ed39b10">http://localhost:3300/items/ls9lv90h4v6p3q1dr4ed39b10</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">ls9lv90h4v6p3q1dr4ed39b10</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
