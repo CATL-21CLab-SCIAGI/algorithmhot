@@ -9,6 +9,17 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[大语言模型强化学习中训练与推理不匹配的起源与演化]]></title>
+      <link>http://localhost:3300/items/xobnbhyslkgsoo355v8l5xmq8</link>
+      <description><![CDATA[<p>该研究提出将大语言模型强化学习的训练与推理不匹配拆分为数值差异和策略滞后，并据此设计差异—滞后校正方法 DLC。根据当前材料，研究在采样器权重下评估训练器，将每个采样 token 的误差精确拆分为两部分；数值差异近似恒定，而策略滞后会通过训练更新形成放大偏差的反馈循环。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.40945">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/xobnbhyslkgsoo355v8l5xmq8">http://localhost:3300/items/xobnbhyslkgsoo355v8l5xmq8</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">xobnbhyslkgsoo355v8l5xmq8</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[WorldBridge：连接视频与动作，提升世界动作模型的任务泛化]]></title>
       <link>http://localhost:3300/items/kfaxjnbycwu608j13l5jepzny</link>
       <description><![CDATA[<p>WorldBridge 研究提出连接视频与动作的世界动作模型，并报告扩大视频覆盖与少量动作监督可共同提升机器人跨任务泛化。根据当前材料，在 RoboTwin 2.0 上，仅使用分布内视频与动作监督时，分布外任务成功率为 25.07%；加入这些任务的视频但不提供动作标签后升至 55.90%，再为每项任务加入一个带动作标签的示范后升至 70.70%。</p>
@@ -17,6 +28,39 @@
       <category>算法</category>
       <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">kfaxjnbycwu608j13l5jepzny</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[RoboArchitect：借助持久记忆自动设计机器人智能体]]></title>
+      <link>http://localhost:3300/items/jn7lsbz7w8dmhmhskxxipeges</link>
+      <description><![CDATA[<p>RoboArchitect 研究提出自动优化机器人智能体控制框架，在不更新模型权重的情况下提升冻结策略的操作成功率。根据当前材料，编码模型观察机器人执行轨迹、诊断失败并迭代修改框架，在一组执行回合上优化后，于留出场景和任务上评估。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.42141">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/jn7lsbz7w8dmhmhskxxipeges">http://localhost:3300/items/jn7lsbz7w8dmhmhskxxipeges</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">jn7lsbz7w8dmhmhskxxipeges</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[CausalWAM：学习世界动作模型中动作的成因]]></title>
+      <link>http://localhost:3300/items/ffegka1ysdjlta8111sz6cx50</link>
+      <description><![CDATA[<p>CausalWAM 研究提出 CWAM，通过稀疏约束将生成动作所需的潜在成因与预测整个场景所需的变量分离。根据当前材料，作者给出理论证明：在稀疏约束下，生成动作的潜变量仅是动作相关潜变量的可逆函数，真实结构可识别至变量排列；该结论不要求充分的时间依赖或对未观测机制演化的假设，也允许动作相关变量与其余变量统计相关。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.42096">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ffegka1ysdjlta8111sz6cx50">http://localhost:3300/items/ffegka1ysdjlta8111sz6cx50</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">ffegka1ysdjlta8111sz6cx50</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[CaPtain 提出代码即策略机器人智能体的后训练流程]]></title>
+      <link>http://localhost:3300/items/byp0ci42i0ooo2sl4h6ohuhpq</link>
+      <description><![CDATA[<p>CaPtain 研究提出面向代码即策略（CaP）机器人智能体的后训练流程，作者报告 CaPtain-4B 在留出 LIBERO 任务上的成功率经 SFT 达到 55.4%，经多轮 RL 达到 73.8%。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.40799">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/byp0ci42i0ooo2sl4h6ohuhpq">http://localhost:3300/items/byp0ci42i0ooo2sl4h6ohuhpq</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">byp0ci42i0ooo2sl4h6ohuhpq</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
@@ -512,50 +556,6 @@
       <category>AI4AI</category>
       <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">uswcyzwkrj41ls74d6sctxjah</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[OmniSpectra：面向通用光谱表征学习的统一基础模型]]></title>
-      <link>http://localhost:3300/items/stcbs3t763k6hi0bjqwc8uw9h</link>
-      <description><![CDATA[<p>OmniSpectra 研究提出以波长为原生坐标的光谱基础模型，旨在缓解跨仪器表征学习中的坐标失配与破坏性重采样问题。根据当前材料，该模型采用连续坐标掩码自编码器，将物理坐标映射到对数基底，使宇宙学红移造成的乘性缩放变为加性平移，并在连续旋转位置嵌入的相对 token 距离中抵消。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2601.15351">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/stcbs3t763k6hi0bjqwc8uw9h">http://localhost:3300/items/stcbs3t763k6hi0bjqwc8uw9h</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">stcbs3t763k6hi0bjqwc8uw9h</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[CausGround：以因果交互知识支持自适应具身规划]]></title>
-      <link>http://localhost:3300/items/rt5u9skov22vxwatn506k95tr</link>
-      <description><![CDATA[<p>CausGround 提出非参数化因果交互落地框架，将交互经验转化为可复用的动作因果知识，支持无需参数更新的具身规划。根据当前材料，该方法以对象属性和对象间关系表示世界状态，将动作前提与效果关联到当前观测，通过前提的反向推理和效果的正向推理选择动作并规划多步任务。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.29702">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/rt5u9skov22vxwatn506k95tr">http://localhost:3300/items/rt5u9skov22vxwatn506k95tr</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">rt5u9skov22vxwatn506k95tr</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[Falcon：面向真实声学场景的高效流式视听目标说话人提取方法]]></title>
-      <link>http://localhost:3300/items/q0wmih09q5obg7snh6v5l3487</link>
-      <description><![CDATA[<p>研究提出因果视听目标说话人提取方法 Falcon，并提供面向真实声学场景的评测基准 RealSSA。根据当前材料，Falcon 在单次编码器—解码器处理中完成多尺度时频分离，训练时采用编码器空间的说话人对比损失，作者称其可抑制近场泄漏、跨骨干迁移且不增加推理成本。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.32749">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/q0wmih09q5obg7snh6v5l3487">http://localhost:3300/items/q0wmih09q5obg7snh6v5l3487</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">q0wmih09q5obg7snh6v5l3487</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[指令容量：语言模型在可控负载下的行为与退化]]></title>
-      <link>http://localhost:3300/items/opycyb8d5v3k3qujcc7rxnlku</link>
-      <description><![CDATA[<p>研究提出带不确定性的指令容量指标，用模型达到给定正确替换比例时可承载的规则数衡量指令遵循能力。根据当前材料，方法在无语义文本中设置相互独立的单 token 词语替换规则，以可计算参考答案判定每次替换，并统计文本长度、词语位置、替换密度、规则数量和规则编号的影响。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.36095">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/opycyb8d5v3k3qujcc7rxnlku">http://localhost:3300/items/opycyb8d5v3k3qujcc7rxnlku</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">opycyb8d5v3k3qujcc7rxnlku</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
