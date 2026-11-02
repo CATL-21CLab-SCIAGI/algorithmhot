@@ -185,17 +185,6 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
-      <title><![CDATA[No Channels Left Behind 研究解析残差门控与扩散训练加速的关联]]></title>
-      <link>http://localhost:3300/items/x1k1dzrftq9w5a94312x5ztfq</link>
-      <description><![CDATA[<p>No Channels Left Behind 研究提出，扩散 Transformer 的训练加速可能部分来自残差门控路径的重组，而不只是辅助目标塑造的特征结构。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.40914">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/x1k1dzrftq9w5a94312x5ztfq">http://localhost:3300/items/x1k1dzrftq9w5a94312x5ztfq</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">x1k1dzrftq9w5a94312x5ztfq</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
       <title><![CDATA[DAMI 提出双轴记忆初始化，改善门控线性注意力的长上下文检索]]></title>
       <link>http://localhost:3300/items/wur2v5ah7bonm1pcb5a1rxyau</link>
       <description><![CDATA[<p>DAMI 研究提出双轴记忆初始化，作者报告其在多种门控线性模型上改善了长上下文检索准确率。基于摘要，该方法在训练前联合配置 A_log 与 dt_bias，为不同头分配几何时间尺度，并在层间设置低—高—低的输入敏感度分布，利用少量激活样本校准 GDN 系列实现，不增加可训练参数。</p>
@@ -293,6 +282,17 @@
       <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">uvfnqjzsl3ismyy4ybbaar1vv</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
+    </item>
+    <item>
+      <title><![CDATA[不遗漏任何通道：通过残差门控理解扩散模型训练加速]]></title>
+      <link>http://localhost:3300/items/ul2cppc8rr77uesjulzwucaay</link>
+      <description><![CDATA[<p>该研究提出，扩散 Transformer 的训练加速部分源于残差门控路径的重组，而不只是辅助目标塑造的特征结构。根据当前材料，作者观察到 REPA 和 dispersive regularization 会显著改变 AdaLN-Zero 残差门控 α，并引入归一化参与率（nPR），发现跨 REPA 教师、投影器架构及径向目标设置，更广泛的通道参与伴随更好的生成质量。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.40914">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ul2cppc8rr77uesjulzwucaay">http://localhost:3300/items/ul2cppc8rr77uesjulzwucaay</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">ul2cppc8rr77uesjulzwucaay</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
       <title><![CDATA[StrictPRMBench：用于审计固定评分 PRM 聚合规则的可重放评测基准]]></title>
@@ -438,6 +438,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[SciGame：在真实与反事实世界中评测智能体的科学发现能力]]></title>
+      <link>http://localhost:3300/items/rml97kd29s50774co4l9kto46</link>
+      <description><![CDATA[<p>SciGame 研究提出受控科学发现基准，作者在五个前沿模型上的实验显示，精确恢复符号形式仍是主要瓶颈。根据当前材料，该基准将科学文献转为结构化科学卡片，生成任务接口相同的原始环境与量纲一致的反事实环境，并包含经典定律的 Historical 集合及模型知识截止时间之后论文构成的动态 Temporal 集合。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.37919">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/rml97kd29s50774co4l9kto46">http://localhost:3300/items/rml97kd29s50774co4l9kto46</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">rml97kd29s50774co4l9kto46</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[TalentRL 提出用于分层技能路由的策略引导强化学习框架]]></title>
       <link>http://localhost:3300/items/ra48s009mf525eag3nbgprk0g</link>
       <description><![CDATA[<p>TalentRL 研究提出策略引导的强化学习框架，通过高层策略与细粒度技能的分层路由，改善 LLM 智能体的技能选择与执行。策略模型先选择代表重复使用策略的 talent，再在相似度检索中软性优先选择关联技能；训练通过同一任务下对 talent 条件上下文进行匹配干预的 rollout 奖励对比优化路由，并用组相对优势优化下游执行。</p>
@@ -546,17 +557,6 @@
       <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">opmx6459tbi38v6yig99ov8mn</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[含能材料研究报告冲击加载可进入加速热分解之外的反应路径]]></title>
-      <link>http://localhost:3300/items/ogngrho64tr3ry8ldoblhu3f8</link>
-      <description><![CDATA[<p>研究报告，含能材料的冲击加载不仅改变热分解速率，还会改变分解过程中可进入的结构状态与后续反应路径。根据当前材料，作者开发了面向 C/H/N/O 含能材料的反应性机器学习势 EMFF-MACE，在共同势能面上模拟了 20 种材料的热分解和 10 种材料的冲击过程。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.41955">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ogngrho64tr3ry8ldoblhu3f8">http://localhost:3300/items/ogngrho64tr3ry8ldoblhu3f8</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">ogngrho64tr3ry8ldoblhu3f8</guid>
-      <author>noreply@localhost (arXiv · 计算物理与材料)</author>
     </item>
   </channel>
 </rss>
