@@ -20,6 +20,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[HALO 提出基于人类判断的主动智能体细粒度评测框架]]></title>
+      <link>http://localhost:3300/items/pyt0vxqlx6vrsjf5ixpvne3jz</link>
+      <description><![CDATA[<p>HALO 研究提出基于人类判断的主动智能体细粒度评测框架，作者报告过度主动是主要失效模式。根据当前材料，HALO-Arena 覆盖依赖、阻塞、风险和机会 4 类主动需求、10 个日常领域及 50 个个人环境，要求智能体先从结构化数据库或非结构化文档检索证据，再判断是否介入及介入范围。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.39086">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/pyt0vxqlx6vrsjf5ixpvne3jz">http://localhost:3300/items/pyt0vxqlx6vrsjf5ixpvne3jz</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">pyt0vxqlx6vrsjf5ixpvne3jz</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[WorldBridge：连接视频与动作，提升世界动作模型的任务泛化]]></title>
       <link>http://localhost:3300/items/kfaxjnbycwu608j13l5jepzny</link>
       <description><![CDATA[<p>WorldBridge 研究提出连接视频与动作的世界动作模型，并报告扩大视频覆盖与少量动作监督可共同提升机器人跨任务泛化。根据当前材料，在 RoboTwin 2.0 上，仅使用分布内视频与动作监督时，分布外任务成功率为 25.07%；加入这些任务的视频但不提供动作标签后升至 55.90%，再为每项任务加入一个带动作标签的示范后升至 70.70%。</p>
@@ -546,17 +557,6 @@
       <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">uysnfbcsg2g6v0lpjxenx8ng0</guid>
       <author>noreply@localhost (Journal of the American Chemical Society)</author>
-    </item>
-    <item>
-      <title><![CDATA[LOB-Impact Benchmark：生成式限价订单簿模型中的市场冲击涌现]]></title>
-      <link>http://localhost:3300/items/uswcyzwkrj41ls74d6sctxjah</link>
-      <description><![CDATA[<p>LOB-Impact Benchmark 研究报告，仅以 next-token 预测训练的神经限价订单簿（LOB）生成模型也会涌现市场冲击。根据当前材料，作者向覆盖五只 NASDAQ 股票的五个自回归模型注入执行式大额拆分订单，在自由生成、订单注入和执行后窗口三个阶段评估响应，并用盲对照区分模型学到的响应与订单簿自身机制。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.27100">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/uswcyzwkrj41ls74d6sctxjah">http://localhost:3300/items/uswcyzwkrj41ls74d6sctxjah</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">uswcyzwkrj41ls74d6sctxjah</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
 </rss>
