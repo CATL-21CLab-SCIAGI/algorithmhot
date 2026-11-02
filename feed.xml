@@ -9,6 +9,17 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[WorldBridge：连接视频与动作，提升世界动作模型的任务泛化]]></title>
+      <link>http://localhost:3300/items/kfaxjnbycwu608j13l5jepzny</link>
+      <description><![CDATA[<p>WorldBridge 研究提出连接视频与动作的世界动作模型，并报告扩大视频覆盖与少量动作监督可共同提升机器人跨任务泛化。根据当前材料，在 RoboTwin 2.0 上，仅使用分布内视频与动作监督时，分布外任务成功率为 25.07%；加入这些任务的视频但不提供动作标签后升至 55.90%，再为每项任务加入一个带动作标签的示范后升至 70.70%。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.40748">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/kfaxjnbycwu608j13l5jepzny">http://localhost:3300/items/kfaxjnbycwu608j13l5jepzny</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">kfaxjnbycwu608j13l5jepzny</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[CoSTA：通过压缩语音 token 适配提升语音对话模型效率]]></title>
       <link>http://localhost:3300/items/ypp0i996fupfpkjovn5v54rsr</link>
       <description><![CDATA[<p>CoSTA 提出兼容原有组件的后置适配框架，通过解耦生成与合成的 token 空间，提高语音对话模型的推理效率。根据当前材料，该方法保留原有语音分词器与解码器，通过均值初始化的词表扩展、发音适配和对话适配引入压缩表示，并在合成前确定性地展开回原始语音 token 空间。</p>
@@ -545,17 +556,6 @@
       <category>AI4AI</category>
       <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">opycyb8d5v3k3qujcc7rxnlku</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[Know, then Draw 提出先获取语义知识、再渲染图像的学习范式]]></title>
-      <link>http://localhost:3300/items/nxtkh5r3njfxijply6ic5rysa</link>
-      <description><![CDATA[<p>Know, then Draw 提出以自回归预训练获取语义知识、以扩散后训练实现高保真渲染的视觉生成范式。基于摘要，作者报告受控比较显示，自回归预训练改善下游渲染的学习效率和最终生成质量，而纯自回归生成质量未必与最终表现相关，语义质量更重要，因此提出仅用语言监督、无需图像解码器或重建损失的语义 tokenizer。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.37626">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/nxtkh5r3njfxijply6ic5rysa">http://localhost:3300/items/nxtkh5r3njfxijply6ic5rysa</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">nxtkh5r3njfxijply6ic5rysa</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
