@@ -42,6 +42,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[编码智能体能否在不遗忘的情况下持续演化？]]></title>
+      <link>http://localhost:3300/items/kgc5fv9odbhxpy2g3ujdn090g</link>
+      <description><![CDATA[<p>该研究报告，编码智能体的运行框架持续自演化可能显著损害先前任务的表现。作者将三个软件工程任务数据集组织为六种演化方向，使用两种代表性框架演化方法开展实验。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.03219">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/kgc5fv9odbhxpy2g3ujdn090g">http://localhost:3300/items/kgc5fv9odbhxpy2g3ujdn090g</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">kgc5fv9odbhxpy2g3ujdn090g</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[界面阴离子活化提升水系锌离子电池耐久性]]></title>
       <link>http://localhost:3300/items/jhwjvc571ip1wnajsrg61g6gh</link>
       <description><![CDATA[<p>该研究报告，烯丙基脲添加剂可在水系锌离子电池的锌负极表面形成有机–无机杂化固体电解质界面膜（h-SEI），改善长期界面稳定性。根据当前材料，该添加剂在 ZnSO4 基电解液中构建富阴离子、贫水的近表面区域，促进电场驱动的阴离子还原转化；原位光谱分析与理论计算表明，烯丙基脲电化学活化产生的烯丙基阳离子中间体介导硫酸根逐步转化为 ZnS。</p>
@@ -86,6 +97,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[利用非对称电极溶解实现三价金属高可逆氟化，构建长寿命氟离子电池]]></title>
+      <link>http://localhost:3300/items/e6ovk9oxxyw5hd53ez81kt007</link>
+      <description><![CDATA[<p>该研究提出结合多尺度溶剂筛选与非对称电极溶解调控，实现氟离子电池中三价金属电极的高可逆、低极化氟化与脱氟。根据当前材料，作者筛选弱配位溶剂以兼顾氟化物盐解离与电解质–电极界面环境，并在正极建立固态迁移–氟化–脱氟机制以减少活性材料溶解。</p>
+<p>🔗 <a href="https://doi.org/10.1021/jacs.6c18595">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/e6ovk9oxxyw5hd53ez81kt007">http://localhost:3300/items/e6ovk9oxxyw5hd53ez81kt007</a></p>]]></description>
+      <category>电池与新能源材料</category>
+      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">e6ovk9oxxyw5hd53ez81kt007</guid>
+      <author>noreply@localhost (Journal of the American Chemical Society)</author>
+    </item>
+    <item>
       <title><![CDATA[BYOD 提出仅用 LoRA 将自回归语言模型转换为扩散语言模型的方法]]></title>
       <link>http://localhost:3300/items/d1wr96ca3z5mfqoq7gepyp8sx</link>
       <description><![CDATA[<p>BYOD 研究提出仅训练 LoRA 的自回归到扩散语言模型转换方案，在冻结全部基座参数、不做架构专属调优的条件下完成四种模型的转换。</p>
@@ -94,6 +116,28 @@
       <category>算法</category>
       <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">d1wr96ca3z5mfqoq7gepyp8sx</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[WorldFlow：通过大规模预训练联合预测视频与三维运动]]></title>
+      <link>http://localhost:3300/items/bv5eo3reck47reosxw6kqnacx</link>
+      <description><![CDATA[<p>WorldFlow 研究提出联合预测未来视频与基于查询的三维轨迹的生成式世界模型，作者报告其在三个评测集上的 ADE 和 FDE 均低于参评的其他学习方法。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.39278">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/bv5eo3reck47reosxw6kqnacx">http://localhost:3300/items/bv5eo3reck47reosxw6kqnacx</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">bv5eo3reck47reosxw6kqnacx</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[FLAMIA：面向 Blackwell 的快速且因果安全的微缩放注意力训练]]></title>
+      <link>http://localhost:3300/items/afz2zanb6balbhfwuhminpl1m</link>
+      <description><![CDATA[<p>FLAMIA 研究提出面向 NVIDIA Blackwell 的注意力内核，采用 MXFP8 和混合 NVFP4/FP8 训练路径，兼顾加速、因果安全与训练数值一致性。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.03344">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/afz2zanb6balbhfwuhminpl1m">http://localhost:3300/items/afz2zanb6balbhfwuhminpl1m</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">afz2zanb6balbhfwuhminpl1m</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
@@ -512,50 +556,6 @@
       <category>算法</category>
       <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">s135jsywriwxjvmz7bfmxxjeh</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[TVQ 提出面向大语言模型的可训练向量量化方法]]></title>
-      <link>http://localhost:3300/items/rpoxa7qm2nx39h9pq4kobe042</link>
-      <description><![CDATA[<p>TVQ 研究提出可训练向量量化方法，作者报告在 LLaMA2-70B 上实现近乎无损的 2-bit 量化，常用问答基准上的准确率仅下降 1%。根据当前材料，该方法通过直通估计和可训练潜在权重支持梯度下降及任意目标优化，并采用分块知识蒸馏平衡质量与训练效率。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.41822">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/rpoxa7qm2nx39h9pq4kobe042">http://localhost:3300/items/rpoxa7qm2nx39h9pq4kobe042</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">rpoxa7qm2nx39h9pq4kobe042</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[SciGame：在真实与反事实世界中评测智能体的科学发现能力]]></title>
-      <link>http://localhost:3300/items/rml97kd29s50774co4l9kto46</link>
-      <description><![CDATA[<p>SciGame 研究提出受控科学发现基准，作者在五个前沿模型上的实验显示，精确恢复符号形式仍是主要瓶颈。根据当前材料，该基准将科学文献转为结构化科学卡片，生成任务接口相同的原始环境与量纲一致的反事实环境，并包含经典定律的 Historical 集合及模型知识截止时间之后论文构成的动态 Temporal 集合。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.37919">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/rml97kd29s50774co4l9kto46">http://localhost:3300/items/rml97kd29s50774co4l9kto46</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">rml97kd29s50774co4l9kto46</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[TalentRL 提出用于分层技能路由的策略引导强化学习框架]]></title>
-      <link>http://localhost:3300/items/ra48s009mf525eag3nbgprk0g</link>
-      <description><![CDATA[<p>TalentRL 研究提出策略引导的强化学习框架，通过高层策略与细粒度技能的分层路由，改善 LLM 智能体的技能选择与执行。策略模型先选择代表重复使用策略的 talent，再在相似度检索中软性优先选择关联技能；训练通过同一任务下对 talent 条件上下文进行匹配干预的 rollout 奖励对比优化路由，并用组相对优势优化下游执行。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.41143">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ra48s009mf525eag3nbgprk0g">http://localhost:3300/items/ra48s009mf525eag3nbgprk0g</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">ra48s009mf525eag3nbgprk0g</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[SWIFT 通过小世界连接缓解稀疏微调中的信息孤岛]]></title>
-      <link>http://localhost:3300/items/qrajwrz3e6mhap3iqj2udrf3j</link>
-      <description><![CDATA[<p>SWIFT 研究提出受小世界连接启发的稀疏微调框架，通过跨特征组连接缓解可训练更新中的信息孤岛。基于摘要，该方法结合用于局部特征混合的块对角稀疏更新与固定、确定性的散射置换，在不增加可训练参数的情况下将混合输出路由至其他特征组。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.41665">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/qrajwrz3e6mhap3iqj2udrf3j">http://localhost:3300/items/qrajwrz3e6mhap3iqj2udrf3j</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">qrajwrz3e6mhap3iqj2udrf3j</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
