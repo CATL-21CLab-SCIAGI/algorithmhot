@@ -9,6 +9,17 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[Collaborative Intelligence Benchmark 衡量 AI 智能体作为队友的协作能力]]></title>
+      <link>http://localhost:3300/items/zy4k3los8vs3dheih5dckktx5</link>
+      <description><![CDATA[<p>研究提出 Collaborative Intelligence Benchmark，以覆盖 8 个团队协作维度的 240 项任务衡量 AI 智能体作为队友的表现。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.02633">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/zy4k3los8vs3dheih5dckktx5">http://localhost:3300/items/zy4k3los8vs3dheih5dckktx5</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">zy4k3los8vs3dheih5dckktx5</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[Library of Layers（LoL）：在运行时自适应排列 Transformer 层]]></title>
       <link>http://localhost:3300/items/w4tg6ksbyihklk0ykdr96yge5</link>
       <description><![CDATA[<p>LoL 研究提出在模型推理时动态排列 Transformer 层，以适应当前问题并控制求解策略。根据当前材料，该架构以全局 Transformer 块库的大小为单一超参数，在参数复用与稀疏计算之间调整；作者报告其文本预训练性能可与稠密、深度循环和混合专家架构竞争，但未提供具体指标与比较设置。</p>
@@ -72,6 +83,17 @@
       <category>AI4AI</category>
       <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">ecvvckclyn7m9z3ugfnt7mh03</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[BYOD 提出仅用 LoRA 将自回归语言模型转换为扩散语言模型的方法]]></title>
+      <link>http://localhost:3300/items/d1wr96ca3z5mfqoq7gepyp8sx</link>
+      <description><![CDATA[<p>BYOD 研究提出仅训练 LoRA 的自回归到扩散语言模型转换方案，在冻结全部基座参数、不做架构专属调优的条件下完成四种模型的转换。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.41574">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/d1wr96ca3z5mfqoq7gepyp8sx">http://localhost:3300/items/d1wr96ca3z5mfqoq7gepyp8sx</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">d1wr96ca3z5mfqoq7gepyp8sx</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
@@ -534,28 +556,6 @@
       <category>算法</category>
       <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">qrajwrz3e6mhap3iqj2udrf3j</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[HALO 提出基于人类判断的主动智能体细粒度评测框架]]></title>
-      <link>http://localhost:3300/items/pyt0vxqlx6vrsjf5ixpvne3jz</link>
-      <description><![CDATA[<p>HALO 研究提出基于人类判断的主动智能体细粒度评测框架，作者报告过度主动是主要失效模式。根据当前材料，HALO-Arena 覆盖依赖、阻塞、风险和机会 4 类主动需求、10 个日常领域及 50 个个人环境，要求智能体先从结构化数据库或非结构化文档检索证据，再判断是否介入及介入范围。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.39086">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/pyt0vxqlx6vrsjf5ixpvne3jz">http://localhost:3300/items/pyt0vxqlx6vrsjf5ixpvne3jz</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">pyt0vxqlx6vrsjf5ixpvne3jz</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[Muon-RT 复用教师轨迹，实现 LLM 自蒸馏中的无动量缓冲优化]]></title>
-      <link>http://localhost:3300/items/py5w7698pg6zh7bqkwd9il3x3</link>
-      <description><![CDATA[<p>Muon-RT 研究提出复用 EMA 教师与学生的参数位移，消除 LLM 自蒸馏训练中隐藏权重矩阵的独立动量缓冲。根据当前材料，该方法移除位移的径向分量并进行谱归一化，再与经过 Newton-Schulz（NS）正交化的当前梯度混合；作者在局部模型下分析其噪声平滑作用，并在明确的正则性与对齐假设下推导期望目标差距上界向残余误差水平线性收缩。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.41104">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/py5w7698pg6zh7bqkwd9il3x3">http://localhost:3300/items/py5w7698pg6zh7bqkwd9il3x3</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">py5w7698pg6zh7bqkwd9il3x3</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
