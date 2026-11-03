@@ -9,6 +9,19 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-11-03 — MAServeBench：以分层协作工作负载评测多智能体 LLM 服务系统]]></title>
+      <link>http://localhost:3300/daily/2026-11-03</link>
+      <description><![CDATA[<p>MAServeBench 将多智能体协作作为可配置的服务负载维度，用于评测 LLM 服务系统及硬件。根据当前材料，其可组合阶段描述智能体协调与上下文交换，使任务输入和工具不变时也能生成不同负载；分层语义轨迹保留实际操作与依赖关系，支持固定工作量下对合法释放约束进行可复现比较。</p>
+<p><strong>算法</strong></p>
+<ul><li><a href="http://localhost:3300/items/j0ran1drpty8wequa7awlemgu">TESD 通过教师演化改进同策略自蒸馏</a></li></ul>
+<p><strong>AI4AI</strong></p>
+<ul><li><a href="http://localhost:3300/items/ecvvckclyn7m9z3ugfnt7mh03">MAServeBench：以分层协作工作负载评测多智能体 LLM 服务系统</a></li><li><a href="http://localhost:3300/items/h0numz0lc29g38x883fyycv59">ReGap-Bench 诊断多模态推理的指代鸿沟：视觉支架能与不能修复什么</a></li></ul>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/daily/2026-11-03">http://localhost:3300/daily/2026-11-03</a></p>]]></description>
+      <pubDate>Tue, 03 Nov 2026 05:00:18 GMT</pubDate>
+      <guid isPermaLink="false">daily-2026-11-03</guid>
+      <author>noreply@localhost (AlgorithmHot · 科研热点)</author>
+    </item>
+    <item>
       <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-11-02 — WorldBridge：连接视频与动作，提升世界动作模型的任务泛化]]></title>
       <link>http://localhost:3300/daily/2026-11-02</link>
       <description><![CDATA[<p>WorldBridge 研究提出连接视频与动作的世界动作模型，并报告扩大视频覆盖与少量动作监督可共同提升机器人跨任务泛化。根据当前材料，在 RoboTwin 2.0 上，仅使用分布内视频与动作监督时，分布外任务成功率为 25.07%；加入这些任务的视频但不提供动作标签后升至 55.90%，再为每项任务加入一个带动作标签的示范后升至 70.70%。</p>

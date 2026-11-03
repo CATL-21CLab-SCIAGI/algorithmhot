@@ -9,6 +9,39 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[TESD 通过教师演化改进同策略自蒸馏]]></title>
+      <link>http://localhost:3300/items/j0ran1drpty8wequa7awlemgu</link>
+      <description><![CDATA[<p>TESD 研究提出教师演化自蒸馏，通过增强自教师能力并降低不可靠指导样本的权重，改善同策略自蒸馏（OPSD）。基于摘要，该方法让自教师生成 rollout，并按任务正确性与上下文独立性获取环境反馈，用这些奖励优化教师，同时估计指导可靠性以自适应优化学生。作者报告，在多个数据集和模型规模的实验中，TESD 持续优于代表性的 token 级与序列级方法；当前摘要未提供具体数据集、基线名称或性能数值。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.38637">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/j0ran1drpty8wequa7awlemgu">http://localhost:3300/items/j0ran1drpty8wequa7awlemgu</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">j0ran1drpty8wequa7awlemgu</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[ReGap-Bench 诊断多模态推理的指代鸿沟：视觉支架能与不能修复什么]]></title>
+      <link>http://localhost:3300/items/h0numz0lc29g38x883fyycv59</link>
+      <description><![CDATA[<p>该研究提出 ReGap-Bench，检验编号等外部视觉指代能否缓解多模态模型将语言绑定到相关视觉实体、区域或位置时的失效。基准包含五类视觉推理任务，采用配对设计，固定场景、问题与答案，仅改变指代方式。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.39419">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/h0numz0lc29g38x883fyycv59">http://localhost:3300/items/h0numz0lc29g38x883fyycv59</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">h0numz0lc29g38x883fyycv59</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[MAServeBench：以分层协作工作负载评测多智能体 LLM 服务系统]]></title>
+      <link>http://localhost:3300/items/ecvvckclyn7m9z3ugfnt7mh03</link>
+      <description><![CDATA[<p>MAServeBench 将多智能体协作作为可配置的服务负载维度，用于评测 LLM 服务系统及硬件。根据当前材料，其可组合阶段描述智能体协调与上下文交换，使任务输入和工具不变时也能生成不同负载；分层语义轨迹保留实际操作与依赖关系，支持固定工作量下对合法释放约束进行可复现比较。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.40293">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ecvvckclyn7m9z3ugfnt7mh03">http://localhost:3300/items/ecvvckclyn7m9z3ugfnt7mh03</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">ecvvckclyn7m9z3ugfnt7mh03</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[开头几个 token 为何重要：理解思维链的可控性]]></title>
       <link>http://localhost:3300/items/zvpqf8l2jjt0jaqx1mc7fmg0h</link>
       <description><![CDATA[<p>该研究将思维链（CoT）可控性受限与思考起始标签后几个 token 的熵坍缩联系起来，并报告针对初始 token 的推理时干预可改善可控性。根据当前材料，预填充即使只有一个 token 也能显著提升可控性；禁止高频开头 token 并结合上下文示例，使各模型的平均指令遵从率提高 34–41 个百分点。</p>
@@ -523,39 +556,6 @@
       <category>AI4S</category>
       <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">pfqg8i2yguspb35sznkxjfu5a</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[度量空间中 k 近邻回归的均方一致性条件与反例研究]]></title>
-      <link>http://localhost:3300/items/p98mowi7vciwg2nui0sx0khn1</link>
-      <description><![CDATA[<p>Györfi 等研究度量空间中 k 近邻回归的均方一致性，提出充分条件，并构造无界响应下均方误差发散的反例。根据当前材料，作者通过独立查询的随机均匀选取邻居的选择密度，分别刻画近似误差与条件响应方差，并在更强响应矩条件下弱化 Stone 支配条件。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.41896">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/p98mowi7vciwg2nui0sx0khn1">http://localhost:3300/items/p98mowi7vciwg2nui0sx0khn1</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">p98mowi7vciwg2nui0sx0khn1</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[Freeciv 智能体研究提出基于回放的长程奖励信号 CivTelescope]]></title>
-      <link>http://localhost:3300/items/oszj5v5nw26qss8zw6tay1s56</link>
-      <description><![CDATA[<p>该研究提出 CivTelescope 与训练方案 CivMarshmallow，用基于回放的未来结局反馈改善 Freeciv 长程智能体的奖励信号。根据当前材料，作者在八款策略游戏中发现，8-68% 的局面对里较高比分对应较差结局，并构建 CivHarness，保存游戏状态、对不同决策分支进行回放，用于训练预测两个局面未来结局优劣的 LLM 裁判 CivTelescope。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.41264">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/oszj5v5nw26qss8zw6tay1s56">http://localhost:3300/items/oszj5v5nw26qss8zw6tay1s56</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">oszj5v5nw26qss8zw6tay1s56</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[Noura 研究：个人需求能否转化为规划监督信号？]]></title>
-      <link>http://localhost:3300/items/opmx6459tbi38v6yig99ov8mn</link>
-      <description><![CDATA[<p>Noura 研究提出用可执行的个人需求规范监督 LLM 饮食规划，并从未完全成功的规划轨迹中提取训练目标。根据当前材料，这些规范结合公共临床指导与个人健康、饮食信息，执行食物匹配、份量优化、多日计划检查和修订，并提供监督目标、偏好与奖励。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.40992">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/opmx6459tbi38v6yig99ov8mn">http://localhost:3300/items/opmx6459tbi38v6yig99ov8mn</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">opmx6459tbi38v6yig99ov8mn</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
