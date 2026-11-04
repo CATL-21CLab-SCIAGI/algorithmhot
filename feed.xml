@@ -31,6 +31,28 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[自动研究智能体通过优化 MSA 组织改善蛋白质复合物结构预测]]></title>
+      <link>http://localhost:3300/items/sy36dxsvkevxfvp6n30m7i7bv</link>
+      <description><![CDATA[<p>该研究提出自动研究智能体，针对不同目标调整多序列比对（MSA）的组织方式，以改善 AlphaFold 3（AF3）的蛋白质复合物结构预测。根据当前材料，智能体将冻结的 AF3 作为黑箱实验工具，提出生物学假设，仅利用预测器提供的无标签信号迭代调整序列选择与跨链配对，包括主动不配对。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.03183">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/sy36dxsvkevxfvp6n30m7i7bv">http://localhost:3300/items/sy36dxsvkevxfvp6n30m7i7bv</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">sy36dxsvkevxfvp6n30m7i7bv</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[研究报告 Muon 使第一层 MoE 的专家负载更难均衡]]></title>
+      <link>http://localhost:3300/items/ryfwpx0kabespf74ff1gfg3kq</link>
+      <description><![CDATA[<p>研究报告，在具有 55M 和 108M 活跃参数的 MoE 模型中，Muon 使第一层专家负载更难均衡，主要影响来自网络其余部分而非路由器的优化器选择。根据当前材料，作者以层内路由偏置最大值与最小值之差衡量均衡难度；在通过较短训练调优的学习率下，Muon 在每个随机种子上都增大了第一层的偏置跨度，平均约翻倍，其他层变化较小。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.37914">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ryfwpx0kabespf74ff1gfg3kq">http://localhost:3300/items/ryfwpx0kabespf74ff1gfg3kq</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">ryfwpx0kabespf74ff1gfg3kq</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[Axion 1.0：以简化三阶段训练构建开放智能体基础模型]]></title>
       <link>http://localhost:3300/items/qlrck3m7ac1bdukxfnchhqd1a</link>
       <description><![CDATA[<p>Axion 1.0 研究提出仅用两阶段监督微调和强化学习训练开放智能体基础模型，作者报告其在若干智能体基准上可与领先商业模型竞争。根据当前材料，第一阶段依据基础模型自身的成功解题策略合成并对抗性强化问题，第二阶段基于真实数据源与确定性计算构造多样、可自动验证的工具依赖任务，随后用强化学习增强长程推理及外部工具、环境交互能力。</p>
@@ -39,6 +61,28 @@
       <category>算法</category>
       <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">qlrck3m7ac1bdukxfnchhqd1a</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[LoCo 用局部偏好学习压缩推理，学习何时继续与结束]]></title>
+      <link>http://localhost:3300/items/oodol4fz42r7w6t6t9tcs8sdd</link>
+      <description><![CDATA[<p>LoCo 研究提出局部偏好学习方法，让模型根据当前状态决定继续推理还是结束，以压缩推理长度。根据当前材料，该方法从模型自身轨迹中识别候选过度思考状态，固定对应推理前缀，重新生成更短且经过验证的后续推理，并以状态条件偏好对进行 DPO 训练。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.04814">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/oodol4fz42r7w6t6t9tcs8sdd">http://localhost:3300/items/oodol4fz42r7w6t6t9tcs8sdd</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">oodol4fz42r7w6t6t9tcs8sdd</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[GigaSpeech 3：利用弱标注数据扩展多方言阿拉伯语语音识别]]></title>
+      <link>http://localhost:3300/items/obykzhem8q131tyyecfvnscxm</link>
+      <description><![CDATA[<p>GigaSpeech 3 研究提出包含 39,000 小时、1,000 万个弱转写语音片段的语料库，覆盖阿尔及利亚、埃及、伊拉克、沙特和叙利亚阿拉伯语。研究从每种方言 60 小时人工转写出发，以偏向语音识别的自监督学习训练标注模型，再标注方言匹配的网络音频，通过数据筛选及针对沙特、叙利亚阿拉伯语的四轮 noisy-student 迭代得到最终语料。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.02476">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/obykzhem8q131tyyecfvnscxm">http://localhost:3300/items/obykzhem8q131tyyecfvnscxm</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">obykzhem8q131tyyecfvnscxm</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
@@ -512,50 +556,6 @@
       <category>AI4AI</category>
       <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">kgc5fv9odbhxpy2g3ujdn090g</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[智能体能可靠地设计治疗性抗体吗？]]></title>
-      <link>http://localhost:3300/items/jw9hfyhbtovxerqd4xhlrgu0j</link>
-      <description><![CDATA[<p>该研究评估智能体抗体设计的可靠性，报告工具与设计历史对指令遵循、序列探索和优化表现存在不同影响。研究比较提供明确分子编辑指令的任务引导设计与仅提供已评分序列的黑箱设计，并整理了10项经专家验证的亲和力改进任务，作者报告LLM评判与程序化指令遵循评估高度一致。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.00558">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/jw9hfyhbtovxerqd4xhlrgu0j">http://localhost:3300/items/jw9hfyhbtovxerqd4xhlrgu0j</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">jw9hfyhbtovxerqd4xhlrgu0j</guid>
-      <author>noreply@localhost (arXiv · 分子与定量生物学)</author>
-    </item>
-    <item>
-      <title><![CDATA[界面阴离子活化提升水系锌离子电池耐久性]]></title>
-      <link>http://localhost:3300/items/jhwjvc571ip1wnajsrg61g6gh</link>
-      <description><![CDATA[<p>该研究报告，烯丙基脲添加剂可在水系锌离子电池的锌负极表面形成有机–无机杂化固体电解质界面膜（h-SEI），改善长期界面稳定性。根据当前材料，该添加剂在 ZnSO4 基电解液中构建富阴离子、贫水的近表面区域，促进电场驱动的阴离子还原转化；原位光谱分析与理论计算表明，烯丙基脲电化学活化产生的烯丙基阳离子中间体介导硫酸根逐步转化为 ZnS。</p>
-<p>🔗 <a href="https://doi.org/10.1021/jacs.6c17339">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/jhwjvc571ip1wnajsrg61g6gh">http://localhost:3300/items/jhwjvc571ip1wnajsrg61g6gh</a></p>]]></description>
-      <category>电池与新能源材料</category>
-      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">jhwjvc571ip1wnajsrg61g6gh</guid>
-      <author>noreply@localhost (Journal of the American Chemical Society)</author>
-    </item>
-    <item>
-      <title><![CDATA[BISECT 提出用于低秩持续学习的双层谱分解方法]]></title>
-      <link>http://localhost:3300/items/jat7no478xto1b0gqi6jxvp2b</link>
-      <description><![CDATA[<p>BISECT 研究提出面向预训练 Vision Transformer 的无样本回放持续 LoRA 学习框架，将固定 rank-r 预算分为共享信息载体与新颖性补空间。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.03574">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/jat7no478xto1b0gqi6jxvp2b">http://localhost:3300/items/jat7no478xto1b0gqi6jxvp2b</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">jat7no478xto1b0gqi6jxvp2b</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[TESD 通过教师演化改进同策略自蒸馏]]></title>
-      <link>http://localhost:3300/items/j0ran1drpty8wequa7awlemgu</link>
-      <description><![CDATA[<p>TESD 研究提出教师演化自蒸馏，通过增强自教师能力并降低不可靠指导样本的权重，改善同策略自蒸馏（OPSD）。基于摘要，该方法让自教师生成 rollout，并按任务正确性与上下文独立性获取环境反馈，用这些奖励优化教师，同时估计指导可靠性以自适应优化学生。作者报告，在多个数据集和模型规模的实验中，TESD 持续优于代表性的 token 级与序列级方法；当前摘要未提供具体数据集、基线名称或性能数值。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.38637">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/j0ran1drpty8wequa7awlemgu">http://localhost:3300/items/j0ran1drpty8wequa7awlemgu</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">j0ran1drpty8wequa7awlemgu</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
