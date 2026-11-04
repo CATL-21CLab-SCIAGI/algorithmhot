@@ -9,6 +9,17 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[氟化富勒烯衍生物提升钙钛矿太阳能电池的热稳定性]]></title>
+      <link>http://localhost:3300/items/z2mcumka30jdcykpj5ijqhkg6</link>
+      <description><![CDATA[<p>该研究报告，将氟化富勒烯衍生物与 PCBM 共混可抑制电子传输层热老化时的自聚集，提升钙钛矿太阳能电池的效率与稳定性。根据当前材料，作者合成了 FPCPB 和 5FPCPB，并将聚集抑制归因于苯基与氟苯基间的 π–π 共轭、C─H···F 范德华相互作用及分子间位阻对构象的约束，同时报告了缺陷态密度降低、离子迁移受抑和能级匹配改善。</p>
+<p>🔗 <a href="https://doi.org/10.1002/anie.8260541">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/z2mcumka30jdcykpj5ijqhkg6">http://localhost:3300/items/z2mcumka30jdcykpj5ijqhkg6</a></p>]]></description>
+      <category>电池与新能源材料</category>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">z2mcumka30jdcykpj5ijqhkg6</guid>
+      <author>noreply@localhost (Angewandte Chemie International Edition)</author>
+    </item>
+    <item>
       <title><![CDATA[统一多模态模型的遗忘能否统一？跨路径概念遗忘研究]]></title>
       <link>http://localhost:3300/items/z0fqfdnwi9fzupwvope15p5ty</link>
       <description><![CDATA[<p>该研究提出 UniForget，旨在让统一多模态模型既不生成目标概念的图像，也不识别输入图像中的该概念，同时保留其他能力。根据当前材料，研究构建了覆盖 30 个目标概念和 60 个语义相关邻近概念的诊断基准 UUBench，作者实验显示，受测单路径遗忘方法及其直接组合的联合遗忘效果有限。</p>
@@ -17,6 +28,17 @@
       <category>算法</category>
       <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">z0fqfdnwi9fzupwvope15p5ty</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[每个 token 都需要自己的教师：MTA-OPSD 提出多教师自适应策略内自蒸馏]]></title>
+      <link>http://localhost:3300/items/yob3fcqkekthwax3olm4q1t0r</link>
+      <description><![CDATA[<p>MTA-OPSD 研究提出逐 token 自适应选择教师的策略内自蒸馏方法，作者报告其在 Qwen3 数学推理任务上优于现有 OPSD 方法。根据当前材料，教师干预预实验显示，同一回答中不同 token 的教师偏好存在差异，可通过多数投票和基于 KL 的选择识别偏好教师；该方法据此构建多教师候选池，在训练中为每个 token 选择教师。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.40574">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/yob3fcqkekthwax3olm4q1t0r">http://localhost:3300/items/yob3fcqkekthwax3olm4q1t0r</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">yob3fcqkekthwax3olm4q1t0r</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
@@ -119,6 +141,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[Kierston 与 KierstonBench：模拟 Allentown 城市，评估语言模型的刑事调查与监控能力]]></title>
+      <link>http://localhost:3300/items/e4wbabhzez0853nhs2aohs633</link>
+      <description><![CDATA[<p>Kierston 与 KierstonBench 研究提出城市级模拟引擎及基准，用已知模拟事件评估语言模型的刑事调查与大规模监控能力。根据当前材料，模拟覆盖宾夕法尼亚州 Allentown 约 125,000 名居民，从共同的行为时间线生成分布于不同提供方的电信、金融、行政和车牌记录；模型通过受限接口跨源调查，无法访问底层模拟。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.04785">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/e4wbabhzez0853nhs2aohs633">http://localhost:3300/items/e4wbabhzez0853nhs2aohs633</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">e4wbabhzez0853nhs2aohs633</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[Route Anything：通用 AI 系统的模型与策略路由研究]]></title>
       <link>http://localhost:3300/items/e28cx7mrwob6gywnq06i22ngi</link>
       <description><![CDATA[<p>Route Anything 提出统一的模型与策略路由研究框架，研究通用 AI 系统如何在任务质量与计算成本之间选择候选模型、工具和策略。根据当前材料，研究给出最优路由的理论分析，并刻画路由器可用信息对可达性能的影响。</p>
@@ -128,6 +161,17 @@
       <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">e28cx7mrwob6gywnq06i22ngi</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[BTTP 聚合物通过整合卟啉提高双极氧化还原可及性，实现高倍率钠基双离子储能]]></title>
+      <link>http://localhost:3300/items/cieb1niw5cqolbgwo0q3fjxr4</link>
+      <description><![CDATA[<p>该研究报告，将卟啉单元整合进富硫共轭聚合物 BTTP，可提高钠基双离子储能的理论容量利用率与倍率性能。</p>
+<p>🔗 <a href="https://doi.org/10.1002/anie.5985645">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/cieb1niw5cqolbgwo0q3fjxr4">http://localhost:3300/items/cieb1niw5cqolbgwo0q3fjxr4</a></p>]]></description>
+      <category>电池与新能源材料</category>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">cieb1niw5cqolbgwo0q3fjxr4</guid>
+      <author>noreply@localhost (Angewandte Chemie International Edition)</author>
     </item>
     <item>
       <title><![CDATA[Collaborative Intelligence Benchmark 衡量 AI 智能体作为队友的协作能力]]></title>
@@ -513,50 +557,6 @@
       <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">lxw7c1kmyxtyfi9w5ozokem5y</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[Pythia-1B 研究在十亿参数规模连接奇异学习理论与机制可解释性]]></title>
-      <link>http://localhost:3300/items/lpj0uxps7u9xcc27gbq15fq25</link>
-      <description><![CDATA[<p>该研究提出用组件参数到模型预测的映射连接奇异学习理论与机制可解释性，并在 Pythia-1B 上检验这一对应关系。根据当前材料，作者在 Dyck 括号匹配任务的全部 154 个训练检查点上，以干预识别的五阶段回路为参照，测量预测保持不变区域内全部 144 个组件的局部几何与 Fisher 谱。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.00640">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/lpj0uxps7u9xcc27gbq15fq25">http://localhost:3300/items/lpj0uxps7u9xcc27gbq15fq25</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">lpj0uxps7u9xcc27gbq15fq25</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[ReWY 通过代数重构加速 Delta-rule 注意力梯度计算]]></title>
-      <link>http://localhost:3300/items/lhbiczj9a2w9ihw10sn7s1reo</link>
-      <description><![CDATA[<p>ReWY 研究提出针对 Delta-rule 线性注意力的代数重构，在不改变架构或训练目标的前提下减少反向梯度计算。基于摘要，该方法将局部 WY 矩阵乘法从七次减至三次，并复用门控相关计算，在精确算术下保持递推与梯度不变，适用于 DeltaNet、GDN、KDA 和 GDN2。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.01940">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/lhbiczj9a2w9ihw10sn7s1reo">http://localhost:3300/items/lhbiczj9a2w9ihw10sn7s1reo</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">lhbiczj9a2w9ihw10sn7s1reo</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[多模态模型对等价光学光谱的决策是否一致？]]></title>
-      <link>http://localhost:3300/items/l5ujc7hs3e080b8rrczn10hjm</link>
-      <description><![CDATA[<p>该研究报告，多模态模型对等价光学光谱的决策并不稳定，仅改变表示形式就可使同一模型的准确率相差最多 41 个百分点。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.00428">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/l5ujc7hs3e080b8rrczn10hjm">http://localhost:3300/items/l5ujc7hs3e080b8rrczn10hjm</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">l5ujc7hs3e080b8rrczn10hjm</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[编码智能体能否在不遗忘的情况下持续演化？]]></title>
-      <link>http://localhost:3300/items/kgc5fv9odbhxpy2g3ujdn090g</link>
-      <description><![CDATA[<p>该研究报告，编码智能体的运行框架持续自演化可能显著损害先前任务的表现。作者将三个软件工程任务数据集组织为六种演化方向，使用两种代表性框架演化方法开展实验。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.03219">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/kgc5fv9odbhxpy2g3ujdn090g">http://localhost:3300/items/kgc5fv9odbhxpy2g3ujdn090g</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">kgc5fv9odbhxpy2g3ujdn090g</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
 </rss>
