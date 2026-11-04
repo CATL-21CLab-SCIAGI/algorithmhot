@@ -108,6 +108,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[BEND 2.0：评测 DNA 设计所需的模型能力]]></title>
+      <link>http://localhost:3300/items/o7ht3w184u37nn8rco5kxv3mt</link>
+      <description><![CDATA[<p>BEND 2.0 研究提出 DNA 语言模型基准，评测模型预测 DNA 变化效应及利用预测指导序列设计的能力。根据当前材料，作者在五个实验数据集构建的八项任务中报告，冻结表征上的线性读出可匹配或超过模型原生输出，并能跨实验测定与基因迁移，功能性后训练也显著提升模型能力。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.03806">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/o7ht3w184u37nn8rco5kxv3mt">http://localhost:3300/items/o7ht3w184u37nn8rco5kxv3mt</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">o7ht3w184u37nn8rco5kxv3mt</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[RoboColosseum：在真实环境中大规模评测机器人策略的物理智能]]></title>
       <link>http://localhost:3300/items/kqg8fu6vphdxwm6oyoth1qrzj</link>
       <description><![CDATA[<p>RoboColosseum 研究提出分布式机器人评测框架，作者报告不同机器人形态下的策略排名一致性较弱，直接评测排名也难以预测微调后的相对表现。</p>
@@ -545,17 +556,6 @@
       <category>算法</category>
       <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">m6s5akqake2fiq69vx47e2xre</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[THReD 基准评测：评估将电子健康记录转为 AI 可用数据集的智能体与预处理工具]]></title>
-      <link>http://localhost:3300/items/lzauirf0pm83zphjolhh2vzr4</link>
-      <description><![CDATA[<p>THReD 研究报告了将电子健康记录转为 AI 可用数据集的智能体与工具评测，部署配置下首次回答的任务完成率为 92.7%。根据当前材料，智能体提出的步骤须经用户确认才执行；评测涵盖七类共 141 项任务（100 个模板），使用按区域健康信息交换系统校准的合成表，并以输出数据检查判定成功。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.02484">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/lzauirf0pm83zphjolhh2vzr4">http://localhost:3300/items/lzauirf0pm83zphjolhh2vzr4</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">lzauirf0pm83zphjolhh2vzr4</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
