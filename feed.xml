@@ -20,6 +20,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[Switch-SWE：编码智能体在未完成任务间切换时能否保持专注？]]></title>
+      <link>http://localhost:3300/items/v5oaxm48nbxa9e6u86rd0a5xk</link>
+      <description><![CDATA[<p>Switch-SWE 研究提出任务恢复基准，作者报告 7 个编码智能体在交错处理未完成任务时，目标任务解决率平均下降 11.5 个百分点，范围为 6.0 至 15.0 个百分点。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.02017">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/v5oaxm48nbxa9e6u86rd0a5xk">http://localhost:3300/items/v5oaxm48nbxa9e6u86rd0a5xk</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">v5oaxm48nbxa9e6u86rd0a5xk</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[Axion 1.0：以简化三阶段训练构建开放智能体基础模型]]></title>
       <link>http://localhost:3300/items/qlrck3m7ac1bdukxfnchhqd1a</link>
       <description><![CDATA[<p>Axion 1.0 研究提出仅用两阶段监督微调和强化学习训练开放智能体基础模型，作者报告其在若干智能体基准上可与领先商业模型竞争。根据当前材料，第一阶段依据基础模型自身的成功解题策略合成并对抗性强化问题，第二阶段基于真实数据源与确定性计算构造多样、可自动验证的工具依赖任务，随后用强化学习增强长程推理及外部工具、环境交互能力。</p>
@@ -39,6 +50,17 @@
       <category>AI4AI</category>
       <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">kqg8fu6vphdxwm6oyoth1qrzj</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[DreamX 将视频扩散模型用于通用潜在动作学习]]></title>
+      <link>http://localhost:3300/items/ghdxfwc6zyi3xayf3a6v8vnhu</link>
+      <description><![CDATA[<p>DreamX 研究提出将预训练视频扩散模型改作通用潜在动作学习器，构建跨人类与机器人、环境和动作参数化的共享动作接口。根据当前材料，该方法从模型的时空特征中提取紧凑动作表示，将每个潜在视频帧压缩 300 倍（1,200→4 tokens），并利用生成先验分离动作动态与视觉外观。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.05377">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ghdxfwc6zyi3xayf3a6v8vnhu">http://localhost:3300/items/ghdxfwc6zyi3xayf3a6v8vnhu</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">ghdxfwc6zyi3xayf3a6v8vnhu</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
@@ -535,28 +557,6 @@
       <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">j0ran1drpty8wequa7awlemgu</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[SpecOPD 提出面向推测解码的分支并行策略内蒸馏方法]]></title>
-      <link>http://localhost:3300/items/iurhfw9qflxeonxjw51ffo9m5</link>
-      <description><![CDATA[<p>SpecOPD 提出分支并行策略内蒸馏框架，通过并行草稿采样与目标模型监督，提高推测解码的接受长度和训练吞吐量。基于摘要，该方法在参考锚点处从持续更新的草稿模型策略采样独立分支，将分支打包成提议树以共享目标前缀计算，并分别用树掩码、分支一致的索引器分组和索引状态重放适配全注意力、稀疏注意力和线性注意力，以 E2E-TV 替代目标直接优化接受长度。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.02846">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/iurhfw9qflxeonxjw51ffo9m5">http://localhost:3300/items/iurhfw9qflxeonxjw51ffo9m5</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">iurhfw9qflxeonxjw51ffo9m5</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[神经网络的标量平滑度只是 Besov 谱上的一个点]]></title>
-      <link>http://localhost:3300/items/iszqp5mwl890lxkwxnrs0tzbc</link>
-      <description><![CDATA[<p>该研究提出有限差分粗糙度谱，将 Lipschitz 敏感性与方向性 Hessian 曲率纳入跨扰动尺度的统一框架，并联系经典 Besov 理论。根据当前材料，作者的理论分析表明，更大的输出变化可能造成更小的任务损害，仅凭局部曲率也可能遗漏最易受有限扰动影响的模块。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.02037">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/iszqp5mwl890lxkwxnrs0tzbc">http://localhost:3300/items/iszqp5mwl890lxkwxnrs0tzbc</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">iszqp5mwl890lxkwxnrs0tzbc</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
 </rss>
