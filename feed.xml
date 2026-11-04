@@ -119,6 +119,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[Dory1.0-4B 研究提出弹性深度的循环 nGPT 语言模型]]></title>
+      <link>http://localhost:3300/items/hs50a2fd2l5sremacai6v5ipg</link>
+      <description><![CDATA[<p>Dory1.0-4B 研究提出具有弹性深度的 40 亿参数语言模型，通过改变共享模块的循环次数，让同一检查点适配不同推理计算预算。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.03998">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/hs50a2fd2l5sremacai6v5ipg">http://localhost:3300/items/hs50a2fd2l5sremacai6v5ipg</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">hs50a2fd2l5sremacai6v5ipg</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[DreamX 将视频扩散模型用于通用潜在动作学习]]></title>
       <link>http://localhost:3300/items/ghdxfwc6zyi3xayf3a6v8vnhu</link>
       <description><![CDATA[<p>DreamX 研究提出将预训练视频扩散模型改作通用潜在动作学习器，构建跨人类与机器人、环境和动作参数化的共享动作接口。根据当前材料，该方法从模型的时空特征中提取紧凑动作表示，将每个潜在视频帧压缩 300 倍（1,200→4 tokens），并利用生成先验分离动作动态与视觉外观。</p>
@@ -545,17 +556,6 @@
       <category>AI4AI</category>
       <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">lzauirf0pm83zphjolhh2vzr4</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[RaMMOBO 提出随机最大间隔多目标贝叶斯优化方法]]></title>
-      <link>http://localhost:3300/items/lxw7c1kmyxtyfi9w5ozokem5y</link>
-      <description><![CDATA[<p>RaMMOBO 研究提出一种多目标贝叶斯优化方法，其采集函数构成期望超体积改进（EHVI）的下界，评估成本随目标数 M 线性增长。基于摘要，该方法计算候选点超体积改进区域内最大间隔盒的体积，并对目标空间的随机重加权取平均，支持含噪观测、不同概率代理模型及基于梯度的优化。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.00312">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/lxw7c1kmyxtyfi9w5ozokem5y">http://localhost:3300/items/lxw7c1kmyxtyfi9w5ozokem5y</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">lxw7c1kmyxtyfi9w5ozokem5y</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
