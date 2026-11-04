@@ -9,6 +9,28 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[统一多模态模型的遗忘能否统一？跨路径概念遗忘研究]]></title>
+      <link>http://localhost:3300/items/z0fqfdnwi9fzupwvope15p5ty</link>
+      <description><![CDATA[<p>该研究提出 UniForget，旨在让统一多模态模型既不生成目标概念的图像，也不识别输入图像中的该概念，同时保留其他能力。根据当前材料，研究构建了覆盖 30 个目标概念和 60 个语义相关邻近概念的诊断基准 UUBench，作者实验显示，受测单路径遗忘方法及其直接组合的联合遗忘效果有限。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.04467">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/z0fqfdnwi9fzupwvope15p5ty">http://localhost:3300/items/z0fqfdnwi9fzupwvope15p5ty</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">z0fqfdnwi9fzupwvope15p5ty</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[RoboColosseum：在真实环境中大规模评测机器人策略的物理智能]]></title>
+      <link>http://localhost:3300/items/kqg8fu6vphdxwm6oyoth1qrzj</link>
+      <description><![CDATA[<p>RoboColosseum 研究提出分布式机器人评测框架，作者报告不同机器人形态下的策略排名一致性较弱，直接评测排名也难以预测微调后的相对表现。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.02497">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/kqg8fu6vphdxwm6oyoth1qrzj">http://localhost:3300/items/kqg8fu6vphdxwm6oyoth1qrzj</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">kqg8fu6vphdxwm6oyoth1qrzj</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[Collaborative Intelligence Benchmark 衡量 AI 智能体作为队友的协作能力]]></title>
       <link>http://localhost:3300/items/zy4k3los8vs3dheih5dckktx5</link>
       <description><![CDATA[<p>研究提出 Collaborative Intelligence Benchmark，以覆盖 8 个团队协作维度的 240 项任务衡量 AI 智能体作为队友的表现。</p>
@@ -534,28 +556,6 @@
       <category>算法</category>
       <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">h7bql9g4rsegwiwl10niblf2v</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[ReGap-Bench 诊断多模态推理的指代鸿沟：视觉支架能与不能修复什么]]></title>
-      <link>http://localhost:3300/items/h0numz0lc29g38x883fyycv59</link>
-      <description><![CDATA[<p>该研究提出 ReGap-Bench，检验编号等外部视觉指代能否缓解多模态模型将语言绑定到相关视觉实体、区域或位置时的失效。基准包含五类视觉推理任务，采用配对设计，固定场景、问题与答案，仅改变指代方式。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.39419">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/h0numz0lc29g38x883fyycv59">http://localhost:3300/items/h0numz0lc29g38x883fyycv59</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">h0numz0lc29g38x883fyycv59</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[ProLand 提出用于 LoRA 微调、允许非可行迭代的流形优化方法]]></title>
-      <link>http://localhost:3300/items/gu29q5c2leig0zshqm81dqoyl</link>
-      <description><![CDATA[<p>ProLand 研究提出一种无需逐步回缩的 LoRA 微调优化器，并报告其在所有受测模型与适配器秩配置中均取得比较方法中的最高平均分。基于摘要，该方法在所表示的权重增量空间中协调因子更新，结合 Muon 风格的谱方向，将目标优化与正交性恢复分离，允许暂时不可行的迭代并逐步恢复正交性。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.00236">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/gu29q5c2leig0zshqm81dqoyl">http://localhost:3300/items/gu29q5c2leig0zshqm81dqoyl</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">gu29q5c2leig0zshqm81dqoyl</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>

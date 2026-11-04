@@ -9,6 +9,19 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-11-04 — RoboColosseum：在真实环境中大规模评测机器人策略的物理智能]]></title>
+      <link>http://localhost:3300/daily/2026-11-04</link>
+      <description><![CDATA[<p>RoboColosseum 研究提出分布式机器人评测框架，作者报告不同机器人形态下的策略排名一致性较弱，直接评测排名也难以预测微调后的相对表现。</p>
+<p><strong>AI4AI</strong></p>
+<ul><li><a href="http://localhost:3300/items/kqg8fu6vphdxwm6oyoth1qrzj">RoboColosseum：在真实环境中大规模评测机器人策略的物理智能</a></li></ul>
+<p><strong>电池与新能源材料</strong></p>
+<ul><li><a href="http://localhost:3300/items/jhwjvc571ip1wnajsrg61g6gh">界面阴离子活化提升水系锌离子电池耐久性</a></li><li><a href="http://localhost:3300/items/e6ovk9oxxyw5hd53ez81kt007">利用非对称电极溶解实现三价金属高可逆氟化，构建长寿命氟离子电池</a></li></ul>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/daily/2026-11-04">http://localhost:3300/daily/2026-11-04</a></p>]]></description>
+      <pubDate>Wed, 04 Nov 2026 04:00:33 GMT</pubDate>
+      <guid isPermaLink="false">daily-2026-11-04</guid>
+      <author>noreply@localhost (AlgorithmHot · 科研热点)</author>
+    </item>
+    <item>
       <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-11-03 — MAServeBench：以分层协作工作负载评测多智能体 LLM 服务系统]]></title>
       <link>http://localhost:3300/daily/2026-11-03</link>
       <description><![CDATA[<p>MAServeBench 将多智能体协作作为可配置的服务负载维度，用于评测 LLM 服务系统及硬件。根据当前材料，其可组合阶段描述智能体协调与上下文交换，使任务输入和工具不变时也能生成不同负载；分层语义轨迹保留实际操作与依赖关系，支持固定工作量下对合法释放约束进行可复现比较。</p>
