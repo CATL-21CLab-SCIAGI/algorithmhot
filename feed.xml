@@ -64,6 +64,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[CrSBr 研究提出自旋手性驱动的体光伏效应]]></title>
+      <link>http://localhost:3300/items/spuenmyt28not4bv6csupv2p7</link>
+      <description><![CDATA[<p>该研究提出以矢量自旋手性调控 CrSBr 中时间反演偶对称的磁性体光伏效应，包括手性位移电流（CSC）和手性注入电流（CIC）。根据当前材料，作者以双层反铁磁（AFM）CrSBr 为原型进行理论研究，报告两种电流的量级可与非中心对称晶体结构或共线磁序产生的常规光伏电流相比。</p>
+<p>🔗 <a href="https://doi.org/10.1021/jacs.6c15530">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/spuenmyt28not4bv6csupv2p7">http://localhost:3300/items/spuenmyt28not4bv6csupv2p7</a></p>]]></description>
+      <category>电池与新能源材料</category>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">spuenmyt28not4bv6csupv2p7</guid>
+      <author>noreply@localhost (Journal of the American Chemical Society)</author>
+    </item>
+    <item>
       <title><![CDATA[研究报告 Muon 使第一层 MoE 的专家负载更难均衡]]></title>
       <link>http://localhost:3300/items/ryfwpx0kabespf74ff1gfg3kq</link>
       <description><![CDATA[<p>研究报告，在具有 55M 和 108M 活跃参数的 MoE 模型中，Muon 使第一层专家负载更难均衡，主要影响来自网络其余部分而非路由器的优化器选择。根据当前材料，作者以层内路由偏置最大值与最小值之差衡量均衡难度；在通过较短训练调优的学习率下，Muon 在每个随机种子上都增大了第一层的偏置跨度，平均约翻倍，其他层变化较小。</p>
@@ -545,17 +556,6 @@
       <category>算法</category>
       <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">ma4bvx4284uv2z4pbjr1wnnbe</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[上下文学习的可解动力学模型：刻画记忆与泛化的形成]]></title>
-      <link>http://localhost:3300/items/m6s5akqake2fiq69vx47e2xre</link>
-      <description><![CDATA[<p>该研究提出上下文学习的可解动力学模型，在有限训练样本下求得单层、单头线性注意力模型的网络参数动力学精确解。基于摘要，作者以经验风险最小化定义学习过程，将参数动力学与训练误差、泛化误差联系起来，刻画记忆与泛化的形成及其转变与经验风险景观曲率的关系。作者还计算了数据依赖的自由能，并报告其可较好预测学习动力学长时间极限下的训练误差与泛化误差；这些结果属于理论分析，摘要未提供独立复现信息。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.00921">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/m6s5akqake2fiq69vx47e2xre">http://localhost:3300/items/m6s5akqake2fiq69vx47e2xre</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">m6s5akqake2fiq69vx47e2xre</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
