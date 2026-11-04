@@ -42,6 +42,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[注意力可预测检索中的上下文退化：长度代价低，信息竞争代价高]]></title>
+      <link>http://localhost:3300/items/y1b3hmi4dyw2nddy0oujkbt8y</link>
+      <description><![CDATA[<p>该研究报告，语言模型检索中的上下文退化主要与信息竞争相关，而非仅由输入长度导致。作者在五个开放模型（0.5B 至 3B 参数、四个模型家族）上报告，中性填充下准确率保持在 0.97 至 1.00。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.04169">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/y1b3hmi4dyw2nddy0oujkbt8y">http://localhost:3300/items/y1b3hmi4dyw2nddy0oujkbt8y</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">y1b3hmi4dyw2nddy0oujkbt8y</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[对抗式推测推理提升长程智能体的推理能力]]></title>
       <link>http://localhost:3300/items/vzlzdsx96zdws5gc9ubvtb81s</link>
       <description><![CDATA[<p>该研究提出对抗式推测推理，通过训练草稿模型在关键决策点被拒绝，改善长程智能体的推理准确率。根据当前材料，作者测量发现验证窗口内的数值噪声会增长，思考过程中的草稿接受结果可在 30 步后改变模型输出分布，并使推理准确率向不确定方向变化。</p>
@@ -138,6 +149,17 @@
       <category>AI4S</category>
       <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">o7ht3w184u37nn8rco5kxv3mt</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[SphereFlow：通过超球面上的几何传输补全缺失模态]]></title>
+      <link>http://localhost:3300/items/l9q7cecnkxrzyecnxnh2rr539</link>
+      <description><![CDATA[<p>SphereFlow 提出将缺失模态补全转化为共享超球面上的短程几何传输，并报告了医学影像生成与下游分割实验结果。方法通过冻结的自监督编码器投影各模态，以观测模态潜变量替代高斯噪声作为流匹配起点，并用时间加权损失训练解码器，使其覆盖传输路径经过的近球面区域。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.04414">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/l9q7cecnkxrzyecnxnh2rr539">http://localhost:3300/items/l9q7cecnkxrzyecnxnh2rr539</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">l9q7cecnkxrzyecnxnh2rr539</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
@@ -534,28 +556,6 @@
       <category>AI4AI</category>
       <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">or8j9z8u6gljob1rcevlgy2s4</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[大语言模型智能体能通过观看教学视频学习吗？TAL 提出无参数更新的持续学习方法]]></title>
-      <link>http://localhost:3300/items/nkocx9ewxiu0xal0yn9a2xdra</link>
-      <description><![CDATA[<p>研究提出 Tutorial Agentic Learning（TAL），让大语言模型智能体通过教学视频持续学习，无需更新模型参数。根据当前材料，TAL 通过两阶段对抗过程挖掘基于视频的高难度问题并完善持久、结构化的 tutorialbook 记忆，推理时通过目录（TOC）树检索，将检索与模型推理而非嵌入相似度关联。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.01460">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/nkocx9ewxiu0xal0yn9a2xdra">http://localhost:3300/items/nkocx9ewxiu0xal0yn9a2xdra</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">nkocx9ewxiu0xal0yn9a2xdra</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[DynaSolver：面向动态边界四维流动自回归预测的神经算子]]></title>
-      <link>http://localhost:3300/items/mkim39kann0m7gfr764xgk3hw</link>
-      <description><![CDATA[<p>DynaSolver 研究提出面向动态边界四维流动预测的神经算子，显式利用边界演化与因果流动历史进行自回归预测。基于摘要，研究构建了覆盖不同形态与流动条件的机器人 CFD 基准 RoboCFD-4D，并通过在算子层间摊销点到 token 的投影，减少重复的点空间时空计算，同时保留准确的逐点重建。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.03595">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/mkim39kann0m7gfr764xgk3hw">http://localhost:3300/items/mkim39kann0m7gfr764xgk3hw</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">mkim39kann0m7gfr764xgk3hw</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
