@@ -20,6 +20,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[Axion 1.0：以简化三阶段训练构建开放智能体基础模型]]></title>
+      <link>http://localhost:3300/items/qlrck3m7ac1bdukxfnchhqd1a</link>
+      <description><![CDATA[<p>Axion 1.0 研究提出仅用两阶段监督微调和强化学习训练开放智能体基础模型，作者报告其在若干智能体基准上可与领先商业模型竞争。根据当前材料，第一阶段依据基础模型自身的成功解题策略合成并对抗性强化问题，第二阶段基于真实数据源与确定性计算构造多样、可自动验证的工具依赖任务，随后用强化学习增强长程推理及外部工具、环境交互能力。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.03233">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/qlrck3m7ac1bdukxfnchhqd1a">http://localhost:3300/items/qlrck3m7ac1bdukxfnchhqd1a</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">qlrck3m7ac1bdukxfnchhqd1a</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[RoboColosseum：在真实环境中大规模评测机器人策略的物理智能]]></title>
       <link>http://localhost:3300/items/kqg8fu6vphdxwm6oyoth1qrzj</link>
       <description><![CDATA[<p>RoboColosseum 研究提出分布式机器人评测框架，作者报告不同机器人形态下的策略排名一致性较弱，直接评测排名也难以预测微调后的相对表现。</p>
@@ -28,6 +39,28 @@
       <category>AI4AI</category>
       <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">kqg8fu6vphdxwm6oyoth1qrzj</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[是否批准执行？Caper 为自主编码智能体提供后果感知审批]]></title>
+      <link>http://localhost:3300/items/eq686xqq0hfg4l2xrv53t4oqa</link>
+      <description><![CDATA[<p>研究提出 Caper，通过沙箱预执行观察命令后果，为自主编码智能体提供执行审批。根据当前材料，Caper 在带快照的沙箱中预执行命令，将限定范围的效果报告交给独立审批器，提交获准命令，并回滚被阻止的命令、向智能体提供可采取行动的理由。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.40753">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/eq686xqq0hfg4l2xrv53t4oqa">http://localhost:3300/items/eq686xqq0hfg4l2xrv53t4oqa</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">eq686xqq0hfg4l2xrv53t4oqa</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[Route Anything：通用 AI 系统的模型与策略路由研究]]></title>
+      <link>http://localhost:3300/items/e28cx7mrwob6gywnq06i22ngi</link>
+      <description><![CDATA[<p>Route Anything 提出统一的模型与策略路由研究框架，研究通用 AI 系统如何在任务质量与计算成本之间选择候选模型、工具和策略。根据当前材料，研究给出最优路由的理论分析，并刻画路由器可用信息对可达性能的影响。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.05275">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/e28cx7mrwob6gywnq06i22ngi">http://localhost:3300/items/e28cx7mrwob6gywnq06i22ngi</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">e28cx7mrwob6gywnq06i22ngi</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
@@ -523,39 +556,6 @@
       <category>算法</category>
       <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">iszqp5mwl890lxkwxnrs0tzbc</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[OCELOT 利用卫星基础模型嵌入开展全球尺度物种分布建模]]></title>
-      <link>http://localhost:3300/items/iphpofxqcr2waf6q39xzdhimi</link>
-      <description><![CDATA[<p>OCELOT 研究提出融合空间坐标与卫星基础模型嵌入的物种分布模型，作者报告其地理外推表现优于仅使用坐标的模型。根据当前材料，该多模态隐式神经表示网络使用覆盖 100,000 个分类单元的 20 亿条 GBIF 记录训练，观测量比此前工作高两个数量级，并通过时空稀疏化、次线性网格采样及跨物种、属、科的加性分类读出处理空间冗余、观测者偏差与稀有类群预测。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.00284">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/iphpofxqcr2waf6q39xzdhimi">http://localhost:3300/items/iphpofxqcr2waf6q39xzdhimi</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">iphpofxqcr2waf6q39xzdhimi</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[状态空间模型的对角等价性：刻画、检索秩与选择性扩展]]></title>
-      <link>http://localhost:3300/items/i1ulvyzhrjt62c4h98i3x8y3f</link>
-      <description><![CDATA[<p>该研究刻画实数与复数状态空间模型的对角等价性，并提出 SSD-MIMO 与 HybridMamba，报告局部召回改善但语言模型损失仍落后于 Mamba 3。根据当前材料，理论分析区分固定基底下的对角等价与输入输出等价，以所选数域上可对角化的交换转移族给出判据，并在时间共享、token 局部矩阵映射条件下建立与带乘性掩码的非归一化标量模态线性注意力的对应。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.03101">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/i1ulvyzhrjt62c4h98i3x8y3f">http://localhost:3300/items/i1ulvyzhrjt62c4h98i3x8y3f</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">i1ulvyzhrjt62c4h98i3x8y3f</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[预训练数据规模逆转 Muon 与 AdamW 的微调表现差距]]></title>
-      <link>http://localhost:3300/items/h7bql9g4rsegwiwl10niblf2v</link>
-      <description><![CDATA[<p>该研究报告，预训练数据预算足够大时，AdamW 的微调后表现超过 Muon，且模型越大，发生逆转所需的预训练 token 与参数数量比越小。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.03633">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/h7bql9g4rsegwiwl10niblf2v">http://localhost:3300/items/h7bql9g4rsegwiwl10niblf2v</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">h7bql9g4rsegwiwl10niblf2v</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
