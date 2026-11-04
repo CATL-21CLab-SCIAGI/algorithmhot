@@ -152,6 +152,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[机器学习非绝热分子动力学揭示 SrTiO3 氧空位拓扑对载流子俘获与复合的影响]]></title>
+      <link>http://localhost:3300/items/jmqbx9urewz9qvv4qwo5g2ggc</link>
+      <description><![CDATA[<p>该研究利用机器学习非绝热分子动力学模拟，报告 SrTiO3 中氧空位二聚体的连接拓扑显著影响载流子俘获与非辐射复合。根据当前材料，在高氧空位浓度下，空位复合体间的强相互作用扰动缺陷态波函数，离散型（2 VO-D）、弯曲型（2 VO-B）和线型（2 VO-L）均形成靠近导带底（CBM）的浅陷阱，非辐射复合寿命相近，为数百至数千纳秒。</p>
+<p>🔗 <a href="https://doi.org/10.1021/jacs.6c18952">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/jmqbx9urewz9qvv4qwo5g2ggc">http://localhost:3300/items/jmqbx9urewz9qvv4qwo5g2ggc</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">jmqbx9urewz9qvv4qwo5g2ggc</guid>
+      <author>noreply@localhost (Journal of the American Chemical Society)</author>
+    </item>
+    <item>
       <title><![CDATA[Dory1.0-4B 研究提出弹性深度的循环 nGPT 语言模型]]></title>
       <link>http://localhost:3300/items/hs50a2fd2l5sremacai6v5ipg</link>
       <description><![CDATA[<p>Dory1.0-4B 研究提出具有弹性深度的 40 亿参数语言模型，通过改变共享模块的循环次数，让同一检查点适配不同推理计算预算。</p>
@@ -545,17 +556,6 @@
       <category>AI4S</category>
       <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">mkim39kann0m7gfr764xgk3hw</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[LM-HNN 通过局部能量分解改进哈密顿动力学学习]]></title>
-      <link>http://localhost:3300/items/mf00do5jyy06cqxquheeh2ymr</link>
-      <description><![CDATA[<p>研究提出局部多尺度哈密顿神经网络 LM-HNN，旨在保留哈密顿动力学结构的同时提高能量表示精度。根据当前材料，该方法将能量分解为动能与势能，并在多个相互作用邻域上表示为共享局部函数之和，以缓解传统多层感知机的谱偏置及微细尺度误差经求导放大的问题。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.03451">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/mf00do5jyy06cqxquheeh2ymr">http://localhost:3300/items/mf00do5jyy06cqxquheeh2ymr</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">mf00do5jyy06cqxquheeh2ymr</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
