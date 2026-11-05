@@ -9,6 +9,50 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[H2RB 通过衔接 VLA 表示与动作空间实现人类到机器人的迁移]]></title>
+      <link>http://localhost:3300/items/o0ul4f1cccxojzm498r7vd72p</link>
+      <description><![CDATA[<p>H2RB 研究提出人类与机器人联合训练框架，利用非配对演示适配预训练 VLA 策略，减少对目标机器人演示的依赖。根据当前材料，该方法以几何锚定对齐建立兼容的观测表示，并用解耦解码器的 tokenizer 共享动作潜变量，避免两类动作被强制使用同一映射。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.04391">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/o0ul4f1cccxojzm498r7vd72p">http://localhost:3300/items/o0ul4f1cccxojzm498r7vd72p</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">o0ul4f1cccxojzm498r7vd72p</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[Solv3R：以三维循环 Transformer 求解多视图几何]]></title>
+      <link>http://localhost:3300/items/lu415n4ur84nw4zeldnq3mgg1</link>
+      <description><![CDATA[<p>Solv3R 研究提出一种循环 Transformer，从当前状态持续求解多视图几何，支持已有重建的细化与新增观测的整合。根据当前材料，其更新算子与迭代次数无关，训练目标是在持续迭代中保持准确重建并修正不准确状态；已求解视图的表示可缓存并跨迭代复用为几何上下文，实现紧凑、高效的键值缓存。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.02857">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/lu415n4ur84nw4zeldnq3mgg1">http://localhost:3300/items/lu415n4ur84nw4zeldnq3mgg1</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">lu415n4ur84nw4zeldnq3mgg1</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[GameVerse：面向长时程交互式世界建模的分钟级游戏视频数据集]]></title>
+      <link>http://localhost:3300/items/epmep38u9u4um9p0v03p98ucr</link>
+      <description><![CDATA[<p>GameVerse 研究提出分钟级游戏视频数据集，作者报告用其训练可显著延长交互式世界模型的生成时域。根据当前材料，数据集包含 69.7K 个片段、1,655 小时视频及 349.6 百万帧，涵盖第一人称与第三人称游戏，其中包括 1,358 小时的连续两分钟序列。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.37257">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/epmep38u9u4um9p0v03p98ucr">http://localhost:3300/items/epmep38u9u4um9p0v03p98ucr</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">epmep38u9u4um9p0v03p98ucr</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[VeriSpoof 用单一音频语言模型统一语音深伪检测与溯源]]></title>
+      <link>http://localhost:3300/items/bi2vnuvm6jbpbo22v6oeg9qj3</link>
+      <description><![CDATA[<p>VeriSpoof 研究提出共享权重的音频语言模型，统一深伪检测、生成器归因、录音条件分析、合成片段定位和来源验证五项任务。模型以答案的句子似然支持阈值判定，无需独立任务头，并通过可对照波形测量、片段标签或生成器元数据核查的理由及反事实训练，使决策遵循所述证据。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.04634">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/bi2vnuvm6jbpbo22v6oeg9qj3">http://localhost:3300/items/bi2vnuvm6jbpbo22v6oeg9qj3</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">bi2vnuvm6jbpbo22v6oeg9qj3</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[氟化富勒烯衍生物提升钙钛矿太阳能电池的热稳定性]]></title>
       <link>http://localhost:3300/items/z2mcumka30jdcykpj5ijqhkg6</link>
       <description><![CDATA[<p>该研究报告，将氟化富勒烯衍生物与 PCBM 共混可抑制电子传输层热老化时的自聚集，提升钙钛矿太阳能电池的效率与稳定性。根据当前材料，作者合成了 FPCPB 和 5FPCPB，并将聚集抑制归因于苯基与氟苯基间的 π–π 共轭、C─H···F 范德华相互作用及分子间位阻对构象的约束，同时报告了缺陷态密度降低、离子迁移受抑和能级匹配改善。</p>
@@ -50,6 +94,17 @@
       <category>AI4AI</category>
       <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">y1b3hmi4dyw2nddy0oujkbt8y</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[解释相同，动作不同：TNAS 诊断与引导推理型 VLA 的文本—动作偏离]]></title>
+      <link>http://localhost:3300/items/w28nkutoqeq83rfyl3iufai1n</link>
+      <description><![CDATA[<p>该研究报告，视觉扰动可使 Alpamayo 和 InstructVLA 改变物理动作，同时保持生成的自然语言解释逐字不变。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.04166">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/w28nkutoqeq83rfyl3iufai1n">http://localhost:3300/items/w28nkutoqeq83rfyl3iufai1n</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">w28nkutoqeq83rfyl3iufai1n</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
@@ -501,61 +556,6 @@
       <category>算法</category>
       <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">s7chut9m45m0ykb13yyyslerx</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[C3 提出语音引导的 KV 检索方法，优化长上下文 SpeechLLM 推理]]></title>
-      <link>http://localhost:3300/items/s0n1oz947fhto5pj4r7rxe7uw</link>
-      <description><![CDATA[<p>C3（Cluster-Compete-Compete）研究提出面向长上下文 SpeechLLM 的语音引导 KV 检索方法，作者报告其改善了解码效率与加速器内存扩展性。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.00333">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/s0n1oz947fhto5pj4r7rxe7uw">http://localhost:3300/items/s0n1oz947fhto5pj4r7rxe7uw</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">s0n1oz947fhto5pj4r7rxe7uw</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[TLAPS-Bench：用 TLA+ 证明系统验证真实系统规约的正确性]]></title>
-      <link>http://localhost:3300/items/qywuhjclll7s7mxxrgmrvlonv</link>
-      <description><![CDATA[<p>TLAPS-Bench 提出面向 AI 智能体的基准与执行框架，用于为真实系统的 TLA+ 规约构建机器检查的正确性证明。根据当前材料，该框架基于 TLA+ Proof System（TLAPS）支持迭代证明开发，为智能体提供证明工具和库，并设置防奖励作弊机制；作者报告完成了涉及缓存一致性、拜占庭共识和预写日志的此前未获证明的系统性质。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.02849">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/qywuhjclll7s7mxxrgmrvlonv">http://localhost:3300/items/qywuhjclll7s7mxxrgmrvlonv</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">qywuhjclll7s7mxxrgmrvlonv</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[ROSE：基于约化密度矩阵表征构建深度学习交换-相关泛函]]></title>
-      <link>http://localhost:3300/items/pqd9ajk9qw1qt0ggymv7j0jsv</link>
-      <description><![CDATA[<p>ROSE 研究提出基于占据态密度矩阵的深度学习交换-相关能量泛函，以非局域表征改善学习型泛函。基于摘要，作者报告 ROSE 在 GMTKN55 及所考察的额外外部基准上优于按相同协议训练的现代神经网络泛函，平均准确性优于或接近所比较的大多数杂化与长程分离杂化泛函。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.00826">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/pqd9ajk9qw1qt0ggymv7j0jsv">http://localhost:3300/items/pqd9ajk9qw1qt0ggymv7j0jsv</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">pqd9ajk9qw1qt0ggymv7j0jsv</guid>
-      <author>noreply@localhost (arXiv · 计算物理与材料)</author>
-    </item>
-    <item>
-      <title><![CDATA[AI 智能体防护系统的依赖感知风险评估与最优设计]]></title>
-      <link>http://localhost:3300/items/ph9pv3w1zpvfudny2bncta7tz</link>
-      <description><![CDATA[<p>该研究提出依赖感知框架，联合优化 AI 智能体多组件防护系统的配置与运行策略，避免忽略防护决策间依赖造成的风险误判。根据当前材料，作者在下正交序下建立分层筛查错误概率与调用成本的随机比较，在超模序下刻画选择性验证策略的单调性，并推导固定第一阶段与审核器时基于似然比的双阈值最优路由规则。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.00386">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ph9pv3w1zpvfudny2bncta7tz">http://localhost:3300/items/ph9pv3w1zpvfudny2bncta7tz</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">ph9pv3w1zpvfudny2bncta7tz</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[FADE：用于在线 RLVR 调度的能力与难度因子化过滤方法]]></title>
-      <link>http://localhost:3300/items/pa0lkubx2qg9tx2zji617gepq</link>
-      <description><![CDATA[<p>FADE 研究提出将策略能力与题目难度分开估计的双线性状态空间过滤器，用于在线 RLVR 调度，减少全对或全错采样组造成的预算浪费。根据当前材料，该方法以白化的 K 维技能载荷、快速变化的策略能力向量和缓慢收缩的题目截距建模成功率，利用 Pólya–Gamma 增广与秩 K 的 Woodbury 更新，将能力变化传递至共享技能的未观测题目。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.03625">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/pa0lkubx2qg9tx2zji617gepq">http://localhost:3300/items/pa0lkubx2qg9tx2zji617gepq</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">pa0lkubx2qg9tx2zji617gepq</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
