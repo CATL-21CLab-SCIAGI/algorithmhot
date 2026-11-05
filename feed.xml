@@ -9,6 +9,17 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[钠离子电池研究量化固体电解质界面膜中有机与无机组分的溶解]]></title>
+      <link>http://localhost:3300/items/zes3wlfn31dqd5li5uns4mc4d</link>
+      <description><![CDATA[<p>该研究提出钠离子电池 SEI 组分溶解与保留的定量方法，并报告 tetraglyme 电解液可减少 SEI 溶解。根据当前材料，作者结合离子色谱、质谱、电化学石英晶体微天平和 X 射线光电子能谱，测定各组分的绝对保留量，而非仅考察界面总损失。</p>
+<p>🔗 <a href="https://doi.org/10.1002/anie.5211841">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/zes3wlfn31dqd5li5uns4mc4d">http://localhost:3300/items/zes3wlfn31dqd5li5uns4mc4d</a></p>]]></description>
+      <category>电池与新能源材料</category>
+      <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">zes3wlfn31dqd5li5uns4mc4d</guid>
+      <author>noreply@localhost (Angewandte Chemie International Edition)</author>
+    </item>
+    <item>
       <title><![CDATA[研究报告 STATE 解码器的低秩瓶颈限制扰动预测可靠性]]></title>
       <link>http://localhost:3300/items/z7xtvkv336ijzdw63rdp3hjy2</link>
       <description><![CDATA[<p>研究报告 STATE 的状态转移（ST）解码器存在低秩注意力瓶颈，并提出用 predicted-NN-distance 评估单次扰动预测的可靠性。</p>
@@ -273,6 +284,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[界面碳酸根介导 Ca-Ni₃S₂ 预催化剂活化，改善水电解析氧性能]]></title>
+      <link>http://localhost:3300/items/mcvsuu6p5zlrr8043rtnujpid</link>
+      <description><![CDATA[<p>该研究提出界面碳酸根主导的活化策略，同时调控 Ca-Ni₃S₂ 重构后的 NiOOH 结构与界面，以改善析氧反应（OER）性能。根据当前材料，以 K₂CO₃ 替代 KOH 作为重构电解液，可在较高电位下实现表面局限重构，保留内部 Ni₃S₂；残留 CO₃²⁻ 调节表面电子分布和界面水结构，并形成稳定缓冲层。</p>
+<p>🔗 <a href="https://doi.org/10.1002/anie.7641105">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/mcvsuu6p5zlrr8043rtnujpid">http://localhost:3300/items/mcvsuu6p5zlrr8043rtnujpid</a></p>]]></description>
+      <category>电池与新能源材料</category>
+      <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">mcvsuu6p5zlrr8043rtnujpid</guid>
+      <author>noreply@localhost (Angewandte Chemie International Edition)</author>
+    </item>
+    <item>
       <title><![CDATA[FrontierPhysics：评估智能体的端到端物理研究能力]]></title>
       <link>http://localhost:3300/items/lwi206yrmq8us5pfxy7vnko6k</link>
       <description><![CDATA[<p>FrontierPhysics 研究提出端到端物理研究基准，包含 42 位物理学家基于自身研究设计的 56 项任务，覆盖理论、计算和实验物理的九个领域。任务要求智能体完成文献审查、研究计划制定、研究与实验，并产出结构化结果和科学论文，结合确定性验证器与专家编写的评分准则评估正确性和可发表性。</p>
@@ -534,28 +556,6 @@
       <category>算法</category>
       <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">z0fqfdnwi9fzupwvope15p5ty</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[每个 token 都需要自己的教师：MTA-OPSD 提出多教师自适应策略内自蒸馏]]></title>
-      <link>http://localhost:3300/items/yob3fcqkekthwax3olm4q1t0r</link>
-      <description><![CDATA[<p>MTA-OPSD 研究提出逐 token 自适应选择教师的策略内自蒸馏方法，作者报告其在 Qwen3 数学推理任务上优于现有 OPSD 方法。根据当前材料，教师干预预实验显示，同一回答中不同 token 的教师偏好存在差异，可通过多数投票和基于 KL 的选择识别偏好教师；该方法据此构建多教师候选池，在训练中为每个 token 选择教师。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.40574">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/yob3fcqkekthwax3olm4q1t0r">http://localhost:3300/items/yob3fcqkekthwax3olm4q1t0r</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">yob3fcqkekthwax3olm4q1t0r</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[注意力可预测检索中的上下文退化：长度代价低，信息竞争代价高]]></title>
-      <link>http://localhost:3300/items/y1b3hmi4dyw2nddy0oujkbt8y</link>
-      <description><![CDATA[<p>该研究报告，语言模型检索中的上下文退化主要与信息竞争相关，而非仅由输入长度导致。作者在五个开放模型（0.5B 至 3B 参数、四个模型家族）上报告，中性填充下准确率保持在 0.97 至 1.00。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.04169">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/y1b3hmi4dyw2nddy0oujkbt8y">http://localhost:3300/items/y1b3hmi4dyw2nddy0oujkbt8y</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">y1b3hmi4dyw2nddy0oujkbt8y</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
