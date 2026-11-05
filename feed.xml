@@ -163,6 +163,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[FinForesight 提出面向金融深度研究系统的诊断性回测基准]]></title>
+      <link>http://localhost:3300/items/mk37fx6cxlwwtza5iiaqx42hb</link>
+      <description><![CDATA[<p>FinForesight 研究提出金融预测诊断性回测基准，通过限制检索证据的时间范围，评估深度研究系统的预测能力。根据当前材料，基准覆盖中国、美国和香港市场的估值、收益排名、事件方向及未来财务基本面预测，并将反事实推理与金融计算单独评分。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.01621">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/mk37fx6cxlwwtza5iiaqx42hb">http://localhost:3300/items/mk37fx6cxlwwtza5iiaqx42hb</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">mk37fx6cxlwwtza5iiaqx42hb</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[SphereFlow：通过超球面上的几何传输补全缺失模态]]></title>
       <link>http://localhost:3300/items/l9q7cecnkxrzyecnxnh2rr539</link>
       <description><![CDATA[<p>SphereFlow 提出将缺失模态补全转化为共享超球面上的短程几何传输，并报告了医学影像生成与下游分割实验结果。方法通过冻结的自监督编码器投影各模态，以观测模态潜变量替代高斯噪声作为流匹配起点，并用时间加权损失训练解码器，使其覆盖传输路径经过的近球面区域。</p>
@@ -545,17 +556,6 @@
       <category>算法</category>
       <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">pa0lkubx2qg9tx2zji617gepq</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[大几何模型为快速物理预训练提供先验]]></title>
-      <link>http://localhost:3300/items/oyhhvbidoyz3lvxc7bhtm9i84</link>
-      <description><![CDATA[<p>该研究提出几何预训练方法 AREALS，作者报告其可用更少的模拟数据达到从零训练同架构模型的精度。根据当前材料，理论依据是在附着流条件下，距离与法线方向（不区分正负）可在一阶近似下确定形状进入 Euler-Lagrange 方程的系数，其重建误差因而约束表示对物理场信息的损失。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.02066">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/oyhhvbidoyz3lvxc7bhtm9i84">http://localhost:3300/items/oyhhvbidoyz3lvxc7bhtm9i84</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">oyhhvbidoyz3lvxc7bhtm9i84</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
