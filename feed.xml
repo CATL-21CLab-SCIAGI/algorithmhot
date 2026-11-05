@@ -174,6 +174,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[研究报告名义上稳定超结构正极氧化物中间氧物种演化的直接证据]]></title>
+      <link>http://localhost:3300/items/pxrwh3jjmlqpyd5vzik3yg7oz</link>
+      <description><![CDATA[<p>该研究报告，名义上具有稳定超结构的正极氧化物在循环中仍会形成分子 O₂，并将其识别为最终氧氧化还原产物。根据当前材料，带状有序 P2-Na0.6Li0.2Mn0.8O2 在充电终点的氧化态氧物种随循环由 O²⁻ 上的电子空穴与二聚化 (O₂)ⁿ⁻ 的混合物，逐渐转为 (O₂)ⁿ⁻ 与分子 O₂ 的混合物，同时伴随 Li 空位团簇扩展及富 Mn 区域增长。</p>
+<p>🔗 <a href="https://doi.org/10.1002/anie.3374613">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/pxrwh3jjmlqpyd5vzik3yg7oz">http://localhost:3300/items/pxrwh3jjmlqpyd5vzik3yg7oz</a></p>]]></description>
+      <category>电池与新能源材料</category>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">pxrwh3jjmlqpyd5vzik3yg7oz</guid>
+      <author>noreply@localhost (Angewandte Chemie International Edition)</author>
+    </item>
+    <item>
       <title><![CDATA[LoCo 用局部偏好学习压缩推理，学习何时继续与结束]]></title>
       <link>http://localhost:3300/items/oodol4fz42r7w6t6t9tcs8sdd</link>
       <description><![CDATA[<p>LoCo 研究提出局部偏好学习方法，让模型根据当前状态决定继续推理还是结束，以压缩推理长度。根据当前材料，该方法从模型自身轨迹中识别候选过度思考状态，固定对应推理前缀，重新生成更短且经过验证的后续推理，并以状态条件偏好对进行 DPO 训练。</p>
@@ -227,6 +238,17 @@
       <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">mk37fx6cxlwwtza5iiaqx42hb</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[研究提出锂离子软包电池析锂过程的工况原位定量方法]]></title>
+      <link>http://localhost:3300/items/maq9msvwnpjsz2712dvipfqzz</link>
+      <description><![CDATA[<p>研究提出基于动态电化学阻抗谱（DEIS）的工况原位策略，用临界析锂面容量 q Li 定量表征不同充电条件下的析锂过程。根据当前材料，作者通过工况原位固态核磁共振（ssNMR）与 DEIS 联合测量、增量容量分析及质谱滴定（MST）验证该方法，报告 R 2 &gt; 0.97，适用测试范围为温度 0°C–45°C、电池容量 4 to 110 mAh。</p>
+<p>🔗 <a href="https://doi.org/10.1002/anie.1710608">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/maq9msvwnpjsz2712dvipfqzz">http://localhost:3300/items/maq9msvwnpjsz2712dvipfqzz</a></p>]]></description>
+      <category>电池与新能源材料</category>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">maq9msvwnpjsz2712dvipfqzz</guid>
+      <author>noreply@localhost (Angewandte Chemie International Edition)</author>
     </item>
     <item>
       <title><![CDATA[SphereFlow：通过超球面上的几何传输补全缺失模态]]></title>
@@ -534,28 +556,6 @@
       <category>算法</category>
       <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">su6nb4qy99uea29wc18uvvcsd</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[超越验证损失：机器人策略预训练中的覆盖率与可靠性动态]]></title>
-      <link>http://localhost:3300/items/s9m8o7yufd4xok29woniqub8i</link>
-      <description><![CDATA[<p>基于摘要，该研究提出用闭环 pass@k 评估机器人策略，作者报告该指标可揭示平均任务成功率未捕捉到的后训练表现差异。pass@k 衡量从同一初始条件执行 k 次轨迹 rollout 至少成功一次的概率，其中 pass@1 表示平均任务成功率，大 k 时反映重复采样下成功是否仍可达。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.01565">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/s9m8o7yufd4xok29woniqub8i">http://localhost:3300/items/s9m8o7yufd4xok29woniqub8i</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">s9m8o7yufd4xok29woniqub8i</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[表格型强化学习研究改进局部差分隐私下的遗憾界]]></title>
-      <link>http://localhost:3300/items/s7chut9m45m0ykb13yyyslerx</link>
-      <description><![CDATA[<p>该研究为非交互式 ε-局部差分隐私（LDP）下的时间齐次、回合式表格型强化学习给出改进的理论遗憾界。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.03026">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/s7chut9m45m0ykb13yyyslerx">http://localhost:3300/items/s7chut9m45m0ykb13yyyslerx</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">s7chut9m45m0ykb13yyyslerx</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
