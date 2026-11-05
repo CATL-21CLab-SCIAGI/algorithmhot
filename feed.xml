@@ -350,6 +350,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[Multi-layer Indexer 通过重叠执行词元选择与注意力加速 DeepSeek 稀疏注意力]]></title>
+      <link>http://localhost:3300/items/lbmwjaon48n85serhr33jz3ed</link>
+      <description><![CDATA[<p>Multi-layer Indexer（MLI）提出让当前层使用上一索引层选出的 token，使索引扫描与当前层注意力并行执行，无需重新训练或新增权重。根据当前材料，其默认实现不修改内核，可在 SGLang 的生产解码图中运行，并能与 IndexCache 组合，后者移除部分层的索引器，MLI 则隐藏其余层的扫描开销。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.03768">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/lbmwjaon48n85serhr33jz3ed">http://localhost:3300/items/lbmwjaon48n85serhr33jz3ed</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">lbmwjaon48n85serhr33jz3ed</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[SelPI 提出选择性预测区间，联合学习点预测、区间边界与拒绝预测]]></title>
       <link>http://localhost:3300/items/ktxgb1pd1fuzx8rd6pr6ur0ry</link>
       <description><![CDATA[<p>SelPI 在明确的接受率预算下，以单一损失联合训练区间、点预测与拒绝预测模块。根据当前材料，作者在 18 个表格数据基准上报告，区间宽度能较好识别较大的点预测误差（AUROC 0.72），却与区间未覆盖真实值负相关（AUROC 0.38），因此仅拒绝宽区间可能丢弃区间预测正确的输入。</p>
@@ -546,17 +557,6 @@
       <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">bi2vnuvm6jbpbo22v6oeg9qj3</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[研究报告协方差未知时无法实现维度无关的隐私均值估计]]></title>
-      <link>http://localhost:3300/items/bef6qc3jzhboz1mu9jgmca8hl</link>
-      <description><![CDATA[<p>该研究提出差分隐私高斯均值估计的理论下界，指出协方差未知时无法获得与已知协方差情形相似的维度无关保证。根据当前材料，以欧氏误差衡量，当样本量 $n$ 小于有效维度 $\mathrm{trace}(\Sigma)/\|\Sigma\|_{\text{op}}$ 时，未知协方差下的最优误差可能比已知情形大 $\sqrt{d/n}$ 倍，其中 $d$ 为环境维度。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.06615">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/bef6qc3jzhboz1mu9jgmca8hl">http://localhost:3300/items/bef6qc3jzhboz1mu9jgmca8hl</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">bef6qc3jzhboz1mu9jgmca8hl</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
 </rss>
