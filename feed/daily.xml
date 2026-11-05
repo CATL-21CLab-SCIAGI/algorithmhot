@@ -9,6 +9,23 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-11-05 — 灵活的强度函数很重要：全面重新评估 Hawkes 过程与神经时间点过程]]></title>
+      <link>http://localhost:3300/daily/2026-11-05</link>
+      <description><![CDATA[<p>该研究报告，为 Hawkes 过程引入灵活、可学习的基线和核函数后，其与神经时间点过程此前报告的性能差距大幅缩小。根据当前材料，作者在五个既有基准数据集及来自 UK Biobank 疾病史、MIMIC-IV ICU 记录的两个大规模医疗评估任务上，比较不同灵活程度的 Poisson、Hawkes 过程与神经模型，任务为自回归下一事件预测。</p>
+<p><strong>算法</strong></p>
+<ul><li><a href="http://localhost:3300/items/nf0rppcrwkulx31vx7mf5uezq">Systolic Linear Attention：面向 TPU 的分块门控 Delta 注意力协同设计</a></li><li><a href="http://localhost:3300/items/qdcj54k1h5wlsjdaqhvs9mmb8">SEED 以浅层编码生成深层记忆，优化混合语言模型推理</a></li><li><a href="http://localhost:3300/items/cdi3uolc3sc2tqy0js1p50bql">奖励预算方法缓解大语言模型推理强化学习的过早收敛</a></li><li><a href="http://localhost:3300/items/f86dgx4f8z80jgt6iimq954t3">SpecOPD 提出面向推测解码的分支并行在策略蒸馏框架</a></li><li><a href="http://localhost:3300/items/rjlhqtazo6vo8bipksn0wpumk">Hyper-Connections 设计研究：简化、稳定性与可扩展性</a></li><li><a href="http://localhost:3300/items/bi2vnuvm6jbpbo22v6oeg9qj3">VeriSpoof 用单一音频语言模型统一语音深伪检测与溯源</a></li><li><a href="http://localhost:3300/items/o4goac11ifpsl1niu7djnvtnc">UniRestorer++：通过多粒度退化建模实现可扩展的通用图像修复</a></li><li><a href="http://localhost:3300/items/atizhqtbsvkfpovpmyyj1fl5h">Muon-RT 复用教师轨迹，为 LLM 自蒸馏移除 Muon 动量缓冲区</a></li></ul>
+<p><strong>AI4AI</strong></p>
+<ul><li><a href="http://localhost:3300/items/ep0dt0ml0y9wzs50gtujf1kbj">灵活的强度函数很重要：全面重新评估 Hawkes 过程与神经时间点过程</a></li><li><a href="http://localhost:3300/items/u472w4w8pq76p1pa124jm865h">KernelSeek 研究：以提问而非增配工具驱动 GPU 内核深度优化</a></li><li><a href="http://localhost:3300/items/dodoovz8gm71c8ikvhktj2z10">PyRUA-DataFarm：用 LLM 智能体低成本生成可用于真实机器人的训练数据</a></li><li><a href="http://localhost:3300/items/s9huriy8ekduvno4b6iqb76xp">学习型流体表征的物理结构预注册检验：可读出不等于可控制</a></li><li><a href="http://localhost:3300/items/lwi206yrmq8us5pfxy7vnko6k">FrontierPhysics：评估智能体的端到端物理研究能力</a></li><li><a href="http://localhost:3300/items/u8m92c588u62hspf00opb6r00">VideoMemBench：多模态大语言模型在视频对话中记得有多好？</a></li></ul>
+<p><strong>AI4S</strong></p>
+<ul><li><a href="http://localhost:3300/items/g56usfuotm744f2qioxcu01gz">INOS 通过学习隐式求解实现动态仿真</a></li><li><a href="http://localhost:3300/items/tmpm9xzv23wgt8em6fuxjrxt6">通过自监督学习构建面向算子学习的通用潜在空间</a></li></ul>
+<p><strong>电池与新能源材料</strong></p>
+<ul><li><a href="http://localhost:3300/items/maq9msvwnpjsz2712dvipfqzz">研究提出锂离子软包电池析锂过程的工况原位定量方法</a></li><li><a href="http://localhost:3300/items/cieb1niw5cqolbgwo0q3fjxr4">BTTP 聚合物通过整合卟啉提高双极氧化还原可及性，实现高倍率钠基双离子储能</a></li><li><a href="http://localhost:3300/items/spuenmyt28not4bv6csupv2p7">CrSBr 研究提出自旋手性驱动的体光伏效应</a></li><li><a href="http://localhost:3300/items/pxrwh3jjmlqpyd5vzik3yg7oz">研究报告名义上稳定超结构正极氧化物中间氧物种演化的直接证据</a></li></ul>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/daily/2026-11-05">http://localhost:3300/daily/2026-11-05</a></p>]]></description>
+      <pubDate>Thu, 05 Nov 2026 15:00:27 GMT</pubDate>
+      <guid isPermaLink="false">daily-2026-11-05</guid>
+      <author>noreply@localhost (AlgorithmHot · 科研热点)</author>
+    </item>
+    <item>
       <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-11-04 — RoboColosseum：在真实环境中大规模评测机器人策略的物理智能]]></title>
       <link>http://localhost:3300/daily/2026-11-04</link>
       <description><![CDATA[<p>RoboColosseum 研究提出分布式机器人评测框架，作者报告不同机器人形态下的策略排名一致性较弱，直接评测排名也难以预测微调后的相对表现。</p>
