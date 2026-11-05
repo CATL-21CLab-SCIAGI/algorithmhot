@@ -108,6 +108,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[SIMPLE 定律以四参数预测 LLM 推理能耗，无需逐模型校准]]></title>
+      <link>http://localhost:3300/items/tnm6ou69mom4yjbayj9jprmay</link>
+      <description><![CDATA[<p>SIMPLE 研究提出四参数 LLM 推理能耗定律，将预填充与解码分开建模，并将解码拆为 KV-cache 成本和下一 token 计算成本。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.03330">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/tnm6ou69mom4yjbayj9jprmay">http://localhost:3300/items/tnm6ou69mom4yjbayj9jprmay</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">tnm6ou69mom4yjbayj9jprmay</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[通过自监督学习构建面向算子学习的通用潜在空间]]></title>
       <link>http://localhost:3300/items/tmpm9xzv23wgt8em6fuxjrxt6</link>
       <description><![CDATA[<p>该研究提出将函数表示学习与算子学习解耦，通过自监督预训练构建可冻结并跨任务复用的通用潜在空间。根据当前材料，函数自编码器使用即时合成的解析函数预训练，无需求解器或标签，可表示任意点云上的函数，并对平移、缩放和幅值变换具有严格等变性；下游神经算子完全在缓存嵌入上训练。</p>
@@ -218,6 +229,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[监控准确率不是答案：评估 AI 智能体重启监控器的决策价值框架]]></title>
+      <link>http://localhost:3300/items/r1hti6uhx9z48npd9hmfsuudt</link>
+      <description><![CDATA[<p>该研究提出评估 AI 智能体重启监控器的决策价值框架，指出分类准确率及真阳性、假阳性率不足以判断重启能否提升成功率。根据当前材料，作者在独立、干净重启且监控开销为零的条件下进行解析推导，表明准确率固定为 90% 的监控器，仅因替代尝试在剩余预算下的成功概率不同，就可能使成功率下降 5 个百分点或提升 35 个百分点。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.36544">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/r1hti6uhx9z48npd9hmfsuudt">http://localhost:3300/items/r1hti6uhx9z48npd9hmfsuudt</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">r1hti6uhx9z48npd9hmfsuudt</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[SEED 以浅层编码生成深层记忆，优化混合语言模型推理]]></title>
       <link>http://localhost:3300/items/qdcj54k1h5wlsjdaqhvs9mmb8</link>
       <description><![CDATA[<p>SEED 研究提出用浅层编码生成深层记忆、用低秩表示存储循环状态，以降低混合语言模型的预填充与解码开销。根据当前材料，训练得到的 emitter 从较浅锚点层的残差流生成深层记忆，使除最后一个之外的提示 token 可仅运行 63% 的层；循环状态则分解为固定方向的秩一项与低秩工作记忆，研究给出了周期性压缩的开环误差界，且该界不随压缩次数增长。</p>
@@ -282,6 +304,17 @@
       <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">nf0rppcrwkulx31vx7mf5uezq</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
+    </item>
+    <item>
+      <title><![CDATA[TaoMate-HD 提出渐进分辨率自回归音视频生成方法]]></title>
+      <link>http://localhost:3300/items/n7q9dt0kf7rh7sfvw5swecv3x</link>
+      <description><![CDATA[<p>TaoMate-HD 研究提出渐进分辨率自回归模型，用于高分辨率音视频流式生成及文本更新后的语音续接。模型对每个短片段先进行两步低分辨率去噪，再用最后一步细化至高分辨率，全程同步生成音频；各阶段将视听预测传递给下一片段的对应阶段，并跨文本更新保留历史，续接训练则为生成与蒸馏设置不同的文本窗口。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.03394">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/n7q9dt0kf7rh7sfvw5swecv3x">http://localhost:3300/items/n7q9dt0kf7rh7sfvw5swecv3x</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">n7q9dt0kf7rh7sfvw5swecv3x</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
       <title><![CDATA[界面碳酸根介导 Ca-Ni₃S₂ 预催化剂活化，改善水电解析氧性能]]></title>
@@ -493,6 +526,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[Halley：面向 AI 数据中心光网络的预测控制平面]]></title>
+      <link>http://localhost:3300/items/byf2w041wvwh96oz0zonki3xp</link>
+      <description><![CDATA[<p>Halley 研究提出面向 AI 数据中心光网络的预测控制平面，在故障发生前采取行动，并在预测不确定时回退到已部署策略。根据当前材料，四个组件分别提供激光器资源池覆盖界限、距最优值不超过 11/9 的交换机调度、微环单步前瞻控制及高风险模块优先保护，各自具有形式化保证。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.04408">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/byf2w041wvwh96oz0zonki3xp">http://localhost:3300/items/byf2w041wvwh96oz0zonki3xp</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">byf2w041wvwh96oz0zonki3xp</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[VeriSpoof 用单一音频语言模型统一语音深伪检测与溯源]]></title>
       <link>http://localhost:3300/items/bi2vnuvm6jbpbo22v6oeg9qj3</link>
       <description><![CDATA[<p>VeriSpoof 研究提出共享权重的音频语言模型，统一深伪检测、生成器归因、录音条件分析、合成片段定位和来源验证五项任务。模型以答案的句子似然支持阈值判定，无需独立任务头，并通过可对照波形测量、片段标签或生成器元数据核查的理由及反事实训练，使决策遵循所述证据。</p>
@@ -513,50 +557,6 @@
       <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">bef6qc3jzhboz1mu9jgmca8hl</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[从像素到动作：NEO-VLA 探索原生视觉语言动作策略]]></title>
-      <link>http://localhost:3300/items/an1gcu9qlluiyzy0oa1u6i8bl</link>
-      <description><![CDATA[<p>NEO-VLA 提出结构上无视觉编码器的视觉语言动作框架，作者报告其在多种操控场景及分布偏移下取得更强、更稳健的控制。根据当前材料，图像经轻量 patch 卷积层转为 token，与语言在骨干网络中共同演化，流匹配动作专家可访问不同深度的指令条件化视觉表征。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.06918">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/an1gcu9qlluiyzy0oa1u6i8bl">http://localhost:3300/items/an1gcu9qlluiyzy0oa1u6i8bl</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">an1gcu9qlluiyzy0oa1u6i8bl</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[SlackBench：评测智能体在真实代码仓库支撑的协作项目中的表现]]></title>
-      <link>http://localhost:3300/items/af0owoepl9g3xcsbmosojn2k0</link>
-      <description><![CDATA[<p>SlackBench 提出面向研究与工程协作流程的智能体评测基准，要求联合推理工作沟通内容与持续变化的代码仓库状态。根据当前材料，该基准通过保护隐私的真实学术项目重演构建可复现环境，包含多人对话、决策演变以及与 GitHub 仓库和 Google Docs 对应的代码变更。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.05512">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/af0owoepl9g3xcsbmosojn2k0">http://localhost:3300/items/af0owoepl9g3xcsbmosojn2k0</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">af0owoepl9g3xcsbmosojn2k0</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[氟化富勒烯衍生物提升钙钛矿太阳能电池的热稳定性]]></title>
-      <link>http://localhost:3300/items/z2mcumka30jdcykpj5ijqhkg6</link>
-      <description><![CDATA[<p>该研究报告，将氟化富勒烯衍生物与 PCBM 共混可抑制电子传输层热老化时的自聚集，提升钙钛矿太阳能电池的效率与稳定性。根据当前材料，作者合成了 FPCPB 和 5FPCPB，并将聚集抑制归因于苯基与氟苯基间的 π–π 共轭、C─H···F 范德华相互作用及分子间位阻对构象的约束，同时报告了缺陷态密度降低、离子迁移受抑和能级匹配改善。</p>
-<p>🔗 <a href="https://doi.org/10.1002/anie.8260541">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/z2mcumka30jdcykpj5ijqhkg6">http://localhost:3300/items/z2mcumka30jdcykpj5ijqhkg6</a></p>]]></description>
-      <category>电池与新能源材料</category>
-      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">z2mcumka30jdcykpj5ijqhkg6</guid>
-      <author>noreply@localhost (Angewandte Chemie International Edition)</author>
-    </item>
-    <item>
-      <title><![CDATA[统一多模态模型的遗忘能否统一？跨路径概念遗忘研究]]></title>
-      <link>http://localhost:3300/items/z0fqfdnwi9fzupwvope15p5ty</link>
-      <description><![CDATA[<p>该研究提出 UniForget，旨在让统一多模态模型既不生成目标概念的图像，也不识别输入图像中的该概念，同时保留其他能力。根据当前材料，研究构建了覆盖 30 个目标概念和 60 个语义相关邻近概念的诊断基准 UUBench，作者实验显示，受测单路径遗忘方法及其直接组合的联合遗忘效果有限。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.04467">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/z0fqfdnwi9fzupwvope15p5ty">http://localhost:3300/items/z0fqfdnwi9fzupwvope15p5ty</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">z0fqfdnwi9fzupwvope15p5ty</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
 </rss>
