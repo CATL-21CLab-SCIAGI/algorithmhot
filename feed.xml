@@ -86,6 +86,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[OpenFrontiers 汇集开放研究问题并构建科学再发现基准]]></title>
+      <link>http://localhost:3300/items/wypgt92lp1ct3vqjon4zaeepv</link>
+      <description><![CDATA[<p>OpenFrontiers 提出跨学科开放研究问题语料库与数学再发现基准，用于评估 LLM 智能体解决研究级问题的能力。基于摘要，语料库记录了 12,151 个问题的陈述、背景与进展；基准包含 200 个问题，其中 110 个于 2026 年解决、90 个仍未解决，每题均有经自动化探测和两次独立审查检查的 Lean 4 陈述，并进一步筛选出 HQ-50 子集。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.37739">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/wypgt92lp1ct3vqjon4zaeepv">http://localhost:3300/items/wypgt92lp1ct3vqjon4zaeepv</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">wypgt92lp1ct3vqjon4zaeepv</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[定位不等于可操控：LLM 数学符号错误的机制研究]]></title>
       <link>http://localhost:3300/items/wv2vyy7xk6dwg1r5pbw9oxs3u</link>
       <description><![CDATA[<p>该研究报告，LLM 数学符号错误可定位到网络后部的回路，但定位准确不代表干预能有效改变符号选择。根据当前材料，作者分析了六个参数规模从 14B 到 675B 的开放模型，逐层读出显示错误符号主要由网络末四分之一的 MLP 层写入，各模型与任务中的比例为 70-100%，具体机制包括固定写入负号、放大已选符号及下游纠错。</p>
@@ -394,6 +405,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[TB-MathModel 提出面向数学建模智能体的可验证终端基准]]></title>
+      <link>http://localhost:3300/items/hoylvcu7fbxols5vgr2959w6l</link>
+      <description><![CDATA[<p>TB-MathModel 提出数学建模智能体评测基准，将完整竞赛题置于终端环境，并结合数值评分与可行性验证。根据当前材料，基准包含 18 道来自 2023--2025 年 CUMCM 和 MCM 的真实题目，在容器中提供原始题面、官方附件与图表，智能体提交一个 JSON 结果，以多篇优秀奖论文的复现结果作为参考。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.08237">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/hoylvcu7fbxols5vgr2959w6l">http://localhost:3300/items/hoylvcu7fbxols5vgr2959w6l</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">hoylvcu7fbxols5vgr2959w6l</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[FWL-ToPM 与 FWLAug 通过 token 精简和物理感知增强推进实时全波形 LiDAR Transformer]]></title>
       <link>http://localhost:3300/items/hk12vray8s86yjpg8et98g45b</link>
       <description><![CDATA[<p>基于摘要，该研究提出 FWL-ToPM 和 FWLAug，分别降低全波形 LiDAR Transformer 的计算成本并改善未见场景泛化。FWL-ToPM 根据强度分布剪枝和合并 token，同时保留关键波形内容；FWLAug 保留每条射线的飞行时间波形及视锥几何结构，作为数据增强与正则化方法。</p>
@@ -535,28 +557,6 @@
       <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">bl33np7t7h50cazvx88oxzqkh</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[NFMPP-V 富锰复合磷酸盐正极通过轨道与电荷补偿修复缺陷、加速储钠]]></title>
-      <link>http://localhost:3300/items/b2gc4qx6mvz27xleb2zdkst7p</link>
-      <description><![CDATA[<p>该研究提出微量 V 掺杂的富锰复合磷酸盐正极 NFMPP-V，通过减少氧空位及 Mn/Na 反位缺陷改善储钠动力学。根据当前材料，作者将 NFMPP 的性能退化归因于本征氧空位，并指出相较 Cr3+、Co2+、Ni2+、Nb5+，V3+ 的空 eg*0 轨道与适度电荷补偿（Δz = +1）有助于减少缺陷、均匀应变分布，并更充分利用低电压 Fe3+/Fe2+ 氧化还原反应。</p>
-<p>🔗 <a href="https://doi.org/10.1021/jacs.6c20504">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/b2gc4qx6mvz27xleb2zdkst7p">http://localhost:3300/items/b2gc4qx6mvz27xleb2zdkst7p</a></p>]]></description>
-      <category>电池与新能源材料</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">b2gc4qx6mvz27xleb2zdkst7p</guid>
-      <author>noreply@localhost (Journal of the American Chemical Society)</author>
-    </item>
-    <item>
-      <title><![CDATA[VisSearch-Bench：评估多模态智能体的长程视觉搜索能力]]></title>
-      <link>http://localhost:3300/items/aiop15e6d2xzqlnnxflllw043</link>
-      <description><![CDATA[<p>VisSearch-Bench 研究提出长程视觉搜索基准，作者报告在 16 个多模态模型中，最佳系统即使使用搜索工具也仅完整解决 26.47% 的任务。根据当前材料，该基准包含覆盖 7 个主要领域、25 个子领域的 204 道人工编写任务，涵盖集合式视觉搜索、序列式视觉搜索、混合广度与深度搜索、竞争性视觉消歧和视觉结构引导搜索。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.04894">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/aiop15e6d2xzqlnnxflllw043">http://localhost:3300/items/aiop15e6d2xzqlnnxflllw043</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">aiop15e6d2xzqlnnxflllw043</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
 </rss>
