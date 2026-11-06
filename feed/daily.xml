@@ -9,6 +9,21 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-11-06 — 钠离子电池研究量化固体电解质界面膜中有机与无机组分的溶解]]></title>
+      <link>http://localhost:3300/daily/2026-11-06</link>
+      <description><![CDATA[<p>该研究提出钠离子电池 SEI 组分溶解与保留的定量方法，并报告 tetraglyme 电解液可减少 SEI 溶解。根据当前材料，作者结合离子色谱、质谱、电化学石英晶体微天平和 X 射线光电子能谱，测定各组分的绝对保留量，而非仅考察界面总损失。</p>
+<p><strong>算法</strong></p>
+<ul><li><a href="http://localhost:3300/items/hgrdts2mw20l2e1p6wq9pfigk">Drex：迈向基础决策模型</a></li></ul>
+<p><strong>AI4AI</strong></p>
+<ul><li><a href="http://localhost:3300/items/ggpiu0r32sszxa75tamllx67b">随机抽样几乎足够？BestRand 实现稳定、低成本的基准压缩</a></li></ul>
+<p><strong>电池与新能源材料</strong></p>
+<ul><li><a href="http://localhost:3300/items/zes3wlfn31dqd5li5uns4mc4d">钠离子电池研究量化固体电解质界面膜中有机与无机组分的溶解</a></li><li><a href="http://localhost:3300/items/mcvsuu6p5zlrr8043rtnujpid">界面碳酸根介导 Ca-Ni₃S₂ 预催化剂活化，改善水电解析氧性能</a></li><li><a href="http://localhost:3300/items/tdlfybm1mg9s9647p4sloer0t">研究通过调控溶剂化 Li+ 簇荷质比开发超快充锂电池电解液</a></li></ul>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/daily/2026-11-06">http://localhost:3300/daily/2026-11-06</a></p>]]></description>
+      <pubDate>Fri, 06 Nov 2026 04:02:09 GMT</pubDate>
+      <guid isPermaLink="false">daily-2026-11-06</guid>
+      <author>noreply@localhost (AlgorithmHot · 科研热点)</author>
+    </item>
+    <item>
       <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-11-05 — 灵活的强度函数很重要：全面重新评估 Hawkes 过程与神经时间点过程]]></title>
       <link>http://localhost:3300/daily/2026-11-05</link>
       <description><![CDATA[<p>该研究报告，为 Hawkes 过程引入灵活、可学习的基线和核函数后，其与神经时间点过程此前报告的性能差距大幅缩小。根据当前材料，作者在五个既有基准数据集及来自 UK Biobank 疾病史、MIMIC-IV ICU 记录的两个大规模医疗评估任务上，比较不同灵活程度的 Poisson、Hawkes 过程与神经模型，任务为自回归下一事件预测。</p>
