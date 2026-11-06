@@ -273,6 +273,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[PACT 预填充到自回归跨模型迁移的机遇与挑战分析]]></title>
+      <link>http://localhost:3300/items/lupm8zixhv23498pjo9qcp05e</link>
+      <description><![CDATA[<p>该研究提出 PLatour 跨模型迁移框架，并报告部分任务增益可能来自参数适配，而非大模型向小模型传递的有效信息。根据当前材料，PLatour 用零初始化的轻量线性桥连接冻结模型，直接以任务奖励训练，支持混合注意力架构，将大模型的提示表示与小模型的高效生成结合。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.06976">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/lupm8zixhv23498pjo9qcp05e">http://localhost:3300/items/lupm8zixhv23498pjo9qcp05e</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">lupm8zixhv23498pjo9qcp05e</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[HeLM 提出分层显式语言记忆框架，支持非马尔可夫机器人操作]]></title>
       <link>http://localhost:3300/items/kyvhutd1btlf90irujv2f9bd7</link>
       <description><![CDATA[<p>HeLM 研究提出分层 VLA 框架，通过显式语言保存任务相关历史，以支持依赖工作记忆的非马尔可夫操作任务。根据当前材料，该方法采用分解式事件检测与事件触发的记忆更新，评测覆盖 10 项真实世界任务的 56 个变体，包括五项新构建的、需要跨任务边界保持上下文的跨回合任务。</p>
@@ -348,6 +359,17 @@
       <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">hx2f9hz9rjb3kecdd3gu9s3d6</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
+    </item>
+    <item>
+      <title><![CDATA[FWL-ToPM 与 FWLAug 通过 token 精简和物理感知增强推进实时全波形 LiDAR Transformer]]></title>
+      <link>http://localhost:3300/items/hk12vray8s86yjpg8et98g45b</link>
+      <description><![CDATA[<p>基于摘要，该研究提出 FWL-ToPM 和 FWLAug，分别降低全波形 LiDAR Transformer 的计算成本并改善未见场景泛化。FWL-ToPM 根据强度分布剪枝和合并 token，同时保留关键波形内容；FWLAug 保留每条射线的飞行时间波形及视锥几何结构，作为数据增强与正则化方法。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.07613">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/hk12vray8s86yjpg8et98g45b">http://localhost:3300/items/hk12vray8s86yjpg8et98g45b</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">hk12vray8s86yjpg8et98g45b</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
       <title><![CDATA[Drex：迈向基础决策模型]]></title>
@@ -535,28 +557,6 @@
       <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">x1e5q27a8lg6ljn2qm4by1oiu</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[TurnWise 通过轮次级信用分配改进流式视频强化学习]]></title>
-      <link>http://localhost:3300/items/wq7hsu1ods63u6x8mjmo2a6ye</link>
-      <description><![CDATA[<p>TurnWise 提出轮次级 GRPO 框架，针对流式视频理解中响应或继续观察的逐轮决策，减少轨迹级共享优势带来的冗余响应与后续响应受抑问题。根据当前材料，该方法通过静默补全的前缀评分，基于每次决策的剩余回报构造组相对优势，将学习信号与此前奖励分离。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.06728">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/wq7hsu1ods63u6x8mjmo2a6ye">http://localhost:3300/items/wq7hsu1ods63u6x8mjmo2a6ye</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">wq7hsu1ods63u6x8mjmo2a6ye</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[FedSharp 提出带噪信道下的拜占庭鲁棒去中心化联邦学习框架]]></title>
-      <link>http://localhost:3300/items/wozuf46qr3ao0gsmg1fffd3p2</link>
-      <description><![CDATA[<p>FedSharp 研究提出拜占庭鲁棒去中心化联邦学习框架，以应对信道噪声累积、恶意节点攻击和数据异质性。根据当前材料，每个节点保留来自 2b 个前驱节点的模型，在最多 b 个拜占庭节点的条件下保证至少 b 个诚实候选；方法以逐坐标中位数偏差筛除可疑模型，平均损失最低的 b 个候选，将新增信道噪声方差降至原来的 1/b，并结合噪声自适应梯度范数正则化与近端训练。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.05546">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/wozuf46qr3ao0gsmg1fffd3p2">http://localhost:3300/items/wozuf46qr3ao0gsmg1fffd3p2</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">wozuf46qr3ao0gsmg1fffd3p2</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
 </rss>
