@@ -493,6 +493,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[SwarmEvolve 提出潜在空间智能体群体框架，用于演化发现与优化]]></title>
+      <link>http://localhost:3300/items/e3ws5nq9vynt5p65nzutok7ht</link>
+      <description><![CDATA[<p>SwarmEvolve 研究提出让智能体群体在潜在空间推理并交换 KV 缓存，以加速数学与科学计算问题的演化程序搜索。根据当前材料，该框架每轮使用数百个低成本智能体，以隐藏状态向量距离筛选差异较大的想法，并由汇总智能体接收群体成员的合并 KV 缓存，实现想法交叉。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.08483">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/e3ws5nq9vynt5p65nzutok7ht">http://localhost:3300/items/e3ws5nq9vynt5p65nzutok7ht</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">e3ws5nq9vynt5p65nzutok7ht</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[EnvOpt 提出面向智能体共享环境的自动化优化方法]]></title>
       <link>http://localhost:3300/items/doe3zdrwq2sr5h03cord5ptlx</link>
       <description><![CDATA[<p>EnvOpt 研究提出对智能体的固定共享环境进行端到端自动优化，在多个基准上报告成本下降且通过率提高或保持。根据当前材料，该方法针对给定模型和执行框架，使用真实或合成任务，无需评分器或参考答案。</p>
@@ -546,17 +557,6 @@
       <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">bvwa1y6hu5kwzvjhue8hef0kl</guid>
       <author>noreply@localhost (Journal of the American Chemical Society)</author>
-    </item>
-    <item>
-      <title><![CDATA[一般和博弈中的 Optimistic Hedge：基本限制与基于时间近似的遗憾界]]></title>
-      <link>http://localhost:3300/items/bl33np7t7h50cazvx88oxzqkh</link>
-      <description><![CDATA[<p>该研究报告，Optimistic Hedge 在双人一般和博弈中可获得与时域 T 无关的 O(n log n) 遗憾界，但三人及以上博弈无法普遍保证关于博弈规模的多项式常数遗憾界。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.07078">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/bl33np7t7h50cazvx88oxzqkh">http://localhost:3300/items/bl33np7t7h50cazvx88oxzqkh</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">bl33np7t7h50cazvx88oxzqkh</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
 </rss>
