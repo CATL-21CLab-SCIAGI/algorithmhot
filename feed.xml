@@ -405,6 +405,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[Muir：采用敏感度分配门控与匹配滤波读出的线性注意力方法]]></title>
+      <link>http://localhost:3300/items/fofc9uuyqfxpisup45op79if9</link>
+      <description><![CDATA[<p>Muir 研究提出结合敏感度分配门控与匹配滤波读出的线性注意力方法，作者报告其在所测规模下优于 GDN-2 和 Transformer。根据当前材料，该方法依据状态更新对擦除与写入的敏感度差异，将门控融合为低秩投影，重加权状态行，并将节省的参数投入更宽的前馈网络，同时设计并行更新以改善大分块训练的数值稳定性。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.08376">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/fofc9uuyqfxpisup45op79if9">http://localhost:3300/items/fofc9uuyqfxpisup45op79if9</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">fofc9uuyqfxpisup45op79if9</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[多智能体编排学习研究提出 IAPO，建模策略改进中的高阶交互]]></title>
       <link>http://localhost:3300/items/flmrw5b9ngeok8s694xk4yax8</link>
       <description><![CDATA[<p>该研究提出交互感知策略优化框架 IAPO，将决策间交互显式纳入 LLM 多智能体编排的策略更新。基于摘要，作者将两个策略的性能差异精确分解为单个决策及其交互的贡献，给出交互贡献可占可实现增益一半的理论证明，并通过采样轨迹优化两类贡献，为每次更新提供改进保证。</p>
@@ -545,17 +556,6 @@
       <category>算法</category>
       <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">z4eoenxchohzxbavkajok1vsg</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[DRAP 提出面向物理 AI 持续学习的动态风险自适应可塑性方法]]></title>
-      <link>http://localhost:3300/items/x1e5q27a8lg6ljn2qm4by1oiu</link>
-      <description><![CDATA[<p>DRAP 研究提出无回放持续学习方法，通过轨迹风险加权的参数重要性调节可塑性，以减少物理 AI 顺序适应中的旧行为遗忘。根据当前材料，该方法对专家状态—动作转移拟合岭正则化局部线性模型，用状态转移矩阵的最大奇异值估计单步扰动放大风险，再累计风险加权的动作梯度平方，按张量重要性缩放 AdamW 有效学习率。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.05029">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/x1e5q27a8lg6ljn2qm4by1oiu">http://localhost:3300/items/x1e5q27a8lg6ljn2qm4by1oiu</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">x1e5q27a8lg6ljn2qm4by1oiu</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
