@@ -31,6 +31,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[D3D：通过解耦扩散草拟实现异步推测解码]]></title>
+      <link>http://localhost:3300/items/z4eoenxchohzxbavkajok1vsg</link>
+      <description><![CDATA[<p>D3D 研究提出不依赖目标模型隐藏状态的独立扩散草拟器，使后续块的草拟可与验证异步执行。基于摘要，该方法结合分块去噪与辅助自回归监督，并按层对接受长度的影响逐步剪枝；作者报告，以 Qwen3-8B 为目标模型时，移除 36 层中的 5 层后，在三个基准上保留超过 99% 的平均接受长度。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.06425">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/z4eoenxchohzxbavkajok1vsg">http://localhost:3300/items/z4eoenxchohzxbavkajok1vsg</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">z4eoenxchohzxbavkajok1vsg</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[DRAP 提出面向物理 AI 持续学习的动态风险自适应可塑性方法]]></title>
       <link>http://localhost:3300/items/x1e5q27a8lg6ljn2qm4by1oiu</link>
       <description><![CDATA[<p>DRAP 研究提出无回放持续学习方法，通过轨迹风险加权的参数重要性调节可塑性，以减少物理 AI 顺序适应中的旧行为遗忘。根据当前材料，该方法对专家状态—动作转移拟合岭正则化局部线性模型，用状态转移矩阵的最大奇异值估计单步扰动放大风险，再累计风险加权的动作梯度平方，按张量重要性缩放 AdamW 有效学习率。</p>
@@ -545,17 +556,6 @@
       <category>AI4AI</category>
       <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">byf2w041wvwh96oz0zonki3xp</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[VeriSpoof 用单一音频语言模型统一语音深伪检测与溯源]]></title>
-      <link>http://localhost:3300/items/bi2vnuvm6jbpbo22v6oeg9qj3</link>
-      <description><![CDATA[<p>VeriSpoof 研究提出共享权重的音频语言模型，统一深伪检测、生成器归因、录音条件分析、合成片段定位和来源验证五项任务。模型以答案的句子似然支持阈值判定，无需独立任务头，并通过可对照波形测量、片段标签或生成器元数据核查的理由及反事实训练，使决策遵循所述证据。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.04634">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/bi2vnuvm6jbpbo22v6oeg9qj3">http://localhost:3300/items/bi2vnuvm6jbpbo22v6oeg9qj3</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">bi2vnuvm6jbpbo22v6oeg9qj3</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
