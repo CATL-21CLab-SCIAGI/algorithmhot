@@ -9,6 +9,17 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[吡啶酮添加剂区域异构工程提升高电压 LiCoO2 电池稳定性]]></title>
+      <link>http://localhost:3300/items/fa1b52sn2pjf3qibzckdlkww3</link>
+      <description><![CDATA[<p>该研究报告，通过调控吡啶酮电解液添加剂的区域异构取代方式，可改善高电压 LiCoO2 正极的界面稳定性，其中 p‐HNFP 表现最好。根据当前材料，光谱与计算分析表明，p‐HNFP 通过羰基氧向缺电子 Co4+ 中心提供 σ 型孤对电子配位，降低 O 2p 带中心并增大 Co 3d‐O 2p 能隙，与晶格氧氧化热力学驱动力降低相一致。</p>
+<p>🔗 <a href="https://doi.org/10.1002/anie.2372098">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/fa1b52sn2pjf3qibzckdlkww3">http://localhost:3300/items/fa1b52sn2pjf3qibzckdlkww3</a></p>]]></description>
+      <category>电池与新能源材料</category>
+      <pubDate>Sat, 07 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">fa1b52sn2pjf3qibzckdlkww3</guid>
+      <author>noreply@localhost (Angewandte Chemie International Edition)</author>
+    </item>
+    <item>
       <title><![CDATA[DreamFree 通过未来表征蒸馏实现无需生成未来视频的世界动作模型]]></title>
       <link>http://localhost:3300/items/zfz8ne46c7zxucs9zqlu3v1lw</link>
       <description><![CDATA[<p>DreamFree 研究提出通过未来表征蒸馏预测机器人动作，无需生成未来视频即可利用预训练视频扩散模型的预测知识。根据当前材料，视觉编码器仅根据当前观测学习预测冻结视频扩散模型的表征，动作模块再从中提取动作相关信息。</p>
@@ -545,17 +556,6 @@
       <category>AI4AI</category>
       <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">doe3zdrwq2sr5h03cord5ptlx</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[相同答案，不同后续：语言模型预测一致不代表信念更新一致]]></title>
-      <link>http://localhost:3300/items/d09tcx2c40d5qyeyh3p7zyfh7</link>
-      <description><![CDATA[<p>该研究报告，语言模型即使当前概率预测一致，通过不同路径形成的信念仍可能在接收新证据后呈现不同更新行为。基于摘要，作者在具有解析贝叶斯参照的伯努利推断任务中，对三个开放权重语言模型采用四种文本路径和两种激活层干预，并追加相同证据，以有效证据权重衡量初始信念相当于多少次新观测。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.07913">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/d09tcx2c40d5qyeyh3p7zyfh7">http://localhost:3300/items/d09tcx2c40d5qyeyh3p7zyfh7</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">d09tcx2c40d5qyeyh3p7zyfh7</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
