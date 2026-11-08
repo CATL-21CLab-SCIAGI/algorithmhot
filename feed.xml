@@ -9,6 +9,17 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[阳离子效应调控界面溶剂化结构，实现锂离子电池快速充电]]></title>
+      <link>http://localhost:3300/items/zajis327u4sot4e1ywxb4xz0o</link>
+      <description><![CDATA[<p>该研究提出阳离子介导策略，通过重塑负极界面电场，在商业电解液中构建富阴离子的界面溶剂化结构以促进快充。根据当前材料，苄基三乙基铵在极化石墨表面附近形成阳离子层，促进 PF6– 富集，使早期固体电解质界面膜（SEI）形成偏向阴离子衍生路径，减少溶剂分解并加快 Li+ 脱溶剂化与传输。</p>
+<p>🔗 <a href="https://doi.org/10.1021/jacs.6c21052">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/zajis327u4sot4e1ywxb4xz0o">http://localhost:3300/items/zajis327u4sot4e1ywxb4xz0o</a></p>]]></description>
+      <category>电池与新能源材料</category>
+      <pubDate>Sat, 07 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">zajis327u4sot4e1ywxb4xz0o</guid>
+      <author>noreply@localhost (Journal of the American Chemical Society)</author>
+    </item>
+    <item>
       <title><![CDATA[吡啶酮添加剂区域异构工程提升高电压 LiCoO2 电池稳定性]]></title>
       <link>http://localhost:3300/items/fa1b52sn2pjf3qibzckdlkww3</link>
       <description><![CDATA[<p>该研究报告，通过调控吡啶酮电解液添加剂的区域异构取代方式，可改善高电压 LiCoO2 正极的界面稳定性，其中 p‐HNFP 表现最好。根据当前材料，光谱与计算分析表明，p‐HNFP 通过羰基氧向缺电子 Co4+ 中心提供 σ 型孤对电子配位，降低 O 2p 带中心并增大 Co 3d‐O 2p 能隙，与晶格氧氧化热力学驱动力降低相一致。</p>
@@ -29,6 +40,17 @@
       <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">zfz8ne46c7zxucs9zqlu3v1lw</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[LLM Zoo 研究提出以数据配比为条件的流匹配方法，生成预训练 LLM 权重]]></title>
+      <link>http://localhost:3300/items/z6ssox1md9rxgfxwaib9tyeta</link>
+      <description><![CDATA[<p>基于摘要，LLM Zoo 研究提出以训练数据配比为条件生成完整预训练 LLM 权重的方法，作者报告生成模型在留出配比上的表现与模型库中的模型相近。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.07103">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/z6ssox1md9rxgfxwaib9tyeta">http://localhost:3300/items/z6ssox1md9rxgfxwaib9tyeta</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">z6ssox1md9rxgfxwaib9tyeta</guid>
+      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
       <title><![CDATA[ZO-LBPG 提出面向 RLHF 的可证明零阶安全探索方法]]></title>
@@ -535,28 +557,6 @@
       <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">en6jag5iarzl6ozx8yj86aiux</guid>
       <author>noreply@localhost (Angewandte Chemie International Edition)</author>
-    </item>
-    <item>
-      <title><![CDATA[SwarmEvolve 提出潜在空间智能体群体框架，用于演化发现与优化]]></title>
-      <link>http://localhost:3300/items/e3ws5nq9vynt5p65nzutok7ht</link>
-      <description><![CDATA[<p>SwarmEvolve 研究提出让智能体群体在潜在空间推理并交换 KV 缓存，以加速数学与科学计算问题的演化程序搜索。根据当前材料，该框架每轮使用数百个低成本智能体，以隐藏状态向量距离筛选差异较大的想法，并由汇总智能体接收群体成员的合并 KV 缓存，实现想法交叉。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.08483">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/e3ws5nq9vynt5p65nzutok7ht">http://localhost:3300/items/e3ws5nq9vynt5p65nzutok7ht</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">e3ws5nq9vynt5p65nzutok7ht</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[EnvOpt 提出面向智能体共享环境的自动化优化方法]]></title>
-      <link>http://localhost:3300/items/doe3zdrwq2sr5h03cord5ptlx</link>
-      <description><![CDATA[<p>EnvOpt 研究提出对智能体的固定共享环境进行端到端自动优化，在多个基准上报告成本下降且通过率提高或保持。根据当前材料，该方法针对给定模型和执行框架，使用真实或合成任务，无需评分器或参考答案。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.07372">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/doe3zdrwq2sr5h03cord5ptlx">http://localhost:3300/items/doe3zdrwq2sr5h03cord5ptlx</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">doe3zdrwq2sr5h03cord5ptlx</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
 </rss>
