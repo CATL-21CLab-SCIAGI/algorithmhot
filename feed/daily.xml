@@ -9,6 +9,23 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-11-09 — Sketchpad：用小型视觉语言模型实现可认证的精确算术]]></title>
+      <link>http://localhost:3300/daily/2026-11-09</link>
+      <description><![CDATA[<p>Sketchpad 研究提出，将模型每步可见的工作记忆限制在局部范围，可通过有限检查认证任意长度输入上的精确算术。根据当前材料，系统为 Qwen3.5-0.8B 配置低秩适配器，每次前向传播读取渲染工作表中的三个单元格，输出数字、进位或借位及下一步操作，固定运行时负责移动视野而不写入结果数字。</p>
+<p><strong>算法</strong></p>
+<ul><li><a href="http://localhost:3300/items/pqkdqinnyi6yfb9rpctayybto">Sketchpad：用小型视觉语言模型实现可认证的精确算术</a></li><li><a href="http://localhost:3300/items/t1gs243bd096kzcnapsw3zmcs">Confucius4-R2T2 提出不修改已输出文本的稳定前缀流式语音识别方法</a></li></ul>
+<p><strong>AI4AI</strong></p>
+<ul><li><a href="http://localhost:3300/items/y73w0jpxkvnioipoyyuyrib8i">探索权重空间编程 WSP 的能力、泛化与局限</a></li><li><a href="http://localhost:3300/items/sk5cy7gx0n9cnwdqmu6usdomm">智能体演化评估：基准分数之外忽略了什么</a></li><li><a href="http://localhost:3300/items/w90kfyflhiqq1qhl4j2vwe8cv">通向真实世界的最后一公里：用智能体原生基元与 HEELO 构建可复用任务组件</a></li><li><a href="http://localhost:3300/items/i60k2xf44tc894mjpuqdn2z98">AgentBaton 通过适时模型交接降低长程智能体任务成本</a></li></ul>
+<p><strong>AI4S</strong></p>
+<ul><li><a href="http://localhost:3300/items/kzd6hwo57l4jtyhiraifn3k1m">EvoMOBO：面向蛋白质工程的进化启发式多目标贝叶斯优化</a></li></ul>
+<p><strong>电池与新能源材料</strong></p>
+<ul><li><a href="http://localhost:3300/items/oi7iqxkq6o4613k8k78sc1r8j">静电阳离子插层使钙钛矿/硅叠层太阳能电池在空气中制备并达32.73%效率</a></li></ul>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/daily/2026-11-09">http://localhost:3300/daily/2026-11-09</a></p>]]></description>
+      <pubDate>Mon, 09 Nov 2026 04:00:22 GMT</pubDate>
+      <guid isPermaLink="false">daily-2026-11-09</guid>
+      <author>noreply@localhost (AlgorithmHot · 科研热点)</author>
+    </item>
+    <item>
       <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-11-08 — 吡啶酮添加剂区域异构工程提升高电压 LiCoO2 电池稳定性]]></title>
       <link>http://localhost:3300/daily/2026-11-08</link>
       <description><![CDATA[<p>该研究报告，通过调控吡啶酮电解液添加剂的区域异构取代方式，可改善高电压 LiCoO2 正极的界面稳定性，其中 p‐HNFP 表现最好。根据当前材料，光谱与计算分析表明，p‐HNFP 通过羰基氧向缺电子 Co4+ 中心提供 σ 型孤对电子配位，降低 O 2p 带中心并增大 Co 3d‐O 2p 能隙，与晶格氧氧化热力学驱动力降低相一致。</p>
@@ -405,17 +422,6 @@
 <p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/daily/2026-10-11">http://localhost:3300/daily/2026-10-11</a></p>]]></description>
       <pubDate>Tue, 13 Oct 2026 06:50:29 GMT</pubDate>
       <guid isPermaLink="false">daily-2026-10-11</guid>
-      <author>noreply@localhost (AlgorithmHot · 科研热点)</author>
-    </item>
-    <item>
-      <title><![CDATA[AlgorithmHot · 科研热点 日报 · 2026-10-10 — Ir–V 金属间化合物研究报告长程原子有序结构提升水电解耐久性]]></title>
-      <link>http://localhost:3300/daily/2026-10-10</link>
-      <description><![CDATA[<p>该研究提出长程原子有序的铱–钒（Ir–V）金属间化合物，作者报告其可抑制酸性析氧反应中的铱溶解并维持结构完整性。根据当前材料，理论与实验分析将稳定性归因于高度有序的原子网格及强异原子键对铱位点的保护。</p>
-<p><strong>电池与新能源材料</strong></p>
-<ul><li><a href="http://localhost:3300/items/iwjdmfc4etvpa6za6m51zoxfb">Ir–V 金属间化合物研究报告长程原子有序结构提升水电解耐久性</a></li><li><a href="http://localhost:3300/items/c736viqm97r1mee81p7oss9qb">双电层组织质子转移通路，调控双功能界面的碱性析氢反应</a></li><li><a href="http://localhost:3300/items/oldneiygfvdr8c08gwwp5b3b1">研究揭示 Pt 纳米簇原子位点特异性本征应变与电催化活性的关系</a></li><li><a href="http://localhost:3300/items/ubzo9cb3tfe0ng9pr2r0epbai">类石墨烯包覆的 TiO2 纳米片组装结构实现高载量下快速稳定储钠</a></li></ul>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/daily/2026-10-10">http://localhost:3300/daily/2026-10-10</a></p>]]></description>
-      <pubDate>Tue, 13 Oct 2026 06:50:29 GMT</pubDate>
-      <guid isPermaLink="false">daily-2026-10-10</guid>
       <author>noreply@localhost (AlgorithmHot · 科研热点)</author>
     </item>
   </channel>

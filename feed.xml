@@ -53,6 +53,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[Video-Coder：通过智能体编码强化视频生成]]></title>
+      <link>http://localhost:3300/items/q37e9wbam6uip5yxap6c4bdgw</link>
+      <description><![CDATA[<p>Video-Coder 研究提出代码驱动的视频生成智能体，通过自主编写和执行代码构建动态三维场景，为下游视频生成器提供结构与运动信号。根据当前材料，作者构建了 Video-Coder-SFT-6k 和 Video-Coder-RL-2k 数据集，以及整合代码执行、三维场景渲染和执行反馈的 Video-Coder Harness 环境。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.09894">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/q37e9wbam6uip5yxap6c4bdgw">http://localhost:3300/items/q37e9wbam6uip5yxap6c4bdgw</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">q37e9wbam6uip5yxap6c4bdgw</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[Sketchpad：用小型视觉语言模型实现可认证的精确算术]]></title>
       <link>http://localhost:3300/items/pqkdqinnyi6yfb9rpctayybto</link>
       <description><![CDATA[<p>Sketchpad 研究提出，将模型每步可见的工作记忆限制在局部范围，可通过有限检查认证任意长度输入上的精确算术。根据当前材料，系统为 Qwen3.5-0.8B 配置低秩适配器，每次前向传播读取渲染工作表中的三个单元格，输出数字、进位或借位及下一步操作，固定运行时负责移动视野而不写入结果数字。</p>
@@ -545,17 +556,6 @@
       <category>AI4AI</category>
       <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">hoylvcu7fbxols5vgr2959w6l</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[FWL-ToPM 与 FWLAug 通过 token 精简和物理感知增强推进实时全波形 LiDAR Transformer]]></title>
-      <link>http://localhost:3300/items/hk12vray8s86yjpg8et98g45b</link>
-      <description><![CDATA[<p>基于摘要，该研究提出 FWL-ToPM 和 FWLAug，分别降低全波形 LiDAR Transformer 的计算成本并改善未见场景泛化。FWL-ToPM 根据强度分布剪枝和合并 token，同时保留关键波形内容；FWLAug 保留每条射线的飞行时间波形及视锥几何结构，作为数据增强与正则化方法。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.07613">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/hk12vray8s86yjpg8et98g45b">http://localhost:3300/items/hk12vray8s86yjpg8et98g45b</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">hk12vray8s86yjpg8et98g45b</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
