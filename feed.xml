@@ -306,6 +306,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[LambdaMix 通过联合训练低秩适配器实现可调节的多目标组相对偏好优化]]></title>
+      <link>http://localhost:3300/items/gt2h9qp0yprpj87rpuzjlzl3a</link>
+      <description><![CDATA[<p>LambdaMix 提出参数高效的多目标偏好优化方法，单次训练后可在模型推理时切换偏好，无需进一步优化。根据当前材料，该方法冻结基础模型，为每个目标联合训练一个低秩适配器，并用同一偏好向量选择适配器混合、加权分别归一化的奖励，进行组相对在线强化学习。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.09634">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/gt2h9qp0yprpj87rpuzjlzl3a">http://localhost:3300/items/gt2h9qp0yprpj87rpuzjlzl3a</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">gt2h9qp0yprpj87rpuzjlzl3a</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[SAE 训练的激活缓存能压缩到多小？通过校准衡量特征保留]]></title>
       <link>http://localhost:3300/items/gioqgcvch5p10l8larnwjyqto</link>
       <description><![CDATA[<p>该研究提出校准 SAE 激活缓存压缩的评估方法，以相同字节数据重训设定上限、更换随机种子设定下限，衡量各压缩方案相对所在测量位置下限的特征保留情况。</p>
@@ -546,17 +557,6 @@
       <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">wypgt92lp1ct3vqjon4zaeepv</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[定位不等于可操控：LLM 数学符号错误的机制研究]]></title>
-      <link>http://localhost:3300/items/wv2vyy7xk6dwg1r5pbw9oxs3u</link>
-      <description><![CDATA[<p>该研究报告，LLM 数学符号错误可定位到网络后部的回路，但定位准确不代表干预能有效改变符号选择。根据当前材料，作者分析了六个参数规模从 14B 到 675B 的开放模型，逐层读出显示错误符号主要由网络末四分之一的 MLP 层写入，各模型与任务中的比例为 70-100%，具体机制包括固定写入负号、放大已选符号及下游纠错。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.07478">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/wv2vyy7xk6dwg1r5pbw9oxs3u">http://localhost:3300/items/wv2vyy7xk6dwg1r5pbw9oxs3u</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">wv2vyy7xk6dwg1r5pbw9oxs3u</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
 </rss>
