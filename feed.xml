@@ -383,6 +383,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[PCBRouteAgent：LLM 智能体距离成为 PCB 布线工程师还有多远？]]></title>
+      <link>http://localhost:3300/items/aqfibd3ymlcwsf1rm3xhe4p2p</link>
+      <description><![CDATA[<p>PCBRouteAgent 研究提出多模态 PCB 布线智能体，通过全局规划与局部执行协作完成严格设计规则下的布线任务。根据当前材料，全局规划器结合电路板图像、电气与几何结构信息，指定连接拓扑、布线顺序、通道及层间转换；详细执行器调用 KiCad 原生布线引擎并进行有限局部恢复，将未解决的失败作为结构化反馈返回，以修改规划并保留已接受的布线。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.08175">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/aqfibd3ymlcwsf1rm3xhe4p2p">http://localhost:3300/items/aqfibd3ymlcwsf1rm3xhe4p2p</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">aqfibd3ymlcwsf1rm3xhe4p2p</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[线性 ACE 势的 Jackknife 共形不确定性：力与硅性质校准及 Bayesian、POPS 基线比较]]></title>
       <link>http://localhost:3300/items/ainbct17zkyxlt3g6weqz1tu9</link>
       <description><![CDATA[<p>该研究提出用于线性原子簇展开（ACE）势的 Jackknife 共形不确定性方法，作者报告其可校准原子力误差并传播至硅的材料性质。根据当前材料，方法以逐一删除构型的 Jackknife 估计稳健参数协方差，用训练集留出部分的一个共形分位数缩放，在留出硅数据和未参与拟合的裂纹上接近目标覆盖率，但较小模型对未参与拟合的螺位错覆盖不足。</p>
@@ -546,17 +557,6 @@
       <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">xhvwyjtysxkms1s5bbddp8jfx</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[OpenFrontiers 汇集开放研究问题并构建科学再发现基准]]></title>
-      <link>http://localhost:3300/items/wypgt92lp1ct3vqjon4zaeepv</link>
-      <description><![CDATA[<p>OpenFrontiers 提出跨学科开放研究问题语料库与数学再发现基准，用于评估 LLM 智能体解决研究级问题的能力。基于摘要，语料库记录了 12,151 个问题的陈述、背景与进展；基准包含 200 个问题，其中 110 个于 2026 年解决、90 个仍未解决，每题均有经自动化探测和两次独立审查检查的 Lean 4 陈述，并进一步筛选出 HQ-50 子集。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2610.37739">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/wypgt92lp1ct3vqjon4zaeepv">http://localhost:3300/items/wypgt92lp1ct3vqjon4zaeepv</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">wypgt92lp1ct3vqjon4zaeepv</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
 </rss>
