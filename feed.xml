@@ -86,6 +86,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[大语言模型不知道自己知道什么：金融回测中的时间知识自知能力评测]]></title>
+      <link>http://localhost:3300/items/b61rdclpcdnrlv6x4342v7gxf</link>
+      <description><![CDATA[<p>FinDendro 研究报告，多数前沿大语言模型会低报自身知识，仅靠模型自述、指令或声明的知识截止日期无法确认金融回测不存在信息泄漏。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.06808">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/b61rdclpcdnrlv6x4342v7gxf">http://localhost:3300/items/b61rdclpcdnrlv6x4342v7gxf</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">b61rdclpcdnrlv6x4342v7gxf</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[静电阳离子插层使钙钛矿/硅叠层太阳能电池在空气中制备并达32.73%效率]]></title>
       <link>http://localhost:3300/items/oi7iqxkq6o4613k8k78sc1r8j</link>
       <description><![CDATA[<p>该研究报告，通过对聚合物自组装单分子层（SAMs）进行静电阳离子插层，在空气中制备出经独立认证、光电转换效率为32.73%的钙钛矿/硅叠层太阳能电池。根据当前材料，碘化苯乙铵（PEAI）插层使PEA +阳离子定向排列，并促使I −在上层界面富集，以增强净向上偶极、调整能级并克服空穴提取障碍。</p>
@@ -546,17 +557,6 @@
       <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">hx2f9hz9rjb3kecdd3gu9s3d6</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[TB-MathModel 提出面向数学建模智能体的可验证终端基准]]></title>
-      <link>http://localhost:3300/items/hoylvcu7fbxols5vgr2959w6l</link>
-      <description><![CDATA[<p>TB-MathModel 提出数学建模智能体评测基准，将完整竞赛题置于终端环境，并结合数值评分与可行性验证。根据当前材料，基准包含 18 道来自 2023--2025 年 CUMCM 和 MCM 的真实题目，在容器中提供原始题面、官方附件与图表，智能体提交一个 JSON 结果，以多篇优秀奖论文的复现结果作为参考。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.08237">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/hoylvcu7fbxols5vgr2959w6l">http://localhost:3300/items/hoylvcu7fbxols5vgr2959w6l</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">hoylvcu7fbxols5vgr2959w6l</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
 </rss>
