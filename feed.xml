@@ -86,6 +86,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[Velocity Matching 通过匹配速度学习非线性动力系统的演化]]></title>
+      <link>http://localhost:3300/items/swbhb1iiuux9zsvw6wtxhc5i8</link>
+      <description><![CDATA[<p>Velocity Matching（VM）研究提出免仿真的训练目标，用于学习非线性动力系统的连续时间演化，避免长轨迹训练的计算成本与不稳定性。根据当前材料，该方法结合分段线性插值与随机配点，对速度总体风险给出采样步长的二阶近似，无需访问真实速度场或其 Jacobian。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.00448">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/swbhb1iiuux9zsvw6wtxhc5i8">http://localhost:3300/items/swbhb1iiuux9zsvw6wtxhc5i8</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">swbhb1iiuux9zsvw6wtxhc5i8</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[智能体演化评估：基准分数之外忽略了什么]]></title>
       <link>http://localhost:3300/items/sk5cy7gx0n9cnwdqmu6usdomm</link>
       <description><![CDATA[<p>该研究报告，智能体框架在不更新模型权重的演化中，基准分数提升并不必然带来可靠、高效且可迁移的改进。根据当前材料，作者跨框架、通用任务与编码任务评估四种方法，通过重复评估、受控智能体扩展、组件干预和准入重放发现，全部十六个演化智能体都在获得新任务覆盖的同时丢失既有覆盖；一个通用任务案例中，可靠性提高5.2个百分点，却丢失十个此前已覆盖的任务，多数可靠性提升还伴随部署成本增加。</p>
@@ -138,6 +149,17 @@
       <category>算法</category>
       <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">pqkdqinnyi6yfb9rpctayybto</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[视觉信息应接入哪一层？DGP 通过 ViT 与 LLM 全层动态门控路径增强多模态模型]]></title>
+      <link>http://localhost:3300/items/pl4vwgj8k2wcgtz8iawjex1mq</link>
+      <description><![CDATA[<p>DGP 研究提出连接所有 ViT 层与所有 LLM 层的动态门控路径，让各语言模型层按自身语义状态选择不同层级的视觉信息。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.06844">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/pl4vwgj8k2wcgtz8iawjex1mq">http://localhost:3300/items/pl4vwgj8k2wcgtz8iawjex1mq</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">pl4vwgj8k2wcgtz8iawjex1mq</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
@@ -535,28 +557,6 @@
       <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">tidnl0344a40cbkmxjca2u6ug</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[WaSP 提出 Wasserstein 数据合成流程，用于无求解器神经算子学习]]></title>
-      <link>http://localhost:3300/items/t2y1pqkb90bwq2fn8fcmgyvll</link>
-      <description><![CDATA[<p>WaSP 研究提出 Wasserstein 数据合成流程，通过逐步缓解合成数据与目标分布之间的偏移，训练无需求解器生成数据的神经算子。根据当前材料，该方法沿趋近目标输入分布的中间分布路径分阶段训练，每阶段由上一阶段的代理模型生成解，再用精确 PDE 算子得到对应输入，构造下一阶段的训练数据。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.07646">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/t2y1pqkb90bwq2fn8fcmgyvll">http://localhost:3300/items/t2y1pqkb90bwq2fn8fcmgyvll</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">t2y1pqkb90bwq2fn8fcmgyvll</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[Mechanistic Shaping：通过内部表征塑造与监测模型]]></title>
-      <link>http://localhost:3300/items/sitmpn5bkyhkbra5r5axl2lez</link>
-      <description><![CDATA[<p>Mechanistic Shaping 提出通过内部表征塑造模型的统一训练框架，约束模型表达哪些概念，以及决策依赖哪些概念。基于摘要，作者报告在视觉、医学影像和语言领域、最高 32B 参数规模及分类、SFT、DPO、GRPO 训练设置下，该方法显著减少目标行为，同时保持任务性能。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.07071">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/sitmpn5bkyhkbra5r5axl2lez">http://localhost:3300/items/sitmpn5bkyhkbra5r5axl2lez</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">sitmpn5bkyhkbra5r5axl2lez</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
 </rss>
