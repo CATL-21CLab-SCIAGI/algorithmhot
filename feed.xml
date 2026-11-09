@@ -9,6 +9,72 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[探索权重空间编程 WSP 的能力、泛化与局限]]></title>
+      <link>http://localhost:3300/items/y73w0jpxkvnioipoyyuyrib8i</link>
+      <description><![CDATA[<p>WSP 研究报告，推理智能体直接检查和修改神经网络参数可实现局部模型适配，但跨任务泛化与编辑可靠性并不稳定。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.09382">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/y73w0jpxkvnioipoyyuyrib8i">http://localhost:3300/items/y73w0jpxkvnioipoyyuyrib8i</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">y73w0jpxkvnioipoyyuyrib8i</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[通向真实世界的最后一公里：用智能体原生基元与 HEELO 构建可复用任务组件]]></title>
+      <link>http://localhost:3300/items/w90kfyflhiqq1qhl4j2vwe8cv</link>
+      <description><![CDATA[<p>研究提出智能体原生基元与 HEELO 框架，将资源及其使用能力封装为可复用组件，以改善智能体完成现实任务的表现。根据当前材料，每个基元配有驻留 LLM，HEELO 按任务组合基元图，依据环境证据验证结果、修订失败涉及的基元，并在验证后纳入新建或改进的基元；作者实现了八类基元，并在二十多个基准上评估。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.07461">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/w90kfyflhiqq1qhl4j2vwe8cv">http://localhost:3300/items/w90kfyflhiqq1qhl4j2vwe8cv</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">w90kfyflhiqq1qhl4j2vwe8cv</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[Confucius4-R2T2 提出不修改已输出文本的稳定前缀流式语音识别方法]]></title>
+      <link>http://localhost:3300/items/t1gs243bd096kzcnapsw3zmcs</link>
+      <description><![CDATA[<p>Confucius4-R2T2 研究提出稳定前缀流式语音识别模型，作者报告其不修改先前输出，并以较低输出延迟接近基础模型的全上下文识别质量。根据当前材料，该模型使用 1,500 小时中英文音频对 Qwen3-ASR-1.7B 进行后训练，冻结预训练音频编码器和投影器，通过最长稳定前缀（LSP）标签实现适配，无需改变架构。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.06043">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/t1gs243bd096kzcnapsw3zmcs">http://localhost:3300/items/t1gs243bd096kzcnapsw3zmcs</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">t1gs243bd096kzcnapsw3zmcs</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[智能体演化评估：基准分数之外忽略了什么]]></title>
+      <link>http://localhost:3300/items/sk5cy7gx0n9cnwdqmu6usdomm</link>
+      <description><![CDATA[<p>该研究报告，智能体框架在不更新模型权重的演化中，基准分数提升并不必然带来可靠、高效且可迁移的改进。根据当前材料，作者跨框架、通用任务与编码任务评估四种方法，通过重复评估、受控智能体扩展、组件干预和准入重放发现，全部十六个演化智能体都在获得新任务覆盖的同时丢失既有覆盖；一个通用任务案例中，可靠性提高5.2个百分点，却丢失十个此前已覆盖的任务，多数可靠性提升还伴随部署成本增加。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.07624">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/sk5cy7gx0n9cnwdqmu6usdomm">http://localhost:3300/items/sk5cy7gx0n9cnwdqmu6usdomm</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">sk5cy7gx0n9cnwdqmu6usdomm</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[Sketchpad：用小型视觉语言模型实现可认证的精确算术]]></title>
+      <link>http://localhost:3300/items/pqkdqinnyi6yfb9rpctayybto</link>
+      <description><![CDATA[<p>Sketchpad 研究提出，将模型每步可见的工作记忆限制在局部范围，可通过有限检查认证任意长度输入上的精确算术。根据当前材料，系统为 Qwen3.5-0.8B 配置低秩适配器，每次前向传播读取渲染工作表中的三个单元格，输出数字、进位或借位及下一步操作，固定运行时负责移动视野而不写入结果数字。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.04434">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/pqkdqinnyi6yfb9rpctayybto">http://localhost:3300/items/pqkdqinnyi6yfb9rpctayybto</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">pqkdqinnyi6yfb9rpctayybto</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[AgentBaton 通过适时模型交接降低长程智能体任务成本]]></title>
+      <link>http://localhost:3300/items/i60k2xf44tc894mjpuqdn2z98</link>
+      <description><![CDATA[<p>AgentBaton 研究提出轻量检测器，在长程智能体任务中学习何时从高能力模型交接给高效率模型，以降低成本并尽量保持准确率。根据当前材料，研究考察了交接方向与上下文传递，发现高效率模型向高能力模型交接通常表现较差且节省有限，反向交接在合适阶段则大体保持甚至提升准确率。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.35959">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/i60k2xf44tc894mjpuqdn2z98">http://localhost:3300/items/i60k2xf44tc894mjpuqdn2z98</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">i60k2xf44tc894mjpuqdn2z98</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[静电阳离子插层使钙钛矿/硅叠层太阳能电池在空气中制备并达32.73%效率]]></title>
       <link>http://localhost:3300/items/oi7iqxkq6o4613k8k78sc1r8j</link>
       <description><![CDATA[<p>该研究报告，通过对聚合物自组装单分子层（SAMs）进行静电阳离子插层，在空气中制备出经独立认证、光电转换效率为32.73%的钙钛矿/硅叠层太阳能电池。根据当前材料，碘化苯乙铵（PEAI）插层使PEA +阳离子定向排列，并促使I −在上层界面富集，以增强净向上偶极、调整能级并克服空穴提取障碍。</p>
@@ -491,72 +557,6 @@
       <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">hk12vray8s86yjpg8et98g45b</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[Drex：迈向基础决策模型]]></title>
-      <link>http://localhost:3300/items/hgrdts2mw20l2e1p6wq9pfigk</link>
-      <description><![CDATA[<p>Drex 研究提出四款无需自回归解码、直接返回用户所给选项概率分布的决策模型，包括 8B（DLM）、9B（v1.5）、35B 且激活参数为 3B（v2.0）和 27B（Max）。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.07854">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/hgrdts2mw20l2e1p6wq9pfigk">http://localhost:3300/items/hgrdts2mw20l2e1p6wq9pfigk</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">hgrdts2mw20l2e1p6wq9pfigk</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[Coca-Cola 提出智能体潜在上下文压缩，让工具输出无需以文本呈现]]></title>
-      <link>http://localhost:3300/items/gwfpdi81nrwi13pkl0ka8j0zs</link>
-      <description><![CDATA[<p>Coca-Cola 研究提出将工具观测压缩为连续潜在 token，以减少 LLM 智能体的上下文开销并保留决策关键信息。根据当前材料，该方法将潜在 token 嵌入智能体的输入嵌入空间，并通过 Action-Preserving Training 对齐完整观测与压缩观测下的下一步动作分布。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.06500">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/gwfpdi81nrwi13pkl0ka8j0zs">http://localhost:3300/items/gwfpdi81nrwi13pkl0ka8j0zs</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">gwfpdi81nrwi13pkl0ka8j0zs</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[机器学习引导发现钠金属电池超快充电添加剂 NaCDFA]]></title>
-      <link>http://localhost:3300/items/gjdfuspzdu928b5hciaf6cnwh</link>
-      <description><![CDATA[<p>该研究报告通过机器学习筛选出 0.02 M 氯二氟乙酸钠（NaCDFA）添加剂，用于改善钠金属电池的快速充电性能。根据当前材料，作者采用基于高斯过程回归的主动机器学习框架，迭代筛选关键物理化学描述符；理论计算与原位表征支持 NaCDFA 促进 PF6– 阴离子定向、持续分解，形成富 NaF 界面并降低 Na+ 迁移势垒的机理。</p>
-<p>🔗 <a href="https://doi.org/10.1021/jacs.6c10960">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/gjdfuspzdu928b5hciaf6cnwh">http://localhost:3300/items/gjdfuspzdu928b5hciaf6cnwh</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">gjdfuspzdu928b5hciaf6cnwh</guid>
-      <author>noreply@localhost (Journal of the American Chemical Society)</author>
-    </item>
-    <item>
-      <title><![CDATA[随机抽样几乎足够？BestRand 实现稳定、低成本的基准压缩]]></title>
-      <link>http://localhost:3300/items/ggpiu0r32sszxa75tamllx67b</link>
-      <description><![CDATA[<p>BestRand 研究提出低成本基准压缩方法，在保留随机抽样效率的同时降低用子集估计完整基准得分的高误差风险。根据当前材料，作者推导了误差分布的解析近似，指出多数子集误差较小、少数误差较大形成长尾，且这种不稳定性在评估更多模型后仍存在。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.00883">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ggpiu0r32sszxa75tamllx67b">http://localhost:3300/items/ggpiu0r32sszxa75tamllx67b</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">ggpiu0r32sszxa75tamllx67b</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[Muir：采用敏感度分配门控与匹配滤波读出的线性注意力方法]]></title>
-      <link>http://localhost:3300/items/fofc9uuyqfxpisup45op79if9</link>
-      <description><![CDATA[<p>Muir 研究提出结合敏感度分配门控与匹配滤波读出的线性注意力方法，作者报告其在所测规模下优于 GDN-2 和 Transformer。根据当前材料，该方法依据状态更新对擦除与写入的敏感度差异，将门控融合为低秩投影，重加权状态行，并将节省的参数投入更宽的前馈网络，同时设计并行更新以改善大分块训练的数值稳定性。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.08376">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/fofc9uuyqfxpisup45op79if9">http://localhost:3300/items/fofc9uuyqfxpisup45op79if9</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">fofc9uuyqfxpisup45op79if9</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[多智能体编排学习研究提出 IAPO，建模策略改进中的高阶交互]]></title>
-      <link>http://localhost:3300/items/flmrw5b9ngeok8s694xk4yax8</link>
-      <description><![CDATA[<p>该研究提出交互感知策略优化框架 IAPO，将决策间交互显式纳入 LLM 多智能体编排的策略更新。基于摘要，作者将两个策略的性能差异精确分解为单个决策及其交互的贡献，给出交互贡献可占可实现增益一半的理论证明，并通过采样轨迹优化两类贡献，为每次更新提供改进保证。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.07495">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/flmrw5b9ngeok8s694xk4yax8">http://localhost:3300/items/flmrw5b9ngeok8s694xk4yax8</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">flmrw5b9ngeok8s694xk4yax8</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
 </rss>
