@@ -42,6 +42,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[HiRes 层级残差以极简架构解耦残差宽度与计算宽度]]></title>
+      <link>http://localhost:3300/items/wnfuex0tsp23gopxfgfit2hf6</link>
+      <description><![CDATA[<p>HiRes 研究提出层级残差架构，在保持每层计算宽度不变的同时拓宽残差状态，将残差宽度作为可调的扩展维度。根据当前材料，该方法将 Transformer 层分块，块内使用标准 d 维 PreNorm 层，块间通过更宽的 D 维 PostNorm 外层残差连接，并在块边界用可学习的读写投影衔接两个空间，不改变单个 Transformer 层。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.41711">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/wnfuex0tsp23gopxfgfit2hf6">http://localhost:3300/items/wnfuex0tsp23gopxfgfit2hf6</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">wnfuex0tsp23gopxfgfit2hf6</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[通向真实世界的最后一公里：用智能体原生基元与 HEELO 构建可复用任务组件]]></title>
       <link>http://localhost:3300/items/w90kfyflhiqq1qhl4j2vwe8cv</link>
       <description><![CDATA[<p>研究提出智能体原生基元与 HEELO 框架，将资源及其使用能力封装为可复用组件，以改善智能体完成现实任务的表现。根据当前材料，每个基元配有驻留 LLM，HEELO 按任务组合基元图，依据环境证据验证结果、修订失败涉及的基元，并在验证后纳入新建或改进的基元；作者实现了八类基元，并在二十多个基准上评估。</p>
@@ -149,6 +160,17 @@
       <category>算法</category>
       <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">pqkdqinnyi6yfb9rpctayybto</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[TOPSD：通过可教前缀选择多语言推理蒸馏的监督时机]]></title>
+      <link>http://localhost:3300/items/po4eae5ij1wtrh05kj15wfqig</link>
+      <description><![CDATA[<p>该研究提出 TOPSD，通过筛选可教前缀，决定多语言推理轨迹中何处以及是否应用教师监督。根据当前材料，作者发现，随着学生中间步骤的错误累积，教师可能跟随错误而非纠正，这种“教师漂移”在低资源语言中往往更早出现。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.08179">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/po4eae5ij1wtrh05kj15wfqig">http://localhost:3300/items/po4eae5ij1wtrh05kj15wfqig</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">po4eae5ij1wtrh05kj15wfqig</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
@@ -535,28 +557,6 @@
       <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">wv2vyy7xk6dwg1r5pbw9oxs3u</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[表格基础模型的主动上下文学习：何时、何处及如何选取标注样本]]></title>
-      <link>http://localhost:3300/items/waaykzp6s4ypseviypzmado48</link>
-      <description><![CDATA[<p>该研究报告，表格基础模型的主动上下文学习在早期更受益于多样性采样，而 EPIC 在给定标注预算下获得最佳模型表现。基于摘要，作者在二十个基准上使用两个表格基础模型及经典梯度提升决策树，比较目标感知最近邻（TANN）、上下文期望预测信息增益（EPIC）与经典样本获取规则，并发现针对目标输入选择待标注样本具有显著作用。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.07886">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/waaykzp6s4ypseviypzmado48">http://localhost:3300/items/waaykzp6s4ypseviypzmado48</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">waaykzp6s4ypseviypzmado48</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[Open-HumanScale 提出扩展人类与机器人经验的具身基础模型开放训练方案]]></title>
-      <link>http://localhost:3300/items/urfr10r3d1x6s1ef2vu2ms2x7</link>
-      <description><![CDATA[<p>Open-HumanScale 研究提出将第一视角人类视频预训练扩展至 50,000 小时的开放方案，并比较纯人类数据与人类—机器人混合数据训练。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.06817">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/urfr10r3d1x6s1ef2vu2ms2x7">http://localhost:3300/items/urfr10r3d1x6s1ef2vu2ms2x7</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">urfr10r3d1x6s1ef2vu2ms2x7</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
 </rss>
