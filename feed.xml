@@ -229,6 +229,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[催化界面相促进全固态锂硫电池中的硫氧化还原反应]]></title>
+      <link>http://localhost:3300/items/kkr9avoxknbqt0wdhck80m1zt</link>
+      <description><![CDATA[<p>该研究提出界面相催化策略，将离散的催化剂与反应物界面转化为化学整合的反应界面相，促进全固态锂硫电池中的 Li2S/S8 转化。根据当前材料，作者以金属氧化物与 Li2S/S8 的功函数差异作为评估硫氧配位交换相对倾向的筛选依据，选择 WO3 在 Li2S 上构建亚稳态混合阴离子 S–W–O 催化界面相，其不饱和 W 中心与极化电子环境支持耦合电子/Li+ 传输及硫物种交换。</p>
+<p>🔗 <a href="https://doi.org/10.1021/jacs.6c13825">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/kkr9avoxknbqt0wdhck80m1zt">http://localhost:3300/items/kkr9avoxknbqt0wdhck80m1zt</a></p>]]></description>
+      <category>电池与新能源材料</category>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">kkr9avoxknbqt0wdhck80m1zt</guid>
+      <author>noreply@localhost (Journal of the American Chemical Society)</author>
+    </item>
+    <item>
       <title><![CDATA[研究为机器学习原子间势的不确定性量化引入物理先验]]></title>
       <link>http://localhost:3300/items/jnn7m8wancomq5l9li3jdg3ex</link>
       <description><![CDATA[<p>该研究提出基于 POPS-Regression 的不确定性量化方案，在考虑模型设定误差的同时，对所得模型集合施加用户指定的物理先验。根据当前材料，该方案适用于可由参数凸集表示的物理量，作者以声子振动和弹性性质展示其应用。</p>
@@ -545,17 +556,6 @@
       <category>AI4S</category>
       <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">xtsdga5q2glg2w7bszk2s0ppa</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[SD-OPD：通过教师引导的同策略蒸馏强化学生已学知识]]></title>
-      <link>http://localhost:3300/items/xhvwyjtysxkms1s5bbddp8jfx</link>
-      <description><![CDATA[<p>研究提出 Student-Delta On-Policy Distillation（SD-OPD），以学生与自身预训练基座的差异构造更新信号，并用教师反馈筛选更新方向。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.07722">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/xhvwyjtysxkms1s5bbddp8jfx">http://localhost:3300/items/xhvwyjtysxkms1s5bbddp8jfx</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">xhvwyjtysxkms1s5bbddp8jfx</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
