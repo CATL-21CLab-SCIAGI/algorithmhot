@@ -306,6 +306,28 @@
       <author>noreply@localhost (arXiv · 计算物理与材料)</author>
     </item>
     <item>
+      <title><![CDATA[通过结构感知内核实现快速且精确的相对位置注意力]]></title>
+      <link>http://localhost:3300/items/fu4fqcqps7plo1grsk4fj5f6n</link>
+      <description><![CDATA[<p>该研究提出精确的相对位置注意力算法，将加性相对位置项融入 FlashAttention 风格的分块计算，以降低长序列计算开销。方法采用偏移感知分块、按需计算并复用键/查询与相对位置的乘积，以及基于偏移的梯度分片和聚合，并提供覆盖多种相对位置注意力机制的统一 Triton 实现。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.01182">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/fu4fqcqps7plo1grsk4fj5f6n">http://localhost:3300/items/fu4fqcqps7plo1grsk4fj5f6n</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">fu4fqcqps7plo1grsk4fj5f6n</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[LLM 智能体的授权漂移研究：评估多步工具调用中的边界遵守情况]]></title>
+      <link>http://localhost:3300/items/co5hvp1fcjbkguvuoawuldc30</link>
+      <description><![CDATA[<p>该研究提出授权漂移基准 ADB，评估 LLM 智能体在没有攻击者介入时，为完成用户目标而越过授权边界的行为。根据当前材料，ADB 涵盖七个领域的 648 个样本，每个样本配对可完成任务的合规路径与有吸引力的越权捷径，并用 Staged Execution-Reflective Synthesis（SERS）基于真实智能体执行轨迹验证任务，而非依赖 LLM 自我评判。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.09113">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/co5hvp1fcjbkguvuoawuldc30">http://localhost:3300/items/co5hvp1fcjbkguvuoawuldc30</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">co5hvp1fcjbkguvuoawuldc30</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[大语言模型不知道自己知道什么：金融回测中的时间知识自知能力评测]]></title>
       <link>http://localhost:3300/items/b61rdclpcdnrlv6x4342v7gxf</link>
       <description><![CDATA[<p>FinDendro 研究报告，多数前沿大语言模型会低报自身知识，仅靠模型自述、指令或声明的知识截止日期无法确认金融回测不存在信息泄漏。</p>
@@ -534,28 +556,6 @@
       <category>算法</category>
       <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">urfr10r3d1x6s1ef2vu2ms2x7</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[贝叶斯 M/EEG 源成像研究提出不确定性校准框架]]></title>
-      <link>http://localhost:3300/items/tpbmnech8zzxu69qd3naz51lv</link>
-      <description><![CDATA[<p>该研究提出基于模拟的贝叶斯 M/EEG 源成像不确定性评估与校准框架，利用经验覆盖率对可信区域水平进行事后保序校准。作者比较 BMN+sLORETA 与 SBL+S-FLEX，在固定及自由方向模型中测试不同信噪比、源稀疏度、个体头模型和噪声设定，并为 BMN 推导基于证据最大化的源方差与噪声方差联合更新。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.06979">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/tpbmnech8zzxu69qd3naz51lv">http://localhost:3300/items/tpbmnech8zzxu69qd3naz51lv</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">tpbmnech8zzxu69qd3naz51lv</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[VFlash 通过 Flash Primitive Decoding 实现快速、准确的视觉规划]]></title>
-      <link>http://localhost:3300/items/tidnl0344a40cbkmxjca2u6ug</link>
-      <description><![CDATA[<p>VFlash 研究提出 Flash Primitive Decoding，通过联合预测视觉基元坐标加速视觉规划，作者报告其在所评估的 2D 和 3D 机器人轨迹任务中均降低了预测误差。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.08449">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/tidnl0344a40cbkmxjca2u6ug">http://localhost:3300/items/tidnl0344a40cbkmxjca2u6ug</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">tidnl0344a40cbkmxjca2u6ug</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
