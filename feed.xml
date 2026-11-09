@@ -64,6 +64,17 @@
       <author>noreply@localhost (arXiv · 分子与定量生物学)</author>
     </item>
     <item>
+      <title><![CDATA[BILBY 蛋白质基序支架构建评测：静态恢复不等于动态稳定性]]></title>
+      <link>http://localhost:3300/items/uudhblom3h6gv44zlhufw5894</link>
+      <description><![CDATA[<p>BILBY 研究提出兼顾覆盖范围与动力学的蛋白质基序支架评测，作者报告静态结构恢复成功并不代表整个支架具有动态保真性。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.07723">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/uudhblom3h6gv44zlhufw5894">http://localhost:3300/items/uudhblom3h6gv44zlhufw5894</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">uudhblom3h6gv44zlhufw5894</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[Confucius4-R2T2 提出不修改已输出文本的稳定前缀流式语音识别方法]]></title>
       <link>http://localhost:3300/items/t1gs243bd096kzcnapsw3zmcs</link>
       <description><![CDATA[<p>Confucius4-R2T2 研究提出稳定前缀流式语音识别模型，作者报告其不修改先前输出，并以较低输出延迟接近基础模型的全上下文识别质量。根据当前材料，该模型使用 1,500 小时中英文音频对 Qwen3-ASR-1.7B 进行后训练，冻结预训练音频编码器和投影器，通过最长稳定前缀（LSP）标签实现适配，无需改变架构。</p>
@@ -205,6 +216,17 @@
       <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">jduxdzywemog9f2x9rxcap6mr</guid>
       <author>noreply@localhost (arXiv · 计算物理与材料)</author>
+    </item>
+    <item>
+      <title><![CDATA[AutoCompress 提出硬件引导的自动模型压缩框架]]></title>
+      <link>http://localhost:3300/items/j2x71t5d3hd7jmnoh6nyxcw7o</link>
+      <description><![CDATA[<p>AutoCompress 研究提出硬件引导的模型压缩框架，将延迟、吞吐量和显存约束直接纳入可微架构搜索。根据当前材料，该方法联合优化全局与逐层结构，生成异构架构，并以端到端测量验证服务引擎成本模型，在长上下文本地编码、数据中心批量服务和延迟敏感的游戏内交互场景中评估。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.08290">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/j2x71t5d3hd7jmnoh6nyxcw7o">http://localhost:3300/items/j2x71t5d3hd7jmnoh6nyxcw7o</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">j2x71t5d3hd7jmnoh6nyxcw7o</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
       <title><![CDATA[从 LoRA 到语言：从适配器恢复技能文档]]></title>
@@ -534,28 +556,6 @@
       <category>算法</category>
       <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">sitmpn5bkyhkbra5r5axl2lez</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[DPDM 提出用共享条件预测器解耦智能体决策]]></title>
-      <link>http://localhost:3300/items/sbd3qo19iao2uhnk4p1mnmpu5</link>
-      <description><![CDATA[<p>DPDM 研究提出将异构智能体决策转化为共享条件预测，使部署阶段的经验可用于决策，而无需更新模型神经参数。根据当前材料，语言模型编码当前与历史记录，冻结的 LimiX-2 预测器通过统一的证据与查询接口服务五类任务，再由决策规则将预测映射为选择。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.02075">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/sbd3qo19iao2uhnk4p1mnmpu5">http://localhost:3300/items/sbd3qo19iao2uhnk4p1mnmpu5</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">sbd3qo19iao2uhnk4p1mnmpu5</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[DISCERN 提出基于分布合成回放的免保留集增量机器遗忘方法]]></title>
-      <link>http://localhost:3300/items/s0cygdvt7clfp9yr0kk3xbo79</link>
-      <description><![CDATA[<p>DISCERN 提出无需访问保留集的增量类别遗忘方法，以按类别分布采样的合成嵌入替代保留数据。基于摘要，该方法拟合欧氏与方向分布，通过统计检验选择分布，若所有候选均未通过检验，则使用交叉验证对数似然进行选择。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.07892">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/s0cygdvt7clfp9yr0kk3xbo79">http://localhost:3300/items/s0cygdvt7clfp9yr0kk3xbo79</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">s0cygdvt7clfp9yr0kk3xbo79</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
