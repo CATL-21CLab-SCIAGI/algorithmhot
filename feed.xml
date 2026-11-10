@@ -9,6 +9,17 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[Google DeepMind 提出 AlphaProof Code，验证 Signal 核心密码代码的安全性质]]></title>
+      <link>http://localhost:3300/items/q26d8kjhx0vvtstde9libzdt8</link>
+      <description><![CDATA[<p>Google DeepMind 报告，AlphaProof Code 在人类专家指导下，对 Signal 协议实际编译代码的关键安全性质完成了形式化验证。该多 LLM 智能体框架先协助专家制定并逐项审查数学规范，再由 Gemini Carbon 驱动的智能体生成超过六百万行 Lean 证明，交由 Lean 自动检查；智能体审计标记的需人工复核部分占代码库的 1%。</p>
+<p>🔗 <a href="https://deepmind.google/blog/introducing-alphaproof-code/">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/q26d8kjhx0vvtstde9libzdt8">http://localhost:3300/items/q26d8kjhx0vvtstde9libzdt8</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Tue, 10 Nov 2026 12:02:28 GMT</pubDate>
+      <guid isPermaLink="false">q26d8kjhx0vvtstde9libzdt8</guid>
+      <author>noreply@localhost (Google DeepMind)</author>
+    </item>
+    <item>
       <title><![CDATA[CLIP 少样本适配为何 Adam 失败而 SGD 成功：全量微调并非问题]]></title>
       <link>http://localhost:3300/items/ynr6dg79drrgu2vbs2iwlheyp</link>
       <description><![CDATA[<p>该研究报告，CLIP 少样本适配的主要失败来源是优化器引入的预条件误差，而非全量微调本身。根据当前材料，在 11 个数据集、3 个 CLIP 骨干模型和 5 种样本数设置的所报告评估协议下，普通 SGD 全量微调优于代表性 PEFT 方法，而 Adam/AdamW 出现性能崩溃。</p>
@@ -18,6 +29,17 @@
       <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">ynr6dg79drrgu2vbs2iwlheyp</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
+    </item>
+    <item>
+      <title><![CDATA[Longtail-SWE 构建覆盖 13 种低覆盖编程语言的 202 项软件工程任务基准]]></title>
+      <link>http://localhost:3300/items/ynii62kqg3ek7iem5ku4uir5p</link>
+      <description><![CDATA[<p>Longtail-SWE 研究提出包含 202 项问题解决任务的仓库级基准，覆盖现有基准中覆盖有限的 13 种编程语言。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.10304">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ynii62kqg3ek7iem5ku4uir5p">http://localhost:3300/items/ynii62kqg3ek7iem5ku4uir5p</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">ynii62kqg3ek7iem5ku4uir5p</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
       <title><![CDATA[ByzULDP：具备用户级差分隐私的最优拜占庭鲁棒联邦学习]]></title>
@@ -534,28 +556,6 @@
       <category>AI4AI</category>
       <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">mbxg3om84dwv8o5kd1n9ek3ig</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[Delta Gap 研究指出：细胞世界模型的扰动响应预测远比全局相关性显示的更难]]></title>
-      <link>http://localhost:3300/items/m5nlyoc6l98vudhan1w2be5zn</link>
-      <description><![CDATA[<p>Delta Gap 研究报告，细胞扰动响应预测的全局 Pearson 相关性受大量非响应基因主导，会高估模型表现，并提出以 delta 空间评估作为主要基准。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.10658">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/m5nlyoc6l98vudhan1w2be5zn">http://localhost:3300/items/m5nlyoc6l98vudhan1w2be5zn</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">m5nlyoc6l98vudhan1w2be5zn</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[部分提示补全污染测试为何受剩余文本长度影响：假阳性与假阴性]]></title>
-      <link>http://localhost:3300/items/lxqr1q6vhe18aamwo2hc71yzo</link>
-      <description><![CDATA[<p>该研究报告，部分提示补全式基准污染测试易受剩余文本长度影响，既会误报，也可能漏掉上游模型的污染。根据当前材料，作者在七个开放权重模型上审计 MATH-500，并以 AIME 2025/2026 题目作为真阴性对照。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.10307">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/lxqr1q6vhe18aamwo2hc71yzo">http://localhost:3300/items/lxqr1q6vhe18aamwo2hc71yzo</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">lxqr1q6vhe18aamwo2hc71yzo</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
