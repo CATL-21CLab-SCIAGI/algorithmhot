@@ -97,6 +97,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[Pt/TiOx 体系的动态金属包覆由 Pt 辅助 TiO2 非晶化调控]]></title>
+      <link>http://localhost:3300/items/bp9f0gs57tz3fiw8yyaynnmou</link>
+      <description><![CDATA[<p>该研究报告，Pt 辅助 TiO2 非晶化是 Pt/TiOx 体系在不同条件下发生强金属–载体相互作用（SMSI）状态转变的关键。根据当前材料，作者通过巨正则结构探索考察超过 400 万个体相 PtTi 合金及 Pt 或 PtTi 支撑的 TiOx 表面结构候选，报告体系在 H2 还原、O2 氧化、H2 加 O2 氧化还原热处理序列中经历包覆、深度包覆、去包覆的动态重构。</p>
+<p>🔗 <a href="https://doi.org/10.1021/jacs.6c19944">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/bp9f0gs57tz3fiw8yyaynnmou">http://localhost:3300/items/bp9f0gs57tz3fiw8yyaynnmou</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">bp9f0gs57tz3fiw8yyaynnmou</guid>
+      <author>noreply@localhost (Journal of the American Chemical Society)</author>
+    </item>
+    <item>
       <title><![CDATA[神经前线一片沉寂：语言模型未报告注入的疼痛状态]]></title>
       <link>http://localhost:3300/items/avwzbg68ct2kk12vife919dcr</link>
       <description><![CDATA[<p>该研究报告，注入语言模型的疼痛状态可以被解码并影响行为，但模型未经专门训练的口头报告未显示超出文本线索的识别能力。</p>
@@ -545,17 +556,6 @@
       <category>AI4AI</category>
       <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">a2u3b2iczy951hve91r7h7csh</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[e-means：以约十分之一迭代轮数取得优于 k-means 的聚类结果]]></title>
-      <link>http://localhost:3300/items/a01jhpid5xyl9j3ukbmse2luv</link>
-      <description><![CDATA[<p>e-means 研究报告，在多种嵌入数据集上，该算法用 1.4–2.6 轮即可取得低于 Lloyd k-means 运行 25 轮的损失。根据当前材料，方法将指数移动平均用于小批量 k-means 更新，并建立衰减率和批大小影响最终性能的缩放规律，以公式化规则配置不同问题规模和嵌入数据集，无需超参数搜索。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.09501">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/a01jhpid5xyl9j3ukbmse2luv">http://localhost:3300/items/a01jhpid5xyl9j3ukbmse2luv</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">a01jhpid5xyl9j3ukbmse2luv</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
