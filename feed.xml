@@ -9,6 +9,39 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[Horizon-Scalable Q-Learning 提出面向长时域的自适应 Q 学习方法]]></title>
+      <link>http://localhost:3300/items/y7d5dvnfouq8x7yk6895p68e2</link>
+      <description><![CDATA[<p>Horizon-Scalable Q-Learning（HQL）提出自动平衡单步与多步回报的方法，以改善长时域离线 Q 函数学习。根据当前材料，仅当评论家对数据集动作的估值不低于从 BC 策略采样的 N 个动作中的最高估值时，HQL 才沿该动作延长目标，否则退回单步目标。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.10987">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/y7d5dvnfouq8x7yk6895p68e2">http://localhost:3300/items/y7d5dvnfouq8x7yk6895p68e2</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">y7d5dvnfouq8x7yk6895p68e2</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[PhysioWave-T 提出面向生物信号的 token 高效小波基础模型]]></title>
+      <link>http://localhost:3300/items/qm6kkcmp9erdbpv1iedod1jkh</link>
+      <description><![CDATA[<p>PhysioWave-T 研究提出面向 EEG、ECG 和 sEMG 的小波基础模型，通过动态尺度折叠减少 token 数，并以可靠性感知潜在融合方法 RALF 整合多模态编码器。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.08969">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/qm6kkcmp9erdbpv1iedod1jkh">http://localhost:3300/items/qm6kkcmp9erdbpv1iedod1jkh</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">qm6kkcmp9erdbpv1iedod1jkh</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[SIRIS：大语言模型能否判断仿真误差何时影响 AI 驱动的系统研究？]]></title>
+      <link>http://localhost:3300/items/oafsacjo4bxq61d3rzkubj8ak</link>
+      <description><![CDATA[<p>SIRIS 提出评测方法，检验大语言模型能否判断仿真器的建模局限是否使系统设计推荐失效。该方法扰动仿真器，构造候选设计、建模局限和仿真推荐均相同的成对工作负载，但参考仿真器只支持其中一个工作负载的推荐。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.10329">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/oafsacjo4bxq61d3rzkubj8ak">http://localhost:3300/items/oafsacjo4bxq61d3rzkubj8ak</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">oafsacjo4bxq61d3rzkubj8ak</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[Flide 通过精确状态分叉加速决策模型推理]]></title>
       <link>http://localhost:3300/items/h3lsb7ai95l4suimgt71hqdoy</link>
       <description><![CDATA[<p>Flide 研究提出面向决策模型的推理引擎，作者报告其查询速度最高可达 vLLM 和 SGLang 的 9.5 倍。根据当前材料，该方法将请求的逻辑树与单一扁平 token 流中的物理执行解耦，通过 ForkAttention 和 GPU 驻留索引处理标准注意力及循环 Gated DeltaNet 层，并在精确算术条件下保证各查询分支与单独前向计算一致。</p>
@@ -524,39 +557,6 @@
       <pubDate>Sat, 07 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">fa1b52sn2pjf3qibzckdlkww3</guid>
       <author>noreply@localhost (Angewandte Chemie International Edition)</author>
-    </item>
-    <item>
-      <title><![CDATA[DreamFree 通过未来表征蒸馏实现无需生成未来视频的世界动作模型]]></title>
-      <link>http://localhost:3300/items/zfz8ne46c7zxucs9zqlu3v1lw</link>
-      <description><![CDATA[<p>DreamFree 研究提出通过未来表征蒸馏预测机器人动作，无需生成未来视频即可利用预训练视频扩散模型的预测知识。根据当前材料，视觉编码器仅根据当前观测学习预测冻结视频扩散模型的表征，动作模块再从中提取动作相关信息。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.04527">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/zfz8ne46c7zxucs9zqlu3v1lw">http://localhost:3300/items/zfz8ne46c7zxucs9zqlu3v1lw</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">zfz8ne46c7zxucs9zqlu3v1lw</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[LLM Zoo 研究提出以数据配比为条件的流匹配方法，生成预训练 LLM 权重]]></title>
-      <link>http://localhost:3300/items/z6ssox1md9rxgfxwaib9tyeta</link>
-      <description><![CDATA[<p>基于摘要，LLM Zoo 研究提出以训练数据配比为条件生成完整预训练 LLM 权重的方法，作者报告生成模型在留出配比上的表现与模型库中的模型相近。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.07103">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/z6ssox1md9rxgfxwaib9tyeta">http://localhost:3300/items/z6ssox1md9rxgfxwaib9tyeta</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">z6ssox1md9rxgfxwaib9tyeta</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[ZO-LBPG 提出面向 RLHF 的可证明零阶安全探索方法]]></title>
-      <link>http://localhost:3300/items/z0102hhcbhvm64jxt9hfqlj50</link>
-      <description><![CDATA[<p>研究提出 ZO-LBPG，旨在使 RLHF 训练中执行的所有策略，包括辅助探索策略，都满足安全约束。基于摘要，该方法无需奖励模型，直接从人类偏好构建零阶估计以优化对数障碍目标，并结合保守约束裕量估计、耦合 rollout 和自适应步长避免更新越过约束边界。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.07561">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/z0102hhcbhvm64jxt9hfqlj50">http://localhost:3300/items/z0102hhcbhvm64jxt9hfqlj50</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">z0102hhcbhvm64jxt9hfqlj50</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
 </rss>
