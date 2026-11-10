@@ -20,6 +20,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[世界模型需要观察多少次？WARC 在测试时学习未见游戏机制]]></title>
+      <link>http://localhost:3300/items/wjzm6jkkkoaahtm7fn6tir2lf</link>
+      <description><![CDATA[<p>该研究提出 MechEval，并报告世界模型 WARC 可通过测试时训练学习未见游戏机制，部分机制约需 80 次观察即可达到目标准确率。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.12324">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/wjzm6jkkkoaahtm7fn6tir2lf">http://localhost:3300/items/wjzm6jkkkoaahtm7fn6tir2lf</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">wjzm6jkkkoaahtm7fn6tir2lf</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[PhysioWave-T 提出面向生物信号的 token 高效小波基础模型]]></title>
       <link>http://localhost:3300/items/qm6kkcmp9erdbpv1iedod1jkh</link>
       <description><![CDATA[<p>PhysioWave-T 研究提出面向 EEG、ECG 和 sEMG 的小波基础模型，通过动态尺度折叠减少 token 数，并以可靠性感知潜在融合方法 RALF 整合多模态编码器。</p>
@@ -53,6 +64,28 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[Sage-Taiyi：以元认知架构引导科学发现]]></title>
+      <link>http://localhost:3300/items/g6kjvub4xsxucwukg304sly2y</link>
+      <description><![CDATA[<p>Sage-Taiyi 研究提出以元认知调节引导科学构思的架构，利用积累的科学理解选择研究目标与研究方法。根据当前材料，系统通过显式监控与控制，修订对证据、假设和未解问题的理解，并选择可复用的推理方法。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.12762">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/g6kjvub4xsxucwukg304sly2y">http://localhost:3300/items/g6kjvub4xsxucwukg304sly2y</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">g6kjvub4xsxucwukg304sly2y</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[FewStepRL：用强化学习微调少步扩散模型]]></title>
+      <link>http://localhost:3300/items/fzqqnm3as7j1k9kprbpld2ua3</link>
+      <description><![CDATA[<p>FewStepRL 研究提出将强化学习目标系统性适配到少步扩散模型，以处理区间平均速度与现有目标所用瞬时速度之间的差异。根据当前材料，方法通过转换到 x 空间、将目标梯度分解为朝向参考的自回归项与奖励增强项、再适配少步模型的锚点，在统一模块化代码库中实现 FlowGRPO、AWM、DiffusionNFT、DiffusionOPSD 和 ReFL 的少步版本。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.08240">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/fzqqnm3as7j1k9kprbpld2ua3">http://localhost:3300/items/fzqqnm3as7j1k9kprbpld2ua3</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">fzqqnm3as7j1k9kprbpld2ua3</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[ReproBridge：将可复现性融入机器学习研究产物]]></title>
       <link>http://localhost:3300/items/choqqu1hrnl6u0bj1nd12c1k8</link>
       <description><![CDATA[<p>ReproBridge 研究提出将恢复的实验流程与决策保存为标准化研究产物，以提高智能体后续复现机器学习实验的成功率。</p>
@@ -61,6 +94,17 @@
       <category>AI4AI</category>
       <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">choqqu1hrnl6u0bj1nd12c1k8</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[神经前线一片沉寂：语言模型未报告注入的疼痛状态]]></title>
+      <link>http://localhost:3300/items/avwzbg68ct2kk12vife919dcr</link>
+      <description><![CDATA[<p>该研究报告，注入语言模型的疼痛状态可以被解码并影响行为，但模型未经专门训练的口头报告未显示超出文本线索的识别能力。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.10123">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/avwzbg68ct2kk12vife919dcr">http://localhost:3300/items/avwzbg68ct2kk12vife919dcr</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">avwzbg68ct2kk12vife919dcr</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
@@ -513,50 +557,6 @@
       <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">a01jhpid5xyl9j3ukbmse2luv</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[静电阳离子插层使钙钛矿/硅叠层太阳能电池在空气中制备并达32.73%效率]]></title>
-      <link>http://localhost:3300/items/oi7iqxkq6o4613k8k78sc1r8j</link>
-      <description><![CDATA[<p>该研究报告，通过对聚合物自组装单分子层（SAMs）进行静电阳离子插层，在空气中制备出经独立认证、光电转换效率为32.73%的钙钛矿/硅叠层太阳能电池。根据当前材料，碘化苯乙铵（PEAI）插层使PEA +阳离子定向排列，并促使I −在上层界面富集，以增强净向上偶极、调整能级并克服空穴提取障碍。</p>
-<p>🔗 <a href="https://doi.org/10.1002/anie.4438070">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/oi7iqxkq6o4613k8k78sc1r8j">http://localhost:3300/items/oi7iqxkq6o4613k8k78sc1r8j</a></p>]]></description>
-      <category>电池与新能源材料</category>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">oi7iqxkq6o4613k8k78sc1r8j</guid>
-      <author>noreply@localhost (Angewandte Chemie International Edition)</author>
-    </item>
-    <item>
-      <title><![CDATA[EvoMOBO：面向蛋白质工程的进化启发式多目标贝叶斯优化]]></title>
-      <link>http://localhost:3300/items/kzd6hwo57l4jtyhiraifn3k1m</link>
-      <description><![CDATA[<p>研究提出 EvoMOBO，将进化启发的序列生成与多目标贝叶斯优化结合，用于有限评估预算下的蛋白质工程。根据当前材料，该主动学习框架整合路径依赖的序列生成、全局候选竞争和显式多目标优化；作者报告，在完整的类固醇受体 DNA 结合域（DBD）与 ParD3 抗毒素适应度景观上，相比现有先进方法，它在双目标和三目标任务中提高了目标区域富集程度，同时保持序列多样性。</p>
-<p>🔗 <a href="https://doi.org/10.1002/anie.4133117">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/kzd6hwo57l4jtyhiraifn3k1m">http://localhost:3300/items/kzd6hwo57l4jtyhiraifn3k1m</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">kzd6hwo57l4jtyhiraifn3k1m</guid>
-      <author>noreply@localhost (Angewandte Chemie International Edition)</author>
-    </item>
-    <item>
-      <title><![CDATA[阳离子效应调控界面溶剂化结构，实现锂离子电池快速充电]]></title>
-      <link>http://localhost:3300/items/zajis327u4sot4e1ywxb4xz0o</link>
-      <description><![CDATA[<p>该研究提出阳离子介导策略，通过重塑负极界面电场，在商业电解液中构建富阴离子的界面溶剂化结构以促进快充。根据当前材料，苄基三乙基铵在极化石墨表面附近形成阳离子层，促进 PF6– 富集，使早期固体电解质界面膜（SEI）形成偏向阴离子衍生路径，减少溶剂分解并加快 Li+ 脱溶剂化与传输。</p>
-<p>🔗 <a href="https://doi.org/10.1021/jacs.6c21052">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/zajis327u4sot4e1ywxb4xz0o">http://localhost:3300/items/zajis327u4sot4e1ywxb4xz0o</a></p>]]></description>
-      <category>电池与新能源材料</category>
-      <pubDate>Sat, 07 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">zajis327u4sot4e1ywxb4xz0o</guid>
-      <author>noreply@localhost (Journal of the American Chemical Society)</author>
-    </item>
-    <item>
-      <title><![CDATA[吡啶酮添加剂区域异构工程提升高电压 LiCoO2 电池稳定性]]></title>
-      <link>http://localhost:3300/items/fa1b52sn2pjf3qibzckdlkww3</link>
-      <description><![CDATA[<p>该研究报告，通过调控吡啶酮电解液添加剂的区域异构取代方式，可改善高电压 LiCoO2 正极的界面稳定性，其中 p‐HNFP 表现最好。根据当前材料，光谱与计算分析表明，p‐HNFP 通过羰基氧向缺电子 Co4+ 中心提供 σ 型孤对电子配位，降低 O 2p 带中心并增大 Co 3d‐O 2p 能隙，与晶格氧氧化热力学驱动力降低相一致。</p>
-<p>🔗 <a href="https://doi.org/10.1002/anie.2372098">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/fa1b52sn2pjf3qibzckdlkww3">http://localhost:3300/items/fa1b52sn2pjf3qibzckdlkww3</a></p>]]></description>
-      <category>电池与新能源材料</category>
-      <pubDate>Sat, 07 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">fa1b52sn2pjf3qibzckdlkww3</guid>
-      <author>noreply@localhost (Angewandte Chemie International Edition)</author>
     </item>
   </channel>
 </rss>
