@@ -97,6 +97,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[On-policy distillation 能容忍多大的训练与推理失配？]]></title>
+      <link>http://localhost:3300/items/bz5396fxdcnwxgm8mkjy0wizq</link>
+      <description><![CDATA[<p>该研究报告，On-policy distillation（OPD）能容忍较大的训练与推理失配，但超过经验性预算后训练质量会下降。OPD 让学生语言模型在固定教师指导下用自身生成的回答训练；作者在三组学生与教师模型组合上测试量化，并在其中一组上测试权重陈旧和注入噪声，发现失配影响具有模型与层差异，且 OPD 在会使 RL 方法不稳定的受控生成配置下仍保持稳定。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.11450">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/bz5396fxdcnwxgm8mkjy0wizq">http://localhost:3300/items/bz5396fxdcnwxgm8mkjy0wizq</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">bz5396fxdcnwxgm8mkjy0wizq</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[Pt/TiOx 体系的动态金属包覆由 Pt 辅助 TiO2 非晶化调控]]></title>
       <link>http://localhost:3300/items/bp9f0gs57tz3fiw8yyaynnmou</link>
       <description><![CDATA[<p>该研究报告，Pt 辅助 TiO2 非晶化是 Pt/TiOx 体系在不同条件下发生强金属–载体相互作用（SMSI）状态转变的关键。根据当前材料，作者通过巨正则结构探索考察超过 400 万个体相 PtTi 合金及 Pt 或 PtTi 支撑的 TiOx 表面结构候选，报告体系在 H2 还原、O2 氧化、H2 加 O2 氧化还原热处理序列中经历包覆、深度包覆、去包覆的动态重构。</p>
@@ -546,17 +557,6 @@
       <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">ainbct17zkyxlt3g6weqz1tu9</guid>
       <author>noreply@localhost (arXiv · 计算物理与材料)</author>
-    </item>
-    <item>
-      <title><![CDATA[快慢双环对齐：面向长期轨迹与持续维护部署的控制理论监督框架]]></title>
-      <link>http://localhost:3300/items/a2u3b2iczy951hve91r7h7csh</link>
-      <description><![CDATA[<p>该研究提出快慢双环监督框架，分别控制智能体拟执行的动作与持久性变更，并在模型或工具更新后重新评估配置。在测量误差和检查间变化有界、控制器能执行决策的条件下，作者推导了部署级界限与审查预算分配规则；模拟中，将固定预算分配给双环，相比仅审查单次运行，使偏离预期行为的最大值均值降低约12倍。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.08781">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/a2u3b2iczy951hve91r7h7csh">http://localhost:3300/items/a2u3b2iczy951hve91r7h7csh</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Mon, 09 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">a2u3b2iczy951hve91r7h7csh</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
 </rss>
