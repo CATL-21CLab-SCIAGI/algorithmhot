@@ -526,6 +526,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[Click3R：利用稀疏对应点点击实现交互式双视图三维重建]]></title>
+      <link>http://localhost:3300/items/neazft9ghiq5rh41jyngma92j</link>
+      <description><![CDATA[<p>Click3R 提出利用稀疏人工对应点点击，交互式纠正前馈三维重建模型的几何错误。用户为图像对提供少量跨视图对应点，框架通过轻量对应点适配器向重建网络注入几何约束，以处理重复纹理、对称结构、大视角变化及无纹理区域中的歧义。作者报告，在标准基准和专门构建的挑战性基准上，仅一次对应点点击即可降低重建误差；当前材料未给出具体降幅或独立复现结果。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.12875">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/neazft9ghiq5rh41jyngma92j">http://localhost:3300/items/neazft9ghiq5rh41jyngma92j</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">neazft9ghiq5rh41jyngma92j</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[学习何时思考：AIC 为强化学习策略引入自适应内部计算]]></title>
       <link>http://localhost:3300/items/nbtoe1x8w8quusvfb9642i2t7</link>
       <description><![CDATA[<p>研究提出 Adaptive Internal Computation（AIC），让强化学习策略学习何时停止细化潜在表示并执行动作，联合训练动作选择与停止决策。根据当前材料，该方法用期望深度惩罚衡量计算成本，以中间价值预测提供辅助监督；理论分析表明，当仅部分状态受益于进一步细化时，理想的状态依赖分配策略在相同期望深度下优于所有状态无关的停止方案。</p>
@@ -546,17 +557,6 @@
       <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">mpu4j7ox6cn4brcufr3hnuyyh</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[智能电网可解释网络物理攻击检测：融合、鲁棒性与可观测性边界的泄漏控制多测试平台评估]]></title>
-      <link>http://localhost:3300/items/mbxg3om84dwv8o5kd1n9ek3ig</link>
-      <description><![CDATA[<p>该研究以可解释的时间窗口融合 Random Forest 为核心开展智能电网攻击检测评估，报告时间切分、对抗攻击与观测方式对性能的影响。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.10950">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/mbxg3om84dwv8o5kd1n9ek3ig">http://localhost:3300/items/mbxg3om84dwv8o5kd1n9ek3ig</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">mbxg3om84dwv8o5kd1n9ek3ig</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
 </rss>
