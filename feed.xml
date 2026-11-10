@@ -9,6 +9,39 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[Flide 通过精确状态分叉加速决策模型推理]]></title>
+      <link>http://localhost:3300/items/h3lsb7ai95l4suimgt71hqdoy</link>
+      <description><![CDATA[<p>Flide 研究提出面向决策模型的推理引擎，作者报告其查询速度最高可达 vLLM 和 SGLang 的 9.5 倍。根据当前材料，该方法将请求的逻辑树与单一扁平 token 流中的物理执行解耦，通过 ForkAttention 和 GPU 驻留索引处理标准注意力及循环 Gated DeltaNet 层，并在精确算术条件下保证各查询分支与单独前向计算一致。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.42148">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/h3lsb7ai95l4suimgt71hqdoy">http://localhost:3300/items/h3lsb7ai95l4suimgt71hqdoy</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">h3lsb7ai95l4suimgt71hqdoy</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[ReproBridge：将可复现性融入机器学习研究产物]]></title>
+      <link>http://localhost:3300/items/choqqu1hrnl6u0bj1nd12c1k8</link>
+      <description><![CDATA[<p>ReproBridge 研究提出将恢复的实验流程与决策保存为标准化研究产物，以提高智能体后续复现机器学习实验的成功率。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.08452">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/choqqu1hrnl6u0bj1nd12c1k8">http://localhost:3300/items/choqqu1hrnl6u0bj1nd12c1k8</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">choqqu1hrnl6u0bj1nd12c1k8</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[JoVox 提出联合层级流匹配方法，提升轻量体素生成质量与效率]]></title>
+      <link>http://localhost:3300/items/aa5qchogadgaulvjnqppbadfg</link>
+      <description><![CDATA[<p>JoVox 提出联合建模体素各层级分布的离散流匹配框架，作者报告其在无条件和图像条件体素生成中均优于基线。该方法让已生成的邻近细层单元参与粗层预测，一次预测细两个层级的单元，将网络处理的层级数减半，并通过解除掩码策略重新检查早期决策、纠正掩码扩散模型中的不一致。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.10690">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/aa5qchogadgaulvjnqppbadfg">http://localhost:3300/items/aa5qchogadgaulvjnqppbadfg</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">aa5qchogadgaulvjnqppbadfg</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[DEFEAT 利用可微基础模型逆向设计超导体与半导体]]></title>
       <link>http://localhost:3300/items/ys9w8cy7yppocyjjg9ywts8hv</link>
       <description><![CDATA[<p>研究提出 DEFEAT，使预训练 EquiformerV3 接受连续元素权重与位点占据率，以梯度优化联合设计超导体和半导体的成分与结构。根据当前材料，该方法无需用分数数据重新训练基础模型，通过微调性质模型的梯度与机器学习能量惩罚，联合更新成分、原子数、原子位置和晶格矢量。</p>
@@ -524,39 +557,6 @@
       <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">z0102hhcbhvm64jxt9hfqlj50</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[AttnSR 提出基于策略注意力的长程智能体强化学习步骤奖励方法]]></title>
-      <link>http://localhost:3300/items/yhfsm7fwh4gtdxwa6890eoikv</link>
-      <description><![CDATA[<p>AttnSR 提出利用策略模型注意力分配步骤奖励的方法，无需单独训练奖励模型或增加 rollouts。基于摘要，该方法从训练回放中提取注意力，沿注意力图反向追踪早期步骤与最终回答的关联，并根据终末步骤相对运行基线的表现决定强化或惩罚相关步骤。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.07932">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/yhfsm7fwh4gtdxwa6890eoikv">http://localhost:3300/items/yhfsm7fwh4gtdxwa6890eoikv</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">yhfsm7fwh4gtdxwa6890eoikv</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[WeLM-Image：面向视觉智能的统一图像生成模型]]></title>
-      <link>http://localhost:3300/items/yhfnoyxqxjqp0fdn7aob0v7jz</link>
-      <description><![CDATA[<p>WeLM-Image 研究提出统一图像基础模型，将多模态理解融入文生图、指令引导编辑和多参考图合成，面向 WeChat 大规模消费应用的单 GPU 部署。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.07392">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/yhfnoyxqxjqp0fdn7aob0v7jz">http://localhost:3300/items/yhfnoyxqxjqp0fdn7aob0v7jz</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">yhfnoyxqxjqp0fdn7aob0v7jz</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[Harness-S：从同源执行框架中学习，提升智能体训练的泛化能力]]></title>
-      <link>http://localhost:3300/items/y3q9498mqzc5qpzl3f7l7gwy0</link>
-      <description><![CDATA[<p>Harness-S 提出利用同源辅助执行框架补救基础框架下的失败，并将获得的能力迁移到仍使用原框架的单一策略中。方法构建训练期间固定的辅助框架池，仅在基础框架下所有初始尝试均失败时，由同一策略生成新轨迹并替换失败轨迹组用于强化学习；自适应路由器结合行为画像与多个 LLM 的投票选择 Top-k 框架，并随策略学习更新画像。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.04277">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/y3q9498mqzc5qpzl3f7l7gwy0">http://localhost:3300/items/y3q9498mqzc5qpzl3f7l7gwy0</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">y3q9498mqzc5qpzl3f7l7gwy0</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
 </rss>
