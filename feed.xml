@@ -416,6 +416,17 @@
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
+      <title><![CDATA[MAEP 提出面向 MoE 多模态大语言模型的模态感知专家剪枝方法]]></title>
+      <link>http://localhost:3300/items/rvnka1i54jwed6eakx2gclikf</link>
+      <description><![CDATA[<p>MAEP 研究提出无需训练的模态感知专家剪枝框架，作者报告可减少约 27 GB 的 BF16 专家权重占用。根据当前材料，该方法在单次前向传播中拆分模态重要性，以衡量移除专家后 MoE 输出变化的 Delta-H Output（ΔH）和低注意力视觉 token 为依据，将文本侧重要性用于保留、视觉侧重要性用于剪枝，并跨层全局排序专家。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.05927">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/rvnka1i54jwed6eakx2gclikf">http://localhost:3300/items/rvnka1i54jwed6eakx2gclikf</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">rvnka1i54jwed6eakx2gclikf</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[FireGate 在连续强化学习微调前界定模型行为变化上限]]></title>
       <link>http://localhost:3300/items/rgsstpgr4kj4cp3bdjlbua1t3</link>
       <description><![CDATA[<p>FireGate 研究提出用门控机制在连续强化学习微调前，为语言模型在指定提示分布上的行为变化设定上限。根据当前材料，该方法以冻结底层上的分类器决定是否启用各任务更新，未触发门控时计算与旧模型完全一致；理论上，整个任务流中有界行为评分的变化不超过门控触发率，并可用受保护分布的无标签提示校准该比率，获得不依赖训练所得权重的 PAC 保证。</p>
@@ -546,17 +557,6 @@
       <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">nbtoe1x8w8quusvfb9642i2t7</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[InstantHMR 提出面向手机的实时单图人体网格恢复方法]]></title>
-      <link>http://localhost:3300/items/mpu4j7ox6cn4brcufr3hnuyyh</link>
-      <description><![CDATA[<p>InstantHMR 研究提出面向移动端的开源单图人体网格恢复模型，作者报告在 Samsung Galaxy S23 NPU 上每人耗时 5.5 ms，在 NVIDIA RTX 4070 GPU 上耗时 0.98 ms，可恢复含 6,890 个顶点的人体网格。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.09195">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/mpu4j7ox6cn4brcufr3hnuyyh">http://localhost:3300/items/mpu4j7ox6cn4brcufr3hnuyyh</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">mpu4j7ox6cn4brcufr3hnuyyh</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
 </rss>
