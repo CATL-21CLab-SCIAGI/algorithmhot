@@ -9,6 +9,39 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[APEX 通过条件偏移实现少步流式视频生成]]></title>
+      <link>http://localhost:3300/items/crd9w3pbzqq7pygk1nfhacois</link>
+      <description><![CDATA[<p>研究将 APEX 扩展到流式视频生成，通过条件偏移在生成器内部估计生成分布的速度场，移除 DMD 所需的独立 fake-score 网络。原始文本条件用于生成，偏移条件用于共享参数的分布估计，同时保留 S2-Avatar 的冻结参考教师、Self-Replay Forcing 和感知正则化。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.14033">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/crd9w3pbzqq7pygk1nfhacois">http://localhost:3300/items/crd9w3pbzqq7pygk1nfhacois</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Wed, 11 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">crd9w3pbzqq7pygk1nfhacois</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[dNaViT 提出用离散编码构建通用视觉表示]]></title>
+      <link>http://localhost:3300/items/c9ksomifq62ulpkbq89zslg1c</link>
+      <description><![CDATA[<p>dNaViT 研究提出原生分辨率离散视觉 Transformer，以紧凑的离散词汇兼顾视觉理解与高保真图像解码。根据当前材料，该方法基于冻结的预训练编码器，通过轻量残差调制和双分支目标向语义特征注入重建信息，并利用分组乘积量化扩大离散表示容量而不增加空间序列长度。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.12426">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/c9ksomifq62ulpkbq89zslg1c">http://localhost:3300/items/c9ksomifq62ulpkbq89zslg1c</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Wed, 11 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">c9ksomifq62ulpkbq89zslg1c</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[机器人的记忆只是时钟吗？记忆增强 VLA 策略中的时间捷径]]></title>
+      <link>http://localhost:3300/items/bqlv1pixli1hn6808q3jpyzar</link>
+      <description><![CDATA[<p>该研究报告，记忆增强 VLA 策略可能把时间流逝误判为任务进展，按事件索引记忆可在无需重新训练的情况下缓解失误。根据当前材料，作者在 RoboMME 计数任务中插入不影响任务的短暂停顿或手腕晃动，使一个已发布策略在两项任务上的成功次数分别从 47/50 降至 16/50、从 44/50 降至 10/50；不将这些帧写入记忆时，成功表现恢复。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.14488">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/bqlv1pixli1hn6808q3jpyzar">http://localhost:3300/items/bqlv1pixli1hn6808q3jpyzar</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Wed, 11 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">bqlv1pixli1hn6808q3jpyzar</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[Google DeepMind 提出 AlphaProof Code，验证 Signal 核心密码代码的安全性质]]></title>
       <link>http://localhost:3300/items/q26d8kjhx0vvtstde9libzdt8</link>
       <description><![CDATA[<p>Google DeepMind 报告，AlphaProof Code 在人类专家指导下，对 Signal 协议实际编译代码的关键安全性质完成了形式化验证。该多 LLM 智能体框架先协助专家制定并逐项审查数学规范，再由 Gemini Carbon 驱动的智能体生成超过六百万行 Lean 证明，交由 Lean 自动检查；智能体审计标记的需人工复核部分占代码库的 1%。</p>
@@ -523,39 +556,6 @@
       <category>算法</category>
       <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">nxsqjab2cruhqfuwj8qxacs12</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[Robust Satisficing Ensemble：分布偏移下的可扩展模型聚合]]></title>
-      <link>http://localhost:3300/items/nl6qdwttsh3k01vwylzsgpmuc</link>
-      <description><![CDATA[<p>Robust Satisficing Ensemble（RSE）提出可扩展的概率聚合框架，通过降低模型组合对分布变化的脆弱性提升鲁棒性。基于摘要，该方法将鲁棒满足目标与二次风险代理结合，推导解析形式的内部对抗优化解，使权重更新避开标准极小极大优化的计算瓶颈，并将优化复杂度与样本量解耦。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.10895">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/nl6qdwttsh3k01vwylzsgpmuc">http://localhost:3300/items/nl6qdwttsh3k01vwylzsgpmuc</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">nl6qdwttsh3k01vwylzsgpmuc</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[Click3R：利用稀疏对应点点击实现交互式双视图三维重建]]></title>
-      <link>http://localhost:3300/items/neazft9ghiq5rh41jyngma92j</link>
-      <description><![CDATA[<p>Click3R 提出利用稀疏人工对应点点击，交互式纠正前馈三维重建模型的几何错误。用户为图像对提供少量跨视图对应点，框架通过轻量对应点适配器向重建网络注入几何约束，以处理重复纹理、对称结构、大视角变化及无纹理区域中的歧义。作者报告，在标准基准和专门构建的挑战性基准上，仅一次对应点点击即可降低重建误差；当前材料未给出具体降幅或独立复现结果。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.12875">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/neazft9ghiq5rh41jyngma92j">http://localhost:3300/items/neazft9ghiq5rh41jyngma92j</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">neazft9ghiq5rh41jyngma92j</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[学习何时思考：AIC 为强化学习策略引入自适应内部计算]]></title>
-      <link>http://localhost:3300/items/nbtoe1x8w8quusvfb9642i2t7</link>
-      <description><![CDATA[<p>研究提出 Adaptive Internal Computation（AIC），让强化学习策略学习何时停止细化潜在表示并执行动作，联合训练动作选择与停止决策。根据当前材料，该方法用期望深度惩罚衡量计算成本，以中间价值预测提供辅助监督；理论分析表明，当仅部分状态受益于进一步细化时，理想的状态依赖分配策略在相同期望深度下优于所有状态无关的停止方案。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.10822">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/nbtoe1x8w8quusvfb9642i2t7">http://localhost:3300/items/nbtoe1x8w8quusvfb9642i2t7</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">nbtoe1x8w8quusvfb9642i2t7</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
