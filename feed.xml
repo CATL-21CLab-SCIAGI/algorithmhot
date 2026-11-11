@@ -97,6 +97,17 @@
       <author>noreply@localhost (Angewandte Chemie International Edition)</author>
     </item>
     <item>
+      <title><![CDATA[DyCraft：面向长时程 4D 场景生成的智能体系统]]></title>
+      <link>http://localhost:3300/items/nwa298gykndj6w9msa9x8l9ts</link>
+      <description><![CDATA[<p>DyCraft 研究提出面向长时程动画 3D 场景生成的智能体系统，通过分镜与局部运动编排减少物理约束违反。根据当前材料，系统先将用户提示扩展为详细计划并构建静态场景，再生成可单独构建和调试的关键姿态分镜，利用已验证的起止状态及运动编排工具生成局部运动。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2610.40754">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/nwa298gykndj6w9msa9x8l9ts">http://localhost:3300/items/nwa298gykndj6w9msa9x8l9ts</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Wed, 11 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">nwa298gykndj6w9msa9x8l9ts</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[ADIndex 提出通过组级知识蒸馏实现层自适应稀疏注意力索引]]></title>
       <link>http://localhost:3300/items/n89z1mq2my5kvhvcrlo2s6q4q</link>
       <description><![CDATA[<p>ADIndex 提出层自适应稀疏注意力索引方法，旨在降低 DSA 对每个查询扫描完整因果前缀带来的长上下文推理开销。根据当前材料，该方法结合逐层校准、组级知识蒸馏和查询组内 token bank 共享，并保留针对单个查询的细化处理。</p>
@@ -106,6 +117,17 @@
       <pubDate>Wed, 11 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">n89z1mq2my5kvhvcrlo2s6q4q</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
+    </item>
+    <item>
+      <title><![CDATA[层状正极研究揭示层堆垛如何通过过渡金属迁移调控高电压氧氧化还原平台]]></title>
+      <link>http://localhost:3300/items/ktaw702kuavrirruce8s2izw4</link>
+      <description><![CDATA[<p>该研究报告，层状正极的堆垛结构通过调控过渡金属层间迁移，影响高电压氧氧化还原平台的可逆性。根据当前材料，作者结合实验与理论计算发现，带状超晶格可促进具有“ABBCCA…”氧堆垛序列的P3-Na0.6Li0.2Mn0.6Ti0.2O2实现可逆高电压氧氧化还原平台，却在具有“ABBA…”序列的同组成P2相中不起作用。</p>
+<p>🔗 <a href="https://doi.org/10.1002/anie.3309393">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ktaw702kuavrirruce8s2izw4">http://localhost:3300/items/ktaw702kuavrirruce8s2izw4</a></p>]]></description>
+      <category>电池与新能源材料</category>
+      <pubDate>Wed, 11 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">ktaw702kuavrirruce8s2izw4</guid>
+      <author>noreply@localhost (Angewandte Chemie International Edition)</author>
     </item>
     <item>
       <title><![CDATA[FINCOSMOS 提出面向金融智能体的开放世界评测范式]]></title>
@@ -535,28 +557,6 @@
       <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">ttcf7e5ekzwpnhxya6g631cyu</guid>
       <author>noreply@localhost (arXiv · 计算物理与材料)</author>
-    </item>
-    <item>
-      <title><![CDATA[InfraRSI 研究提出用递归自我改进优化训练基础设施]]></title>
-      <link>http://localhost:3300/items/tkbcqezrf6fo10de3sihisro7</link>
-      <description><![CDATA[<p>InfraRSI 研究提出智能体框架，通过递归自我改进联合优化分布式 LLM 训练的启动配置、算子内核与通信调度。根据当前材料，其五阶段流程固定工作负载、损失与计时约束，校准集群噪声，并对候选优化重新验证；框架利用包括内存溢出在内的全部试验拟合全局执行时间与峰值内存模型，组合高内存开销优化与节省内存的配置及代码修改。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.11558">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/tkbcqezrf6fo10de3sihisro7">http://localhost:3300/items/tkbcqezrf6fo10de3sihisro7</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">tkbcqezrf6fo10de3sihisro7</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[投影神经加性模型 PNAM 的通用逼近理论与可解释建模方法]]></title>
-      <link>http://localhost:3300/items/td85kzizfztomyblud0l317km</link>
-      <description><![CDATA[<p>该研究提出投影神经加性模型（PNAM）的理论基础，报告通过可学习线性变换增强 NAM，使其能够捕捉变量交互并具备通用逼近能力。根据当前材料，作者刻画了精确表示多项式所需的最少投影数，并为具有 s 阶连续导数的函数推导出逼近速率 \mathcal{O}(M^{-s / (N - 1)})，其中 M 为投影数、N 为输入维度，该速率在脊函数逼近中已知是最优的。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.10186">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/td85kzizfztomyblud0l317km">http://localhost:3300/items/td85kzizfztomyblud0l317km</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">td85kzizfztomyblud0l317km</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
 </rss>
