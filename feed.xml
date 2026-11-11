@@ -42,6 +42,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[BVSR 框架通过盲变异与选择性保留改善 AI 科学家的创意生成]]></title>
+      <link>http://localhost:3300/items/pvus1nej7ua2iwerhd5vo3usx</link>
+      <description><![CDATA[<p>研究提出 BVSR 发现框架，通过分阶段使用任务信息改善 AI 科学家的创意生成与候选筛选。根据当前材料，该框架在生成阶段刻意限制任务信息以拓宽探索，再利用同一任务上已验证提案及其结果，筛选值得进行高成本实证评估的候选。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.12184">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/pvus1nej7ua2iwerhd5vo3usx">http://localhost:3300/items/pvus1nej7ua2iwerhd5vo3usx</a></p>]]></description>
+      <category>AI4S</category>
+      <pubDate>Wed, 11 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">pvus1nej7ua2iwerhd5vo3usx</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[ADIndex 提出通过组级知识蒸馏实现层自适应稀疏注意力索引]]></title>
       <link>http://localhost:3300/items/n89z1mq2my5kvhvcrlo2s6q4q</link>
       <description><![CDATA[<p>ADIndex 提出层自适应稀疏注意力索引方法，旨在降低 DSA 对每个查询扫描完整因果前缀带来的长上下文推理开销。根据当前材料，该方法结合逐层校准、组级知识蒸馏和查询组内 token bank 共享，并保留针对单个查询的细化处理。</p>
@@ -61,6 +72,17 @@
       <category>AI4AI</category>
       <pubDate>Wed, 11 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">kio7zglvtnyvf4p4bfxzgwz09</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[因果神经元回路是否唯一且可迁移？研究检验子集必要性与跨输入效果]]></title>
+      <link>http://localhost:3300/items/k7dujhzobs89ptcmfqn3sk4cz</link>
+      <description><![CDATA[<p>该研究报告，能改变模型答案的神经元组通常并非全部必要，同组内互不重叠的子集也可能各自改变答案，跨关系链迁移则较弱。根据当前材料，作者对每个选定的12个MLP神经元组穷举全部4,096个子集；在Qwen3-0.6B的二选一首都任务中，置零使答案间差值降低27%，随机神经元影响很小，但用其他问题的激活替换同一组神经元也几乎没有影响，作者未发现其承载问题特定内容的证据。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.13885">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/k7dujhzobs89ptcmfqn3sk4cz">http://localhost:3300/items/k7dujhzobs89ptcmfqn3sk4cz</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Wed, 11 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">k7dujhzobs89ptcmfqn3sk4cz</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
@@ -535,28 +557,6 @@
       <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">sjie3ey2dgzug7cakrdz5h0kf</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[超越扁平游走：用于自回归图生成的组合式抽象]]></title>
-      <link>http://localhost:3300/items/s0z4rvj6q196oggt6ud08fr8f</link>
-      <description><![CDATA[<p>该研究提出层级图抽象与由粗到细的生成流程，作者报告其可改善自回归图生成的分布与结构保真度。根据当前材料，该流程分离粗化、token 化与解码，并比较社区粗化、层级 token 化和顺序随机化三个设计维度；相较于社区内随机化，在整个层级上随机化遍历顺序可显著减轻保真度与 V.U.N. 之间的权衡。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.12160">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/s0z4rvj6q196oggt6ud08fr8f">http://localhost:3300/items/s0z4rvj6q196oggt6ud08fr8f</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">s0z4rvj6q196oggt6ud08fr8f</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[MAEP 提出面向 MoE 多模态大语言模型的模态感知专家剪枝方法]]></title>
-      <link>http://localhost:3300/items/rvnka1i54jwed6eakx2gclikf</link>
-      <description><![CDATA[<p>MAEP 研究提出无需训练的模态感知专家剪枝框架，作者报告可减少约 27 GB 的 BF16 专家权重占用。根据当前材料，该方法在单次前向传播中拆分模态重要性，以衡量移除专家后 MoE 输出变化的 Delta-H Output（ΔH）和低注意力视觉 token 为依据，将文本侧重要性用于保留、视觉侧重要性用于剪枝，并跨层全局排序专家。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.05927">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/rvnka1i54jwed6eakx2gclikf">http://localhost:3300/items/rvnka1i54jwed6eakx2gclikf</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">rvnka1i54jwed6eakx2gclikf</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
   </channel>
 </rss>
