@@ -9,6 +9,39 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[FINCOSMOS 提出面向金融智能体的开放世界评测范式]]></title>
+      <link>http://localhost:3300/items/kio7zglvtnyvf4p4bfxzgwz09</link>
+      <description><![CDATA[<p>FINCOSMOS 研究提出金融智能体的开放世界评测范式，作者报告在 150 次会话中没有一次通过验收。根据当前材料，模拟用户仅在被询问时透露隐藏策略，智能体须自行从 Web 获取数据并在数据截止时间约束下构建回测；评测无需参考答案，通过程序重算指标、核对策略与时点正确性，并要求用户满意且全部 15 项否决检查均未触发。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.07464">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/kio7zglvtnyvf4p4bfxzgwz09">http://localhost:3300/items/kio7zglvtnyvf4p4bfxzgwz09</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Wed, 11 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">kio7zglvtnyvf4p4bfxzgwz09</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[WaveGen 通过内部频谱轨迹学习实现端到端文本到波形生成]]></title>
+      <link>http://localhost:3300/items/glte14rjqmgt21f63aqlkzqrx</link>
+      <description><![CDATA[<p>WaveGen 研究提出基于扩散模型的端到端文本到波形生成框架，在单一模型内联合学习内部频谱轨迹与目标波形轨迹。根据当前材料，该方法采用 Spectral Forcing、解耦扩散头和多尺度频谱 v-loss，并在模型内部完成文本与语音对齐，不依赖单独训练或外部解码的中间表示、外部时长预测器、自监督表示及语义蒸馏。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.12527">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/glte14rjqmgt21f63aqlkzqrx">http://localhost:3300/items/glte14rjqmgt21f63aqlkzqrx</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Wed, 11 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">glte14rjqmgt21f63aqlkzqrx</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[EarthRecord：用四十年卫星影像评估多模态智能体的地表变化分析能力]]></title>
+      <link>http://localhost:3300/items/ezyrtfhq7lvoa83v4bm8lzsv7</link>
+      <description><![CDATA[<p>EarthRecord 研究提出基于四十年原始卫星影像的地表变化分析基准，并报告多模态智能体仍难以可靠地从影像判断真实变化。根据当前材料，基准涵盖 56 个地点的 Landsat、MODIS、VIIRS 和 Sentinel-2 数据，将云掩膜与跨传感器协调处理留给智能体，设置十类分析任务、238 个问题，依据未向智能体提供的全球产品参考、方法间一致性及视觉判读评分。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.12934">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ezyrtfhq7lvoa83v4bm8lzsv7">http://localhost:3300/items/ezyrtfhq7lvoa83v4bm8lzsv7</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Wed, 11 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">ezyrtfhq7lvoa83v4bm8lzsv7</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[APEX 通过条件偏移实现少步流式视频生成]]></title>
       <link>http://localhost:3300/items/crd9w3pbzqq7pygk1nfhacois</link>
       <description><![CDATA[<p>研究将 APEX 扩展到流式视频生成，通过条件偏移在生成器内部估计生成分布的速度场，移除 DMD 所需的独立 fake-score 网络。原始文本条件用于生成，偏移条件用于共享参数的分布估计，同时保留 S2-Avatar 的冻结参考教师、Self-Replay Forcing 和感知正则化。</p>
@@ -523,39 +556,6 @@
       <category>算法</category>
       <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">q090d4haw59qafzyfsspbybd6</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[PIA 研究提出由智能体生成物理约束运行时异常检测器]]></title>
-      <link>http://localhost:3300/items/pg3tkzfxbus2svcto7d89hy6b</link>
-      <description><![CDATA[<p>PIA 研究提出让大语言模型智能体编写并验证物理残差，生成可解释的信息物理系统运行时异常检测器。智能体利用泵特性、水箱质量平衡和控制器逻辑构建候选检测器，再通过评估工作台用正常运行数据迭代改进；作者报告检测器可在毫秒级运行，并指出告警对应的组件。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.11009">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/pg3tkzfxbus2svcto7d89hy6b">http://localhost:3300/items/pg3tkzfxbus2svcto7d89hy6b</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">pg3tkzfxbus2svcto7d89hy6b</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[R-BiLoGo 用图 Transformer 将板材成形中的局部加强筋响应迁移到新几何]]></title>
-      <link>http://localhost:3300/items/p8rfhyq4n48vuajkbcalvkk9k</link>
-      <description><![CDATA[<p>R-BiLoGo 研究提出基于图 Transformer 的残差代理模型，将热冲压角部件的局部加强筋响应迁移到不同整体几何。根据当前材料，模型以基准响应和加强筋引入的几何扰动为输入，预测相对基准的位移与减薄变化；作者报告其在源几何及迁移后的三个选定目标几何中的两个上，误差低于分层图模型和基于 Transolver 的模型。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.10086">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/p8rfhyq4n48vuajkbcalvkk9k">http://localhost:3300/items/p8rfhyq4n48vuajkbcalvkk9k</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">p8rfhyq4n48vuajkbcalvkk9k</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[Speculative Self-Distillation 提出高效知识内化方法]]></title>
-      <link>http://localhost:3300/items/nxsqjab2cruhqfuwj8qxacs12</link>
-      <description><![CDATA[<p>Speculative Self-Distillation（SSD）研究提出逐 token 混合策略自蒸馏方法，以减少语言模型内化新知识所需的监督。学生默认生成训练轨迹，仅当教师与学生的下一 token 分布显著偏离时，由掌握源材料的教师介入。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.12016">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/nxsqjab2cruhqfuwj8qxacs12">http://localhost:3300/items/nxsqjab2cruhqfuwj8qxacs12</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">nxsqjab2cruhqfuwj8qxacs12</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
