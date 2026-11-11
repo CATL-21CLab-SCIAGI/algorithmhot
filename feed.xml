@@ -53,6 +53,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[MACaQ 提出面向低精度权重与激活的快速模型无关校准量化方法]]></title>
+      <link>http://localhost:3300/items/oiv2s392alhq7v8c0bypvk8t5</link>
+      <description><![CDATA[<p>MACaQ 研究提出逐个线性层独立处理的 MXFP4 W4A4 训练后量化方法，以减少跨层依赖和量化时的显存需求。该方法在线对激活施加逐通道缩放与分块 Hadamard 变换，将对应逆变换吸收到权重中，使量化时只需将一层驻留内存；Flip-Refinement 则利用 Hessian 感知的坐标下降，贪心地将单个 FP4 编码调整至相邻可表示值。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.10649">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/oiv2s392alhq7v8c0bypvk8t5">http://localhost:3300/items/oiv2s392alhq7v8c0bypvk8t5</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Wed, 11 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">oiv2s392alhq7v8c0bypvk8t5</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[ADIndex 提出通过组级知识蒸馏实现层自适应稀疏注意力索引]]></title>
       <link>http://localhost:3300/items/n89z1mq2my5kvhvcrlo2s6q4q</link>
       <description><![CDATA[<p>ADIndex 提出层自适应稀疏注意力索引方法，旨在降低 DSA 对每个查询扫描完整因果前缀带来的长上下文推理开销。根据当前材料，该方法结合逐层校准、组级知识蒸馏和查询组内 token bank 共享，并保留针对单个查询的细化处理。</p>
@@ -545,17 +556,6 @@
       <category>算法</category>
       <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">sm7vqyn5w80kpkpivo1q83jif</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[KQE-2 提出面向单细胞转录组图谱的可复现量子聚类框架]]></title>
-      <link>http://localhost:3300/items/sjie3ey2dgzug7cakrdz5h0kf</link>
-      <description><![CDATA[<p>KQE-2 研究提出无需训练的量子—经典混合框架，用于可复现的全转录组聚类，作者报告其跨运行得到一致的生物学结果。根据当前材料，该框架将细胞映射为无纠缠量子态，可在经典硬件上精确计算特征并在量子处理器上直接核查；理论分析给出去除纠缠是局部约束单量子比特特征方差的充分必要条件。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.11745">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/sjie3ey2dgzug7cakrdz5h0kf">http://localhost:3300/items/sjie3ey2dgzug7cakrdz5h0kf</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">sjie3ey2dgzug7cakrdz5h0kf</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
