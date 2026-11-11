@@ -9,6 +9,28 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[个性化联邦强化学习研究利用奖励多样性实现无显式探索]]></title>
+      <link>http://localhost:3300/items/x1985s61c1f3unz77gru0j5c0</link>
+      <description><![CDATA[<p>该研究提出利用奖励多样性促进个性化联邦强化学习中的探索，并在奖励多样性充分的条件下证明纯贪心算法 PF-EFVI 可获得对数遗憾。基于摘要，PF-UCBVI 通过解耦共享动力学与个性化目标实现最优线性加速，PF-EFVI 则利用奖励差异确保状态与动作的覆盖，无需显式探索奖励项。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.12964">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/x1985s61c1f3unz77gru0j5c0">http://localhost:3300/items/x1985s61c1f3unz77gru0j5c0</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Wed, 11 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">x1985s61c1f3unz77gru0j5c0</guid>
+      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
+    </item>
+    <item>
+      <title><![CDATA[ConceptTime 以预测惊异构建可解释时间序列分类的自锚定概念瓶颈]]></title>
+      <link>http://localhost:3300/items/vl2znvy2splyx1ggq2xbf0t6r</link>
+      <description><![CDATA[<p>基于摘要，研究提出 ConceptTime，以预测惊异构建概念瓶颈，兼顾时间序列分类准确性、可解释性与证据不足时的拒答能力。方法使用冻结的概率预测器，将预测分布与实际观测的偏差用于定位片段边界和描述片段，再聚类形成动态状态概念，由轻量分类头处理概念序列，并以最近概念的距离估计可靠性。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.12955">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/vl2znvy2splyx1ggq2xbf0t6r">http://localhost:3300/items/vl2znvy2splyx1ggq2xbf0t6r</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Wed, 11 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">vl2znvy2splyx1ggq2xbf0t6r</guid>
+      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
+    </item>
+    <item>
       <title><![CDATA[WikiTrace 将记忆关联到证据，减少 LLM 智能体的记忆诱发退化]]></title>
       <link>http://localhost:3300/items/ujtznx7c5yi41c1hviesy9z6z</link>
       <description><![CDATA[<p>WikiTrace 研究提出证据关联记忆系统，让 LLM 智能体核查经验来源，以减少本可完成的任务因使用记忆而失败的现象。系统将简洁经验关联到任务成败原因摘要及原始轨迹，智能体在经验缺少行动细节、相互冲突或来自失败任务时，通过终端工具沿链接核查并补充或纠正经验。</p>
@@ -20,6 +42,17 @@
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
     </item>
     <item>
+      <title><![CDATA[ADIndex 提出通过组级知识蒸馏实现层自适应稀疏注意力索引]]></title>
+      <link>http://localhost:3300/items/n89z1mq2my5kvhvcrlo2s6q4q</link>
+      <description><![CDATA[<p>ADIndex 提出层自适应稀疏注意力索引方法，旨在降低 DSA 对每个查询扫描完整因果前缀带来的长上下文推理开销。根据当前材料，该方法结合逐层校准、组级知识蒸馏和查询组内 token bank 共享，并保留针对单个查询的细化处理。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.12956">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/n89z1mq2my5kvhvcrlo2s6q4q">http://localhost:3300/items/n89z1mq2my5kvhvcrlo2s6q4q</a></p>]]></description>
+      <category>算法</category>
+      <pubDate>Wed, 11 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">n89z1mq2my5kvhvcrlo2s6q4q</guid>
+      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
+    </item>
+    <item>
       <title><![CDATA[FINCOSMOS 提出面向金融智能体的开放世界评测范式]]></title>
       <link>http://localhost:3300/items/kio7zglvtnyvf4p4bfxzgwz09</link>
       <description><![CDATA[<p>FINCOSMOS 研究提出金融智能体的开放世界评测范式，作者报告在 150 次会话中没有一次通过验收。根据当前材料，模拟用户仅在被询问时透露隐藏策略，智能体须自行从 Web 获取数据并在数据截止时间约束下构建回测；评测无需参考答案，通过程序重算指标、核对策略与时点正确性，并要求用户满意且全部 15 项否决检查均未触发。</p>
@@ -29,6 +62,17 @@
       <pubDate>Wed, 11 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">kio7zglvtnyvf4p4bfxzgwz09</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[Third Eye 研究报告递归自我改进的即时收益可能无法延续]]></title>
+      <link>http://localhost:3300/items/hpyi1gmgzz84p4wt9nx99qp71</link>
+      <description><![CDATA[<p>Third Eye 研究报告，模型自更新的即时表现不能代表后续再次更新后的效用，部分模型的效用在继续更新后下降。根据当前材料，作者在数学和代码任务上评估了五个 3–8B 基座模型，进行了 64 次全新运行，每次生成三个候选，每个候选再进行三次后续更新，选择与最终评分使用互不重叠的题目。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.12988">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/hpyi1gmgzz84p4wt9nx99qp71">http://localhost:3300/items/hpyi1gmgzz84p4wt9nx99qp71</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Wed, 11 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">hpyi1gmgzz84p4wt9nx99qp71</guid>
+      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
       <title><![CDATA[WaveGen 通过内部频谱轨迹学习实现端到端文本到波形生成]]></title>
@@ -84,6 +128,17 @@
       <pubDate>Wed, 11 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">bqlv1pixli1hn6808q3jpyzar</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
+      <title><![CDATA[从线性探针到贝叶斯流形：研究大语言模型算术表示的几何结构]]></title>
+      <link>http://localhost:3300/items/be5v4722szmjtgpmyjqt0j4sx</link>
+      <description><![CDATA[<p>该研究提出四阶段贝叶斯流程，分别检验表示的可解码性、形状、归属和因果使用，指出探针准确率不足以判断模型是否利用某种几何结构计算。根据当前材料，作者在 GPT-J 6B、Llama 3.1 8B 和 Pythia 6.9B 的两位数加法与乘法任务上，通过证据阈值比较候选形状、移除预先指定的相关概念，并干预形状以检验输出依赖。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.12998">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/be5v4722szmjtgpmyjqt0j4sx">http://localhost:3300/items/be5v4722szmjtgpmyjqt0j4sx</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Wed, 11 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">be5v4722szmjtgpmyjqt0j4sx</guid>
+      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
     <item>
       <title><![CDATA[Google DeepMind 提出 AlphaProof Code，验证 Signal 核心密码代码的安全性质]]></title>
@@ -502,61 +557,6 @@
       <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">rvnka1i54jwed6eakx2gclikf</guid>
       <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[FireGate 在连续强化学习微调前界定模型行为变化上限]]></title>
-      <link>http://localhost:3300/items/rgsstpgr4kj4cp3bdjlbua1t3</link>
-      <description><![CDATA[<p>FireGate 研究提出用门控机制在连续强化学习微调前，为语言模型在指定提示分布上的行为变化设定上限。根据当前材料，该方法以冻结底层上的分类器决定是否启用各任务更新，未触发门控时计算与旧模型完全一致；理论上，整个任务流中有界行为评分的变化不超过门控触发率，并可用受保护分布的无标签提示校准该比率，获得不依赖训练所得权重的 PAC 保证。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.11979">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/rgsstpgr4kj4cp3bdjlbua1t3">http://localhost:3300/items/rgsstpgr4kj4cp3bdjlbua1t3</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">rgsstpgr4kj4cp3bdjlbua1t3</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[寻找失去的时间：评估大语言模型的时间能力]]></title>
-      <link>http://localhost:3300/items/qxe1et4eh9qdy5faw2yijoenp</link>
-      <description><![CDATA[<p>该研究报告，大语言模型虽熟悉时间规则，却难以预测自身任务耗时，部分模型在回答用户问题时完全忽略时间成本。基于摘要，作者通过四项递进评估发现，模型在由不同时间相关领域的定理构建的问题集上准确率达 92.0–97.5%，但对自身完成时间的低估幅度最高达 99.5%，且无法辨别哪些任务执行更久。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.10536">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/qxe1et4eh9qdy5faw2yijoenp">http://localhost:3300/items/qxe1et4eh9qdy5faw2yijoenp</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">qxe1et4eh9qdy5faw2yijoenp</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[PhysioWave-T 提出面向生物信号的 token 高效小波基础模型]]></title>
-      <link>http://localhost:3300/items/qm6kkcmp9erdbpv1iedod1jkh</link>
-      <description><![CDATA[<p>PhysioWave-T 研究提出面向 EEG、ECG 和 sEMG 的小波基础模型，通过动态尺度折叠减少 token 数，并以可靠性感知潜在融合方法 RALF 整合多模态编码器。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.08969">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/qm6kkcmp9erdbpv1iedod1jkh">http://localhost:3300/items/qm6kkcmp9erdbpv1iedod1jkh</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">qm6kkcmp9erdbpv1iedod1jkh</guid>
-      <author>noreply@localhost (Hugging Face Daily Papers)</author>
-    </item>
-    <item>
-      <title><![CDATA[PACE-ECG：利用患者纵向结构学习可迁移的心电图表征]]></title>
-      <link>http://localhost:3300/items/qculnby7p382v8i37gpekf80o</link>
-      <description><![CDATA[<p>PACE-ECG 研究提出患者感知的心电图预训练框架，将同一患者时间相邻记录的对比学习与临床引导的多任务监督结合。根据当前材料，作者在 MIMIC-IV 和两个外部 HEEDB 队列中评估冻结表征对心肌梗死后全因死亡及新发心力衰竭的预测能力，并与 DeepECG-SSL 和两个对照基线比较。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.12307">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/qculnby7p382v8i37gpekf80o">http://localhost:3300/items/qculnby7p382v8i37gpekf80o</a></p>]]></description>
-      <category>AI4S</category>
-      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">qculnby7p382v8i37gpekf80o</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[IoT 边缘—云任务卸载研究：面向 SLA 的类别加权深度强化学习与精确最优策略比较]]></title>
-      <link>http://localhost:3300/items/qc7fpttgs41mopsf76l4462sv</link>
-      <description><![CDATA[<p>该研究报告，IoT 边缘—云任务卸载中的类别加权奖励可接近最优成本，但 PPO 在较大系统中仍明显偏离最优策略。根据当前材料，作者构建了四个可用动态规划精确求解的系统，分别比较奖励设计与学习器的误差；满足时延限制的奖励会使每次违约的实际代价变为惩罚加奖励，不区分类别的惩罚即使配合完美学习器，成本仍比最优值高 65%–118%，修正后的分类别惩罚则距最优值仅 0.13%。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.10638">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/qc7fpttgs41mopsf76l4462sv">http://localhost:3300/items/qc7fpttgs41mopsf76l4462sv</a></p>]]></description>
-      <category>AI4AI</category>
-      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">qc7fpttgs41mopsf76l4462sv</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
 </rss>
