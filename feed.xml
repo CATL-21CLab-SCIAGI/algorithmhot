@@ -9,6 +9,17 @@
     <ttl>30</ttl>
     <generator>AlgorithmHot · 科研热点 (http://localhost:3300/agent)</generator>
     <item>
+      <title><![CDATA[WikiTrace 将记忆关联到证据，减少 LLM 智能体的记忆诱发退化]]></title>
+      <link>http://localhost:3300/items/ujtznx7c5yi41c1hviesy9z6z</link>
+      <description><![CDATA[<p>WikiTrace 研究提出证据关联记忆系统，让 LLM 智能体核查经验来源，以减少本可完成的任务因使用记忆而失败的现象。系统将简洁经验关联到任务成败原因摘要及原始轨迹，智能体在经验缺少行动细节、相互冲突或来自失败任务时，通过终端工具沿链接核查并补充或纠正经验。</p>
+<p>🔗 <a href="https://arxiv.org/abs/2611.14320">阅读原文</a></p>
+<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/ujtznx7c5yi41c1hviesy9z6z">http://localhost:3300/items/ujtznx7c5yi41c1hviesy9z6z</a></p>]]></description>
+      <category>AI4AI</category>
+      <pubDate>Wed, 11 Nov 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">ujtznx7c5yi41c1hviesy9z6z</guid>
+      <author>noreply@localhost (Hugging Face Daily Papers)</author>
+    </item>
+    <item>
       <title><![CDATA[FINCOSMOS 提出面向金融智能体的开放世界评测范式]]></title>
       <link>http://localhost:3300/items/kio7zglvtnyvf4p4bfxzgwz09</link>
       <description><![CDATA[<p>FINCOSMOS 研究提出金融智能体的开放世界评测范式，作者报告在 150 次会话中没有一次通过验收。根据当前材料，模拟用户仅在被询问时透露隐藏策略，智能体须自行从 Web 获取数据并在数据截止时间约束下构建回测；评测无需参考答案，通过程序重算指标、核对策略与时点正确性，并要求用户满意且全部 15 项否决检查均未触发。</p>
@@ -545,17 +556,6 @@
       <category>AI4AI</category>
       <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">qc7fpttgs41mopsf76l4462sv</guid>
-      <author>noreply@localhost (arXiv · AI 与机器学习)</author>
-    </item>
-    <item>
-      <title><![CDATA[将 SHOP 风格方法前置条件编译为偏序 HTN 规划]]></title>
-      <link>http://localhost:3300/items/q090d4haw59qafzyfsspbybd6</link>
-      <description><![CDATA[<p>该研究提出将 SHOP 风格的首动作前置条件语义编译为不含方法前置条件的标准偏序 HTN 规划，仅需增加两个事实。根据当前材料，SHOP 要求条件在方法首个动作执行前立即成立，而 HDDL 使用辅助动作检查条件，偏序下无关动作可能在方法开始前使条件失效。</p>
-<p>🔗 <a href="https://arxiv.org/abs/2611.11055">阅读原文</a></p>
-<p>via AlgorithmHot · 科研热点 · <a href="http://localhost:3300/items/q090d4haw59qafzyfsspbybd6">http://localhost:3300/items/q090d4haw59qafzyfsspbybd6</a></p>]]></description>
-      <category>算法</category>
-      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">q090d4haw59qafzyfsspbybd6</guid>
       <author>noreply@localhost (arXiv · AI 与机器学习)</author>
     </item>
   </channel>
